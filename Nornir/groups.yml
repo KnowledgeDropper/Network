@@ -1,0 +1,15 @@
+## Nornir Groups File
+---
+switches:
+
+  data:
+    ntp:
+      servers:
+        - 8.8.8.8
+        - 8.8.4.4
+
+hogsmeade:
+
+  platform: cisco_ios
+  username: jdehner
+  password: 1989@#NetworkNinja2020
