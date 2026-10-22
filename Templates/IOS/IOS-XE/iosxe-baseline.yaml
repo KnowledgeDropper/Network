@@ -1,0 +1,332 @@
+# ==============================================================================
+# netascode IOS-XE  —  Baseline Device Configuration Template
+# Module : netascode/terraform-iosxe-nac-iosxe
+# Target : IOS-XE 17.x  (Catalyst 9000 / ASR 1000 / Catalyst 8000v)
+# Schema : https://netascode.cisco.com/docs/data_models
+# ==============================================================================
+#
+# USAGE
+#   1. Copy and rename to <hostname>.nac.yaml or baseline.nac.yaml
+#   2. Replace every [PLACEHOLDER] with real site values
+#   3. Reference in main.tf:
+#
+#        module "nac_iosxe" {
+#          source     = "netascode/nac-iosxe/iosxe"
+#          version    = ">= 0.2.0"
+#          yaml_files = ["baseline.nac.yaml"]
+#        }
+#
+# NOTES
+#   - All keys are case-sensitive
+#   - Interface IDs must always be quoted strings: "1/0/1", "0", etc.
+#   - Inject secrets via Terraform variables — never hardcode in YAML
+#   - "service timestamps" has no YANG model in IOS-XE 17.x; use the
+#     baseline_service_timestamps CLI template workaround below
+# ==============================================================================
+
+iosxe:
+
+  # ============================================================================
+  # GLOBAL — templates applied to every device in the inventory
+  # ============================================================================
+  global:
+    templates:
+      - baseline_service_timestamps
+
+  # ============================================================================
+  # TEMPLATES — reusable configuration blocks
+  # type: cli   -> raw IOS-XE CLI pushed via NETCONF exec-cmd
+  # type: model -> structured YANG-model data
+  # ============================================================================
+  templates:
+    # "service timestamps" cannot be set via YANG on IOS-XE 17.x
+    - name: baseline_service_timestamps
+      type: cli
+      content: |
+        service timestamps log datetime msec localtime show-timezone year
+        service timestamps debug datetime msec localtime show-timezone year
+        service password-encryption
+        no service tcp-small-servers
+        no service udp-small-servers
+
+  # ============================================================================
+  # DEVICE GROUPS
+  # ============================================================================
+  device_groups:
+    - name: [DEVICE_GROUP_NAME]          # e.g. campus_core or branch_routers
+      templates:
+        - baseline_service_timestamps
+      devices:
+        - [HOSTNAME]
+
+  # ============================================================================
+  # DEVICES
+  # ============================================================================
+  devices:
+    - name: [HOSTNAME]                   # e.g. C9300-CORE-01
+      host: [MGMT_IP]
+
+      configuration:
+
+        # ======================================================================
+        # SYSTEM
+        # ======================================================================
+        system:
+          hostname: [HOSTNAME]
+
+          # -- Domain & DNS --
+          ip_domain_name: [DOMAIN_NAME]            # e.g. corp.example.com
+          ip_domain_lookup: true
+          ip_name_servers:
+            - [DNS_SERVER_1]
+            - [DNS_SERVER_2]
+
+          # -- Routing --
+          ip_routing: true
+
+          # -- SSH hardening (requires RSA key pre-generated out-of-band) --
+          ssh:
+            version: 2
+            time_out: 60
+            authentication_retries: 3
+
+          # -- HTTP/HTTPS management plane --
+          # Set secure_server: true only if RESTCONF or DNA Center HTTPS is in use
+          http:
+            server: false
+            secure_server: false
+
+          # -- TACACS+ source interface --
+          ip_tacacs_source_interface_type: Loopback
+          ip_tacacs_source_interface_id: "0"
+
+          # -- Configuration archive --
+          archive:
+            log_config_logging_enable: true
+            maximum: 10
+            write_memory: false
+
+        # ======================================================================
+        # BANNER
+        # ======================================================================
+        banner:
+          login: |
+            ******************************************************************
+              AUTHORIZED ACCESS ONLY — [ORGANIZATION_NAME]
+              Device  : [HOSTNAME]
+              Site    : [SITE_NAME]
+              Owner   : [TEAM_OR_OWNER]
+
+              Unauthorized access or use of this system is strictly prohibited
+              and may be subject to criminal and civil penalties.
+              All sessions are monitored and logged.
+            ******************************************************************
+          motd: |
+            WARNING: Authorized users only. Disconnect if not authorized.
+
+        # ======================================================================
+        # NTP
+        # Bind to Loopback0 for stable source address.
+        # Use vrf: Mgmt-vrf if NTP servers are reachable via out-of-band VRF.
+        # ======================================================================
+        ntp:
+          logging: true
+          update_calendar: true
+          source_interface_type: Loopback
+          source_interface_id: "0"
+          servers:
+            - ip: [NTP_SERVER_1]
+              prefer: true
+              iburst: true
+              # vrf: Mgmt-vrf
+            - ip: [NTP_SERVER_2]
+              iburst: true
+              # vrf: Mgmt-vrf
+
+        # ======================================================================
+        # LOGGING
+        # ======================================================================
+        logging:
+          buffered_size: 524288                    # 512 KB local ring buffer
+          buffered_severity: informational
+          console_severity: critical               # avoid flooding console
+          trap: true
+          trap_severity: informational
+          source_interface_type: Loopback
+          source_interface_id: "0"
+          hosts:
+            - ip: [SYSLOG_SERVER_1]
+              # vrf: Mgmt-vrf
+            - ip: [SYSLOG_SERVER_2]
+              # vrf: Mgmt-vrf
+
+        # ======================================================================
+        # AAA
+        # Order: new_model -> TACACS+ servers -> group -> method lists -> local user
+        # ======================================================================
+        aaa:
+          new_model: true
+
+          tacacs:
+            servers:
+              - name: TACACS-PRIMARY
+                ip: [TACACS_SERVER_1]
+                port: 49
+                timeout: 5
+                encryption: 7
+                key: [TACACS_KEY]                  # inject via TF variable
+              - name: TACACS-SECONDARY
+                ip: [TACACS_SERVER_2]
+                port: 49
+                timeout: 5
+                encryption: 7
+                key: [TACACS_KEY]
+
+          tacacs_groups:
+            - name: TACACS-SERVERS
+              source_interface_type: Loopback
+              source_interface_id: "0"
+              server_names:
+                - TACACS-PRIMARY
+                - TACACS-SECONDARY
+
+          authentication:
+            logins:
+              - name: default
+                methods:
+                  - group TACACS-SERVERS
+                  - local                          # fallback when TACACS+ unreachable
+
+          # console: true ensures AAA auth is not bypassed on the physical console
+          authorization:
+            config_commands: true
+            console: true
+            commands:
+              - level: 15
+                list_name: default
+                methods:
+                  - group TACACS-SERVERS
+                  - local
+            execs:
+              - name: default
+                methods:
+                  - group TACACS-SERVERS
+                  - local
+
+          accounting:
+            commands:
+              - level: 15
+                list_name: default
+                action_type: start-stop
+                groups:
+                  - TACACS-SERVERS
+            execs:
+              - name: default
+                start_stop_groups:
+                  - TACACS-SERVERS
+
+          # Emergency local user — only used when ALL TACACS+ servers are down
+          # type 9 (scrypt) is the strongest hash on IOS-XE 17.x
+          usernames:
+            - name: [LOCAL_ADMIN_USER]
+              privilege: 15
+              secret_encryption: 9
+              secret: [LOCAL_ADMIN_HASHED_SECRET]  # inject via TF variable
+
+        # ======================================================================
+        # LINE
+        # ======================================================================
+        line:
+          consoles:
+            - number: "0"
+              exec_timeout_minutes: 15
+              exec_timeout_seconds: 0
+              login_authentication: default
+              logging_synchronous: true
+
+          vtys:
+            # VTY 0-4: SSH only
+            - number_from: 0
+              number_to: 4
+              login_authentication: default
+              authorization_exec: default
+              transport_input:
+                - ssh
+              transport_output:
+                - none
+              exec_timeout_minutes: 15
+              exec_timeout_seconds: 0
+              logging_synchronous: true
+              session_timeout: 30
+
+            # VTY 5-15: blocked (defense-in-depth)
+            - number_from: 5
+              number_to: 15
+              transport_input_none: true
+
+        # ======================================================================
+        # INTERFACES
+        # ======================================================================
+        interfaces:
+
+          # Loopback0 — Router-ID, BGP update-source, TACACS/NTP source anchor
+          loopbacks:
+            - id: 0
+              description: "[HOSTNAME]-Lo0 :: Router-ID / BGP-Source / Mgmt-Anchor"
+              ipv4:
+                address: [LOOPBACK0_IP]            # /32 from infrastructure block
+                address_mask: 255.255.255.255
+
+          # Uplink — adjust type and id to match hardware:
+          #   Catalyst 9300/9400: GigabitEthernet id: "1/0/1"
+          #   ASR 1001-X        : GigabitEthernet id: "0/0/1"
+          #   Catalyst 8000v    : GigabitEthernet id: "2"
+          ethernets:
+            - type: GigabitEthernet
+              id: "[UPLINK_INTF_ID]"               # always quoted
+              description: "UPLINK :: [REMOTE_HOSTNAME] :: [REMOTE_INTF_ID]"
+              switchport:
+                enable: false                      # routed port
+              ipv4:
+                address: [UPLINK_LOCAL_IP]
+                address_mask: [UPLINK_MASK]        # e.g. 255.255.255.252 (/30)
+
+        # ======================================================================
+        # BGP STUB
+        # default_ipv4_unicast: false is required to prevent auto-activation
+        # and inadvertent route leaks on all neighbors.
+        # ======================================================================
+        routing:
+          bgp:
+            as_number: [LOCAL_BGP_AS]
+            default_ipv4_unicast: false
+            log_neighbor_changes: true
+            router_id_interface_type: Loopback
+            router_id_interface_id: 0
+            graceful_restart: true
+
+            neighbors:
+              - ip: [UPSTREAM_BGP_PEER_IP]
+                remote_as: [UPSTREAM_BGP_AS]
+                description: "UPLINK :: [REMOTE_HOSTNAME]"
+                timers_keepalive: 10
+                timers_holdtime: 30
+                # password: [BGP_MD5_KEY]          # inject via TF variable
+                # password_type: 7
+
+            address_family:
+              ipv4_unicast:
+                networks:
+                  - network: [LOOPBACK0_IP]
+                    mask: 255.255.255.255
+                  # - network: [SITE_SUMMARY_PREFIX]
+                  #   mask: [SITE_SUMMARY_MASK]
+                neighbors:
+                  - ip: [UPSTREAM_BGP_PEER_IP]
+                    activate: true
+                    soft_reconfiguration: true
+                    route_maps:
+                      - direction: in
+                        name: RM-ACCEPT-DEFAULT-FROM-UPSTREAM
+                      - direction: out
+                        name: RM-ADVERTISE-TO-UPSTREAM

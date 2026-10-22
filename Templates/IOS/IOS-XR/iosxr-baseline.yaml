@@ -1,0 +1,260 @@
+# =============================================================================
+# Cisco IOS-XR - Network as Code (NaC) Baseline Configuration Template
+# Provider : netascode/iosxr (>= 0.7.x)
+# Module   : netascode/nac-iosxr/iosxr (>= 0.1.0)
+# Targets  : ASR 9000 / NCS 5500/5700 / Cisco 8000 running IOS-XR 7.x
+#
+# Usage:
+#   module "iosxr" {
+#     source     = "netascode/nac-iosxr/iosxr"
+#     version    = ">= 0.1.0"
+#     yaml_files = ["baseline.nac.yaml"]
+#   }
+#
+# Schema source: github.com/netascode/terraform-iosxr-nac-iosxr
+# All keys are verified against the module's .tf locals blocks.
+# =============================================================================
+
+iosxr:
+  devices:
+    - name: [HOSTNAME]
+      host: [MGMT_IP]
+
+      configuration:
+
+        # ======================================================================
+        # HOSTNAME
+        # ======================================================================
+        hostname: [HOSTNAME]                       # e.g. rtr-dc1-core-01
+
+        # ======================================================================
+        # DOMAIN / DNS
+        # ======================================================================
+        domain:
+          name: [DOMAIN_NAME]
+          lookup_disable: false
+          source_interface: MgmtEth0/RP0/CPU0/0
+          name_servers:
+            - address: [DNS_SERVER_1]
+            - address: [DNS_SERVER_2]
+          lists:
+            - name: [SEARCH_DOMAIN]                # e.g. example.com
+
+        # ======================================================================
+        # NTP
+        # iburst is not a CLI keyword on XR — use minpoll/maxpoll instead
+        # ======================================================================
+        ntp:
+          authenticate: false
+          source_interface: MgmtEth0/RP0/CPU0/0
+          servers:
+            - address: [NTP_SERVER_1]
+              prefer: true
+              source: MgmtEth0/RP0/CPU0/0
+              minpoll: 4                           # 2^4 = 16s
+              maxpoll: 6                           # 2^6 = 64s
+            - address: [NTP_SERVER_2]
+              prefer: false
+              source: MgmtEth0/RP0/CPU0/0
+              minpoll: 4
+              maxpoll: 6
+          # Uncomment when ntp.authenticate: true
+          # authentication_keys:
+          #   - number: 1
+          #     mode: md5
+          #     key: [NTP_AUTH_KEY]
+          #     trusted: true
+
+        # ======================================================================
+        # SSH
+        # v1 not set = disabled. XR 7.x cipher suite is strong by default
+        # but explicitly disabling CBC ciphers is best practice.
+        # ======================================================================
+        ssh:
+          timeout: 60
+          server:
+            v2: true
+            rate_limit: 60
+            session_limit: 10
+            logging: true
+            dscp: 48                               # DSCP CS6 for control traffic
+            max_auth_limit: 3
+            netconf_port: 830
+            vrfs:
+              - name: [MGMT_VRF]                  # e.g. MGMT — restrict SSH to this VRF
+
+        # ======================================================================
+        # LOGGING
+        # ======================================================================
+        logging:
+          source_interfaces:
+            - name: MgmtEth0/RP0/CPU0/0
+              vrf: [MGMT_VRF]
+          hosts:
+            - address: [SYSLOG_SERVER_1]
+              vrf: [MGMT_VRF]
+              severity: informational
+              port: 514
+            - address: [SYSLOG_SERVER_2]
+              vrf: [MGMT_VRF]
+              severity: informational
+              port: 514
+          buffered:
+            size: 2097152                          # 2 MB local buffer
+            level: informational
+          facility_level: local7
+          trap: informational
+          ipv4_dscp: 48
+
+        # ======================================================================
+        # TACACS+
+        # key_type "7" = encrypted. Never commit cleartext keys (type "0") to git.
+        # ======================================================================
+        tacacs_server:
+          timeout: 5
+          key_type: "7"
+          key: [TACACS_GLOBAL_KEY]
+          hosts:
+            - address: [TACACS_SERVER_1]
+              port: 49
+              timeout: 5
+              key_type: "7"
+              key: [TACACS_SERVER_1_KEY]
+              single_connection: true
+            - address: [TACACS_SERVER_2]
+              port: 49
+              timeout: 5
+              key_type: "7"
+              key: [TACACS_SERVER_2_KEY]
+              single_connection: true
+
+        tacacs_source_interface:
+          - interface: MgmtEth0/RP0/CPU0/0
+            vrf: [MGMT_VRF]
+
+        # ======================================================================
+        # AAA
+        # IOS-XR uses taskgroups/usergroups, not privilege levels.
+        # local fallback is critical for out-of-band access survivability.
+        # ======================================================================
+        aaa:
+          banner_login: true
+          group_servers:
+            tacacs:
+              - name: [TACACS_GROUP_NAME]          # e.g. TACACS-SERVERS
+                vrf: [MGMT_VRF]
+                holddown_time: 0
+                servers:
+                  - address: [TACACS_SERVER_1]
+                  - address: [TACACS_SERVER_2]
+
+          authentication:
+            login:
+              - name: default
+                groups:
+                  - [TACACS_GROUP_NAME]
+                  - local
+
+          authorization:
+            exec:
+              - name: default
+                groups:
+                  - [TACACS_GROUP_NAME]
+                  - local
+            commands:
+              - name: default
+                groups:
+                  - [TACACS_GROUP_NAME]
+
+          accounting:
+            exec:
+              - name: default
+                records: start-stop
+                groups:
+                  - [TACACS_GROUP_NAME]
+            commands:
+              - name: default
+                records: stop-only
+                groups:
+                  - [TACACS_GROUP_NAME]
+            system:
+              - name: default
+                records: start-stop
+                groups:
+                  - [TACACS_GROUP_NAME]
+
+        # ======================================================================
+        # BANNER
+        # XR banner text is passed through chomp() — use YAML block scalar (>-)
+        # to keep text on a single logical line.
+        # ======================================================================
+        banners:
+          - type: login
+            banner: >-
+              NOTICE: This system is the property of [ORGANIZATION_NAME].
+              Unauthorized access is prohibited and subject to criminal and civil
+              penalties. All activities are monitored and logged.
+              Disconnect immediately if you are not an authorized user.
+          - type: motd
+            banner: >-
+              WARNING: Authorized use only. All sessions are recorded.
+
+        # ======================================================================
+        # INTERFACES
+        # ======================================================================
+        interfaces:
+
+          # Loopback0 — Router-ID, BGP update-source
+          loopbacks:
+            - id: "0"
+              description: "[HOSTNAME] - Router-ID / BGP Update-Source"
+              ipv4:
+                address: [LOOPBACK0_IP]            # /32 from infrastructure block
+                mask: 255.255.255.255
+
+          # Uplink — adjust type and id to match hardware:
+          #   NCS 5500 / Cisco 8000: HundredGigE  id: "0/0/0/0"
+          #   ASR 9000             : HundredGigE or TenGigE
+          # MTU 9216 must match peer — mismatched MTU is a common BGP adjacency issue
+          ethernets:
+            - id: "0/0/0/0"                        # Slot/Bay/Port in XR notation
+              type: HundredGigE
+              description: "[HOSTNAME] -> [PEER_HOSTNAME]"
+              mtu: 9216
+              shutdown: false
+              load_interval: 30
+              logging_events_link_status: true
+              ipv4:
+                address: [UPLINK_IP]               # /31 P2P (RFC 3021)
+                mask: 255.255.255.254
+
+        # ======================================================================
+        # BGP STUB
+        # XR BGP requires explicit commit after changes — Terraform handles this.
+        # update_source: Loopback0 is critical for iBGP; omit for single-hop eBGP.
+        # ======================================================================
+        routing:
+          bgp:
+            - as_number: [LOCAL_ASN]               # 4-byte ASN supported
+              bgp_router_id: [LOOPBACK0_IP]
+
+              address_family:
+                ipv4_unicast:
+                  networks:
+                    - address: [LOOPBACK0_IP]
+                      length: 32
+                ipv6_unicast: {}                   # placeholder for future IPv6
+
+              neighbors:
+                - address: [PEER_IP]
+                  remote_as: [PEER_ASN]
+                  description: "[PEER_DESCRIPTION]"
+                  update_source: Loopback0
+                  shutdown: false
+                  bfd_fast_detect: enable
+                  # keychain: [BGP_KEYCHAIN]
+                  address_family:
+                    - name: ipv4-unicast
+                      route_policy_in: [IMPORT_POLICY]
+                      route_policy_out: [EXPORT_POLICY]
+                      maximum_prefix_limit: 1000
