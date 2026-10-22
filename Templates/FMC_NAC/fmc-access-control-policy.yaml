@@ -1,0 +1,649 @@
+# ============================================================
+# FMC NETWORK AS CODE - ACCESS CONTROL POLICY TEMPLATE
+# ============================================================
+# Schema:   netascode/terraform-fmc-nac-fmc (Terraform module)
+#           github.com/netascode/terraform-fmc-nac-fmc
+# Docs:     https://netascode.cisco.com/docs/data_models/fmc/
+# FMC:      7.6.x   FTD: 7.6.x (Snort 3 engine assumed)
+# Date:     [DATE]
+# Author:   [AUTHOR NAME]
+# Org:      [ORG NAME]
+#
+# USAGE
+# -----
+# Consumed by the Terraform NaC FMC module:
+#
+#   module "fmc" {
+#     source           = "netascode/nac-fmc/fmc"
+#     version          = ">=0.0.1"
+#     yaml_directories = ["data"]
+#   }
+#
+# Recommended split into per-concern files under your data/ dir:
+#   existing.nac.yaml  -- pre-existing FMC objects (section 1)
+#   objects.nac.yaml   -- all object definitions    (section 2)
+#   policies.nac.yaml  -- all policy definitions    (section 3)
+#   devices.nac.yaml   -- device & assignment stubs (section 4)
+#
+# NOT COVERED BY THIS SCHEMA (configure via FMC UI or REST API):
+#   - Decryption Policy (TLS/SSL inspection)
+#   - Identity Policy and Realm configuration
+#   - DNS Policy
+#   - EVE (Encrypted Visibility Engine) exemptions
+#   - Policy Analyzer / Cisco Security Cloud (UI only, 7.6.x)
+#
+# All [PLACEHOLDER] values must be replaced before deployment.
+# ============================================================
+
+
+# ============================================================
+# SECTION 1 -- existing.nac.yaml
+# Pre-existing FMC objects NOT managed by this module.
+# The module creates data sources for these and resolves their
+# IDs for use in policy rules.
+# ============================================================
+
+existing:
+  fmc:
+    domains:
+      - name: Global
+
+        objects:
+          networks:
+            - name: any-ipv4
+            - name: any-ipv6
+
+        policies:
+          # Talos-managed Snort 3 base policies (ship with FMC 7.6.x)
+          intrusion_policies:
+            - name: Connectivity Over Security
+            - name: Balanced Security and Connectivity
+            - name: Maximum Detection
+
+
+# ============================================================
+# SECTION 2 -- objects.nac.yaml
+# ============================================================
+
+fmc:
+  domains:
+    - name: Global
+
+      objects:
+
+        # --------------------------------------------------
+        # SECURITY ZONES
+        # Objects > Object Management > Interface > Security Zones
+        # interface_type: ROUTED | INLINE | PASSIVE | INLINE_TAP | SWITCHED
+        # --------------------------------------------------
+        security_zones:
+          - name: OUTSIDE
+            interface_type: ROUTED
+          - name: INSIDE
+            interface_type: ROUTED
+          - name: DMZ
+            interface_type: ROUTED
+          - name: MANAGEMENT
+            interface_type: ROUTED
+          # - name: GUEST
+          #   interface_type: ROUTED
+
+        # --------------------------------------------------
+        # HOST OBJECTS
+        # Objects > Object Management > Network Object
+        # --------------------------------------------------
+        hosts:
+          - name: HOST-DNS-PRIMARY
+            ip: "[DNS SERVER IP]"
+            description: "Primary DNS server"
+            overridable: false
+
+          - name: HOST-DNS-SECONDARY
+            ip: "[DNS SERVER IP]"
+            description: "Secondary DNS server"
+            overridable: false
+
+        # --------------------------------------------------
+        # NETWORK OBJECTS (subnets)
+        # Objects > Object Management > Network Object
+        # --------------------------------------------------
+        networks:
+          - name: NET-CORP-LAN
+            prefix: "[CORPORATE LAN CIDR, e.g. 10.10.0.0/16]"
+            description: "Corporate LAN segment"
+            overridable: false
+
+          - name: NET-DMZ
+            prefix: "[DMZ SUBNET CIDR]"
+            description: "Demilitarized zone subnet"
+            overridable: false
+
+          - name: NET-MGMT
+            prefix: "[MANAGEMENT SUBNET CIDR]"
+            description: "Out-of-band management network"
+            overridable: false
+
+          - name: NET-REMOTE-ACCESS-VPN-POOL
+            prefix: "[RA-VPN ADDRESS POOL CIDR]"
+            description: "Remote access VPN client address pool"
+            overridable: false
+
+          - name: NET-DMZ-WEB-SERVER
+            prefix: "[DMZ PUBLISHED WEB SERVER CIDR OR HOST]"
+            description: "DMZ published web service host(s)"
+            overridable: false
+
+          - name: NET-INTERNAL-DB-SERVER
+            prefix: "[DATABASE SERVER CIDR OR HOST]"
+            description: "Internal database tier"
+            overridable: false
+
+        # --------------------------------------------------
+        # NETWORK GROUPS
+        # Can reference named objects or inline CIDR literals
+        # --------------------------------------------------
+        network_groups:
+          - name: NET-RFC1918-ALL
+            description: "All RFC 1918 private address space"
+            overridable: false
+            literals:
+              - 10.0.0.0/8
+              - 172.16.0.0/12
+              - 192.168.0.0/16
+
+          - name: GRP-DNS-SERVERS
+            description: "Primary and secondary DNS servers"
+            overridable: false
+            objects:
+              - HOST-DNS-PRIMARY
+              - HOST-DNS-SECONDARY
+
+        # --------------------------------------------------
+        # PORT OBJECTS
+        # Objects > Object Management > Port
+        # Built-in ports (HTTP, HTTPS, SSH, DNS) do not need
+        # to be defined here -- reference by name directly.
+        # --------------------------------------------------
+        ports:
+          - name: PORT-SIP-UDP
+            protocol: UDP
+            port: 5060
+            description: "SIP signaling"
+            overridable: false
+
+          - name: PORT-RTP-MEDIA
+            protocol: UDP
+            port: 16384-32767
+            description: "RTP media streams"
+            overridable: false
+
+          # Add custom DB port object for Rule 12
+          # - name: PORT-MSSQL
+          #   protocol: TCP
+          #   port: "1433"
+
+
+# ============================================================
+# SECTION 3 -- policies.nac.yaml
+# ============================================================
+
+fmc:
+  domains:
+    - name: Global
+
+      policies:
+
+        # --------------------------------------------------
+        # INTRUSION POLICIES
+        # Policies > Intrusion -- all Snort 3 on FTD 7.x
+        # Snort ML (GID:411 SID:1) enabled in Maximum Detection
+        # base automatically in FMC 7.6.x.
+        # --------------------------------------------------
+        intrusion_policies:
+          - name: "[ORG NAME]-Connectivity-Over-Security"
+            description: "Low-friction inspection for trusted high-bandwidth paths"
+            base_policy: Connectivity Over Security
+            inspection_mode: PREVENTION
+
+          - name: "[ORG NAME]-Balanced-Security"
+            description: "Standard Snort 3 inspection for corporate traffic"
+            base_policy: Balanced Security and Connectivity
+            inspection_mode: PREVENTION
+
+          - name: "[ORG NAME]-Maximum-Detection"
+            description: "Maximum Snort 3 detection for DMZ and high-risk paths. Snort ML enabled via base in 7.6.x."
+            base_policy: Maximum Detection
+            inspection_mode: PREVENTION
+
+        # --------------------------------------------------
+        # FILE POLICIES
+        # Policies > Malware and File
+        # Malware license required for AMP cloud lookup.
+        # Threat Grid integration required for dynamic analysis.
+        # file_rules.action: DETECT | BLOCK | DETECT_MALWARE | BLOCK_MALWARE
+        # file_rules.direction_of_transfer: ANY | UPLOAD | DOWNLOAD
+        # --------------------------------------------------
+        file_policies:
+          - name: "[ORG NAME]-Malware-Block"
+            description: "Block malware by AMP disposition, block high-risk file types"
+            block_encrypted_archives: false
+            block_uninspectable_archives: false
+            clean_list: true
+            custom_detection_list: true
+            first_time_file_analysis: true
+            inspect_archives: false
+            max_archive_depth: 2
+            threat_score: DISABLED
+
+            file_rules:
+              - action: BLOCK_MALWARE
+                application_protocol: ANY
+                direction_of_transfer: ANY
+                file_categories:
+                  - name: Office Documents
+                  - name: PDF files
+                  - name: Archive
+
+              - action: BLOCK
+                application_protocol: ANY
+                direction_of_transfer: UPLOAD
+                file_categories:
+                  - name: Executables
+
+              - action: DETECT_MALWARE
+                application_protocol: ANY
+                direction_of_transfer: DOWNLOAD
+                file_categories:
+                  - name: Executables
+
+        # --------------------------------------------------
+        # PREFILTER POLICY
+        # Policies > Prefilter
+        # Assign to ACP: ACP editor > Advanced tab
+        # rule_type: PREFILTER | TUNNEL
+        # action (PREFILTER): FASTPATH | BLOCK | ANALYZE
+        # action (TUNNEL):    ANALYZE_TUNNELS | BLOCK_TUNNELS
+        # NOTE: Uses source_interfaces / destination_interfaces
+        # (not source_zones) per the fmc_prefilter_policy resource.
+        # --------------------------------------------------
+        prefilter_policies:
+          - name: "[ORG NAME]-Prefilter"
+            description: "Fastpath VoIP, block inbound bogons"
+            default_action: ANALYZE_TUNNELS
+            default_action_log_connection_begin: false
+            default_action_log_connection_end: true
+            default_action_send_events_to_fmc: false
+
+            rules:
+              # Fastpath latency-sensitive VoIP -- fully bypasses Snort 3
+              - name: FASTPATH-VOIP-SIP-RTP
+                action: FASTPATH
+                rule_type: PREFILTER
+                enabled: true
+                bidirectional: true
+                source_interfaces:
+                  - INSIDE
+                destination_interfaces:
+                  - OUTSIDE
+                destination_port_objects:
+                  - PORT-SIP-UDP
+                  - PORT-RTP-MEDIA
+                log_connection_begin: false
+                log_connection_end: false
+                send_events_to_fmc: false
+
+              # Block RFC 1918 sourced traffic arriving on OUTSIDE
+              - name: BLOCK-INBOUND-BOGONS
+                action: BLOCK
+                rule_type: PREFILTER
+                enabled: true
+                bidirectional: false
+                source_interfaces:
+                  - OUTSIDE
+                source_network_objects:
+                  - NET-RFC1918-ALL
+                log_connection_begin: true
+                log_connection_end: false
+                send_events_to_fmc: true
+
+        # --------------------------------------------------
+        # ACCESS CONTROL POLICY
+        # Policies > Access Control
+        # default_action: BLOCK | TRUST | INTRUSION_PREVENTION |
+        #                 NETWORK_DISCOVERY | INHERIT_FROM_BASE_POLICY
+        # Rule action values:
+        #   ALLOW | TRUST | BLOCK | BLOCK_RESET |
+        #   BLOCK_INTERACTIVE | BLOCK_RESET_INTERACTIVE | MONITOR
+        # BLOCK_RESET = "Block with Reset" in FMC UI
+        #
+        # POST-DEPLOY (FMC UI only -- not in schema):
+        #   Decryption Policy: ACP editor > Advanced tab
+        #   Identity Policy:   ACP editor > Identity Policy tab
+        #   User/group conditions on identity rules
+        # --------------------------------------------------
+        access_control_policies:
+          - name: "[POLICY NAME]"
+            description: "[ORG NAME] ACP -- FMC 7.6.x -- [DATE]"
+            default_action: BLOCK
+            default_action_log_connection_begin: true
+            default_action_log_connection_end: false
+            send_events_to_fmc: true
+            send_syslog: false
+            prefilter_policy: "[ORG NAME]-Prefilter"
+
+            categories:
+              - name: Infrastructure-and-Management
+                section: mandatory
+              - name: Outbound-User-Access
+                section: mandatory
+              - name: Identity-Based-Access
+                section: mandatory
+              - name: Remote-Access-VPN
+                section: mandatory
+              - name: DMZ-Inbound-Access
+                section: mandatory
+              - name: Catch-All
+                section: default
+
+            access_rules:
+
+              # --- INFRASTRUCTURE AND MANAGEMENT ---
+
+              - name: PERMIT-MGMT-SSH
+                action: ALLOW
+                category: Infrastructure-and-Management
+                enabled: true
+                source_zones:
+                  - MANAGEMENT
+                source_network_objects:
+                  - NET-MGMT
+                applications:
+                  - SSH
+                log_connection_begin: true
+                log_connection_end: true
+                send_events_to_fmc: true
+                send_syslog: false
+
+              - name: PERMIT-DNS-INTERNAL
+                action: ALLOW
+                category: Infrastructure-and-Management
+                enabled: true
+                source_zones:
+                  - INSIDE
+                source_network_objects:
+                  - NET-CORP-LAN
+                destination_network_objects:
+                  - GRP-DNS-SERVERS
+                applications:
+                  - DNS
+                intrusion_policy: "[ORG NAME]-Balanced-Security"
+                log_connection_begin: false
+                log_connection_end: true
+                send_events_to_fmc: true
+                send_syslog: false
+
+              - name: BLOCK-MGMT-FROM-OUTSIDE
+                action: BLOCK_RESET
+                category: Infrastructure-and-Management
+                enabled: true
+                source_zones:
+                  - OUTSIDE
+                destination_zones:
+                  - MANAGEMENT
+                log_connection_begin: true
+                log_connection_end: false
+                send_events_to_fmc: true
+                send_syslog: false
+
+              # --- OUTBOUND USER ACCESS ---
+
+              # Block high-risk categories BEFORE broad web permit
+              - name: BLOCK-HIGH-RISK-URL-CATEGORIES
+                action: BLOCK_RESET
+                category: Outbound-User-Access
+                enabled: true
+                source_zones:
+                  - INSIDE
+                source_network_objects:
+                  - NET-CORP-LAN
+                destination_zones:
+                  - OUTSIDE
+                url_objects:
+                  - Malware Sites
+                  - Command and Control
+                  - Phishing
+                  - High Risk
+                log_connection_begin: true
+                log_connection_end: false
+                send_events_to_fmc: true
+                send_syslog: false
+
+              - name: BLOCK-UNAUTHORIZED-APPLICATIONS
+                action: BLOCK_RESET
+                category: Outbound-User-Access
+                enabled: true
+                source_zones:
+                  - INSIDE
+                destination_zones:
+                  - OUTSIDE
+                applications:
+                  - BitTorrent
+                  - Tor
+                  # Add additional blocked apps here
+                log_connection_begin: true
+                log_connection_end: false
+                send_events_to_fmc: true
+                send_syslog: false
+
+              - name: PERMIT-OUTBOUND-WEB
+                action: ALLOW
+                category: Outbound-User-Access
+                enabled: true
+                source_zones:
+                  - INSIDE
+                source_network_objects:
+                  - NET-CORP-LAN
+                destination_zones:
+                  - OUTSIDE
+                applications:
+                  - HTTP
+                  - HTTPS
+                url_objects:
+                  # URL Filtering license required
+                  - Business and Economy
+                  - Search Engines
+                  - News
+                  - Software Updates
+                intrusion_policy: "[ORG NAME]-Balanced-Security"
+                file_policy: "[ORG NAME]-Malware-Block"
+                log_connection_begin: false
+                log_connection_end: true
+                send_events_to_fmc: true
+                send_syslog: false
+
+              # --- IDENTITY-BASED ACCESS ---
+              # NOTE: user/group conditions are not in NaC schema.
+              # After deploy, add user/group conditions in FMC UI.
+
+              - name: PERMIT-IT-ADMIN-FULL
+                action: ALLOW
+                category: Identity-Based-Access
+                enabled: true
+                source_zones:
+                  - INSIDE
+                source_network_objects:
+                  - NET-CORP-LAN
+                intrusion_policy: "[ORG NAME]-Balanced-Security"
+                log_connection_begin: true
+                log_connection_end: true
+                send_events_to_fmc: true
+                send_syslog: false
+
+              - name: BLOCK-GUEST-TO-INTERNAL
+                action: BLOCK
+                category: Identity-Based-Access
+                enabled: true
+                source_zones:
+                  - "[GUEST ZONE NAME]"
+                destination_zones:
+                  - INSIDE
+                  - DMZ
+                  - MANAGEMENT
+                log_connection_begin: true
+                log_connection_end: false
+                send_events_to_fmc: true
+                send_syslog: false
+
+              # --- REMOTE ACCESS VPN ---
+
+              - name: PERMIT-RA-VPN-TO-CORPORATE
+                action: ALLOW
+                category: Remote-Access-VPN
+                enabled: true
+                source_network_objects:
+                  - NET-REMOTE-ACCESS-VPN-POOL
+                destination_zones:
+                  - INSIDE
+                destination_network_objects:
+                  - NET-CORP-LAN
+                intrusion_policy: "[ORG NAME]-Balanced-Security"
+                file_policy: "[ORG NAME]-Malware-Block"
+                log_connection_begin: false
+                log_connection_end: true
+                send_events_to_fmc: true
+                send_syslog: false
+
+              - name: BLOCK-RA-VPN-LATERAL-MOVEMENT
+                action: BLOCK
+                category: Remote-Access-VPN
+                enabled: true
+                source_network_objects:
+                  - NET-REMOTE-ACCESS-VPN-POOL
+                destination_network_objects:
+                  - NET-REMOTE-ACCESS-VPN-POOL
+                log_connection_begin: true
+                log_connection_end: false
+                send_events_to_fmc: true
+                send_syslog: false
+
+              # --- DMZ INBOUND ACCESS ---
+
+              # Maximum Detection enables Snort ML (GID:411 SID:1) in 7.6.x
+              - name: PERMIT-INBOUND-HTTPS-DMZ
+                action: ALLOW
+                category: DMZ-Inbound-Access
+                enabled: true
+                source_zones:
+                  - OUTSIDE
+                destination_zones:
+                  - DMZ
+                destination_network_objects:
+                  - NET-DMZ-WEB-SERVER
+                applications:
+                  - HTTPS
+                intrusion_policy: "[ORG NAME]-Maximum-Detection"
+                file_policy: "[ORG NAME]-Malware-Block"
+                log_connection_begin: true
+                log_connection_end: true
+                send_events_to_fmc: true
+                send_syslog: false
+
+              - name: PERMIT-DMZ-TO-INTERNAL-DB
+                action: ALLOW
+                category: DMZ-Inbound-Access
+                enabled: true
+                source_zones:
+                  - DMZ
+                source_network_objects:
+                  - NET-DMZ-WEB-SERVER
+                destination_zones:
+                  - INSIDE
+                destination_network_objects:
+                  - NET-INTERNAL-DB-SERVER
+                destination_port_objects:
+                  - "[DB PORT OBJECT NAME]"
+                intrusion_policy: "[ORG NAME]-Balanced-Security"
+                log_connection_begin: false
+                log_connection_end: true
+                send_events_to_fmc: true
+                send_syslog: false
+
+              - name: BLOCK-DMZ-TO-INSIDE
+                action: BLOCK_RESET
+                category: DMZ-Inbound-Access
+                enabled: true
+                source_zones:
+                  - DMZ
+                destination_zones:
+                  - INSIDE
+                  - MANAGEMENT
+                log_connection_begin: true
+                log_connection_end: false
+                send_events_to_fmc: true
+                send_syslog: false
+
+              # --- CATCH-ALL ---
+
+              - name: BLOCK-ALL-EXPLICIT-LOG
+                action: BLOCK
+                category: Catch-All
+                enabled: true
+                log_connection_begin: true
+                log_connection_end: false
+                send_events_to_fmc: true
+                send_syslog: false
+
+
+# ============================================================
+# SECTION 4 -- devices.nac.yaml
+# ============================================================
+
+fmc:
+  domains:
+    - name: Global
+
+      devices:
+        devices:
+
+          - name: "[FTD HOSTNAME -- DEVICE 1]"
+            access_control_policy: "[POLICY NAME]"
+            deploy: true
+            snort_engine: SNORT3
+            object_group_search: true
+
+            vrfs:
+              - name: "[VRF NAME or global]"
+                physical_interfaces:
+                  - name: GigabitEthernet0/0
+                    logical_name: outside
+                    mode: ROUTED
+                    security_zone: OUTSIDE
+                    ipv4_static_address: "[OUTSIDE IP]"
+                    ipv4_static_netmask: "[NETMASK]"
+
+                  - name: GigabitEthernet0/1
+                    logical_name: inside
+                    mode: ROUTED
+                    security_zone: INSIDE
+                    ipv4_static_address: "[INSIDE IP]"
+                    ipv4_static_netmask: "[NETMASK]"
+
+                  - name: GigabitEthernet0/2
+                    logical_name: dmz
+                    mode: ROUTED
+                    security_zone: DMZ
+                    ipv4_static_address: "[DMZ IP]"
+                    ipv4_static_netmask: "[NETMASK]"
+
+                  - name: GigabitEthernet0/3
+                    logical_name: management-traffic
+                    mode: ROUTED
+                    security_zone: MANAGEMENT
+                    ipv4_static_address: "[MGMT IP]"
+                    ipv4_static_netmask: "[NETMASK]"
+
+          # - name: "[FTD HOSTNAME -- DEVICE 2]"
+          #   access_control_policy: "[POLICY NAME]"
+          #   deploy: true
+          #   snort_engine: SNORT3
+          #   vrfs: [...]
