@@ -93,16 +93,20 @@ The group plus `data/devices/edge-xe-01.nac.yaml` covers:
 The group plus `data/devices/core-xr-01.nac.yaml` covers:
 
 - hostname and domain lookup disabled
-- banners, service timestamps, and console logging disabled
+- banners, service timestamps, and console and monitor logging disabled
 - NTP HMAC-SHA2 in `Mgmt-vrf`, with `update-calendar`
-- syslog and SNMPv3 authPriv (`sha-256` / AES-256)
+- syslog and SNMPv3 authPriv (HMAC-SHA `sha`, AES-256). Classic SNMPv3 on 7.5 and 24.x accepts `sha`. `sha-256` is the `secure-v3` CLI from 26.3.1
 - SSHv2, HMAC-SHA1 disabled, and Telnet `max-servers 0` in the default VRF and `Mgmt-vrf`
 - VTY access-class and SSH access-list `ACL-VTY-MGMT`
 - LLDP on, CDP explicitly off, LLDP transmit and receive disabled on the example interface
 - `Mgmt-vrf` on `MgmtEth0/RP0/CPU0/0`, plus `GigabitEthernet0/0/0/1`
 - IS-IS process `CORE`, level-2-only, wide metrics, point-to-point on the example interface
 
-`nac-iosxr` 0.1.1 has no username or AAA method-list resources (the module still has a TODO for AAA). The device file supplies those as `cli_templates`. Telnet is supplied the same way. `CiscoDevNet/iosxr` 0.7.1 rejects `ipv4_server_max_servers` and `ipv6_server_max_servers` outside 1–100, so the `telnet` YAML resource cannot set `max-servers 0`. Each template is a single command, because the module joins every line of a template with spaces before it calls `iosxr_cli`. The local user is `LOCAL-ADMIN` with secret type 0 placeholder `<LOCAL_ADMIN_SECRET>`.
+`nac-iosxr` 0.1.1 has no username or AAA method-list resources (the module still has a TODO for AAA). The device file supplies those as `cli_templates`. Telnet is supplied the same way. `CiscoDevNet/iosxr` 0.7.1 rejects `ipv4_server_max_servers` and `ipv6_server_max_servers` outside 1–100, so the `telnet` YAML resource cannot set `max-servers 0`.
+
+Each template is one command. The module joins every line of a template with spaces before it calls `iosxr_cli`, and provider 0.7.1 places that string inside a JSON quote without escaping it, so a raw newline is not a valid gNMI value. `aaa password-policy` takes one keyword per invocation (`min-length`, `max-length`, `upper-case`, `lower-case`, `numeric`, `special-char`). `username` takes one clause per invocation (`group`, `password-policy`, or `secret`). The secret template is a later order so the policy is attached first. The local user is `LOCAL-ADMIN` with secret type 0 placeholder `<LOCAL_ADMIN_SECRET>`.
+
+Remote syslog severity uses the host enum `info`. Buffered logging and `trap` use a different enum, `informational`. `logging monitor disable` is the provider choice `disable`.
 
 TACACS hosts use the global `tacacs-server host` resource. The key leaves accept type 6 or type 7 material, not cleartext, so `<TACACS_KEY>` has to be replaced with the encrypted form before apply. VRF `server-private` groups from the CLI template are not in this module version. Login methods use `group tacacs+`, which matches those global hosts.
 

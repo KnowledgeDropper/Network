@@ -7,14 +7,42 @@ iosxr:
       host: 192.0.2.21
       device_groups:
         - enterprise-baseline
-      # One command per template. order 0 runs before order 1.
+      # One subcommand per template. nac-iosxr 0.1.1 joins every line of a
+      # template with spaces, and iosxr_cli 0.7.1 wraps that string in JSON
+      # quotes without escaping, so a raw newline is not a valid payload.
+      # The command reference takes one password-policy keyword per invocation,
+      # and one username clause per invocation. order 0 finishes before order 1.
       cli_templates:
-        - name: password-policy
+        - name: password-policy-min-length
           order: 0
-          content: "aaa password-policy LOCAL-POLICY min-length 15 max-length 127 upper-case 1 lower-case 1 numeric 1 special-char 1"
-        - name: local-admin
+          content: "aaa password-policy LOCAL-POLICY min-length 15"
+        - name: password-policy-max-length
+          order: 0
+          content: "aaa password-policy LOCAL-POLICY max-length 127"
+        - name: password-policy-upper-case
+          order: 0
+          content: "aaa password-policy LOCAL-POLICY upper-case 1"
+        - name: password-policy-lower-case
+          order: 0
+          content: "aaa password-policy LOCAL-POLICY lower-case 1"
+        - name: password-policy-numeric
+          order: 0
+          content: "aaa password-policy LOCAL-POLICY numeric 1"
+        - name: password-policy-special-char
+          order: 0
+          content: "aaa password-policy LOCAL-POLICY special-char 1"
+        - name: local-admin-root-lr
           order: 1
-          content: "username LOCAL-ADMIN group root-lr group cisco-support secret 0 <LOCAL_ADMIN_SECRET> password-policy LOCAL-POLICY"
+          content: "username LOCAL-ADMIN group root-lr"
+        - name: local-admin-cisco-support
+          order: 1
+          content: "username LOCAL-ADMIN group cisco-support"
+        - name: local-admin-password-policy
+          order: 1
+          content: "username LOCAL-ADMIN password-policy LOCAL-POLICY"
+        - name: local-admin-secret
+          order: 2
+          content: "username LOCAL-ADMIN secret 0 <LOCAL_ADMIN_SECRET>"
         - name: aaa-login-default
           order: 1
           content: "aaa authentication login default group tacacs+ local"
@@ -39,16 +67,16 @@ iosxr:
         # iosxr_telnet rejects max-servers 0 (validator is 1-100). These
         # commands match the CLI baseline and disable Telnet.
         - name: telnet-default-ipv4
-          order: 2
+          order: 3
           content: "telnet vrf default ipv4 server max-servers 0"
         - name: telnet-default-ipv6
-          order: 2
+          order: 3
           content: "telnet vrf default ipv6 server max-servers 0"
         - name: telnet-mgmt-ipv4
-          order: 2
+          order: 3
           content: "telnet vrf Mgmt-vrf ipv4 server max-servers 0"
         - name: telnet-mgmt-ipv6
-          order: 2
+          order: 3
           content: "telnet vrf Mgmt-vrf ipv6 server max-servers 0"
       configuration:
         hostname: core-xr-01

@@ -187,8 +187,9 @@ iosxr:
           buffered:
             size: 2097152
             level: informational
+          # "disable" is a provider choice and matches "logging monitor disable".
           monitor:
-            level: informational
+            level: disable
           trap: informational
           suppress_duplicates: true
           source_interfaces:
@@ -197,6 +198,8 @@ iosxr:
           hosts:
             - address: 192.0.2.40
               vrf: Mgmt-vrf
+              # Host severity choices are info/error, not informational/errors.
+              # buffered.level and trap use the other enum (informational).
               severity: info
               port: 514
         snmp_server:
@@ -234,7 +237,9 @@ iosxr:
               systemowner: true
               ipv4_acl: ACL-SNMP
               v3_authentication:
-                algorithm: sha-256
+                # Classic SNMPv3 on XR 7.5 and 24.x accepts sha (HMAC-SHA).
+                # sha-256 is the secure-v3 CLI added in 26.3.1, not this baseline.
+                algorithm: sha
                 # Default encryption leaf allows only [0-9a-zA-Z].
                 password: "SNMPV3AUTHSECRET"
               v3_privacy:
