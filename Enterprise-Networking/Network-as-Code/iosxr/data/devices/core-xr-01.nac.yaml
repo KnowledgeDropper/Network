@@ -1,0 +1,107 @@
+# Example IOS-XR core. Addresses are documentation prefixes (RFC 5737).
+# Inherits enterprise-baseline from data/defaults.nac.yaml.
+---
+iosxr:
+  devices:
+    - name: core-xr-01
+      host: 192.0.2.21
+      device_groups:
+        - enterprise-baseline
+      # One command per template. order 0 runs before order 1.
+      cli_templates:
+        - name: password-policy
+          order: 0
+          content: "aaa password-policy LOCAL-POLICY min-length 15 max-length 127 upper-case 1 lower-case 1 numeric 1 special-char 1"
+        - name: local-admin
+          order: 1
+          content: "username LOCAL-ADMIN group root-lr group cisco-support secret 0 <LOCAL_ADMIN_SECRET> password-policy LOCAL-POLICY"
+        - name: aaa-login-default
+          order: 1
+          content: "aaa authentication login default group tacacs+ local"
+        - name: aaa-login-console
+          order: 1
+          content: "aaa authentication login console local"
+        - name: aaa-exec
+          order: 1
+          content: "aaa authorization exec default group tacacs+ local"
+        - name: aaa-commands
+          order: 1
+          content: "aaa authorization commands default group tacacs+ none"
+        - name: aaa-acct-exec
+          order: 1
+          content: "aaa accounting exec default start-stop group tacacs+"
+        - name: aaa-acct-commands
+          order: 1
+          content: "aaa accounting commands default start-stop group tacacs+"
+        - name: aaa-acct-system
+          order: 1
+          content: "aaa accounting system default start-stop group tacacs+"
+        # iosxr_telnet rejects max-servers 0 (validator is 1-100). These
+        # commands match the CLI baseline and disable Telnet.
+        - name: telnet-default-ipv4
+          order: 2
+          content: "telnet vrf default ipv4 server max-servers 0"
+        - name: telnet-default-ipv6
+          order: 2
+          content: "telnet vrf default ipv6 server max-servers 0"
+        - name: telnet-mgmt-ipv4
+          order: 2
+          content: "telnet vrf Mgmt-vrf ipv4 server max-servers 0"
+        - name: telnet-mgmt-ipv6
+          order: 2
+          content: "telnet vrf Mgmt-vrf ipv6 server max-servers 0"
+      configuration:
+        hostname: core-xr-01
+        interfaces:
+          ethernets:
+            - type: MgmtEth
+              id: "$string 0/RP0/CPU0/0"
+              description: Management
+              shutdown: false
+              vrf: Mgmt-vrf
+              ipv4:
+                address: 192.0.2.21
+                mask: 255.255.255.0
+                redirects: false
+                unreachables_disable: true
+              load_interval: 30
+            - type: GigabitEthernet
+              id: "$string 0/0/0/1"
+              description: Example core interface
+              shutdown: false
+              ipv4:
+                address: 198.51.100.21
+                mask: 255.255.255.0
+                redirects: false
+                unreachables_disable: true
+              load_interval: 30
+              lldp_transmit_disable: true
+              lldp_receive_disable: true
+        routing:
+          static_routes:
+            vrfs:
+              - name: Mgmt-vrf
+                address_family:
+                  ipv4_unicast:
+                    prefixes:
+                      - address: 0.0.0.0
+                        length: 0
+                        next_hops:
+                          - ip: 192.0.2.1
+                            description: Management default route
+          isis_processes:
+            - id: CORE
+              is_type: level-2-only
+              log_adjacency_changes: true
+              nets:
+                - id: 49.0001.1920.0200.0021.00
+              address_family:
+                ipv4_unicast:
+                  metric_style: wide
+              interfaces:
+                - name: GigabitEthernet0/0/0/1
+                  point_to_point: true
+                  address_family:
+                    - name: ipv4
+                      type: unicast
+                      metric: 10

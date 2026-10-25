@@ -1,0 +1,63 @@
+# Example IOS-XE edge. Addresses are documentation prefixes (RFC 5737).
+# Inherits enterprise-baseline from data/defaults.nac.yaml.
+---
+iosxe:
+  devices:
+    - name: edge-xe-01
+      host: 192.0.2.11
+      device_groups:
+        - enterprise-baseline
+      configuration:
+        system:
+          hostname: edge-xe-01
+        interfaces:
+          ethernets:
+            - type: GigabitEthernet
+              id: "$string 0"
+              description: Management
+              shutdown: false
+              vrf_forwarding: Mgmt-vrf
+              ipv4:
+                address: 192.0.2.11
+                address_mask: 255.255.255.0
+                proxy_arp: false
+                redirects: false
+                unreachables: false
+              load_interval: 30
+            - type: GigabitEthernet
+              id: "$string 0/0"
+              description: Example user interface
+              shutdown: false
+              ipv4:
+                address: 198.51.100.1
+                address_mask: 255.255.255.0
+                proxy_arp: false
+                redirects: false
+                unreachables: false
+              load_interval: 30
+              # Untrusted edge. LLDP has no per-interface key in nac-iosxe 1.0.0.
+              cdp: false
+        routing:
+          static_routes:
+            - prefix: 0.0.0.0
+              mask: 0.0.0.0
+              vrf: Mgmt-vrf
+              next_hops:
+                - ip: 192.0.2.1
+                  name: MGMT-DEFAULT
+          ospf_processes:
+            - id: 1
+              router_id: 192.0.2.11
+              passive_interface_default: true
+              log_adjacency_changes: true
+              auto_cost_reference_bandwidth: 100000
+              non_passive_interfaces:
+                # nac-iosxe 1.0.0 copies interface_id as the OSPF interface
+                # name and does not strip the "$string " prefix used on
+                # ethernet ids. Keep the raw id here.
+                - interface_type: GigabitEthernet
+                  interface_id: "0/0"
+              networks:
+                - ip: 198.51.100.1
+                  wildcard: 0.0.0.0
+                  area: "0"

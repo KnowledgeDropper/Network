@@ -1,0 +1,297 @@
+# Shared enterprise baseline for IOS-XE. Devices in devices/*.nac.yaml
+# join the group and add hostname, addresses, and routing.
+# Angle-bracket strings are placeholders. Replace them before apply.
+# Do not commit the filled-in secrets.
+---
+iosxe:
+  device_groups:
+    - name: enterprise-baseline
+      configuration:
+        system:
+          ip_domain_name: example.com
+          ip_domain_lookup: false
+          ip_source_route: false
+          login_delay: 2
+          login_on_failure_log: true
+          login_on_success_log: true
+          enable_secret: "<ENABLE_SECRET>"
+          enable_secret_type: "0"
+          ssh:
+            version: 2
+            time_out: 60
+            authentication_retries: 3
+            source_interface_type: GigabitEthernet
+            source_interface_id: "$string 0"
+          archive:
+            log_config_logging_enable: true
+            log_config_logging_size: 200
+        service:
+          password_encryption: true
+          pad: false
+          sequence_numbers: true
+          tcp_keepalives_in: true
+          tcp_keepalives_out: true
+          timestamps:
+            log: true
+            log_datetime: true
+            log_datetime_msec: true
+            log_datetime_localtime: true
+            log_datetime_show_timezone: true
+            log_datetime_year: true
+            debug: true
+            debug_datetime: true
+            debug_datetime_msec: true
+            debug_datetime_localtime: true
+            debug_datetime_show_timezone: true
+            debug_datetime_year: true
+        clock:
+          timezone: UTC
+          timezone_offset_hours: 0
+          timezone_offset_minutes: 0
+        banner:
+          motd: "Authorized access only. Disconnect if you are not an authorized user."
+          login: "This system is for authorized users. Activity is logged."
+          exec: "You are connected to an authorized management session."
+        vrfs:
+          - name: Mgmt-vrf
+            description: Out-of-band management
+            address_family_ipv4:
+              enable: true
+        aaa:
+          new_model: true
+          session_id: common
+          usernames:
+            - name: LOCAL-ADMIN
+              privilege: 15
+              secret: "<LOCAL_ADMIN_SECRET>"
+              # Type 0 is cleartext at apply. The device stores a hash.
+              # Type 9 needs a real scrypt hash; do not invent one here.
+              secret_encryption: "0"
+          tacacs:
+            servers:
+              - name: TACACS-PRI
+                ip: 192.0.2.20
+                timeout: 3
+                port: 49
+                key: "<TACACS_KEY>"
+                encryption: "0"
+              - name: TACACS-SEC
+                ip: 192.0.2.22
+                timeout: 3
+                port: 49
+                key: "<TACACS_KEY>"
+                encryption: "0"
+          tacacs_groups:
+            - name: TACACS-SERVERS
+              vrf: Mgmt-vrf
+              source_interface_type: GigabitEthernet
+              source_interface_id: "$string 0"
+              server_names:
+                - TACACS-PRI
+                - TACACS-SEC
+          authentication:
+            logins:
+              - name: default
+                methods:
+                  - TACACS-SERVERS
+                  - local
+              - name: CONSOLE
+                methods:
+                  - local
+            enable_defaults:
+              - method: TACACS-SERVERS
+              - method: enable
+          authorization:
+            execs:
+              - name: default
+                methods:
+                  - TACACS-SERVERS
+                  - local
+            commands:
+              - level: 15
+                list_name: default
+                methods:
+                  - TACACS-SERVERS
+                  - if_authenticated
+          accounting:
+            execs:
+              - name: default
+                start_stop_groups:
+                  - TACACS-SERVERS
+            commands:
+              - level: 15
+                list_name: default
+                action_type: start-stop
+                groups:
+                  - TACACS-SERVERS
+            connections:
+              - name: default
+                start_stop_groups:
+                  - TACACS-SERVERS
+        access_lists:
+          standard:
+            - name: ACL-VTY-MGMT
+              entries:
+                - sequence: 10
+                  remark: Management stations
+                - sequence: 20
+                  action: permit
+                  prefix: 192.0.2.0
+                  prefix_mask: 0.0.0.255
+                - sequence: 30
+                  action: deny
+                  any: true
+                  log: true
+            - name: ACL-SNMP
+              entries:
+                - sequence: 10
+                  action: permit
+                  prefix: 192.0.2.0
+                  prefix_mask: 0.0.0.255
+                - sequence: 20
+                  action: deny
+                  any: true
+                  log: true
+            - name: ACL-NTP
+              entries:
+                - sequence: 10
+                  action: permit
+                  host: 192.0.2.30
+                - sequence: 20
+                  action: permit
+                  host: 192.0.2.31
+                - sequence: 30
+                  action: deny
+                  any: true
+                  log: true
+        ntp:
+          authenticate: true
+          access_group_peer_acl: ACL-NTP
+          source_interface_type: GigabitEthernet
+          source_interface_id: "$string 0"
+          authentication_keys:
+            - number: 10
+              mode: hmac_sha2_256
+              key: "<NTP_KEY>"
+              encryption_type: "0"
+              trusted: true
+          servers:
+            - ip: 192.0.2.30
+              vrf: Mgmt-vrf
+              key: 10
+              prefer: true
+              source_interface_type: GigabitEthernet
+              source_interface_id: "$string 0"
+            - ip: 192.0.2.31
+              vrf: Mgmt-vrf
+              key: 10
+              source_interface_type: GigabitEthernet
+              source_interface_id: "$string 0"
+        logging:
+          buffered_size: 262144
+          buffered_severity: informational
+          console_severity: critical
+          monitor_severity: informational
+          trap_severity: informational
+          origin_id_type: hostname
+          source_interfaces_vrf:
+            - vrf: Mgmt-vrf
+              interface_type: GigabitEthernet
+              interface_id: "$string 0"
+          hosts:
+            - ip: 192.0.2.40
+              vrf: Mgmt-vrf
+              transport_udp_ports:
+                - 514
+        snmp_server:
+          contact: "<SNMP_CONTACT>"
+          location: "<SNMP_LOCATION>"
+          source_interface_traps_type: GigabitEthernet
+          source_interface_traps_id: "$string 0"
+          views:
+            - name: SNMP-VIEW
+              mib: iso
+              scope: included
+            - name: SNMP-VIEW
+              mib: snmpUsmMIB
+              scope: excluded
+            - name: SNMP-VIEW
+              mib: snmpVacmMIB
+              scope: excluded
+            - name: SNMP-VIEW
+              mib: snmpCommunityMIB
+              scope: excluded
+          groups:
+            - name: SNMPV3-GROUP
+              v3_security_levels:
+                - security_level: priv
+                  read_node: SNMP-VIEW
+                  notify_node: SNMP-VIEW
+                  access_acl_name: ACL-SNMP
+          users:
+            - name: SNMPV3-USER
+              group: SNMPV3-GROUP
+              v3_authentication:
+                algorithm: sha-2-256
+                password: "<SNMPV3_AUTH_SECRET>"
+                privacy:
+                  aes:
+                    enable: true
+                    algorithm: "256"
+                    password: "<SNMPV3_PRIV_SECRET>"
+          hosts:
+            - ip: 192.0.2.50
+              vrf: Mgmt-vrf
+              user: SNMPV3-USER
+              version: "3"
+              security_level: priv
+          traps:
+            snmp_authentication: true
+            snmp_linkdown: true
+            snmp_linkup: true
+            snmp_coldstart: true
+            snmp_warmstart: true
+            config: true
+            entity: true
+        lldp:
+          run: true
+          timer: 30
+          holdtime: 120
+        cdp:
+          run: true
+          timer: 60
+          holdtime: 180
+        line:
+          consoles:
+            - number: "0"
+              exec_timeout_minutes: 10
+              exec_timeout_seconds: 0
+              login_authentication: CONSOLE
+              logging_synchronous: true
+              stopbits: "1"
+              transport_output:
+                - none
+          auxes:
+            - number: "0"
+              exec_timeout_minutes: 0
+              exec_timeout_seconds: 1
+              transport_output:
+                - none
+          vtys:
+            - number_from: 0
+              number_to: 15
+              access_classes:
+                - access_list: ACL-VTY-MGMT
+                  direction: in
+                  vrf_also: true
+              login_authentication: default
+              authorization_exec_default: true
+              exec_timeout_minutes: 10
+              exec_timeout_seconds: 0
+              logging_synchronous: true
+              session_timeout: 60
+              transport_input:
+                - ssh
+              transport_preferred_protocol: none
+              transport_output:
+                - none
