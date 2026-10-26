@@ -1,0 +1,9 @@
+# nac-iosxe 1.0.0 does not accept username or password arguments.
+# A provider "iosxe" username/password block is ignored by the module.
+# Export credentials in the shell before plan or apply:
+#
+#   export IOSXE_USERNAME="admin"
+#   export IOSXE_PASSWORD="replace-me"
+#
+# Copy this file to terraform.tfvars only for your own root variables.
+# *.tfvars is gitignored. Never commit a file that contains a real secret.

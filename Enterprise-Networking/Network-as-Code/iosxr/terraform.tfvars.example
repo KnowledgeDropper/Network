@@ -1,0 +1,12 @@
+# nac-iosxr 0.1.1 reads credentials from the environment, not from
+# Terraform variables. Export them before plan or apply:
+#
+#   export IOSXR_USERNAME="admin"
+#   export IOSXR_PASSWORD="replace-me"
+#
+# Optional provider environment variables:
+#   IOSXR_TLS=true
+#   IOSXR_VERIFY_CERTIFICATE=false
+#
+# Copy this file to terraform.tfvars only for your own root variables.
+# *.tfvars is gitignored. Never commit a file that contains a real secret.
