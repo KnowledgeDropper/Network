@@ -1,0 +1,415 @@
+---
+# FMC objects for VPN/PKI/AAA: IKE/IPsec, certificates, pools, RADIUS/SSO, Secure Client, group policies, service access.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  # ======================================================================
+  # Doc page: Domain  ->  https://netascode.cisco.com/docs/data_models/fmc/domains/domains/
+  # GUI: Settings » Domains
+  # ======================================================================
+  domains:  # optional
+    - name: Global  # MANDATORY
+      objects:  # optional
+        # ======================================================================
+        # Doc page: IPv4 Address Pool  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/ipv4_address_pool/
+        # GUI: Objects » Object Management » Address Pools » IPv4 Pools
+        # ======================================================================
+        ipv4_address_pools:  # optional
+          - name: POOL4_RAVPN  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            range: 192.168.10.1-192.168.10.100  # MANDATORY
+            netmask: 255.255.255.0  # MANDATORY
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+        # ======================================================================
+        # Doc page: IPv6 Address Pool  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/ipv6_address_pool/
+        # GUI: Objects » Object Management » Address Pools » IPv6 Pools
+        # ======================================================================
+        ipv6_address_pools:  # optional
+          - name: POOL6_RAVPN  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            start_address: 2001:db8::1/64  # MANDATORY
+            number_of_addresses: 100  # MANDATORY
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+        # ======================================================================
+        # Doc page: Service Access  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/service_access/
+        # GUI: Objects » Object Management » Access List » Service Access
+        # ======================================================================
+        service_accesses:  # optional
+          - name: SA_MGMT  # MANDATORY
+            default_action: DENY  # MANDATORY | choices: DENY | ALLOW
+            rules:  # optional
+              - action: ALLOW  # MANDATORY | choices: DENY | ALLOW
+                id: 1  # MANDATORY | range: 1..20000
+                geolocation_sources: [Poland]  # optional
+        # ======================================================================
+        # Doc page: IKEv1 IPSec Proposal  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/ikev1_ipsec_proposal/
+        # GUI: Objects » Object Management » VPN » IKEv1 IPsec Proposal
+        # ======================================================================
+        ikev1_ipsec_proposals:  # optional
+          - name: IKEV1_AES256_SHA  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            esp_encryption: AES-256  # MANDATORY | choices: DES | 3DES | ESP_NULL | AES-128 | AES-192 | AES-256
+            esp_hash: SHA  # MANDATORY | choices: SHA | NONE | MD5
+        # ======================================================================
+        # Doc page: IKEv1 Policy  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/ikev1_policy/
+        # GUI: Objects » Object Management » VPN » IKEv1 Policies
+        # ======================================================================
+        ikev1_policies:  # optional
+          - name: IKEV1_POL_10  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            authentication_method: Preshared Key  # MANDATORY | choices: Certificate | Preshared Key
+            dh_group: 14  # MANDATORY | range: 1..14
+            encryption_algorithm: AES-256  # MANDATORY | choices: DES | 3DES | AES-128 | AES-192 | AES-256
+            hash: SHA  # MANDATORY | choices: SHA | MD5
+            lifetime: 28800  # MANDATORY | range: 120..2147483647
+            priority: 1  # MANDATORY | range: 1..65535
+        # ======================================================================
+        # Doc page: IKEv2 IPSec Proposal  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/ikev2_ipsec_proposal/
+        # GUI: Objects » Object Management » VPN » IKEv2 IPsec Proposal
+        # ======================================================================
+        ikev2_ipsec_proposals:  # optional
+          - name: IKEV2_AES256GCM  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            esp_encryptions: [AES-256, AES-GCM-192]  # MANDATORY | choices: DES | 3DES | AES | AES-192 | AES-256 | AES-GCM | AES-GCM-192 | AES-GCM-256 | AES-GMAC | AES-GMAC-192 | AES-GMAC-256 | NULL
+            esp_hashes: [SHA-256, SHA-384]  # MANDATORY | choices: MD5 | NULL | SHA-1 | SHA-256 | SHA-384 | SHA-512
+        # ======================================================================
+        # Doc page: IKEv2 Policy  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/ikev2_policy/
+        # GUI: Objects » Object Management » VPN » IKEv2 Policies
+        # ======================================================================
+        ikev2_policies:  # optional
+          - name: IKEV2_POL_10  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            dh_groups: [14, 24]  # MANDATORY | range: 1..31
+            encryption_algorithms: [AES-256, AES-GCM-256]  # MANDATORY | choices: DES | 3DES | AES | AES-192 | AES-256 | AES-GCM | AES-GCM-192 | AES-GCM-256 | NULL
+            integrity_algorithms: [SHA-256, SHA-384]  # MANDATORY | choices: SHA | SHA-256 | SHA-384 | SHA-512 | MD5 | NULL
+            lifetime: 28800  # MANDATORY | range: 120..2147483647
+            prf_algorithms: [SHA-256]  # MANDATORY | choices: SHA | SHA-256 | SHA-384 | SHA-512 | MD5
+            priority: 1  # MANDATORY | range: 1..65535
+        # ======================================================================
+        # Doc page: Trusted Certificate Authority  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/trusted_certificate_authority/
+        # GUI: Objects » Object Management » PKI » Trusted CAs
+        # ======================================================================
+        trusted_certificate_authorities:  # optional
+          - name: CA_EXAMPLE_ROOT  # MANDATORY
+            certificate: |  # optional
+              -----BEGIN CERTIFICATE-----
+              MIIBszCCAVmgAwIBAgIUEXAMPLE0000000000000000000000000wCgYIKoZIzj0E
+              AwIwLzELMAkGA1UEBhMCVVMxIDAeBgNVBAMMF0V4YW1wbGUgUm9vdCBDQSAoZG9jKTAe
+              -----END CERTIFICATE-----
+            # ALTERNATIVE - certificate_file and certificate (PEM inline) are mutually exclusive; uncomment to use instead:
+            #~ certificate_file: files/cacert.crt  # optional
+        # ======================================================================
+        # Doc page: Internal Certificate Authority  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/internal_certificate_authority/
+        # GUI: Objects » Object Management » PKI » Internal CAs
+        # ======================================================================
+        internal_certificate_authorities:  # optional
+          - name: ICA_EXAMPLE  # MANDATORY
+            certificate: |  # optional
+              -----BEGIN CERTIFICATE-----
+              MIIBszCCAVmgAwIBAgIUEXAMPLE0000000000000000000000000wCgYIKoZIzj0E
+              AwIwLzELMAkGA1UEBhMCVVMxIDAeBgNVBAMMF0V4YW1wbGUgUm9vdCBDQSAoZG9jKTAe
+              -----END CERTIFICATE-----
+            # ALTERNATIVE - certificate_file and certificate (PEM inline) are mutually exclusive; uncomment to use instead:
+            #~ certificate_file: files/internalca.crt  # optional
+            private_key: !env FMC_OBJECTS_INTERNAL_CERTIFICATE_AUTHORITIES_PRIVATE_KEY  # optional
+            # ALTERNATIVE - private_key_file and private_key are mutually exclusive; uncomment to use instead:
+            #~ private_key_file: files/internalca.key  # optional
+            password: !env FMC_OBJECTS_INTERNAL_CERTIFICATE_AUTHORITIES_PASSWORD  # optional
+        # ======================================================================
+        # Doc page: Internal Certificate  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/internal_certificate/
+        # GUI: Objects » Object Management » PKI » Internal Certs
+        # ======================================================================
+        internal_certificates:  # optional
+          - name: CERT_FMC_INTERNAL  # MANDATORY
+            certificate: |  # optional
+              -----BEGIN CERTIFICATE-----
+              MIIBszCCAVmgAwIBAgIUEXAMPLE0000000000000000000000000wCgYIKoZIzj0E
+              AwIwLzELMAkGA1UEBhMCVVMxIDAeBgNVBAMMF0V4YW1wbGUgUm9vdCBDQSAoZG9jKTAe
+              -----END CERTIFICATE-----
+            # ALTERNATIVE - certificate_file and certificate (PEM inline) are mutually exclusive; uncomment to use instead:
+            #~ certificate_file: files/internal.crt  # optional
+            private_key: !env FMC_OBJECTS_INTERNAL_CERTIFICATES_PRIVATE_KEY  # optional
+            # ALTERNATIVE - private_key_file and private_key are mutually exclusive; uncomment to use instead:
+            #~ private_key_file: files/internal.key  # optional
+            password: !env FMC_OBJECTS_INTERNAL_CERTIFICATES_PASSWORD  # optional
+        # ======================================================================
+        # Doc page: External Certificate  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/external_certificate/
+        # GUI: Objects » Object Management » PKI » External Certs
+        # ======================================================================
+        external_certificates:  # optional
+          - name: CERT_EXTERNAL  # MANDATORY
+            certificate: |  # optional
+              -----BEGIN CERTIFICATE-----
+              MIIBszCCAVmgAwIBAgIUEXAMPLE0000000000000000000000000wCgYIKoZIzj0E
+              AwIwLzELMAkGA1UEBhMCVVMxIDAeBgNVBAMMF0V4YW1wbGUgUm9vdCBDQSAoZG9jKTAe
+              -----END CERTIFICATE-----
+            # ALTERNATIVE - certificate_file and certificate (PEM inline) are mutually exclusive; uncomment to use instead:
+            #~ certificate_file: files/externalcert.crt  # optional
+        # ======================================================================
+        # Doc page: Certificate Enrollment  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/certificate_enrollment/
+        # GUI: Objects » Object Management » PKI » Certificate Enrollment
+        # ======================================================================
+        certificate_enrollments:  # optional
+          - name: CE_VPN_EXAMPLE  # MANDATORY
+            description: PKCS12 certificate enrollment example  # optional | maxlen: 255
+            enrollment_type: PKCS12  # MANDATORY | choices: SCEP | ACME | EST | MANUAL | SELF_SIGNED_CERTFICATE | PKCS12
+            validation_usage_ipsec_client: false  # optional
+            validation_usage_ssl_client: false  # optional
+            validation_usage_ssl_server: false  # optional
+            skip_ca_flag_check: false  # optional
+            est:  # optional
+              enrollment_url: https://pki.example.com/  # optional
+              username: svc_nac  # optional
+              password: !env FMC_CERTIFICATE_ENROLLMENTS_EST_PASSWORD  # optional
+              fingerprint: AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD  # optional
+              source_interface: outside  # optional
+              ignore_server_certificate_validation: false  # optional
+            scep:  # optional
+              enrollment_url: https://pki.example.com/  # optional
+              challenge_password: !env FMC_CERTIFICATE_ENROLLMENTS_SCEP_CHALLENGE_PASSWORD  # optional
+              retry_period: 10  # optional | range: 1..60
+              retry_count: 3  # optional | range: 1..100
+              fingerprint: AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD  # optional
+            manual:  # optional
+              ca_certificate: |  # optional
+                -----BEGIN CERTIFICATE-----
+                MIIBszCCAVmgAwIBAgIUEXAMPLE0000000000000000000000000wCgYIKoZIzj0E
+                AwIwLzELMAkGA1UEBhMCVVMxIDAeBgNVBAMMF0V4YW1wbGUgUm9vdCBDQSAoZG9jKTAe
+                -----END CERTIFICATE-----
+              # ALTERNATIVE - ca_certificate_file and ca_certificate are mutually exclusive; uncomment to use instead:
+              #~ ca_certificate_file: certs/example.pem  # optional
+            pkcs12:  # optional
+              certificate: |  # optional
+                -----BEGIN CERTIFICATE-----
+                MIIBszCCAVmgAwIBAgIUEXAMPLE0000000000000000000000000wCgYIKoZIzj0E
+                AwIwLzELMAkGA1UEBhMCVVMxIDAeBgNVBAMMF0V4YW1wbGUgUm9vdCBDQSAoZG9jKTAe
+                -----END CERTIFICATE-----
+              # ALTERNATIVE - certificate_file and certificate (PEM inline) are mutually exclusive; uncomment to use instead:
+              #~ certificate_file: files/cert.p12  # optional
+              passphrase: !env FMC_CERTIFICATE_ENROLLMENTS_PKCS12_PASSPHRASE  # optional
+            acme:  # optional
+              enrollment_url: https://pki.example.com/  # optional
+              authentication_protocol: HTTP01  # optional | choices: HTTP01
+              authentication_interface: outside  # optional
+              source_interface: outside  # optional
+              ca_only_certificate: |  # optional
+                -----BEGIN CERTIFICATE-----
+                MIIBszCCAVmgAwIBAgIUEXAMPLE0000000000000000000000000wCgYIKoZIzj0E
+                AwIwLzELMAkGA1UEBhMCVVMxIDAeBgNVBAMMF0V4YW1wbGUgUm9vdCBDQSAoZG9jKTAe
+                -----END CERTIFICATE-----
+              auto_enrollment: false  # optional
+              auto_enrollment_lifetime: 10  # optional | range: 10..99
+              auto_enrollment_key_regeneration: false  # optional
+            certificate_parameters:  # optional
+              include_fqdn: DEVICE_HOSTNAME  # optional | choices: DEVICE_HOSTNAME | NONE | CUSTOM | DEFAULT
+              custom_fqdn: host01.example.com  # optional
+              alternate_fqdns: [host01.example.com]  # optional
+              include_device_ip: 192.0.2.10  # optional
+              common_name: vpn.example.com  # optional
+              organizational_unit: Network Engineering  # optional
+              organization: Example Corp  # optional
+              locality: Columbia  # optional
+              state: SC  # optional
+              country_code: US  # optional
+              email: netops@example.com  # optional
+              include_device_serial_number: false  # optional
+            key:  # optional
+              name: KEY_VPN_EC256  # optional
+              type: RSA  # optional | choices: RSA | ECDSA | EdDSA
+              size: CertKey_512  # optional | choices: CertKey_512 | CertKey_768 | CertKey_1024 | CertKey_2048 | CertKey_3072 | CertKey_4096 | CertKey_256 | CertKey_384 | CertKey_521
+              ignore_ipsec_key_usage: false  # optional
+            revocation:  # optional
+              evaluation_priority: CRL  # optional | choices: CRL | OCSP | NONE
+              consider_certificate_valid_if_revocation_information_not_reachable: false  # optional
+              crl_use_distribution_point_from_the_certificate: false  # optional
+              crl_static_urls: ['https://pki.example.com/']  # optional
+              ocsp_url: https://pki.example.com/  # optional
+        # ======================================================================
+        # Doc page: Certificate Map  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/certificate_map/
+        # GUI: Objects » Certificate Map
+        # ======================================================================
+        certificate_maps:  # optional
+          - name: CM_EMPLOYEES  # MANDATORY
+            rules:  # optional
+              - component: WHOLE_FIELD  # MANDATORY | choices: WHOLE_FIELD | COUNTRY | COMMON_NAME | DN_QUALIFIER | EMAIL_ADDRESS | GENERATIONAL_QUALIFIER | GIVEN_NAME | INITIALS | LOCALITY | NAME | ORGANISATION | ORGANISATIONAL_UNIT | ... (+8 more, see schema)
+                field: SUBJECT  # MANDATORY | choices: SUBJECT | ALTERNATIVE_SUBJECT | ISSUER | EXTENDED_KEY_USAGE
+                operator: EQUALS  # MANDATORY | choices: EQUALS | CONTAINS | DOES_NOT_EQUAL | DOES_NOT_CONTAIN
+                value: example.com  # MANDATORY
+        # ======================================================================
+        # Doc page: RADIUS Server Group  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/radius_server_group/
+        # GUI: Objects » AAA Server » RADIUS Server Group
+        # ======================================================================
+        radius_server_groups:  # optional
+          - name: RADIUS_ISE  # MANDATORY
+            radius_servers:  # MANDATORY
+              - hostname: radius1.example.com  # MANDATORY
+                key: !env FMC_RADIUS_SERVER_GROUPS_RADIUS_SERVERS_KEY  # MANDATORY
+                accounting_port: 1813  # optional | range: 1..65535 | default: 1813
+                authentication_port: 1812  # optional | range: 1..65535 | default: 1812
+                interface: inside  # optional
+                message_authenticator: true  # optional | default: true
+                redirect_access_list: EACL_SPLIT_TUNNEL  # optional
+                timeout: 10  # optional | range: 1..300 | default: 10
+                use_routing_to_select_interface: true  # optional | default: true
+            ad_realm: REALM_CORP_AD  # optional
+            authorize_only: false  # optional | default: false
+            description: Radius Server Group Description 1  # optional | maxlen: 255
+            dynamic_authorization_port: 1700  # optional | range: 1024..65535
+            group_accounting_mode: SINGLE  # optional | choices: SINGLE | MULTIPLE | default: SINGLE
+            interim_account_update_interval: 30  # optional | range: 1..120
+            merge_downloadable_access_list_order: MERGE_DACL_BEFORE_AV_PAIR_ACL  # optional | choices: MERGE_DACL_BEFORE_AV_PAIR_ACL | MERGE_DACL_AFTER_AV_PAIR_ACL
+            retry_interval: 10  # optional | range: 1..10 | default: 10
+        # ======================================================================
+        # Doc page: Single Sign On Server (SSO)  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/single_sign_on_server/
+        # GUI: Objects » AAA Server » Single Sign-on Server
+        # ======================================================================
+        single_sign_on_servers:  # optional
+          - name: SSO_IDP  # MANDATORY
+            sso_url: https://sso.mycompany.com/sso  # MANDATORY
+            identity_provider_certificate: |  # MANDATORY
+              -----BEGIN CERTIFICATE-----
+              MIIBszCCAVmgAwIBAgIUEXAMPLE0000000000000000000000000wCgYIKoZIzj0E
+              AwIwLzELMAkGA1UEBhMCVVMxIDAeBgNVBAMMF0V4YW1wbGUgUm9vdCBDQSAoZG9jKTAe
+              -----END CERTIFICATE-----
+            identity_provider_entity_id_url: https://sso.mycompany.com/entityid  # MANDATORY
+            base_url: https://pki.example.com/  # optional
+            identity_provider_accessible_only_on_internal_network: false  # optional | default: false
+            logout_url: https://pki.example.com/  # optional
+            request_identity_provider_reauthentication_at_each_login: false  # optional | default: false
+            request_signature_type: NO_SIGNATURE  # optional | choices: NO_SIGNATURE | RSA-SHA1 | RSA-SHA256 | RSA-SHA384 | RSA-SHA512 | default: NO_SIGNATURE
+            request_timeout: 300  # optional | range: 1..7200 | default: 300
+            service_provider_certificate: |  # optional
+              -----BEGIN CERTIFICATE-----
+              MIIBszCCAVmgAwIBAgIUEXAMPLE0000000000000000000000000wCgYIKoZIzj0E
+              AwIwLzELMAkGA1UEBhMCVVMxIDAeBgNVBAMMF0V4YW1wbGUgUm9vdCBDQSAoZG9jKTAe
+              -----END CERTIFICATE-----
+        # ======================================================================
+        # Doc page: Secure Client  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/secure_client/
+        # GUI: Objects » VPN » Secure Client Customization Objects » VPN » Secure Client File
+        # ======================================================================
+        secure_client_images:  # optional
+          - name: SC_WIN_5.1  # MANDATORY
+            path: /backups  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+        # ======================================================================
+        # Doc page: Secure Client  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/secure_client/
+        # GUI: Objects » VPN » Secure Client Customization Objects » VPN » Secure Client File
+        # ======================================================================
+        secure_client_profiles:  # optional
+          - name: SC_PROFILE_CORP  # MANDATORY
+            path: files/CiscoSecureAccessVPN_Profile.xml  # MANDATORY
+            file_type: ANYCONNECT_VPN_PROFILE  # MANDATORY | choices: ANYCONNECT_MANAGEMENT_VPN_PROFILE | AMP_ENABLER | FEEDBACK | WEB_SECURITY | ANYCONNECT_VPN_PROFILE | UMBRELLA_ROAMING | NETWORK_ACCESS_MANAGER | ISE_POSTURE | NETWORK_VISIBILITY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+        # ======================================================================
+        # Doc page: Secure Client  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/secure_client/
+        # GUI: Objects » VPN » Secure Client Customization Objects » VPN » Secure Client File
+        # ======================================================================
+        secure_client_posture_packages:  # optional
+          - name: SC_HOSTSCAN  # MANDATORY
+            path: files/secure-firewall-posture-5.1.10.295-k9.pkg  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+        # ======================================================================
+        # Doc page: Secure Client  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/secure_client/
+        # GUI: Objects » VPN » Secure Client Customization Objects » VPN » Secure Client File
+        # ======================================================================
+        secure_client_external_browser_packages:  # optional
+          - name: SC_EXT_BROWSER  # MANDATORY
+            path: /backups  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+        # ======================================================================
+        # Doc page: Secure Client  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/secure_client/
+        # GUI: Objects » VPN » Secure Client Customization Objects » VPN » Secure Client File
+        # ======================================================================
+        secure_client_customizations:  # optional
+          - name: SC_CUSTOM_LOGO  # MANDATORY
+            path: files/AnyConnect_pl-pl.po  # MANDATORY
+            customization_type: LANGUAGE_LOCALIZATION  # MANDATORY | choices: LANGUAGE_LOCALIZATION | IMAGE | SCRIPT | BINARY | CUSTOMIZED_INSTALLER_TRANSFORM | LOCALIZED_INSTALLER_TRANSFORM
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            language: pl  # optional
+            operating_system: WINDOWS  # optional | choices: WINDOWS | MAC | LINUX
+            script_type: ON_CONNECT  # optional | choices: ON_CONNECT | ON_DISCONNECT
+        # ======================================================================
+        # Doc page: Secure Client  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/secure_client/
+        # GUI: Objects » VPN » Secure Client Customization Objects » VPN » Secure Client File
+        # ======================================================================
+        secure_client_custom_attributes:  # optional
+          - name: SC_ATTR_DEFER_UPDATE  # MANDATORY
+            attribute_type: USER_DEFINED_CUSTOM_ATTR  # MANDATORY | choices: ALLOW_DEFER_UPDATE | PER_APP_VPN | DYNAMIC_SPLIT_TUNNELING | USER_DEFINED_CUSTOM_ATTR
+            defer_update_default_action: DEFER  # optional | choices: DEFER | UPDATE
+            defer_update_minimum_secure_client_version: 5.1.0  # optional
+            defer_update_prompt_dismiss_timeout: 30  # optional | range: 1..300
+            defer_update_prompt_type: SHOW_UNTIL_USER_ACTION  # optional | choices: SHOW_UNTIL_USER_ACTION | SHOW_UNTIL_TIMEOUT | NO_PROMPT_AUTO_ACTION
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            dynamic_split_tunnel_excluded_domains: [excluded.domain1.com]  # optional
+            dynamic_split_tunnel_included_domains: [included.domain1.com, included.domain2.com]  # optional
+            per_app_vpn_value: BASE64-ENCODED-PER-APP-VALUE  # optional
+            user_defined_attribute_name: my_custom_attribute_name  # optional
+            user_defined_attribute_value: my_custom_attribute_value  # optional
+        # ======================================================================
+        # Doc page: Group Policy  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/group_policy/
+        # GUI: Objects » VPN » Group Policy
+        # ======================================================================
+        group_policies:  # optional
+          - name: GP_EMPLOYEES  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            general:  # optional
+              protocol_ssl: true  # optional | default: true
+              protocol_ipsec_ikev2: true  # optional | default: true
+              ipv4_address_pools: [POOL4_RAVPN]  # optional
+              banner: Welcome to my VPN  # optional
+              primary_dns_server: 10.10.10.53  # optional
+              secondary_dns_server: 10.10.11.53  # optional
+              primary_wins_server: 10.10.10.60  # optional
+              secondary_wins_server: 10.10.11.60  # optional
+              default_domain: example.com  # optional
+              ipv4_dhcp_network_scope: 10.10.10.0/24  # optional
+              ipv4_split_tunnel_policy: TUNNEL_ALL  # optional | choices: TUNNEL_ALL | TUNNEL_SPECIFIED | EXCLUDE_SPECIFIED_OVER_TUNNEL | default: TUNNEL_ALL
+              ipv6_split_tunnel_policy: EXCLUDE_SPECIFIED_OVER_TUNNEL  # optional | choices: TUNNEL_ALL | TUNNEL_SPECIFIED | EXCLUDE_SPECIFIED_OVER_TUNNEL | default: TUNNEL_ALL
+              split_tunnel_access_list: EACL_SPLIT_TUNNEL  # optional
+              dns_request_split_tunnel_policy: TUNNEL_SPECIFIED_DOMAINS  # optional | choices: USE_SPLIT_TUNNEL_SETTING | TUNNEL_ALL | TUNNEL_SPECIFIED_DOMAINS | default: USE_SPLIT_TUNNEL_SETTING
+              dns_request_split_tunnel_domains: [example.com, example.org, example.net]  # optional
+            secure_client:  # optional
+              profile: SC_PROFILE_CORP  # optional
+              management_profile: SC_PROFILE_CORP  # optional
+              modules:  # optional
+                - type: DART  # optional | choices: AMP_ENABLER | FEEDBACK | ISE_POSTURE | NETWORK_ACCESS_MANAGER | NETWORK_VISIBILITY | UMBRELLA_ROAMING | WEB_SECURITY | START_BEFORE_LOGIN | DART
+                  profile_name: SC_PROFILE_CORP  # optional
+                  download_module: false  # optional
+              ssl_compression: DISABLED  # optional | choices: DISABLED | DEFLATE | LZS | default: DISABLED
+              dtls_compression: DISABLED  # optional | choices: DISABLED | LZS | default: DISABLED
+              mtu_size: 1406  # optional | range: 576..1462 | default: 1406
+              ignore_df_bit: false  # optional | default: false
+              keep_alive_messages_interval: 20  # optional | range: 15..600 | default: 20
+              gateway_dead_peer_detection_interval: 30  # optional | range: 5..3600 | default: 30
+              client_dead_peer_detection_interval: 30  # optional | range: 5..3600 | default: 30
+              client_bypass_protocol: false  # optional | default: false
+              ssl_rekey_method: NEW_TUNNEL  # optional | choices: NEW_TUNNEL | EXISTING_TUNNEL | default: NEW_TUNNEL
+              ssl_rekey_interval: 4  # optional | range: 4..10080 | default: 4
+              client_firewall_private_network_rules_access_list: EACL_SPLIT_TUNNEL  # optional
+              client_firewall_public_network_rules_access_list: EACL_SPLIT_TUNNEL  # optional
+              custom_attributes: [SC_ATTR_DEFER_UPDATE]  # optional
+            advanced:  # optional
+              traffic_filter_access_list: EACL_SPLIT_TUNNEL  # optional
+              restrict_vpn_to_vlan: 100  # optional | range: 1..4094
+              access_hours_time_range: TR_BUSINESS_HOURS  # optional
+              simultaneous_logins_per_user: 3  # optional | range: ..2147483647 | default: 3
+              maximum_connection_time: 1  # optional | range: 1..4473924
+              maximum_connection_time_alert_interval: 30  # optional | range: 1..30
+              idle_timeout: 30  # optional | range: 1..4473924 | default: 30
+              idle_timeout_alert_interval: 1  # optional | range: 1..30 | default: 1
+        cipher_suite_lists:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+          - name: CSL_STRONG  # optional (schema-only, not on docs page)
+            cipher_suites: [TLS_AES_256_GCM_SHA384]  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+        distinguished_names:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+          - name: DN_VPN  # optional (schema-only, not on docs page)
+            distinguished_name: CN=vpn.example.com,O=Example Corp,C=US  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+        mac_address_pools:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+          - name: MACPOOL_01  # optional (schema-only, not on docs page)
+            description: Managed by Network-as-Code  # optional (schema-only, not on docs page)
+            mac_address_range: 0050.56aa.0001-0050.56aa.00ff  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional (schema-only, not on docs page)

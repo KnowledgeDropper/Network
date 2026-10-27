@@ -1,0 +1,154 @@
+---
+# FTD Platform Settings policies.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  # ======================================================================
+  # Doc page: Domain  ->  https://netascode.cisco.com/docs/data_models/fmc/domains/domains/
+  # GUI: Settings » Domains
+  # ======================================================================
+  domains:  # optional
+    - name: Global  # MANDATORY
+      devices:  # optional
+        # ======================================================================
+        # Doc page: FTD Platform Settings  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/ftd_platform_settings/
+        # GUI: Devices » Platform Settings
+        # ======================================================================
+        ftd_platform_settings:  # optional
+          - name: PS_EDGE  # MANDATORY | regex: ^[a-zA-Z0-9_.+ -]{1,64}$
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            banner:  # optional
+              text: Managed by Network-as-Code  # MANDATORY
+            http_access:  # optional
+              server_enabled: true  # optional | default: true
+              server_port: 443  # optional | range: 1..65535 | default: 443
+              configurations:  # optional
+                - source_network_object: N_INSIDE_10.10.10.0_24  # MANDATORY
+                  interface_literals: [inside]  # optional
+                  interface_objects: [SZ_INSIDE]  # optional
+            icmp_access:  # optional
+              rate_limit: 1  # optional | range: 1..100 | default: 1
+              burst_size: 1  # optional | range: 1..10 | default: 1
+              configurations:  # optional
+                - action: Permit  # MANDATORY | choices: Permit | Deny
+                  icmp_service_object: ICMP4_ECHO  # MANDATORY
+                  source_network_object: N_INSIDE_10.10.10.0_24  # MANDATORY
+                  interface_literals: [inside]  # optional
+                  interface_objects: [SZ_INSIDE]  # optional
+            ssh_accesses:  # optional
+              - source_network_object: N_INSIDE_10.10.10.0_24  # MANDATORY
+                interface_literals: [inside]  # optional
+                interface_objects: [SZ_INSIDE]  # optional
+            snmp:  # optional
+              server_enabled: true  # MANDATORY | default: true
+              server_port: 1456  # optional | range: 1..65535 | default: 161
+              read_community: !env FMC_FTD_PLATFORM_SETTINGS_SNMP_READ_COMMUNITY  # optional | maxlen: 32
+              system_administrator: admin  # optional | maxlen: 127
+              location: Data Center 1  # optional | maxlen: 127
+              management_hosts:  # optional
+                - network_object: N_INSIDE_10.10.10.0_24  # MANDATORY
+                  snmp_version: SNMPv2c  # MANDATORY | choices: SNMPv1 | SNMPv2c | SNMPv3
+                  username: snmpv3user2  # optional
+                  read_community: !env FMC_SNMP_MANAGEMENT_HOSTS_READ_COMMUNITY  # optional
+                  poll: true  # optional | default: true
+                  trap: true  # optional | default: true
+                  trap_port: 162  # optional | range: 1..65535 | default: 162
+                  use_management_interface: false  # optional
+                  interface_literals: [inside]  # optional
+                  interface_objects: [SZ_INSIDE]  # optional
+              snmpv3_users:  # optional
+                - security_level: NoAuth  # MANDATORY | choices: Auth | NoAuth | Priv
+                  username: snmpv3user1  # MANDATORY | maxlen: 32
+                  password_type: Clear  # optional | choices: Clear | Encrypted
+                  authentication_algorithm: SHA256  # optional | choices: SHA | SHA224 | SHA256 | SHA384
+                  authentication_password: !env FMC_SNMP_SNMPV3_USERS_AUTHENTICATION_PASSWORD  # optional | maxlen: 256
+                  encryption_algorithm: AES256  # optional | choices: AES128 | AES192 | AES256
+                  encryption_password: !env FMC_SNMP_SNMPV3_USERS_ENCRYPTION_PASSWORD  # optional | maxlen: 256
+              traps:  # optional
+                syslog: true  # optional | default: false
+                authentication: true  # optional | default: true
+                link_up: true  # optional | default: true
+                link_down: true  # optional | default: true
+                cold_start: true  # optional | default: true
+                warm_start: true  # optional | default: true
+                field_replacement_unit_insert: false  # optional | default: false
+                field_replacement_unit_delete: false  # optional | default: false
+                configuration_change: false  # optional | default: false
+                connection_limit_reached: false  # optional | default: false
+                nat_packet_discard: false  # optional | default: false
+                cpu_rising: false  # optional | default: false
+                cpu_rising_threshold: 70  # optional | range: 10..94 | default: 70
+                cpu_rising_interval: 1  # optional | range: 1..60 | default: 1
+                memory_rising: false  # optional | default: false
+                memory_rising_threshold: 70  # optional | range: 50..695 | default: 70
+                failover_state: false  # optional | default: false
+                cluster_state: false  # optional | default: false
+                peer_flap: false  # optional | default: false
+            syslog:  # optional
+              logging_setup:  # optional
+                logging_enabled: true  # optional | default: false
+                logging_on_failover_standby_unit_enabled: true  # optional | default: false
+                emblem_format: false  # optional | default: false
+                send_debug_messages_as_syslog: false  # optional | default: false
+                internal_buffer_memory_size: 4096  # optional | range: 4096..52428800 | default: 4096
+                fmc_logging_mode: ALL  # MANDATORY | choices: OFF | ALL | VPN | default: VPN
+                fmc_logging_level: CRIT  # optional | choices: EMERG | ALERT | CRIT | ERR | WARNING | NOTICE | INFO | DEBUG | default: ERR
+                ftp_server_host: host01.example.com  # optional
+                ftp_server_username: svc_nac  # optional
+                ftp_server_path: /backups  # optional
+                ftp_server_password: !env FMC_SYSLOG_LOGGING_SETUP_FTP_SERVER_PASSWORD  # optional
+                flash_enabled: true  # optional | default: false
+                flash_maximum_space: 3076  # optional | range: 4..8044176 | default: 3076
+                flash_minimum_free_space: 1024  # optional | range: ..8044176 | default: 1024
+              logging_destinations:  # optional
+                - destination: INTERNAL_BUFFER  # MANDATORY | choices: INTERNAL_BUFFER | CONSOLE | SYSLOG_SERVERS | SNMP_TRAP | EMAIL | SSH_SESSION
+                  global_event_class_filter_criteria: DISABLE  # MANDATORY | choices: SEVERITY | EVENT_LIST | DISABLE
+                  global_event_class_filter_value: WARNING  # optional
+                  event_class_filters:  # optional
+                    - class: BRIDGE  # MANDATORY | choices: AUTH | BRIDGE | CA | CONFIG | CSD | DAP | EAPOUDP | EIGRP | HA | IDS | IP | IPAA | ... (+19 more, see schema)
+                      severity: INFO  # MANDATORY | choices: EMERG | ALERT | CRIT | ERR | WARNING | NOTICE | INFO | DEBUG
+              email_setup:  # optional
+                source_email_address: my_email@example.com  # MANDATORY
+                destinations:  # optional
+                  - email_addresses: [dest1@example.com, dest2@example.com]  # MANDATORY
+                    logging_level: INFO  # MANDATORY | choices: EMERG | ALERT | CRIT | ERR | WARNING | NOTICE | INFO | DEBUG
+              event_lists:  # optional
+                - name: EL_VPN_SESSIONS  # MANDATORY | regex: ^[a-zA-Z0-9_ -]{1,64}$
+                  event_classes:  # optional
+                    - class: VPN  # MANDATORY | choices: ACCESS_LIST | APPLICATION_FIREWALL | AUTH | BOTNET_TRAFFIC_FILTERING | BRIDGE | CA | CARD_MANAGEMENT | CLUSTERING | CONFIG | CSD | CTS | DAP | ... (+46 more, see schema)
+                      severity: INFO  # MANDATORY | choices: EMERG | ALERT | CRIT | ERR | WARNING | NOTICE | INFO | DEBUG
+                  message_ids: ['302015', '302016', '302017', '302018']  # optional
+              rate_limits:  # optional
+                - type: LOG_LEVEL  # MANDATORY | choices: LOG_LEVEL | SYSLOG_ID
+                  value: ERR  # MANDATORY
+                  number_of_messages: 100  # MANDATORY | range: 1..2147483647
+                  interval: 5  # optional | range: 1..2147483647
+              settings:  # optional
+                facility: LOCAL4  # MANDATORY | choices: LOCAL0 | LOCAL1 | LOCAL2 | LOCAL3 | LOCAL4 | LOCAL5 | LOCAL6 | LOCAL7 | default: LOCAL4
+                timestamp_format: RFC_5424  # MANDATORY | choices: RFC_5424 | LEGACY
+                device_id_source: INTERFACE  # optional | choices: INTERFACE | USERDEFINEDID | HOSTNAME
+                device_id_user_defined: FTD-EDGE-01  # optional
+                device_id_interface: outside  # optional
+                all_syslog_messages_enabled: false  # optional | default: false
+                all_syslog_messages_logging_level: EMERG  # optional | choices: EMERG | ALERT | CRIT | ERR | WARNING | NOTICE | INFO | DEBUG
+                syslog_ids:  # optional
+                  - syslog_id: '302015'  # MANDATORY
+                    logging_level: INFO  # optional | choices: EMERG | ALERT | CRIT | ERR | WARNING | NOTICE | INFO | DEBUG | DEFAULT
+                    enabled: false  # optional | default: true
+              servers:  # optional
+                allow_user_traffic_when_tcp_syslog_server_is_down: true  # optional | default: true
+                message_queue_size: 8192  # optional | range: ..8192 | default: 512
+                servers:  # optional
+                  - network_object: N_INSIDE_10.10.10.0_24  # MANDATORY
+                    protocol: TCP  # optional | choices: UDP | TCP | default: TCP
+                    port: 1514  # optional | range: 1..65535 | default: 1470
+                    emblem_format: true  # optional | default: false
+                    secure_syslog: true  # optional | default: false
+                    use_management_interface: false  # optional
+                    interface_literals: [inside]  # optional
+                    interface_objects: [SZ_INSIDE]  # optional
+            time_synchronization:  # optional
+              mode: SYNC_VIA_NTP_SERVER  # MANDATORY | choices: SYNC_VIA_MGMT_CENTER_NTP | SYNC_VIA_NTP_SERVER
+              ntp_servers: [0.pool.ntp.org, 1.pool.ntp.org]  # optional

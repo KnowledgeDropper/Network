@@ -1,0 +1,603 @@
+---
+# FTD devices: registration, policy assignment, VRFs, interfaces, static routes, BGP, OSPF, BFD.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  # ======================================================================
+  # Doc page: Domain  ->  https://netascode.cisco.com/docs/data_models/fmc/domains/domains/
+  # GUI: Settings » Domains
+  # ======================================================================
+  domains:  # optional
+    - name: Global  # MANDATORY
+      devices:  # optional
+        # ======================================================================
+        # Doc page: Device  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/device/
+        # GUI: Devices » Device Management » Device
+        # ======================================================================
+        devices:  # optional
+          - name: FTD-EDGE-01  # MANDATORY | regex: ^[a-zA-Z0-9_.+ -]{1,64}$
+            host: 192.0.2.21  # optional
+            registration_key: !env FMC_DEVICES_DEVICES_REGISTRATION_KEY  # optional
+            deploy_on_destroy: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+            access_control_policy: ACP_EDGE  # optional
+            nat_policy: NAT_EDGE  # optional
+            health_policy: HEALTH_FTD  # optional
+            platform_settings: PS_EDGE  # optional
+            remote_access_vpn: RAVPN_CORP  # optional
+            licenses: [ESSENTIALS, IPS]  # optional | choices: ESSENTIALS | IPS | URL | MALWARE_DEFENSE | CARRIER | SECURE_CLIENT_PREMIER | SECURE_CLIENT_PREMIER_ADVANTAGE | SECURE_CLIENT_VPNOnly | BASE | THREAT | PROTECT | CONTROL | ... (+4 more, see schema)
+            nat_id: NATID-FTD01  # optional
+            performance_tier: FTDv5  # optional | choices: FTDv | FTDv5 | FTDv10 | FTDv20 | FTDv30 | FTDv50 | FTDv100 | Legacy
+            prohibit_packet_transfer: true  # optional | default: true
+            snort_engine: SNORT3  # optional | choices: SNORT2 | SNORT3 | default: SNORT3
+            deploy: true  # optional
+            object_group_search: true  # optional | default: true
+            # ======================================================================
+            # Doc page: VRF  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/vrf/
+            # GUI: Devices » Device Management » Device » Routing
+            # ======================================================================
+            vrfs:  # optional
+              - name: Global  # MANDATORY | regex: ^[a-zA-Z0-9_.+ -]{1,64}$
+                description: Managed by Network-as-Code  # optional | maxlen: 255
+                # ======================================================================
+                # Doc page: BGP IPv4  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/bgp_ipv4/
+                # GUI: Devices » Device Management » Device » Routing » BGP » IPv4
+                # ======================================================================
+                bgp:  # optional
+                  ipv4_aggregate_addresses:  # optional
+                    - advertise_map: RM_BGP_IN  # optional
+                      attribute_map: RM_BGP_IN  # optional
+                      filter: false  # optional
+                      generate_as: false  # optional
+                      network: 10.10.10.0/24  # optional
+                      suppress_map: RM_BGP_IN  # optional
+                  ipv4_auto_summary: false  # optional | default: false
+                  ipv4_redistribute_ibgp_into_igp: false  # optional | default: false
+                  ipv4_suppress_inactive_routes: true  # optional | default: true
+                  ipv4_default_information_orginate: true  # optional
+                  ipv4_external_distance: 20  # optional | range: 1..255 | default: 20
+                  ipv4_filterings:  # optional
+                    - access_list: EACL_SPLIT_TUNNEL  # MANDATORY
+                      direction: incomingroutefilter  # MANDATORY | choices: incomingroutefilter | outgoingroutefilter
+                      process_id: '1'  # optional
+                      protocol: CONNECTED  # optional | choices: CONNECTED | BGP | OSPF | RIP | STATIC
+                  ipv4_number_of_ebgp_paths: 1  # optional | range: 1..8 | default: 1
+                  ipv4_number_of_ibgp_paths: 1  # optional | range: 1..8 | default: 1
+                  ipv4_internal_distance: 200  # optional | range: 1..255 | default: 200
+                  ipv4_learned_route_map: RM_BGP_IN  # optional
+                  ipv4_local_distance: 200  # optional | range: 1..255 | default: 200
+                  ipv4_neighbors:  # optional
+                    - enable_address: true  # optional
+                      address: 10.0.5.2  # optional
+                      authentication_password: !env FMC_BGP_IPV4_NEIGHBORS_AUTHENTICATION_PASSWORD  # optional
+                      bfd_fallover: SINGLE_HOP  # optional | choices: SINGLE_HOP | MULTI_HOP | AUTO_DETECT_HOP | NONE
+                      customized_accept_both_as: false  # optional
+                      customized_local_as_number: '65010'  # optional
+                      customized_no_prepend: false  # optional
+                      customized_replace_as: false  # optional
+                      description: Managed by Network-as-Code  # optional
+                      disable_connection_verification: false  # optional
+                      filter_access_lists:  # optional
+                        - access_list: EACL_SPLIT_TUNNEL  # MANDATORY
+                          update_direction: IN  # MANDATORY | choices: IN | OUT
+                      filter_as_paths:  # optional
+                        - as_path: 65001  # MANDATORY
+                          update_direction: IN  # MANDATORY | choices: IN | OUT
+                      filter_maximum_prefixes: 1  # optional | range: 1..2147483647
+                      filter_prefix_lists:  # optional
+                        - prefix_list: PL4_DEFAULT_ONLY  # MANDATORY
+                          update_direction: IN  # MANDATORY | choices: IN | OUT
+                      filter_restart_interval: 30  # optional | range: 1..65535
+                      filter_route_maps:  # optional
+                        - route_map: RM_BGP_IN  # MANDATORY
+                          update_direction: IN  # MANDATORY | choices: IN | OUT
+                      filter_threshold_value: 80  # optional | range: 1..100
+                      filter_warning_only: false  # optional
+                      routes_generate_default_route_map: RM_BGP_IN  # optional
+                      hold_time: 180  # optional | range: 3..65535
+                      keepalive_interval: 60  # optional | range: ..65535
+                      max_hop_count: 1  # optional | range: 1..255
+                      minimum_hold_time: 180  # optional | range: 3..65535
+                      next_hop_self: false  # optional
+                      remote_as: '64600'  # optional
+                      routes_advertise_maps:  # optional
+                        - advertise_map: RM_BGP_IN  # MANDATORY
+                          exist_nonexist_map: RM_BGP_IN  # MANDATORY
+                          use_exist_map: false  # MANDATORY
+                      routes_advertisement_interval: 30  # optional | range: ..600
+                      routes_remove_private_as: false  # optional
+                      send_community_attribute: false  # optional
+                      shutdown_administratively: false  # optional
+                      tcp_path_mtu_discovery: false  # optional
+                      tcp_transport_mode: false  # optional
+                      version: 0  # optional | choices: 0 | 4
+                      weight: 100  # optional | range: ..65535
+                      update_source_interface: outside  # optional
+                  ipv4_networks:  # optional
+                    - network: 10.10.10.0/24  # optional
+                      route_map: RM_BGP_IN  # optional
+                  ipv4_redistributions:  # optional
+                    - match_external1: false  # optional
+                      match_external2: false  # optional
+                      match_internal: false  # optional
+                      match_nssa_external1: false  # optional
+                      match_nssa_external2: false  # optional
+                      metric: 10  # optional | range: ..4294967295
+                      process_id: '1'  # optional
+                      route_map: RM_BGP_IN  # optional
+                      source_protocol: RedistributeConnected  # MANDATORY | choices: RedistributeConnected | RedistributeStatic | RedistributeOSPF | RedistributeEIGRP
+                  ipv4_route_injections:  # optional
+                    - exist_route_map: RM_BGP_IN  # optional
+                      inject_route_map: RM_BGP_IN  # optional
+                      inherit_attributes: false  # optional
+                  ipv4_synchronization: false  # optional | default: false
+                ospfs:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                  - process_id: 1  # optional (schema-only, not on docs page) | range: 1..65535
+                    router_id: 192.0.2.10  # optional (schema-only, not on docs page)
+                    rfc_1583_compatible: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    log_adjacency_changes: DEFAULT  # optional (schema-only, not on docs page) | choices: DEFAULT | DETAILED | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    ignore_lsa_mospf: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    administrative_distance_inter_area: 110  # optional (schema-only, not on docs page) | range: 1..254 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    administrative_distance_intra_area: 110  # optional (schema-only, not on docs page) | range: 1..254 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    administrative_distance_external: 110  # optional (schema-only, not on docs page) | range: 1..254 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    timer_lsa_group: 10  # optional (schema-only, not on docs page) | range: 10..1800 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    default_route_always_advertise: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    default_route_metric: 10  # optional (schema-only, not on docs page) | range: ..16777214 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    default_route_metric_type: TYPE_1  # optional (schema-only, not on docs page) | choices: TYPE_1 | TYPE_2 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    default_route_route_map: RM_BGP_IN  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    non_stop_forwarding: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    non_stop_forwarding_mechanism: CISCO  # optional (schema-only, not on docs page) | choices: CISCO | IETF | NONE | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    non_stop_forwarding_helper_mode: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    non_stop_forwarding_capability: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    non_stop_forwarding_strict_mode: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    non_stop_forwarding_restart_interval: 30  # optional (schema-only, not on docs page) | range: 1..1800 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    areas:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                      - type: normal  # optional (schema-only, not on docs page) | choices: normal | stub | nssa
+                        id: 0  # optional (schema-only, not on docs page)
+                        networks: [10.10.10.0/24]  # optional (schema-only, not on docs page)
+                        no_summary: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                        no_redistribution: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                        default_route_metric: 10  # optional (schema-only, not on docs page) | range: ..16777214 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                        default_route_metric_type: TYPE_1  # optional (schema-only, not on docs page) | choices: TYPE_1 | TYPE_2 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                        authentication: PASSWORD  # optional (schema-only, not on docs page) | choices: PASSWORD | MESSAGE_DIGEST
+                        default_cost: 10  # optional (schema-only, not on docs page) | range: ..65535 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                        ranges:  # optional (schema-only, not on docs page)
+                          - network: 10.10.10.0/24  # optional (schema-only, not on docs page)
+                            advertise: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                        virtual_links:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                          - peer_router_host: 192.0.2.10  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                            hello_interval: 10  # optional (schema-only, not on docs page) | range: 1..8192 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                            transmit_delay: 1  # optional (schema-only, not on docs page) | range: 1..8192 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                            retransmit_interval: 5  # optional (schema-only, not on docs page) | range: 1..8192 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                            dead_interval: 40  # optional (schema-only, not on docs page) | range: 1..8192 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                            authentication_password: !env FMC_AREAS_VIRTUAL_LINKS_AUTHENTICATION_PASSWORD  # optional (schema-only, not on docs page) | maxlen: 8
+                            authentication_md5s:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                              - id: 0  # optional (schema-only, not on docs page)
+                                key: !env FMC_VIRTUAL_LINKS_AUTHENTICATION_MD5S_KEY  # optional (schema-only, not on docs page)
+                            authentication_area_password: !env FMC_AREAS_VIRTUAL_LINKS_AUTHENTICATION_AREA_PASSWORD  # optional (schema-only, not on docs page) | maxlen: 8 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                            authentication_area_md5s:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                              - id: 0  # optional (schema-only, not on docs page)
+                                key: !env FMC_VIRTUAL_LINKS_AUTHENTICATION_AREA_MD5S_KEY  # optional (schema-only, not on docs page)
+                            authentication_key_chain: KC_OSPF  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                        inter_area_filters:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                          - prefix_list: PL4_DEFAULT_ONLY  # optional (schema-only, not on docs page)
+                            filter_direction: IN  # optional (schema-only, not on docs page) | choices: IN | OUT | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    redistributions:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                      - source_protocol: RedistributeConnected  # optional (schema-only, not on docs page) | choices: RedistributeConnected | RedistributeStatic | RedistributeOSPF | RedistributeBGP | RedistributeRIP | RedistributeEIGRP
+                        as_number: 65001  # optional (schema-only, not on docs page)
+                        process_id: 1  # optional (schema-only, not on docs page) | range: 1..65535
+                        match_external1: false  # optional (schema-only, not on docs page)
+                        match_external2: false  # optional (schema-only, not on docs page)
+                        match_internal: false  # optional (schema-only, not on docs page)
+                        match_nssa_external1: false  # optional (schema-only, not on docs page)
+                        match_nssa_external2: false  # optional (schema-only, not on docs page)
+                        subnets: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                        metric: 10  # optional (schema-only, not on docs page) | range: ..16777214
+                        metric_type: TYPE_1  # optional (schema-only, not on docs page) | choices: TYPE_1 | TYPE_2
+                        tag: 100  # optional (schema-only, not on docs page) | range: ..4294967295
+                        route_map: RM_BGP_IN  # optional (schema-only, not on docs page)
+                    filter_rules:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                      - access_list: EACL_SPLIT_TUNNEL  # optional (schema-only, not on docs page)
+                        traffic_direction: incomingroutefilter  # optional (schema-only, not on docs page) | choices: incomingroutefilter | outgoingroutefilter | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                        routing_process: CONNECTED  # optional (schema-only, not on docs page) | choices: CONNECTED | STATIC | RIP | OSPF | EIGRP | BGP | NONE | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                        routing_process_id: 1  # optional (schema-only, not on docs page) | range: 1..65535 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                        interface_logical_name: inside  # optional (schema-only, not on docs page)
+                    summary_addresses:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                      - networks: [10.10.10.0/24]  # optional (schema-only, not on docs page)
+                        tag: 100  # optional (schema-only, not on docs page) | range: ..4294967295
+                        advertise: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    neighbors:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                      - interface_logical_name: inside  # optional (schema-only, not on docs page)
+                        neighbor_host: 192.0.2.10  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                ospf_interfaces:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                  - interface_logical_name: inside  # optional (schema-only, not on docs page)
+                    default_cost: 1  # optional (schema-only, not on docs page) | range: 1..65535 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    priority: 10  # optional (schema-only, not on docs page) | range: ..255
+                    mtu_missmatch_ignore: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    hello_interval: 10  # optional (schema-only, not on docs page) | range: 1..8192 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    hello_multiplier: 3  # optional (schema-only, not on docs page) | range: 3..20 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    transmit_delay: 1  # optional (schema-only, not on docs page) | range: 1..65535 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    retransmit_interval: 5  # optional (schema-only, not on docs page) | range: 1..65535 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    dead_interval: 40  # optional (schema-only, not on docs page) | range: 1..65535 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    point_to_point: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    bfd: false  # optional (schema-only, not on docs page)
+                    authentication_password: !env FMC_VRFS_OSPF_INTERFACES_AUTHENTICATION_PASSWORD  # optional (schema-only, not on docs page) | maxlen: 8
+                    authentication_md5s:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                      - id: 0  # optional (schema-only, not on docs page)
+                        key: !env FMC_OSPF_INTERFACES_AUTHENTICATION_MD5S_KEY  # optional (schema-only, not on docs page)
+                    authentication_area_password: !env FMC_VRFS_OSPF_INTERFACES_AUTHENTICATION_AREA_PASSWORD  # optional (schema-only, not on docs page) | maxlen: 8 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    authentication_area_md5s:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                      - id: 0  # optional (schema-only, not on docs page)
+                        key: !env FMC_OSPF_INTERFACES_AUTHENTICATION_AREA_MD5S_KEY  # optional (schema-only, not on docs page)
+                    authentication_key_chain: KC_OSPF  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                # ======================================================================
+                # Doc page: Device Physical Interface  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/device_physical_interface/
+                # GUI: Devices » Device Management » Device » Interfaces
+                # ======================================================================
+                physical_interfaces:  # optional
+                  - name: Ethernet1/1  # MANDATORY
+                    mode: NONE  # optional | choices: INLINE | PASSIVE | TAP | ERSPAN | NONE | SWITCHPORT | default: NONE
+                    active_mac_address: 192.0.2.10  # optional | maxlen: 17
+                    allow_full_fragment_reassembly: false  # optional
+                    arp_table_entries:  # optional
+                      - enabled: true  # MANDATORY | default: true
+                        ip_address: 192.0.2.10  # MANDATORY
+                        mac_address: 192.0.2.10  # MANDATORY | maxlen: 17
+                    auto_negotiation: false  # optional
+                    description: Managed by Network-as-Code  # optional | maxlen: 255
+                    duplex: AUTO  # optional | choices: AUTO | FULL | HALF
+                    anti_spoofing: false  # optional
+                    sgt_propagate: false  # optional | default: false
+                    enabled: true  # optional | default: true
+                    fec_mode: AUTO  # optional | choices: AUTO | CL108RS | CL74FC | CL91RS | DISABLE
+                    flow_control_send: false  # optional | default: false
+                    ip_based_monitoring: false  # optional
+                    ip_based_monitoring_next_hop: 192.0.2.10  # optional
+                    ip_based_monitoring_type: AUTO  # optional | choices: AUTO | PEER_IPV4 | PEER_IPV6 | AUTO4 | AUTO6
+                    ipv4_address_pool: POOL4_RAVPN  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_dhcp_obtain_default_route: false  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_dhcp_default_route_metric: 10  # optional | range: 1..255
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_authentication: PAP  # optional | choices: PAP | CHAP | MSCHAP
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_password: !env FMC_VRFS_PHYSICAL_INTERFACES_IPV4_PPPOE_PASSWORD  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_route_metric: 10  # optional | range: 1..255
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_route_settings: false  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_store_credentials_in_flash: false  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_user: pppoe-user@isp.example.com  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_vpdn_group_name: VPDN_ISP1  # optional
+                    ipv4_static_address: 10.10.10.1  # optional
+                    ipv4_static_netmask: 24  # optional | range: 1..31
+                    ipv6_addresses:  # optional
+                      - address: 2001:db8:130c::9c0:876a:130b  # MANDATORY
+                        enforce_eui: false  # optional
+                        prefix: '64'  # MANDATORY
+                    ipv6_dad_attempts: 3  # optional | range: ..600
+                    ipv6_dhcp_obtain_default_route: false  # optional
+                    ipv6_dhcp: false  # optional
+                    ipv6_dhcp_client_pd_hint_prefixes: 2001:db8:100::/56  # optional
+                    ipv6_dhcp_client_pd_prefix_name: PD_ISP1  # optional
+                    ipv6: false  # optional
+                    ipv6_auto_config: false  # optional
+                    ipv6_dad: false  # optional
+                    ipv6_dhcp_address_config: false  # optional
+                    ipv6_enable_dhcp_nonaddress_config: false  # optional | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                    ipv6_ra: false  # optional
+                    ipv6_enforce_eui: false  # optional
+                    ipv6_link_local_address: 2001:db8:10::1  # optional
+                    ipv6_ns_interval: 1000  # optional | range: 1000..3600000
+                    ipv6_prefixes:  # optional
+                      - address: 192.0.2.10  # MANDATORY
+                        default: false  # MANDATORY
+                    ipv6_ra_interval: 30  # optional | range: 3..1800
+                    ipv6_ra_life_time: 10  # optional | range: ..9000
+                    ipv6_reachable_time: 1000  # optional | range: 1000..3600000
+                    lldp_receive: false  # optional
+                    lldp_transmit: false  # optional
+                    logical_name: inside  # optional | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+                    management_access: false  # optional
+                    management_access_network_objects: [N_INSIDE_10.10.10.0_24]  # optional
+                    management_only: false  # optional
+                    mtu: 1500  # optional | range: 64..9000 | default: 1500
+                    nve_only: false  # optional | default: false
+                    override_default_fragment_setting_chain: 1  # optional | range: 1..8200
+                    override_default_fragment_setting_size: 1024  # optional | range: 1..30000
+                    override_default_fragment_setting_timeout: 30  # optional | range: 1..30
+                    priority: 0  # optional | range: ..65535 | default: 0
+                    security_zone: SZ_INSIDE  # optional
+                    speed: AUTO  # optional | choices: AUTO | TEN | HUNDRED | THOUSAND | TEN_THOUSAND | TWENTY_FIVE_THOUSAND | FORTY_THOUSAND | HUNDRED_THOUSAND | TWO_HUNDRED_THOUSAND | DETECT_SFP
+                    standby_mac_address: 192.0.2.10  # optional
+                    monitor_interface: true  # optional
+                    ipv4_standby_address: 10.62.159.202  # optional
+                    ha_active_mac_address: c460.15e4.0edd  # optional
+                    ha_standby_mac_address: c460.15e4.0ed0  # optional
+                  - name: Ethernet1/2  # MANDATORY
+                    ipv4_static_address: 198.51.100.2  # optional
+                    ipv4_static_netmask: 29  # optional | range: 1..31
+                    logical_name: outside  # optional | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+                    security_zone: SZ_OUTSIDE  # optional
+                # ======================================================================
+                # Doc page: Device Ether-channel Interface  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/device_etherchannel_interface/
+                # GUI: Devices » Device Management » Device » Interfaces
+                # ======================================================================
+                etherchannel_interfaces:  # optional
+                  - name: Port-channel10  # MANDATORY | maxlen: 255
+                    mode: NONE  # optional | choices: INLINE | PASSIVE | TAP | ERSPAN | NONE | SWITCHPORT | default: NONE
+                    active_mac_address: 192.0.2.10  # optional | maxlen: 17
+                    allow_full_fragment_reassembly: false  # optional
+                    arp_table_entries:  # optional
+                      - enabled: false  # MANDATORY
+                        ip_address: 192.0.2.10  # MANDATORY
+                        mac_address: 192.0.2.10  # MANDATORY | maxlen: 17
+                    auto_negotiation: false  # optional
+                    description: Managed by Network-as-Code  # optional | maxlen: 255
+                    duplex: AUTO  # optional | choices: AUTO | FULL | HALF
+                    anti_spoofing: false  # optional
+                    sgt_propagate: false  # optional
+                    enabled: false  # optional
+                    fec_mode: AUTO  # optional | choices: AUTO | CL108RS | CL74FC | CL91RS | DISABLE
+                    flow_control_send: false  # optional
+                    ip_based_monitoring: false  # optional
+                    ip_based_monitoring_next_hop: 192.0.2.10  # optional
+                    ip_based_monitoring_type: AUTO  # optional | choices: AUTO | PEER_IPV4 | PEER_IPV6 | AUTO4 | AUTO6
+                    ipv4_address_pool: POOL4_RAVPN  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_dhcp_obtain_default_route: false  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_dhcp_default_route_metric: 10  # optional | range: 1..255
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_authentication: PAP  # optional | choices: PAP | CHAP | MSCHAP
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_password: !env FMC_VRFS_ETHERCHANNEL_INTERFACES_IPV4_PPPOE_PASSWORD  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_route_metric: 10  # optional | range: 1..255
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_route_settings: false  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_store_credentials_in_flash: false  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_user: pppoe-user@isp.example.com  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_vpdn_group_name: VPDN_ISP1  # optional
+                    ipv4_static_address: 10.98.21.2  # optional
+                    ipv4_static_netmask: 24  # optional | range: 1..31
+                    ipv6_addresses:  # optional
+                      - address: 192.0.2.10  # MANDATORY
+                        enforce_eui: false  # optional
+                        prefix: 10.10.10.0/24  # MANDATORY
+                    ipv6_dad_attempts: 3  # optional | range: ..600
+                    ipv6_dhcp_obtain_default_route: false  # optional
+                    ipv6_dhcp: false  # optional
+                    ipv6_dhcp_client_pd_hint_prefixes: 2001:db8:100::/56  # optional
+                    ipv6_dhcp_client_pd_prefix_name: PD_ISP1  # optional
+                    ipv6: false  # optional
+                    ipv6_auto_config: false  # optional
+                    ipv6_dad: false  # optional
+                    ipv6_dhcp_address_config: false  # optional
+                    ipv6_dhcp_nonaddress_config: false  # optional
+                    ipv6_ra: false  # optional
+                    ipv6_enforce_eui: false  # optional
+                    ipv6_link_local_address: 2001:db8:10::1  # optional
+                    ipv6_ns_interval: 1000  # optional | range: 1000..3600000
+                    ipv6_prefixes:  # optional
+                      - address: 192.0.2.10  # MANDATORY
+                        default: false  # MANDATORY
+                    ipv6_ra_interval: 30  # optional | range: 3..1800
+                    ipv6_ra_life_time: 10  # optional | range: ..9000
+                    ipv6_reachable_time: 1000  # optional | range: 1000..3600000
+                    lldp_receive: false  # optional
+                    lldp_transmit: false  # optional
+                    logical_name: SOMEZONE  # optional | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+                    management_access: false  # optional
+                    management_access_network_objects: [N_INSIDE_10.10.10.0_24]  # optional
+                    management_only: false  # optional
+                    mtu: 1500  # optional | range: 64..9000
+                    nve_only: false  # optional
+                    override_default_fragment_setting_chain: 1  # optional | range: 1..8200
+                    override_default_fragment_setting_size: 1024  # optional | range: 1..30000
+                    override_default_fragment_setting_timeout: 30  # optional | range: 1..30
+                    priority: 10  # optional | range: ..65535
+                    security_zone: SZ_INSIDE  # optional
+                    selected_interfaces: [inside]  # optional
+                    speed: AUTO  # optional | choices: AUTO | TEN | HUNDRED | THOUSAND | TEN_THOUSAND | TWENTY_FIVE_THOUSAND | FORTY_THOUSAND | HUNDRED_THOUSAND | TWO_HUNDRED_THOUSAND | DETECT_SFP
+                    standby_mac_address: 192.0.2.10  # optional
+                    monitor_interface: false  # optional
+                    ipv4_standby_address: 10.10.10.2  # optional
+                    ha_active_mac_address: 192.0.2.10  # optional
+                    ha_standby_mac_address: 192.0.2.10  # optional
+                # ======================================================================
+                # Doc page: Device Sub-Interface  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/device_sub_interface/
+                # GUI: Devices » Device Management » Device » Interfaces
+                # ======================================================================
+                sub_interfaces:  # optional
+                  - name: Port-channel10.10  # MANDATORY | maxlen: 255
+                    mode: NONE  # optional | choices: INLINE | PASSIVE | TAP | ERSPAN | NONE | SWITCHPORT | default: NONE
+                    active_mac_address: 192.0.2.10  # optional | maxlen: 17
+                    allow_full_fragment_reassembly: false  # optional
+                    arp_table_entries:  # optional
+                      - enabled: true  # MANDATORY | default: true
+                        ip_address: 192.0.2.10  # MANDATORY
+                        mac_address: 192.0.2.10  # MANDATORY | maxlen: 17
+                    description: Managed by Network-as-Code  # optional | maxlen: 255
+                    anti_spoofing: false  # optional
+                    sgt_propagate: false  # optional | default: false
+                    enabled: false  # optional
+                    ip_based_monitoring: false  # optional
+                    ip_based_monitoring_next_hop: 192.0.2.10  # optional
+                    ip_based_monitoring_type: AUTO  # optional | choices: AUTO | PEER_IPV4 | PEER_IPV6 | AUTO4 | AUTO6
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_dhcp_obtain_default_route: false  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_dhcp_default_route_metric: 10  # optional | range: 1..255
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_authentication: PAP  # optional | choices: PAP | CHAP | MSCHAP
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_password: !env FMC_VRFS_SUB_INTERFACES_IPV4_PPPOE_PASSWORD  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_route_metric: 10  # optional | range: 1..255
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_route_settings: false  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_store_credentials_in_flash: false  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_user: pppoe-user@isp.example.com  # optional
+                    # ALTERNATIVE - IPv4 addressing is one of static / DHCP / PPPoE; uncomment to use instead:
+                    #~ ipv4_pppoe_vpdn_group_name: VPDN_ISP1  # optional
+                    ipv4_static_address: 10.60.1.1  # optional
+                    ipv4_static_netmask: 24  # optional | range: 1..31
+                    ipv6_addresses:  # optional
+                      - address: 192.0.2.10  # MANDATORY
+                        enforce_eui: false  # optional
+                        prefix: 10.10.10.0/24  # MANDATORY
+                    ipv6_dad_attempts: 3  # optional | range: ..600
+                    ipv6_dhcp_obtain_default_route: false  # optional
+                    ipv6_dhcp: false  # optional
+                    ipv6_dhcp_client_pd_hint_prefixes: 2001:db8:100::/56  # optional
+                    ipv6_dhcp_client_pd_prefix_name: PD_ISP1  # optional
+                    ipv6: false  # optional
+                    ipv6_auto_config: false  # optional
+                    ipv6_dad: false  # optional
+                    ipv6_dhcp_address_config: false  # optional
+                    ipv6_dhcp_nonaddress_config: false  # optional
+                    ipv6_ra: false  # optional
+                    ipv6_enforce_eui: false  # optional
+                    ipv6_link_local_address: 2001:db8:10::1  # optional
+                    ipv6_ns_interval: 1000  # optional | range: 1000..3600000
+                    ipv6_prefixes:  # optional
+                      - address: 192.0.2.10  # MANDATORY
+                        default: false  # MANDATORY
+                    ipv6_ra_interval: 30  # optional | range: 3..1800
+                    ipv6_ra_life_time: 10  # optional | range: ..9000
+                    ipv6_reachable_time: 1000  # optional | range: 1000..3600000
+                    logical_name: INSIDE  # optional | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+                    management_only: false  # optional
+                    mtu: 1500  # optional | range: 64..9000 | default: 1500
+                    override_default_fragment_setting_chain: 1  # optional | range: 1..8200
+                    override_default_fragment_setting_size: 1024  # optional | range: 1..30000
+                    override_default_fragment_setting_timeout: 30  # optional | range: 1..30
+                    priority: 0  # optional | range: ..65535 | default: 0
+                    security_zone: SZ_INSIDE  # optional
+                    standby_mac_address: 192.0.2.10  # optional
+                    vlan: 10  # MANDATORY | range: 1..4094
+                    monitor_interface: false  # optional
+                    ipv4_standby_address: 10.10.10.2  # optional
+                    ha_active_mac_address: 192.0.2.10  # optional
+                    ha_standby_mac_address: 192.0.2.10  # optional
+                # ======================================================================
+                # Doc page: Loopback Interface  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/loopback_interface/
+                # GUI: Devices » Device Management » Device » Loopback Interface
+                # ======================================================================
+                loopback_interfaces:  # optional
+                  - id: 10  # MANDATORY | range: 1..1024
+                    description: Managed by Network-as-Code  # optional | maxlen: 255
+                    enabled: true  # optional | default: true
+                    ipv4_static_address: 10.23.10.1  # optional
+                    ipv4_static_netmask: 28  # optional | range: 1..31
+                    ipv6_addresses:  # optional
+                      - address: 2001:db8:acad:1::1  # MANDATORY
+                        prefix: '64'  # MANDATORY
+                    logical_name: LOOPBACK1  # optional | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+                # ======================================================================
+                # Doc page: Virtual Tunnel Interface  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/virtual_tunnel_interface/
+                # GUI: Devices » Device Management » Device » Vritual Tunnel Interface
+                # ======================================================================
+                virtual_tunnel_interfaces:  # optional
+                  - logical_name: VTI_TO_BRANCH  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+                    id: 20  # MANDATORY | range: 1..10413
+                    tunnel_mode: ipv4  # MANDATORY | choices: ipv4 | ipv6
+                    tunnel_source_interface: outside  # MANDATORY
+                    tunnel_type: STATIC  # MANDATORY | choices: STATIC | DYNAMIC
+                    # ALTERNATIVE - IP unnumbered (borrow) replaces a static tunnel IP; uncomment to use instead:
+                    #~ borrow_ip_interface: inside  # optional
+                    description: Managed by Network-as-Code  # optional | maxlen: 255
+                    enabled: true  # optional | default: true
+                    http_based_application_monitoring: true  # optional | default: true
+                    ip_based_monitoring_peer_ip: 192.0.2.10  # optional
+                    ipv4_static_address: 10.82.12.1  # optional
+                    ipv4_static_netmask: 30  # optional | range: 1..31
+                    ipv6_address: 2001:db8:10::1  # optional
+                    ipv6_prefix: 2001:db8:10::1  # optional
+                    priority: 0  # optional | range: ..65535 | default: 0
+                    security_zone: SZ_INSIDE  # optional
+                    tunnel_source_interface_ipv6_address: 2001:db8:10::1  # optional
+                # ======================================================================
+                # Doc page: IPv4 Static Route  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/ipv4_static_route/
+                # GUI: Devices » Device Management » Device » Routing » Static Route
+                # ======================================================================
+                ipv4_static_routes:  # optional
+                  - name: RT4_DEFAULT  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+                    gateway:  # conditional/variant-mandatory
+                      object: H_WEB01  # optional
+                      # ALTERNATIVE - gateway is either an object or a literal IP; uncomment to use instead:
+                      #~ literal: 198.51.100.1  # optional
+                    interface_logical_name: inside  # MANDATORY
+                    metric: 10  # optional | range: 1..254
+                    selected_networks: [N_INSIDE_10.10.10.0_24]  # MANDATORY
+                    is_tunneled: false  # optional
+                # ======================================================================
+                # Doc page: IPv6 Static Route  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/ipv6_static_route/
+                # GUI: Devices » Device Management » Device » Routing » Static Route
+                # ======================================================================
+                ipv6_static_routes:  # optional
+                  - name: RT6_DEFAULT  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+                    gateway:  # MANDATORY
+                      object: H_WEB01  # optional
+                      # ALTERNATIVE - gateway is either an object or a literal IP; uncomment to use instead:
+                      #~ literal: 2001:db8:ffff::1  # optional
+                    interface_logical_name: inside  # MANDATORY
+                    metric: 10  # optional | range: 1..254
+                    selected_networks: [N_INSIDE_10.10.10.0_24]  # MANDATORY
+                    is_tunneled: false  # optional
+                # ======================================================================
+                # Doc page: BFD  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/bfd/
+                # GUI: Devices » Device Management » Device » Routing » BFD
+                # ======================================================================
+                bfds:  # optional
+                  - interface_logical_name: inside  # optional | regex: ^[a-zA-Z0-9_.+ -]{1,64}$
+                    hop_type: SINGLE_HOP  # MANDATORY | choices: SINGLE_HOP | MULTI_HOP
+                    slow_timer: 1000  # optional | range: 1000..30000
+                    bfd_template: BFD_SINGLE_HOP  # MANDATORY
+                    source_host_object: H_WEB01  # optional
+                    destination_host_object: H_WEB01  # optional
+            # ======================================================================
+            # Doc page: BGP General Settings  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/bgp_general/
+            # GUI: Devices » Device Management » Device » Routing » General Settings » BGP
+            # ======================================================================
+            bgp_general_settings:  # optional
+              as_number: '64637'  # MANDATORY
+              aggregate_timer: 30  # optional | range: 6..60 | default: 30
+              as_number_in_path_attribute: 0  # optional | range: ..254 | default: 0
+              compare_med_from_different_neighbors: false  # optional | default: false
+              compare_router_id_in_path: false  # optional | default: false
+              default_local_preference: 100  # optional | range: ..4294967295 | default: 100
+              enforce_first_peer_as: true  # optional | default: true
+              graceful_restart: false  # optional | default: false
+              graceful_restart_restart_time: 120  # optional | range: 1..3600 | default: 120
+              graceful_restart_stale_path_time: 360  # optional | range: 1..3600 | default: 360
+              hold_time: 180  # optional | range: ..65535 | default: 180
+              keepalive_interval: 60  # optional | range: ..65535 | default: 60
+              log_neighbor_changes: true  # optional | default: true
+              min_hold_time: 0  # optional | range: ..65535 | default: 0
+              missing_med_as_best: false  # optional | default: false
+              next_hop_address_tracking: true  # optional | default: true
+              next_hop_delay_interval: 5  # optional | range: ..100 | default: 5
+              pick_best_med: false  # optional | default: false
+              reset_session_upon_failover: true  # optional | default: true
+              router_id: AUTOMATIC  # optional | default: AUTOMATIC
+              scanning_interval: 60  # optional | range: 5..60 | default: 60
+              tcp_path_mtu_discovery: true  # optional | default: true
+              use_dot_notation: false  # optional | default: false
+          - name: FTD-EDGE-02  # MANDATORY | regex: ^[a-zA-Z0-9_.+ -]{1,64}$
+            host: 192.0.2.22  # optional
+            registration_key: !env FMC_DEVICES_DEVICES_REGISTRATION_KEY  # optional
+            access_control_policy: ACP_EDGE  # optional
+            licenses: [ESSENTIALS, IPS]  # optional | choices: ESSENTIALS | IPS | URL | MALWARE_DEFENSE | CARRIER | SECURE_CLIENT_PREMIER | SECURE_CLIENT_PREMIER_ADVANTAGE | SECURE_CLIENT_VPNOnly | BASE | THREAT | PROTECT | CONTROL | ... (+4 more, see schema)
+            performance_tier: FTDv5  # optional | choices: FTDv | FTDv5 | FTDv10 | FTDv20 | FTDv30 | FTDv50 | FTDv100 | Legacy

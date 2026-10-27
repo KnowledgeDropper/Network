@@ -1,0 +1,62 @@
+---
+# ISE endpoints: endpoint identity groups, endpoint custom attributes, static endpoints.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+ise:
+  identity_management:  # optional
+    # ======================================================================
+    # Doc page: Endpoint  ->  https://netascode.cisco.com/docs/data_models/ise/identity_management/endpoint/
+    # GUI: Work Centers » Network Access » Identities » Endpoints
+    # ======================================================================
+    endpoints:  # optional
+      - mac: 00:50:56:AA:BB:01  # MANDATORY | regex: ^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$
+        description: Managed by Network-as-Code  # optional
+        identity_store: Internal Endpoints  # optional
+        # ALTERNATIVE - identity_store (name) or identity_store_id (UUID); uncomment to use instead:
+        #~ identity_store_id: 00000000-0000-0000-0000-000000000000  # optional
+        endpoint_identity_group: EIG_CORP_PRINTERS  # optional
+        static_profile_assignment: false  # MANDATORY
+        static_profile_assignment_defined: false  # optional
+        static_group_assignment: true  # MANDATORY
+        static_group_assignment_defined: false  # optional
+        portal_user: guest01@example.com  # optional
+        profile_name: Cisco-Device  # optional
+        mdm_attributes:  # optional
+          compliance_status: false  # optional
+          encrypted: false  # optional
+          enrolled: false  # optional
+          imei: '356938035643809'  # optional
+          jail_broken: false  # optional
+          manufacturer: Example Mfg  # optional
+          model: Model-X  # optional
+          os: iOS 18  # optional
+          phone_number: +1-555-0100  # optional
+          pin_lock: false  # optional
+          reachable: false  # optional
+          serial: FCW0000X0AB  # optional
+          server_name: host01.example.com  # optional
+        custom_attributes: {AssetTag: A-000123}  # optional
+    # ======================================================================
+    # Doc page: Endpoint Custom Attribute  ->  https://netascode.cisco.com/docs/data_models/ise/identity_management/endpoint_custom_attribute/
+    # GUI: Administration » Identity Management » Settings » Endpoint Custom Attributes
+    # ======================================================================
+    endpoint_custom_attributes:  # optional
+      - name: AssetTag  # MANDATORY
+        type: String  # MANDATORY | choices: Boolean | Date | Float | IP | Int | Long | String
+    # ======================================================================
+    # Doc page: Endpoint Identity Group  ->  https://netascode.cisco.com/docs/data_models/ise/identity_management/endpoint_identity_group/
+    # GUI: Administration » Identity Management » Groups » Endpoint Identity Groups
+    # ======================================================================
+    endpoint_identity_groups:  # optional
+      - name: EIG_CORP_PRINTERS  # MANDATORY | regex: ^[\w\d_\-\.]+$
+        description: Managed by Network-as-Code  # optional
+        parent_group: Profiled  # optional
+        children:  # optional
+          - name: EIG_PRINTERS_HQ  # MANDATORY | regex: ^[\w\d_\-\. ]+$
+            description: Managed by Network-as-Code  # optional
+            children:  # optional
+              - name: EIG_PRINTERS_HQ_COLOR  # MANDATORY | regex: ^[\w\d_\-\. ]+$
+                description: Managed by Network-as-Code  # optional
+                # children: further nesting supported by the schema (same structure as above)

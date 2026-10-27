@@ -1,0 +1,231 @@
+---
+# ISE Network Access policy elements: library conditions, time/date conditions, allowed protocols, dACLs, authorization profiles, dictionaries.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+ise:
+  network_access:  # optional
+    policy_elements:  # optional
+      # ======================================================================
+      # Doc page: Authorization Profile  ->  https://netascode.cisco.com/docs/data_models/ise/network_access/network_access_authorization_profile/
+      # GUI: Work Centers » Network Access » Policy Elements » Results » Authorization Profiles
+      # ======================================================================
+      authorization_profiles:  # optional
+        - name: AZP_EMPLOYEE_VLAN100  # MANDATORY | regex: ^[\w\d_\-\. \(\)]+$
+          description: Managed by Network-as-Code  # optional
+          vlan_name_id: '100'  # optional
+          vlan_tag_id: 1  # optional | range: ..31
+          web_redirection:  # optional
+            type: CentralizedWebAuth  # optional | choices: CentralizedWebAuth | HotSpot | NativeSupplicanProvisioning | ClientProvisioning
+            acl: ACL_WEBAUTH_REDIRECT  # optional
+            portal_name: Self-Registered Guest Portal (default)  # optional
+            static_ip_host_name_fqdn: guest.example.com  # optional
+            display_certificates_renewal_messages: false  # optional
+          agentless_posture: false  # optional | default: false
+          access_type: ACCESS_ACCEPT  # optional | choices: ACCESS_ACCEPT | ACCESS_REJECT | default: ACCESS_ACCEPT
+          profile_name: Cisco  # optional
+          airespace_acl: ACL_EMPLOYEE  # optional
+          # ALTERNATIVE - IPv6 ACL variants; keep only if dual-stack; uncomment to use instead:
+          #~ airespace_ipv6_acl: ACL6_EMPLOYEE  # optional
+          acl: ACL_EMPLOYEE_FILTER  # optional
+          dacl_name: DACL_EMPLOYEE  # optional
+          # ALTERNATIVE - IPv6 ACL variants; keep only if dual-stack; uncomment to use instead:
+          #~ ipv6_dacl_name: DACL_EMPLOYEE  # optional
+          auto_smart_port: AP-EVENT-01  # optional
+          interface_template: IT_ACCESS_DATA  # optional
+          ipv6_acl_filter: ACL6_FILTER  # optional
+          avc_profile: AVC_DEFAULT  # optional
+          asa_vpn: GP_EMPLOYEES  # optional
+          unique_identifier: AZP-EMPLOYEE-001  # optional
+          track_movement: false  # optional | default: false
+          service_template: false  # optional | default: false
+          easywired_session_candidate: false  # optional | default: false
+          voice_domain_permission: false  # optional | default: false
+          neat: false  # optional | default: false
+          web_auth: false  # optional | default: false
+          mac_sec_policy: MUST_SECURE  # optional | choices: MUST_SECURE | MUST_NOT_SECURE | SHOULD_SECURE
+          reauthentication_connectivity: DEFAULT  # optional | choices: DEFAULT | RADIUS_REQUEST
+          reauthentication_timer: 28800  # optional | range: 1..65535
+          advanced_attributes:  # optional
+            - name: Radius:Session-Timeout  # MANDATORY
+              value: '28800'  # conditional/variant-mandatory
+              # ALTERNATIVE - value (static) OR dictionary_value (copy from another dictionary attribute); uncomment to use instead:
+              #~ dictionary_value: Radius:Idle-Timeout  # optional
+      # ======================================================================
+      # Doc page: Condition  ->  https://netascode.cisco.com/docs/data_models/ise/network_access/network_access_condition/
+      # GUI: Work Centers » Network Access » Policy Elements » Conditions » Library Conditions
+      # ======================================================================
+      conditions:  # optional
+        - name: LIB_WIRED_8021X  # optional | regex: ^[\w\d_\-\. ]+$
+          type: LibraryConditionAttributes  # MANDATORY | choices: LibraryConditionAttributes | LibraryConditionAndBlock | LibraryConditionOrBlock
+          is_negate: false  # optional | default: false
+          dictionary_name: Radius  # optional
+          attribute_name: NAS-Port-Type  # optional
+          operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+          attribute_value: Ethernet  # optional
+          description: Wired 802.1X  # optional
+        - name: LIB_CORP_COMPLIANT  # optional | regex: ^[\w\d_\-\. ]+$
+          type: LibraryConditionAndBlock  # MANDATORY | choices: LibraryConditionAttributes | LibraryConditionAndBlock | LibraryConditionOrBlock
+          is_negate: false  # optional | default: false
+          description: Corporate, compliant endpoint  # optional
+          children:  # optional
+            - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+              is_negate: false  # optional
+              dictionary_name: Session  # optional
+              attribute_name: PostureStatus  # optional
+              operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+              attribute_value: Compliant  # optional
+            - name: LIB_WIRED_8021X  # optional | regex: ^[\w\d_\-\. ]+$
+              type: ConditionReference  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+              is_negate: false  # optional
+            - type: ConditionOrBlock  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+              is_negate: false  # optional
+              children:  # optional
+                - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: false  # optional
+                  dictionary_name: CORP_AD  # optional
+                  attribute_name: ExternalGroups  # optional
+                  operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+                  attribute_value: corp.example.com/Users/Domain Users  # optional
+                - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: false  # optional
+                  dictionary_name: Network Access  # optional
+                  attribute_name: EapAuthentication  # optional
+                  operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+                  attribute_value: EAP-TLS  # optional
+                  dictionary_value: Network Access  # optional
+      # ======================================================================
+      # Doc page: Allowed Protocols  ->  https://netascode.cisco.com/docs/data_models/ise/network_access/network_access_allowed_protocols/
+      # GUI: Work Centers » Network Access » Policy Elements » Results » Allowed Protocols
+      # ======================================================================
+      allowed_protocols:  # optional
+        - name: AP_EAP_TLS_PEAP  # MANDATORY | regex: ^[\w\d\_\-\. ]+$
+          description: Managed by Network-as-Code  # optional
+          process_host_lookup: true  # optional | default: true
+          allow_pap_ascii: false  # optional | default: true
+          allow_chap: false  # optional | default: false
+          allow_ms_chap_v1: false  # optional | default: false
+          allow_ms_chap_v2: false  # optional | default: false
+          allow_eap_md5: false  # optional | default: true
+          allow_leap: false  # optional | default: false
+          allow_eap_tls: true  # optional | default: true
+          allow_eap_ttls: false  # optional | default: true
+          allow_eap_fast: false  # optional | default: true
+          allow_peap: true  # optional | default: true
+          allow_teap: false  # optional | default: true
+          allow_preferred_eap_protocol: true  # optional | default: false
+          preferred_eap_protocol: EAP_TLS  # optional | choices: EAP_FAST | PEAP | LEAP | EAP_MD5 | EAP_TLS | EAP_TTLS | TEAP
+          eap_tls_l_bit: false  # optional | default: false
+          allow_weak_ciphers_for_eap: false  # optional | default: false
+          require_message_auth: false  # optional | default: false
+          five_g: false  # optional | default: false
+          rsa_pss: false  # optional
+          display_additional_tls_params: false  # optional
+          teap:  # optional
+            eap_ms_chap_v2: true  # optional | default: true
+            eap_ms_chap_v2_pwd_change: true  # optional | default: true
+            eap_ms_chap_v2_pwd_change_retries: 3  # optional | range: ..3 | default: 3
+            eap_tls: true  # optional | default: true
+            eap_tls_auth_of_expired_certs: false  # optional | default: false
+            accept_client_cert_during_tunnel_est: true  # optional | default: true
+            enable_eap_chaining: false  # optional | default: false
+            allow_downgrade_msk: true  # optional | default: true
+            request_basic_pwd_auth: false  # optional | default: false | WARN: not referenced by nac-ise 1.1.0 module code (ignored by this release)
+          eap_ttls:  # optional
+            pap_ascii: true  # optional | default: true
+            chap: true  # optional | default: true
+            ms_chap_v1: true  # optional | default: true
+            ms_chap_v2: true  # optional | default: true
+            eap_md5: true  # optional | default: true
+            eap_ms_chap_v2: true  # optional | default: true
+            eap_ms_chap_v2_pwd_change: true  # optional | default: true
+            eap_ms_chap_v2_pwd_change_retries: 1  # optional | range: ..3 | default: 1
+          eap_tls:  # optional
+            auth_of_expired_certs: false  # optional | default: false
+            enable_stateless_session_resume: true  # optional | default: false
+            session_ticket_ttl: 5  # optional | range: 1..
+            session_ticket_ttl_unit: DAYS  # optional | choices: SECONDS | MINUTES | HOURS | DAYS | WEEKS
+            session_ticket_percentage: 5  # optional | range: 1..100
+          eap_fast:  # optional
+            eap_ms_chap_v2: true  # optional | default: true
+            eap_ms_chap_v2_pwd_change: true  # optional | default: true
+            eap_ms_chap_v2_pwd_change_retries: 3  # optional | range: ..3 | default: 1
+            eap_gtc: true  # optional | default: true
+            eap_gtc_pwd_change: true  # optional | default: true
+            eap_gtc_pwd_change_retries: 3  # optional | range: ..3 | default: 1
+            eap_tls: true  # optional | default: true
+            eap_tls_auth_of_expired_certs: false  # optional | default: false
+            use_pacs: true  # optional | default: true
+            use_pacs_tunnel_pac_ttl: 90  # optional | range: 1..10000 | default: 90
+            use_pacs_tunnel_pac_ttl_units: DAYS  # optional | choices: SECONDS | MINUTES | HOURS | DAYS | WEEKS | default: DAYS
+            use_pacs_use_proactive_pac_update_precentage: 90  # optional | range: 1..100 | default: 10
+            use_pacs_allow_anonym_provisioning: true  # optional | default: false
+            use_pacs_allow_authen_provisioning: true  # optional | default: false
+            use_pacs_accept_client_cert: true  # optional | default: false
+            use_pacs_server_returns: true  # optional | default: false
+            use_pacs_allow_machine_authentication: true  # optional | default: false
+            use_pacs_machine_pac_ttl: 1  # optional | range: 1..10000 | default: 1
+            use_pacs_machine_pac_ttl_units: WEEKS  # optional | choices: SECONDS | MINUTES | HOURS | DAYS | WEEKS | default: WEEKS
+            use_pacs_stateless_session_resume: false  # optional | default: false
+            enable_eap_chaining: false  # optional | default: false
+          peap:  # optional
+            eap_ms_chap_v2: true  # optional | default: true
+            eap_ms_chap_v2_pwd_change: true  # optional | default: true
+            eap_ms_chap_v2_pwd_change_retries: 3  # optional | range: ..3 | default: 1
+            eap_gtc: false  # optional | default: false
+            eap_gtc_pwd_change: false  # optional | default: false
+            eap_gtc_pwd_change_retries: 0  # optional | range: ..3 | default: 1
+            eap_tls: false  # optional | default: true
+            eap_tls_auth_of_expired_certs: false  # optional | default: false
+            require_cryptobinding: true  # optional | default: false
+            peap_v0: true  # optional | default: false
+      # ======================================================================
+      # Doc page: Downloadable ACL  ->  https://netascode.cisco.com/docs/data_models/ise/network_access/network_access_downloadable_acl/
+      # GUI: Work Centers » Network Access » Policy Elements » Results » Downloadable ACLs
+      # ======================================================================
+      downloadable_acls:  # optional
+        - name: DACL_EMPLOYEE  # MANDATORY | regex: ^[\w\d_\-\. ]+$
+          description: Managed by Network-as-Code  # optional
+          dacl_type: IPV4  # optional | choices: IPV4 | IPV6 | IP_AGNOSTIC | default: IPV4
+          dacl_content: |  # MANDATORY
+            permit udp any any eq domain
+            permit tcp any host 10.20.0.10 eq 443
+            deny ip any any
+      # ======================================================================
+      # Doc page: Dictionary  ->  https://netascode.cisco.com/docs/data_models/ise/network_access/network_access_dictionary/
+      # GUI: Work Centers » Network Access » Dictionaries » User
+      # ======================================================================
+      dictionaries:  # optional
+        - name: CORP_ATTRS  # MANDATORY | regex: ^[\w\d_\-\. ]+$
+          description: Managed by Network-as-Code  # optional
+          version: '1.0'  # MANDATORY
+          attribute_type: ENTITY_ATTR  # optional | choices: ENTITY_ATTR | MSG_ATTR | PIP_ATTR | default: ENTITY_ATTR
+          # ======================================================================
+          # Doc page: Dictionary Attribute  ->  https://netascode.cisco.com/docs/data_models/ise/network_access/network_access_dictionary_attribute/
+          # GUI: Work Centers » Network Access » Dictionaries » User » {Dictionary Name} » Dictionary Attributes
+          # ======================================================================
+          attributes:  # optional
+            - name: CostCenter  # MANDATORY
+              description: Managed by Network-as-Code  # optional
+              data_type: STRING  # MANDATORY | choices: BOOLEAN | DATE | FLOAT | INT | IP | IPV4 | IPV6 | IPV6PREFIX | LONG | OCTET_STRING | STRING | UNIT32 | ... (+1 more, see schema)
+              direction_type: BOTH  # optional | choices: BOTH | IN | NONE | OUT | default: BOTH
+              internal_name: CostCenter  # optional
+      # ======================================================================
+      # Doc page: Time Date Condition  ->  https://netascode.cisco.com/docs/data_models/ise/network_access/network_access_time_date_condition/
+      # GUI: Work Centers » Network Access » Policy Elements » Conditions » Time and Date Conditions
+      # ======================================================================
+      time_date_conditions:  # optional
+        - name: TD_BUSINESS_HOURS  # MANDATORY | regex: ^[\w\d_\-\. ]+$
+          description: Managed by Network-as-Code  # optional
+          is_negate: false  # optional
+          week_days: [Monday, Tuesday, Wednesday, Thursday, Friday]  # optional | choices: Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
+          week_days_exception: [Saturday, Sunday]  # optional | choices: Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
+          start_date: '2026-01-01'  # optional
+          end_date: '2026-12-31'  # optional
+          exception_start_date: '2026-12-24'  # optional
+          exception_end_date: '2026-12-26'  # optional
+          start_time: 08:00  # optional
+          end_time: '18:00'  # optional
+          exception_start_time: '12:00'  # optional
+          exception_end_time: '13:00'  # optional

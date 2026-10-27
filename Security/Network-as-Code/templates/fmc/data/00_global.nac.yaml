@@ -1,0 +1,62 @@
+---
+# FMC global settings: FMC instance, domains, NaC module behaviour (nac_configuration).
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  name: fmc01.example.com  # optional (schema-only, not on docs page)
+  # ======================================================================
+  # Doc page: Domain  ->  https://netascode.cisco.com/docs/data_models/fmc/domains/domains/
+  # GUI: Settings » Domains
+  # ======================================================================
+  domains:  # optional
+    - name: Global  # MANDATORY
+  version: 7.6.0  # optional (schema-only, not on docs page)
+  # ======================================================================
+  # Doc page: NAC Configuration  ->  https://netascode.cisco.com/docs/data_models/fmc/nac_configuration/nac_configuration/
+  # ======================================================================
+  nac_configuration:  # optional
+    bulk: true  # optional | default: false
+    hosts_bulk: true  # optional
+    networks_bulk: true  # optional
+    ranges_bulk: true  # optional
+    fqdns_bulk: false  # optional
+    ports_bulk: false  # optional
+    icmpv4s_bulk: false  # optional
+    icmpv6s_bulk: false  # optional
+    port_groups_bulk: false  # optional
+    urls_bulk: false  # optional
+    url_groups_bulk: false  # optional
+    vlan_tags_bulk: false  # optional
+    vlan_tag_groups_bulk: false  # optional
+    sgts_bulk: false  # optional
+    tunnel_zones_bulk: false  # optional
+    security_zones_bulk: false  # optional
+    application_filters_bulk: false  # optional
+    time_ranges_bulk: false  # optional
+    ipv4_address_pools_bulk: false  # optional
+    ipv6_address_pools_bulk: false  # optional
+    interface_groups_bulk: false  # optional
+    resource_profiles_bulk: false  # optional
+    as_paths_bulk: false  # optional
+    ipv4_prefix_lists_bulk: false  # optional
+    ipv6_prefix_lists_bulk: false  # optional
+    standard_community_lists_bulk: false  # optional
+    expanded_community_lists_bulk: false  # optional
+    extended_community_lists_bulk: false  # optional
+    policy_lists_bulk: false  # optional
+    geolocations_bulk: false  # optional
+    ikev1_ipsec_proposals_bulk: false  # optional
+    ikev1_policies_bulk: false  # optional
+    ikev2_ipsec_proposals_bulk: false  # optional
+    ikev2_policies_bulk: false  # optional
+    bfd_templates_bulk: false  # optional
+    certificate_maps_bulk: false  # optional
+    dns_server_groups_bulk: false  # optional
+    sinkholes_bulk: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+    cipher_suite_lists_bulk: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+    distinguished_names_bulk: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+    sla_monitors_bulk: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+    key_chains_bulk: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+    mac_address_pools_bulk: false  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)

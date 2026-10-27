@@ -1,0 +1,136 @@
+---
+# Remote Access VPN (Secure Client) configuration.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  # ======================================================================
+  # Doc page: Domain  ->  https://netascode.cisco.com/docs/data_models/fmc/domains/domains/
+  # GUI: Settings » Domains
+  # ======================================================================
+  domains:  # optional
+    - name: Global  # MANDATORY
+      vpns:  # optional
+        # ======================================================================
+        # Doc page: Remote Access  ->  https://netascode.cisco.com/docs/data_models/fmc/vpns/remote_access/
+        # GUI: Secure Connections » Remote Access VPN
+        # ======================================================================
+        remote_access:  # optional
+          - name: RAVPN_CORP  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            protocol_ssl: true  # optional | default: true
+            protocol_ipsec_ikev2: true  # optional | default: true
+            local_realm: REALM_LOCAL  # optional
+            access_interfaces:  # MANDATORY
+              - name: SZ_OUTSIDE  # MANDATORY
+                protocol_ssl: true  # optional
+                protocol_ipsec_ikev2: true  # optional
+                protocol_ssl_dtls: true  # optional
+                interface_specific_certificate: CE_VPN_EXAMPLE  # optional
+            allow_users_to_select_connection_profile: true  # optional | default: true
+            web_access_port: 443  # optional | range: 1..65535 | default: 443
+            dtls_port: 443  # optional | range: 1..65535 | default: 443
+            ssl_global_identity_certificate: CE_VPN_EXAMPLE  # optional
+            ipsec_ikev2_identity_certificate: CE_VPN_EXAMPLE  # optional
+            service_access: SA_MGMT  # optional
+            bypass_access_control_policy_for_decrypted_traffic: false  # optional | default: false
+            secure_client_images:  # optional
+              - name: SC_WIN_5.1  # MANDATORY
+                operating_system: WINDOWS  # MANDATORY | choices: WINDOWS | MAC | LINUX
+            group_policies: [GP_EMPLOYEES]  # optional
+            ipsec_ikev2_policies: [IKEV2_POL_10]  # optional
+            secure_client_customizations:  # optional
+              gui_and_text_messages: [SC_CUSTOM_LOGO]  # optional
+              icons_and_images: [SC_CUSTOM_LOGO]  # optional
+              scripts: [SC_CUSTOM_LOGO]  # optional
+              binaries: [SC_CUSTOM_LOGO]  # optional
+              custom_installer_transforms: [SC_CUSTOM_LOGO]  # optional
+              localized_installer_transforms: [SC_CUSTOM_LOGO]  # optional
+            address_assignment_policy:  # optional
+              ipv4_use_authorization_server: false  # optional
+              ipv4_use_dhcp: true  # optional | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+              ipv4_use_internal_address_pool: false  # optional
+              ipv4_internal_address_pool_reuse_interval: 30  # optional | range: ..480
+              ipv6_use_authorization_server: false  # optional
+              ipv6_use_internal_address_pool: false  # optional
+            certificate_map:  # optional
+              use_alias_url: false  # optional
+              certificate_to_connection_profile_mappings:  # optional
+                - certificate_map: CM_EMPLOYEES  # MANDATORY
+                  connection_profile: CP_EMPLOYEES  # MANDATORY
+            connection_profiles:  # optional
+              - name: CP_EMPLOYEES  # MANDATORY
+                group_policy: GP_EMPLOYEES  # MANDATORY
+                ipv4_address_pools: [POOL4_RAVPN]  # optional
+                ipv6_address_pools: [POOL6_RAVPN]  # optional
+                dhcp_servers: [H_WEB01]  # optional
+                authentication_method: AAA_ONLY  # MANDATORY | choices: AAA_ONLY | SAML | CLIENT_CERTIFICATE_ONLY | AAA_AND_CLIENT_CERTIFICATE | SAML_AND_CLIENT_CERTIFICATE
+                multiple_certificate_authentication: false  # optional
+                primary_authentication:  # MANDATORY
+                  server: RADIUS_ISE  # MANDATORY | or: LOCAL
+                  fallback_to_local: false  # optional
+                  prefill_username_from_certificate_map_primary_field: CN_COMMMON_NAME  # optional | choices: CN_COMMMON_NAME | C_COUNTRY | DNQ_DN_QUALIFIER | EA_EMAIL_ADDRESS | GENQ_GENERATIONAL_QUALIFIER | GN_GIVEN_NAME | I_INITIAL | L_LOCALITY | N_NAME | O_ORGANISATION | OU_ORGANISATIONAL_UNIT | SER_SERIAL_NUMBER | ... (+6 more, see schema)
+                  prefill_username_from_certificate_map_secondary_field: CN_COMMMON_NAME  # optional | choices: CN_COMMMON_NAME | C_COUNTRY | DNQ_DN_QUALIFIER | EA_EMAIL_ADDRESS | GENQ_GENERATIONAL_QUALIFIER | GN_GIVEN_NAME | I_INITIAL | L_LOCALITY | N_NAME | O_ORGANISATION | OU_ORGANISATIONAL_UNIT | SER_SERIAL_NUMBER | ... (+6 more, see schema)
+                  prefill_username_from_certificate_map_entire_dn: false  # optional
+                  hide_username_in_login_window: false  # optional
+                secondary_authentication:  # optional
+                  server: RADIUS_ISE  # MANDATORY | or: LOCAL
+                  fallback_to_local: false  # optional
+                  prompt_for_username: false  # optional
+                  use_primary_authentication_username: false  # optional
+                  use_secondary_authentication_username_for_reporting: false  # optional
+                saml_and_certificate_username_must_match: false  # optional
+                saml_use_external_browser: false  # optional
+                authorization_server: RADIUS_ISE  # optional
+                allow_connection_only_if_user_exists_in_authorization_database: false  # optional
+                accounting_server: RADIUS_ISE  # optional
+                strip_realm_from_username: false  # optional
+                strip_group_from_username: false  # optional
+                password_management_notify_user_on_password_expiry_day: false  # optional
+                password_management_advance_password_expiration_notification: 1  # optional | range: 1..180
+                alias_names:  # optional
+                  - name: Employees  # MANDATORY
+                    enabled: false  # optional
+                alias_urls:  # optional
+                  - url_object: URL_EXAMPLE  # MANDATORY
+                    enabled: false  # optional
+            ldap_attribute_maps:  # optional
+              - ad_ldap_realm: REALM_CORP_AD  # MANDATORY
+                attribute_maps:  # MANDATORY
+                  - ldap_attribute_name: memberOf  # MANDATORY
+                    cisco_attribute_name: Group-Policy  # MANDATORY
+                    value_maps:  # optional
+                      - ldap_attribute_value: CN=VPN-Users,OU=Groups,DC=corp,DC=example,DC=com  # MANDATORY
+                        cisco_attribute_value: GP_EMPLOYEES  # MANDATORY
+            load_balancing:  # optional
+              ipv4_group_address: 10.20.1.1  # MANDATORY
+              ipv6_group_address: 2001:db8:10::1  # optional
+              interface: IG_INSIDE  # MANDATORY
+              port: 4445  # optional | range: 1..65535 | default: 9023
+              ipsec_encryption_key: !env FMC_REMOTE_ACCESS_LOAD_BALANCING_IPSEC_ENCRYPTION_KEY  # optional | maxlen: 16
+              send_fqdn_to_peer_devices_instead_of_ip: false  # optional | default: false
+              ikev2_redirect_phase: DURING_SA_AUTHENTICATION  # optional | choices: DURING_SA_AUTHENTICATION | DURING_SA_INITIALIZATION | default: DURING_SA_AUTHENTICATION
+            ipsec_crypto_maps:  # optional
+              - interface: SZ_OUTSIDE  # MANDATORY
+                ikev2_ipsec_proposals: [IKEV2_AES256GCM]  # MANDATORY
+                reverse_route_injection: true  # optional | default: true
+                client_services_port: 443  # optional | range: 1..65535 | default: 443
+                perfect_forward_secrecy_modulus_group: '1'  # optional | choices: 1 | 2 | 5 | 14 | 15 | 16 | 19 | 20 | 21 | 24 | 31
+                lifetime_duration: 25500  # optional | range: 120..2147483647
+                lifetime_size: 4608000  # optional | range: 10..2147483647 | default: 4608000
+                validate_incoming_icmp_error_messages: false  # optional | default: false
+                do_not_fragment_policy: NONE  # optional | choices: SET | COPY | CLEAR | NONE | default: NONE
+                tfc_burst_bytes: 10  # optional | range: ..16
+                tfc_payload_bytes: 10  # optional | range: ..1024
+                tfc_timeout: 30  # optional | range: ..60
+            ipsec_ike_parameters:  # optional
+              ikev2_identity_sent_to_peer: AUTO_OR_DN  # optional | choices: IP_ADDRESS | HOST_NAME | AUTO_OR_DN | default: AUTO_OR_DN
+              ikev2_notification_on_tunnel_disconnect: false  # optional | default: false
+              ikev2_do_not_reboot_until_all_sessions_are_terminated: false  # optional | default: false
+              ikev2_cookie_challenge: CUSTOM  # optional | choices: CUSTOM | ALWAYS | NEVER | default: CUSTOM
+              ikev2_threshold_to_challenge_incoming_cookies: 50  # optional | range: 1..100 | default: 50
+              ikev2_number_of_sas_allowed_in_negotiation: 100  # optional | range: 1..100 | default: 100
+              ikev2_maximum_number_of_sas_allowed: -1  # optional | default: -1
+              ipsec_path_maximum_transmission_unit_aging_reset_interval: 30  # optional | range: 10..30
+              nat_keepalive_message_traversal_interval: 30  # optional | range: 10..3600 | default: 20

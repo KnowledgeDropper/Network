@@ -1,0 +1,117 @@
+---
+# ISE Identity Management: user identity groups, internal users, AD join points, certificate auth profiles, identity source sequences.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+ise:
+  identity_management:  # optional
+    # ======================================================================
+    # Doc page: User Identity Group  ->  https://netascode.cisco.com/docs/data_models/ise/identity_management/user_identity_group/
+    # GUI: Administration » Identity Management » Groups » User Identity Groups
+    # ======================================================================
+    user_identity_groups:  # optional
+      - name: UIG_NETWORK_ADMINS  # MANDATORY | regex: ^[\w\d_\-\. \(\)]+$
+        description: Managed by Network-as-Code  # optional
+        parent_group: NAC Group:NAC:IdentityGroups:User Identity Groups  # optional | default: NAC Group:NAC:IdentityGroups:User Identity Groups
+        children:  # optional
+          - name: UIG_NETADMINS_TIER1  # MANDATORY | regex: ^[\w\d_\-\. \(\)]+$
+            description: Managed by Network-as-Code  # optional
+            children:  # optional
+              - name: UIG_NETADMINS_TIER1_ONCALL  # MANDATORY | regex: ^[\w\d_\-\. \(\)]+$
+                description: Managed by Network-as-Code  # optional
+                # children: further nesting supported by the schema (same structure as above)
+    # ======================================================================
+    # Doc page: Internal User  ->  https://netascode.cisco.com/docs/data_models/ise/identity_management/internal_user/
+    # GUI: Administration » Identity Management » Identities » Users
+    # ======================================================================
+    internal_users:  # optional
+      - name: netadmin01  # MANDATORY | regex: ^[\w\d_\-\. @]+$
+        description: Managed by Network-as-Code  # optional
+        enabled: true  # optional | default: true
+        email: netadmin01@example.com  # optional
+        account_name_alias: Alex.Example  # optional
+        password: !env ISE_IDENTITY_MANAGEMENT_INTERNAL_USERS_PASSWORD  # conditional/variant-mandatory
+        password_version: 1  # optional | range: 1..
+        enable_password: !env ISE_IDENTITY_MANAGEMENT_INTERNAL_USERS_ENABLE_PASSWORD  # optional
+        enable_password_version: 1  # optional | range: 1..
+        first_name: Alex  # optional
+        last_name: Example  # optional
+        change_password: false  # optional | default: true
+        user_identity_groups: [UIG_NETWORK_ADMINS]  # optional
+        password_never_expires: false  # optional
+        password_id_store: Internal Users  # optional | default: Internal Users
+        custom_attributes: {CostCenter: '4711'}  # optional
+    # ======================================================================
+    # Doc page: Certificate Authentication Profile  ->  https://netascode.cisco.com/docs/data_models/ise/identity_management/certificate_authentication_profile/
+    # GUI: Administration » Identity Management » External Identity Sources » Certificate Authentication Profiles
+    # ======================================================================
+    certificate_authentication_profiles:  # optional
+      - name: CAP_EAP_TLS  # MANDATORY | regex: ^[\w\d_\-\.]+$
+        description: Managed by Network-as-Code  # optional
+        allowed_as_user_name: false  # optional | default: false
+        match_mode: NEVER  # optional | choices: NEVER | RESOLVE_IDENTITY_AMBIGUITY | BINARY_COMPARISON | default: NEVER
+        username_from: CERTIFICATE  # optional | choices: CERTIFICATE | UPN | default: CERTIFICATE
+        certificate_attribute_name: SUBJECT_COMMON_NAME  # optional | choices: ALL_SUBJECT_AND_ALTERNATIVE_NAMES | SUBJECT_COMMON_NAME | SUBJECT_ALTERNATIVE_NAME | SUBJECT_SERIAL_NUMBER | SUBJECT | SUBJECT_ALTERNATIVE_NAME_OTHER_NAME | SUBJECT_ALTERNATIVE_NAME_EMAIL | SUBJECT_ALTERNATIVE_NAME_DNS | default: SUBJECT_COMMON_NAME
+        external_identity_store_name: CORP_AD  # optional | default: [not applicable]
+    # ======================================================================
+    # Doc page: Active Directory  ->  https://netascode.cisco.com/docs/data_models/ise/identity_management/active_directory/
+    # GUI: Administration » Identity Management » External Identity Sources » Active Directory
+    # ======================================================================
+    active_directories:  # optional
+      - name: CORP_AD  # MANDATORY | regex: ^[\w\d_\-\.]+$
+        description: Managed by Network-as-Code  # optional
+        domain: corp.example.com  # MANDATORY
+        join_domain: false  # optional | default: true
+        ad_scopes_names: Default_Scope  # optional | default: Default_Scope
+        ad_username: svc_ise_join  # optional
+        ad_password: !env ISE_IDENTITY_MANAGEMENT_ACTIVE_DIRECTORIES_AD_PASSWORD  # optional
+        enable_domain_allowed_list: true  # optional | default: true
+        groups:  # optional
+          - name: corp.example.com/Users/Domain Users  # MANDATORY
+            type: GLOBAL  # optional | choices: BUILTIN | DOMAIN LOCAL | GLOBAL | UNIVERSAL
+            sid: S-1-5-21-1004336348-1177238915-682003330-513  # optional
+        attributes:  # optional
+          - name: memberOf  # MANDATORY | regex: ^[\w\d_\-\. ]+$
+            type: STRING  # MANDATORY | choices: STRING | IP | BOOLEAN | INT | OCTET_STRING
+            internal_name: memberOf  # MANDATORY
+            default_value: none  # optional
+        rewrite_rules:  # optional
+          - row_id: 0  # MANDATORY
+            rewrite_match: CORP\\(.+)  # MANDATORY
+            rewrite_result: \1@corp.example.com  # MANDATORY
+        enable_rewrites: false  # optional | default: false
+        enable_pass_change: true  # optional | default: true
+        enable_machine_auth: true  # optional | default: true
+        enable_machine_access: true  # optional | default: true
+        enable_dialin_permission_check: false  # optional | default: false
+        plaintext_auth: false  # optional | default: false
+        aging_time: 5  # optional | range: ..8760 | default: 5
+        enable_callback_for_dialin_client: false  # optional | default: false
+        identity_not_in_ad_behaviour: REJECT  # optional | choices: REJECT | SEARCH_JOINED_FOREST | SEARCH_ALL
+        unreachable_domains_behaviour: PROCEED  # optional | choices: PROCEED | DROP
+        schema: ACTIVE_DIRECTORY  # optional | choices: ACTIVE_DIRECTORY | CUSTOM
+        first_name: Alex  # optional
+        department: IT  # optional
+        last_name: Example  # optional
+        organizational_unit: Network Engineering  # optional
+        job_title: Network Engineer  # optional
+        locality: Columbia  # optional
+        email: netops@example.com  # optional
+        state_or_province: SC  # optional
+        telephone: +1-555-0100  # optional
+        country: United States  # optional
+        street_address: 100 Example Way  # optional
+        enable_failed_auth_protection: false  # optional | default: false
+        failed_auth_threshold: 5  # optional | range: 1.. | default: 5
+        auth_protection_type: WIRELESS  # optional | choices: WIRELESS | WIRED | BOTH
+    # ======================================================================
+    # Doc page: Identity Source Sequence  ->  https://netascode.cisco.com/docs/data_models/ise/identity_management/identity_source_sequence/
+    # GUI: Administration » Identity Management » Identity Source Sequences
+    # ======================================================================
+    identity_source_sequences:  # optional
+      - name: ISS_AD_THEN_INTERNAL  # MANDATORY | regex: ^[\w\d_\.]+$
+        description: Managed by Network-as-Code  # optional
+        certificate_authentication_profile: CAP_EAP_TLS  # conditional/variant-mandatory
+        break_on_store_fail: true  # MANDATORY
+        identity_sources: [CORP_AD, Internal Users]  # MANDATORY

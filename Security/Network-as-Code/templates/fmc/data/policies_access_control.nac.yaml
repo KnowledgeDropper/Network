@@ -1,0 +1,87 @@
+---
+# FMC Access Control Policy (rules, categories, default action, logging).
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  # ======================================================================
+  # Doc page: Domain  ->  https://netascode.cisco.com/docs/data_models/fmc/domains/domains/
+  # GUI: Settings » Domains
+  # ======================================================================
+  domains:  # optional
+    - name: Global  # MANDATORY
+      policies:  # optional
+        # ======================================================================
+        # Doc page: Access Control Policy  ->  https://netascode.cisco.com/docs/data_models/fmc/policies/access_control_policy/
+        # GUI: Policies » Access Control
+        # ======================================================================
+        access_control_policies:  # optional
+          - name: ACP_EDGE  # MANDATORY | regex: ^[a-zA-Z0-9_ -\.]{1,}$
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            default_action: BLOCK  # optional | choices: BLOCK | TRUST | PERMIT | NETWORK_DISCOVERY | INHERIT_FROM_PARENT | default: BLOCK
+            base_intrusion_policy: Balanced Security and Connectivity  # optional
+            base_variable_set: Default-Set  # optional
+            log_connection_begin: false  # optional
+            log_connection_end: false  # optional
+            send_events_to_fmc: false  # optional | default: false
+            send_syslog: false  # optional | default: false
+            syslog_severity: ALERT  # optional | choices: ALERT | CRIT | DEBUG | EMERG | ERR | INFO | NOTICE | WARNING
+            snmp_alert: SNMP_ALERT_NOC  # optional
+            syslog_alert: SYSLOG_ALERT_SIEM  # optional
+            prefilter_policy: PREFILTER_EDGE  # optional
+            categories:  # optional
+              - name: Corporate  # MANDATORY | regex: ^[^|,.$#;{}=<>]{1,29}$
+                section: mandatory  # optional | choices: mandatory | default
+            access_rules:  # optional
+              - name: Allow_Inside_Web  # MANDATORY | maxlen: 50
+                action: ALLOW  # MANDATORY | choices: ALLOW | TRUST | BLOCK | MONITOR | BLOCK_RESET | BLOCK_INTERACTIVE | BLOCK_RESET_INTERACTIVE
+                applications: [HTTPS, DNS]  # optional
+                application_filter_objects: [AF_HIGH_RISK]  # optional
+                # ALTERNATIVE - a rule is placed either by section (mandatory/default) or by category; uncomment to use instead:
+                #~ category: Corporate  # optional | regex: ^[^|,.$#;{}=<>]{1,29}$
+                destination_dynamic_objects: [DO_CLOUD_WORKLOADS]  # optional
+                destination_geolocations: [GEO_BLOCKED]  # optional
+                destination_network_literals: [172.16.20.0/24]  # optional
+                destination_network_objects: [N_DMZ_172.16.10.0_24]  # optional
+                destination_port_literals:  # optional
+                  - protocol: TCP  # MANDATORY | choices: ALL | ICMP | IGMP | TCP | UDP | RDP | GRE | ESP | AH | ETHERIP
+                    port: 443  # optional | range: 1..65535
+                    # ALTERNATIVE - icmp_type/icmp_code apply only when protocol is ICMP/ICMPV6 (instead of port); uncomment to use instead:
+                    #~ icmp_type: 8  # optional | or: Any | range: ..41
+                    # ALTERNATIVE - icmp_type/icmp_code apply only when protocol is ICMP/ICMPV6 (instead of port); uncomment to use instead:
+                    #~ icmp_code: 0  # optional | range: ..16
+                destination_port_objects: [P_TCP_443]  # optional
+                destination_sgts: [SGT_EMPLOYEES]  # optional
+                destination_zones: [SZ_OUTSIDE]  # optional
+                enabled: true  # optional | default: true
+                endpoint_device_types: [Windows]  # optional
+                file_policy: AMP_EDGE  # optional
+                intrusion_policy: IPS_EDGE  # optional
+                log_connection_begin: true  # optional
+                log_connection_end: true  # optional
+                log_files: false  # optional
+                section: mandatory  # optional | choices: mandatory | default
+                send_events_to_fmc: true  # optional
+                send_syslog: false  # optional | default: false
+                snmp_alert: SNMP_ALERT_NOC  # optional
+                source_dynamic_objects: [DO_CLOUD_WORKLOADS]  # optional
+                source_geolocations: [GEO_BLOCKED]  # optional
+                source_network_literals: [192.168.50.0/24]  # optional
+                source_network_objects: [N_INSIDE_10.10.10.0_24]  # optional
+                source_port_literals:  # optional
+                  - protocol: TCP  # MANDATORY | choices: TCP | UDP
+                    port: 443  # optional | range: 1..65535
+                source_port_objects: [P_TCP_8443]  # optional
+                source_sgts: [SGT_EMPLOYEES]  # optional
+                source_zones: [SZ_INSIDE]  # optional
+                syslog_alert: SYSLOG_ALERT_SIEM  # optional
+                syslog_severity: ALERT  # optional | choices: ALERT | CRIT | DEBUG | EMERG | ERR | INFO | NOTICE | WARNING
+                url_objects: [URL_EXAMPLE]  # optional
+                url_literals: ['https://intranet.example.com']  # optional
+                variable_set: Default-Set  # optional
+                time_range: TR_BUSINESS_HOURS  # optional
+                vlan_tag_objects: [VT_100]  # optional
+                vlan_tag_literals:  # optional
+                  - start_tag: 100  # MANDATORY | range: 1..4095
+                    end_tag: 110  # optional | range: 1..4095

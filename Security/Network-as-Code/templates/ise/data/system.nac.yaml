@@ -1,0 +1,28 @@
+---
+# ISE system: backup/patch repositories and licensing tiers.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+ise:
+  system:  # optional
+    # ======================================================================
+    # Doc page: Repository  ->  https://netascode.cisco.com/docs/data_models/ise/system/repository/
+    # GUI: I**:I**: Administration » System » Maintenance » Repository
+    # ======================================================================
+    repositories:  # optional
+      - name: REPO_SFTP_BACKUP  # MANDATORY
+        protocol: SFTP  # MANDATORY | choices: CDROM | DISK | FTP | HTTP | HTTPS | NFS | SFTP | TFTP
+        path: /ise-backups  # MANDATORY
+        server_name: backup01.example.com  # optional
+        user_name: svc_ise_backup  # optional
+        password: !env ISE_SYSTEM_REPOSITORIES_PASSWORD  # optional
+        password_version: 1  # optional | range: 1..
+        enable_pki: false  # optional
+    # ======================================================================
+    # Doc page: License  ->  https://netascode.cisco.com/docs/data_models/ise/system/license/
+    # GUI: Administration » System » Licensing
+    # ======================================================================
+    licenses:  # optional
+      - name: ESSENTIAL  # MANDATORY | choices: ESSENTIAL | ADVANTAGE | PREMIER | DEVICEADMIN | VM
+        status: ENABLED  # optional | choices: ENABLED | DISABLED | default: ENABLED
