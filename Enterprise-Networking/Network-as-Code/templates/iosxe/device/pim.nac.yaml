@@ -1,0 +1,103 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.pim
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/pim/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        pim:
+          autorp: true
+          autorp_listener: true
+# allowed: Loopback; also accepts a string
+          bsr_candidate_interface_type: Loopback
+# also accepts an integer
+          bsr_candidate_interface_id: 0/0.1
+# maximum 32; also accepts a string
+          bsr_candidate_mask: 1
+# maximum 255; also accepts a string
+          bsr_candidate_priority: 1
+          bsr_candidate_accept_rp_candidate: <HOSTNAME>
+# allowed: Loopback; also accepts a string
+          register_source_interface_type: Loopback
+# maximum 2147483647; also accepts a string
+          register_source_interface_id: 1
+          ssm_range: <HOSTNAME>
+          ssm_default: true
+# also accepts a string
+          rp_address: S!c2%{y=I@?k7AI-V>lJ
+          rp_address_override: true
+          rp_address_bidir: true
+          rp_addresses:
+            -
+# mandatory
+              access_list: <HOSTNAME>
+# also accepts a string
+              rp_address: jB&nr"Z<&%{IE$
+              override: true
+              bidir: true
+          rp_candidates:
+            -
+# mandatory
+              interface: 0/0.1
+              group_list: <HOSTNAME>
+# range 1-16383; also accepts a string
+              interval: 1
+# maximum 255; also accepts a string
+              priority: 1
+              bidir: true
+          vrfs:
+            -
+# mandatory
+              vrf: <HOSTNAME>
+              autorp: true
+              autorp_listener: true
+# allowed: Loopback; also accepts a string
+              bsr_candidate_interface_type: Loopback
+# also accepts an integer
+              bsr_candidate_interface_id: 0/0.1
+# maximum 32; also accepts a string
+              bsr_candidate_mask: 1
+# maximum 255; also accepts a string
+              bsr_candidate_priority: 1
+              bsr_candidate_accept_rp_candidate: <HOSTNAME>
+# allowed: Loopback; also accepts a string
+              register_source_interface_type: Loopback
+# maximum 2147483647; also accepts a string
+              register_source_interface_id: 1
+              cache_rpf_oif: true
+              ssm_range: <HOSTNAME>
+              ssm_default: true
+# also accepts a string
+              rp_address: 6h+_aM1,x>E6X'M-5Ay%{4hB1jL7
+              rp_address_override: true
+              rp_address_bidir: true
+              rp_addresses:
+                -
+# mandatory
+                  access_list: <HOSTNAME>
+# also accepts a string
+                  rp_address: 3w.,vpKc${0,SEe#[(&:Mb,(
+                  override: true
+                  bidir: true
+              rp_candidates:
+                -
+# mandatory
+                  interface: 0/0.1
+                  group_list: <HOSTNAME>
+# range 1-16383; also accepts a string
+                  interval: 1
+# maximum 255; also accepts a string
+                  priority: 1
+                  bidir: true

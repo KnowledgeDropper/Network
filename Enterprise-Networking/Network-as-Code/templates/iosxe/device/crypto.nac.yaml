@@ -1,0 +1,179 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.crypto
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/crypto/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        crypto:
+          ipsec_profiles:
+            -
+# mandatory
+              name: <NAME>
+              set_ikev2_profile: <HOSTNAME>
+              set_isakmp_profile: <HOSTNAME>
+# allowed: group1, group2, group5, group14, group15, group16, group19, group20, group21, group24;
+# also accepts a string
+              set_pfs_group: group1
+# range 120-2592000; also accepts a string
+              set_security_association_lifetime_seconds: 120
+# range 120-2592000; also accepts a string
+              set_security_association_lifetime_seconds_legacy: 120
+              set_transform_set:
+                - <HOSTNAME>
+          ipsec_transform_sets:
+            -
+# mandatory
+              name: <NAME>
+# mandatory; allowed: esp-3des, esp-aes, esp-des, esp-gcm, esp-gmac, esp-null, esp-seal; also
+# accepts a string
+              esp: esp-3des
+# mandatory; allowed: esp-md5-hmac, esp-sha-hmac, esp-sha256-hmac, esp-sha384-hmac,
+# esp-sha512-hmac; also accepts a string
+              esp_hmac: esp-md5-hmac
+              mode_tunnel: true
+          ikev2:
+# range 5-3600; also accepts a string
+            nat_keepalive: 5
+# range 10-3600; also accepts a string
+            dpd_interval: 10
+# allowed: on-demand, periodic; also accepts a string
+            dpd_query: on-demand
+# range 2-60; also accepts a string
+            dpd_retry: 2
+            http_url_certificate_lookup: true
+            profiles:
+              -
+# mandatory
+                name: <NAME>
+                authentication_local_pre_share: true
+                authentication_remote_pre_share: true
+                config_exchange_request: true
+                description: <DESCRIPTION>
+# range 10-3600; also accepts a string
+                dpd_interval: 10
+# allowed: on-demand, periodic; also accepts a string
+                dpd_query: on-demand
+# range 2-60; also accepts a string
+                dpd_retry: 2
+# also accepts a string
+                identity_local_address: y+_>q(U)+%{t HFNGSD->0
+                identity_local_key_id: 0/0.1
+                ivrf: <HOSTNAME>
+                keyring_local: <HOSTNAME>
+# range 120-86400; also accepts a string
+                lifetime: 120
+                match_address_local_interface_loopback:
+                  -
+# mandatory; maximum 2147483647; also accepts a string
+                    loopback_number: 1
+# maximum 2147483647; also accepts a string
+                match_address_local_interface_loopback_legacy: 1
+# also accepts a string
+                match_address_local_ip: '!ckK$w#3y>FcM;\k%k${G6A4AGCH<9 W'
+                match_fvrf: <HOSTNAME>
+                match_fvrf_any: true
+                match_identity_remote_ipv4_addresses:
+                  -
+# mandatory; also accepts a string
+                    address: rna8g4!%{:o ysNM%]#
+# also accepts a string
+                    mask: '$W[*Jk1=+4%{ '
+                match_identity_remote_ipv6_prefixes:
+                  - 2001:db8::1
+                match_identity_remote_keys:
+                  - <HOSTNAME>
+                match_inbound_only: true
+            keyrings:
+              -
+# mandatory
+                name: <NAME>
+                peers:
+                  -
+# mandatory
+                    name: <NAME>
+                    description: <DESCRIPTION>
+                    hostname: <HOSTNAME>
+# also accepts a string
+                    identity_address: GSe]!4Gn_+t%{Pzz
+                    identity_email_domain: admin@example.com
+                    identity_email_name: admin@example.com
+                    identity_fqdn_domain: example.com
+                    identity_fqdn_name: <NAME>
+                    identity_key_id: 0/0.1
+# also accepts a string
+                    ipv4_address: S^bIh${Y<Yy]b=U_-d
+# also accepts a string
+                    ipv4_mask: 18U624tk%k_rFYU0hT6%{Ry
+                    ipv6_prefix: 2001:db8::1
+                    pre_shared_key: <HOSTNAME>
+# allowed: 0, 6; also accepts a string
+                    pre_shared_key_encryption: '0'
+                    pre_shared_key_local: <HOSTNAME>
+# allowed: 0, 6; also accepts a string
+                    pre_shared_key_local_encryption: '0'
+                    pre_shared_key_remote: <HOSTNAME>
+# allowed: 0, 6; also accepts a string
+                    pre_shared_key_remote_encryption: '0'
+            policies:
+              -
+# mandatory
+                name: <NAME>
+# mandatory
+                proposals:
+                  - <HOSTNAME>
+                device: <HOSTNAME>
+                match_address_local_ip:
+                  - ?Y4@c,ocOsy/-)]@%{K^?=x3u]Rvju3K
+                match_fvrf: <HOSTNAME>
+                match_fvrf_any: true
+                match_inbound_only: true
+            proposals:
+              -
+# mandatory
+                name: <NAME>
+# also accepts a string
+                encryption:
+                  - aes_cbc_128
+# also accepts a string
+                group:
+                  - '1'
+# also accepts a string
+                integrity:
+                  - md5
+# also accepts a string
+                prf:
+                  - md5
+          pki:
+            trustpoints:
+              -
+# mandatory
+                id: 0/0.1
+                enrollment_mode_ra: true
+                enrollment_pkcs12: true
+                enrollment_selfsigned: true
+                enrollment_terminal: true
+# allowed: md5, sha1, sha256, sha384, sha512; also accepts a string
+                hash: md5
+# also accepts a string
+                revocation_check:
+                  - <HOSTNAME>
+                rsakeypair: <HOSTNAME>
+                source_interface: 0/0.1
+                subject_name: <NAME>
+# allowed: ike, ssl-client, ssl-server; also accepts a string
+                usage: ike
+          engine:
+            compliance_shield_disable: true

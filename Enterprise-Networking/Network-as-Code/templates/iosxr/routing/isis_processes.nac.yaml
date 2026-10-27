@@ -1,0 +1,2041 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.routing.isis_processes
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/router_isis/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        routing:
+          isis_processes:
+            -
+# mandatory; also accepts a string
+              id: (Io4NVC!${:e9K"cQW>
+              segment_routing:
+# range 16000-1048575; also accepts a string
+                global_block_from: 16000
+# range 16001-1048575; also accepts a string
+                global_block_to: 16001
+              receive_application_flex_algo_delay_app_only: true
+# range 1-65535; also accepts a string
+              lsp_refresh_interval: 1
+              oor_set_overload_bit_disable: true
+              set_overload_bit:
+                enable: true
+# allowed: wait-for-bgp; also accepts an integer; also accepts a string
+                on_startup: wait-for-bgp
+                advertise_external: true
+                advertise_interlevel: true
+# range 128-8979; also accepts a string
+              lsp_mtu: 128
+# allowed: both, cisco, ietf; also accepts a string
+              extended_admin_group: both
+              nsr: true
+# range 60-300; also accepts a string
+              nsr_restart_time: 60
+# allowed: cisco, ietf; also accepts a string
+              nsf: cisco
+# range 5-300; also accepts a string
+              nsf_lifetime: 5
+# range 1-20; also accepts a string
+              nsf_interface_timer: 1
+# range 1-10; also accepts a string
+              nsf_interface_expires: 1
+# range 10-65535; also accepts a string
+              lsp_check_interval: 10
+              lsp_gen_interval:
+# maximum 120000; also accepts a string
+                maximum_wait: 1
+# maximum 120000; also accepts a string
+                initial_wait: 1
+# maximum 120000; also accepts a string
+                secondary_wait: 1
+              adjacency_stagger: true
+# range 2-65000; also accepts a string
+              adjacency_stagger_initial_neighbors: 2
+# range 2-65000; also accepts a string
+              adjacency_stagger_max_neighbors: 2
+              hostname_dynamic_disable: true
+# allowed: level-1, level-1-2, level-2-only; also accepts a string
+              is_type: level-1
+              multi_part_tlv_disable:
+                enable: true
+                neighbor: true
+                prefix_tlvs: true
+                router_capability: true
+              log_adjacency_changes: true
+              log_pdu_drops: true
+              log_format_brief: true
+              lsp_password:
+# also accepts a string
+                accept_encrypted: "!;:<3z%{=:IZEB(X22z5$'Fa)."
+                text:
+# allowed: 7; also accepts a string
+                  password_type: 7
+# also accepts a string
+                  password: XVtY4g%{uCSg
+                  send_only: true
+                  snp_send_only: true
+                  enable_poi: true
+                hmac_md5:
+# allowed: 7; also accepts a string
+                  password_type: 7
+# also accepts a string
+                  password: 'K(5zd!pj SO%{A`vAi\%F Wm: ;z$'
+                  send_only: true
+                  snp_send_only: true
+                  enable_poi: true
+                keychain:
+# also accepts a string
+                  name: 2cnL%{h-J,jc(WN
+                  send_only: true
+                  snp_send_only: true
+                  enable_poi: true
+              authentication_check_disable: true
+              iid_disable: true
+# allowed: enable; also accepts a string
+              mpls_ldp_sync: enable
+# range 1-2; also accepts a string
+              mpls_ldp_sync_level: 1
+              protocol_shutdown: true
+              min_lsp_arrival:
+# maximum 120000; also accepts a string
+                initial_wait: 1
+# maximum 120000; also accepts a string
+                secondary_wait: 1
+# maximum 120000; also accepts a string
+                maximum_wait: 1
+              max_metric:
+                enable: true
+# allowed: wait-for-bgp; also accepts an integer; also accepts a string
+                on_startup: wait-for-bgp
+                external: true
+                interlevel: true
+                default_route: true
+                srv6_locator: true
+                te: true
+                delay: true
+              distribute_link_state: true
+# range 1-2; also accepts a string
+              distribute_link_state_level: 1
+# also accepts an integer
+              distribute_link_state_instance_id: ',ujjQ=j0<=U+NW${"n6>wO@PP6A+ggy<'
+# range 1-20; also accepts a string
+              distribute_link_state_throttle: 1
+              distribute_link_state_exclude_interarea: true
+              distribute_link_state_exclude_external: true
+# also accepts a string
+              distribute_link_state_route_policy: S6r5=:xi4dl[%{l&ThqH1(=hv4rsG0%-
+# range 1-65535; also accepts a string
+              max_lsp_lifetime: 1
+# also accepts an integer
+              instance_id: EMu4`c F${8C]:+:e7LKf^-a
+# allowed: adaptive, disable, sometimes; also accepts a string
+              hello_padding: adaptive
+              lsp_fast_flooding: true
+# range 33-5000; also accepts a string
+              lsp_fast_flooding_max_lsp_tx: 33
+# range 1-5000; also accepts a string
+              lsp_fast_flooding_remote_psnp_delay: 1
+# range 1-5000; also accepts a string
+              psnp_interval: 1
+              ignore_lsp_errors_disable: true
+              purge_transmit_strict: true
+# allowed: level-1, level-2; also accepts a string
+              purge_transmit_strict_value: level-1
+# maximum 16777215; also accepts a string
+              srlg_admin_weight: 1
+              lsp_refresh_interval_per_level:
+                -
+# mandatory; range 1-2; also accepts a string
+                  level: 1
+# mandatory; range 1-65535; also accepts a string
+                  lsp_refresh_interval: 1
+              set_overload_bit_per_level:
+                -
+# mandatory; range 1-2; also accepts a string
+                  level: 1
+# allowed: wait-for-bgp; also accepts an integer; also accepts a string
+                  on_startup: wait-for-bgp
+                  advertise_external: true
+                  advertise_interlevel: true
+              lsp_mtu_per_level:
+                -
+# mandatory; range 1-2; also accepts a string
+                  level: 1
+# mandatory; range 128-8979; also accepts a string
+                  lsp_mtu: 128
+              multi_part_tlv_disable_per_level:
+                -
+# mandatory; range 1-2; also accepts a string
+                  level: 1
+                  neighbor: true
+                  prefix_tlvs: true
+                  router_capability: true
+              log_sizes:
+                -
+# mandatory; allowed: adjacency, database, error, lsp, microloop-avoidance, route, spf; also
+# accepts a string
+                  type: adjacency
+# mandatory; range 20-50000; also accepts a string
+                  entries: 20
+              lsp_password_per_level:
+                -
+# mandatory; range 1-2; also accepts a string
+                  level: 1
+# also accepts a string
+                  accept_encrypted: =MjLq.;R]z9]b${,LK]%uW*9)%#
+                  text:
+# allowed: 7; also accepts a string
+                    password_type: 7
+# also accepts a string
+                    password: (_E72z?hmgx1=k6=uz%{3Q!H
+                    send_only: true
+                    snp_send_only: true
+                    enable_poi: true
+                  hmac_md5:
+# allowed: 7; also accepts a string
+                    password_type: 7
+# also accepts a string
+                    password: ;&(fMtregT[b;;I${9`#oMX.VVB1iAV(Wl
+                    send_only: true
+                    snp_send_only: true
+                    enable_poi: true
+                  keychain:
+# also accepts a string
+                    name: '&FZ%{\JbZg7Uc6)LkDFgSMo'
+                    send_only: true
+                    snp_send_only: true
+                    enable_poi: true
+              lsp_check_interval_per_level:
+                -
+# mandatory; range 1-2; also accepts a string
+                  level: 1
+# mandatory; range 10-65535; also accepts a string
+                  lsp_check_interval: 10
+              lsp_gen_interval_per_level:
+                -
+# mandatory; range 1-2; also accepts a string
+                  level: 1
+# maximum 120000; also accepts a string
+                  initial_wait: 1
+# maximum 120000; also accepts a string
+                  secondary_wait: 1
+# maximum 120000; also accepts a string
+                  maximum_wait: 1
+              min_lsp_arrival_per_level:
+                -
+# mandatory; range 1-2; also accepts a string
+                  level: 1
+# maximum 120000; also accepts a string
+                  initial_wait: 1
+# maximum 120000; also accepts a string
+                  secondary_wait: 1
+# maximum 120000; also accepts a string
+                  maximum_wait: 1
+              max_metric_per_level:
+                -
+# mandatory; range 1-2; also accepts a string
+                  level: 1
+# allowed: wait-for-bgp; also accepts an integer; also accepts a string
+                  on_startup: wait-for-bgp
+                  external: true
+                  interlevel: true
+                  default_route: true
+                  srv6_locator: true
+                  te: true
+                  delay: true
+              max_lsp_lifetime_per_level:
+                -
+# mandatory; range 1-2; also accepts a string
+                  level: 1
+# mandatory; range 1-65535; also accepts a string
+                  max_lsp_lifetime: 1
+              nets:
+                -
+# mandatory; also accepts a string
+                  id: '!NRlTg[q.b,MWtp*e%{Cu<G.C_u:)`Q^cZNgSy'
+              affinity_maps:
+                -
+# mandatory; also accepts a string
+                  name: QM+pbCk9(WL)Q)M:r<%{Acps6C-rHDd`P
+# mandatory; maximum 255; also accepts a string
+                  bit_position: 1
+              srlgs:
+                -
+# mandatory; also accepts a string
+                  name: e&hb/PkZG[O(${="
+# maximum 16777215; also accepts a string
+                  admin_weight: 1
+                  static_ipv4_addresses:
+                    -
+# mandatory; also accepts a string
+                      local_end_point: '!^arN@$${#]kZ0z(V<,>'
+# mandatory; also accepts a string
+                      remote_end_point: =`:/5c?/A+#zhqbjc%{`CQOzFN8@#7U7c$YM
+              flex_algos:
+                -
+# mandatory; range 128-255; also accepts a string
+                  number: 128
+# range 1-4294967295; also accepts a string
+                  minimum_bandwidth: 1
+# range 1-10000000; also accepts a string
+                  maximum_delay: 1
+# maximum 255; also accepts a string
+                  priority: 1
+# allowed: delay, te, bandwidth, generic; also accepts a string
+                  metric_type: delay
+                  advertise_definition: true
+                  prefix_metric: true
+# mandatory; range 1-4294967295; also accepts a string
+                  auto_cost_reference_bandwidth: 1
+# range 1-4294967295; also accepts a string
+                  auto_cost_reference_bandwidth_granularity: 1
+                  auto_cost_reference_group_mode: true
+                  affinity_exclude_any:
+                    -
+# mandatory; also accepts a string
+                      name: H6CCQ#5<BKY[2${_64eOSn)p!E
+                  affinity_include_any:
+                    -
+# mandatory; also accepts a string
+                      name: <a8o${v?NR)5sdH!
+                  affinity_include_all:
+                    -
+# mandatory; also accepts a string
+                      name: R_4HcWcj${
+                  affinity_reverse_exclude_any:
+                    -
+# mandatory; also accepts a string
+                      name: z]0%{%v/T5E
+                  affinity_reverse_include_any:
+                    -
+# mandatory; also accepts a string
+                      name: '%&vGV${x^OqPY2lFP.;'
+                  affinity_reverse_include_all:
+                    -
+# mandatory; also accepts a string
+                      name: t3[3hL l%{=2srl-dd](Fl0b:J
+                  srlg_exclude_any:
+                    -
+# mandatory; also accepts a string
+                      name: e4k@+${\[
+                  fast_reroute_disable: true
+                  microloop_avoidance_disable: true
+                  data_plane_segment_routing: true
+                  data_plane_ip: true
+                  ucmp_disable: true
+                  address_family:
+                    -
+# mandatory; allowed: ipv4, ipv6; also accepts a string
+                      name: ipv4
+# mandatory; allowed: multicast, unicast; also accepts a string
+                      type: multicast
+# range 1-64; also accepts a string
+                      maximum_paths: 1
+# also accepts a string
+                      maximum_paths_route_policy: ' %{T$-4\E55N&ye*lRcV`'
+              interfaces:
+                -
+# mandatory; also accepts a string
+                  name: '#.tWVlO@M4z<>DVB2Q$${mEGn>'
+# range 1-4294967295; also accepts a string
+                  mesh_group: 1
+                  mesh_group_blocked: true
+                  passive: true
+                  shutdown: true
+                  suppressed: true
+# allowed: level-1, level-1-2, level-2-only; also accepts a string
+                  circuit_type: level-1
+# maximum 65535; also accepts a string
+                  csnp_interval: 1
+# allowed: adaptive, always, disable, sometimes; also accepts a string
+                  hello_padding: adaptive
+# range 1-65535; also accepts a string
+                  hello_interval: 1
+# range 3-1000; also accepts a string
+                  hello_multiplier: 3
+# range 1-4294967295; also accepts a string
+                  lsp_interval: 1
+                  hello_password:
+# also accepts a string
+                    accept_encrypted: :q4xj;%{/
+                    text:
+# allowed: 7; also accepts a string
+                      password_type: 7
+# also accepts a string
+                      password: d`#j#k[jSL;4aL${a]Y<[3fi-Myk`qN-X(
+                      send_only: true
+                    hmac_md5:
+# allowed: 7; also accepts a string
+                      password_type: 7
+# also accepts a string
+                      password: ;i(;egd*AzH6@-6;F${`n*o$#Pvrk=@
+                      send_only: true
+                    keychain:
+# also accepts a string
+                      name: e+a;w_&]n<9C51fKI${Cf
+                      send_only: true
+# range 1-5000; also accepts a string
+                  remote_psnp_delay: 1
+# maximum 127; also accepts a string
+                  priority: 1
+                  point_to_point: true
+# maximum 65535; also accepts a string
+                  retransmit_interval: 1
+# maximum 65535; also accepts a string
+                  retransmit_throttle_interval: 1
+                  link_down_fast_detect: true
+                  affinity_flex_algos:
+                    -
+# mandatory; also accepts a string
+                      name: Lo1OQT"I*j:7Ue${A7c0V2(2
+                  affinity_flex_algos_anomalies:
+                    -
+# mandatory; also accepts a string
+                      name: NU9;qW2BJ`k5%{v$g6MIgEG
+# allowed: disabled, high, maximum; also accepts a string
+                  override_metrics: disabled
+# range 1-16777215; also accepts a string
+                  delay_normalize_interval: 1
+# maximum 16777215; also accepts a string
+                  delay_normalize_offset: 1
+# allowed: enable; also accepts a string
+                  mpls_ldp_sync: enable
+# range 1-2; also accepts a string
+                  mpls_ldp_sync_level: 1
+                  bfd_fast_detect_ipv4: true
+                  bfd_fast_detect_ipv6: true
+# range 3-30000; also accepts a string
+                  bfd_minimum_interval: 3
+# range 2-50; also accepts a string
+                  bfd_multiplier: 2
+                  csnp_interval_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; maximum 65535; also accepts a string
+                      csnp_interval: 1
+                  hello_padding_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; allowed: adaptive, always, disable, sometimes; also accepts a string
+                      hello_padding: adaptive
+                  hello_interval_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; range 1-65535; also accepts a string
+                      hello_interval: 1
+                  hello_multiplier_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; range 3-1000; also accepts a string
+                      hello_multiplier: 3
+                  lsp_interval_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; range 1-4294967295; also accepts a string
+                      lsp_interval: 1
+                  hello_password_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# also accepts a string
+                      accept_encrypted: -!e"pTZ^Cp5HRLk\d${88c
+                      text:
+# allowed: 7; also accepts a string
+                        password_type: 7
+# also accepts a string
+                        password: '%{Mk,\c>+'
+                        send_only: true
+                      hmac_md5:
+# allowed: 7; also accepts a string
+                        password_type: 7
+# also accepts a string
+                        password: '@%{mefhyg4Em'
+                        send_only: true
+                      keychain:
+# also accepts a string
+                        name: '"kuU\=13*US${d]5T^'
+                        send_only: true
+                  priority_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; maximum 127; also accepts a string
+                      priority: 1
+                  retransmit_interval_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; maximum 65535; also accepts a string
+                      retransmit_interval: 1
+                  retransmit_throttle_interval_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; maximum 65535; also accepts a string
+                      retransmit_throttle_interval: 1
+                  address_family:
+                    -
+# mandatory; allowed: ipv4, ipv6; also accepts a string
+                      name: ipv4
+# mandatory; allowed: multicast, unicast; also accepts a string
+                      type: multicast
+                      metric_maximum: true
+# range 1-16777214; also accepts a string
+                      metric: 1
+# range 1-16777214; also accepts a string
+                      te_metric_flex_algo: 1
+# range 1-16777214; also accepts a string
+                      bandwidth_metric_flex_algo: 1
+# allowed: enable; also accepts a string
+                      mpls_ldp_sync: enable
+# range 1-2; also accepts a string
+                      mpls_ldp_sync_level: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+                      prefix_sid_strict_spf:
+                        index:
+# also accepts an integer
+                          id: jrw"P%{4SBUS8"n<QxkP
+                          php_disable: true
+                          explicit_null: true
+                          n_flag_clear: true
+                        absolute:
+# also accepts an integer
+                          id: $!:PNaf):Kv,f/nvcE${I
+                          php_disable: true
+                          explicit_null: true
+                          n_flag_clear: true
+                      prefix_sid:
+                        index:
+# also accepts an integer
+                          id: $P8/EA8S_%=MJxsf?Ui${Ghl*\nY-j\>$
+                          php_disable: true
+                          explicit_null: true
+                          n_flag_clear: true
+                        absolute:
+# also accepts an integer
+                          id: pVU"o*i7${%VlXH)*lOcj7$G*h![
+                          php_disable: true
+                          explicit_null: true
+                          n_flag_clear: true
+                      fast_reroute_per_prefix:
+                        enable: true
+# range 1-16777215; also accepts a string
+                        remote_lfa_maximum_metric: 1
+                        remote_lfa_tunnel_mpls_ldp: true
+# allowed: enable, disable; also accepts a string
+                        ti_lfa: enable
+                        tiebreaker:
+                          default: true
+# range 1-255; also accepts a string
+                          node_protecting_index: 1
+# range 1-255; also accepts a string
+                          srlg_disjoint_index: 1
+# range 1-255; also accepts a string
+                          lc_disjoint_index: 1
+                        exclude_interfaces:
+                          -
+# mandatory; also accepts a string
+                            name: LEr<-*2R]+tu,ga${1iSyv#"1
+# range 1-2; also accepts a string
+                            level: 1
+                        lfa_candidate_interfaces:
+                          -
+# mandatory; also accepts a string
+                            name: 3<lJR(o'ak?*f^sn${PW
+# range 1-2; also accepts a string
+                            level: 1
+                        remote_lfa_maximum_metric_per_level:
+                          -
+# mandatory; range 1-2; also accepts a string
+                            level: 1
+# mandatory; range 1-16777215; also accepts a string
+                            maximum_metric: 1
+                        remote_lfa_tunnel_mpls_ldp_per_level:
+                          -
+# mandatory; range 1-2; also accepts a string
+                            level: 1
+                        ti_lfa_per_level:
+                          -
+# mandatory; range 1-2; also accepts a string
+                            level: 1
+                        tiebreaker_default_per_level:
+                          -
+# mandatory; range 1-2; also accepts a string
+                            level: 1
+                        tiebreaker_node_protecting_per_level:
+                          -
+# mandatory; range 1-2; also accepts a string
+                            level: 1
+# mandatory; range 1-255; also accepts a string
+                            index: 1
+                        tiebreaker_srlg_disjoint_per_level:
+                          -
+# mandatory; range 1-2; also accepts a string
+                            level: 1
+# mandatory; range 1-255; also accepts a string
+                            index: 1
+                        tiebreaker_lc_disjoint_per_level:
+                          -
+# mandatory; range 1-2; also accepts a string
+                            level: 1
+# mandatory; range 1-255; also accepts a string
+                            index: 1
+                      fast_reroute_per_link:
+                        enable: true
+                        exclude_interfaces:
+                          -
+# mandatory; also accepts a string
+                            name: iJ>N`y${OtSZX1;DiavC>
+# range 1-2; also accepts a string
+                            level: 1
+                        lfa_candidate_interfaces:
+                          -
+# mandatory; also accepts a string
+                            name: '&%{>=O>x<sF<">CF/(lu'
+# range 1-2; also accepts a string
+                            level: 1
+# also accepts a string
+                      link_group: )*pFQ*g]KEI.wV8=${qwm
+# range 1-2; also accepts a string
+                      link_group_level: 1
+# range 1-16777214; also accepts a string
+                      weight: 1
+# range 1-16777214; also accepts a string
+                      auto_metric_proactive_protect_metric: 1
+# also accepts a string
+                      advertise_prefix_route_policy: ${`s"j.$@PGhg`Y/<cRGo
+                      metric_per_level:
+                        -
+# mandatory; range 1-2; also accepts a string
+                          level: 1
+# range 1-16777214; also accepts a string
+                          metric: 1
+                          metric_maximum: true
+                      te_metric_flex_algo_per_level:
+                        -
+# mandatory; range 1-2; also accepts a string
+                          level: 1
+# mandatory; range 1-16777214; also accepts a string
+                          flex_algo: 1
+                      bandwidth_metric_flex_algo_per_level:
+                        -
+# mandatory; range 1-2; also accepts a string
+                          level: 1
+# mandatory; range 1-16777214; also accepts a string
+                          flex_algo: 1
+                      generic_metric_flex_algos:
+                        -
+# mandatory; range 128-255; also accepts a string
+                          type: 128
+# mandatory; range 1-16777214; also accepts a string
+                          metric: 1
+                      generic_metric_flex_algos_per_level:
+                        -
+# mandatory; range 1-2; also accepts a string
+                          level: 1
+                          flex_algos_types:
+                            -
+# mandatory; range 128-255; also accepts a string
+                              type: 128
+# mandatory; range 1-16777214; also accepts a string
+                              metric: 1
+                      tag_per_level:
+                        -
+# mandatory; range 1-2; also accepts a string
+                          level: 1
+# mandatory; range 1-4294967295; also accepts a string
+                          tag: 1
+                      prefix_sid_algorithms:
+                        -
+# mandatory; range 128-255; also accepts a string
+                          number: 128
+                          index:
+# also accepts an integer
+                            id: 4f3${M
+                            php_disable: true
+                            explicit_null: true
+                            n_flag_clear: true
+                          absolute:
+# also accepts an integer
+                            id: g[KDfTeT6mmj%{h Q'eBS._aWLq[W[iS
+                            php_disable: true
+                            explicit_null: true
+                            n_flag_clear: true
+                      adjacency_sids:
+                        index:
+                          -
+# mandatory; also accepts an integer
+                            id: Vg9ONRZddJCd$B${r63
+                            protected: true
+                        absolute:
+                          -
+# mandatory; also accepts an integer
+                            id: EJfW0vw]36hmkq%{rH#7Vi]triFGj#
+                            protected: true
+                      fast_reroute_per_level:
+                        -
+# mandatory; range 1-2; also accepts a string
+                          level: 1
+                          per_prefix: true
+                          per_link: true
+                      weight_per_level:
+                        -
+# mandatory; range 1-2; also accepts a string
+                          level: 1
+# mandatory; range 1-16777214; also accepts a string
+                          weight: 1
+                      auto_metric_proactive_protect_metric_per_level:
+                        -
+# mandatory; range 1-2; also accepts a string
+                          level: 1
+# mandatory; range 1-16777214; also accepts a string
+                          proactive_protect: 1
+                      advertise_prefix_route_policy_per_level:
+                        -
+# mandatory; range 1-2; also accepts a string
+                          level: 1
+# also accepts a string
+                          route_policy: '%{,ihIVM&+FcH&'
+              address_family:
+                ipv4_unicast:
+                  enable: true
+# range 1-255; also accepts a string
+                  distance: 1
+                  distance_sources:
+                    -
+# mandatory; also accepts a string
+                      address: 2Ptr6V\'8O'o1F#$2%{x>>!8].m]GVo^
+# mandatory; maximum 128; also accepts a string
+                      length: 1
+# mandatory; range 1-255; also accepts a string
+                      distance: 1
+# also accepts a string
+                      route_filter: vCXI)?oz'#Z^,ZX${<vu:_l
+# also accepts a string
+                  distribute_list_prefix_list_in: UT\TQT+${,?
+# also accepts a string
+                  distribute_list_route_policy_in: Gdq8]${aDATCR%2rpKle!D"
+                  redistribute_connected:
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                    level: level-1
+# maximum 16777215; also accepts a string
+                    metric: 1
+# also accepts a string
+                    route_policy: -_<%{`R4m>:qT&] _8:8
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                    metric_type: external
+                  redistribute_static:
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                    level: level-1
+# maximum 16777215; also accepts a string
+                    metric: 1
+# also accepts a string
+                    route_policy: M+ZU-'1yc$xnJIN=r%{qrvraArSUlY
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                    metric_type: external
+                  redistribute_isis:
+                    -
+# mandatory; also accepts a string
+                      process: '%N)S5IBQ2${,Sso=Iiu)u%f'
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                      level: level-1
+# maximum 16777215; also accepts a string
+                      metric: 1
+# also accepts a string
+                      route_policy: '#Bt^Nj3v]+\Mo-*I%{@`FGC%n#rg-x=J'
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                      metric_type: external
+                      down_flag_clear: true
+                  redistribute_bgp:
+                    -
+# mandatory; range 1-4294967295; also accepts a string
+                      asn: 1
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                      level: level-1
+# maximum 16777215; also accepts a string
+                      metric: 1
+# also accepts a string
+                      route_policy: $O%{Q]">F<Ihp6Ybb.
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                      metric_type: external
+                  redistribute_ospf:
+                    -
+# mandatory; also accepts a string
+                      process: u^X5@pLN'/@)=,o4,Li%{OlG>Z
+                      match_internal: true
+                      match_external: true
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                      level: level-1
+# maximum 16777215; also accepts a string
+                      metric: 1
+# also accepts a string
+                      route_policy: i,%{%
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                      metric_type: external
+# range 1-64; also accepts a string
+                  maximum_paths: 1
+# also accepts a string
+                  router_id: vnDi${6fd]BE6-Mpp0AI=bO
+# also accepts a string
+                  router_id_interface: $^gJ3!.=Bx (k4B\o%{wSbp"JXEz`Uoz>LX;
+                  advertise_passive_only: true
+                  advertise_link_attributes: true
+# allowed: enable, protected, segment-routing; also accepts a string
+                  microloop_avoidance: enable
+# also accepts a string
+                  microloop_avoidance_segment_routing_route_policy: PCF,>2G;%{`EG*;86v?
+# range 1000-65535; also accepts a string
+                  microloop_avoidance_rib_update_delay: 1000
+                  summary_prefixes:
+                    -
+# mandatory; also accepts a string
+                      address: o1SD%{!x'
+# mandatory; maximum 128; also accepts a string
+                      length: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# range 1-2; also accepts a string
+                      level: 1
+# range 128-255; also accepts a string
+                      algorithm: 128
+                      explicit: true
+                      adv_unreachable: true
+# range 1-4294967295; also accepts a string
+                      unreachable_tag: 1
+                      unreachable_tag_exclude_prefixes: true
+                      partition_repair: true
+# range 1-16777214; also accepts a string
+                  metric: 1
+                  metric_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; range 1-16777214; also accepts a string
+                      metric: 1
+# allowed: narrow, narrow-transition, transition, wide, wide-transition; also accepts a string
+                  metric_style: narrow
+                  metric_style_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; allowed: narrow, narrow-transition, transition, wide, wide-transition; also accepts a
+# string
+                      metric_style: narrow
+                  spf_interval:
+# maximum 120000; also accepts a string
+                    maximum_wait: 1
+# maximum 120000; also accepts a string
+                    initial_wait: 1
+# maximum 120000; also accepts a string
+                    secondary_wait: 1
+                    ietf: true
+# maximum 120000; also accepts a string
+                    ietf_initial_wait: 1
+# maximum 120000; also accepts a string
+                    ietf_short_wait: 1
+# maximum 120000; also accepts a string
+                    ietf_long_wait: 1
+# maximum 120000; also accepts a string
+                    ietf_learn_interval: 1
+# maximum 120000; also accepts a string
+                    ietf_holddown_interval: 1
+                  spf_interval_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# maximum 120000; also accepts a string
+                      maximum_wait: 1
+# maximum 120000; also accepts a string
+                      initial_wait: 1
+# maximum 120000; also accepts a string
+                      secondary_wait: 1
+                      ietf: true
+# maximum 120000; also accepts a string
+                      ietf_short_wait: 1
+# maximum 120000; also accepts a string
+                      ietf_long_wait: 1
+# maximum 120000; also accepts a string
+                      ietf_learn_interval: 1
+# maximum 120000; also accepts a string
+                      ietf_holddown_interval: 1
+                  spf_prefix_priority_critical:
+# range 1-4294967295; also accepts a string
+                    tag: 1
+# also accepts a string
+                    prefix_list: C>php.Nf_@wk${D/\/O#2Jx;o5N/7-
+                  spf_prefix_priority_high:
+# range 1-4294967295; also accepts a string
+                    tag: 1
+# also accepts a string
+                    prefix_list: LhPB?K=f(F^P5TF%{>Sw7gu
+                  spf_prefix_priority_medium:
+# range 1-4294967295; also accepts a string
+                    tag: 1
+# also accepts a string
+                    prefix_list: yAM*tiSv3!a:Pi%{^$"u&y/Somkx>*"cQO+
+                  spf_prefix_priority_critical_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# also accepts a string
+                      prefix_list: eDv9u3N(JC%{Vq
+                  spf_prefix_priority_high_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# also accepts a string
+                      prefix_list: pQTcZ=0${AxS&7&B[V[x?LY
+                  spf_prefix_priority_medium_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# also accepts a string
+                      prefix_list: "'j=A\\bcF%{:nE?[2_["
+# range 1-28000; also accepts a string
+                  maximum_redistributed_prefixes: 1
+                  maximum_redistributed_prefixes_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; range 1-28000; also accepts a string
+                      maximum_redistributed_prefixes: 1
+                  propagate_levels:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      source_level: 1
+# mandatory; range 1-2; also accepts a string
+                      destination_level: 1
+# also accepts a string
+                      route_policy: ${w57G=dS_7Y
+                  adjacency_check_disable: true
+                  route_source_first_hop: true
+                  attached_bit_receive_ignore: true
+# allowed: always-set, never-set; also accepts a string
+                  attached_bit_send: always-set
+# range 100-60000; also accepts a string
+                  fast_reroute_delay_interval: 100
+                  fast_reroute_per_prefix:
+# allowed: critical, high, medium; also accepts a string
+                    priority_limit: critical
+# allowed: enable, disable; also accepts a string
+                    use_candidate_only: enable
+                    srlg_protection_weighted_global: true
+# also accepts a string
+                    remote_lfa_prefix_list: N.C#%CuiA>`"o${:! A=E&r-U;
+                    load_sharing_disable: true
+                    tiebreaker:
+# range 1-255; also accepts a string
+                      downstream_index: 1
+# range 1-255; also accepts a string
+                      lc_disjoint_index: 1
+# range 1-255; also accepts a string
+                      lowest_backup_metric_index: 1
+# range 1-255; also accepts a string
+                      node_protecting_index: 1
+# range 1-255; also accepts a string
+                      primary_path_index: 1
+# range 1-255; also accepts a string
+                      secondary_path_index: 1
+# range 1-255; also accepts a string
+                      srlg_disjoint_index: 1
+                    priority_limit_per_level:
+                      -
+# mandatory; range 1-2; also accepts a string
+                        level: 1
+# mandatory; allowed: critical, high, medium; also accepts a string
+                        priority_limit: critical
+                    srlg_protection_weighted_global_per_level:
+                      -
+# mandatory; range 1-2; also accepts a string
+                        level: 1
+                    remote_lfa_prefix_list_per_level:
+                      -
+# mandatory; range 1-2; also accepts a string
+                        level: 1
+# mandatory; also accepts a string
+                        prefix_list: ${*hLkZr
+                    load_sharing_disable_per_level:
+                      -
+# mandatory; range 1-2; also accepts a string
+                        level: 1
+                  fast_reroute_per_link:
+# allowed: enable, disable; also accepts a string
+                    use_candidate_only: enable
+# allowed: critical, high, medium; also accepts a string
+                    priority_limit: critical
+                    use_candidate_only_per_level:
+                      -
+# mandatory; range 1-2; also accepts a string
+                        level: 1
+                    priority_limit_per_level:
+                      -
+# mandatory; range 1-2; also accepts a string
+                        level: 1
+# mandatory; allowed: critical, high, medium; also accepts a string
+                        priority_limit: critical
+                  default_information_originate: true
+# also accepts a string
+                  default_information_originate_route_policy: '%{fS3V)&Q[ifCX!q.'
+                  segment_routing:
+                    bundle_member_adj_sid: true
+                    labeled_only: true
+# range 30-3600; also accepts a string
+                    protected_adjacency_sid_delay: 30
+                    mpls:
+                      enable: true
+                      sr_prefer: true
+# also accepts a string
+                      unlabeled_protection_prefix_list: :k&:,${nd8)\'y$<>NdJ
+# also accepts a string
+                      unlabeled_protection_route_policy: '&VPi!_cW%{IIK:6c+ZIDyK_'
+                      unlabeled_protection_disable: true
+# allowed: enable, disable; also accepts a string
+                      prefix_sid_map_receive: enable
+# allowed: local, domain-wide; also accepts a string
+                      prefix_sid_map_advertise: local
+                      connected_prefix_sid_map:
+                        enabled: true
+                        prefixes:
+                          -
+# mandatory; also accepts a string
+                            address: ^.${4]1mf5='j
+# mandatory; maximum 128; also accepts a string
+                            length: 1
+# also accepts an integer
+                            index_id: 8Urpi0.nT_ EQv${:bzmWGFTkJ"9ojF
+# also accepts a string
+                            index_interface: "&B\\1>'t9zWV*OQ${)V1g4lB_A"
+                            index_php_disable: true
+                            index_explicit_null: true
+# also accepts an integer
+                            absolute_id: "3b.7W):&r'5%{zRc:"
+# also accepts a string
+                            absolute_interface: '@5KGCrl5u.Jo\vyg\${OX7a6g'
+                            absolute_php_disable: true
+                            absolute_explicit_null: true
+                        flex_algos:
+                          -
+# mandatory; also accepts a string
+                            address: z${`FxW_je
+# mandatory; maximum 128; also accepts a string
+                            length: 1
+# mandatory; range 128-255; also accepts a string
+                            flex_algo: 128
+# also accepts an integer
+                            index_id: BBA:PQ$fjK]g${ZG,"cGzz>%
+# also accepts a string
+                            index_interface: 7GVh",!H *%{WqeOL])L
+                            index_php_disable: true
+                            index_explicit_null: true
+# also accepts an integer
+                            absolute_id: fJ0oGL<${M DOh8YXb5BgJIpV?
+# also accepts a string
+                            absolute_interface: 6"RYLn$y+w@%{GroB"%nVE0M;YP71D
+                            absolute_php_disable: true
+                            absolute_explicit_null: true
+                        strict_spf:
+                          -
+# mandatory; also accepts a string
+                            address: atfPH@<!${b(xy--GhCWP=dGp
+# mandatory; maximum 128; also accepts a string
+                            length: 1
+# also accepts an integer
+                            index_id: ' Q"&sU%{z&bqMhSiony>pSiF]H'
+# also accepts a string
+                            index_interface: oy3]xf>z%{>%$5kzb
+                            index_php_disable: true
+                            index_explicit_null: true
+# also accepts an integer
+                            absolute_id: ZdL^O)/;7n/ECV>U,]${nI nS[@6\t!w
+# also accepts a string
+                            absolute_interface: cp&NI?3w-${@S
+                            absolute_php_disable: true
+                            absolute_explicit_null: true
+                    srv6:
+                      locators:
+                        -
+# mandatory; also accepts a string
+                          name: hW$B(TxCH4F8%{TY-]u%9*K:$VSd+S
+# range 1-2; also accepts a string
+                          level: 1
+# range 1-16777214; also accepts a string
+                          metric: 1
+# range 1-4294967295; also accepts a string
+                          tag: 1
+                          metric_per_level:
+                            -
+# mandatory; range 1-2; also accepts a string
+                              level: 1
+# mandatory; range 1-16777214; also accepts a string
+                              metric: 1
+                          tag_per_level:
+                            -
+# mandatory; range 1-2; also accepts a string
+                              level: 1
+# mandatory; range 1-4294967295; also accepts a string
+                              tag: 1
+                  partition_detect:
+                    enable: true
+                    tracking:
+                      -
+# mandatory; also accepts a string
+                        address: R`cQlR!SC1q^I(zU47)%{aXIna62W>o2zwQ6
+                        ipv4: true
+                        ipv6: true
+                    tracking_external:
+                      -
+# mandatory; also accepts a string
+                        address: "&K,s]@-`'${P udB0"
+# mandatory; also accepts a string
+                        external_address: Q%{ang:x
+                  mpls_ldp_auto_config: true
+                  mpls_traffic_eng:
+# also accepts a string
+                    router_id: h'xe"Vi\05"j${!#\t/kXZ%T6
+# also accepts a string
+                    router_id_interface: 'm&eL")9.fA.5${V:'
+                    igp_intact: true
+                    multicast_intact: true
+                    tunnel_restricted: true
+                    tunnel_preferred: true
+                    tunnel_anycast_prefer_igp_cost: true
+# range 1-16777214; also accepts a string
+                    tunnel_metric: 1
+                    tunnel_metric_per_level:
+                      -
+# mandatory; range 1-2; also accepts a string
+                        level: 1
+# mandatory; range 1-16777214; also accepts a string
+                        metric: 1
+# allowed: level-1, level-2-only, level-1-2; also accepts a string
+                    level: level-1
+                  prefix_unreachable: true
+# range 1-65535; also accepts a string
+                  prefix_unreachable_adv_maximum: 1
+# range 30-65535; also accepts a string
+                  prefix_unreachable_adv_lifetime: 30
+# range 4261412865-4294967294; also accepts a string
+                  prefix_unreachable_adv_metric: 4261412865
+                  prefix_unreachable_rx_process_enable: true
+                ipv4_multicast:
+                  enable: true
+# range 1-255; also accepts a string
+                  distance: 1
+                  distance_sources:
+                    -
+# mandatory; also accepts a string
+                      address: 8g%hs[ur%{= Y&(dm9L6DVG %6DfV
+# mandatory; maximum 128; also accepts a string
+                      length: 1
+# mandatory; range 1-255; also accepts a string
+                      distance: 1
+# also accepts a string
+                      route_filter: <$Egck=OE8;P${$c/@ZT3
+# also accepts a string
+                  distribute_list_prefix_list_in: 2 %{b*[a#%a@
+# also accepts a string
+                  distribute_list_route_policy_in: IE%{L
+                  redistribute_connected:
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                    level: level-1
+# maximum 16777215; also accepts a string
+                    metric: 1
+# also accepts a string
+                    route_policy: GYOF"K'bl_LX${LAEA
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                    metric_type: external
+                  redistribute_static:
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                    level: level-1
+# maximum 16777215; also accepts a string
+                    metric: 1
+# also accepts a string
+                    route_policy: :yy)DW^l`%{
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                    metric_type: external
+                  redistribute_isis:
+                    -
+# mandatory; also accepts a string
+                      process: iWL$[<n9l$ -F:${8CP0gW-,hJ%
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                      level: level-1
+# maximum 16777215; also accepts a string
+                      metric: 1
+# also accepts a string
+                      route_policy: ']o=)%{V3[ D&S<fx['
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                      metric_type: external
+                      down_flag_clear: true
+                  redistribute_bgp:
+                    -
+# mandatory; range 1-4294967295; also accepts a string
+                      asn: 1
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                      level: level-1
+# maximum 16777215; also accepts a string
+                      metric: 1
+# also accepts a string
+                      route_policy: "#y.kp(7%'C%{c;i')SyZ"
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                      metric_type: external
+                  redistribute_ospf:
+                    -
+# mandatory; also accepts a string
+                      process: "%{JeU'"
+                      match_internal: true
+                      match_external: true
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                      level: level-1
+# maximum 16777215; also accepts a string
+                      metric: 1
+# also accepts a string
+                      route_policy: oH;hzI1-!N7a]c${_4oJY<LaXD*d
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                      metric_type: external
+# range 1-64; also accepts a string
+                  maximum_paths: 1
+                  advertise_passive_only: true
+                  advertise_link_attributes: true
+# allowed: enable, protected, segment-routing; also accepts a string
+                  microloop_avoidance: enable
+# also accepts a string
+                  microloop_avoidance_segment_routing_route_policy: '%{#?n,[I?t(S-z)l>z'
+# range 1000-65535; also accepts a string
+                  microloop_avoidance_rib_update_delay: 1000
+                  summary_prefixes:
+                    -
+# mandatory; also accepts a string
+                      address: 76seeS?*3L5AFX+ ]]%{rMqP,kp*+u'wx&Q0Sm5
+# mandatory; maximum 128; also accepts a string
+                      length: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# range 1-2; also accepts a string
+                      level: 1
+                      adv_unreachable: true
+# range 1-4294967295; also accepts a string
+                      unreachable_tag: 1
+                      unreachable_tag_exclude_prefixes: true
+                      partition_repair: true
+# range 1-16777214; also accepts a string
+                  metric: 1
+                  metric_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; range 1-16777214; also accepts a string
+                      metric: 1
+# allowed: narrow, narrow-transition, transition, wide, wide-transition; also accepts a string
+                  metric_style: narrow
+                  metric_style_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; allowed: narrow, narrow-transition, transition, wide, wide-transition; also accepts a
+# string
+                      metric_style: narrow
+                  spf_interval:
+# maximum 120000; also accepts a string
+                    maximum_wait: 1
+# maximum 120000; also accepts a string
+                    initial_wait: 1
+# maximum 120000; also accepts a string
+                    secondary_wait: 1
+                    ietf: true
+# maximum 120000; also accepts a string
+                    ietf_initial_wait: 1
+# maximum 120000; also accepts a string
+                    ietf_short_wait: 1
+# maximum 120000; also accepts a string
+                    ietf_long_wait: 1
+# maximum 120000; also accepts a string
+                    ietf_learn_interval: 1
+# maximum 120000; also accepts a string
+                    ietf_holddown_interval: 1
+                  spf_interval_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# maximum 120000; also accepts a string
+                      maximum_wait: 1
+# maximum 120000; also accepts a string
+                      initial_wait: 1
+# maximum 120000; also accepts a string
+                      secondary_wait: 1
+                      ietf: true
+# maximum 120000; also accepts a string
+                      ietf_short_wait: 1
+# maximum 120000; also accepts a string
+                      ietf_long_wait: 1
+# maximum 120000; also accepts a string
+                      ietf_learn_interval: 1
+# maximum 120000; also accepts a string
+                      ietf_holddown_interval: 1
+                  spf_prefix_priority_critical:
+# range 1-4294967295; also accepts a string
+                    tag: 1
+# also accepts a string
+                    prefix_list: Cpe++sWr$nD:bE0o${(
+                  spf_prefix_priority_high:
+# range 1-4294967295; also accepts a string
+                    tag: 1
+# also accepts a string
+                    prefix_list: e5 B>%%{az9jtn8E0a1.#rD,
+                  spf_prefix_priority_medium:
+# range 1-4294967295; also accepts a string
+                    tag: 1
+# also accepts a string
+                    prefix_list: HlZ7?;LhjV%{4mUpDGck&-<cUFKE=
+                  spf_prefix_priority_critical_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# also accepts a string
+                      prefix_list: /1cB\-${>mPmmPNm_ihC0gI
+                  spf_prefix_priority_high_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# also accepts a string
+                      prefix_list: "!jM__%DC/9pcH\"hl^L_%{7J9Vf<COD2'71lgeV2"
+                  spf_prefix_priority_medium_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# also accepts a string
+                      prefix_list: ">lek:B'to\"${Jm*?zZF-L&b<MrpW"
+# range 1-28000; also accepts a string
+                  maximum_redistributed_prefixes: 1
+                  maximum_redistributed_prefixes_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; range 1-28000; also accepts a string
+                      maximum_redistributed_prefixes: 1
+                  propagate_levels:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      source_level: 1
+# mandatory; range 1-2; also accepts a string
+                      destination_level: 1
+# also accepts a string
+                      route_policy: Rr6[L5f 9puJoy'r${u8nHe]2c
+                  adjacency_check_disable: true
+                  route_source_first_hop: true
+                  attached_bit_receive_ignore: true
+# allowed: always-set, never-set; also accepts a string
+                  attached_bit_send: always-set
+                  default_information_originate: true
+# also accepts a string
+                  default_information_originate_route_policy: ${Pj>wy
+                  prefix_unreachable: true
+# range 1-65535; also accepts a string
+                  prefix_unreachable_adv_maximum: 1
+# range 30-65535; also accepts a string
+                  prefix_unreachable_adv_lifetime: 30
+# range 4261412865-4294967294; also accepts a string
+                  prefix_unreachable_adv_metric: 4261412865
+                  prefix_unreachable_rx_process_enable: true
+                ipv6_unicast:
+                  enable: true
+# range 1-255; also accepts a string
+                  distance: 1
+                  distance_sources:
+                    -
+# mandatory; also accepts a string
+                      address: <@'?-8*p0%{Q"Y_]).EKz*"
+# mandatory; maximum 128; also accepts a string
+                      length: 1
+# mandatory; range 1-255; also accepts a string
+                      distance: 1
+# also accepts a string
+                      route_filter: p ${IxHWOOe5i8u>Eo4#`
+# also accepts a string
+                  distribute_list_prefix_list_in: k-hcB/AM+y60x(=M%{dh_#Lj/slZsxe"E"
+# also accepts a string
+                  distribute_list_route_policy_in: cD${2*YIoXVAA%ITj
+                  redistribute_connected:
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                    level: level-1
+# maximum 16777215; also accepts a string
+                    metric: 1
+# also accepts a string
+                    route_policy: 0.Cn#oR)BzFo\D7z${DM&BzcC@Y24B"!
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                    metric_type: external
+                  redistribute_static:
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                    level: level-1
+# maximum 16777215; also accepts a string
+                    metric: 1
+# also accepts a string
+                    route_policy: UuVJdg&.Klq;(xKFzB%{k2YX_x;1v@WA/V
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                    metric_type: external
+                  redistribute_isis:
+                    -
+# mandatory; also accepts a string
+                      process: DB.uS7L${G'JUl
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                      level: level-1
+# maximum 16777215; also accepts a string
+                      metric: 1
+# also accepts a string
+                      route_policy: 'Q#PW${F:'
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                      metric_type: external
+                      down_flag_clear: true
+                  redistribute_bgp:
+                    -
+# mandatory; range 1-4294967295; also accepts a string
+                      asn: 1
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                      level: level-1
+# maximum 16777215; also accepts a string
+                      metric: 1
+# also accepts a string
+                      route_policy: r3jR2g:dVI]pat8,x%{ Wj-s5
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                      metric_type: external
+                  redistribute_ospfv3:
+                    -
+# mandatory; also accepts a string
+                      process: 0bt${BB
+                      match_internal: true
+                      match_external: true
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                      level: level-1
+# maximum 16777215; also accepts a string
+                      metric: 1
+# also accepts a string
+                      route_policy: Cd6][b${,KT>\P:pa#
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                      metric_type: external
+# range 1-64; also accepts a string
+                  maximum_paths: 1
+# also accepts a string
+                  router_id: _w(5]%QCK0D${s
+# also accepts a string
+                  router_id_interface: Pjt_\Cxo4&B6x]AmHk${Ep
+                  advertise_passive_only: true
+                  advertise_link_attributes: true
+# allowed: enable, protected, segment-routing; also accepts a string
+                  microloop_avoidance: enable
+# also accepts a string
+                  microloop_avoidance_segment_routing_route_policy: +"JId=]oIXCxm$Sv%{-J?P$1(a%-uX=
+# range 1000-65535; also accepts a string
+                  microloop_avoidance_rib_update_delay: 1000
+                  summary_prefixes:
+                    -
+# mandatory; also accepts a string
+                      address: '"zm${pj)^%J o$'
+# mandatory; maximum 128; also accepts a string
+                      length: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# range 1-2; also accepts a string
+                      level: 1
+# range 128-255; also accepts a string
+                      algorithm: 128
+                      explicit: true
+                      adv_unreachable: true
+# range 1-4294967295; also accepts a string
+                      unreachable_tag: 1
+                      unreachable_tag_exclude_prefixes: true
+                      partition_repair: true
+# range 1-16777214; also accepts a string
+                  metric: 1
+                  metric_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; range 1-16777214; also accepts a string
+                      metric: 1
+# allowed: narrow, narrow-transition, transition, wide, wide-transition; also accepts a string
+                  metric_style: narrow
+                  metric_style_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; allowed: narrow, narrow-transition, transition, wide, wide-transition; also accepts a
+# string
+                      metric_style: narrow
+                  spf_interval:
+# maximum 120000; also accepts a string
+                    maximum_wait: 1
+# maximum 120000; also accepts a string
+                    initial_wait: 1
+# maximum 120000; also accepts a string
+                    secondary_wait: 1
+                    ietf: true
+# maximum 120000; also accepts a string
+                    ietf_initial_wait: 1
+# maximum 120000; also accepts a string
+                    ietf_short_wait: 1
+# maximum 120000; also accepts a string
+                    ietf_long_wait: 1
+# maximum 120000; also accepts a string
+                    ietf_learn_interval: 1
+# maximum 120000; also accepts a string
+                    ietf_holddown_interval: 1
+                  spf_interval_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# maximum 120000; also accepts a string
+                      maximum_wait: 1
+# maximum 120000; also accepts a string
+                      initial_wait: 1
+# maximum 120000; also accepts a string
+                      secondary_wait: 1
+                      ietf: true
+# maximum 120000; also accepts a string
+                      ietf_short_wait: 1
+# maximum 120000; also accepts a string
+                      ietf_long_wait: 1
+# maximum 120000; also accepts a string
+                      ietf_learn_interval: 1
+# maximum 120000; also accepts a string
+                      ietf_holddown_interval: 1
+                  spf_prefix_priority_critical:
+# range 1-4294967295; also accepts a string
+                    tag: 1
+# also accepts a string
+                    prefix_list: '*%P$1!K]7fsUYEn%{op?vr!1r*2Eb6k=%@,h'
+                  spf_prefix_priority_high:
+# range 1-4294967295; also accepts a string
+                    tag: 1
+# also accepts a string
+                    prefix_list: "$u8t8'\\X,wm?0:[%{RyVd/:"
+                  spf_prefix_priority_medium:
+# range 1-4294967295; also accepts a string
+                    tag: 1
+# also accepts a string
+                    prefix_list: IC:5M$,(ztpWuGdL&b${5@H7s7\;8p1dX2JmA
+                  spf_prefix_priority_critical_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# also accepts a string
+                      prefix_list: '@tcvlb?,B:CM@0${Ap-cG8=1'
+                  spf_prefix_priority_high_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# also accepts a string
+                      prefix_list: 3nt)b*F#V.uZU${imoPMg S+OvDecb_s
+                  spf_prefix_priority_medium_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# also accepts a string
+                      prefix_list: nO#26)5KcU%{`_nU'BM=,>uHy
+# range 1-28000; also accepts a string
+                  maximum_redistributed_prefixes: 1
+                  maximum_redistributed_prefixes_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; range 1-28000; also accepts a string
+                      maximum_redistributed_prefixes: 1
+                  propagate_levels:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      source_level: 1
+# mandatory; range 1-2; also accepts a string
+                      destination_level: 1
+# also accepts a string
+                      route_policy: Q${q#?"U-@`M!]A7y.#\8
+                  adjacency_check_disable: true
+                  route_source_first_hop: true
+                  attached_bit_receive_ignore: true
+# allowed: always-set, never-set; also accepts a string
+                  attached_bit_send: always-set
+# range 100-60000; also accepts a string
+                  fast_reroute_delay_interval: 100
+                  fast_reroute_per_prefix:
+# allowed: critical, high, medium; also accepts a string
+                    priority_limit: critical
+# allowed: enable, disable; also accepts a string
+                    use_candidate_only: enable
+                    srlg_protection_weighted_global: true
+# also accepts a string
+                    remote_lfa_prefix_list: B5*V)dIHimyEA!r1ayE${iW9
+                    load_sharing_disable: true
+                    tiebreaker:
+# range 1-255; also accepts a string
+                      downstream_index: 1
+# range 1-255; also accepts a string
+                      lc_disjoint_index: 1
+# range 1-255; also accepts a string
+                      lowest_backup_metric_index: 1
+# range 1-255; also accepts a string
+                      node_protecting_index: 1
+# range 1-255; also accepts a string
+                      primary_path_index: 1
+# range 1-255; also accepts a string
+                      secondary_path_index: 1
+# range 1-255; also accepts a string
+                      srlg_disjoint_index: 1
+                    priority_limit_per_level:
+                      -
+# mandatory; range 1-2; also accepts a string
+                        level: 1
+# mandatory; allowed: critical, high, medium; also accepts a string
+                        priority_limit: critical
+                    srlg_protection_weighted_global_per_level:
+                      -
+# mandatory; range 1-2; also accepts a string
+                        level: 1
+                    remote_lfa_prefix_list_per_level:
+                      -
+# mandatory; range 1-2; also accepts a string
+                        level: 1
+# mandatory; also accepts a string
+                        prefix_list: )(#S p%H:K?,%Eg?z%{emCqYE];a!.?\f8=
+                    load_sharing_disable_per_level:
+                      -
+# mandatory; range 1-2; also accepts a string
+                        level: 1
+                  fast_reroute_per_link:
+# allowed: enable, disable; also accepts a string
+                    use_candidate_only: enable
+# allowed: critical, high, medium; also accepts a string
+                    priority_limit: critical
+                    use_candidate_only_per_level:
+                      -
+# mandatory; range 1-2; also accepts a string
+                        level: 1
+                    priority_limit_per_level:
+                      -
+# mandatory; range 1-2; also accepts a string
+                        level: 1
+# mandatory; allowed: critical, high, medium; also accepts a string
+                        priority_limit: critical
+                  default_information_originate: true
+# also accepts a string
+                  default_information_originate_route_policy: j6]y ots${'>sRZJY'S
+                  segment_routing:
+                    bundle_member_adj_sid: true
+                    labeled_only: true
+# range 30-3600; also accepts a string
+                    protected_adjacency_sid_delay: 30
+                    mpls:
+                      enable: true
+                      sr_prefer: true
+# also accepts a string
+                      unlabeled_protection_prefix_list: lD/!${B#h>s>aGnHTj7w
+# also accepts a string
+                      unlabeled_protection_route_policy: '!e,i^v3C%{PcG;.ZA+8k'
+                      unlabeled_protection_disable: true
+# allowed: enable, disable; also accepts a string
+                      prefix_sid_map_receive: enable
+# allowed: local, domain-wide; also accepts a string
+                      prefix_sid_map_advertise: local
+                      connected_prefix_sid_map:
+                        enabled: true
+                        prefixes:
+                          -
+# mandatory; also accepts a string
+                            address: Y8p;ikBt;Dm/i!RB=e%{GqR@bJ#XZ*Pin:z\e4
+# mandatory; maximum 128; also accepts a string
+                            length: 1
+# also accepts an integer
+                            index_id: R${?:@PG:4r.>o1A
+# also accepts a string
+                            index_interface: x9${'nO#C1<p
+                            index_php_disable: true
+                            index_explicit_null: true
+# also accepts an integer
+                            absolute_id: VvDS_3h]Z=fzH^@c\${->Uktg'##x75m)@LVh
+# also accepts a string
+                            absolute_interface: 636hD73G9K_\9fk${(Yt*EJy(jrwIov9
+                            absolute_php_disable: true
+                            absolute_explicit_null: true
+                        flex_algos:
+                          -
+# mandatory; also accepts a string
+                            address: 7-D5c;${KGNI*$O%
+# mandatory; maximum 128; also accepts a string
+                            length: 1
+# mandatory; range 128-255; also accepts a string
+                            flex_algo: 128
+# also accepts an integer
+                            index_id: E1AsMg)Phr&DEw=V${tr9)$4:mp'aF
+# also accepts a string
+                            index_interface: ?>mlN`s%{]"
+                            index_php_disable: true
+                            index_explicit_null: true
+# also accepts an integer
+                            absolute_id: A${U*f-BQ6FOLt?v4qv
+# also accepts a string
+                            absolute_interface: 39 DGp)7${ GCa z/;1m.9.GAS/GG
+                            absolute_php_disable: true
+                            absolute_explicit_null: true
+                        strict_spf:
+                          -
+# mandatory; also accepts a string
+                            address: QRiF+%{vVZT^KIYL`g
+# mandatory; maximum 128; also accepts a string
+                            length: 1
+# also accepts an integer
+                            index_id: D8v@VN$K]JuYXj%{khA`?<y#
+# also accepts a string
+                            index_interface: 3#FX${r*x8sS@^x[n"#
+                            index_php_disable: true
+                            index_explicit_null: true
+# also accepts an integer
+                            absolute_id: S/NJ*6MiaqPVz1${;yP-_%W>@BEfIr
+# also accepts a string
+                            absolute_interface: xS)'[m\Dq9d_%{=)Vh%-aUBg)GiA'S
+                            absolute_php_disable: true
+                            absolute_explicit_null: true
+                    srv6:
+                      locators:
+                        -
+# mandatory; also accepts a string
+                          name: EO#9IklF6/k`jSdD%{3:%671Y7
+# range 1-2; also accepts a string
+                          level: 1
+# range 1-16777214; also accepts a string
+                          metric: 1
+# range 1-4294967295; also accepts a string
+                          tag: 1
+                          metric_per_level:
+                            -
+# mandatory; range 1-2; also accepts a string
+                              level: 1
+# mandatory; range 1-16777214; also accepts a string
+                              metric: 1
+                          tag_per_level:
+                            -
+# mandatory; range 1-2; also accepts a string
+                              level: 1
+# mandatory; range 1-4294967295; also accepts a string
+                              tag: 1
+                  partition_detect:
+                    enable: true
+                    tracking:
+                      -
+# mandatory; also accepts a string
+                        address: RHt=x${Ah<UZJ6=
+                        ipv4: true
+                        ipv6: true
+                    tracking_external:
+                      -
+# mandatory; also accepts a string
+                        address: SK${wnFab,9
+# mandatory; also accepts a string
+                        external_address: R.p#`%4]V\^AF#N${?+7gB>V0m
+                  mpls_traffic_eng:
+# also accepts a string
+                    router_id: y>i8\%{XUd
+# also accepts a string
+                    router_id_interface: -m7zgbU=${i,jK3m%eIOi
+                    igp_intact: true
+                    multicast_intact: true
+                    tunnel_restricted: true
+                    tunnel_preferred: true
+                    tunnel_anycast_prefer_igp_cost: true
+# range 1-16777214; also accepts a string
+                    tunnel_metric: 1
+                    tunnel_metric_per_level:
+                      -
+# mandatory; range 1-2; also accepts a string
+                        level: 1
+# mandatory; range 1-16777214; also accepts a string
+                        metric: 1
+# allowed: level-1, level-2-only, level-1-2; also accepts a string
+                    level: level-1
+                  prefix_unreachable: true
+# range 1-65535; also accepts a string
+                  prefix_unreachable_adv_maximum: 1
+# range 30-65535; also accepts a string
+                  prefix_unreachable_adv_lifetime: 30
+# range 4261412865-4294967294; also accepts a string
+                  prefix_unreachable_adv_metric: 4261412865
+                  prefix_unreachable_rx_process_enable: true
+                ipv6_multicast:
+                  enable: true
+# range 1-255; also accepts a string
+                  distance: 1
+                  distance_sources:
+                    -
+# mandatory; also accepts a string
+                      address: ltn'Lcfn${kJ<$NXj;$
+# mandatory; maximum 128; also accepts a string
+                      length: 1
+# mandatory; range 1-255; also accepts a string
+                      distance: 1
+# also accepts a string
+                      route_filter: N':;9WRF$:%{V%9z6g7*j'p+BQ
+# also accepts a string
+                  distribute_list_prefix_list_in: D8*2sXc,qX%{eoe9!ti
+# also accepts a string
+                  distribute_list_route_policy_in: '`uC.7cG.87T<swF(${'
+                  redistribute_connected:
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                    level: level-1
+# maximum 16777215; also accepts a string
+                    metric: 1
+# also accepts a string
+                    route_policy: QVnueo19&kE4Yc%{e5jT*
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                    metric_type: external
+                  redistribute_static:
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                    level: level-1
+# maximum 16777215; also accepts a string
+                    metric: 1
+# also accepts a string
+                    route_policy: T?_tQmR)OL)`J9BC`$%{,"0i=XB#D'zvYLJJS&9
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                    metric_type: external
+                  redistribute_isis:
+                    -
+# mandatory; also accepts a string
+                      process: \vs2C%{;e
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                      level: level-1
+# maximum 16777215; also accepts a string
+                      metric: 1
+# also accepts a string
+                      route_policy: cen6`*RT:^qa"5!,${$=[tH &(Cq
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                      metric_type: external
+                      down_flag_clear: true
+                  redistribute_bgp:
+                    -
+# mandatory; range 1-4294967295; also accepts a string
+                      asn: 1
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                      level: level-1
+# maximum 16777215; also accepts a string
+                      metric: 1
+# also accepts a string
+                      route_policy: OuA#R:MPHJ#s4[%Y%{m-E/CHL
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                      metric_type: external
+                  redistribute_ospfv3:
+                    -
+# mandatory; also accepts a string
+                      process: r${rkUq(-.;[VOmh\JWOW1
+                      match_internal: true
+                      match_external: true
+# allowed: level-1, level-1-2, level-2; also accepts a string
+                      level: level-1
+# maximum 16777215; also accepts a string
+                      metric: 1
+# also accepts a string
+                      route_policy: SZ1`ll-I3wGEg]xZL%{n
+# allowed: external, internal, rib-metric-as-external, rib-metric-as-internal; also accepts a
+# string
+                      metric_type: external
+# range 1-64; also accepts a string
+                  maximum_paths: 1
+                  advertise_passive_only: true
+                  advertise_link_attributes: true
+# allowed: enable, protected, segment-routing; also accepts a string
+                  microloop_avoidance: enable
+# also accepts a string
+                  microloop_avoidance_segment_routing_route_policy: I${niGm. Ri_(I^\*
+# range 1000-65535; also accepts a string
+                  microloop_avoidance_rib_update_delay: 1000
+                  summary_prefixes:
+                    -
+# mandatory; also accepts a string
+                      address: Pu!vK\w\Hydu5Lj%{tg"BQMd_V]q
+# mandatory; maximum 128; also accepts a string
+                      length: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# range 1-2; also accepts a string
+                      level: 1
+                      adv_unreachable: true
+# range 1-4294967295; also accepts a string
+                      unreachable_tag: 1
+                      unreachable_tag_exclude_prefixes: true
+                      partition_repair: true
+# range 1-16777214; also accepts a string
+                  metric: 1
+                  metric_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; range 1-16777214; also accepts a string
+                      metric: 1
+# allowed: narrow, narrow-transition, transition, wide, wide-transition; also accepts a string
+                  metric_style: narrow
+                  metric_style_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; allowed: narrow, narrow-transition, transition, wide, wide-transition; also accepts a
+# string
+                      metric_style: narrow
+                  spf_interval:
+# maximum 120000; also accepts a string
+                    maximum_wait: 1
+# maximum 120000; also accepts a string
+                    initial_wait: 1
+# maximum 120000; also accepts a string
+                    secondary_wait: 1
+                    ietf: true
+# maximum 120000; also accepts a string
+                    ietf_initial_wait: 1
+# maximum 120000; also accepts a string
+                    ietf_short_wait: 1
+# maximum 120000; also accepts a string
+                    ietf_long_wait: 1
+# maximum 120000; also accepts a string
+                    ietf_learn_interval: 1
+# maximum 120000; also accepts a string
+                    ietf_holddown_interval: 1
+                  spf_interval_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# maximum 120000; also accepts a string
+                      maximum_wait: 1
+# maximum 120000; also accepts a string
+                      initial_wait: 1
+# maximum 120000; also accepts a string
+                      secondary_wait: 1
+                      ietf: true
+# maximum 120000; also accepts a string
+                      ietf_short_wait: 1
+# maximum 120000; also accepts a string
+                      ietf_long_wait: 1
+# maximum 120000; also accepts a string
+                      ietf_learn_interval: 1
+# maximum 120000; also accepts a string
+                      ietf_holddown_interval: 1
+                  spf_prefix_priority_critical:
+# range 1-4294967295; also accepts a string
+                    tag: 1
+# also accepts a string
+                    prefix_list: PUQ0CjFUuOrA%{lB[mjxB
+                  spf_prefix_priority_high:
+# range 1-4294967295; also accepts a string
+                    tag: 1
+# also accepts a string
+                    prefix_list: "@c5jmSU`!kbvv0MAZ6%{it+^'"
+                  spf_prefix_priority_medium:
+# range 1-4294967295; also accepts a string
+                    tag: 1
+# also accepts a string
+                    prefix_list: zDTl?d7/gE]OT?eqvs${6**Y6$ZP#vR@EqU\6!
+                  spf_prefix_priority_critical_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# also accepts a string
+                      prefix_list: UvL\p${
+                  spf_prefix_priority_high_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# also accepts a string
+                      prefix_list: aF\UgWI%{%1jAOngn[?rC
+                  spf_prefix_priority_medium_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# range 1-4294967295; also accepts a string
+                      tag: 1
+# also accepts a string
+                      prefix_list: m*qE?,JRu%{J^nAY
+# range 1-28000; also accepts a string
+                  maximum_redistributed_prefixes: 1
+                  maximum_redistributed_prefixes_per_level:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      level: 1
+# mandatory; range 1-28000; also accepts a string
+                      maximum_redistributed_prefixes: 1
+                  propagate_levels:
+                    -
+# mandatory; range 1-2; also accepts a string
+                      source_level: 1
+# mandatory; range 1-2; also accepts a string
+                      destination_level: 1
+# also accepts a string
+                      route_policy: Gw]hMsjTLIYWNdk7%{
+                  adjacency_check_disable: true
+                  route_source_first_hop: true
+                  attached_bit_receive_ignore: true
+# allowed: always-set, never-set; also accepts a string
+                  attached_bit_send: always-set
+                  default_information_originate: true
+# also accepts a string
+                  default_information_originate_route_policy: Q3%{v9NPl&V"
+                  prefix_unreachable: true
+# range 1-65535; also accepts a string
+                  prefix_unreachable_adv_maximum: 1
+# range 30-65535; also accepts a string
+                  prefix_unreachable_adv_lifetime: 30
+# range 4261412865-4294967294; also accepts a string
+                  prefix_unreachable_adv_metric: 4261412865
+                  prefix_unreachable_rx_process_enable: true

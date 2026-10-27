@@ -1,0 +1,74 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.localized_policies.definitions.ipv4_access_control_lists
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/localized_policies/ipv4_access_control_list_definition/
+sdwan:
+  localized_policies:
+    definitions:
+      ipv4_access_control_lists:
+        -
+# mandatory
+          name: example-name
+# mandatory
+          description: <DESCRIPTION>
+# mandatory; allowed: accept, drop
+          default_action: accept
+          sequences:
+            -
+# mandatory; range 1-65534
+              id: 1
+              name: <NAME>
+# mandatory; allowed: accept, drop
+              base_action: accept
+              match_criterias:
+                class: example-host
+                destination_data_prefix_list: example-host
+                destination_ip_prefix: 10.0.0.0/24
+                destination_ip_prefix_variable: 10.0.0.1
+                destination_ports:
+                  - 1
+                destination_port_ranges:
+                  -
+# mandatory; maximum 65535
+                    from: 1
+# mandatory; maximum 65535
+                    to: 1
+# maximum 63; also accepts a string
+                dscp: 1
+# maximum 65535
+                packet_length: 1
+# allowed: high, low
+                priority: high
+                protocols:
+                  - 1
+                source_data_prefix_list: example-host
+                source_ip_prefix: 10.0.0.0/24
+                source_ip_prefix_variable: 10.0.0.1
+                source_ports:
+                  - 1
+                source_port_ranges:
+                  -
+# mandatory; maximum 65535
+                    from: 1
+# mandatory; maximum 65535
+                    to: 1
+# allowed: syn
+                tcp: syn
+              actions:
+                counter_name: <NAME>
+                class: example-host
+# maximum 63
+                dscp: 1
+                log: true
+                mirror_list: example-host
+                next_hop: <HOSTNAME>
+                policer: example-host

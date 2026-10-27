@@ -1,0 +1,69 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.sites.floors
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/sites/floor/
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/sites/planned_access_point/
+catalyst_center:
+  sites:
+    floors:
+      -
+# mandatory
+        name: <NAME>
+        floor_number: 1
+        height: 1.0
+        length: 1.0
+# allowed: Cubes And Walled Offices, Drywall Office Only, Indoor High Ceiling, Outdoor Open Space,
+# Free Space
+        rf_model: Cubes And Walled Offices
+        width: 1.0
+# allowed: feet, meters
+        units_of_measure: feet
+        image_path: <HOSTNAME>
+        planned_access_points:
+          -
+# mandatory
+            name: <NAME>
+# mandatory
+            ap_type: <HOSTNAME>
+# mandatory
+            position_x: 1.0
+# mandatory
+            position_y: 1.0
+# mandatory
+            position_z: 1.0
+            mac_address: 00:11:22:33:44:55
+# mandatory
+            radios:
+              -
+# mandatory; allowed: 2.4, 5, 6
+                band: '2.4'
+                channel: 1
+# mandatory
+                tx_power: 1
+                antenna_name: <NAME>
+# mandatory
+                antenna_azimuth: 1
+# mandatory
+                antenna_elevation: 1
+        parent_name: <NAME>
+        cli_credentials: <HOSTNAME>
+        snmpv3_credentials: <HOSTNAME>
+        snmpv2_read_credentials: <HOSTNAME>
+        snmpv2_write_credentials: <HOSTNAME>
+        https_read_credentials: <HOSTNAME>
+        https_write_credentials: <HOSTNAME>
+        network_settings:
+          aaa_servers: <HOSTNAME>
+          network: <HOSTNAME>
+          telemetry: <HOSTNAME>
+        ip_pools_reservations:
+          - 10.0.0.1

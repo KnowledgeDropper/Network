@@ -1,0 +1,70 @@
+# Cisco Network as Code template for Meraki.
+# Data model: meraki
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: meraki.domains[].organizations[].appliance.third_party_vpn_peers
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_appliance/vpn_third_party_vpn/
+meraki:
+  domains:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      administrator: {}
+# mandatory
+      organizations:
+        - appliance:
+            third_party_vpn_peers:
+              -
+# mandatory
+                name: <NAME>
+                public_ip: 10.0.0.1
+                public_hostname: <HOSTNAME>
+# mandatory
+                private_subnets:
+                  - 10.0.0.1
+                local_id: 0/0.1
+                remote_id: 0/0.1
+                ipsec_policies:
+                  ike_cipher_algo:
+                    - aes128
+                  ike_auth_algo:
+                    - md5
+                  ike_prf_algo:
+                    - default
+                  ike_diffie_hellman_group:
+                    - group14
+# range 1-604800
+                  ike_lifetime: 1
+                  child_cipher_algo:
+                    - aes128
+                  child_auth_algo:
+                    - md5
+                  child_pfs_group:
+                    - disabled
+# range 1-86400
+                  child_lifetime: 1
+# allowed: secure, aws_v2, azure_v2, umbrella_v2, zscaler_v2, default (insecure), aws (insecure),
+# azure (insecure), umbrella (insecure), umbrella (deprecated), zscaler (insecure)
+                ipsec_policies_preset: secure
+# mandatory
+                secret: <SECRET>
+# allowed: 1, 2
+                ike_version: '1'
+                network_tags:
+                  - <HOSTNAME>
+                is_route_based: true
+# range 1-2
+                priority_in_group: 1
+                group_active_active_tunnel: true
+# range 1-999
+                group_number: 1
+                group_failover_direct_to_internet: true
+                sla_policy_name: <NAME>

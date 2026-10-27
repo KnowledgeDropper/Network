@@ -1,0 +1,106 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.bfd
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/bfd/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        bfd:
+          multi_hop_templates:
+            -
+# mandatory
+              name: <NAME>
+              echo: true
+# also accepts an integer
+              interval_milliseconds_both: Fi5unQ"%{ CE'tpgD!MRiX^=x
+# also accepts an integer
+              interval_milliseconds_min_tx: ZVh#Yj[g+gU9*#${_uz,@
+# also accepts an integer
+              interval_milliseconds_min_rx: _eK_BwT5sJ?%{D^i\0<]Ex7X=9v`4VtX
+# range 3-50; also accepts a string
+              interval_milliseconds_multiplier: 3
+              interval_microseconds: true
+# also accepts an integer
+              interval_microseconds_both: U$,EudXx\<%{u)-4O4@XZwd+,zR
+# also accepts an integer
+              interval_microseconds_min_tx: <,'%{f#
+# also accepts an integer
+              interval_microseconds_min_rx: jBtRm>ox*\:!${9I'zsWZ
+# also accepts an integer
+              interval_microseconds_multiplier: _${K3!w'DUH1S-7H">n.
+              authentication_md5_keychain: <HOSTNAME>
+              authentication_meticulous_md5_keychain: <HOSTNAME>
+              authentication_meticulous_sha1_keychain: <HOSTNAME>
+              authentication_sha1_keychain: <HOSTNAME>
+# range 1-30; also accepts a string
+              dampening_half_time: 1
+# range 1-18000; also accepts a string
+              dampening_unsuppress_time: 1
+# range 1-18000; also accepts a string
+              dampening_suppress_time: 1
+# range 1-420; also accepts a string
+              dampening_max_suppressing_time: 1
+# also accepts an integer
+              dampening_threshold: XfE2${1t!b()wfYx-J*GiO:A
+              dampening_down_monitoring: true
+          single_hop_templates:
+            -
+# mandatory
+              name: <NAME>
+              echo: true
+# also accepts an integer
+              interval_milliseconds_both: ${q
+# also accepts an integer
+              interval_milliseconds_min_tx: F%m%{$ps(YA:IgT
+# also accepts an integer
+              interval_milliseconds_min_rx: yF7_FFuFMEbbk6Xz$${(6/TX4S;-I
+# also accepts an integer
+              interval_milliseconds_multiplier: =!.BE.o&J;P%{w`
+# also accepts an integer
+              interval_microseconds_min_tx: '%{y#Sa<@DlLtiq`dWc['
+# also accepts an integer
+              interval_microseconds_min_rx: V-/Z_8P3Ju.U^`${Af+x*>V#&[3(XVz ^J1
+              authentication_md5_keychain: <HOSTNAME>
+              authentication_meticulous_md5_keychain: <HOSTNAME>
+              authentication_meticulous_sha1_keychain: <HOSTNAME>
+              authentication_sha1_keychain: <HOSTNAME>
+# range 1-30; also accepts a string
+              dampening_half_time: 1
+# range 1-18000; also accepts a string
+              dampening_unsuppress_time: 1
+# range 1-18000; also accepts a string
+              dampening_suppress_time: 1
+# range 1-420; also accepts a string
+              dampening_max_suppressing_time: 1
+          ipv4_maps:
+            - destination_vrf: <HOSTNAME>
+# mandatory; also accepts a string
+              destination_prefix: ${/]eLc*87$.L-G
+              source_vrf: <HOSTNAME>
+# mandatory; also accepts a string
+              source_prefix: <,!RpHCt?+m%{0k
+# mandatory
+              template: <HOSTNAME>
+          ipv6_maps:
+            - destination_vrf: <HOSTNAME>
+# mandatory; also accepts a string
+              destination_prefix: M,HC*"66vPIOlK!O=&c%{aMhr
+              source_vrf: <HOSTNAME>
+# mandatory; also accepts a string
+              source_prefix: at@)*moDGZRs0:${J=$tyswB(nYZ z,A
+# mandatory
+              template: <HOSTNAME>
+# range 1000-30000; also accepts a string
+          slow_timers: 1000

@@ -1,0 +1,99 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.sse_profiles[].cisco
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_sse/sse_cisco/
+sdwan:
+  feature_profiles:
+    sse_profiles:
+      -
+# mandatory
+        name: example-name
+        cisco:
+# mandatory
+          name: example-name
+          description: <DESCRIPTION>
+          context_sharing_for_sgt: true
+          context_sharing_for_vpn: true
+# mandatory
+          interface_pairs:
+            - active_interface: ipsec254
+# range 1-255
+              active_interface_weight: 1
+              backup_interface: ipsec251
+# range 1-255
+              backup_interface_weight: 1
+# mandatory
+          interfaces:
+            -
+# maximum 65535
+              dpd_interval: 1
+              dpd_interval_variable: example-host
+# maximum 255
+              dpd_retries: 1
+              dpd_retries_variable: example-host
+# allowed: aes256-cbc-sha1, aes256-cbc-sha2, aes128-cbc-sha1, aes128-cbc-sha2
+              ike_ciphersuite: aes256-cbc-sha1
+              ike_ciphersuite_variable: example-host
+# allowed: 2, 5, 14, 15, 16, 19, 20, 21
+              ike_group: '2'
+              ike_group_variable: example-host
+# range 300-1209600
+              ike_rekey_interval: 300
+              ike_rekey_interval_variable: example-host
+              interface_name: ipsec1
+# allowed: aes256-cbc-sha1, aes256-cbc-sha384, aes256-cbc-sha256, aes256-cbc-sha512, aes256-gcm
+              ipsec_ciphersuite: aes256-cbc-sha1
+              ipsec_ciphersuite_variable: example-host
+# range 300-1209600
+              ipsec_rekey_interval: 300
+              ipsec_rekey_interval_variable: example-host
+# range 64-4096
+              ipsec_replay_window: 64
+              ipsec_replay_window_variable: example-host
+# range 576-2000
+              mtu: 576
+              mtu_variable: example-host
+# allowed: group-2, group-5, group-14, group-15, group-16, group-19, group-20, group-21, none
+              perfect_forward_secrecy: group-2
+              perfect_forward_secrecy_variable: example-host
+              shutdown: true
+              shutdown_variable: example-host
+# range 500-1460
+              tcp_mss_adjust: 500
+              tcp_mss_adjust_variable: example-host
+              track_enable: true
+              track_enable_variable: example-host
+              tracker: <HOSTNAME>
+# allowed: primary-dc, secondary-dc
+              tunnel_dc_preference: primary-dc
+              tunnel_route_via: <HOSTNAME>
+              tunnel_route_via_variable: example-host
+              tunnel_source_interface: GigabitEthernet0/0
+              tunnel_source_interface_variable: 0/0.1
+          region: <HOSTNAME>
+          tracker_source_ip: 10.0.0.1
+          tracker_source_ip_variable: 10.0.0.1
+          trackers:
+            -
+# mandatory
+              name: <NAME>
+              endpoint_api_url: https://example.com
+              endpoint_api_url_variable: example-host
+# range 20-600
+              interval: 20
+              interval_variable: example-host
+# range 1-10
+              multiplier: 1
+              multiplier_variable: example-host
+# range 100-1000
+              threshold: 100
+              threshold_variable: example-host

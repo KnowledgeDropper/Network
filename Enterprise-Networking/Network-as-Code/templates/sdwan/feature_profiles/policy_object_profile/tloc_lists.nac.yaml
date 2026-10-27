@@ -1,0 +1,34 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.policy_object_profile.tloc_lists
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/policy_objects/tloc_list/
+sdwan:
+  feature_profiles:
+    policy_object_profile:
+      tloc_lists:
+        -
+# mandatory
+          name: example-name
+          description: <DESCRIPTION>
+# mandatory
+          tlocs:
+            -
+# mandatory; allowed: default, mpls, metro-ethernet, biz-internet, public-internet, lte, 3g, red,
+# green, blue, gold, silver, bronze, custom1, custom2, custom3, private1, private2, private3,
+# private4, private5, private6
+              color: default
+# mandatory; allowed: ipsec, gre
+              encapsulation: ipsec
+# mandatory
+              tloc_ip: 10.0.0.1
+# maximum 4294967295
+              preference: 1

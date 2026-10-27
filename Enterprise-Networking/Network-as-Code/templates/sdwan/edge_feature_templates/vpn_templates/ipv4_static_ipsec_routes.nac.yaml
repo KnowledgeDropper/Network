@@ -1,0 +1,29 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.vpn_templates[].ipv4_static_ipsec_routes
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs: schema section without a dedicated page in the docs nav.
+sdwan:
+  edge_feature_templates:
+    vpn_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+# mandatory; maximum 65527
+        vpn_id: 1
+        ipv4_static_ipsec_routes:
+          - interfaces:
+              - ipsec82
+            interfaces_variable: 0/0.1
+            prefix: 10.0.0.1
+            prefix_variable: 10.0.0.1
+            optional: true

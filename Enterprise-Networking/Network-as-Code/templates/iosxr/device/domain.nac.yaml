@@ -1,0 +1,81 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.domain
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/domain/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        domain:
+          default_flows_disable: true
+          ipv4_hosts:
+            -
+# mandatory; also accepts a string
+              name: '"rYwEx8UtPsZSQH79%{;6Wrr![sR`k#v'
+              addresses:
+                - '-l#(/X8BNL<_nFTrS V${[FO '
+          ipv6_hosts:
+            -
+# mandatory; also accepts a string
+              name: 9*?\y+eg$E*${[ab`^c0)4
+              addresses:
+                - G[Mq`G(kf3z/Cjm%{KL4k_GGJW.m7NacY5
+          lists:
+            -
+# mandatory; also accepts a string
+              name: ;N616GR%R'F%{]Pz^oi@P1hPwO y1^x
+          lookup_disable: true
+# also accepts a string
+          source_interface: X%{cI#d q`W$=Yx3sO4a z
+# also accepts a string
+          multicast: t8@EJH%{xRWgq":Y>5Hmku
+# also accepts a string
+          name: +EK`dJV8`fiRMGv${h=Bfq
+          name_servers:
+            -
+# mandatory; also accepts a string
+              address: Mr%{@e_[r1QiYLtV
+          vrfs:
+            -
+# mandatory; also accepts a string
+              vrf: yYMrHqg${Lb 5u8<v4`W4evaXp
+              ipv4_hosts:
+                -
+# mandatory; also accepts a string
+                  name: '%{wg3bNd'
+                  addresses:
+                    - RiIKbiU.00n8G^hu"U%{,fpW8T=U$ISK:[&Km3w
+              ipv6_hosts:
+                -
+# mandatory; also accepts a string
+                  name: -jbQ'2:9.%{=$I"k4nE<X`M-Q
+                  addresses:
+                    - (${4Lz(jS$dPxN
+              lists:
+                -
+# mandatory; also accepts a string
+                  name: q8 uyHMo${
+              lookup_disable: true
+# also accepts a string
+              source_interface: X<N%{&h
+# also accepts a string
+              multicast: 'wP*fX#iBoPGS.:_${y`f:'
+# also accepts a string
+              name: 2uVrBxW-<y`d!W?n${S)3"92O`Y]y?
+              name_servers:
+                -
+# mandatory; also accepts a string
+                  address: ;@egA"#Ukzy%{\`s.0

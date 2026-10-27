@@ -1,0 +1,247 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.vrfs
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/vrf/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        vrfs:
+          -
+# mandatory; also accepts a string
+            name: htp:erci"/&${yW
+# also accepts a string
+            description: h,_a$0PF%S9${F1jjV+eX=SqKMmIO
+# also accepts a string
+            fallback_vrf: )ddW"l<1shtK,#${=.R4
+# range 1-65534; also accepts a string
+            evpn_route_sync: 1
+            address_family:
+              ipv4_unicast:
+                enable: true
+# also accepts a string
+                import_route_policy: 33`Eh%{Y.1cL1L%8o"yab
+# also accepts a string
+                export_route_policy: ' M6j%{Yh3z9z,)F&th+NMSE'
+                import_from_bridge_domain_advertise_as_vpn: true
+                import_from_vrf_advertise_as_vpn: true
+                import_from_vrf_allow_backup: true
+                import_from_vrf_allow_best_external: true
+                import_from_default_vrf_advertise_as_vpn: true
+# also accepts a string
+                import_from_default_vrf_route_policy: FspnS(y`YQ#${G*4U;T&KN^5MSx
+                export_to_vrf_allow_imported_vpn: true
+                export_to_vrf_allow_backup: true
+                export_to_vrf_allow_best_external: true
+# also accepts a string
+                export_to_default_vrf_route_policy: m$eDDz\${Sf1q6;;)j=7mGb
+                export_to_default_vrf_allow_imported_vpn: true
+# range 32-10000000; also accepts a string
+                max_prefix_limit: 32
+# range 1-100; also accepts a string
+                max_prefix_threshold: 1
+                import_route_targets:
+                  -
+# mandatory; also accepts a string
+                    rt: i${4E$)7<
+# allowed: disable, enable; also accepts a string
+                    stitching: disable
+                export_route_targets:
+                  -
+# mandatory; also accepts a string
+                    rt: '[wy${,s+dpIQB'
+# allowed: disable, enable; also accepts a string
+                    stitching: disable
+              ipv6_unicast:
+                enable: true
+# also accepts a string
+                import_route_policy: /bqA;=${';FG57Tq.Q$o
+# also accepts a string
+                export_route_policy: G!2=t\PhT\T()_L${oJ]W9o2*'
+                import_from_bridge_domain_advertise_as_vpn: true
+                import_from_vrf_advertise_as_vpn: true
+                import_from_vrf_allow_backup: true
+                import_from_vrf_allow_best_external: true
+                import_from_default_vrf_advertise_as_vpn: true
+# also accepts a string
+                import_from_default_vrf_route_policy: ?`>z6vf+(.Vp%{C->-1Q^D]qjB>
+                export_to_vrf_allow_imported_vpn: true
+                export_to_vrf_allow_backup: true
+                export_to_vrf_allow_best_external: true
+# also accepts a string
+                export_to_default_vrf_route_policy: qXzAPLbSnc4A${*'%s+ QDfVhnZ*HiGXc
+                export_to_default_vrf_allow_imported_vpn: true
+# range 32-10000000; also accepts a string
+                max_prefix_limit: 32
+# range 1-100; also accepts a string
+                max_prefix_threshold: 1
+                import_route_targets:
+                  -
+# mandatory; also accepts a string
+                    rt: hb#fRQhYI)QY(%{
+# allowed: disable, enable; also accepts a string
+                    stitching: disable
+                export_route_targets:
+                  -
+# mandatory; also accepts a string
+                    rt: '!BN&KgF"$%{Hj<<YM>'
+# allowed: disable, enable; also accepts a string
+                    stitching: disable
+              ipv4_multicast:
+                enable: true
+# also accepts a string
+                import_route_policy: 4 +H%{%f5cps
+# also accepts a string
+                export_route_policy: o@ 5yv+:%]*O >#${iuoI5IK`Qaa
+                import_from_bridge_domain_advertise_as_vpn: true
+                import_from_vrf_advertise_as_vpn: true
+                import_from_vrf_allow_backup: true
+                import_from_vrf_allow_best_external: true
+                import_from_default_vrf_advertise_as_vpn: true
+# also accepts a string
+                import_from_default_vrf_route_policy: QXJ6h#R2=\x,4b,_ ,v%{@I
+                export_to_vrf_allow_imported_vpn: true
+                export_to_vrf_allow_backup: true
+                export_to_vrf_allow_best_external: true
+# also accepts a string
+                export_to_default_vrf_route_policy: vnB,2xxf-\ix7'`%{3:CRWma?O
+                export_to_default_vrf_allow_imported_vpn: true
+# range 32-10000000; also accepts a string
+                max_prefix_limit: 32
+# range 1-100; also accepts a string
+                max_prefix_threshold: 1
+                import_route_targets:
+                  -
+# mandatory; also accepts a string
+                    rt: "&?q717JU7,jjqMP:zfF%{fgJ.EQs_'Y'xhl"
+# allowed: disable, enable; also accepts a string
+                    stitching: disable
+                export_route_targets:
+                  -
+# mandatory; also accepts a string
+                    rt: "'.@Q${PgnTv FM:G"
+# allowed: disable, enable; also accepts a string
+                    stitching: disable
+              ipv6_multicast:
+                enable: true
+# also accepts a string
+                import_route_policy: e7Mw,)yKrFLJA${t7P1AvNjfn:yQ
+# also accepts a string
+                export_route_policy: UwGl4,"%{*PFC,CWBz
+                import_from_bridge_domain_advertise_as_vpn: true
+                import_from_vrf_advertise_as_vpn: true
+                import_from_vrf_allow_backup: true
+                import_from_vrf_allow_best_external: true
+                import_from_default_vrf_advertise_as_vpn: true
+# also accepts a string
+                import_from_default_vrf_route_policy: "'V&?@${E0MEI%@Z%$\\/`.VkYV("
+                export_to_vrf_allow_imported_vpn: true
+                export_to_vrf_allow_backup: true
+                export_to_vrf_allow_best_external: true
+# also accepts a string
+                export_to_default_vrf_route_policy: iy${zzDP./in"j*x`
+                export_to_default_vrf_allow_imported_vpn: true
+# range 32-10000000; also accepts a string
+                max_prefix_limit: 32
+# range 1-100; also accepts a string
+                max_prefix_threshold: 1
+                import_route_targets:
+                  -
+# mandatory; also accepts a string
+                    rt: DYFN!\pjN8k42h6Z+%{ai]KLnLcfWlsBr
+# allowed: disable, enable; also accepts a string
+                    stitching: disable
+                export_route_targets:
+                  -
+# mandatory; also accepts a string
+                    rt: 5C_3j4l-*4'\M^Z/%{N=qXaKm8H
+# allowed: disable, enable; also accepts a string
+                    stitching: disable
+              ipv4_flowspec:
+                enable: true
+# also accepts a string
+                import_route_policy: ^i1AP[Y1xDB)6*F!$%{P9kFKX<JVtrsxsgo4
+# also accepts a string
+                export_route_policy: -h<2y${XpB@tt,t"3y
+                import_from_bridge_domain_advertise_as_vpn: true
+                import_from_vrf_advertise_as_vpn: true
+                import_from_vrf_allow_backup: true
+                import_from_vrf_allow_best_external: true
+                import_from_default_vrf_advertise_as_vpn: true
+# also accepts a string
+                import_from_default_vrf_route_policy: B'N%{DF"3dBGtC2B0d8wG
+                export_to_vrf_allow_imported_vpn: true
+                export_to_vrf_allow_backup: true
+                export_to_vrf_allow_best_external: true
+# also accepts a string
+                export_to_default_vrf_route_policy: Gz9S%{!FH\YJ25++8)r0e1#
+                export_to_default_vrf_allow_imported_vpn: true
+# range 32-10000000; also accepts a string
+                max_prefix_limit: 32
+# range 1-100; also accepts a string
+                max_prefix_threshold: 1
+                import_route_targets:
+                  -
+# mandatory; also accepts a string
+                    rt: 1X:%{?z"*F(Ii
+# allowed: disable, enable; also accepts a string
+                    stitching: disable
+                export_route_targets:
+                  -
+# mandatory; also accepts a string
+                    rt: :+s8,p`:@"8m&%{/d2%6!?)8>I]8`n_#a
+# allowed: disable, enable; also accepts a string
+                    stitching: disable
+              ipv6_flowspec:
+                enable: true
+# also accepts a string
+                import_route_policy: XO,69+8RO${'WD?W=6%;C\]L9P
+# also accepts a string
+                export_route_policy: (^XH]s;*B2E4<%{:s0dzQ"iCei5s#e
+                import_from_bridge_domain_advertise_as_vpn: true
+                import_from_vrf_advertise_as_vpn: true
+                import_from_vrf_allow_backup: true
+                import_from_vrf_allow_best_external: true
+                import_from_default_vrf_advertise_as_vpn: true
+# also accepts a string
+                import_from_default_vrf_route_policy: f&rT@;uF"&Xg5Q${*&9i
+                export_to_vrf_allow_imported_vpn: true
+                export_to_vrf_allow_backup: true
+                export_to_vrf_allow_best_external: true
+# also accepts a string
+                export_to_default_vrf_route_policy: be1@cZ${K5`K#Kt
+                export_to_default_vrf_allow_imported_vpn: true
+# range 32-10000000; also accepts a string
+                max_prefix_limit: 32
+# range 1-100; also accepts a string
+                max_prefix_threshold: 1
+                import_route_targets:
+                  -
+# mandatory; also accepts a string
+                    rt: '!p9Lpn$aCmW7dJgdpf${!Vf!G.mTeqttAg'
+# allowed: disable, enable; also accepts a string
+                    stitching: disable
+                export_route_targets:
+                  -
+# mandatory; also accepts a string
+                    rt: VJOc*>FZl"gSC^)"h%{a=HfOHnF:=3/^yXl@
+# allowed: disable, enable; also accepts a string
+                    stitching: disable
+# also accepts a string
+            rd: vszx9r${/nr$/l:x+ W`
+# also accepts a string
+            vpn_id: 65000:1
+            remote_route_filtering_disable: true

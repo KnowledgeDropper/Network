@@ -1,0 +1,53 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.tpa
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/tpa/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        tpa:
+          logging:
+# minimum 1; also accepts a string
+            file_max_size_kb: 1
+# minimum 1; also accepts a string
+            rotation_max_files: 1
+          statistics:
+            disable: true
+# minimum 1; also accepts a string
+            max_intf_events: 1
+# minimum 1; also accepts a string
+            max_lpts_events: 1
+# minimum 1; also accepts a string
+            update_frequency: 1
+          vrfs:
+            -
+# mandatory; also accepts a string
+              name: EgMMiX${#lz"1;OLSP1ex7cE,sE
+              address_family_ipv4:
+                default_route_mgmt: true
+# also accepts a string
+                update_source: woUORYq&"k;OK_G1%{
+                update_source_active_management: true
+              address_family_ipv6:
+                default_route_mgmt: true
+# also accepts a string
+                update_source: "'${tM0K=$ga/@R"
+                update_source_active_management: true
+              east_west_interfaces:
+                -
+# mandatory; also accepts a string
+                  name: zClS5%{^!(XA2i\9'

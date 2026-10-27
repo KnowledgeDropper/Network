@@ -1,0 +1,98 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.key_chains
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/key_chains/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        key_chains:
+          -
+# mandatory
+            name: <NAME>
+            macsec: true
+            tcp: true
+            keys:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                id: m*p${>s
+# allowed: hmac-sha-1, hmac-sha-256, hmac-sha-384, hmac-sha-512, md5; also accepts a string
+                cryptographic_algorithm: hmac-sha-1
+# allowed: aes-128-cmac, hmac-sha-1, hmac-sha-256; also accepts a string
+                cryptographic_algorithm_tcp: aes-128-cmac
+# allowed: aes-128-cmac, aes-256-cmac; also accepts a string
+                cryptographic_algorithm_macsec: aes-128-cmac
+# allowed: 0, 6, 7; also accepts a string
+                key_string_encryption: '0'
+                key_string_key: <HOSTNAME>
+                accept_lifetime_local: true
+                accept_lifetime_start_time: <HOSTNAME>
+# allowed: Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec; also accepts a string
+                accept_lifetime_start_month: Jan
+# range 1-31; also accepts a string
+                accept_lifetime_start_day: 1
+# range 1993-2035; also accepts a string
+                accept_lifetime_start_year: 1993
+# range 1-2147483646; also accepts a string
+                accept_lifetime_duration: 1
+                accept_lifetime_infinite: true
+                accept_lifetime_end_time: <HOSTNAME>
+# allowed: Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec; also accepts a string
+                accept_lifetime_end_month: Jan
+# range 1-31; also accepts a string
+                accept_lifetime_end_day: 1
+# range 1993-2035; also accepts a string
+                accept_lifetime_end_year: 1993
+                send_lifetime_local: true
+                send_lifetime_start_time: <HOSTNAME>
+# allowed: Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec; also accepts a string
+                send_lifetime_start_month: Jan
+# range 1-31; also accepts a string
+                send_lifetime_start_day: 1
+# range 1993-2035; also accepts a string
+                send_lifetime_start_year: 1993
+# range 1-2147483646; also accepts a string
+                send_lifetime_duration: 1
+                send_lifetime_infinite: true
+                send_lifetime_end_time: <HOSTNAME>
+# allowed: Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec; also accepts a string
+                send_lifetime_end_month: Jan
+# range 1-31; also accepts a string
+                send_lifetime_end_day: 1
+# range 1993-2035; also accepts a string
+                send_lifetime_end_year: 1993
+                macsec_lifetime_local: true
+                macsec_lifetime_start_time: 00:11:22:33:44:55
+# allowed: Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec; also accepts a string
+                macsec_lifetime_start_month: Jan
+# range 1-31; also accepts a string
+                macsec_lifetime_start_day: 1
+# range 1993-2035; also accepts a string
+                macsec_lifetime_start_year: 1993
+# range 1-2147483646; also accepts a string
+                macsec_lifetime_duration: 1
+                macsec_lifetime_infinite: true
+                macsec_lifetime_end_time: 00:11:22:33:44:55
+# allowed: Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec; also accepts a string
+                macsec_lifetime_end_month: Jan
+# range 1-31; also accepts a string
+                macsec_lifetime_end_day: 1
+# range 1993-2035; also accepts a string
+                macsec_lifetime_end_year: 1993
+# also accepts an integer
+                send_id: rABbX)o>7"BC%{?^ai"6Xo[_HM[C;:L1
+# also accepts an integer
+                recv_id: afa ${q=T\ds2x*Osn
+                include_tcp_options: true
+                accept_ao_mismatch: true

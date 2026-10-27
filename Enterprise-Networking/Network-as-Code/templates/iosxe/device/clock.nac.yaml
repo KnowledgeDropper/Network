@@ -1,0 +1,64 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.clock
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/clock/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        clock:
+          calendar_valid: true
+          summer_time:
+            zone: <HOSTNAME>
+            date:
+              enable: true
+# range 1-31; also accepts a string
+              start_day: 1
+# allowed: Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec; also accepts a string
+              start_month: Jan
+# range 1993-2035; also accepts a string
+              start_year: 1993
+              start_time: <HOSTNAME>
+# range 1-31; also accepts a string
+              end_day: 1
+# allowed: Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec; also accepts a string
+              end_month: Jan
+# range 1993-2035; also accepts a string
+              end_year: 1993
+              end_time: <HOSTNAME>
+# range 1-1440; also accepts a string
+              offset: 1
+            recurring:
+              enable: true
+# allowed: first, last; also accepts an integer; also accepts a string
+              start_week: first
+# allowed: Sun, Mon, Tue, Wed, Thu, Fri, Sat; also accepts a string
+              start_weekday: Sun
+# allowed: Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec; also accepts a string
+              start_month: Jan
+              start_time: <HOSTNAME>
+# allowed: first, last; also accepts an integer; also accepts a string
+              end_week: first
+# allowed: Sun, Mon, Tue, Wed, Thu, Fri, Sat; also accepts a string
+              end_weekday: Sun
+# allowed: Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec; also accepts a string
+              end_month: Jan
+              end_time: <HOSTNAME>
+# range 1-1440; also accepts a string
+              offset: 1
+          timezone: UTC
+# range -23-23; also accepts a string
+          timezone_offset_hours: 1
+# maximum 59; also accepts a string
+          timezone_offset_minutes: 1

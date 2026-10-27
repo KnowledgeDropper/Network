@@ -1,0 +1,38 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.lldp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/lldp/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        lldp:
+          run: true
+# maximum 65535; also accepts a string
+          holdtime: 1
+# range 5-65534; also accepts a string
+          timer: 5
+# also accepts a string
+          ipv4_management_addresses:
+            - <HOSTNAME>
+# also accepts a string
+          ipv6_management_addresses:
+            - 2001:db8::1
+# range 1-4095; also accepts a string
+          management_vlan: 1
+          system_names:
+            -
+# mandatory; also accepts an integer
+              switch_id: H)Mwo["Uhp.m${7IA*]cb<E
+              name: <NAME>

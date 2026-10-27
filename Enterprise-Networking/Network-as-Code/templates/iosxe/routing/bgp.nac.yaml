@@ -1,0 +1,406 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.routing.bgp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/bgp/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        routing:
+          bgp:
+# mandatory; also accepts an integer
+            as_number: b%{#rf]drac_q
+# also accepts a string
+            router_id: G3NOzW[9MLeSII7 ${X?toHVi%g
+# allowed: Loopback; also accepts a string
+            router_id_interface_type: Loopback
+# also accepts an integer
+            router_id_interface_id: 0/0.1
+            template_peer_policies:
+              -
+# mandatory; also accepts a string
+                name: cNc${EAh:'MS
+# allowed: both, extended, standard; also accepts a string
+                send_community: both
+                route_maps:
+                  -
+# mandatory; allowed: in, out; also accepts a string
+                    direction: in
+# mandatory; also accepts a string
+                    route_map_name: eDdu<Ht+iT[6'h)%{-&_$<@F"EE1QlENmpB4
+                route_reflector_client: true
+# range 1-10; also accepts a string
+                allowas_in_as_number: 1
+                as_override_split_horizon: true
+            default_ipv4_unicast: true
+            log_neighbor_changes: true
+            address_family:
+              ipv4_unicast:
+                aggregate_addresses:
+                  -
+# mandatory; also accepts a string
+                    address: "@5>j\"\\8l%{=j49<!Fl*'pKf."
+# mandatory; also accepts a string
+                    mask: s<w8G%{O;$e\*sp
+                networks:
+                  -
+# mandatory; also accepts a string
+                    network: i>d@$L,br@SDyZ^uI${DT
+# also accepts a string
+                    mask: kIC\pN%{<
+                    route_map: <HOSTNAME>
+                    backdoor: true
+                neighbors:
+                  -
+# mandatory; also accepts a string
+                    ip: DT5k ?QV;Df%${Q[td?f
+                    activate: true
+# allowed: both, extended, standard; also accepts a string
+                    send_community: both
+                    route_reflector_client: true
+# allowed: inbound; also accepts a string
+                    soft_reconfiguration: inbound
+                    default_originate: true
+                    default_originate_route_map: <HOSTNAME>
+                    route_maps:
+                      -
+# mandatory; allowed: in, out; also accepts a string
+                        direction: in
+# mandatory
+                        name: <NAME>
+                    inherit_peer_policy: example-host
+                vrfs:
+                  -
+# mandatory
+                    vrf: <HOSTNAME>
+                    advertise_l2vpn_evpn: true
+# also accepts a string
+                    router_id: U3ddnw(d${y$1F
+# allowed: Loopback; also accepts a string
+                    router_id_interface_type: Loopback
+# also accepts an integer
+                    router_id_interface_id: 0/0.1
+                    aggregate_addresses:
+                      -
+# mandatory; also accepts a string
+                        address: Df8UZI>!w"c_^%{V(
+# mandatory; also accepts a string
+                        mask: "`MrcCOD*voI]${'xB6"
+                        summary_only: true
+                    networks:
+                      -
+# mandatory; also accepts a string
+                        network: ${L'?i=Z!c
+# also accepts a string
+                        mask: ccZ'pe$`&!np*)C%{k#
+                        route_map: <HOSTNAME>
+                        backdoor: true
+                    neighbors:
+                      -
+# mandatory; also accepts a string
+                        ip: kFO>'%{
+# mandatory; also accepts an integer
+                        remote_as: S2?ZkD!,Rfz=#h= %{1$Ma(@sY)-pvZ+T4D
+                        description: <DESCRIPTION>
+                        shutdown: true
+# also accepts a string
+                        cluster_id: LW-vM${aYWU4zm7Y3_wlnpVw
+                        log_neighbor_changes: true
+# maximum 7; also accepts a string
+                        password_type: 1
+                        password: <SECRET>
+# maximum 3600; also accepts a string
+                        timers_keepalive: 1
+# maximum 3600; also accepts a string
+                        timers_holdtime: 1
+# maximum 3600; also accepts a string
+                        timers_minimum_holdtime: 1
+                        fall_over_default_route_map: <HOSTNAME>
+                        fall_over_bfd: true
+                        fall_over_bfd_multi_hop: true
+                        fall_over_bfd_single_hop: true
+                        fall_over_bfd_check_control_plane_failure: true
+                        fall_over_bfd_strict_mode: true
+                        fall_over_maximum_metric_route_map: <HOSTNAME>
+                        disable_connected_check: true
+# maximum 254; also accepts a string
+                        ttl_security_hops: 1
+# also accepts an integer
+                        local_as: v>s(44zvpg3\W${sToNzDP
+                        local_as_no_prepend: true
+                        local_as_replace_as: true
+                        local_as_dual_as: true
+# allowed: Loopback; also accepts a string
+                        update_source_interface_type: Loopback
+# also accepts an integer
+                        update_source_interface_id: 0/0.1
+                        activate: true
+# allowed: both, extended, standard; also accepts a string
+                        send_community: both
+                        route_reflector_client: true
+# allowed: inbound; also accepts a string
+                        soft_reconfiguration: inbound
+                        default_originate: true
+                        default_originate_route_map: <HOSTNAME>
+                        route_maps:
+                          -
+# mandatory; allowed: in, out; also accepts a string
+                            direction: in
+# mandatory
+                            name: <NAME>
+                        ebgp_multihop: true
+# range 1-255; also accepts a string
+                        ebgp_multihop_max_hop: 1
+                        ha_mode_graceful_restart: true
+                        next_hop_self: true
+                        next_hop_self_all: true
+# maximum 600; also accepts a string
+                        advertisement_interval: 1
+                    redistribute:
+                      connected: true
+                      connected_route_map: <HOSTNAME>
+# maximum 4294967295; also accepts a string
+                      connected_metric: 1
+                      static: true
+                      static_route_map: <HOSTNAME>
+# maximum 4294967295; also accepts a string
+                      static_metric: 1
+                    admin_distances:
+                      -
+# mandatory; range 1-255; also accepts a string
+                        distance: 1
+# mandatory; also accepts a string
+                        source_ip: eg+_)X,V!4+qdLcN7`Z${u'$s E
+# mandatory; also accepts a string
+                        wildcard: 23@jI0!%{9Dc3l I#-j
+                        acl: <HOSTNAME>
+# range 1-255; also accepts a string
+                    distance_bgp_external: 1
+# range 1-255; also accepts a string
+                    distance_bgp_internal: 1
+# range 1-255; also accepts a string
+                    distance_bgp_local: 1
+# range 1-32; also accepts a string
+                    maximum_paths_ebgp: 1
+# range 1-32; also accepts a string
+                    maximum_paths_ibgp: 1
+                    import_path_selection_all: true
+                redistribute:
+                  connected: true
+                  connected_route_map: <HOSTNAME>
+# maximum 4294967295; also accepts a string
+                  connected_metric: 1
+                  static: true
+                  static_route_map: <HOSTNAME>
+# maximum 4294967295; also accepts a string
+                  static_metric: 1
+                admin_distances:
+                  -
+# mandatory; range 1-255; also accepts a string
+                    distance: 1
+# mandatory; also accepts a string
+                    source_ip: /vD.s`/'%{C%jn1[.CaY*bQx#o
+# mandatory; also accepts a string
+                    wildcard: 6u7${O@&t_MfEQF.Y)e6
+                    acl: <HOSTNAME>
+# range 1-255; also accepts a string
+                distance_bgp_external: 1
+# range 1-255; also accepts a string
+                distance_bgp_internal: 1
+# range 1-255; also accepts a string
+                distance_bgp_local: 1
+# range 1-32; also accepts a string
+                maximum_paths_ebgp: 1
+# range 1-32; also accepts a string
+                maximum_paths_ibgp: 1
+              ipv4_mvpn:
+                neighbors:
+                  -
+# mandatory; also accepts a string
+                    ip: 2\YfOXAJ%{)bo
+                    activate: true
+# allowed: both, extended, standard; also accepts a string
+                    send_community: both
+              ipv6_unicast:
+                networks:
+                  -
+# mandatory; also accepts a string
+                    network: '`k X(R![c[%hTJQAJ@*${=e9b'
+                    route_map: <HOSTNAME>
+                    backdoor: true
+                vrfs:
+                  -
+# mandatory
+                    vrf: <HOSTNAME>
+                    advertise_l2vpn_evpn: true
+                    networks:
+                      -
+# mandatory; also accepts a string
+                        network: XO2zW/G='%{2KXpo%#X"XH5u!
+                        route_map: <HOSTNAME>
+                        backdoor: true
+                        evpn: true
+                    redistribute:
+                      connected: true
+                      connected_route_map: <HOSTNAME>
+# maximum 4294967295; also accepts a string
+                      connected_metric: 1
+                      static: true
+                      static_route_map: <HOSTNAME>
+# maximum 4294967295; also accepts a string
+                      static_metric: 1
+                neighbors:
+                  -
+# mandatory; also accepts a string
+                    ip: jZ${4"w.
+                    activate: true
+# allowed: both, extended, standard; also accepts a string
+                    send_community: both
+                    route_reflector_client: true
+# allowed: inbound; also accepts a string
+                    soft_reconfiguration: inbound
+                    default_originate: true
+                    default_originate_route_map: <HOSTNAME>
+                    route_maps:
+                      -
+# mandatory; allowed: in, out; also accepts a string
+                        direction: in
+# mandatory
+                        name: <NAME>
+                redistribute:
+                  connected: true
+                  connected_route_map: <HOSTNAME>
+# maximum 4294967295; also accepts a string
+                  connected_metric: 1
+                  static: true
+                  static_route_map: <HOSTNAME>
+# maximum 4294967295; also accepts a string
+                  static_metric: 1
+              vpnv4_unicast:
+                enable: true
+              vpnv6_unicast:
+                enable: true
+              l2vpn_evpn:
+                rewrite_evpn_rt_asn: true
+# maximum 100; also accepts a string
+                bgp_nexthop_trigger_delay: 1
+                neighbors:
+                  -
+# mandatory; also accepts a string
+                    ip: C*/_zA46v4CEP%{A]
+                    activate: true
+# allowed: both, extended, standard; also accepts a string
+                    send_community: both
+                    route_reflector_client: true
+# allowed: inbound; also accepts a string
+                    soft_reconfiguration: inbound
+                    route_maps:
+                      -
+# mandatory; allowed: in, out; also accepts a string
+                        in_out: in
+# mandatory
+                        name: <NAME>
+                    inherit_peer_policy: example-host
+            neighbors:
+              -
+# mandatory; also accepts a string
+                ip: <]C9S$b${FMaDUK.<2/
+# also accepts an integer
+                remote_as: '%YNL r/M,F*p+2%{=60WPR"aZVwhX@Qg'
+                description: <DESCRIPTION>
+                shutdown: true
+# also accepts a string
+                cluster_id: ',HSMc;oj1I6.6x@HJo${'
+                disable_connected_check: true
+                fall_over_default_enable: true
+                fall_over_default_route_map: <HOSTNAME>
+                fall_over_bfd: true
+                fall_over_bfd_multi_hop: true
+                fall_over_bfd_single_hop: true
+                fall_over_bfd_check_control_plane_failure: true
+                fall_over_bfd_strict_mode: true
+                fall_over_maximum_metric_route_map: <HOSTNAME>
+# also accepts an integer
+                local_as: UskAYTqQ+$F $M%{\?g7X)ZazgS e
+                local_as_no_prepend: true
+                local_as_replace_as: true
+                local_as_dual_as: true
+                log_neighbor_changes: true
+# maximum 7; also accepts a string
+                password_type: 1
+                password: <SECRET>
+                peer_group: 10.0.0.1
+# maximum 3600; also accepts a string
+                timers_keepalive: 1
+# maximum 3600; also accepts a string
+                timers_holdtime: 1
+# maximum 3600; also accepts a string
+                timers_minimum_neighbor_holdtime: 1
+# maximum 254; also accepts a string
+                ttl_security_hops: 1
+# allowed: Loopback; also accepts a string
+                update_source_interface_type: Loopback
+# also accepts an integer
+                update_source_interface_id: 0/0.1
+                ebgp_multihop: true
+# range 1-255; also accepts a string
+                ebgp_multihop_max_hop: 1
+                inherit_peer_session: example-host
+                ao_keychain: <HOSTNAME>
+                ao_include_tcp_options: true
+                ao_accept_mismatch_connections: true
+            peer_session_templates:
+              -
+# mandatory
+                template_name: example-name
+# also accepts an integer
+                remote_as: '*r^^&!zsyI%{dK=5'
+                description: <DESCRIPTION>
+                disable_connected_check: true
+                ebgp_multihop: true
+# range 1-255; also accepts a string
+                ebgp_multihop_max_hop: 1
+# allowed: Loopback; also accepts a string
+                update_source_interface_type: Loopback
+# also accepts an integer
+                update_source_interface_id: 0/0.1
+                inherit_peer_session: example-host
+                ao_keychain: <HOSTNAME>
+                ao_include_tcp_options: true
+                ao_accept_mismatch_connections: true
+            graceful_restart: true
+# range 1-3600; also accepts a string
+            update_delay: 1
+            bmp_servers:
+              -
+# mandatory; also accepts an integer
+                id: ?GB0oL=s@d+Q !pIu&S%{?gxE
+# also accepts a string
+                address: '[C k:$*"Z0>\\${(\*NG;MC'
+# range 1-65535; also accepts a string
+                port_number: 1
+                activate: true
+                description: <DESCRIPTION>
+# range 1-3600; also accepts a string
+                failure_retry_delay: 1
+# range 1-3600; also accepts a string
+                flapping_delay: 1
+# range 1-3600; also accepts a string
+                initial_delay: 1
+# range 1-3600; also accepts a string
+                stats_reporting_period: 1
+# allowed: Loopback, GigabitEthernet, TenGigabitEthernet, Vlan; also accepts a string
+                update_source_interface_type: Loopback
+# also accepts an integer
+                update_source_interface_id: 0/0.1

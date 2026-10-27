@@ -1,0 +1,56 @@
+# Cisco Network as Code template for Meraki.
+# Data model: meraki
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: meraki.domains[].organizations[].switch.smart_port_automations
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs: schema section without a dedicated page in the docs nav.
+meraki:
+  domains:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      administrator: {}
+# mandatory
+      organizations:
+        - switch:
+            smart_port_automations:
+              -
+# mandatory
+                name: <NAME>
+                description: <DESCRIPTION>
+                fallback_profile_name: <NAME>
+                assigned_switch_ports:
+                  -
+# mandatory
+                    network: <HOSTNAME>
+# mandatory
+                    switch: <HOSTNAME>
+# mandatory
+                    port_id_ranges:
+                      - slot: 1
+                        module: <HOSTNAME>
+# mandatory; range 1-48; also accepts a string
+                        from: 1
+# mandatory; range 1-48; also accepts a string
+                        to: 1
+                rules:
+                  -
+# mandatory; minimum 1
+                    priority: 1
+# mandatory
+                    profile_name: <NAME>
+# mandatory
+                    conditions:
+                      -
+# mandatory; allowed: LLDP system description, MAC address
+                        attribute: LLDP system description
+# mandatory
+                        values:
+                          - <HOSTNAME>

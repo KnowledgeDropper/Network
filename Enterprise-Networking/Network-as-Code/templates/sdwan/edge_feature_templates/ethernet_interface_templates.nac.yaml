@@ -1,0 +1,398 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.ethernet_interface_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/ethernet_interface/
+sdwan:
+  edge_feature_templates:
+    ethernet_interface_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - ASR-1001-HX
+        adaptive_qos: true
+# range 1-720
+        adaptive_qos_period: 1
+        adaptive_qos_period_variable: <HOSTNAME>
+        adaptive_qos_shaping_rate_downstream:
+# range 8-100000000
+          default: 8
+          default_variable: <HOSTNAME>
+# range 8-100000000
+          maximum: 8
+          maximum_variable: <HOSTNAME>
+# range 8-100000000
+          minimum: 8
+          minimum_variable: <HOSTNAME>
+        adaptive_qos_shaping_rate_upstream:
+# range 8-100000000
+          default: 8
+          default_variable: <HOSTNAME>
+# range 8-100000000
+          maximum: 8
+          maximum_variable: <HOSTNAME>
+# range 8-100000000
+          minimum: 8
+          minimum_variable: <HOSTNAME>
+# maximum 2147483
+        arp_timeout: 1
+        arp_timeout_variable: <HOSTNAME>
+        autonegotiate: true
+        autonegotiate_variable: <HOSTNAME>
+        bandwidth_auto_detect: true
+        bandwidth_auto_detect_variable: <HOSTNAME>
+# range 1-2147483647
+        bandwidth_downstream: 1
+        bandwidth_downstream_variable: <HOSTNAME>
+# range 1-2147483647
+        bandwidth_upstream: 1
+        bandwidth_upstream_variable: <HOSTNAME>
+        block_non_source_ip: true
+        block_non_source_ip_variable: 10.0.0.1
+# range 1-255
+        dhcp_distance: 1
+        dhcp_distance_variable: <HOSTNAME>
+# allowed: half, full, auto
+        duplex: half
+        duplex_variable: <HOSTNAME>
+        enable_sgt: true
+        gre_tunnel_source_ip: 10.0.0.1
+        gre_tunnel_source_ip_variable: 10.0.0.1
+        gre_tunnel_xconnect: <HOSTNAME>
+        gre_tunnel_xconnect_variable: <HOSTNAME>
+        icmp_redirect_disable: true
+        icmp_redirect_disable_variable: <HOSTNAME>
+        interface_description: <DESCRIPTION>
+        interface_description_variable: <DESCRIPTION>
+        interface_name: 0/0.1
+        interface_name_variable: 0/0.1
+        ip_directed_broadcast: true
+        ip_directed_broadcast_variable: 10.0.0.1
+# range 576-9216
+        ip_mtu: 576
+        ip_mtu_variable: 10.0.0.1
+        iperf_server: 10.0.0.1
+        iperf_server_variable: 10.0.0.1
+        ipv4_egress_access_list: <HOSTNAME>
+        ipv4_egress_access_list_variable: <HOSTNAME>
+        ipv4_ingress_access_list: <HOSTNAME>
+        ipv4_ingress_access_list_variable: <HOSTNAME>
+        ipv4_address: 10.0.0.1
+        ipv4_address_variable: 10.0.0.1
+        ipv4_address_dhcp: true
+        ipv4_dhcp_helpers:
+          - <HOSTNAME>
+        ipv4_dhcp_helpers_variable: <HOSTNAME>
+        ipv4_nat: true
+        ipv4_nat_inside_source_loopback_interface: 0/0.1
+        ipv4_nat_inside_source_loopback_interface_variable: 0/0.1
+        ipv4_nat_overload: true
+        ipv4_nat_overload_variable: <HOSTNAME>
+# range 1-31
+        ipv4_nat_pool_prefix_length: 1
+        ipv4_nat_pool_prefix_length_variable: 10.0.0.1
+        ipv4_nat_pool_range_end: <HOSTNAME>
+        ipv4_nat_pool_range_end_variable: <HOSTNAME>
+        ipv4_nat_pool_range_start: <HOSTNAME>
+        ipv4_nat_pool_range_start_variable: <HOSTNAME>
+# range 1-8947
+        ipv4_nat_tcp_timeout: 1
+        ipv4_nat_tcp_timeout_variable: <HOSTNAME>
+# allowed: interface, pool, loopback
+        ipv4_nat_type: interface
+        ipv4_nat_type_variable: <HOSTNAME>
+# range 1-8947
+        ipv4_nat_udp_timeout: 1
+        ipv4_nat_udp_timeout_variable: <HOSTNAME>
+        ipv4_port_forwarding_rules:
+          - optional: true
+# allowed: tcp, udp
+            protocol: tcp
+            protocol_variable: <HOSTNAME>
+            source_ip: 10.0.0.1
+            source_ip_variable: 10.0.0.1
+# maximum 65535
+            source_port: 1
+            source_port_variable: <HOSTNAME>
+# maximum 65530
+            source_vpn_id: 1
+            source_vpn_id_variable: <HOSTNAME>
+            translate_ip: 10.0.0.1
+            translate_ip_variable: 10.0.0.1
+# maximum 65535
+            translate_port: 1
+            translate_port_variable: <HOSTNAME>
+        ipv4_secondary_addresses:
+          - address: 10.0.0.1
+            address_variable: 10.0.0.1
+        ipv4_static_nat_rules:
+          - optional: true
+            source_ip: 10.0.0.1
+            source_ip_variable: 10.0.0.1
+# maximum 65530
+            source_vpn_id: 1
+            source_vpn_id_variable: <HOSTNAME>
+            translate_ip: 10.0.0.1
+            translate_ip_variable: 10.0.0.1
+        ipv4_vrrp_groups:
+          - address: 10.0.0.1
+            address_variable: 10.0.0.1
+# range 1-255
+            id: 1
+            id_variable: <HOSTNAME>
+            optional: true
+# range 1-254
+            priority: 1
+            priority_variable: <HOSTNAME>
+            secondary_addresses:
+              - address: 10.0.0.1
+                address_variable: 10.0.0.1
+# range 100-40950
+            timer: 100
+            timer_variable: <HOSTNAME>
+            tloc_preference_change: true
+# range 1-4294967295
+            tloc_preference_change_value: 1
+            tloc_preference_change_value_variable: <HOSTNAME>
+            track_prefix_list: 10.0.0.1
+            track_prefix_list_variable: 10.0.0.1
+            track_omp: true
+            tracking_objects:
+              -
+# allowed: decrement, shutdown
+                action: decrement
+                action_variable: <HOSTNAME>
+# range 1-255
+                decrement_value: 1
+                decrement_value_variable: <HOSTNAME>
+# range 1-1000
+                id: 1
+                id_variable: <HOSTNAME>
+        ipv6_egress_access_list: 2001:db8::1
+        ipv6_egress_access_list_variable: 2001:db8::1
+        ipv6_ingress_access_list: 2001:db8::1
+        ipv6_ingress_access_list_variable: 2001:db8::1
+        ipv6_address: 2001:db8::1
+        ipv6_address_variable: 2001:db8::1
+        ipv6_dhcp_helpers:
+          - address: 10.0.0.1
+            address_variable: 10.0.0.1
+# range 1-65536
+            vpn_id: 1
+            vpn_id_variable: <HOSTNAME>
+        ipv6_nat: true
+# allowed: nat64, nat66
+        ipv6_nat_type: nat64
+        ipv6_port_forwarding_rules:
+          - optional: true
+# allowed: tcp, udp
+            protocol: tcp
+            protocol_variable: <HOSTNAME>
+            source_ip: 10.0.0.1
+            source_ip_variable: 10.0.0.1
+# range 1-65535
+            source_port: 1
+            source_port_variable: <HOSTNAME>
+# maximum 65530
+            source_vpn_id: 1
+            source_vpn_id_variable: <HOSTNAME>
+            translate_ip: 10.0.0.1
+            translate_ip_variable: 10.0.0.1
+# range 1-65535
+            translate_port: 1
+            translate_port_variable: <HOSTNAME>
+        ipv6_secondary_addresses:
+          - address: 10.0.0.1
+            address_variable: 10.0.0.1
+        ipv6_static_nat_rules:
+          - optional: true
+            source_prefix: 10.0.0.1
+            source_prefix_variable: 10.0.0.1
+# maximum 65530
+            source_vpn_id: 1
+            source_vpn_id_variable: <HOSTNAME>
+            translated_source_prefix: 10.0.0.1
+            translated_source_prefix_variable: 10.0.0.1
+        ipv6_vrrp_groups:
+          -
+# range 1-255
+            id: 1
+            id_variable: <HOSTNAME>
+            global_prefix: 10.0.0.1
+            global_prefix_variable: 10.0.0.1
+            link_local_address: 10.0.0.1
+            link_local_address_variable: 10.0.0.1
+            optional: true
+# range 1-254
+            priority: 1
+            priority_variable: <HOSTNAME>
+# range 100-40950
+            timer: 100
+            timer_variable: <HOSTNAME>
+            track_prefix_list: 10.0.0.1
+            track_prefix_list_variable: 10.0.0.1
+            track_omp: true
+            track_omp_variable: <HOSTNAME>
+# range 30-600
+        load_interval: 30
+        load_interval_variable: <HOSTNAME>
+        mac_address: 00:11:22:33:44:55
+        mac_address_variable: 00:11:22:33:44:55
+# allowed: auto-select, rj45, sfp
+        media_type: auto-select
+        media_type_variable: <HOSTNAME>
+# range 1500-9216
+        mtu: 1500
+        mtu_variable: <HOSTNAME>
+        rewrite_rule: <HOSTNAME>
+        rewrite_rule_variable: <HOSTNAME>
+# range 8-100000000
+        shaping_rate: 8
+        shaping_rate_variable: <HOSTNAME>
+        shutdown: true
+        shutdown_variable: <HOSTNAME>
+        static_arps:
+          - ip_address: 10.0.0.1
+            ip_address_variable: 10.0.0.1
+            mac_address: 00:11:22:33:44:55
+            mac_address_variable: 00:11:22:33:44:55
+            optional: true
+# range 2-65519
+        static_sgt: 2
+        static_sgt_variable: <HOSTNAME>
+        sgt_enforcement: true
+# range 2-65519
+        sgt_enforcement_tag: 2
+        sgt_enforcement_tag_variable: <HOSTNAME>
+        sgt_propagation: true
+        sgt_trusted: true
+# allowed: 10, 100, 1000, 2500, 10000
+        speed: 10
+        speed_variable: <HOSTNAME>
+# range 500-1460
+        tcp_mss: 500
+        tcp_mss_variable: <HOSTNAME>
+        tloc_extension: <HOSTNAME>
+        tloc_extension_variable: <HOSTNAME>
+        tracker: <HOSTNAME>
+        tracker_variable: <HOSTNAME>
+        tunnel_interface:
+          allow_service_all: true
+          allow_service_all_variable: <HOSTNAME>
+          allow_service_bgp: true
+          allow_service_bgp_variable: <HOSTNAME>
+          allow_service_dhcp: true
+          allow_service_dhcp_variable: <HOSTNAME>
+          allow_service_dns: true
+          allow_service_dns_variable: <HOSTNAME>
+          allow_service_https: true
+          allow_service_https_variable: <HOSTNAME>
+          allow_service_icmp: true
+          allow_service_icmp_variable: <HOSTNAME>
+          allow_service_netconf: true
+          allow_service_netconf_variable: <HOSTNAME>
+          allow_service_ntp: true
+          allow_service_ntp_variable: <HOSTNAME>
+          allow_service_ospf: true
+          allow_service_ospf_variable: <HOSTNAME>
+          allow_service_snmp: true
+          allow_service_snmp_variable: <HOSTNAME>
+          allow_service_ssh: true
+          allow_service_ssh_variable: <HOSTNAME>
+          allow_service_stun: true
+          allow_service_stun_variable: <HOSTNAME>
+          bind_loopback_tunnel: <HOSTNAME>
+          bind_loopback_tunnel_variable: <HOSTNAME>
+          border: true
+          border_variable: <HOSTNAME>
+# allowed: default, carrier1, carrier2, carrier3, carrier4, carrier5, carrier6, carrier7, carrier8
+          carrier: default
+          carrier_variable: <HOSTNAME>
+          clear_dont_fragment: true
+          clear_dont_fragment_variable: <HOSTNAME>
+# allowed: 3g, biz-internet, blue, bronze, custom1, custom2, custom3, default, gold, green, lte,
+# metro-ethernet, mpls, public-internet, private1, private2, private3, private4, private5,
+# private6, red, silver
+          color: 3g
+          color_variable: <HOSTNAME>
+# allowed: core, core-shared
+          core_region: core
+          core_region_variable: <HOSTNAME>
+          enable_core_region: true
+          exclude_controller_groups:
+            - 1
+          exclude_controller_groups_variable: <HOSTNAME>
+          gre_encapsulation: true
+# maximum 4294967295
+          gre_preference: 1
+          gre_preference_variable: <HOSTNAME>
+          gre_tunnel_destination_ip: 10.0.0.1
+          gre_tunnel_destination_ip_variable: 10.0.0.1
+# range 1-255
+          gre_weight: 1
+          gre_weight_variable: <HOSTNAME>
+# range 1-4294967295
+          group: 1
+          group_variable: <HOSTNAME>
+# range 100-600000
+          hello_interval: 100
+          hello_interval_variable: <HOSTNAME>
+# range 12-6000
+          hello_tolerance: 12
+          hello_tolerance_variable: <HOSTNAME>
+          ipsec_encapsulation: true
+# maximum 4294967295
+          ipsec_preference: 1
+          ipsec_preference_variable: <HOSTNAME>
+# range 1-255
+          ipsec_weight: 1
+          ipsec_weight_variable: <HOSTNAME>
+          last_resort_circuit: true
+          last_resort_circuit_variable: <HOSTNAME>
+          low_bandwidth_link: true
+          low_bandwidth_link_variable: <HOSTNAME>
+# maximum 100
+          max_control_connections: 1
+          max_control_connections_variable: <HOSTNAME>
+# range 1-60
+          nat_refresh_interval: 1
+          nat_refresh_interval_variable: <HOSTNAME>
+          network_broadcast: true
+          network_broadcast_variable: <HOSTNAME>
+          port_hop: true
+          port_hop_variable: <HOSTNAME>
+# range 500-1460
+          tcp_mss: 500
+# range 1-99
+          per_tunnel_qos_bandwidth_percent: 1
+          per_tunnel_qos_bandwidth_percent_variable: <HOSTNAME>
+# allowed: hub, spoke
+          per_tunnel_qos_mode: hub
+          per_tunnel_qos_mode_variable: <HOSTNAME>
+          propagate_sgt: true
+          propagate_sgt_variable: <HOSTNAME>
+          restrict: true
+          restrict_variable: <HOSTNAME>
+# allowed: off, secondary-only, secondary-shared
+          secondary_region: off
+          secondary_region_variable: <HOSTNAME>
+          vbond_as_stun_server: true
+          vbond_as_stun_server_variable: 10.0.0.1
+# maximum 8
+          vmanage_connection_preference: 1
+          vmanage_connection_preference_variable: <HOSTNAME>
+        qos_map: <HOSTNAME>
+        qos_map_variable: <HOSTNAME>
+        vpn_qos_map: <HOSTNAME>
+        vpn_qos_map_variable: <HOSTNAME>

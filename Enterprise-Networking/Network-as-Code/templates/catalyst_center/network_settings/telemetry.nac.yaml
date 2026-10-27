@@ -1,0 +1,38 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.network_settings.telemetry
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/network_settings/telemetry/
+catalyst_center:
+  network_settings:
+    telemetry:
+      -
+# mandatory
+        name: <NAME>
+# mandatory
+        wired_data_collection: true
+# mandatory
+        wireless_telemetry: true
+# mandatory
+        enable_netflow_collector_on_devices: true
+# mandatory
+        catalyst_center_as_network_collector: true
+        netflow_collector_ip_address: 10.0.0.1
+# range 1-65535
+        netflow_collector_port: 1
+        snmp_servers:
+          - <HOSTNAME>
+        syslog_servers:
+          - <HOSTNAME>
+# mandatory
+        catalyst_center_as_snmp_server: true
+# mandatory
+        catalyst_center_as_syslog_server: true

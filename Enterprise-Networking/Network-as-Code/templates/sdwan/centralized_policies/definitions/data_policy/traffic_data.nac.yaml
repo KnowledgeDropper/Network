@@ -1,0 +1,157 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.centralized_policies.definitions.data_policy.traffic_data
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/centralized_policies/traffic_data_application_firewall/
+#   https://netascode.cisco.com/docs/data_models/sdwan/centralized_policies/traffic_data_custom/
+#   https://netascode.cisco.com/docs/data_models/sdwan/centralized_policies/traffic_data_qos/
+#   https://netascode.cisco.com/docs/data_models/sdwan/centralized_policies/traffic_data_service_chaining/
+#   https://netascode.cisco.com/docs/data_models/sdwan/centralized_policies/traffic_data_traffic_engineering/
+sdwan:
+  centralized_policies:
+    definitions:
+      data_policy:
+        traffic_data:
+          -
+# mandatory
+            name: example-name
+# mandatory
+            description: <DESCRIPTION>
+# mandatory; allowed: accept, drop
+            default_action_type: accept
+            sequences:
+              -
+# mandatory; allowed: accept, drop
+                base_action: accept
+# mandatory; range 1-65534
+                id: 1
+# mandatory
+                name: <NAME>
+# allowed: ipv4, ipv6, all
+                ip_type: ipv4
+# allowed: custom, service_chaining, qos, application_firewall, traffic_engineering
+                type: custom
+                match_criterias:
+                  application_list: example-host
+                  dns_application_list: example-host
+# allowed: request, response
+                  dns: request
+# maximum 63; also accepts a string
+                  dscp: 1
+# maximum 65535
+                  packet_length: 1
+# allowed: low, high
+                  plp: low
+                  protocols:
+                    - 1
+                  source_data_prefix_list: example-host
+                  source_data_prefix: 10.0.0.1
+                  source_ports:
+                    - 1
+                  source_port_ranges:
+                    -
+# mandatory; maximum 65535
+                      from: 1
+# mandatory; maximum 65535
+                      to: 1
+                  destination_data_prefix_list: example-host
+                  destination_data_prefix: 10.0.0.1
+                  destination_ports:
+                    - 1
+                  destination_port_ranges:
+                    -
+# mandatory; maximum 65535
+                      from: 1
+# mandatory; maximum 65535
+                      to: 1
+# allowed: syn
+                  tcp: syn
+# allowed: access, core, service
+                  traffic_to: access
+# allowed: primary-region, secondary-region, other-region
+                  destination_region: primary-region
+                actions:
+                  counter_name: example-name
+                  log: true
+# published schema defect: type is integer but the allowed values are True; no value satisfies
+# JSON Schema draft 2020-12. The template keeps the documented allowed value.; allowed: True
+                  cflowd: true
+                  sig:
+# mandatory; published schema defect: type is integer but the allowed values are True; no value
+# satisfies JSON Schema draft 2020-12. The template keeps the documented allowed value.; allowed:
+# True
+                    enabled: true
+                    fallback_to_routing: true
+                  redirect_dns:
+# mandatory; allowed: host, umbrella, ipAddress
+                    type: host
+                    ip_address: 10.0.0.1
+                  loss_correction:
+# mandatory; allowed: fecAdaptive, fecAlways, packetDuplication
+                    type: fecAdaptive
+# range 1-5
+                    loss_threshold_percentage: 1
+# range 1-31
+                  nat_pool: 1
+                  nat_vpn:
+# maximum 65530
+                    vpn_id: 1
+                    nat_vpn_fallback: true
+                  appqoe_optimization:
+                    tcp: true
+                    dre: true
+                    service_node_group: <HOSTNAME>
+# maximum 63
+                  dscp: 1
+                  forwarding_class: <HOSTNAME>
+                  local_tloc_list:
+# mandatory
+                    colors:
+                      - default
+                    encaps:
+                      - ipsec
+                    restrict: true
+                  next_hop:
+# mandatory
+                    ip_address: 10.0.0.1
+# allowed: route_table_entry
+                    when_next_hop_is_not_available: route_table_entry
+                  preferred_color_group: example-host
+                  policer_list: example-host
+                  service:
+# mandatory; allowed: appqoe, FW, IDP, IDS, netsvc1, netsvc2, netsvc3, netsvc4, netsvc5
+                    type: appqoe
+# maximum 65530
+                    vpn: 1
+                    tloc:
+# mandatory
+                      ip: 10.0.0.1
+# mandatory; allowed: default, mpls, metro-ethernet, biz-internet, public-internet, lte, 3g, red,
+# green, blue, gold, silver, bronze, custom1, custom2, custom3, private1, private2, private3,
+# private4, private5, private6
+                      color: default
+# mandatory; allowed: ipsec, gre
+                      encap: ipsec
+                    tloc_list: example-host
+                    local: true
+                    restrict: true
+                  tloc:
+# mandatory
+                    ip: 10.0.0.1
+# mandatory; allowed: default, mpls, metro-ethernet, biz-internet, public-internet, lte, 3g, red,
+# green, blue, gold, silver, bronze, custom1, custom2, custom3, private1, private2, private3,
+# private4, private5, private6
+                    color: default
+# mandatory; allowed: ipsec, gre
+                    encap: ipsec
+                  tloc_list: example-host
+# maximum 65530
+                  vpn: 1

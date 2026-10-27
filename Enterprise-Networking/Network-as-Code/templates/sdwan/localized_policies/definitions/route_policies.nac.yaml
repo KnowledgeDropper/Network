@@ -1,0 +1,84 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.localized_policies.definitions.route_policies
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/localized_policies/route_policy_definition/
+sdwan:
+  localized_policies:
+    definitions:
+      route_policies:
+        -
+# mandatory
+          name: example-name
+# mandatory
+          description: <DESCRIPTION>
+# mandatory; allowed: accept, reject
+          default_action: accept
+          sequences:
+            -
+# mandatory; range 1-65534
+              id: 1
+              name: <NAME>
+# allowed: ipv4, ipv6, both
+              ip_type: ipv4
+# mandatory; allowed: accept, reject
+              base_action: accept
+              match_criterias:
+                as_path_list: example-host
+# maximum 4294967295
+                bgp_local_preference: 1
+                expanded_community_list: example-host
+                expanded_community_list_variable: rt 65000:1
+                extended_community_list: example-host
+# maximum 4294967295
+                metric: 1
+                next_hop_prefix_list: example-host
+# maximum 4294967295
+                omp_tag: 1
+# allowed: egp, igp, incomplete
+                origin: egp
+# maximum 4294967295
+                ospf_tag: 1
+                peer: 10.0.0.1
+                prefix_list: example-host
+                standard_community_lists:
+                  - example-host
+# allowed: or, and, exact
+                standard_community_lists_criteria: or
+              actions:
+# maximum 4294967295
+                aggregator: 1
+                aggregator_ip: 10.0.0.1
+                atomic_aggregate: true
+                communities:
+                  - internet
+                community_variable: rt 65000:1
+                community_additive: true
+                exclude_as_paths:
+                  - 1
+# maximum 4294967295
+                local_preference: 1
+# maximum 4294967295
+                metric: 1
+# allowed: type1, type2
+                metric_type: type1
+                next_hop: <HOSTNAME>
+# maximum 4294967295
+                omp_tag: 1
+# allowed: egp, igp, incomplete
+                origin: egp
+                originator: <HOSTNAME>
+# maximum 4294967295
+                ospf_tag: 1
+                prepend_as_paths:
+                  - 1
+# maximum 4294967295
+                weight: 1

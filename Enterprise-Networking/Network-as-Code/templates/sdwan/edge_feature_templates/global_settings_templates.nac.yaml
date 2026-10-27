@@ -1,0 +1,73 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.global_settings_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/global_settings/
+sdwan:
+  edge_feature_templates:
+    global_settings_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - ASR-1001-HX
+        arp_proxy: true
+        arp_proxy_variable: <HOSTNAME>
+        cdp: true
+        cdp_variable: <HOSTNAME>
+        console_logging: true
+        console_logging_variable: <HOSTNAME>
+        domain_lookup: true
+        domain_lookup_variable: example.com
+        ftp_passive: true
+        ftp_passive_variable: <HOSTNAME>
+# allowed: local, aaa
+        http_authentication: local
+        http_authentication_variable: <HOSTNAME>
+        http_server: true
+        http_server_variable: 10.0.0.1
+        https_server: true
+        https_server_variable: 10.0.0.1
+        ignore_bootp: true
+        ignore_bootp_variable: <HOSTNAME>
+        ip_source_routing: true
+        ip_source_routing_variable: 10.0.0.1
+        lldp: true
+        lldp_variable: <HOSTNAME>
+# range 1-536870
+        nat64_udp_timeout: 1
+        nat64_udp_timeout_variable: <HOSTNAME>
+# range 1-536870
+        nat64_tcp_timeout: 1
+        nat64_tcp_timeout_variable: <HOSTNAME>
+        rsh_rcp: true
+        rsh_rcp_variable: <HOSTNAME>
+        snmp_ifindex_persist: true
+        snmp_ifindex_persist_variable: <HOSTNAME>
+        source_interface: 0/0.1
+        source_interface_variable: 0/0.1
+# range 1-2
+        ssh_version: 1
+        ssh_version_variable: <HOSTNAME>
+        tcp_keepalives_in: true
+        tcp_keepalives_in_variable: <HOSTNAME>
+        tcp_keepalives_out: true
+        tcp_keepalives_out_variable: <HOSTNAME>
+        tcp_small_servers: true
+        tcp_small_servers_variable: <HOSTNAME>
+        telnet_outbound: true
+        telnet_outbound_variable: <HOSTNAME>
+        udp_small_servers: true
+        udp_small_servers_variable: <HOSTNAME>
+        vty_logging: true
+        vty_logging_variable: <HOSTNAME>

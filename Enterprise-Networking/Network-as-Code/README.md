@@ -2,6 +2,8 @@
 
 YAML data that Terraform pushes to Cisco IOS-XE and IOS-XR. Edit the data files, then plan and apply. The CLI templates under `IOS-XE/` and `IOS-XR/` stay the paste-oriented baseline. This folder is the same baseline expressed in Cisco's Network as Code model.
 
+[templates/](templates/) is a separate schema reference for IOS-XE, IOS-XR, Catalyst SD-WAN, Catalyst Center, and Meraki. It covers the published model at schema commit `7334e341147fabf81071f18b0286e7deac47d9ab` (2026-10-22). The `iosxe/` and `iosxr/` roots do not read `templates/`. Copy individual sections into `data/` when you want them applied. The template README records which validator each model used.
+
 Addresses are documentation prefixes from RFC 5737 (`192.0.2.0/24`, `198.51.100.0/24`). Secret fields are placeholders such as `<TACACS_KEY>`. Replace them before apply. Do not commit the filled-in values.
 
 ## Workflow

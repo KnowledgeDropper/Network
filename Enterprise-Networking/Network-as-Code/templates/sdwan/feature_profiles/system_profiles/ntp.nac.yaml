@@ -1,0 +1,61 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.system_profiles[].ntp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_system/system_ntp/
+sdwan:
+  feature_profiles:
+    system_profiles:
+      -
+# mandatory
+        name: example-name
+        ntp:
+          name: example-name
+          description: <DESCRIPTION>
+          authentication_keys:
+            -
+# range 1-4294967295
+              id: 1
+              id_variable: example-host
+              cmac_aes128_value: 00:11:22:33:44:55
+              cmac_aes128_value_variable: 00-11-22-33-44-55
+              hmac_sha2_value: 00:11:22:33:44:55
+              hmac_sha2_value_variable: 00-11-22-33-44-55
+              md5_value: <HOSTNAME>
+              md5_value_variable: example-host
+          authoritative_ntp_server: true
+          authoritative_ntp_server_variable: 10.0.0.1
+          authoritative_ntp_server_source_interface: GigabitEthernet0/0
+          authoritative_ntp_server_source_interface_variable: 10.0.0.1
+# range 1-15
+          authoritative_ntp_server_stratum: 1
+          authoritative_ntp_server_stratum_variable: 10.0.0.1
+          servers:
+            -
+# range 1-4294967295
+              authentication_key: 1
+              authentication_key_variable: example-host
+# also accepts a string
+              hostname_ip: example-host
+              hostname_ip_variable: example-host
+              prefer: true
+              prefer_variable: example-host
+              source_interface: GigabitEthernet0/0
+              source_interface_variable: 0/0.1
+# maximum 4
+              ntp_version: 1
+              ntp_version_variable: example-host
+# maximum 65530
+              vpn_id: 1
+              vpn_id_variable: example-host
+          trusted_keys:
+            - 1
+          trusted_keys_variable: example-host

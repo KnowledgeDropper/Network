@@ -1,0 +1,83 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.errdisable
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/errdisable/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        errdisable:
+          detect_cause:
+            all: true
+            arp_inspection: true
+            bpduguard: true
+            dhcp_rate_limit: true
+            dtp_flap: true
+            gbic_invalid: true
+            inline_power: true
+            l2ptguard: true
+            link_flap: true
+            loopback: true
+            mlacp_minlink: true
+            pagp_flap: true
+            pppoe_ia_rate_limit: true
+            security_violation_shutdown_vlan: true
+            sfp_config_mismatch: true
+            small_frame: true
+            loopdetect: true
+          flap_setting_cause:
+# range 1-100; also accepts a string
+            dtp_flap_max_flaps: 1
+# range 1-120; also accepts a string
+            dtp_flap_time: 1
+# range 1-100; also accepts a string
+            link_flap_max_flaps: 1
+# range 1-120; also accepts a string
+            link_flap_time: 1
+# range 1-100; also accepts a string
+            pagp_flap_max_flaps: 1
+# range 1-120; also accepts a string
+            pagp_flap_time: 1
+# range 30-86400; also accepts a string
+          recovery_interval: 30
+          recovery_cause:
+            all: true
+            arp_inspection: true
+            bpduguard: true
+            channel_misconfig: true
+            dhcp_rate_limit: true
+            dtp_flap: true
+            gbic_invalid: true
+            inline_power: true
+            l2ptguard: true
+            link_flap: true
+            link_monitor_failure: true
+            loopback: true
+            mac_limit: true
+            mlacp_minlink: true
+            mrp_miscabling: true
+            oam_remote_failure: true
+            pagp_flap: true
+            port_mode_failure: true
+            pppoe_ia_rate_limit: true
+            psp: true
+            psecure_violation: true
+            security_violation: true
+            sfp_config_mismatch: true
+            small_frame: true
+            storm_control: true
+            udld: true
+            unicast_flood: true
+            vmps: true
+            loopdetect: true

@@ -1,0 +1,54 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.application_catalog
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/application_catalog/custom_application/
+sdwan:
+  application_catalog:
+    custom_applications:
+      -
+# mandatory
+        name: example-name
+# allowed: instant-messaging, game, mail, routing, database, web, behavioral, audio-video,
+# file-server, network-service, middleware, authentication, erp, printer, tunneling, thin-client,
+# terminal, peer-to-peer, forum, application-service, encrypted, microsoft-office,
+# security-service, network-management, file-transfer, webmail
+        application_family: instant-messaging
+# allowed: adp-group, amazon-group, aol-group, apple-group, apple-talk-group, atlassian-group,
+# banyan-group, bittorrent-group, box-group, capwap-group, cisco-jabber-group, cisco-phone-group,
+# concur-group, corba-group, dameware-group, demandware-group, dropbox-group, edonkey-emule-group,
+# espn-group, fasttrack-group, flash-group, fring-group, ftp-group, gnutella-group, google-group,
+# gotomeeting-group, hubspot-group, icq-group, imap-group, intuit-group, ipsec-group, irc-group,
+# jive-group, kakao-group, kerberos-group, ldap-group, marketo-group, ms-cloud-group,
+# msn-messenger-group, netbios-group, netsuite-group, nntp-group, npmp-group, oracle-group,
+# pop3-group, prm-group, qq-group, ringcentral-group, salesforce-group, sap-group,
+# servicenow-group, smtp-group, snmp-group, sqlsvr-group, stun-group, sugar-crm-group,
+# telepresence-group, tftp-group, tiktok-group, vmware-group, vnc-group, wap-group, webex-group,
+# workday-group, xns-xerox-group, xunlei-group, yahoo-group, yahoo-messenger-group, zendesk-group,
+# zoho-crm-group, other
+        application_group: adp-group
+# allowed: Bronze, Gold, Silver
+        business_relevance: Bronze
+# allowed: ip, fqdn, url
+        endpoint_type: ip
+# also accepts a string
+        endpoint_value: example.com
+        l3l4:
+          - ip_addresses:
+              - 10.0.0.1
+# allowed: TCP, UDP, TCP-UDP
+            l4_protocol: TCP
+            ports: '10'
+        server_names:
+          - 10.0.0.1
+# allowed: multimedia-conferencing, network-control, signaling, voip-telephony, ops-admin-mgmt,
+# multimedia-streaming, real-time-interactive, bulk-data, transactional-data, broadcast-video
+        traffic_class: multimedia-conferencing

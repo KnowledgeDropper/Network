@@ -1,0 +1,295 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.system
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/system/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        system:
+          hostname: <HOSTNAME>
+          ip_bgp_community_new_format: true
+          ip_routing: true
+          ip_routing_protocol_purge_interface: true
+          ipv6_unicast_routing: true
+# range 1500-9198; also accepts a string
+          mtu: 1500
+          ip_source_route: true
+          ip_domain_lookup: true
+          ip_domain_lookup_nsap: true
+          ip_domain_lookup_recursive: true
+          ip_domain_lookup_vrfs:
+            -
+# mandatory
+              vrf: <HOSTNAME>
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet; also accepts a string
+              source_interface_type: Loopback
+# also accepts an integer
+              source_interface_id: 0/0.1
+          ip_domain_name: 10.0.0.1
+# range 1-10; also accepts a string
+          login_delay: 1
+          login_on_failure: true
+          login_on_failure_log: true
+          login_on_success: true
+          login_on_success_log: true
+          ip_multicast_routing: true
+          multicast_routing_switch: true
+          ip_multicast_routing_distributed: true
+          multicast_routing_vrfs:
+            -
+# mandatory
+              vrf: <HOSTNAME>
+              distributed: true
+          ipv6_multicast_routing: true
+          access_session_mac_move_deny: true
+          archive:
+            log_config_logging_enable: true
+# range 1-1000; also accepts a string
+            log_config_logging_size: 1
+# range 1-14; also accepts a string
+            maximum: 1
+            path: <HOSTNAME>
+# range 1-525600; also accepts a string
+            time_period: 1
+            write_memory: true
+          boot_system_bootfiles:
+            - <HOSTNAME>
+          boot_system_flash_files:
+            - <HOSTNAME>
+          cisp_enable: true
+          control_plane_service_policy_input: <HOSTNAME>
+# allowed: complete, minimal; also accepts a string
+          diagnostic_bootup_level: complete
+          enable_secret: <SECRET>
+# maximum 255; also accepts a string
+          enable_secret_level: 1
+# allowed: 0, 4, 5, 8, 9; also accepts a string
+          enable_secret_type: '0'
+          epm_logging: true
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet; also accepts a string
+          ip_domain_lookup_source_interface_type: Loopback
+# also accepts an integer
+          ip_domain_lookup_source_interface_id: 10.0.0.1
+          ip_forward_protocol_nd: true
+          ip_name_servers:
+            - '`A%{g&2mi(^wZhnxPu;F['
+          ip_name_servers_vrf:
+            -
+# mandatory
+              vrf: <HOSTNAME>
+              servers:
+                - K[I>${k0Gl&QN@ge
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet; also accepts a string
+          ip_radius_source_interface_type: Loopback
+# also accepts an integer
+          ip_radius_source_interface_id: 10.0.0.1
+          ip_radius_source_interface_vrf: 10.0.0.1
+          ip_scp_server_enable: true
+          sftp:
+            username: <NAME>
+# allowed: 0, 7; also accepts a string
+            encryption: 0
+            password: <SECRET>
+          ssh:
+# maximum 5; also accepts a string
+            authentication_retries: 1
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet; also accepts a string
+            source_interface_type: Loopback
+# also accepts an integer
+            source_interface_id: 0/0.1
+# range 1-120; also accepts a string
+            time_out: 1
+# allowed: 2; also accepts a string
+            version: '2'
+            bulk_mode: true
+# range 131072-1073741824; also accepts a string
+            bulk_mode_window_size: 131072
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet; also accepts a string
+          ip_tacacs_source_interface_type: Loopback
+# also accepts an integer
+          ip_tacacs_source_interface_id: 10.0.0.1
+          ip_sla:
+            entries:
+              -
+# mandatory; also accepts an integer
+                number: n5\%{Q
+# also accepts a string
+                icmp_echo_destination: /${rUz7FDLW/xZ=m/Dw
+# also accepts a string
+                icmp_echo_source_ip: vAwFyRKgf]r"pK%{_.'YOk 3i W.xhqo
+            schedules:
+              -
+# mandatory; also accepts an integer
+                entry_number: "`'J%${$Of4J:1"
+# also accepts an integer
+                life: Mch9M&1\oE${f!u(a!bf^TXy
+                start_time_now: true
+          ip_tacacs_source_interface_vrf: 10.0.0.1
+# range 1-3994575; also accepts a string
+          memory_free_low_watermark_processor: 1
+          pnp_profiles:
+            -
+# mandatory
+              name: <NAME>
+# also accepts a string
+              transport_https_ipv4_ipv4_address: H#HmtEmf%4u!-%{vAyE&PoP'R^*ls6W
+# range 1-65535; also accepts a string
+              transport_https_ipv4_port: 1
+          redundancy: true
+# allowed: none, rpr, rpr-plus, sso; also accepts a string
+          redundancy_mode: none
+          transceiver_type_all_monitoring: true
+          http:
+# range 1-99; also accepts a string
+            access_class: 1
+            active_session_modules: <HOSTNAME>
+            secure_active_session_modules: <HOSTNAME>
+# range 1-50; also accepts a string
+            max_connections: 1
+            authentication_aaa: true
+            authentication_aaa_exec_authorization: <HOSTNAME>
+            authentication_aaa_login_authentication: <HOSTNAME>
+            authentication_aaa_command_authorizations:
+              -
+# mandatory; maximum 15; also accepts a string
+                level: 1
+                name: <NAME>
+            authentication_local: true
+            server: true
+            secure_server: true
+            secure_trustpoint: <HOSTNAME>
+# allowed: TLSv1.0, TLSv1.1, TLSv1.2, TLSv1.3; also accepts a string
+            tls_version: TLSv1.0
+            client_secure_trustpoint: <HOSTNAME>
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet, PortChannel; also accepts a string
+            client_source_interface_type: Loopback
+# also accepts an integer
+            client_source_interface_id: 0/0.1
+          ip_hosts:
+            -
+# mandatory
+              name: <NAME>
+# mandatory
+              ips:
+                - txB7%{wddv8e$
+              vrf: <HOSTNAME>
+          subscriber_templating: true
+          call_home_contact_email: admin@example.com
+          call_home_cisco_tac_1_profile_active: true
+# allowed: email, http; also accepts a string
+          call_home_cisco_tac_1_destination_transport_method: email
+          ip_ftp_passive: true
+          ip_tcp_path_mtu_discovery: true
+# maximum 10000; also accepts a string
+          ip_tcp_mss: 1
+# maximum 1073741823; also accepts a string
+          ip_tcp_window_size: 1
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet; also accepts a string
+          tftp_source_interface_type: Loopback
+# also accepts an integer
+          tftp_source_interface_id: 0/0.1
+          multilink_ppp_bundle_name: <NAME>
+          ip_nbar_classification_dns_classify_by_domain: true
+          track_objects:
+            -
+# mandatory; range 1-1000; also accepts a string
+              number: 1
+# range 1-2147483647; also accepts a string
+              ip_sla_number: 1
+              ip_sla_reachability: true
+# range 1-2147483647; also accepts a string
+          ip_multicast_route_limit: 1
+          ip_domain_list_names:
+            - 10.0.0.1
+          ip_domain_list_vrf_domain: 10.0.0.1
+          ip_domain_list_vrf: 10.0.0.1
+# range 2500-30000; also accepts a string
+          ethernet_cfm_alarm_config_delay: 2500
+# range 2500-30000; also accepts a string
+          ethernet_cfm_alarm_config_reset: 2500
+# allowed: none, enable, disable; also accepts a string
+          standby_redirects: none
+# range 1-16; also accepts a string
+          security_passwords_min_length: 1
+          platform:
+            punt_keepalive_disable_kernel_core: true
+# range 15-60; also accepts a string
+            punt_keepalive_settings_fatal_count: 15
+# range 2-30; also accepts a string
+            punt_keepalive_settings_transmit_interval: 2
+# range 10-60; also accepts a string
+            punt_keepalive_settings_warning_count: 10
+          cef_ipv4_include_ports_source: true
+          cef_ipv4_include_ports_destination: true
+          cef_ipv6_include_ports_source: true
+          cef_ipv6_include_ports_destination: true
+# allowed: dst-ip, dst-mac, dst-mixed-ip-port, dst-port, mpls, src-dst-ip, src-dst-mac,
+# src-dst-mixed-ip-port, src-dst-port, src-ip, src-mac, src-mixed-ip-port, src-port, vlan-dst-ip,
+# vlan-dst-mixed-ip-port, vlan-src-dst-ip, vlan-src-dst-mixed-ip-port, vlan-src-ip,
+# vlan-src-mixed-ip-port; also accepts a string
+          port_channel_load_balance: dst-ip
+          authentication_mac_move_permit: true
+          authentication_mac_move_deny_uncontrolled: true
+          igmp_snooping_querier: true
+# range 1-3; also accepts a string
+          igmp_snooping_querier_version: 1
+# range 1-25; also accepts a string
+          igmp_snooping_querier_max_response_time: 1
+# range 60-300; also accepts a string
+          igmp_snooping_querier_timer_expiry: 60
+# also accepts a string
+          ip_default_gateway: "@b:h'Ylsd7W_2c%{z$8qK kUNNQM"
+# range 10-1000000; also accepts an integer; also accepts a string
+          mac_address_table_aging_time: 10
+          device_classifier: true
+          ipv6_mld_snooping: true
+          ipv6_mld_snooping_querier: true
+          table_maps:
+            -
+# mandatory
+              name: <NAME>
+# allowed: copy, ignore; also accepts an integer; also accepts a string
+              default: copy
+              mappings:
+                -
+# mandatory; maximum 63; also accepts a string
+                  from: 1
+# mandatory; maximum 63; also accepts a string
+                  to: 1
+          power_redundancy_mode_combined: true
+          power_supply_autolc_shutdown: true
+# also accepts a string
+          power_supply_autolc_priority:
+            - 1
+          switch_provision:
+            -
+# mandatory; range 1-16; also accepts a string
+              number: 1
+# mandatory
+              provision: <HOSTNAME>

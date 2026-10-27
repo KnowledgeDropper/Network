@@ -1,0 +1,226 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.ptp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/ptp/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        ptp:
+          apts: true
+          clock:
+# maximum 255; also accepts a string
+            clock_class: 1
+# maximum 255; also accepts a string
+            domain: 1
+# also accepts a string
+            identity_eui_64: <22K>${ "hHi0L1 FF!xf<BGK
+# allowed: router; also accepts a string
+            identity_mac: router
+# maximum 255; also accepts a string
+            priority1: 1
+# maximum 255; also accepts a string
+            priority2: 1
+# allowed: g-8265-1, g-8275-1, g-8275-2; also accepts a string
+            profile: g-8265-1
+# mandatory; allowed: primary, slave, t-bc, t-gm, t-tsc; also accepts a string
+            profile_clock_type: primary
+# allowed: atomic-clock, gps, terrestrial-radio, ptp, ntp, hand-set, other, internal-oscillator;
+# also accepts a string
+            time_source: atomic-clock
+# allowed: ptp, arb; also accepts a string
+            timescale: ptp
+          detect_ptsf_unusable: true
+# maximum 255; also accepts a string
+          double_failure_clock_class: 1
+# maximum 255; also accepts a string
+          freerun_clock_class: 1
+# also accepts an integer
+          frequency_priority: gqj91V$5Ty6PY%{B!'(M$NOG,Z
+# maximum 255; also accepts a string
+          holdover_spec_clock_class: 1
+# also accepts an integer
+          holdover_spec_duration: vf#dPV5xhJ&ZtdoO,:${Fn>yFI_hvdSZ,;_`cK
+          holdover_spec_traceable_override: true
+          ipv6_verify_checksum: true
+          log_best_primary_clock_changes: true
+          log_servo_events: true
+# maximum 255; also accepts a string
+          min_clock_class: 1
+          network_type_high_pdv: true
+          performance_monitoring: true
+# also accepts an integer
+          phase_difference_threshold_breach: -NzG!9/qJv[e%{?s0@skbc')28m9j$
+          physical_layer_frequency: true
+          profiles:
+            -
+# allowed: 1, 2, 4, 8, 16, 32, 64, 128; also accepts a string
+              announce_frequency: 1
+# range 60-1000; also accepts a string
+              announce_grant_duration: 60
+# allowed: 1, 2, 4, 8, 16, 32, 64, 128; also accepts a string
+              announce_interval: 1
+# range 2-10; also accepts a string
+              announce_timeout: 2
+# allowed: one-step, two-step; also accepts a string
+              clock_operation: one-step
+# maximum 7; also accepts a string
+              cos: 1
+# maximum 7; also accepts a string
+              cos_event: 1
+# maximum 7; also accepts a string
+              cos_general: 1
+# allowed: nanoseconds, microseconds, milliseconds; also accepts a string
+              delay_asymmetry_unit: nanoseconds
+# range -500000000-500000000; also accepts a string
+              delay_asymmetry_value: 1
+# allowed: 1, 2, 4, 8, 16, 32, 64, 128; also accepts a string
+              delay_request_frequency: 1
+# allowed: 1, 2, 4, 8, 16, 32, 64, 128; also accepts a string
+              delay_request_interval: 1
+# range 60-1000; also accepts a string
+              delay_response_grant_duration: 60
+# range 100-100000; also accepts a string
+              delay_response_timeout: 100
+# maximum 63; also accepts a string
+              dscp: 1
+# maximum 63; also accepts a string
+              dscp_event: 1
+# maximum 63; also accepts a string
+              dscp_general: 1
+              interop:
+# maximum 255; also accepts a string
+                domain: 1
+                egress_conversion:
+# maximum 254; also accepts a string
+                  clock_accuracy: 1
+# maximum 255; also accepts a string
+                  clock_class_default: 1
+                  clock_class_mappings:
+                    -
+# mandatory; maximum 255; also accepts a string
+                      class_from: 1
+# mandatory; maximum 255; also accepts a string
+                      class_to: 1
+# maximum 65535; also accepts a string
+                  offset_scaled_log_variance: 1
+# maximum 255; also accepts a string
+                  priority1: 1
+# maximum 255; also accepts a string
+                  priority2: 1
+                ingress_conversion:
+# maximum 254; also accepts a string
+                  clock_accuracy: 1
+# maximum 255; also accepts a string
+                  clock_class_default: 1
+                  clock_class_mappings:
+                    -
+# mandatory; maximum 255; also accepts a string
+                      class_from: 1
+# mandatory; maximum 255; also accepts a string
+                      class_to: 1
+# maximum 65535; also accepts a string
+                  offset_scaled_log_variance: 1
+# maximum 255; also accepts a string
+                  priority1: 1
+# maximum 255; also accepts a string
+                  priority2: 1
+# allowed: default, g-8265-1, g-8275-1, g-8275-2; also accepts a string
+                profile: default
+# range 1-255; also accepts a string
+              ipv4_ttl: 1
+# range 1-255; also accepts a string
+              ipv6_hop_limit: 1
+              masters:
+                -
+# mandatory; also accepts a string
+                  address: ZX*BL"dz1b;;-G%{lfN?wcde
+# maximum 255; also accepts a string
+                  clock_class: 1
+# allowed: nanoseconds, microseconds, milliseconds; also accepts a string
+                  delay_asymmetry_unit: nanoseconds
+# range -500000000-500000000; also accepts a string
+                  delay_asymmetry_value: 1
+# allowed: enable, mixed; also accepts a string
+                  multicast: enable
+                  non_negotiated: true
+# maximum 255; also accepts a string
+                  priority: 1
+# allowed: enable, disable, mixed; also accepts a string
+              multicast: enable
+# allowed: 01-1B-19-00-00-00, 01-80-C2-00-00-0E; also accepts a string
+              multicast_target_address: 01-1B-19-00-00-00
+# mandatory; also accepts a string
+              name: ?.9'komWj%{Ew
+# allowed: any, master-only, slave-only; also accepts a string
+              port_state: any
+              slaves:
+                -
+# mandatory; also accepts a string
+                  address: /,YU*C=*k(4d!${$9w+g-&9- c
+# mandatory
+                  non_negotiated: true
+# also accepts a string
+              source_ipv4_address: h+?sbnd(%{]1-)Myj=!
+# also accepts a string
+              source_ipv6_address: 9Ez%{_6X!`yi
+# allowed: 1, 2, 4, 8, 16, 32, 64, 128; also accepts a string
+              sync_frequency: 1
+# range 60-1000; also accepts a string
+              sync_grant_duration: 60
+# allowed: 1, 2, 4, 8, 16, 32, 64, 128; also accepts a string
+              sync_interval: 1
+# range 100-100000; also accepts a string
+              sync_timeout: 100
+# allowed: ethernet, ipv4, ipv6; also accepts a string
+              transport: ethernet
+# allowed: deny, reduce; also accepts a string
+              unicast_grant_invalid_request: deny
+# also accepts an integer
+          servo_slow_tracking: "'v!(8x\\hg.h_JyT${/m_rD5y(+wX=UuWrr9"
+# maximum 255; also accepts a string
+          startup_clock_class: 1
+# also accepts an integer
+          time_of_day_priority: O!fnl7Yu@zecW_JA'@%{:uyffbaVN5B)N
+          transparent_clock_domain_all: true
+# maximum 255; also accepts a string
+          uncalibrated_clock_class: 1
+          uncalibrated_traceable_override: true
+          uncalibrated_unless_from_holdover: true
+# also accepts an integer
+          utc_offset_baseline: '`*f&5,>p?DY%{Dvq>e5<B#o'
+          utc_offsets:
+            -
+# mandatory; also accepts a string
+              date: JE8IX${tlH=/%AjFKgH4"s%xt
+# mandatory; also accepts an integer
+              offset_value: x="\odNW-m/Y_;u%{9?4 nd_zw#
+          virtual_port:
+# also accepts an integer
+            clock_accuracy: 4UF;6[>zu${E
+# also accepts an integer
+            clock_class: d${hCd$u>(EzW6L\\/E
+            enable: true
+# also accepts an integer
+            gm_threshold_breach: h$f/D;]81r)9O${>2\tLwghel+BB=
+# also accepts an integer
+            local_priority: U9[MQUL${B9D i629vo?jfmP\tz9
+# also accepts an integer
+            offset_scaled_log_variance: W=E,O^(jNT)z${cZ:&;ga9;r
+# maximum 255; also accepts a string
+            priority1: 1
+# maximum 255; also accepts a string
+            priority2: 1

@@ -1,0 +1,134 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.svi_interface_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/svi_interface/
+sdwan:
+  edge_feature_templates:
+    svi_interface_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - C1111-4PLTEEA
+# maximum 2147483
+        arp_timeout: 1
+        arp_timeout_variable: <HOSTNAME>
+        interface_description: <DESCRIPTION>
+        interface_description_variable: <DESCRIPTION>
+        interface_name: 0/0.1
+        interface_name_variable: 0/0.1
+        ip_directed_broadcast: true
+        ip_directed_broadcast_variable: 10.0.0.1
+# range 576-9216
+        ip_mtu: 576
+        ip_mtu_variable: 10.0.0.1
+        ipv4_address: 10.0.0.1
+        ipv4_address_variable: 10.0.0.1
+        ipv4_dhcp_helpers:
+          - <HOSTNAME>
+        ipv4_dhcp_helpers_variable: <HOSTNAME>
+        ipv4_egress_access_list: <HOSTNAME>
+        ipv4_egress_access_list_variable: <HOSTNAME>
+        ipv4_ingress_access_list: <HOSTNAME>
+        ipv4_ingress_access_list_variable: <HOSTNAME>
+        ipv4_secondary_addresses:
+          - address: 10.0.0.1
+            address_variable: 10.0.0.1
+        ipv4_vrrp_groups:
+          - address: 10.0.0.1
+            address_variable: 10.0.0.1
+# range 1-255
+            id: 1
+            id_variable: <HOSTNAME>
+            optional: true
+# range 1-254
+            priority: 1
+            priority_variable: <HOSTNAME>
+            secondary_addresses:
+              - address: 10.0.0.1
+                address_variable: 10.0.0.1
+# range 100-40950
+            timer: 100
+            timer_variable: <HOSTNAME>
+            tloc_preference_change: true
+# range 1-4294967295
+            tloc_preference_change_value: 1
+            tloc_preference_change_value_variable: <HOSTNAME>
+            track_prefix_list: 10.0.0.1
+            track_prefix_list_variable: 10.0.0.1
+            track_omp: true
+            track_omp_variable: <HOSTNAME>
+            tracking_objects:
+              -
+# allowed: decrement, shutdown
+                action: decrement
+                action_variable: <HOSTNAME>
+# range 1-255
+                decrement_value: 1
+                decrement_value_variable: <HOSTNAME>
+# range 1-1000
+                id: 1
+                id_variable: <HOSTNAME>
+        ipv6_address: 2001:db8::1
+        ipv6_address_variable: 2001:db8::1
+        ipv6_dhcp_helpers:
+          - address: 10.0.0.1
+            address_variable: 10.0.0.1
+# range 1-65536
+            vpn_id: 1
+            vpn_id_variable: <HOSTNAME>
+        ipv6_egress_access_list: 2001:db8::1
+        ipv6_egress_access_list_variable: 2001:db8::1
+        ipv6_ingress_access_list: 2001:db8::1
+        ipv6_ingress_access_list_variable: 2001:db8::1
+        ipv6_secondary_addresses:
+          - address: 10.0.0.1
+            address_variable: 10.0.0.1
+        ipv6_vrrp_groups:
+          -
+# range 1-255
+            id: 1
+            id_variable: <HOSTNAME>
+            global_prefix: 10.0.0.1
+            global_prefix_variable: 10.0.0.1
+            link_local_address: 10.0.0.1
+            link_local_address_variable: 10.0.0.1
+            optional: true
+# range 1-254
+            priority: 1
+            priority_variable: <HOSTNAME>
+            secondary_addresses:
+              - address: 10.0.0.1
+                address_variable: 10.0.0.1
+# range 100-40950
+            timer: 100
+            timer_variable: <HOSTNAME>
+            track_prefix_list: 10.0.0.1
+            track_prefix_list_variable: 10.0.0.1
+            track_omp: true
+            track_omp_variable: <HOSTNAME>
+# range 1500-9216
+        mtu: 1500
+        mtu_variable: <HOSTNAME>
+        shutdown: true
+        shutdown_variable: <HOSTNAME>
+        static_arps:
+          - ip_address: 10.0.0.1
+            ip_address_variable: 10.0.0.1
+            mac_address: 00:11:22:33:44:55
+            mac_address_variable: 00:11:22:33:44:55
+            optional: true
+# range 500-1460
+        tcp_mss: 500
+        tcp_mss_variable: <HOSTNAME>

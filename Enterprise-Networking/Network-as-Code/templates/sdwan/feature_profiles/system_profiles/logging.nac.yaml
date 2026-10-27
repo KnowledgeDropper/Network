@@ -1,0 +1,75 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.system_profiles[].logging
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_system/system_logging/
+sdwan:
+  feature_profiles:
+    system_profiles:
+      -
+# mandatory
+        name: example-name
+        logging:
+          name: example-name
+          description: <DESCRIPTION>
+# range 1-20
+          disk_file_size: 1
+          disk_file_size_variable: example-host
+# range 1-10
+          disk_file_rotate: 1
+          disk_file_rotate_variable: example-host
+          ipv4_servers:
+            -
+# also accepts a string
+              hostname_ip: example-host
+              hostname_ip_variable: example-host
+# allowed: informational, debugging, notice, warn, error, critical, alert, emergency
+              severity: informational
+              severity_variable: example-host
+              source_interface: GigabitEthernet0/0
+              source_interface_variable: 0/0.1
+              tls_enable: true
+              tls_enable_variable: example-host
+              tls_properties_custom_profile: true
+              tls_properties_custom_profile_variable: example-host
+              tls_properties_profile: <HOSTNAME>
+              tls_properties_profile_variable: example-host
+# maximum 65530
+              vpn_id: 1
+              vpn_id_variable: example-host
+          ipv6_servers:
+            -
+# also accepts a string
+              hostname_ip: example-host
+              hostname_ip_variable: example-host
+# allowed: informational, debugging, notice, warn, error, critical, alert, emergency
+              severity: informational
+              severity_variable: example-host
+              source_interface: GigabitEthernet0/0
+              source_interface_variable: 0/0.1
+              tls_enable: true
+              tls_enable_variable: example-host
+              tls_properties_custom_profile: true
+              tls_properties_custom_profile_variable: example-host
+              tls_properties_profile: <HOSTNAME>
+              tls_properties_profile_variable: example-host
+# maximum 65530
+              vpn_id: 1
+              vpn_id_variable: example-host
+          tls_profiles:
+            - cipher_suites:
+                - aes-128-cbc-sha
+              cipher_suites_variable: example-host
+              name: <NAME>
+              name_variable: example-host
+# allowed: TLSv1.1, TLSv1.2
+              tls_version: TLSv1.1
+              tls_version_variable: example-host

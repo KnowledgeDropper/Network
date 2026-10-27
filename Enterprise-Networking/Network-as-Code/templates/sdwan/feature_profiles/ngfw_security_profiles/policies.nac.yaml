@@ -1,0 +1,93 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.ngfw_security_profiles[].policies
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs: schema section without a dedicated page in the docs nav.
+sdwan:
+  feature_profiles:
+    ngfw_security_profiles:
+      -
+# mandatory
+        name: example-name
+        policies:
+          -
+# mandatory
+            name: example-name
+# mandatory; allowed: pass, drop
+            default_action: pass
+            sequences:
+              - actions:
+                  advanced_inspection_profile: example-host
+                  log: true
+# mandatory; allowed: pass, drop, inspect
+                base_action: pass
+                disable_sequence: true
+                match_entries:
+                  application_list: example-host
+                  destination_data_ipv4_prefix_lists:
+                    - 10.0.0.1
+                  destination_data_ipv4_prefixes:
+                    - <HOSTNAME>
+                  destination_data_ipv4_prefixes_variable: example-host
+                  destination_fqdn_lists:
+                    - example-host
+                  destination_fqdns:
+                    - example.com
+                  destination_fqdns_variable: example-host
+                  destination_geo_location_lists:
+                    - example-host
+                  destination_geo_locations:
+                    - AF
+                  destination_port_lists:
+                    - example-host
+                  destination_ports:
+                    - 1
+                  destination_ports_variable: example-host
+                  destination_scalable_group_tag_lists:
+                    - example-host
+                  protocol_name_lists:
+                    - example-host
+                  protocol_names:
+                    - <HOSTNAME>
+                  protocols:
+                    - 1
+                  source_data_ipv4_prefix_lists:
+                    - 10.0.0.1
+                  source_data_ipv4_prefixes:
+                    - <HOSTNAME>
+                  source_data_ipv4_prefixes_variable: example-host
+                  source_geo_location_lists:
+                    - example-host
+                  source_geo_locations:
+                    - AF
+                  source_identity_lists:
+                    - example-host
+                  source_identity_usergroups:
+                    - <HOSTNAME>
+                  source_identity_users:
+                    - <HOSTNAME>
+                  source_port_lists:
+                    - example-host
+                  source_ports:
+                    - 1
+                  source_ports_variable: example-host
+                  source_scalable_group_tag_lists:
+                    - example-host
+# mandatory; range 1-65534
+                sequence_id: 1
+# mandatory
+                sequence_name: example-name
+# allowed: ngfirewall
+                sequence_type: ngfirewall
+# mandatory; allowed: self, no_zone, untrusted; also accepts a string
+            source_zone: self
+# mandatory
+            destination_zones:
+              - self

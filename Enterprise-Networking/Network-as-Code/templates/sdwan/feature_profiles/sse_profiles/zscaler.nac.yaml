@@ -1,0 +1,217 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.sse_profiles[].zscaler
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_sse/sse_zscaler/
+sdwan:
+  feature_profiles:
+    sse_profiles:
+      -
+# mandatory
+        name: example-name
+        zscaler:
+# mandatory
+          name: example-name
+          description: <DESCRIPTION>
+          aup_enabled: true
+          aup_enabled_variable: example-host
+# range 1-180
+          aup_timeout: 1
+          aup_timeout_variable: example-host
+          auth_required: true
+          auth_required_variable: example-host
+          block_internet_until_accepted: true
+          block_internet_until_accepted_variable: example-host
+          caution_enabled: true
+          caution_enabled_variable: example-host
+          country: true
+          country_variable: example-host
+# allowed: MINUTE, HOUR, DAY
+          display_time_unit: MINUTE
+          display_time_unit_variable: example-host
+# range 0.1-99999
+          download_bandwidth: 1.0
+          download_bandwidth_variable: example-host
+          enforce_bandwidth_control: true
+          enforce_bandwidth_control_variable: example-host
+          firewall_enabled: true
+          firewall_enabled_variable: example-host
+          force_ssl_inspection: true
+          force_ssl_inspection_variable: example-host
+# range 1-99999
+          idle_time: 1
+          idle_time_variable: example-host
+# mandatory
+          interface_pairs:
+            - active_interface: ipsec7
+# range 1-255
+              active_interface_weight: 1
+              backup_interface: ipsec9
+# range 1-255
+              backup_interface_weight: 1
+# mandatory
+          interfaces:
+            -
+# range 10-3600
+              dpd_interval: 10
+              dpd_interval_variable: example-host
+# range 2-60
+              dpd_retries: 2
+              dpd_retries_variable: example-host
+# allowed: aes256-cbc-sha1, aes256-cbc-sha2, aes128-cbc-sha1, aes128-cbc-sha2
+              ike_ciphersuite: aes256-cbc-sha1
+              ike_ciphersuite_variable: example-host
+# allowed: 2, 5, 14, 15, 16, 19, 20, 21
+              ike_group: 2
+              ike_group_variable: example-host
+              ike_local_id: 0/0.1
+              ike_local_id_variable: example-host
+# range 300-86400
+              ike_rekey_interval: 300
+              ike_rekey_interval_variable: example-host
+              ike_remote_id: 0/0.1
+              ike_remote_id_variable: example-host
+# range 1-2
+              ike_version: 1
+              ike_version_variable: example-host
+              interface_description: <DESCRIPTION>
+              interface_description_variable: 0/0.1
+              interface_name: ipsec252
+# allowed: aes256-cbc-sha1, aes256-cbc-sha384, aes256-cbc-sha256, aes256-cbc-sha512, aes256-gcm
+              ipsec_ciphersuite: aes256-cbc-sha1
+              ipsec_ciphersuite_variable: example-host
+# range 300-1209600
+              ipsec_rekey_interval: 300
+              ipsec_rekey_interval_variable: example-host
+# allowed: 64, 128, 256, 512, 1024
+              ipsec_replay_window: 64
+              ipsec_replay_window_variable: example-host
+              ipv4_address: 10.0.0.1
+              ipv4_address_variable: 10.0.0.1
+# range 576-2000
+              mtu: 576
+              mtu_variable: example-host
+# allowed: group-2, group-5, group-14, group-15, group-16, group-19, group-20, group-21, none
+              perfect_forward_secrecy: group-2
+              perfect_forward_secrecy_variable: example-host
+              shutdown: true
+# range 500-1460
+              tcp_mss_adjust: 500
+              tcp_mss_adjust_variable: example-host
+              track_enable: true
+              tracker: <HOSTNAME>
+# allowed: primary-dc, secondary-dc
+              tunnel_dc_preference: primary-dc
+              tunnel_destination: <HOSTNAME>
+              tunnel_destination_variable: example-host
+              tunnel_public_ip: 10.0.0.1
+              tunnel_public_ip_variable: 10.0.0.1
+              tunnel_route_via: ge0/7007011234249
+              tunnel_route_via_variable: example-host
+# allowed: secure-internet-gateway-umbrella, secure-internet-gateway-zscaler,
+# secure-internet-gateway-other
+              tunnel_set: secure-internet-gateway-umbrella
+              tunnel_source: <HOSTNAME>
+              tunnel_source_variable: example-host
+              tunnel_source_interface: GigabitEthernet0/0
+              tunnel_source_interface_variable: 0/0.1
+              unnumbered: true
+          ip_enforced_for_known_browsers: true
+          ip_enforced_for_known_browsers_variable: 10.0.0.1
+          ips_control: true
+          ips_control_variable: example-host
+          location_name_variable: example-host
+          primary_data_center: <HOSTNAME>
+          primary_data_center_variable: example-host
+# range 1-99999
+          refresh_time: 1
+          refresh_time_variable: example-host
+# allowed: MINUTE, HOUR, DAY
+          refresh_time_unit: MINUTE
+          refresh_time_unit_variable: example-host
+          secondary_data_center: <HOSTNAME>
+          secondary_data_center_variable: example-host
+          src_vpn: true
+          sub_locations:
+            -
+# mandatory
+              name: example-name
+              name_variable: example-host
+              aup_enabled: true
+              aup_enabled_variable: example-host
+# range 1-180
+              aup_timeout: 1
+              aup_timeout_variable: example-host
+              auth_required: true
+              auth_required_variable: example-host
+              block_internet_until_accepted: true
+              block_internet_until_accepted_variable: example-host
+              caution_enabled: true
+              caution_enabled_variable: example-host
+# allowed: MINUTE, HOUR, DAY
+              display_time_unit: MINUTE
+              display_time_unit_variable: example-host
+# range 0.1-99999
+              download_bandwidth: 1.0
+              download_bandwidth_variable: example-host
+# allowed: location-bandwidth, override, disabled
+              enforce_bandwidth_control: location-bandwidth
+              enforce_bandwidth_control_variable: example-host
+              firewall_enabled: true
+              firewall_enabled_variable: example-host
+              force_ssl_inspection: true
+              force_ssl_inspection_variable: example-host
+# range 1-99999
+              idle_time: 1
+              idle_time_variable: example-host
+              internal_ips:
+                - ip_address: 10.0.0.1
+                  ip_address_variable: 10.0.0.1
+              ip_enforced_for_known_browsers: true
+              ip_enforced_for_known_browsers_variable: 10.0.0.1
+# range 1-99999
+              refresh_time: 1
+              refresh_time_variable: example-host
+# allowed: MINUTE, HOUR, DAY
+              refresh_time_unit: MINUTE
+              refresh_time_unit_variable: example-host
+              service_vpn:
+                - <HOSTNAME>
+              service_vpn_variable: example-host
+              surrogate_ip: true
+              surrogate_ip_variable: 10.0.0.1
+# range 0.1-99999
+              upload_bandwidth: 1.0
+              upload_bandwidth_variable: example-host
+          surrogate_ip: true
+          surrogate_ip_variable: 10.0.0.1
+          tracker_source_ip: 10.0.0.1
+          tracker_source_ip_variable: 10.0.0.1
+          trackers:
+            -
+# mandatory
+              name: example-name
+              endpoint_api_url: https://example.com
+              endpoint_api_url_variable: example-host
+# range 20-600
+              interval: 20
+              interval_variable: example-host
+# range 1-10
+              multiplier: 1
+              multiplier_variable: example-host
+# range 100-1000
+              threshold: 100
+              threshold_variable: example-host
+# range 0.1-99999
+          upload_bandwidth: 1.0
+          upload_bandwidth_variable: example-host
+          xff_forward_enabled: true
+          xff_forward_enabled_variable: example-host

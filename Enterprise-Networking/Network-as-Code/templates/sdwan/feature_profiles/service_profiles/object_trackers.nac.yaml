@@ -1,0 +1,43 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.service_profiles[].object_trackers
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_service/service_object_tracker/
+sdwan:
+  feature_profiles:
+    service_profiles:
+      -
+# mandatory
+        name: example-name
+        object_trackers:
+          -
+# mandatory
+            name: example-name
+            description: <DESCRIPTION>
+# range 1-1000
+            id: 1
+            id_variable: example-host
+            interface_name: GigabitEthernet0/0
+            interface_name_variable: 0/0.1
+            route_ip: 10.0.0.1
+            route_ip_variable: 10.0.0.1
+# allowed: 255.255.255.255, 255.255.255.254, 255.255.255.252, 255.255.255.248, 255.255.255.240,
+# 255.255.255.224, 255.255.255.192, 255.255.255.128, 255.255.255.0, 255.255.254.0, 255.255.252.0,
+# 255.255.248.0, 255.255.240.0, 255.255.224.0, 255.255.192.0, 255.255.128.0, 255.255.0.0,
+# 255.254.0.0, 255.252.0.0, 255.248.0.0, 255.240.0.0, 255.224.0.0, 255.192.0.0, 255.128.0.0,
+# 255.0.0.0, 254.0.0.0, 252.0.0.0, 248.0.0.0, 240.0.0.0, 224.0.0.0, 192.0.0.0, 128.0.0.0, 0.0.0.0
+            route_mask: 255.255.255.255
+            route_mask_variable: 10.0.0.1
+# mandatory; allowed: interface, sig, route
+            type: interface
+# maximum 65530
+            vpn_id: 1
+            vpn_id_variable: example-host

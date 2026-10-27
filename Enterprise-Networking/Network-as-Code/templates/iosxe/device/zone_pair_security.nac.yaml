@@ -1,0 +1,31 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.zone_pair_security
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/zone_pair_security/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        zone_pair_security:
+          -
+# mandatory
+            name: <NAME>
+# mandatory
+            source: <HOSTNAME>
+# mandatory
+            destination: <HOSTNAME>
+# also accepts a string
+            description: ",]CRZKu_z'vYRf)^D9!%{Y?Dn%gM^ yr<7"
+# also accepts a string
+            service_policy_type_inspect: .V[(G_eQ(@1tjW\$>Q8${BUy7)wr6C43ywn"

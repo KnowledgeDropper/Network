@@ -1,0 +1,83 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.bfd
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/bfd/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        bfd:
+          echo_disable: true
+          echo_latency_detect: true
+# range 100-250; also accepts a string
+          echo_latency_detect_percentage: 100
+# range 1-10; also accepts a string
+          echo_latency_detect_count: 1
+          echo_startup_validate_force: true
+# also accepts a string
+          echo_ipv4_source: 9%%{3tX
+# range 15-2000; also accepts a string
+          echo_ipv4_bundle_per_member_minimum_interval: 15
+          trap_singlehop_pre_mapped: true
+          multipath_locations:
+            -
+# mandatory; also accepts a string
+              location: P@1V%{`21'EH_0.p+,r
+          multipath_destinations:
+            -
+# mandatory; also accepts a string
+              address: s${HB
+# mandatory; also accepts a string
+              location: /YiN${vt+vElsj
+# maximum 254; also accepts a string
+          multihop_ttl_drop_threshold: 1
+# range 1-3600000; also accepts a string
+          dampening_initial_wait: 1
+# range 1-3600000; also accepts a string
+          dampening_secondary_wait: 1
+# range 1-3600000; also accepts a string
+          dampening_maximum_wait: 1
+# range 60000-3600000; also accepts a string
+          dampening_threshold: 60000
+          dampening_extensions_down_monitoring: true
+          dampening_disable: true
+          dampening_bundle_member_l3_only_mode: true
+# range 1-518400000; also accepts a string
+          dampening_bundle_member_initial_wait: 1
+# range 1-518400000; also accepts a string
+          dampening_bundle_member_secondary_wait: 1
+# range 1-518400000; also accepts a string
+          dampening_bundle_member_maximum_wait: 1
+# allowed: inherit, logical; also accepts a string
+          bundle_coexistence_bob_blb: inherit
+          ipv6_checksum_disable: true
+          interfaces:
+            -
+# mandatory; also accepts a string
+              name: '!5e1x;\>iQ:`;B3^M7${'
+              echo_disable: true
+# also accepts a string
+              echo_ipv4_source: ?j#1nTCU[0%{%'Dz7
+              ipv6_checksum_disable: true
+              disable: true
+# also accepts a string
+              local_address: Zvl-${6#*!C[pH>r#y'
+# range 3000-30000000; also accepts a string
+              tx_interval: 3000
+# range 3000-30000000; also accepts a string
+              rx_interval: 3000
+# range 2-50; also accepts a string
+              multiplier: 2

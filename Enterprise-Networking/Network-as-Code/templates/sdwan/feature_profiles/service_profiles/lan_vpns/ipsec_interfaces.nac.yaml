@@ -1,0 +1,119 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.service_profiles[].lan_vpns[].ipsec_interfaces
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_service/service_lan_vpn_ipsec_interface/
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_transport/transport_wan_vpn_ipsec_interface/
+sdwan:
+  feature_profiles:
+    service_profiles:
+      -
+# mandatory
+        name: example-name
+        lan_vpns:
+          -
+# mandatory
+            name: example-name
+            ipsec_interfaces:
+              -
+# mandatory
+                name: example-name
+                description: <DESCRIPTION>
+# allowed: none, sig
+                application_tunnel_type: none
+                application_tunnel_type_variable: example-host
+                clear_dont_fragment: true
+                clear_dont_fragment_variable: example-host
+# range 10-3600
+                dpd_interval: 10
+                dpd_interval_variable: example-host
+# range 2-60
+                dpd_retries: 2
+                dpd_retries_variable: example-host
+# allowed: aes256-cbc-sha1, aes256-cbc-sha2, aes128-cbc-sha1, aes128-cbc-sha2
+                ike_cipher_suite: aes256-cbc-sha1
+                ike_cipher_suite_variable: example-host
+# allowed: 2, 14, 15, 16, 19, 20, 21, 24
+                ike_diffie_hellman_group: 2
+                ike_diffie_hellman_group_variable: example-host
+# allowed: main, aggressive
+                ike_integrity_protocol: main
+                ike_integrity_protocol_variable: example-host
+                ike_local_endpoint_id: 0/0.1
+                ike_local_endpoint_id_variable: example-host
+                ike_preshared_key: <HOSTNAME>
+                ike_preshared_key_variable: example-host
+# range 60-86400
+                ike_rekey_interval: 60
+                ike_rekey_interval_variable: example-host
+                ike_remote_endpoint_id: 0/0.1
+                ike_remote_endpoint_id_variable: example-host
+# range 1-2
+                ike_version: 1
+                interface_description: <DESCRIPTION>
+                interface_description_variable: 0/0.1
+                interface_name: ipsec289
+                interface_name_variable: 0/0.1
+# allowed: aes256-cbc-sha1, aes256-cbc-sha256, aes256-cbc-sha384, aes256-cbc-sha512, aes256-gcm,
+# null-sha1, null-sha256, null-sha384, null-sha512
+                ipsec_cipher_suite: aes256-cbc-sha1
+                ipsec_cipher_suite_variable: example-host
+# allowed: group-1, group-2, group-5, group-14, group-15, group-16, group-19, group-20, group-21,
+# group-24, none
+                ipsec_perfect_forward_secrecy: group-1
+                ipsec_perfect_forward_secrecy_variable: example-host
+# range 120-2592000
+                ipsec_rekey_interval: 120
+                ipsec_rekey_interval_variable: example-host
+# range 64-4096
+                ipsec_replay_window: 64
+                ipsec_replay_window_variable: example-host
+                ipv4_address: 10.0.0.1
+                ipv4_address_variable: 10.0.0.1
+# range 68-9216
+                ipv4_mtu: 68
+                ipv4_mtu_variable: example-host
+# allowed: 255.255.255.255, 255.255.255.254, 255.255.255.252, 255.255.255.248, 255.255.255.240,
+# 255.255.255.224, 255.255.255.192, 255.255.255.128, 255.255.255.0, 255.255.254.0, 255.255.252.0,
+# 255.255.248.0, 255.255.240.0, 255.255.224.0, 255.255.192.0, 255.255.128.0, 255.255.0.0,
+# 255.254.0.0, 255.252.0.0, 255.248.0.0, 255.240.0.0, 255.224.0.0, 255.192.0.0, 255.128.0.0,
+# 255.0.0.0, 254.0.0.0, 252.0.0.0, 248.0.0.0, 240.0.0.0, 224.0.0.0, 192.0.0.0, 128.0.0.0, 0.0.0.0
+                ipv4_subnet_mask: 255.255.255.255
+                ipv4_subnet_mask_variable: 10.0.0.1
+# range 500-1460
+                ipv4_tcp_mss: 500
+                ipv4_tcp_mss_variable: example-host
+                ipv6_address: 2001:db8::/64
+                ipv6_address_variable: 10.0.0.1
+# range 1280-9976
+                ipv6_mtu: 1280
+                ipv6_mtu_variable: example-host
+# range 40-1454
+                ipv6_tcp_mss: 40
+                ipv6_tcp_mss_variable: example-host
+                shutdown: true
+                shutdown_variable: example-host
+                tracker_id: 0/0.1
+                tracker_id_variable: example-host
+                tunnel_destination_ipv4_address: 10.0.0.1
+                tunnel_destination_ipv4_address_variable: 10.0.0.1
+                tunnel_destination_ipv6_address: 2001:db8::1
+                tunnel_destination_ipv6_address_variable: 10.0.0.1
+# allowed: ipv4, ipv6, ipv4-v6overlay
+                tunnel_mode: ipv4
+                tunnel_route_via: <HOSTNAME>
+                tunnel_route_via_variable: example-host
+                tunnel_source_interface: GigabitEthernet0/0
+                tunnel_source_interface_variable: 0/0.1
+                tunnel_source_ipv4_address: 10.0.0.1
+                tunnel_source_ipv4_address_variable: 10.0.0.1
+                tunnel_source_ipv6_address: 2001:db8::1
+                tunnel_source_ipv6_address_variable: 10.0.0.1

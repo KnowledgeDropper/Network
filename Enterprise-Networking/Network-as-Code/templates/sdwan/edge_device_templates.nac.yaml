@@ -1,0 +1,138 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_device_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_device_templates/device_template/
+sdwan:
+  edge_device_templates:
+    -
+# mandatory
+      name: example-name
+# mandatory
+      description: <DESCRIPTION>
+# mandatory; allowed: ASR-1001-HX, ASR-1001-X, ASR-1002-HX, ASR-1002-X, ASR-1006-X, C1101-4P,
+# C1101-4PLTEP, C1101-4PLTEPW, C1109-2PLTEGB, C1109-2PLTEUS, C1109-2PLTEVZ, C1109-4PLTE2P,
+# C1109-4PLTE2PW, C1111-4P, C1111-4PLTEEA, C1111-4PLTELA, C1111-4PW, C1111-8P, C1111-8PLTEEA,
+# C1111-8PLTEEAW, C1111-8PLTELA, C1111-8PLTELAW, C1111-8PW, C1111X-8P, C1112-8P, C1112-8PLTEEA,
+# C1112-8PLTEEAWE, C1112-8PWE, C1113-8P, C1113-8PLTEEA, C1113-8PLTEEAW, C1113-8PLTELA,
+# C1113-8PLTELAWZ, C1113-8PLTEW, C1113-8PM, C1113-8PMLTEEA, C1113-8PMWE, C1113-8PW, C1116-4P,
+# C1116-4PLTEEA, C1116-4PLTEEAWE, C1116-4PWE, C1117-4P, C1117-4PLTEEA, C1117-4PLTEEAW,
+# C1117-4PLTELA, C1117-4PLTELAWZ, C1117-4PM, C1117-4PMLTEEA, C1117-4PMLTEEAWE, C1117-4PMWE,
+# C1117-4PW, C1118-8P, C1121-4P, C1121-4PLTEP, C1121-8P, C1121-8PLTEP, C1121-8PLTEPW, C1121X-8P,
+# C1121X-8PLTEP, C1121X-8PLTEPW, C1126-8PLTEP, C1126X-8PLTEP, C1127-8PLTEP, C1127-8PMLTEP,
+# C1127X-8PLTEP, C1127X-8PMLTEP, C1128-8PLTEP, C1131-8PLTEPW, C1131-8PW, C1131X-8PLTEPW,
+# C1131X-8PW, C1161-8P, C1161-8PLTEP, C1161X-8P, C1161X-8PLTEP, C8000V, C8200-1N-4T, C8200L-1N-4T,
+# C8300-1N1S-4T2X, C8300-1N1S-6T, C8300-2N2S-4T2X, C8300-2N2S-6T, C8500-12X, C8500-12X4QC,
+# C8500-20X6C, C8500L-8S4X, IR-1101, IR-1821, IR-1831, IR-1833, IR-1835, IR-8140H, IR-8140H-P,
+# IR-8340, ISR-4221, ISR-4221X, ISR-4321, ISR-4331, ISR-4351, ISR-4431, ISR-4451-X, ISR-4461,
+# ISR1100-4G-XE, ISR1100-4GLTEGB-XE, ISR1100-4GLTENA-XE, ISR1100-6G-XE, ISR1100X-4G-XE,
+# ISR1100X-6G-XE
+      device_model: ASR-1001-HX
+# mandatory
+      system_template: example-host
+# mandatory
+      logging_template: example-host
+      ntp_template: example-host
+      aaa_template: example-host
+# mandatory
+      bfd_template: example-host
+# mandatory
+      omp_template: example-host
+# mandatory
+      security_template: example-host
+# mandatory
+      vpn_0_template:
+# mandatory
+        name: example-name
+        bgp_template: example-host
+        ethernet_interface_templates:
+          -
+# mandatory
+            name: example-name
+        ipsec_interface_templates:
+          -
+# mandatory
+            name: example-name
+            dhcp_server_template: 10.0.0.1
+        svi_interface_templates:
+          -
+# mandatory
+            name: example-name
+        gre_interface_templates:
+          -
+# mandatory
+            name: example-name
+        cellular_interface_templates:
+          -
+# mandatory
+            name: example-name
+        ospf_template: example-host
+        secure_internet_gateway_template: 10.0.0.1
+        sig_credentials_template: example-host
+# mandatory
+      vpn_512_template:
+# mandatory
+        name: example-name
+        ethernet_interface_templates:
+          -
+# mandatory
+            name: example-name
+        svi_interface_templates:
+          -
+# mandatory
+            name: example-name
+      vpn_service_templates:
+        -
+# mandatory
+          name: example-name
+          bgp_template: example-host
+          ethernet_interface_templates:
+            -
+# mandatory
+              name: example-name
+              dhcp_server_template: 10.0.0.1
+          igmp_template: example-host
+          ipsec_interface_templates:
+            -
+# mandatory
+              name: example-name
+              dhcp_server_template: 10.0.0.1
+          multicast_template: example-host
+          ospf_template: example-host
+          pim_template: example-host
+          svi_interface_templates:
+            -
+# mandatory
+              name: example-name
+              dhcp_server_template: 10.0.0.1
+      cellular_controller_templates:
+        -
+# mandatory
+          name: example-name
+          cellular_profile_templates:
+            -
+# mandatory
+              name: example-name
+# mandatory
+      global_settings_template: example-host
+      banner_template: example-host
+      snmp_template: example-host
+      cli_template: example-host
+      localized_policy: example-host
+      security_policy:
+# mandatory
+        name: example-name
+        container_profile: example-host
+      switchport_templates:
+        -
+# mandatory
+          name: example-name
+      thousandeyes_template: example-host

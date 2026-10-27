@@ -1,0 +1,43 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.dhcp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/dhcp/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        dhcp:
+# allowed: cisco, standard; also accepts a string
+          compatibility_suboption_link_selection: cisco
+# allowed: cisco, standard; also accepts a string
+          compatibility_suboption_server_override: cisco
+          relay_information_trust_all: true
+          relay_information_option_default: true
+          relay_information_option_vpn: true
+          relay_bootp_ignore: true
+          snooping: true
+          snooping_information_option: true
+          snooping_information_option_allow_untrusted: true
+          snooping_information_option_format_remote_id_hostname: true
+          snooping_information_option_format_remote_id_string: <HOSTNAME>
+          snooping_vlans:
+# also accepts a string
+            ids:
+              - 1
+            ranges:
+              -
+# mandatory; range 1-4094; also accepts a string
+                from: 1
+# mandatory; range 1-4094; also accepts a string
+                to: 1

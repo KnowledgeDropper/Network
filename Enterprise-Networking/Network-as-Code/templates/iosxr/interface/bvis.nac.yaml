@@ -1,0 +1,344 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.interfaces.bvis
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/interface/bvi/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        interfaces:
+          bvis:
+            -
+# mandatory; also accepts an integer; also accepts a string
+              id: '10'
+# also accepts a string
+              interface_groups:
+                - 0/0.1
+# range 30-2144448000; also accepts a string
+              arp_timeout: 30
+# allowed: disable, local; also accepts a string
+              arp_learning: disable
+              arp_gratuitous_ignore: true
+# maximum 127999; also accepts a string
+              arp_cache_limit: 1
+# maximum 9223372036854775807; also accepts a string
+              bandwidth: 1
+              dampening: true
+# range 1-45; also accepts a string
+              dampening_decay_half_life: 1
+# range 1-20000; also accepts a string
+              dampening_reuse_threshold: 1
+# range 1-20000; also accepts a string
+              dampening_suppress_threshold: 1
+# range 1-255; also accepts a string
+              dampening_max_suppress_time: 1
+# also accepts a string
+              description: ']h3W9${Aj'
+              host_routing: true
+              ipv4:
+                access_group_egress:
+# also accepts a string
+                  acl: a@"+6je3/CZ4jc'${8]X
+# also accepts an integer
+                  compress: \nM%{n!J4OA-c/?X" qr
+                  hardware_count: true
+                  interface_statistics: true
+                access_group_ingress:
+# also accepts a string
+                  acl: +$djY';C1&evZ>%{)E#Ajp?YGO>GTm_*t&
+# also accepts an integer
+                  compress: cm,`G'S5%e+OD h/;$b${k?s)9I<FX
+                  hardware_count: true
+                  interface_statistics: true
+# also accepts a string
+                address: 9$-9N[${E.L/Fr
+# also accepts a string
+                mask: 0y46=sZc!%{b,#
+# range 128-255; also accepts a string
+                algorithm: 128
+                forwarding_enable: true
+                helper_addresses:
+                  -
+# mandatory; also accepts a string
+                    address: ${
+# mandatory; also accepts a string
+                    vrf: <H#LSUc%{c4MmjrR)
+                mask_reply: true
+# range 68-65535; also accepts a string
+                mtu: 68
+                point_to_point: true
+                redirects: true
+# range 1-4294967295; also accepts a string
+                route_tag: 1
+                secondaries:
+                  -
+# mandatory; also accepts a string
+                    address: Z+F(aaO2Nsp%{]nZd?!sDN[`2(A
+# mandatory; also accepts a string
+                    mask: ^Iasfx ?%{$8b?cCnyyp2SNey
+# range 128-255; also accepts a string
+                    algorithm: 128
+# range 1-4294967295; also accepts a string
+                    route_tag: 1
+                tcp_mss_adjust: true
+                ttl_propagate_disable: true
+# also accepts a string
+                unnumbered: '!ALF%z(+s%?#.[265%{?kwrk21+'
+                unreachables_disable: true
+                verify_unicast_source_reachable_via_allow_default: true
+                verify_unicast_source_reachable_via_allow_self_ping: true
+# allowed: any, rx; also accepts a string
+                verify_unicast_source_reachable_via: any
+              ipv6:
+                access_group_egress:
+# also accepts a string
+                  acl: ;pT;XjH)%1<BDJ]3@${_yJ.(e]Eb\]vx
+# also accepts an integer
+                  compress: K%RDFw0${<bZw
+                  interface_statistics: true
+                access_group_ingress:
+# also accepts a string
+                  acl: 6:Hw^yj(gH%{
+# also accepts an integer
+                  compress: o?[<%{=s
+                  interface_statistics: true
+                addresses:
+                  -
+# mandatory; also accepts a string
+                    address: Q#jql9?Cc%{$a_?\J
+# mandatory; maximum 128; also accepts a string
+                    length: 1
+# range 128-255; also accepts a string
+                    algorithm: 128
+# range 1-4294967295; also accepts a string
+                    route_tag: 1
+# also accepts a string
+                    zone: Ht-Q${^?:D$
+                autoconfig: true
+                dhcp: true
+                enable: true
+                eui64_addresses:
+                  -
+# mandatory; also accepts a string
+                    address: ZZ${McJ7oG.Gs$:#r3
+# mandatory; maximum 128; also accepts a string
+                    length: 1
+# range 128-255; also accepts a string
+                    algorithm: 128
+# range 1-4294967295; also accepts a string
+                    route_tag: 1
+# also accepts a string
+                    zone: _#hi9(n9\*${/._p
+# also accepts a string
+                link_local_address: cfI-'3Iv/,'y%{yX=la1@*m
+# range 1-4294967295; also accepts a string
+                link_local_route_tag: 1
+# also accepts a string
+                link_local_zone: \VN>`AwDAUQR'gV]w3X%{(IlME50?#
+# range 1280-65535; also accepts a string
+                mtu: 1280
+# maximum 128000; also accepts a string
+                nd_cache_limit: 1
+# maximum 600; also accepts a string
+                nd_dad_attempts: 1
+                nd_managed_config_flag: true
+# range 1000-4294967295; also accepts a string
+                nd_ns_interval: 1000
+                nd_other_config_flag: true
+                nd_prefix_default_no_adv: true
+                nd_prefix_default_no_autoconfig: true
+# range 4-1800; also accepts a string
+                nd_ra_interval_max: 4
+# range 3-1800; also accepts a string
+                nd_ra_interval_min: 3
+# maximum 9000; also accepts a string
+                nd_ra_lifetime: 1
+# maximum 3600000; also accepts a string
+                nd_reachable_time: 1
+                nd_redirects: true
+                nd_suppress_ra: true
+                nd_unicast_ra: true
+                tcp_mss_adjust: true
+                ttl_propagate_disable: true
+                unreachables_disable: true
+                verify_unicast_source_reachable_via_allow_default: true
+                verify_unicast_source_reachable_via_allow_self_ping: true
+# allowed: any, rx; also accepts a string
+                verify_unicast_source_reachable_via: any
+# also accepts an integer
+              load_interval: TSfY(kE2LY=6[,${R3o+B<Y
+              logging_events_link_status: true
+# also accepts a string
+              mac_address: y0oI0^%{=awt,
+              monitor_sessions:
+                -
+# mandatory; also accepts a string
+                  name: U>&`d7M`+i6A`Os-.${CKbsZ=ep3%s2*Y
+# allowed: rx-only, tx-only; also accepts a string
+                  direction: rx-only
+# also accepts a string
+                  ipv4_acl: pRlw5b2C?2,ETdr${D9xCcSUx<Kv0
+# also accepts a string
+                  ipv6_acl: C68oG$cvZ%H?z%{V>g0hW`%- U+InA
+# range 1-10000; also accepts a string
+                  mirror_first: 1
+# allowed: 128, 16, 16K, 1K, 2, 256, 2K, 32, 4, 4K, 512, 64, 8, 8K; also accepts a string
+                  mirror_interval: '128'
+                  port_level: true
+# allowed: ethernet, ipv4, ipv6, mpls-ipv4, mpls-ipv6; also accepts a string
+                  type: ethernet
+# range 64-65535; also accepts a string
+              mtu: 64
+              multipoint: true
+              point_to_point: true
+              proxy_arp: true
+              ptp:
+                enable: true
+# allowed: 1, 2, 4, 8, 16, 32, 64, 128; also accepts a string
+                announce_frequency: 1
+# range 60-1000; also accepts a string
+                announce_grant_duration: 60
+# allowed: 1, 2, 4, 8, 16, 32, 64, 128; also accepts a string
+                announce_interval: 1
+# range 2-10; also accepts a string
+                announce_timeout: 2
+# allowed: one-step, two-step; also accepts a string
+                clock_operation: one-step
+# maximum 7; also accepts a string
+                cos: 1
+# maximum 7; also accepts a string
+                cos_event: 1
+# maximum 7; also accepts a string
+                cos_general: 1
+# allowed: nanoseconds, microseconds, milliseconds; also accepts a string
+                delay_asymmetry_unit: nanoseconds
+# range -500000000-500000000; also accepts a string
+                delay_asymmetry_value: 1
+# allowed: 1, 2, 4, 8, 16, 32, 64, 128; also accepts a string
+                delay_request_frequency: 1
+# allowed: 1, 2, 4, 8, 16, 32, 64, 128; also accepts a string
+                delay_request_interval: 1
+# range 60-1000; also accepts a string
+                delay_response_grant_duration: 60
+# range 100-100000; also accepts a string
+                delay_response_timeout: 100
+# maximum 63; also accepts a string
+                dscp: 1
+# maximum 63; also accepts a string
+                dscp_event: 1
+# maximum 63; also accepts a string
+                dscp_general: 1
+                interop:
+# maximum 255; also accepts a string
+                  domain: 1
+                  egress_conversion:
+# maximum 254; also accepts a string
+                    clock_accuracy: 1
+# maximum 255; also accepts a string
+                    clock_class_default: 1
+                    clock_class_mappings:
+                      -
+# mandatory; maximum 255; also accepts a string
+                        class_from: 1
+# mandatory; maximum 255; also accepts a string
+                        class_to: 1
+# maximum 65535; also accepts a string
+                    offset_scaled_log_variance: 1
+# maximum 255; also accepts a string
+                    priority1: 1
+# maximum 255; also accepts a string
+                    priority2: 1
+                  ingress_conversion:
+# maximum 254; also accepts a string
+                    clock_accuracy: 1
+# maximum 255; also accepts a string
+                    clock_class_default: 1
+                    clock_class_mappings:
+                      -
+# mandatory; maximum 255; also accepts a string
+                        class_from: 1
+# mandatory; maximum 255; also accepts a string
+                        class_to: 1
+# maximum 65535; also accepts a string
+                    offset_scaled_log_variance: 1
+# maximum 255; also accepts a string
+                    priority1: 1
+# maximum 255; also accepts a string
+                    priority2: 1
+# allowed: default, g-8265-1, g-8275-1, g-8275-2; also accepts a string
+                  profile: default
+# range 1-255; also accepts a string
+                ipv4_ttl: 1
+# range 1-255; also accepts a string
+                ipv6_hop_limit: 1
+# range 1-255; also accepts a string
+                local_priority: 1
+                masters:
+                  -
+# mandatory; also accepts a string
+                    address: Qk&UsQIS=tg`,g%{Nwl5yo=8GGQSll1
+# maximum 255; also accepts a string
+                    clock_class: 1
+# allowed: nanoseconds, microseconds, milliseconds; also accepts a string
+                    delay_asymmetry_unit: nanoseconds
+# range -500000000-500000000; also accepts a string
+                    delay_asymmetry_value: 1
+# allowed: enable, mixed; also accepts a string
+                    multicast: enable
+                    non_negotiated: true
+# maximum 255; also accepts a string
+                    priority: 1
+# allowed: enable, disable, mixed; also accepts a string
+                multicast: enable
+# allowed: 01-1B-19-00-00-00, 01-80-C2-00-00-0E; also accepts a string
+                multicast_target_address: 01-1B-19-00-00-00
+# allowed: any, master-only, slave-only; also accepts a string
+                port_state: any
+# also accepts a string
+                profile: "!Ri*$%{!`\"k:z2'#E1Dc,1_k"
+                slaves:
+                  -
+# mandatory; also accepts a string
+                    address: p`e8@%{
+# mandatory
+                    non_negotiated: true
+# allowed: disable; also accepts a string
+                source_ipv4_address: disable
+# allowed: disable; also accepts a string
+                source_ipv6_address: disable
+# allowed: 1, 2, 4, 8, 16, 32, 64, 128; also accepts a string
+                sync_frequency: 1
+# range 60-1000; also accepts a string
+                sync_grant_duration: 60
+# allowed: 1, 2, 4, 8, 16, 32, 64, 128; also accepts a string
+                sync_interval: 1
+# range 100-100000; also accepts a string
+                sync_timeout: 100
+# allowed: ethernet, ipv4, ipv6; also accepts a string
+                transport: ethernet
+# allowed: deny, reduce; also accepts a string
+                unicast_grant_invalid_request: deny
+              service_policy_input:
+                -
+# also accepts a string
+                  name: XD*C/qK,%{C?bX>8
+              service_policy_output:
+                -
+# also accepts a string
+                  name: 4)g,ujd,[W'EC)whUR$${D(mx[daQLIN[2zbq2W
+              shutdown: true
+# also accepts a string
+              vrf: LwV(${

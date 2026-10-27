@@ -1,0 +1,85 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.logging
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/logging/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        logging:
+          monitor_severity: <HOSTNAME>
+# range 4096-2147483647; also accepts a string
+          buffered_size: 4096
+          buffered_severity: <HOSTNAME>
+# range 4096-2147483647; also accepts a string
+          buffered_size_legacy: 4096
+          buffered_severity_legacy: <HOSTNAME>
+          console: true
+          console_severity: <HOSTNAME>
+# allowed: auth, cron, daemon, kern, local0, local1, local2, local3, local4, local5, local6,
+# local7, lpr, mail, news, sys10, sys11, sys12, sys13, sys14, sys9, syslog, user, uucp; also
+# accepts a string
+          facility: auth
+# maximum 65535; also accepts a string
+          history_size: 1
+          history_severity: <HOSTNAME>
+          trap: true
+          trap_severity: <HOSTNAME>
+# allowed: hostname, ip, ipv6; also accepts a string
+          origin_id_type: hostname
+          origin_id_name: <NAME>
+          file_name: <NAME>
+# maximum 4294967295; also accepts a string
+          file_max_size: 1
+# maximum 4294967295; also accepts a string
+          file_min_size: 1
+          file_severity: <HOSTNAME>
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet; also accepts a string
+          source_interface_type: Loopback
+# also accepts an integer
+          source_interface_id: 0/0.1
+          count: true
+          persistent_url: https://example.com
+# range 16384-2147483647; also accepts a string
+          persistent_size: 16384
+# range 8192-2147483647; also accepts a string
+          persistent_filesize: 8192
+# range 1-10000; also accepts a string
+          rate_limit_all: 1
+          source_interfaces_vrf:
+            -
+# mandatory
+              vrf: <HOSTNAME>
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet; also accepts a string
+              interface_type: Loopback
+# also accepts an integer
+              interface_id: 0/0.1
+          hosts:
+            -
+# mandatory; also accepts a string
+              ip: OL7,D2%{GY/ddQ0:iw8n
+              vrf: <HOSTNAME>
+              transport_udp_ports:
+                - 1
+              transport_tcp_ports:
+                - 1
+              transport_tls_ports:
+                -
+# mandatory; range 1025-65535; also accepts a string
+                  port: 1025
+                  profile: <HOSTNAME>

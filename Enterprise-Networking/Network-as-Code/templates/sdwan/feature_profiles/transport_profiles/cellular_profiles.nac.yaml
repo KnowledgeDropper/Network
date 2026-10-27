@@ -1,0 +1,49 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.transport_profiles[].cellular_profiles
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_transport/transport_cellular_profile/
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_transport/transport_wan_vpn_cellular_interface/
+sdwan:
+  feature_profiles:
+    transport_profiles:
+      -
+# mandatory
+        name: example-name
+        cellular_profiles:
+          -
+# mandatory
+            name: example-name
+            description: <DESCRIPTION>
+            access_point_name: <NAME>
+            access_point_name_variable: example-host
+            authentication_enable: true
+# allowed: pap, chap, pap_chap
+            authentication_type: pap
+            authentication_type_variable: example-host
+            no_overwrite: true
+            no_overwrite_variable: example-host
+# allowed: ipv4, ipv6, ipv4v6
+            packet_data_network_type: ipv4
+            packet_data_network_type_variable: example-host
+# range 1-16
+            profile_id: 1
+            profile_id_variable: example-host
+            profile_username: <NAME>
+            profile_username_variable: example-host
+            profile_password: <SECRET>
+            profile_password_variable: SECRET
+# allowed: 1, 2, 3
+            slice_type: 1
+            slice_type_variable: example-host
+# maximum 16777214
+            slice_differentiator: 1
+            slice_differentiator_variable: example-host

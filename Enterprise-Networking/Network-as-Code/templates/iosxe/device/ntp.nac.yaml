@@ -1,0 +1,84 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.ntp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/ntp/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        ntp:
+          authenticate: true
+          logging: true
+          access_group_peer_acl: 10.0.0.1
+          access_group_query_only_acl: <HOSTNAME>
+          access_group_serve_acl: <HOSTNAME>
+          access_group_serve_only_acl: <HOSTNAME>
+          authentication_keys:
+            -
+# mandatory; range 1-4294967295; also accepts a string
+              number: 1
+              trusted: true
+# allowed: md5, cmac_aes_128, hmac_sha1, hmac_sha2_256, sha1, sha2; also accepts a string
+              mode: md5
+              key: <HOSTNAME>
+# maximum 4294967295; also accepts a string
+              encryption_type: 1
+# maximum 4294967295; also accepts a string
+          clock_period: 1
+          master: true
+# range 1-15; also accepts a string
+          master_stratum: 1
+          passive: true
+          update_calendar: true
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet, PortChannel, PortChannelSubinterface; also accepts a string
+          source_interface_type: Loopback
+# also accepts an integer
+          source_interface_id: 0/0.1
+          servers:
+            -
+# mandatory; also accepts a string
+              ip: hU><;${WdBBcTju
+              vrf: <HOSTNAME>
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet, PortChannel, PortChannelSubinterface; also accepts a string
+              source_interface_type: Loopback
+# also accepts an integer
+              source_interface_id: 0/0.1
+# range 1-4294967295; also accepts a string
+              key: 1
+              prefer: true
+# range 1-4; also accepts a string
+              version: 1
+              burst: true
+              iburst: true
+              periodic: true
+          peers:
+            -
+# mandatory; also accepts a string
+              ip: zB#Gxa %{/)9DR,#'SY1s
+              vrf: <HOSTNAME>
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet, PortChannel; also accepts a string
+              source_interface_type: Loopback
+# also accepts an integer
+              source_interface_id: 0/0.1
+# range 1-4294967295; also accepts a string
+              key: 1
+              prefer: true
+# range 1-4; also accepts a string
+              version: 1

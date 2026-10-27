@@ -1,0 +1,54 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.tcp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs: schema section without a dedicated page in the docs nav.
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        tcp:
+# range 1-1000; also accepts a string
+          accept_rate: 1
+          ao:
+            enable: true
+            keychains:
+              -
+# mandatory; also accepts a string
+                name: ngcp${$\ja5TJ!pGR7<V
+                keys:
+                  -
+# mandatory; also accepts an integer
+                    id: '`+2-,v55*?yD3,S%{y2t+Xdi!rc!eyu:cF^'
+# mandatory; also accepts an integer
+                    receive_id: '%{0: @$oBM'
+# mandatory; also accepts an integer
+                    send_id: /UDxET#Ccl'hbqN W*1%{(p<(zVzmK B/&@oh
+# range 68-10000; also accepts a string
+          mss: 68
+          path_mtu_discovery: true
+# allowed: infinite; also accepts an integer; also accepts a string
+          path_mtu_discovery_age_timer: infinite
+# range 40-800; also accepts a string
+          receive_queue: 40
+          selective_ack: true
+# range 5-30; also accepts a string
+          synwait_time: 5
+# maximum 100; also accepts a string
+          throttle: 1
+# maximum 100; also accepts a string
+          throttle_high_water_mark: 1
+          timestamp: true
+# range 2048-65535; also accepts a string
+          window_size: 2048

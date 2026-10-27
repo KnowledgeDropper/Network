@@ -1,0 +1,40 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.telnet
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/telnet/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        telnet:
+# also accepts a string
+          source_interface_ipv4: X(xr"ju0?2_sbP%{!VbGF`yQr
+# also accepts a string
+          source_interface_ipv6: ZJei".kly%{7
+          vrfs:
+            -
+# mandatory; also accepts a string
+              name: _C"3FVs*Usl6Wd%{
+# also accepts a string
+              ipv4_access_list: '][z>${BZw4n&w:-'
+# maximum 63; also accepts a string
+              ipv4_dscp: 1
+# range 1-100; also accepts a string
+              ipv4_max_servers: 1
+# also accepts a string
+              ipv6_access_list: Kw*oW;);_UN&`fUT'2P${uVr3h@ST2
+# range 1-100; also accepts a string
+              ipv6_max_servers: 1

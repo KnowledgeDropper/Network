@@ -1,0 +1,39 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.centralized_policies.feature_policies[].custom_control_topology
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/centralized_policies/custom_control_definition/
+sdwan:
+  centralized_policies:
+    feature_policies:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        custom_control_topology:
+          -
+# mandatory
+            policy_definition: <HOSTNAME>
+# mandatory
+            site_region:
+              site_lists_in:
+                - example-host
+              site_lists_out:
+                - example-host
+              region_lists_in:
+                - example-host
+              region_lists_out:
+                - example-host
+# maximum 63
+              region_in: 1
+# maximum 63
+              region_out: 1

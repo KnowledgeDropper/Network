@@ -1,0 +1,46 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.thousandeyes_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/thousandeyes/
+sdwan:
+  edge_feature_templates:
+    thousandeyes_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - C8500-12X4QC
+        account_group_token: example
+        account_group_token_variable: <SECRET>
+        default_gateway: 10.0.0.1
+        default_gateway_variable: 10.0.0.1
+        hostname: example-host
+        hostname_variable: <HOSTNAME>
+        ip: 10.0.0.1
+        ip_variable: 10.0.0.1
+        name_server: 10.0.0.1
+        name_server_variable: 10.0.0.1
+        proxy_pac_url: https://example.com
+        proxy_pac_url_variable: https://example.com
+        proxy_host: 10.0.0.1
+        proxy_host_variable: 10.0.0.1
+# maximum 65535
+        proxy_port: 1
+        proxy_port_variable: <HOSTNAME>
+# allowed: pac, static
+        proxy_type: pac
+        proxy_type_variable: <HOSTNAME>
+# range 1-65535
+        vpn_id: 1
+        vpn_id_variable: <HOSTNAME>

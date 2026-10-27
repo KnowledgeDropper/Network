@@ -1,0 +1,57 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.service_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/service_template/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        service_templates:
+          -
+# mandatory
+            name: <NAME>
+# also accepts a string
+            access_groups:
+              - <HOSTNAME>
+# range 1-65535; also accepts a string
+            inactivity_timer: 1
+            inactivity_timer_probe: true
+# range 1-4094; also accepts a string
+            vlan: 1
+            voice_vlan: true
+# allowed: must-not-secure, must-secure, should-secure; also accepts a string
+            linksec_policy: must-not-secure
+# range 2-65519; also accepts a string
+            sgt: 2
+# range 1-1073741823; also accepts a string
+            absolute_timer: 1
+            description: <DESCRIPTION>
+# also accepts a string
+            interface_templates:
+              - 0/0.1
+            tunnel_capwap_name: <NAME>
+            vnid: <HOSTNAME>
+            redirect_append_client_mac: 00:11:22:33:44:55
+            redirect_append_switch_mac: 00:11:22:33:44:55
+            redirect_url: https://example.com
+            redirect_url_match_acl: https://example.com
+# allowed: one-time-redirect, redirect-on-no-match; also accepts a string
+            redirect_url_match_action: one-time-redirect
+            dns_acl_preauth: <HOSTNAME>
+            service_policy_qos_input: <HOSTNAME>
+            service_policy_qos_output: <HOSTNAME>
+# also accepts a string
+            tags:
+              - <HOSTNAME>
+            mdns_service_policy: <HOSTNAME>

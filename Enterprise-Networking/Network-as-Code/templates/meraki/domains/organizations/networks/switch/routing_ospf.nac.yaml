@@ -1,0 +1,60 @@
+# Cisco Network as Code template for Meraki.
+# Data model: meraki
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: meraki.domains[].organizations[].networks[].switch.routing_ospf
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_switch/routing/routing_ospf/
+meraki:
+  domains:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      administrator: {}
+# mandatory
+      organizations:
+        - networks:
+            -
+# mandatory
+              name: <NAME>
+              switch:
+                routing_ospf:
+                  enabled: true
+# range 1-65535
+                  hello_timer_in_seconds: 1
+# range 1-65535
+                  dead_timer_in_seconds: 1
+                  areas:
+                    -
+# mandatory; range 1-4294967295; also accepts a string
+                      area_id: 1
+# mandatory
+                      area_name: <NAME>
+# mandatory; allowed: normal, nssa, stub
+                      area_type: normal
+                  v3:
+                    enabled: true
+# range 1-65535
+                    hello_timer_in_seconds: 1
+# range 1-65535
+                    dead_timer_in_seconds: 1
+                    areas:
+                      -
+# mandatory; range 1-4294967295; also accepts a string
+                        area_id: 1
+# mandatory
+                        area_name: <NAME>
+# mandatory; allowed: normal, nssa, stub
+                        area_type: normal
+                  md5_authentication_key:
+# range 1-1234
+                    id: 1
+                    passphrase: <HOSTNAME>
+                  md5_authentication: true

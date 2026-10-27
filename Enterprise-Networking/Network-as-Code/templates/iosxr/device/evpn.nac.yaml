@@ -1,0 +1,228 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.evpn
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/evpn/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        evpn:
+          bgp:
+# also accepts a string
+            rd: 2Ky]cVseLLYViN${P%,-v4Qle+h\7cihA
+          cost_out: true
+          duplicate_detection:
+            ipv4:
+              disable: true
+# range 5-3600; also accepts a string
+              freeze_time: 5
+# range 1-1000; also accepts a string
+              move_count: 1
+# range 5-3600; also accepts a string
+              move_interval: 5
+# range 1-48; also accepts a string
+              reset_freeze_count_interval: 1
+# allowed: infinity; also accepts an integer; also accepts a string
+              retry_count: infinity
+            ipv6:
+              disable: true
+# range 5-3600; also accepts a string
+              freeze_time: 5
+# range 1-1000; also accepts a string
+              move_count: 1
+# range 5-3600; also accepts a string
+              move_interval: 5
+# range 1-48; also accepts a string
+              reset_freeze_count_interval: 1
+# allowed: infinity; also accepts an integer; also accepts a string
+              retry_count: infinity
+          ethernet_segment:
+            type_one_auto_generation_disable: true
+          evis:
+            -
+# mandatory; also accepts an integer
+              id: hZZ2Ic<S+S5]%{=O*z75O
+              advertise_mac: true
+              bgp:
+# also accepts a string
+                export_route_policy: qy6IP%{/\l3l?E7#Fi0;D
+                route_target_exports:
+                  - Ta&GWJ EhoO(F%{fuyp
+# also accepts a string
+                import_route_policy: lXfu%${I+
+                route_target_imports:
+                  - B-`u\STfG, %{0i9Dnt?.,A
+# also accepts a string
+                rd: (bZ%{SRb&sy
+              control_word_disable: true
+# also accepts a string
+              description: ']e>IBtzOzB;q WU=x4${`v8Y7`[*hmKkqdcDM7L'
+              etree: true
+              load_balancing:
+                enabled: true
+                flow_label_static: true
+              unknown_unicast_suppression: true
+          groups:
+            -
+# mandatory; also accepts an integer
+              id: 2ay6m'j]r`g( HTv%-y${%@O
+              core_interfaces:
+                -
+# mandatory; also accepts a string
+                  name: XSA9K<%{
+# allowed: enforce, ignore; also accepts a string
+          mtu_match: enforce
+          interfaces:
+            -
+# mandatory; also accepts a string
+              name: Tl[X'Bvi4mQAE%{#[W8;%2$vKC+ IZ,IX
+              access_signal_bundle_down: true
+# range 1-4294967295; also accepts a string
+              core_isolation_group: 1
+              ethernet_segment:
+# also accepts a string
+                route_target: =QQea;FT;$DyA_sM!c${8$IyQzWcd=("jS!U1
+                convergence:
+                  mac_mobility: true
+                  nexthop_tracking: true
+                  reroute: true
+# also accepts a string
+                esi_zero: '#dRE>vlU.1Y;nqF[B%{Q:EQ4h0'
+                force_single_homed: true
+# allowed: all-active, port-active, single-active, single-flow-active; also accepts a string
+                load_balancing_mode: all-active
+                service_carving_hrw: true
+                service_carving_manual:
+# also accepts a string
+                  primary: <<Lh,8G${'s
+# also accepts a string
+                  secondary: u5z$zdy9.SqTz2TJC%^${Lb:8j^T
+                service_carving_multicast:
+                  hrw_g: true
+                  hrw_s_g: true
+                service_carving_preference:
+                  access_driven: true
+# maximum 65535; also accepts a string
+                  weight: 1
+              timers:
+# maximum 300000; also accepts a string
+                ac_debounce: 1
+# maximum 300; also accepts a string
+                carving: 1
+# maximum 300; also accepts a string
+                peering: 1
+# maximum 3600; also accepts a string
+                recovery: 1
+          load_balancing:
+            flow_label_static: true
+          logging_df_election: true
+# also accepts a string
+          source_interface: l$aq#t3%{SR\/qp8>PV; Dt[H
+          srv6:
+            enabled: true
+            locators:
+              -
+# mandatory; also accepts a string
+                name: 6cP=\WbzW@HkAO_ /W[${>NSmPHVt"OR=7U
+                usid_allocation_wide_local_id_block: true
+            usid_allocation_wide_local_id_block: true
+# maximum 300000; also accepts a string
+          staggered_bringup_timer: 1
+# range 30-86400; also accepts a string
+          startup_cost_in: 30
+          timers:
+# maximum 300000; also accepts a string
+            ac_debounce: 1
+# maximum 300000; also accepts a string
+            backup_replacement_delay: 1
+# maximum 300; also accepts a string
+            carving: 1
+# maximum 300; also accepts a string
+            mac_postpone: 1
+# maximum 300; also accepts a string
+            peering: 1
+# maximum 3600; also accepts a string
+            recovery: 1
+# allowed: layer_2, zero; also accepts a string
+          transmit_mtu: layer_2
+          virtual:
+            access_evi:
+              ethernet_segment:
+# also accepts a string
+                route_target: z*7^o[-Nu(O*d,go6$%{M#T;aN
+# also accepts a string
+                esi_zero: '`Nw()M;LZrr%{-7))(@2Wfsx.o3'
+            neighbors:
+              -
+# mandatory; also accepts a string
+                address: ;\h7EYr15;L%{0cowP3m6PzzGp(
+# mandatory; also accepts an integer
+                pw_id: QBy-eCVf9=R[_%/jz${0
+                ethernet_segment:
+# also accepts a string
+                  route_target: '*L$CN7<)ahC)${!s'
+# also accepts a string
+                  esi_zero: P-@<kKB[BK?IZzVn\ta${!zzU:a.a(*&=6y]=9>
+                  service_carving_hrw: true
+                  service_carving_manual:
+# also accepts a string
+                    primary: 8*=w,J8%{$OI,
+# also accepts a string
+                    secondary: j'GNQm5%^C&:<g[74${^"4
+                  service_carving_multicast:
+                    hrw_g: true
+                    hrw_s_g: true
+                  service_carving_preference:
+                    access_driven: true
+# maximum 65535; also accepts a string
+                    weight: 1
+                timers:
+# maximum 300000; also accepts a string
+                  ac_debounce: 1
+# maximum 300; also accepts a string
+                  carving: 1
+# maximum 300; also accepts a string
+                  peering: 1
+# maximum 3600; also accepts a string
+                  recovery: 1
+            vfis:
+              -
+# mandatory; also accepts a string
+                name: =Z<Dg'qjWlB7L3K2${fuT%uH6h8R
+                ethernet_segment:
+# also accepts a string
+                  route_target: 9LP Gdb5yt${
+# also accepts a string
+                  esi_zero: 3i6Vk${#!OEx"Z1M$5wh
+                  service_carving_hrw: true
+                  service_carving_manual:
+# also accepts a string
+                    primary: :>L${wuz
+# also accepts a string
+                    secondary: qn19>WwK${FLt4RLlT"TvzX
+                  service_carving_preference:
+                    access_driven: true
+# maximum 65535; also accepts a string
+                    weight: 1
+                timers:
+# maximum 300000; also accepts a string
+                  ac_debounce: 1
+# maximum 300; also accepts a string
+                  carving: 1
+# maximum 300; also accepts a string
+                  peering: 1
+# maximum 3600; also accepts a string
+                  recovery: 1

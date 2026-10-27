@@ -1,0 +1,854 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.transport_profiles[].wan_vpn
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_transport/transport_wan_vpn/
+sdwan:
+  feature_profiles:
+    transport_profiles:
+      -
+# mandatory
+        name: example-name
+        wan_vpn:
+          name: example-name
+          description: <DESCRIPTION>
+          bgp: example-host
+          cellular_interfaces:
+            -
+# mandatory
+              name: example-name
+              description: <DESCRIPTION>
+              adaptive_qos: true
+# range 1-720
+              adaptive_qos_period: 1
+              adaptive_qos_period_variable: example-host
+              adaptive_qos_shaping_rate_downstream:
+# range 8-100000000
+                default: 8
+                default_variable: example-host
+# range 8-100000000
+                maximum: 8
+                maximum_variable: example-host
+# range 8-100000000
+                minimum: 8
+                minimum_variable: example-host
+              adaptive_qos_shaping_rate_upstream:
+# range 8-100000000
+                default: 8
+                default_variable: example-host
+# range 8-100000000
+                maximum: 8
+                maximum_variable: example-host
+# range 8-100000000
+                minimum: 8
+                minimum_variable: example-host
+# range 1-2147483647
+              bandwidth_downstream: 1
+              bandwidth_downstream_variable: example-host
+# range 1-2147483647
+              bandwidth_upstream: 1
+              bandwidth_upstream_variable: example-host
+              enable_ipv6: true
+              enable_ipv6_variable: example-host
+              interface_description: <DESCRIPTION>
+              interface_description_variable: 0/0.1
+# range 1500-9216
+              interface_mtu: 1500
+              interface_mtu_variable: 0/0.1
+# mandatory
+              interface_name: 0/0.1
+              interface_name_variable: 0/0.1
+              ip_directed_broadcast: true
+              ip_directed_broadcast_variable: 10.0.0.1
+# range 576-9216
+              ip_mtu: 576
+              ip_mtu_variable: 10.0.0.1
+              ipv4_dhcp_helpers:
+                - <HOSTNAME>
+              ipv4_dhcp_helpers_variable: example-host
+              ipv4_egress_acl: <HOSTNAME>
+              ipv4_ingress_acl: <HOSTNAME>
+              ipv4_nat: true
+              ipv4_nat_variable: example-host
+# range 1-8947
+              ipv4_nat_tcp_timeout: 1
+              ipv4_nat_tcp_timeout_variable: example-host
+# range 1-8947
+              ipv4_nat_udp_timeout: 1
+              ipv4_nat_udp_timeout_variable: example-host
+              ipv4_tracker: example-host
+              ipv4_tracker_group: example-host
+              ipv6_egress_acl: 2001:db8::1
+              ipv6_ingress_acl: 2001:db8::1
+              service_provider: <HOSTNAME>
+              service_provider_variable: example-host
+              shutdown: true
+              shutdown_variable: example-host
+# range 8-100000000
+              shaping_rate: 8
+              shaping_rate_variable: example-host
+# range 500-1460
+              tcp_mss: 500
+              tcp_mss_variable: example-host
+              tloc_extension: <HOSTNAME>
+              tloc_extension_variable: example-host
+              tunnel_interface:
+                allow_service_all: true
+                allow_service_all_variable: example-host
+                allow_service_bfd: true
+                allow_service_bfd_variable: example-host
+                allow_service_bgp: true
+                allow_service_bgp_variable: example-host
+                allow_service_dhcp: true
+                allow_service_dhcp_variable: example-host
+                allow_service_dns: true
+                allow_service_dns_variable: example-host
+                allow_service_https: true
+                allow_service_https_variable: example-host
+                allow_service_icmp: true
+                allow_service_icmp_variable: example-host
+                allow_service_netconf: true
+                allow_service_netconf_variable: example-host
+                allow_service_ntp: true
+                allow_service_ntp_variable: example-host
+                allow_service_ospf: true
+                allow_service_ospf_variable: example-host
+                allow_service_snmp: true
+                allow_service_snmp_variable: example-host
+                allow_service_ssh: true
+                allow_service_ssh_variable: example-host
+                allow_service_stun: true
+                allow_service_stun_variable: example-host
+                bind_loopback_tunnel: <HOSTNAME>
+                bind_loopback_tunnel_variable: example-host
+                border: true
+                border_variable: example-host
+# allowed: default, carrier1, carrier2, carrier3, carrier4, carrier5, carrier6, carrier7, carrier8
+                carrier: default
+                carrier_variable: example-host
+                clear_dont_fragment: true
+                clear_dont_fragment_variable: example-host
+# allowed: 3g, biz-internet, blue, bronze, custom1, custom2, custom3, default, gold, green, lte,
+# metro-ethernet, mpls, public-internet, private1, private2, private3, private4, private5,
+# private6, red, silver
+                color: 3g
+                color_variable: example-host
+                color_description: <DESCRIPTION>
+                color_description_variable: example-host
+                exclude_controller_groups:
+                  - 1
+                exclude_controller_groups_variable: example-host
+                full_port_hop: true
+                full_port_hop_variable: example-host
+                gre_encapsulation: true
+# maximum 4294967295
+                gre_preference: 1
+                gre_preference_variable: example-host
+# range 1-255
+                gre_weight: 1
+                gre_weight_variable: example-host
+# range 1-4294967295
+                group: 1
+                group_variable: example-host
+# range 100-600000
+                hello_interval: 100
+                hello_interval_variable: example-host
+# range 12-6000
+                hello_tolerance: 12
+                hello_tolerance_variable: example-host
+                ipsec_encapsulation: true
+# maximum 4294967295
+                ipsec_preference: 1
+                ipsec_preference_variable: example-host
+# range 1-255
+                ipsec_weight: 1
+                ipsec_weight_variable: example-host
+                last_resort_circuit: true
+                last_resort_circuit_variable: example-host
+                low_bandwidth_link: true
+                low_bandwidth_link_variable: example-host
+# maximum 100
+                max_control_connections: 1
+                max_control_connections_variable: example-host
+# range 1-60
+                nat_refresh_interval: 1
+                nat_refresh_interval_variable: example-host
+                network_broadcast: true
+                network_broadcast_variable: example-host
+                per_tunnel_qos: true
+                per_tunnel_qos_variable: example-host
+# allowed: spoke
+                per_tunnel_qos_mode: spoke
+                per_tunnel_qos_mode_variable: example-host
+                port_hop: true
+                port_hop_variable: example-host
+                restrict: true
+                restrict_variable: example-host
+# range 500-1460
+                tcp_mss: 500
+                tcp_mss_variable: example-host
+                vbond_as_stun_server: true
+                vbond_as_stun_server_variable: 10.0.0.1
+# maximum 8
+                vmanage_connection_preference: 1
+                vmanage_connection_preference_variable: example-host
+          enhance_ecmp_keying: true
+          enhance_ecmp_keying_variable: example-host
+          ethernet_interfaces:
+            -
+# mandatory
+              name: example-name
+              description: <DESCRIPTION>
+              adaptive_qos: true
+# range 1-720
+              adaptive_qos_period: 1
+              adaptive_qos_period_variable: example-host
+              adaptive_qos_shaping_rate_downstream:
+# range 8-100000000
+                default: 8
+                default_variable: example-host
+# range 8-100000000
+                maximum: 8
+                maximum_variable: example-host
+# range 8-100000000
+                minimum: 8
+                minimum_variable: example-host
+              adaptive_qos_shaping_rate_upstream:
+# range 8-100000000
+                default: 8
+                default_variable: example-host
+# range 8-100000000
+                maximum: 8
+                maximum_variable: example-host
+# range 8-100000000
+                minimum: 8
+                minimum_variable: example-host
+              arp_entries:
+                - ip_address: 10.0.0.1
+                  ip_address_variable: 10.0.0.1
+                  mac_address: 00:11:22:33:44:55
+                  mac_address_variable: 00-11-22-33-44-55
+# maximum 2147483
+              arp_timeout: 1
+              arp_timeout_variable: example-host
+              auto_detect_bandwidth: true
+              auto_detect_bandwidth_variable: example-host
+              autonegotiate: true
+              autonegotiate_variable: example-host
+# range 1-2147483647
+              bandwidth_downstream: 1
+              bandwidth_downstream_variable: example-host
+# range 1-2147483647
+              bandwidth_upstream: 1
+              bandwidth_upstream_variable: example-host
+              block_non_source_ip: true
+              block_non_source_ip_variable: 10.0.0.1
+# allowed: full, half, auto
+              duplex: full
+              duplex_variable: example-host
+              enable_ha_interlink_interface: true
+              gre_tloc_extension_source_ip: 10.0.0.1
+              gre_tloc_extension_source_ip_variable: 10.0.0.1
+              gre_tloc_extension_xconnect: <HOSTNAME>
+              gre_tloc_extension_xconnect_variable: example-host
+              icmp_redirect_disable: true
+              icmp_redirect_disable_variable: example-host
+              interface_description: <DESCRIPTION>
+              interface_description_variable: 0/0.1
+# range 1500-9216
+              interface_mtu: 1500
+              interface_mtu_variable: 0/0.1
+              interface_name: GigabitEthernet0/0
+              interface_name_variable: 0/0.1
+              iperf_server: 10.0.0.1
+              iperf_server_variable: 10.0.0.1
+              ip_directed_broadcast: true
+              ip_directed_broadcast_variable: 10.0.0.1
+# range 576-9216
+              ip_mtu: 576
+              ip_mtu_variable: 10.0.0.1
+              ipv4_address: 10.0.0.1
+              ipv4_address_variable: 10.0.0.1
+# allowed: dynamic, static
+              ipv4_address_type: dynamic
+              ipv4_address_type_variable: 10.0.0.1
+# range 1-255
+              ipv4_dhcp_distance: 1
+              ipv4_dhcp_distance_variable: example-host
+              ipv4_dhcp_helpers:
+                - <HOSTNAME>
+              ipv4_dhcp_helpers_variable: example-host
+              ipv4_egress_acl: <HOSTNAME>
+              ipv4_ingress_acl: <HOSTNAME>
+              ipv4_nat: true
+              ipv4_nat_variable: example-host
+# allowed: interface, pool, loopback
+              ipv4_nat_type: interface
+              ipv4_nat_loopback_interface: 0/0.1
+              ipv4_nat_loopback_interface_variable: 0/0.1
+              ipv4_nat_loopbacks:
+                - loopback_interface: Loopback0
+                  loopback_interface_variable: 0/0.1
+              ipv4_nat_match_interface: true
+              ipv4_nat_match_interface_variable: 0/0.1
+              ipv4_nat_pool_overload: true
+              ipv4_nat_pool_overload_variable: example-host
+# range 1-32
+              ipv4_nat_pool_prefix_length: 1
+              ipv4_nat_pool_prefix_length_variable: 10.0.0.1
+              ipv4_nat_pool_range_end: <HOSTNAME>
+              ipv4_nat_pool_range_end_variable: example-host
+              ipv4_nat_pool_range_start: <HOSTNAME>
+              ipv4_nat_pool_range_start_variable: example-host
+              ipv4_nat_pools:
+                - enable_dual_router_ha_mapping: true
+# range 1-4095
+                  id: 1
+                  id_variable: example-host
+                  overload: true
+                  overload_variable: example-host
+# range 1-32
+                  prefix_length: 1
+                  prefix_length_variable: 10.0.0.1
+                  range_end: <HOSTNAME>
+                  range_end_variable: example-host
+                  range_start: <HOSTNAME>
+                  range_start_variable: example-host
+              ipv4_nat_port_forwarding_rules:
+                -
+# allowed: inside
+                  direction: inside
+                  enable_dual_router_ha_mapping: true
+# allowed: tcp, udp
+                  protocol: tcp
+                  protocol_variable: example-host
+                  source_ip: 10.0.0.1
+                  source_ip_variable: 10.0.0.1
+# range 1-65535
+                  source_port: 1
+                  source_port_variable: example-host
+# maximum 65530
+                  source_vpn: 1
+                  source_vpn_variable: example-host
+                  translated_ip: 10.0.0.1
+                  translated_ip_variable: 10.0.0.1
+# range 1-65535
+                  translated_port: 1
+                  translated_port_variable: example-host
+              ipv4_nat_static_entries:
+                -
+# allowed: inside, outside
+                  direction: inside
+                  enable_dual_router_ha_mapping: true
+                  source_ip: 10.0.0.1
+                  source_ip_variable: 10.0.0.1
+# maximum 65530
+                  source_vpn_id: 1
+                  source_vpn_id_variable: example-host
+                  translate_ip: 10.0.0.1
+                  translate_ip_variable: 10.0.0.1
+# range 1-8947
+              ipv4_nat_tcp_timeout: 1
+              ipv4_nat_tcp_timeout_variable: example-host
+# range 1-8947
+              ipv4_nat_udp_timeout: 1
+              ipv4_nat_udp_timeout_variable: example-host
+              ipv4_secondary_addresses:
+                - address: 10.0.0.1
+                  address_variable: 10.0.0.1
+# allowed: 255.255.255.255, 255.255.255.254, 255.255.255.252, 255.255.255.248, 255.255.255.240,
+# 255.255.255.224, 255.255.255.192, 255.255.255.128, 255.255.255.0, 255.255.254.0, 255.255.252.0,
+# 255.255.248.0, 255.255.240.0, 255.255.224.0, 255.255.192.0, 255.255.128.0, 255.255.0.0,
+# 255.254.0.0, 255.252.0.0, 255.248.0.0, 255.240.0.0, 255.224.0.0, 255.192.0.0, 255.128.0.0,
+# 255.0.0.0, 254.0.0.0, 252.0.0.0, 248.0.0.0, 240.0.0.0, 224.0.0.0, 192.0.0.0, 128.0.0.0, 0.0.0.0
+                  subnet_mask: 255.255.255.255
+                  subnet_mask_variable: 10.0.0.1
+# allowed: 255.255.255.255, 255.255.255.254, 255.255.255.252, 255.255.255.248, 255.255.255.240,
+# 255.255.255.224, 255.255.255.192, 255.255.255.128, 255.255.255.0, 255.255.254.0, 255.255.252.0,
+# 255.255.248.0, 255.255.240.0, 255.255.224.0, 255.255.192.0, 255.255.128.0, 255.255.0.0,
+# 255.254.0.0, 255.252.0.0, 255.248.0.0, 255.240.0.0, 255.224.0.0, 255.192.0.0, 255.128.0.0,
+# 255.0.0.0, 254.0.0.0, 252.0.0.0, 248.0.0.0, 240.0.0.0, 224.0.0.0, 192.0.0.0, 128.0.0.0, 0.0.0.0
+              ipv4_subnet_mask: 255.255.255.255
+              ipv4_subnet_mask_variable: 10.0.0.1
+              ipv4_tracker: example-host
+              ipv4_tracker_group: example-host
+              ipv6_address: 2001:db8::1
+              ipv6_address_variable: 10.0.0.1
+# allowed: dynamic, static
+              ipv6_address_type: dynamic
+              ipv6_address_type_variable: 10.0.0.1
+              ipv6_egress_acl: 2001:db8::1
+              ipv6_ingress_acl: 2001:db8::1
+              ipv6_nat: true
+              ipv6_nat_variable: example-host
+# allowed: nat64, nat66
+              ipv6_nat_type: nat64
+              ipv6_nat66_static_entries:
+                - egress_interface: true
+                  egress_interface_variable: 0/0.1
+                  source_prefix: 2001:db8::/64
+                  source_prefix_variable: 10.0.0.1
+# maximum 65530
+                  source_vpn_id: 1
+                  source_vpn_id_variable: example-host
+                  translate_prefix: 2001:db8::/64
+                  translate_prefix_variable: 10.0.0.1
+              ipv6_dynamic_secondary_addresses:
+                - address: 10.0.0.1
+                  address_variable: 10.0.0.1
+              ipv6_static_secondary_addresses:
+                - address: 10.0.0.1
+                  address_variable: 10.0.0.1
+              ipv6_tracker: 2001:db8::1
+              ipv6_tracker_group: 2001:db8::1
+# range 30-600
+              load_interval: 30
+              load_interval_variable: example-host
+              mac_address: 00:11:22:33:44:55
+              mac_address_variable: 00-11-22-33-44-55
+# allowed: auto-select, rj45, sfp
+              media_type: auto-select
+              media_type_variable: example-host
+              port_channel_interface: true
+              port_channel_lacp_fast_switchover: true
+              port_channel_lacp_fast_switchover_variable: example-host
+# range 1-16
+              port_channel_lacp_max_bundle: 1
+              port_channel_lacp_max_bundle_variable: example-host
+# range 1-16
+              port_channel_lacp_min_bundle: 1
+              port_channel_lacp_min_bundle_variable: example-host
+# allowed: flow, vlan
+              port_channel_load_balance: flow
+              port_channel_load_balance_variable: example-host
+              port_channel_member_interface: true
+              port_channel_member_links:
+                -
+# mandatory
+                  interface_feature_name: 0/0.1
+# allowed: active, passive
+                  lacp_mode: active
+                  lacp_mode_variable: example-host
+# range 1-65535
+                  lacp_port_priority: 1
+                  lacp_port_priority_variable: example-host
+# allowed: fast, normal
+                  lacp_rate: fast
+                  lacp_rate_variable: example-host
+# allowed: lacp, static
+              port_channel_mode: lacp
+              port_channel_qos_aggregate: true
+              port_channel_qos_aggregate_variable: example-host
+              port_channel_subinterface: true
+              service_provider: <HOSTNAME>
+              service_provider_variable: example-host
+              shutdown: true
+              shutdown_variable: example-host
+# allowed: 10, 100, 1000, 2500, 10000
+              speed: 10
+              speed_variable: example-host
+# range 8-100000000
+              shaping_rate: 8
+              shaping_rate_variable: example-host
+# range 500-1460
+              tcp_mss: 500
+              tcp_mss_variable: example-host
+              tloc_extension: <HOSTNAME>
+              tloc_extension_variable: example-host
+              trustsec:
+                enable_enforced_propagation: true
+                enable_sgt_propagation: true
+# range 2-65519
+                enforced_security_group_tag: 2
+                enforced_security_group_tag_variable: example-host
+                propagate: true
+# range 2-65519
+                security_group_tag: 2
+                security_group_tag_variable: example-host
+                trusted: true
+              tunnel_interface:
+                allow_fragmentation: true
+                allow_fragmentation_variable: example-host
+                allow_service_all: true
+                allow_service_all_variable: example-host
+                allow_service_bfd: true
+                allow_service_bfd_variable: example-host
+                allow_service_bgp: true
+                allow_service_bgp_variable: example-host
+                allow_service_dhcp: true
+                allow_service_dhcp_variable: example-host
+                allow_service_dns: true
+                allow_service_dns_variable: example-host
+                allow_service_https: true
+                allow_service_https_variable: example-host
+                allow_service_icmp: true
+                allow_service_icmp_variable: example-host
+                allow_service_netconf: true
+                allow_service_netconf_variable: example-host
+                allow_service_ntp: true
+                allow_service_ntp_variable: example-host
+                allow_service_ospf: true
+                allow_service_ospf_variable: example-host
+                allow_service_snmp: true
+                allow_service_snmp_variable: example-host
+                allow_service_ssh: true
+                allow_service_ssh_variable: example-host
+                allow_service_stun: true
+                allow_service_stun_variable: example-host
+                bind_loopback_tunnel: <HOSTNAME>
+                bind_loopback_tunnel_variable: example-host
+                border: true
+                border_variable: example-host
+# allowed: default, carrier1, carrier2, carrier3, carrier4, carrier5, carrier6, carrier7, carrier8
+                carrier: default
+                carrier_variable: example-host
+                clear_dont_fragment: true
+                clear_dont_fragment_variable: example-host
+# allowed: 3g, biz-internet, blue, bronze, custom1, custom2, custom3, default, gold, green, lte,
+# metro-ethernet, mpls, public-internet, private1, private2, private3, private4, private5,
+# private6, red, silver
+                color: 3g
+                color_variable: example-host
+                color_description: <DESCRIPTION>
+                color_description_variable: example-host
+                cts_sgt_propagation: true
+                cts_sgt_propagation_variable: example-host
+                exclude_controller_groups:
+                  - 1
+                exclude_controller_groups_variable: example-host
+                full_port_hop: true
+                full_port_hop_variable: example-host
+                gre_encapsulation: true
+# maximum 4294967295
+                gre_preference: 1
+                gre_preference_variable: example-host
+                gre_tunnel_destination_ip: 10.0.0.1
+                gre_tunnel_destination_ip_variable: 10.0.0.1
+# range 1-255
+                gre_weight: 1
+                gre_weight_variable: example-host
+# range 1-4294967295
+                group: 1
+                group_variable: example-host
+# range 100-600000
+                hello_interval: 100
+                hello_interval_variable: example-host
+# range 12-6000
+                hello_tolerance: 12
+                hello_tolerance_variable: example-host
+                ipsec_encapsulation: true
+# maximum 4294967295
+                ipsec_preference: 1
+                ipsec_preference_variable: example-host
+# range 1-255
+                ipsec_weight: 1
+                ipsec_weight_variable: example-host
+                last_resort_circuit: true
+                last_resort_circuit_variable: example-host
+                low_bandwidth_link: true
+                low_bandwidth_link_variable: example-host
+# maximum 100
+                max_control_connections: 1
+                max_control_connections_variable: example-host
+# allowed: core, core-shared
+                mrf_core_region_type: core
+                mrf_enable_core_region: true
+                mrf_enable_secondary_region: true
+# allowed: secondary-only, secondary-shared
+                mrf_secondary_region_type: secondary-only
+# range 1-60
+                nat_refresh_interval: 1
+                nat_refresh_interval_variable: example-host
+                network_broadcast: true
+                network_broadcast_variable: example-host
+                per_tunnel_qos: true
+                per_tunnel_qos_variable: example-host
+# range 1-100
+                per_tunnel_qos_bandwidth_percent: 1
+                per_tunnel_qos_bandwidth_percent_variable: example-host
+# allowed: hub, spoke
+                per_tunnel_qos_mode: hub
+                per_tunnel_qos_mode_variable: example-host
+                port_hop: true
+                port_hop_variable: example-host
+                restrict: true
+                restrict_variable: example-host
+                set_sdwan_tunnel_mtu_to_max: true
+                set_sdwan_tunnel_mtu_to_max_variable: example-host
+# range 500-1460
+                tcp_mss: 500
+                tcp_mss_variable: example-host
+                vbond_as_stun_server: true
+                vbond_as_stun_server_variable: 10.0.0.1
+# maximum 8
+                vmanage_connection_preference: 1
+                vmanage_connection_preference_variable: example-host
+          gre_interfaces:
+            -
+# mandatory
+              name: example-name
+              description: <DESCRIPTION>
+# allowed: none, sig
+              application_tunnel_type: none
+              application_tunnel_type_variable: example-host
+              clear_dont_fragment: true
+              clear_dont_fragment_variable: example-host
+# range 10-3600
+              dpd_interval: 10
+              dpd_interval_variable: example-host
+# range 2-60
+              dpd_retries: 2
+              dpd_retries_variable: example-host
+# allowed: aes256-cbc-sha1, aes256-cbc-sha2, aes128-cbc-sha1, aes128-cbc-sha2
+              ike_cipher_suite: aes256-cbc-sha1
+              ike_cipher_suite_variable: example-host
+# allowed: 2, 14, 15, 16, 19, 20, 21, 24
+              ike_diffie_hellman_group: 2
+              ike_diffie_hellman_group_variable: example-host
+# range 1-63
+              ike_id_for_local_endpoint: 1
+              ike_id_for_local_endpoint_variable: example-host
+# range 1-63
+              ike_id_for_remote_endpoint: 1
+              ike_id_for_remote_endpoint_variable: example-host
+# allowed: main, aggressive
+              ike_integrity_protocol: main
+              ike_integrity_protocol_variable: example-host
+# range 60-86400
+              ike_rekey_interval: 60
+              ike_rekey_interval_variable: example-host
+# range 1-2
+              ike_version: 1
+              interface_description: <DESCRIPTION>
+              interface_description_variable: 0/0.1
+              interface_name: gre63
+              interface_name_variable: 0/0.1
+# allowed: aes256-cbc-sha1, aes256-cbc-sha384, aes256-cbc-sha256, aes256-cbc-sha512, aes256-gcm,
+# null-sha1, null-sha384, null-sha256, null-sha512
+              ipsec_cipher_suite: aes256-cbc-sha1
+              ipsec_cipher_suite_variable: example-host
+# range 120-2592000
+              ipsec_rekey_interval: 120
+              ipsec_rekey_interval_variable: example-host
+# range 64-4096
+              ipsec_replay_window: 64
+              ipsec_replay_window_variable: example-host
+              ipv4_address: 10.0.0.1
+              ipv4_address_variable: 10.0.0.1
+# range 576-9976
+              ipv4_mtu: 576
+              ipv4_mtu_variable: example-host
+# allowed: 255.255.255.255, 255.255.255.254, 255.255.255.252, 255.255.255.248, 255.255.255.240,
+# 255.255.255.224, 255.255.255.192, 255.255.255.128, 255.255.255.0, 255.255.254.0, 255.255.252.0,
+# 255.255.248.0, 255.255.240.0, 255.255.224.0, 255.255.192.0, 255.255.128.0, 255.255.0.0,
+# 255.254.0.0, 255.252.0.0, 255.248.0.0, 255.240.0.0, 255.224.0.0, 255.192.0.0, 255.128.0.0,
+# 255.0.0.0, 254.0.0.0, 252.0.0.0, 248.0.0.0, 240.0.0.0, 224.0.0.0, 192.0.0.0, 128.0.0.0, 0.0.0.0
+              ipv4_subnet_mask: 255.255.255.255
+              ipv4_subnet_mask_variable: 10.0.0.1
+# range 500-1460
+              ipv4_tcp_mss: 500
+              ipv4_tcp_mss_variable: example-host
+              ipv4_tracker: example-host
+              ipv6_address: 2001:db8::1
+              ipv6_address_variable: 10.0.0.1
+# range 1280-9976
+              ipv6_mtu: 1280
+              ipv6_mtu_variable: example-host
+# range 40-1454
+              ipv6_tcp_mss: 40
+              ipv6_tcp_mss_variable: example-host
+              multiplexing: true
+              multiplexing_variable: example-host
+# allowed: group-1, group-2, group-5, group-14, group-15, group-16, group-19, group-20, group-21,
+# group-24, none
+              perfect_forward_secrecy: group-1
+              perfect_forward_secrecy_variable: example-host
+              preshared_key_for_ike: <HOSTNAME>
+              preshared_key_for_ike_variable: example-host
+              shutdown: true
+              shutdown_variable: example-host
+              tunnel_destination_ipv4_address: 10.0.0.1
+              tunnel_destination_ipv4_address_variable: 10.0.0.1
+              tunnel_destination_ipv6_address: 2001:db8::1
+              tunnel_destination_ipv6_address_variable: 10.0.0.1
+# allowed: ipv4, ipv6
+              tunnel_mode: ipv4
+              tunnel_protection: true
+              tunnel_route_via_loopback: <HOSTNAME>
+              tunnel_route_via_loopback_variable: example-host
+              tunnel_source_interface: 0/0.1
+              tunnel_source_interface_variable: 0/0.1
+              tunnel_source_interface_loopback: 0/0.1
+              tunnel_source_interface_loopback_variable: 0/0.1
+              tunnel_source_ipv4_address: 10.0.0.1
+              tunnel_source_ipv4_address_variable: 10.0.0.1
+              tunnel_source_ipv6_address: 2001:db8::1
+              tunnel_source_ipv6_address_variable: 10.0.0.1
+          host_mappings:
+            - hostname: <HOSTNAME>
+              hostname_variable: example-host
+              ips:
+                - <HOSTNAME>
+              ips_variable: example-host
+          ipsec_interfaces:
+            -
+# mandatory
+              name: example-name
+              description: <DESCRIPTION>
+# allowed: none, sig
+              application_tunnel_type: none
+              application_tunnel_type_variable: example-host
+              clear_dont_fragment: true
+              clear_dont_fragment_variable: example-host
+# range 10-3600
+              dpd_interval: 10
+              dpd_interval_variable: example-host
+# range 2-60
+              dpd_retries: 2
+              dpd_retries_variable: example-host
+# allowed: aes256-cbc-sha1, aes256-cbc-sha2, aes128-cbc-sha1, aes128-cbc-sha2
+              ike_cipher_suite: aes256-cbc-sha1
+              ike_cipher_suite_variable: example-host
+# allowed: 2, 14, 15, 16, 19, 20, 21, 24
+              ike_diffie_hellman_group: 2
+              ike_diffie_hellman_group_variable: example-host
+# allowed: main, aggressive
+              ike_integrity_protocol: main
+              ike_integrity_protocol_variable: example-host
+              ike_local_endpoint_id: 0/0.1
+              ike_local_endpoint_id_variable: example-host
+              ike_preshared_key: <HOSTNAME>
+              ike_preshared_key_variable: example-host
+# range 60-86400
+              ike_rekey_interval: 60
+              ike_rekey_interval_variable: example-host
+              ike_remote_endpoint_id: 0/0.1
+              ike_remote_endpoint_id_variable: example-host
+# range 1-2
+              ike_version: 1
+              interface_description: <DESCRIPTION>
+              interface_description_variable: 0/0.1
+              interface_name: ipsec159
+              interface_name_variable: 0/0.1
+# allowed: aes256-cbc-sha1, aes256-cbc-sha256, aes256-cbc-sha384, aes256-cbc-sha512, aes256-gcm,
+# null-sha1, null-sha256, null-sha384, null-sha512
+              ipsec_cipher_suite: aes256-cbc-sha1
+              ipsec_cipher_suite_variable: example-host
+# allowed: group-1, group-2, group-5, group-14, group-15, group-16, group-19, group-20, group-21,
+# group-24, none
+              ipsec_perfect_forward_secrecy: group-1
+              ipsec_perfect_forward_secrecy_variable: example-host
+# range 120-2592000
+              ipsec_rekey_interval: 120
+              ipsec_rekey_interval_variable: example-host
+# range 64-4096
+              ipsec_replay_window: 64
+              ipsec_replay_window_variable: example-host
+              ipv4_address: 10.0.0.1
+              ipv4_address_variable: 10.0.0.1
+# range 68-9216
+              ipv4_mtu: 68
+              ipv4_mtu_variable: example-host
+# allowed: 255.255.255.255, 255.255.255.254, 255.255.255.252, 255.255.255.248, 255.255.255.240,
+# 255.255.255.224, 255.255.255.192, 255.255.255.128, 255.255.255.0, 255.255.254.0, 255.255.252.0,
+# 255.255.248.0, 255.255.240.0, 255.255.224.0, 255.255.192.0, 255.255.128.0, 255.255.0.0,
+# 255.254.0.0, 255.252.0.0, 255.248.0.0, 255.240.0.0, 255.224.0.0, 255.192.0.0, 255.128.0.0,
+# 255.0.0.0, 254.0.0.0, 252.0.0.0, 248.0.0.0, 240.0.0.0, 224.0.0.0, 192.0.0.0, 128.0.0.0, 0.0.0.0
+              ipv4_subnet_mask: 255.255.255.255
+              ipv4_subnet_mask_variable: 10.0.0.1
+# range 500-1460
+              ipv4_tcp_mss: 500
+              ipv4_tcp_mss_variable: example-host
+              ipv4_tracker: example-host
+              ipv6_address: 2001:db8::/64
+              ipv6_address_variable: 10.0.0.1
+# range 1280-9976
+              ipv6_mtu: 1280
+              ipv6_mtu_variable: example-host
+# range 40-1454
+              ipv6_tcp_mss: 40
+              ipv6_tcp_mss_variable: example-host
+              multiplexing: true
+              multiplexing_variable: example-host
+              shutdown: true
+              shutdown_variable: example-host
+              tunnel_destination_ipv4_address: 10.0.0.1
+              tunnel_destination_ipv4_address_variable: 10.0.0.1
+              tunnel_destination_ipv6_address: 2001:db8::1
+              tunnel_destination_ipv6_address_variable: 10.0.0.1
+# allowed: ipv4, ipv6, ipv4-v6overlay
+              tunnel_mode: ipv4
+              tunnel_route_via: <HOSTNAME>
+              tunnel_route_via_variable: example-host
+              tunnel_source_interface: GigabitEthernet0/0
+              tunnel_source_interface_variable: 0/0.1
+              tunnel_source_ipv4_address: 10.0.0.1
+              tunnel_source_ipv4_address_variable: 10.0.0.1
+              tunnel_source_ipv6_address: 2001:db8::1
+              tunnel_source_ipv6_address_variable: 10.0.0.1
+          ipv4_primary_dns_address: 10.0.0.1
+          ipv4_primary_dns_address_variable: 10.0.0.1
+          ipv4_secondary_dns_address: 10.0.0.1
+          ipv4_secondary_dns_address_variable: 10.0.0.1
+          ipv4_static_routes:
+            -
+# range 1-255
+              administrative_distance: 1
+              administrative_distance_variable: example-host
+# allowed: nexthop, dhcp, null0
+              gateway: nexthop
+              network_address: 10.0.0.1
+              network_address_variable: 10.0.0.1
+              next_hops:
+                -
+# also accepts a string
+                  address: GigabitEthernet0/0
+                  address_variable: 10.0.0.1
+# range 1-255
+                  administrative_distance: 1
+                  administrative_distance_variable: example-host
+# allowed: 255.255.255.255, 255.255.255.254, 255.255.255.252, 255.255.255.248, 255.255.255.240,
+# 255.255.255.224, 255.255.255.192, 255.255.255.128, 255.255.255.0, 255.255.254.0, 255.255.252.0,
+# 255.255.248.0, 255.255.240.0, 255.255.224.0, 255.255.192.0, 255.255.128.0, 255.255.0.0,
+# 255.254.0.0, 255.252.0.0, 255.240.0.0, 255.224.0.0, 255.192.0.0, 255.128.0.0, 255.0.0.0,
+# 254.0.0.0, 252.0.0.0, 248.0.0.0, 240.0.0.0, 224.0.0.0, 192.0.0.0, 128.0.0.0, 0.0.0.0
+              subnet_mask: 255.255.255.255
+              subnet_mask_variable: 10.0.0.1
+          ipv6_primary_dns_address: 2001:db8::1
+          ipv6_primary_dns_address_variable: 10.0.0.1
+          ipv6_secondary_dns_address: 2001:db8::1
+          ipv6_secondary_dns_address_variable: 10.0.0.1
+          ipv6_static_routes:
+            -
+# allowed: nexthop, nat, null0
+              gateway: nexthop
+# allowed: NAT64, NAT66
+              nat: NAT64
+              next_hops:
+                - address: 10.0.0.1
+                  address_variable: 10.0.0.1
+# range 1-255
+                  administrative_distance: 1
+                  administrative_distance_variable: example-host
+              prefix: 2001:db8::/64
+              prefix_variable: 10.0.0.1
+          nat_64_v4_pools:
+            - name: <NAME>
+              name_variable: example-host
+              overload: true
+              overload_variable: example-host
+              range_end: <HOSTNAME>
+              range_end_variable: example-host
+              range_start: <HOSTNAME>
+              range_start_variable: example-host
+          ospf: example-host
+          services:
+            - TE

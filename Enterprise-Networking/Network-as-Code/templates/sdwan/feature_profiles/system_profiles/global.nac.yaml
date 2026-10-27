@@ -1,0 +1,82 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.system_profiles[].global
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_system/system_global/
+sdwan:
+  feature_profiles:
+    system_profiles:
+      -
+# mandatory
+        name: example-name
+        global:
+          name: example-name
+          description: <DESCRIPTION>
+          arp_proxy: true
+          arp_proxy_variable: example-host
+          bgp_community_new_format: true
+          bgp_community_new_format_variable: example-host
+          cdp: true
+          cdp_variable: example-host
+          console_logging: true
+          console_logging_variable: example-host
+          domain_lookup: true
+          domain_lookup_variable: example.com
+# allowed: src-ip, dst-ip, src-dst-ip, src-mac, dst-mac, src-dst-mac, src-dst-mixed-ip-port, sdwan
+          etherchannel_flow_load_balance: src-ip
+          etherchannel_flow_load_balance_variable: example-host
+          etherchannel_vlan_load_balance: true
+          etherchannel_vlan_load_balance_variable: '10'
+          ftp_passive: true
+          ftp_passive_variable: example-host
+# allowed: local, aaa
+          http_authentication: local
+          http_authentication_variable: example-host
+          http_server: true
+          http_server_variable: 10.0.0.1
+          https_server: true
+          https_server_variable: 10.0.0.1
+          ignore_bootp: true
+          ignore_bootp_variable: example-host
+          ip_source_routing: true
+          ip_source_routing_variable: 10.0.0.1
+# range 1-65535
+          lacp_system_priority: 1
+          lacp_system_priority_variable: example-host
+          lldp: true
+          lldp_variable: example-host
+# range 1-536870
+          nat64_udp_timeout: 1
+          nat64_udp_timeout_variable: example-host
+# range 1-536870
+          nat64_tcp_timeout: 1
+          nat64_tcp_timeout_variable: example-host
+          rsh_rcp: true
+          rsh_rcp_variable: example-host
+          snmp_ifindex_persist: true
+          snmp_ifindex_persist_variable: example-host
+          source_interface: 0/0.1
+          source_interface_variable: 0/0.1
+# range 1-2
+          ssh_version: 1
+          ssh_version_variable: example-host
+          tcp_keepalives_in: true
+          tcp_keepalives_in_variable: example-host
+          tcp_keepalives_out: true
+          tcp_keepalives_out_variable: example-host
+          tcp_small_servers: true
+          tcp_small_servers_variable: example-host
+          telnet_outbound: true
+          telnet_outbound_variable: example-host
+          udp_small_servers: true
+          udp_small_servers_variable: example-host
+          vty_logging: true
+          vty_logging_variable: example-host

@@ -1,0 +1,83 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.centralized_policies.definitions.data_policy.application_aware_routing
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/centralized_policies/application_aware_routing/
+sdwan:
+  centralized_policies:
+    definitions:
+      data_policy:
+        application_aware_routing:
+          -
+# mandatory
+            name: example-name
+# mandatory
+            description: <DESCRIPTION>
+            default_action_sla_class_list: example-host
+            sequences:
+              -
+# mandatory; range 1-65534
+                id: 1
+# mandatory
+                name: <NAME>
+# allowed: ipv4, ipv6, all
+                ip_type: ipv4
+                type: <HOSTNAME>
+                match_criterias:
+                  application_list: example-host
+                  cloud_saas_application_list: example-host
+                  dns_application_list: example-host
+# allowed: request, response
+                  dns: request
+# maximum 63; also accepts a string
+                  dscp: 1
+# allowed: low, high
+                  plp: low
+                  protocols:
+                    - 1
+                  source_data_prefix_list: example-host
+                  source_data_prefix: 10.0.0.1
+                  source_ports:
+                    - 1
+                  source_port_ranges:
+                    -
+# mandatory; maximum 65535
+                      from: 1
+# mandatory; maximum 65535
+                      to: 1
+                  destination_data_prefix_list: example-host
+                  destination_data_prefix: 10.0.0.1
+                  destination_ports:
+                    - 1
+                  destination_port_ranges:
+                    -
+# mandatory; maximum 65535
+                      from: 1
+# mandatory; maximum 65535
+                      to: 1
+# allowed: access, core, service
+                  traffic_to: access
+# allowed: primary-region, secondary-region, other-region
+                  destination_region: primary-region
+                actions:
+                  counter_name: example-name
+                  log: true
+                  backup_sla_preferred_colors:
+                    - default
+                  cloud_sla: true
+                  sla_class_list:
+# mandatory
+                    sla_class_list: example-host
+                    preferred_colors:
+                      - default
+                    preferred_color_group: example-host
+# allowed: strict_drop, fallback_to_best_path, load_balance
+                    when_sla_not_met: strict_drop

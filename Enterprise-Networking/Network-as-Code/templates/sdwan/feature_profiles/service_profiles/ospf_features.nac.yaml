@@ -1,0 +1,128 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.service_profiles[].ospf_features
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_service/service_ospf/
+sdwan:
+  feature_profiles:
+    service_profiles:
+      -
+# mandatory
+        name: example-name
+        ospf_features:
+          -
+# mandatory
+            name: example-name
+            description: <DESCRIPTION>
+            areas:
+              -
+# maximum 4294967295
+                number: 1
+                number_variable: example-host
+                interfaces:
+                  - name: GigabitEthernet0/0
+                    name_variable: example-host
+                    authentication_message_digest_key: <DESCRIPTION>
+                    authentication_message_digest_key_variable: example-host
+# range 1-255
+                    authentication_message_digest_key_id: 1
+                    authentication_message_digest_key_id_variable: example-host
+# allowed: message-digest
+                    authentication_type: message-digest
+                    authentication_type_variable: example-host
+# range 1-65535
+                    cost: 1
+                    cost_variable: example-host
+# range 1-65535
+                    hello_interval: 1
+                    hello_interval_variable: example-host
+# range 1-65535
+                    dead_interval: 1
+                    dead_interval_variable: example-host
+# maximum 255
+                    designated_router_priority: 1
+                    designated_router_priority_variable: example-host
+# range 1-65535
+                    lsa_retransmit_interval: 1
+                    lsa_retransmit_interval_variable: example-host
+# allowed: broadcast, non-broadcast, point-to-multipoint, point-to-point
+                    network_type: broadcast
+                    network_type_variable: example-host
+                    passive: true
+                    passive_variable: example-host
+                no_summary: true
+                no_summary_variable: example-host
+                ranges:
+                  -
+# maximum 16777214
+                    cost: 1
+                    network_address: 10.0.0.1
+                    network_address_variable: 10.0.0.1
+                    no_advertise: true
+                    no_advertise_variable: example-host
+# allowed: 255.255.255.255, 255.255.255.254, 255.255.255.252, 255.255.255.248, 255.255.255.240,
+# 255.255.255.224, 255.255.255.192, 255.255.255.128, 255.255.255.0, 255.255.254.0, 255.255.252.0,
+# 255.255.248.0, 255.255.240.0, 255.255.224.0, 255.255.192.0, 255.255.128.0, 255.255.0.0,
+# 255.254.0.0, 255.252.0.0, 255.248.0.0, 255.240.0.0, 255.224.0.0, 255.192.0.0, 255.128.0.0,
+# 255.0.0.0, 254.0.0.0, 252.0.0.0, 248.0.0.0, 240.0.0.0, 224.0.0.0, 192.0.0.0, 128.0.0.0, 0.0.0.0
+                    subnet_mask: 255.255.255.255
+                    subnet_mask_variable: 10.0.0.1
+# allowed: stub, nssa
+                type: stub
+            default_originate: true
+            default_originate_always: true
+            default_originate_always_variable: example-host
+# maximum 16777214
+            default_originate_metric: 1
+            default_originate_metric_variable: example-host
+# allowed: type1, type2
+            default_originate_metric_type: type1
+            default_originate_metric_type_variable: example-host
+# range 1-255
+            distance_external: 1
+            distance_external_variable: example-host
+# range 1-255
+            distance_inter_area: 1
+            distance_inter_area_variable: example-host
+# range 1-255
+            distance_intra_area: 1
+            distance_intra_area_variable: example-host
+            redistributes:
+              -
+# allowed: bgp, connected, eigrp, nat, omp, static
+                protocol: bgp
+                protocol_variable: example-host
+                dia: true
+                dia_variable: example-host
+                translate_rib_metric: true
+                translate_rib_metric_variable: example-host
+                route_policy: example-host
+# range 1-4294967
+            reference_bandwidth: 1
+            reference_bandwidth_variable: example-host
+            rfc1583_compatibility: true
+            rfc1583_compatibility_variable: example-host
+            route_policy: example-host
+            router_id: 0/0.1
+            router_id_variable: example-host
+# range 5-86400
+            router_lsa_advertisement_time: 5
+# allowed: administrative, on-startup
+            router_lsa_advertisement_type: administrative
+# maximum 600000
+            spf_calculation_delay: 1
+            spf_calculation_delay_variable: example-host
+# maximum 600000
+            spf_initial_hold_time: 1
+            spf_initial_hold_time_variable: example-host
+# maximum 600000
+            spf_maximum_hold_time: 1
+            spf_maximum_hold_time_variable: example-host

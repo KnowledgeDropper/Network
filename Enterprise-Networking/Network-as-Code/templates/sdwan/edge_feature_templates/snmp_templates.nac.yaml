@@ -1,0 +1,84 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.snmp_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/snmp/
+sdwan:
+  edge_feature_templates:
+    snmp_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - ASR-1001-HX
+        communities:
+          - authorization_read_only: true
+            authorization_read_only_variable: <HOSTNAME>
+# mandatory
+            name: <NAME>
+            view: <HOSTNAME>
+            view_variable: <HOSTNAME>
+        contact: <HOSTNAME>
+        contact_variable: <HOSTNAME>
+        groups:
+          -
+# mandatory
+            name: <NAME>
+# mandatory; allowed: no-auth-no-priv, auth-no-priv, auth-priv
+            security_level: no-auth-no-priv
+            view: <HOSTNAME>
+            view_variable: <HOSTNAME>
+        location: <HOSTNAME>
+        location_variable: <HOSTNAME>
+        shutdown: true
+        shutdown_variable: <HOSTNAME>
+        trap_target_servers:
+          - community_name: <NAME>
+            community_name_variable: rt 65000:1
+            ip: 10.0.0.1
+            ip_variable: 10.0.0.1
+            source_interface: 0/0.1
+            source_interface_variable: 0/0.1
+# range 1-65535
+            udp_port: 1
+            udp_port_variable: <HOSTNAME>
+            user: <HOSTNAME>
+            user_variable: <HOSTNAME>
+# maximum 65530
+            vpn_id: 1
+            vpn_id_variable: <HOSTNAME>
+        users:
+          - authentication_password: <SECRET>
+            authentication_password_variable: <SECRET>
+# allowed: md5, sha
+            authentication_protocol: md5
+            authentication_protocol_variable: <HOSTNAME>
+# mandatory
+            name: <NAME>
+            group: <HOSTNAME>
+            group_variable: <HOSTNAME>
+            privacy_password: <SECRET>
+            privacy_password_variable: <SECRET>
+# allowed: aes-cfb-128, aes-256-cfb-128
+            privacy_protocol: aes-cfb-128
+            privacy_protocol_variable: <HOSTNAME>
+        views:
+          -
+# mandatory
+            name: <NAME>
+# mandatory
+            oids:
+              - id: '0.1'
+                id_variable: <HOSTNAME>
+                exclude: true
+                exclude_variable: <HOSTNAME>

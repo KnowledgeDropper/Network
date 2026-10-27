@@ -1,0 +1,70 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.bmp_server
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/bmp_server/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        bmp_server:
+          all:
+            route_monitorings:
+              -
+# mandatory; allowed: inbound-post-policy, inbound-pre-policy, local-rib; also accepts a string
+                type: inbound-post-policy
+# range 2-600; also accepts a string
+                advertisement_interval: 2
+# range 5-3600; also accepts a string
+                scan_time: 5
+            route_mirroring_inbound_pre_policy: true
+# range 1-4096; also accepts a string
+            max_buffer_size: 1
+          servers:
+            -
+# mandatory; also accepts an integer
+              id: (r&%{ww(,K,<P%4<
+              shutdown: true
+# also accepts a string
+              host: "b${d4F2,Ocl'B-  #Hz"
+# range 1-65535; also accepts a string
+              port: 1
+# range 1-3600; also accepts a string
+              initial_delay: 1
+# range 60-3600; also accepts a string
+              flapping_delay: 60
+# range 1-3600; also accepts a string
+              initial_refresh_delay: 1
+# range 1-3600; also accepts a string
+              initial_refresh_spread: 1
+              initial_refresh_skip: true
+# range 1-3600; also accepts a string
+              stats_reporting_period: 1
+# also accepts a string
+              description: "! fLY%KASoy%{\"\\MOix'q,pk8X9A:A"
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+              dscp: af11
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+              precedence: critical
+# also accepts a string
+              update_source: jxP]se${wE 1
+# also accepts a string
+              vrf: m"S(r'W3asiX+.<=nla%{ Ge1yF^B:WWH4
+# range 68-10000; also accepts a string
+              tcp_mss: 68
+# maximum 7200; also accepts a string
+              tcp_keep_alive: 1

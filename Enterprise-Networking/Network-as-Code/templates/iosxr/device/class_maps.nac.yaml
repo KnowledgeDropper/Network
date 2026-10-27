@@ -1,0 +1,144 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.class_maps
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/class_map_qos/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        class_maps:
+          -
+# mandatory; also accepts a string
+            name: "%YP]V2lV\\\"Fr7%{M;:cMzf:G_i/U<Q'T"
+# mandatory; allowed: qos, control, traffic; also accepts a string
+            type: qos
+# mandatory; allowed: any, all; also accepts a string
+            match: any
+# also accepts a string
+            description: 8yV)d+jI2${p4NH\/;EM
+# also accepts a string
+            match_access_group_ipv4:
+              - "'?K!g%%{9Pb4JXKVRf.3U"
+# also accepts a string
+            match_access_group_ipv6:
+              - DBTc>'4=U1ktyohL-${>7fqHDr
+# also accepts a string
+            match_cos:
+              - 1
+# also accepts a string
+            match_cos_inner:
+              - 1
+            match_destination_address_ipv4:
+              -
+# mandatory; also accepts a string
+                address: K)s8-$Niam  Sw-LP.${SesVJCB
+# mandatory; maximum 32; also accepts a string
+                length: 1
+            match_destination_address_ipv6:
+              -
+# mandatory; also accepts a string
+                address: h1hh>X`1${ir&p'4U3Zm .F4MTu!M
+# mandatory; maximum 128; also accepts a string
+                length: 1
+# also accepts a string
+            match_destination_mac: ${R
+# also accepts a string
+            match_destination_port:
+              - 1
+# also accepts a string
+            match_discard_class:
+              - 1
+# also accepts a string
+            match_dscp:
+              - 1
+# also accepts a string
+            match_dscp_ipv4:
+              - 1
+# also accepts a string
+            match_dscp_ipv6:
+              - 1
+# also accepts a string
+            match_ethertype:
+              - 1536
+# also accepts a string
+            match_flow_tag:
+              - 1
+            match_fragment_type_dont_fragment: true
+            match_fragment_type_first_fragment: true
+            match_fragment_type_is_fragment: true
+            match_fragment_type_last_fragment: true
+# also accepts a string
+            match_ipv4_icmp_code:
+              - 1
+# also accepts a string
+            match_ipv4_icmp_type:
+              - 1
+# also accepts a string
+            match_ipv6_icmp_code:
+              - 1
+# also accepts a string
+            match_ipv6_icmp_type:
+              - 1
+# also accepts a string
+            match_mpls_experimental_topmost:
+              - 1
+# also accepts a string
+            match_packet_length:
+              - 1
+# also accepts a string
+            match_precedence:
+              - 1
+# also accepts a string
+            match_precedence_ipv4:
+              - 1
+# also accepts a string
+            match_precedence_ipv6:
+              - 1
+# also accepts a string
+            match_protocol:
+              - 1
+# also accepts a string
+            match_qos_group:
+              - 1
+            match_source_address_ipv4:
+              -
+# mandatory; also accepts a string
+                address: OSY'.,B1VkWgKRH0&${P> ]Y;6`X=bB
+# mandatory; maximum 32; also accepts a string
+                length: 1
+            match_source_address_ipv6:
+              -
+# mandatory; also accepts a string
+                address: ${GVOThSIE@Sb6WP4-ga
+# mandatory; maximum 128; also accepts a string
+                length: 1
+# also accepts a string
+            match_source_mac: OBYXMF%ZM"8WL4StCm%{QLN4ef"(Hf-EP)Ca#
+# also accepts a string
+            match_source_port:
+              - 1
+# maximum 4095; also accepts a string
+            match_tcp_flag: 1
+            match_tcp_flag_any: true
+# also accepts a string
+            match_traffic_class:
+              - 1
+# also accepts a string
+            match_vlan:
+              - 1
+# also accepts a string
+            match_vlan_inner:
+              - 1

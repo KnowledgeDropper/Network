@@ -1,0 +1,150 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.flow
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/flow/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        flow:
+          exporters:
+            -
+# mandatory; also accepts a string
+              name: uCVvsN%{\/ Ey0>ash"2Zn<(#BU
+# also accepts a string
+              destination_address: '"%{'
+# also accepts a string
+              destination_vrf: '*^j%>G+6=${dEu^zI+4"vj6('
+              dfbit_set: true
+# maximum 63; also accepts a string
+              dscp: 1
+# range 512-9000; also accepts a string
+              packet_length: 512
+# also accepts a string
+              router_id: izh3,pCzX"vsos=${+b
+# also accepts a string
+              source_address: \#Ccr$${'a^jZawh4pn:e
+# also accepts a string
+              source_interface: '@Ak?c=2${j"b*G&8#8 t_?M)HzQ'
+              transport:
+# range 1024-65535; also accepts a string
+                udp_destination: 1024
+              version:
+# allowed: v9, ipfix, sflow, protobuf; also accepts a string
+                format: v9
+                options:
+# maximum 604800; also accepts a string
+                  class_table_timeout: 1
+# maximum 604800; also accepts a string
+                  interface_table_timeout: 1
+# maximum 604800; also accepts a string
+                  sampler_table_timeout: 1
+# maximum 604800; also accepts a string
+                  vrf_table_timeout: 1
+                template:
+# range 1-604800; also accepts a string
+                  data_timeout: 1
+# range 1-604800; also accepts a string
+                  options_timeout: 1
+# range 1-604800; also accepts a string
+                  timeout: 1
+          monitors:
+            -
+# mandatory; also accepts a string
+              name: '%{b&mh5XU\<'
+              cache:
+# range 4096-1000000; also accepts a string
+                entries: 4096
+# range 50-1800; also accepts a string
+                hw_timeout_inactive: 50
+# range 1-604800; also accepts a string
+                timeout_active: 1
+# maximum 604800; also accepts a string
+                timeout_inactive: 1
+# range 1-1000000; also accepts a string
+                timeout_rate_limit: 1
+# range 1-604800; also accepts a string
+                timeout_update: 1
+# allowed: immediate, permanent; also accepts a string
+                type: immediate
+              exporters:
+                -
+# mandatory; also accepts a string
+                  name: C6]${Y&01PApHo+>
+              options:
+                bgpattr: true
+                filtered: true
+                outbundlemember: true
+                outphysint: true
+                sflow: true
+                sflow_extended_gateway: true
+                sflow_extended_ipv4_tunnel_egress: true
+                sflow_extended_ipv6_tunnel_egress: true
+                sflow_extended_router: true
+# range 5-1800; also accepts a string
+                sflow_if_counters_polling_interval: 5
+# allowed: physical; also accepts a string
+                sflow_input_ifindex: physical
+# allowed: physical; also accepts a string
+                sflow_output_ifindex: physical
+# range 128-343; also accepts a string
+                sflow_sample_header_size: 128
+              record:
+                datalink_record: true
+                default_mdi: true
+                default_rtp: true
+                ipv4: true
+                ipv4_as: true
+                ipv4_as_tos: true
+                ipv4_bgp_nexthop_tos: true
+                ipv4_destination: true
+                ipv4_destination_prefix: true
+                ipv4_destination_prefix_tos: true
+                ipv4_destination_tos: true
+                ipv4_extended: true
+                ipv4_gtp: true
+                ipv4_l2_l3: true
+                ipv4_peer_as: true
+                ipv4_prefix: true
+                ipv4_prefix_port: true
+                ipv4_prefix_tos: true
+                ipv4_protocol_port: true
+                ipv4_protocol_port_tos: true
+                ipv4_source_prefix: true
+                ipv4_source_prefix_tos: true
+                ipv6: true
+                ipv6_destination: true
+                ipv6_extended: true
+                ipv6_gtp: true
+                ipv6_l2_l3: true
+                ipv6_peer_as: true
+                ipv6_srv6: true
+                map_t: true
+                mpls: true
+                mpls_ipv4_fields: true
+                mpls_ipv4_ipv6_fields: true
+                mpls_ipv6_fields: true
+# range 1-6; also accepts a string
+                mpls_labels: 1
+                sflow: true
+          samplers:
+            -
+# mandatory; also accepts a string
+              name: N;9>Lb2G%{B!&]dXuNu1Iqf9bvHa
+# range 1-262144; also accepts a string
+              out_of: 1
+# range 1-1; also accepts a string
+              random: 1

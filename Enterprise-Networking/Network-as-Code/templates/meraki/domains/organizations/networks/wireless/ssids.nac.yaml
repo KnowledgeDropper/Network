@@ -1,0 +1,438 @@
+# Cisco Network as Code template for Meraki.
+# Data model: meraki
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: meraki.domains[].organizations[].networks[].wireless.ssids
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_base/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_device_type_group_policies/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_dot11r/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_dot11w/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_eap_override/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_hotspot20/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_l3_firewall/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_l7_firewall/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_radius_servers/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_schedules/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_speed_burst/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_splash/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_vpn/
+meraki:
+  domains:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      administrator: {}
+# mandatory
+      organizations:
+        - networks:
+            -
+# mandatory
+              name: <NAME>
+              wireless:
+                ssids:
+                  - name: <NAME>
+                    enabled: true
+# allowed: 8021x-entra, 8021x-google, 8021x-localradius, 8021x-meraki, 8021x-nac, 8021x-radius,
+# ipsk-with-nac, ipsk-with-radius, ipsk-with-radius-easy-psk, ipsk-without-radius, open,
+# open-enhanced, open-with-nac, open-with-radius, psk
+                    auth_mode: 8021x-entra
+# allowed: access disabled, access enabled
+                    enterprise_admin_access: access disabled
+# allowed: open, wep, wpa, wpa-eap
+                    encryption_mode: open
+                    psk: <HOSTNAME>
+# allowed: WPA1 and WPA2, WPA1 only, WPA2 only, WPA3 192-bit Security, WPA3 Transition Mode, WPA3
+# only
+                    wpa_encryption_mode: WPA1 and WPA2
+                    dot11w:
+                      enabled: true
+                      required: true
+                    dot11r:
+                      enabled: true
+                      adaptive: true
+# allowed: Billing, Cisco ISE, Click-through splash page, Facebook Wi-Fi, Google Apps domain,
+# Google OAuth, Microsoft Entra ID, None, Password-protected with Active Directory,
+# Password-protected with LDAP, Password-protected with Meraki RADIUS, Password-protected with
+# custom RADIUS, SMS authentication, Sponsored guest, Systems Manager Sentry
+                    splash_page: Billing
+                    splash_guest_sponsor_domains:
+                      - example.com
+                    ldap:
+                      servers:
+                        -
+# mandatory
+                          host: 10.0.0.1
+# mandatory; maximum 65535
+                          port: 1
+                      credentials:
+                        distinguished_name: <NAME>
+                        password: <SECRET>
+                      base_distinguished_name: <NAME>
+                      server_ca_certificate: 10.0.0.1
+                    active_directory:
+                      servers:
+                        -
+# mandatory
+                          host: 10.0.0.1
+# maximum 65535
+                          port: 1
+                      credentials:
+                        logon_name: <NAME>
+                        password: <SECRET>
+# allowed: NAT mode, Bridge mode, Layer 3 roaming, Ethernet over GRE, Layer 3 roaming with a
+# concentrator, VPN
+                    ip_assignment_mode: NAT mode
+                    use_vlan_tagging: true
+                    disassociate_clients_on_vpn_failover: true
+# range 1-4094; also accepts a string
+                    vlan_id: 1
+# range 1-4094; also accepts a string
+                    default_vlan_id: 1
+                    ap_tags_and_vlan_ids:
+                      - tags:
+                          - <HOSTNAME>
+# range 1-4094; also accepts a string
+                        vlan_id: 1
+                    walled_garden_ranges:
+                      - <HOSTNAME>
+                    gre:
+# also accepts a string
+                      concentrator: <HOSTNAME>
+# maximum 4294967295
+                      key: 1
+# published schema defect: type is string but the allowed values are 1, 2, 5.5, 6, 9, 11, 12, 18,
+# 24, 36, 48, 54; no value satisfies JSON Schema draft 2020-12. The template keeps the documented
+# allowed value.; allowed: 1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54
+                    min_bitrate: 11
+# allowed: Dual band operation, 5 GHz band only, Dual band operation with Band Steering
+                    band_selection: Dual band operation
+# maximum 1000000
+                    per_client_bandwidth_limit_up: 1
+# maximum 1000000
+                    per_client_bandwidth_limit_down: 1
+# maximum 1000000
+                    per_ssid_bandwidth_limit_up: 1
+# maximum 1000000
+                    per_ssid_bandwidth_limit_down: 1
+                    visible: true
+                    available_on_all_aps: true
+                    availability_tags:
+                      - <HOSTNAME>
+                    dns_rewrite:
+                      enabled: true
+                      dns_custom_nameservers:
+                        - 10.0.0.1
+                    speed_burst: true
+                    named_vlans:
+                      tagging:
+                        enabled: true
+                        default_vlan_name: '10'
+                        by_ap_tags:
+                          - tags:
+                              - <HOSTNAME>
+                            vlan_name: '10'
+                      radius_guest_vlan:
+                        enabled: true
+                        name: <NAME>
+                    walled_garden: true
+                    lan_isolation: true
+                    mandatory_dhcp: true
+                    adult_content_filtering: true
+                    concentrator_network_name: <NAME>
+                    secondary_concentrator_network_name: <NAME>
+# allowed: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
+                    ssid_number: '0'
+                    oauth_allowed_domains:
+                      - example.com
+                    bonjour_forwarding:
+                      enabled: true
+                      rules:
+                        - description: <DESCRIPTION>
+# mandatory; range 1-4094; also accepts a string
+                          vlan_id: 1
+# mandatory
+                          services:
+                            - AFP
+                      exception: true
+                    device_type_group_policies:
+                      enabled: true
+                      device_type_policies:
+                        -
+# mandatory; allowed: Android, B&N Nook, BlackBerry, Chrome OS, Mac OS X, Other OS, Windows,
+# Windows Phone, iPad, iPhone, iPod
+                          device_type: Android
+# mandatory; allowed: Allowed, Blocked, Group policy
+                          device_policy: Allowed
+                          group_policy_name: <NAME>
+                    eap_override:
+# range 1-600
+                      timeout: 1
+                      identity:
+# range 1-5
+                        retries: 1
+# range 1-600
+                        timeout: 1
+# range 1-5
+                      max_retries: 1
+                      eapol_key:
+# range 1-5
+                        retries: 1
+# range 1-5000
+                        timeout_in_ms: 1
+                    firewall_l3_firewall_rules:
+                      rules:
+                        - comment: <HOSTNAME>
+# mandatory; allowed: allow, deny
+                          policy: allow
+# mandatory; allowed: any, icmp, icmp6, tcp, udp
+                          protocol: any
+# maximum 65535; also accepts a string
+                          destination_port: 1
+                          destination_cidr: 10.0.0.1
+# allowed: any, ipv4, ipv6
+                          ip_version: any
+                      allow_lan_access: true
+                    firewall_l7_firewall_rules:
+                      -
+# allowed: deny
+                        policy: deny
+# allowed: application, applicationCategory, host, ipRange, port
+                        type: application
+                        value: <HOSTNAME>
+                    hotspot20:
+                      enabled: true
+                      operator: <HOSTNAME>
+                      venue:
+                        name: <NAME>
+# allowed: Airplane, Alcohol and Drug Rehabilitation Center, Amphitheater, Amusement Park, Arena,
+# Attorney Office, Automobile or Truck, Automotive Service Station, Bank, Bar, Boarding House,
+# Bus, Bus Stop, City Park, Coffee Shop, Convention Center, Doctor or Dentist office, Dormitory,
+# Emergency Coordination Center, Factory, Ferry, Fire Station, Gas Station, Grocery Market, Group
+# Home, Hospital, Hotel or Motel, Kiosk, Library, Long-Term Care Facility, Motor Bike, Muni-mesh
+# Network, Museum, Passenger Terminal, Place of Worship, Police Station, Post Office, Prison or
+# Jail, Private Residence, Professional Office, Research and Development Facility, Rest Area,
+# Restaurant, Retail Store, School, Primary, School, Secondary, Ship or Boat, Shopping Mall,
+# Stadium, Theater, Traffic Control, Train, University or College, Unspecified, Unspecified
+# Assembly, Unspecified Business, Unspecified Educational, Unspecified Factory and Industrial,
+# Unspecified Institutional, Unspecified Mercantile, Unspecified Outdoor, Unspecified Residential,
+# Unspecified Storage, Unspecified Utility and Miscellaneous, Unspecified Vehicular, Zoo or
+# Aquarium
+                        type: Airplane
+# allowed: Chargeable public network, Emergency services only network, Free public network,
+# Personal device network, Private network, Private network with guest access, Test or
+# experimental, Wildcard
+                      network_access_type: Chargeable public network
+                      domains:
+                        - example.com
+                      roam_consort_ois:
+                        - 7BcFa7
+                      mcc_mncs:
+                        - mcc: <HOSTNAME>
+                          mnc: <HOSTNAME>
+                      nai_realms:
+                        -
+# allowed: 0, 1
+                          format: '0'
+                          realm: <HOSTNAME>
+                          methods:
+                            - id: 0/0.1
+                              authentication_types:
+# allowed: Reserved, PAP, CHAP, MSCHAP, MSCHAPV2
+                                non_eap_inner_authentication: Reserved
+# allowed: EAP-TLS, EAP-SIM, EAP-AKA, EAP-TTLS with MSCHAPv2
+                                eap_inner_authentication: EAP-TLS
+# allowed: SIM, USIM, NFC Secure Element, Hardware Token, Softoken, Certificate,
+# username/password, none, Reserved, Vendor Specific
+                                credentials: SIM
+# allowed: SIM, USIM, NFC Secure Element, Hardware Token, Softoken, Certificate,
+# username/password, Reserved, Anonymous, Vendor Specific
+                                tunneled_eap_method_credentials: SIM
+                    identity_psks:
+                      - name: <NAME>
+                        passphrase: <HOSTNAME>
+                        expires_at: <HOSTNAME>
+                        group_policy_name: <NAME>
+                    unavailability_schedules:
+                      enabled: true
+                      ranges:
+                        -
+# mandatory; allowed: Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
+                          start_day: Sunday
+# mandatory
+                          start_time: 22:17:55
+# mandatory; allowed: Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
+                          end_day: Sunday
+# mandatory
+                          end_time: 12:22:27
+                      ranges_in_seconds:
+                        -
+# mandatory; maximum 604800
+                          start: 1
+# mandatory; maximum 604800
+                          end: 1
+                    splash_settings:
+                      splash_url: https://example.com
+                      use_splash_url: true
+# range 1-86400
+                      splash_timeout: 1
+                      redirect_url: https://example.com
+                      use_redirect_url: true
+                      welcome_message: <DESCRIPTION>
+                      splash_logo:
+                        md5: <HOSTNAME>
+                        extension: <HOSTNAME>
+                        image:
+# allowed: gif, jpg, png
+                          format: gif
+                          contents: <HOSTNAME>
+                      splash_image:
+                        md5: <HOSTNAME>
+                        extension: <HOSTNAME>
+                        image:
+# allowed: gif, jpg, png
+                          format: gif
+                          contents: <HOSTNAME>
+                      splash_prepaid_front:
+                        md5: <HOSTNAME>
+                        extension: <HOSTNAME>
+                        image:
+# allowed: gif, jpg, png
+                          format: gif
+                          contents: <HOSTNAME>
+                      block_all_traffic_before_sign_on: true
+# allowed: default, open, restricted
+                      controller_disconnection_behavior: default
+                      allow_simultaneous_logins: true
+                      guest_sponsorship:
+# range 1-60480
+                        duration_in_minutes: 1
+                        guest_can_request_timeframe: true
+                      billing:
+                        free_access:
+                          enabled: true
+# range 1-60480
+                          duration_in_minutes: 1
+                        reply_to_email_address: admin@example.com
+                        prepaid_access_fast_login: true
+                      sentry_enrollment:
+                        systems_manager_network: <HOSTNAME>
+# allowed: click-through, focused, strict
+                        strength: click-through
+                        enforced_systems:
+                          - iOS
+                      self_registration:
+                        enabled: true
+# allowed: admin, auto, self_email
+                        authorization_type: admin
+                      theme_name: <NAME>
+                    traffic_shaping_rules:
+                      rules:
+                        -
+# mandatory
+                          definitions:
+                            -
+# mandatory; allowed: application, applicationCategory, host, ipRange, localNet, port
+                              type: application
+# mandatory
+                              value: <HOSTNAME>
+                          per_client_bandwidth_limits:
+# allowed: network default, ignore, custom
+                            settings: network default
+                            bandwidth_limits:
+# maximum 1000000
+                              limit_up: 1
+# maximum 1000000
+                              limit_down: 1
+# maximum 63
+                          dscp_tag_value: 1
+# maximum 7
+                          pcp_tag_value: 1
+                      traffic_shaping: true
+                      default_rules: true
+                    vpn:
+                      concentrator:
+                        network_id: 0/0.1
+# range 1-4094; also accepts a string
+                        vlan_id: 1
+                      split_tunnel:
+                        enabled: true
+                        rules:
+                          -
+# allowed: Any, TCP, UDP
+                            protocol: Any
+# mandatory
+                            policy: <HOSTNAME>
+                            comment: <HOSTNAME>
+                            destination_cidr: <HOSTNAME>
+# maximum 65535; also accepts a string
+                            destination_port: 1
+                      failover:
+                        request_ip: 10.0.0.1
+# range 1-360
+                        heartbeat_interval: 1
+# range 1-360
+                        idle_timeout: 1
+                    radius:
+                      local_radius:
+# range 1-86400
+                        cache_timeout: 1
+                        password_authentication: true
+                        certificate_authentication:
+                          enabled: true
+                          use_ldap: true
+                          use_ocsp: true
+                          ocsp_responder_url: https://example.com
+                          client_root_ca_certificate: <HOSTNAME>
+                      servers:
+                        -
+# mandatory
+                          host: 10.0.0.1
+# maximum 65535
+                          port: 1
+                          secret: <SECRET>
+# range 1-65535
+                          open_roaming_certificate_id: 1
+                          ca_certificate: <HOSTNAME>
+                          radsec: true
+                      called_station_id: 0/0.1
+                      authentication_nas_id: 0/0.1
+# range 1-10
+                      server_timeout: 1
+# range 1-5
+                      server_attempts_limit: 1
+# range 1-32767
+                      radsec_tls_tunnel_timeout: 1
+# allowed: Allow access, Deny access
+                      failover_policy: Allow access
+# allowed: Round robin, Strict priority order
+                      load_balancing_policy: Round robin
+                      accounting_servers:
+                        -
+# mandatory
+                          host: 10.0.0.1
+# maximum 65535
+                          port: 1
+                          secret: <SECRET>
+                          ca_certificate: <HOSTNAME>
+                          radsec: true
+# maximum 32767
+                      accounting_interim_interval: 1
+# allowed: Airespace-ACL-Name, Aruba-User-Role, Filter-Id, Reply-Message
+                      attribute_for_group_policies: Airespace-ACL-Name
+                      override: true
+# range 1-4094; also accepts a string
+                      guest_vlan_id: 1
+                      proxy: true
+                      testing: true
+                      fallback: true
+                      coa: true
+                      accounting: true
+                      guest_vlan: true

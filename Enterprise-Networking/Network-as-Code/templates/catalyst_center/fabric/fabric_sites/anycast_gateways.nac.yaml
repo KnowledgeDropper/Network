@@ -1,0 +1,46 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.fabric.fabric_sites[].anycast_gateways
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/fabric/anycast_gateway/
+catalyst_center:
+  fabric:
+    fabric_sites:
+      -
+# mandatory
+        name: <NAME>
+        anycast_gateways:
+          -
+# mandatory
+            ip_pool_name: 10.0.0.1
+            additional_ip_pools:
+              - 10.0.0.1
+# allowed: EXTENDED_NODE, FABRIC_AP; also accepts null
+            pool_type: EXTENDED_NODE
+            auto_generate_vlan_name: true
+            vlan_name: '10'
+# range 2-4093
+            vlan_id: 2
+            security_group_name: <NAME>
+            ip_directed_broadcast: true
+            intra_subnet_routing_enabled: true
+            multiple_ip_to_mac_addresses: true
+            supplicant_based_extended_node_onboarding: true
+            group_based_policy_enforcement_enabled: true
+            layer2_flooding: true
+            wireless_flooding_enabled: true
+# allowed: DATA, VOICE
+            traffic_type: DATA
+            critical_pool: true
+            wireless_pool: true
+# range 500-1440
+            tcp_mss_adjustment: 500
+            l3_virtual_network: <HOSTNAME>

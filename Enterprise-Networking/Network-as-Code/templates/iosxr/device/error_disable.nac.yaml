@@ -1,0 +1,63 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.error_disable
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/error_disable/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        error_disable:
+          recovery_cause:
+# range 30-1000000; also accepts a string
+            link_oam_session_down_interval: 30
+# range 30-1000000; also accepts a string
+            link_oam_discovery_timeout_interval: 30
+# range 30-1000000; also accepts a string
+            link_oam_capabilities_conflict_interval: 30
+# range 30-1000000; also accepts a string
+            link_oam_miswired_interval: 30
+# range 30-1000000; also accepts a string
+            link_oam_link_fault_interval: 30
+# range 30-1000000; also accepts a string
+            link_oam_dying_gasp_interval: 30
+# range 30-1000000; also accepts a string
+            link_oam_critical_event_interval: 30
+# range 30-1000000; also accepts a string
+            link_oam_threshold_breached_interval: 30
+# range 30-1000000; also accepts a string
+            stp_bpdu_guard_interval: 30
+# range 30-1000000; also accepts a string
+            stp_legacy_bpdu_interval: 30
+# range 30-1000000; also accepts a string
+            cluster_udld_interval: 30
+# range 30-1000000; also accepts a string
+            cluster_minlinks_interval: 30
+# range 30-1000000; also accepts a string
+            udld_unidirectional_interval: 30
+# range 30-1000000; also accepts a string
+            udld_neighbor_mismatch_interval: 30
+# range 30-1000000; also accepts a string
+            udld_timeout_interval: 30
+# range 30-1000000; also accepts a string
+            udld_loopback_interval: 30
+# range 30-1000000; also accepts a string
+            pvrst_pvid_mismatch_interval: 30
+# range 30-1000000; also accepts a string
+            l2vpn_bport_mac_move_interval: 30
+# range 30-1000000; also accepts a string
+            ot_track_state_change_interval: 30
+# range 30-1000000; also accepts a string
+            link_oam_dampening_interval: 30

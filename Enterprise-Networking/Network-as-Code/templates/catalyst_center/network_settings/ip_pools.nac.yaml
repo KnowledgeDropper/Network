@@ -1,0 +1,43 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.network_settings.ip_pools
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/network_settings/ip_pool/
+catalyst_center:
+  network_settings:
+    ip_pools:
+      -
+# mandatory
+        name: example-name
+# mandatory; allowed: IPv4, IPv6
+        ip_address_space: IPv4
+# allowed: Generic, Tunnel
+        type: Generic
+        dhcp_servers:
+          - <HOSTNAME>
+        dns_servers:
+          - <HOSTNAME>
+        gateway: 10.0.0.1
+        ip_pool_cidr: 10.0.0.1
+        ip_pools_reservations:
+          -
+# mandatory
+            name: example-name
+# range 1-120
+            prefix_length: 1
+            subnet: <HOSTNAME>
+            gateway: 10.0.0.1
+# allowed: Generic, LAN, WAN, Management, Service
+            type: Generic
+            dhcp_servers:
+              - <HOSTNAME>
+            dns_servers:
+              - <HOSTNAME>

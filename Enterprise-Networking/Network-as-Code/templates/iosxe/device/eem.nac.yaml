@@ -1,0 +1,131 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.eem
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/eem/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        eem:
+          environment_variables:
+            -
+# mandatory
+              name: <NAME>
+# mandatory
+              value: <HOSTNAME>
+          session_cli_username: <NAME>
+# also accepts an integer
+          session_cli_username_privilege: GQXV1%{=$Sl>:UNdg
+# maximum 50; also accepts a string
+          history_size_events: 1
+# maximum 50; also accepts a string
+          history_size_traps: 1
+          directory_user_policy: <HOSTNAME>
+          scheduler_applet_thread_class:
+# mandatory; also accepts a string
+            classes:
+              - <HOSTNAME>
+# mandatory; range 1-65535; also accepts a string
+            number: 1
+# also accepts a string
+          detector_routing_bootup_delay: 1.0
+          applets:
+            -
+# mandatory
+              name: <NAME>
+# allowed: bypass; also accepts a string
+              authorization: bypass
+              class: <HOSTNAME>
+              description: <DESCRIPTION>
+              event:
+                timer_watchdog:
+# mandatory; also accepts an integer
+                  time: Zk SjT${O(Kx,d %K(,@19J=C7g
+                  name: <NAME>
+# also accepts an integer
+                  maxrun: Oya#%{TO%cwHLk]B7
+# also accepts an integer
+                  ratelimit: a.93Kn:vH${Qo@kWkl1=D\POG=>w
+                syslog:
+# mandatory
+                  pattern: <HOSTNAME>
+# also accepts an integer
+                  maxrun: /(m`%{"0/
+# range 1-32; also accepts a string
+                  occurs: 1
+# also accepts a string
+                  ratelimit: 1.0
+# also accepts a string
+                  period: 1.0
+                timer_cron:
+# mandatory
+                  cron_entry: <HOSTNAME>
+                  name: <NAME>
+# also accepts an integer
+                  maxrun: ;h"cr7%-:??06Ow%{8Qu
+# also accepts an integer
+                  ratelimit: F5%$w&JY${
+                cli:
+# mandatory
+                  pattern: <HOSTNAME>
+# allowed: yes, no; also accepts a string
+                  sync: yes
+# allowed: yes, no; also accepts a string
+                  skip: yes
+              actions:
+                -
+# mandatory; also accepts a string
+                  sequence: 1
+                  cli_command: <HOSTNAME>
+                  set:
+# mandatory
+                    variable_name: <NAME>
+# mandatory
+                    variable_value: <HOSTNAME>
+                  foreach:
+# mandatory
+                    loop_variable: <HOSTNAME>
+# mandatory
+                    list_variable: <HOSTNAME>
+# mandatory
+                    delimiter: <HOSTNAME>
+                  string_trim: <HOSTNAME>
+                  string_first:
+# mandatory
+                    string: <HOSTNAME>
+# mandatory
+                    substring: <HOSTNAME>
+                  if_statement:
+# mandatory
+                    operand1: <HOSTNAME>
+# mandatory; allowed: eq, ne, gt, ge, lt, le; also accepts a string
+                    operator: eq
+# mandatory
+                    operand2: <HOSTNAME>
+                  else_statement: true
+                  end_statement: true
+                  regexp:
+# mandatory
+                    pattern: <HOSTNAME>
+# mandatory
+                    input: <HOSTNAME>
+                    match_variable: <HOSTNAME>
+                    submatch1: <HOSTNAME>
+                    submatch2: <HOSTNAME>
+                    submatch3: <HOSTNAME>
+# also accepts an integer
+                  wait: vd!CVP:%A${%M(BhZ5zQ2;0
+                  continue_statement: true
+# also accepts an integer
+                  exit_statement: pp${1S'+

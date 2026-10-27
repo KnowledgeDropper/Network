@@ -1,0 +1,75 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.xml_agent
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/xml_agent/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        xml_agent:
+# mandatory
+          enable: true
+          ipv6_enable: true
+# allowed: off; also accepts an integer; also accepts a string
+          iteration: off
+# range 1-1440; also accepts a string
+          session_timeout: 1
+# range 1-100000; also accepts a string
+          streaming_size: 1
+# range 100-1024; also accepts a string
+          throttle_memory: 100
+# range 1000-30000; also accepts a string
+          throttle_process_rate: 1000
+          tty:
+            enable: true
+# allowed: off; also accepts an integer; also accepts a string
+            iteration: off
+# range 1-1440; also accepts a string
+            session_timeout: 1
+# range 1-100000; also accepts a string
+            streaming_size: 1
+# range 100-1024; also accepts a string
+            throttle_memory: 100
+# range 1000-30000; also accepts a string
+            throttle_process_rate: 1000
+          ssl:
+            enable: true
+# allowed: off; also accepts an integer; also accepts a string
+            iteration: off
+# range 1-1440; also accepts a string
+            session_timeout: 1
+# range 1-100000; also accepts a string
+            streaming_size: 1
+# range 100-1024; also accepts a string
+            throttle_memory: 100
+# range 1000-30000; also accepts a string
+            throttle_process_rate: 1000
+            vrfs:
+              -
+# mandatory; also accepts a string
+                name: V^${XF0> 42+Yh2
+# also accepts a string
+                ipv4_access_list: PW6*[3N=^V${uc&nK>
+                shutdown: true
+          vrfs:
+            -
+# mandatory; also accepts a string
+              name: ._nB,$/iGy${MH;q\X
+# also accepts a string
+              ipv4_access_list: =UZuiMs7i-rx&OXVR${
+# also accepts a string
+              ipv6_access_list: 5 v'@Rq?svew8VT${P.7dzciF8&y1M
+              shutdown: true

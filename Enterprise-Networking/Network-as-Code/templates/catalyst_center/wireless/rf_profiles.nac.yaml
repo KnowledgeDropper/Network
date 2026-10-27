@@ -1,0 +1,174 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.wireless.rf_profiles
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/wireless/rf_profile/
+catalyst_center:
+  wireless:
+    rf_profiles:
+      -
+# mandatory
+        name: <NAME>
+        default_rf_profile: true
+# mandatory
+        enable_radio_type_a: true
+# mandatory
+        enable_radio_type_b: true
+# mandatory
+        enable_radio_type_c: true
+        radio_type_a_properties:
+# allowed: HIGH, TYPICAL, LOW, CUSTOM
+          parent_profile: HIGH
+          radio_channels: <HOSTNAME>
+          data_rates: <HOSTNAME>
+          mandatory_data_rates: <HOSTNAME>
+# range -80--50
+          power_threshold_v1: -80
+# allowed: HIGH, MEDIUM, LOW, AUTO, CUSTOM
+          rx_sop_threshold: HIGH
+# range -10-30
+          min_power_level: 1
+# range -10-30
+          max_power_level: 1
+# allowed: 20, 40, 80, 160, best
+          channel_width: '20'
+          preamble_puncture: true
+          zero_wait_dfs_enable: true
+# range -85--60
+          custom_rx_sop_threshold: -85
+# maximum 500
+          max_radio_clients: 1
+          fra_properties_a:
+            client_aware: true
+# maximum 100
+            client_select: 1
+# maximum 100
+            client_reset: 1
+          coverage_hole_detection_properties:
+# range 1-200
+            chd_client_level: 1
+# range -90--60
+            chd_data_rssi_threshold: -90
+# range -90--60
+            chd_voice_rssi_threshold: -90
+# maximum 100
+            chd_exception_level: 1
+          spatial_reuse_properties:
+            dot11ax_non_srg_obss_packet_detect: true
+# range -82--62
+            dot11ax_non_srg_obss_packet_detect_max_threshold: -82
+            dot11ax_srg_obss_packet_detect: true
+# range -82--62
+            dot11ax_srg_obss_packet_detect_min_threshold: -82
+# range -82--62
+            dot11ax_srg_obss_packet_detect_max_threshold: -82
+        radio_type_b_properties:
+# allowed: HIGH, TYPICAL, LOW, CUSTOM
+          parent_profile: HIGH
+          radio_channels: <HOSTNAME>
+          data_rates: <HOSTNAME>
+          mandatory_data_rates: <HOSTNAME>
+# range -80--50
+          power_threshold_v1: -80
+# allowed: HIGH, MEDIUM, LOW, AUTO, CUSTOM
+          rx_sop_threshold: HIGH
+# range -10-30
+          min_power_level: 1
+# range -10-30
+          max_power_level: 1
+# range -85--60
+          custom_rx_sop_threshold: -85
+# maximum 500
+          max_radio_clients: 1
+          coverage_hole_detection_properties:
+# range 1-200
+            chd_client_level: 1
+# range -90--60
+            chd_data_rssi_threshold: -90
+# range -90--60
+            chd_voice_rssi_threshold: -90
+# maximum 100
+            chd_exception_level: 1
+          spatial_reuse_properties:
+            dot11ax_non_srg_obss_packet_detect: true
+# range -82--62
+            dot11ax_non_srg_obss_packet_detect_max_threshold: -82
+            dot11ax_srg_obss_packet_detect: true
+# range -82--62
+            dot11ax_srg_obss_packet_detect_min_threshold: -82
+# range -82--62
+            dot11ax_srg_obss_packet_detect_max_threshold: -82
+        radio_type_c_properties:
+# allowed: CUSTOM
+          parent_profile: CUSTOM
+          radio_channels: <HOSTNAME>
+          data_rates: <HOSTNAME>
+          mandatory_data_rates: <HOSTNAME>
+# range -80--50
+          power_threshold_v1: -80
+# allowed: HIGH, MEDIUM, LOW, AUTO, CUSTOM
+          rx_sop_threshold: HIGH
+# range -10-30
+          min_power_level: 1
+# range -10-30
+          max_power_level: 1
+          enable_standard_power_service: true
+          multi_bssid_properties:
+            dot11ax_parameters:
+              ofdma_down_link: true
+              ofdma_up_link: true
+              mu_mimo_up_link: true
+              mu_mimo_down_link: true
+            dot11be_parameters:
+              ofdma_down_link: true
+              ofdma_up_link: true
+              mu_mimo_up_link: true
+              mu_mimo_down_link: true
+              ofdma_multi_ru: true
+            target_wake_time: true
+            twt_broadcast_support: true
+          preamble_puncture: true
+# allowed: 20, 40, 80, 160, 320
+          min_dbs_width: 20
+# allowed: 20, 40, 80, 160, 320
+          max_dbs_width: 20
+# maximum 500
+          max_radio_clients: 1
+# range -85--60
+          custom_rx_sop_threshold: -85
+          psc_enforcing_enabled: true
+# allowed: None, Broadcast Probe Response, FILS Discovery
+          discovery_frames_6ghz: None
+# range 5-25
+          broadcast_probe_response_interval: 5
+          fra_properties_c:
+# range 1-10
+            client_reset_count: 1
+# maximum 100
+            client_utilization_threshold: 1
+          coverage_hole_detection_properties:
+# range 1-200
+            chd_client_level: 1
+# range -90--60
+            chd_data_rssi_threshold: -90
+# range -90--60
+            chd_voice_rssi_threshold: -90
+# maximum 100
+            chd_exception_level: 1
+          spatial_reuse_properties:
+            dot11ax_non_srg_obss_packet_detect: true
+# range -82--62
+            dot11ax_non_srg_obss_packet_detect_max_threshold: -82
+            dot11ax_srg_obss_packet_detect: true
+# range -82--62
+            dot11ax_srg_obss_packet_detect_min_threshold: -82
+# range -82--62
+            dot11ax_srg_obss_packet_detect_max_threshold: -82

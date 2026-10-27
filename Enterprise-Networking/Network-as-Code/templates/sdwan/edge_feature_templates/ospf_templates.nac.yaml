@@ -1,0 +1,124 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.ospf_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/ospf/
+sdwan:
+  edge_feature_templates:
+    ospf_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - ASR-1001-HX
+        areas:
+          -
+# maximum 4294967295
+            area_number: 1
+            area_number_variable: <HOSTNAME>
+# allowed: stub, nssa
+            area_type: stub
+            interfaces:
+              - authentication_message_digest_key: <DESCRIPTION>
+                authentication_message_digest_key_variable: <DESCRIPTION>
+# range 1-255
+                authentication_message_digest_key_id: 1
+                authentication_message_digest_key_id_variable: <DESCRIPTION>
+# allowed: simple, message-digest, null
+                authentication_type: simple
+                authentication_type_variable: <HOSTNAME>
+# range 1-65535
+                cost: 1
+                cost_variable: <HOSTNAME>
+# range 1-65535
+                dead_interval: 1
+                dead_interval_variable: <HOSTNAME>
+# range 1-65535
+                hello_interval: 1
+                hello_interval_variable: <HOSTNAME>
+                name: <NAME>
+                name_variable: <HOSTNAME>
+# allowed: broadcast, point-to-point, non-broadcast, point-to-multipoint
+                network_type: broadcast
+                network_type_variable: <HOSTNAME>
+                passive_interface: true
+                passive_interface_variable: 0/0.1
+# maximum 255
+                priority: 1
+                priority_variable: <HOSTNAME>
+# range 1-65535
+                retransmit_interval: 1
+                retransmit_interval_variable: <HOSTNAME>
+            no_summary: true
+            no_summary_variable: <HOSTNAME>
+            optional: true
+            ranges:
+              - address: 10.0.0.1
+                address_variable: 10.0.0.1
+# range 1-16777214
+                cost: 1
+                cost_variable: <HOSTNAME>
+                no_advertise: true
+                no_advertise_variable: <HOSTNAME>
+# range 1-4294967
+        auto_cost_reference_bandwidth: 1
+        auto_cost_reference_bandwidth_variable: <HOSTNAME>
+        compatible_rfc1583: true
+        compatible_rfc1583_variable: <HOSTNAME>
+        default_information_originate: true
+        default_information_originate_always: true
+        default_information_originate_always_variable: <HOSTNAME>
+# maximum 16777214
+        default_information_originate_metric: 1
+        default_information_originate_metric_variable: <HOSTNAME>
+# allowed: type1, type2
+        default_information_originate_metric_type: type1
+        default_information_originate_metric_type_variable: <HOSTNAME>
+# range 1-255
+        distance_inter_area: 1
+        distance_inter_area_variable: <HOSTNAME>
+# range 1-255
+        distance_intra_area: 1
+        distance_intra_area_variable: <HOSTNAME>
+# range 1-255
+        distance_external: 1
+        distance_external_variable: <HOSTNAME>
+        max_metric_router_lsas:
+          -
+# range 5-86400
+            time: 5
+            time_variable: <HOSTNAME>
+# mandatory; allowed: administrative, on-startup
+            type: administrative
+        redistributes:
+          - nat_dia: true
+            nat_dia_variable: <HOSTNAME>
+            optional: true
+# allowed: bgp, connected, eigrp, nat, omp, static
+            protocol: bgp
+            protocol_variable: <HOSTNAME>
+            route_policy: <HOSTNAME>
+            route_policy_variable: <HOSTNAME>
+        route_policy: <HOSTNAME>
+        route_policy_variable: <HOSTNAME>
+        router_id: 0/0.1
+        router_id_variable: <HOSTNAME>
+# range 1-600000
+        timers_spf_delay: 1
+        timers_spf_delay_variable: <HOSTNAME>
+# range 1-600000
+        timers_spf_initial_hold: 1
+        timers_spf_initial_hold_variable: <HOSTNAME>
+# range 1-600000
+        timers_spf_max_hold: 1
+        timers_spf_max_hold_variable: <HOSTNAME>

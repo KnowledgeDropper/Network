@@ -1,0 +1,63 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.omp_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/omp/
+sdwan:
+  edge_feature_templates:
+    omp_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - ASR-1001-HX
+# range 1-65535
+        advertisement_interval: 1
+        advertisement_interval_variable: <HOSTNAME>
+# range 1-16
+        ecmp_limit: 1
+        ecmp_limit_variable: <HOSTNAME>
+# range 1-604800
+        eor_timer: 1
+        eor_timer_variable: <HOSTNAME>
+        graceful_restart: true
+        graceful_restart_variable: <HOSTNAME>
+# range 1-604800
+        graceful_restart_timer: 1
+        graceful_restart_timer_variable: <HOSTNAME>
+# range 3-65535
+        holdtime: 3
+        holdtime_variable: <HOSTNAME>
+        ignore_region_path_length: true
+        ignore_region_path_length_variable: <HOSTNAME>
+        ipv4_advertise_protocols:
+          - bgp
+        ipv6_advertise_protocols:
+          - bgp
+# range 1-255
+        omp_admin_distance_ipv4: 1
+        omp_admin_distance_ipv4_variable: <HOSTNAME>
+# range 1-255
+        omp_admin_distance_ipv6: 1
+        omp_admin_distance_ipv6_variable: 2001:db8::1
+# range 1-4294967295
+        overlay_as: 1
+        overlay_as_variable: <HOSTNAME>
+# range 1-16
+        send_path_limit: 1
+        send_path_limit_variable: <HOSTNAME>
+        shutdown: true
+        shutdown_variable: <HOSTNAME>
+# allowed: prefer, ecmp-with-direct-path
+        transport_gateway: prefer
+        transport_gateway_variable: 10.0.0.1

@@ -1,0 +1,140 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.service_profiles[].multicast_features
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_service/service_multicast/
+sdwan:
+  feature_profiles:
+    service_profiles:
+      -
+# mandatory
+        name: example-name
+        multicast_features:
+          -
+# mandatory
+            name: example-name
+            description: <DESCRIPTION>
+            auto_rp_announces:
+              -
+# also accepts a string
+                access_list: 1
+                access_list_variable: example-host
+                interface_name: GigabitEthernet0/0
+                interface_name_variable: 0/0.1
+# range 1-16383
+                interval: 1
+                interval_variable: example-host
+# range 1-255
+                scope: 1
+                scope_variable: example-host
+            auto_rp_discoveries:
+              - interface_name: GigabitEthernet0/0
+                interface_name_variable: 0/0.1
+# range 1-255
+                scope: 1
+                scope_variable: example-host
+            auto_rp: true
+            auto_rp_variable: example-host
+            igmp_interfaces:
+              - interface_name: GigabitEthernet0/0
+                interface_name_variable: 0/0.1
+                join_groups:
+                  - group_address: 10.0.0.1
+                    group_address_variable: 10.0.0.1
+                    source_address: 10.0.0.1
+                    source_address_variable: 10.0.0.1
+# range 1-3
+                version: 1
+            local_replicator: true
+            local_replicator_variable: example-host
+# maximum 131072
+            threshold: 1
+            threshold_variable: example-host
+# range 1-60
+            msdp_connection_retry_interval: 1
+            msdp_connection_retry_interval_variable: example-host
+            msdp_mesh_groups:
+              - name: example-name
+                name_variable: example-host
+                peers:
+                  - connection_source_interface: GigabitEthernet0/0
+                    connection_source_interface_variable: 0/0.1
+                    default_peer: true
+# range 1-75
+                    keepalive_hold_time: 1
+                    keepalive_hold_time_variable: example-host
+# range 1-60
+                    keepalive_interval: 1
+                    keepalive_interval_variable: example-host
+                    peer_authentication_password: <SECRET>
+                    peer_authentication_password_variable: SECRET
+                    peer_ip: 10.0.0.1
+                    peer_ip_variable: 10.0.0.1
+                    prefix_list: example-host
+# range 1-65535
+                    remote_as: 1
+                    remote_as_variable: example-host
+# range 1-2147483646
+                    sa_limit: 1
+                    sa_limit_variable: example-host
+            msdp_originator_id: GigabitEthernet0/0
+            msdp_originator_id_variable: example-host
+            pim_bsr_candidates:
+              - interface_name: GigabitEthernet0/0
+                interface_name_variable: 0/0.1
+# also accepts a string
+                accept_candidate_access_list: 1
+                accept_candidate_access_list_variable: example-host
+# maximum 32
+                hash_mask_length: 1
+                hash_mask_length_variable: 10.0.0.1
+# maximum 255
+                priority: 1
+                priority_variable: example-host
+            pim_bsr_rp_candidates:
+              - interface_name: GigabitEthernet0/0
+                interface_name_variable: 0/0.1
+# also accepts a string
+                access_list: 1
+                access_list_variable: example-host
+# range 1-16383
+                interval: 1
+                interval_variable: example-host
+# maximum 255
+                priority: 1
+                priority_variable: example-host
+            pim_interfaces:
+              - interface_name: GigabitEthernet0/0
+                interface_name_variable: 0/0.1
+# range 10-600
+                join_prune_interval: 10
+                join_prune_interval_variable: example-host
+# range 1-18725
+                query_interval: 1
+                query_interval_variable: example-host
+# mandatory
+            pim_source_specific_multicast: true
+# also accepts a string
+            pim_source_specific_multicast_access_list: 1
+            pim_source_specific_multicast_access_list_variable: example-host
+# allowed: 0, infinity
+            pim_spt_threshold: '0'
+            pim_spt_threshold_variable: example-host
+            spt_only: true
+            spt_only_variable: example-host
+            static_rp_addresses:
+              - ip_address: 10.0.0.1
+                ip_address_variable: 10.0.0.1
+# also accepts a string
+                access_list: 1
+                access_list_variable: example-host
+                override: true
+                override_variable: example-host

@@ -1,0 +1,201 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.logging
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/logging/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        logging:
+          archive:
+# mandatory; allowed: disk0, disk1, harddisk; also accepts a string
+            device: disk0
+# range 1-2047; also accepts a string
+            filesize: 1
+# allowed: daily, weekly; also accepts a string
+            frequency: daily
+# range 1-256; also accepts a string
+            length: 1
+# allowed: alerts, critical, debugging, emergencies, errors, informational, notifications,
+# warnings; also accepts a string
+            severity: alerts
+# range 1-2047; also accepts a string
+            size: 1
+# range 1-99; also accepts a string
+            threshold: 1
+          buffered:
+# also accepts a string
+            discriminator_match1: s/IwctK#Kq<KL&Qs=f${
+# also accepts a string
+            discriminator_match2: '@/gK#${=)px'
+# also accepts a string
+            discriminator_match3: )\2xb$>:<${R
+# also accepts a string
+            discriminator_nomatch1: MOv9$2a${2FG1<M)b
+# also accepts a string
+            discriminator_nomatch2: yc5^i%{L<MW2EU[3w2Kif!i $/
+# also accepts a string
+            discriminator_nomatch3: +sh;h]5I9>,#%{H@Fc7
+# range 2545-151699; also accepts a string
+            entries_count: 2545
+# allowed: alerts, critical, debugging, emergencies, errors, informational, notifications,
+# warnings; also accepts a string
+            level: alerts
+# range 307200-125000000; also accepts a string
+            size: 307200
+# allowed: alerts, critical, debugging, disable, emergencies, errors, informational,
+# notifications, warning; also accepts a string
+          console: alerts
+# allowed: all; also accepts a string
+          console_facility: all
+          container_all: true
+          container_fetch_timestamp: true
+          events:
+# range 1024-1024000; also accepts a string
+            buffer_size: 1024
+            display_location: true
+            filter_matches:
+              -
+# mandatory; also accepts a string
+                match: Hu\e%{GKRUQh4
+# allowed: alerts, critical, emergencies, errors, informational, notifications, warnings; also
+# accepts a string
+            level: alerts
+# allowed: enable; also accepts a string
+            precfg_suppression: enable
+# range 1-60; also accepts a string
+            precfg_suppression_timeout: 1
+# range 10-100; also accepts a string
+            threshold: 10
+# allowed: all, audit, auth, authpriv, console, daemon, kern, local0, local1, local2, local3,
+# local4, local5, local6, local7, mail, ntp, syslog, user; also accepts a string
+          facility_level: all
+          files:
+            -
+# mandatory; also accepts a string
+              name: ' FvM4Bqv[*$${b4ADOj=r'
+# allowed: auth, cron, daemon, kern, local0, local1, local2, local3, local4, local5, local6,
+# local7, lpr, mail, news, sys10, sys11, sys12, sys13, sys14, sys9, syslog, user, uucp; also
+# accepts a string
+              accounting_remote_facility: auth
+# also accepts a string
+              discriminator_match1: )0mgg%{9M
+# also accepts a string
+              discriminator_match2: '%{n@'
+# also accepts a string
+              discriminator_match3: k${mrHc"r_.&Qh
+# also accepts a string
+              discriminator_nomatch1: r9U\BD${$Ms$DsmZu0(<m
+# also accepts a string
+              discriminator_nomatch2: CdQ+%{ROBHAxM\r18M'T\K
+# also accepts a string
+              discriminator_nomatch3: wrp)U${Ow2`Hl?O
+# range 1-2097152; also accepts a string
+              maxfilesize: 1
+# also accepts a string
+              path: \c-%{"H_/uNG7jwH3
+# allowed: alerts, critical, debugging, emergencies, error, info, notifications, warning; also
+# accepts a string
+              severity: alerts
+# allowed: bsd, rfc5424; also accepts a string
+          format: bsd
+# allowed: alerts, critical, debugging, disable, emergencies, errors, informational,
+# notifications, warnings; also accepts a string
+          history: alerts
+          hosts:
+            -
+# mandatory; also accepts a string
+              address: H28#VP%{
+# mandatory; also accepts a string
+              vrf: He`c0QbH${6BY=*xnL+XZZ_W#Y'x
+# allowed: alerts, critical, debugging, emergencies, error, info, notifications, warning; also
+# accepts a string
+              severity: alerts
+# maximum 65535; also accepts a string
+              port: 1
+# allowed: equals, equals-or-higher, not-equals; also accepts a string
+              operator: equals
+# allowed: all, audit, auth, authpriv, console, daemon, kern, local0, local1, local2, local3,
+# local4, local5, local6, local7, mail, ntp, syslog, user; also accepts a string
+              facility: all
+# also accepts a string
+              source_address: hP <_d,h!4*]lnZ%{+w/A][EM7@o^[zsAtR
+# range 1-500; also accepts a string
+          history_size: 1
+# also accepts a string
+          hostnameprefix: J$,SpI_^1fW 9(${75(.+
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+          ipv4_dscp: af11
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+          ipv4_precedence: critical
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+          ipv6_dscp: af11
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+          ipv6_precedence: critical
+# maximum 4294967295; also accepts a string
+          localfilesize: 1
+          monitor:
+# also accepts a string
+            discriminator_match1: "]h\"AAk<dY:rU cX%{%Q`IH%L+ `xW0'.nHjR"
+# also accepts a string
+            discriminator_match2: BqD%${=gzFUL$RtK
+# also accepts a string
+            discriminator_match3: '[s.LLE`-%{VIObex@d#kXzT^.Vq8'
+# also accepts a string
+            discriminator_nomatch1: Q Co$Ux%{i#B#Uyb->x6@:rszwq
+# also accepts a string
+            discriminator_nomatch2: dS*mliZk;%{y_TlHCq^5SE3N
+# also accepts a string
+            discriminator_nomatch3: '@ TD;QP+y"=z${j$pwlvl!zaBZ2%).,F'
+# allowed: alerts, critical, debugging, disable, emergencies, errors, informational,
+# notifications, warning; also accepts a string
+            level: alerts
+          source_interfaces:
+            -
+# mandatory; also accepts a string
+              name: 5Yj5%{q;&vHkz%-%@dB;kCDUQ
+# mandatory; also accepts a string
+              vrf: S1${5YZ
+          suppress_duplicates: true
+          suppress_rules:
+            -
+# mandatory; also accepts a string
+              name: Jp@A3\2;8AIBk4,:${EVK2wd`
+              alarms:
+                -
+# mandatory; also accepts a string
+                  category: Hu8eU#0'${*X7Tjm[]q-s>f^w
+# mandatory; also accepts a string
+                  code: \;6cRoygV)Y9M')Gof${gA -S kL:KxpCD"c
+# mandatory; also accepts a string
+                  group: G27g${q&`q"V3/hwQ
+              all_alarms: true
+              apply_to:
+                all_of_router: true
+                source_locations:
+                  -
+# mandatory; also accepts a string
+                    name: '#QtVd?)E0L44%ou;f%{7Z/W ?;)AIU@ta*A>'
+# allowed: alerts, critical, debugging, disable, emergencies, errors, informational,
+# notifications, warning; also accepts a string
+          trap: alerts
+# allowed: alerts, critical, debugging, emergencies, errors, informational, notifications,
+# warnings; also accepts a string
+          yang: alerts

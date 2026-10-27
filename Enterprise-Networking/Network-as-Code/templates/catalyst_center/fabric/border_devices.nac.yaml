@@ -1,0 +1,82 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.fabric.border_devices
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/fabric/border_device/
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/fabric/layer_2_handoff/
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/fabric/layer_3_handoff/
+catalyst_center:
+  fabric:
+    border_devices:
+      -
+# mandatory
+        name: <NAME>
+# mandatory
+        border_types:
+          - LAYER_2
+        sda_transit: <HOSTNAME>
+# maximum 2147483647
+        affinity_id_prime: 1
+# maximum 2147483647
+        affinity_id_decider: 1
+        connected_to_internet: true
+        multicast_over_transit: true
+        import_external_routes: true
+        default_exit: true
+# range 1-10
+        border_priority: 1
+# range 1-10
+        prepend_autonomous_system_count: 1
+# range 1-4294967295
+        local_autonomous_system_number: 1
+        external_handoff_pool: <HOSTNAME>
+        l2_handoffs:
+          l2_without_anycast_gateway:
+            vlans:
+              -
+# mandatory
+                name: <NAME>
+# range 2-4094
+                external_vlan: 2
+            interfaces:
+              - 0/0.1
+          l2_with_anycast_gateway:
+            -
+# mandatory
+              l3_virtual_network: <HOSTNAME>
+# mandatory
+              ip_pool_name: 10.0.0.1
+# range 2-4094
+              external_vlan: 2
+              interfaces:
+                - 0/0.1
+        l3_handoffs:
+          -
+# mandatory
+            name: <NAME>
+# mandatory
+            interfaces:
+              -
+# mandatory
+                name: <NAME>
+# mandatory
+                virtual_networks:
+                  -
+# mandatory
+                    name: <NAME>
+                    local_ip_address: 10.0.0.1
+                    peer_ip_address: 10.0.0.1
+                    peer_ipv6_address: 2001:db8::1
+                    local_ipv6_address: 2001:db8::1
+# range 500-1440
+                    tcp_mss_adjustment: 500
+# mandatory; range 2-4093
+                    vlan: 2

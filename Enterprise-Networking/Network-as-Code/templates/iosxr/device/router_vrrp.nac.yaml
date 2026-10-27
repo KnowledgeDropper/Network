@@ -1,0 +1,119 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.router_vrrp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/router_vrrp/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        router_vrrp:
+          interfaces:
+            -
+# mandatory; also accepts a string
+              name: GigabitEthernet0/0
+# maximum 10000; also accepts a string
+              mac_refresh: 1
+# maximum 10000; also accepts a string
+              delay_minimum: 1
+# maximum 10000; also accepts a string
+              delay_reload: 1
+# range 3-30000; also accepts a string
+              bfd_minimum_interval: 3
+# range 2-50; also accepts a string
+              bfd_multiplier: 2
+              ipv4:
+                -
+# mandatory; range 1-255; also accepts a string
+                  group: 1
+# mandatory; range 2-3; also accepts a string
+                  version: 2
+# also accepts a string
+                  address: HH/FH&_)=&${^MUIM
+# range 1-254; also accepts a string
+                  priority: 1
+# also accepts a string
+                  name: i^#\yk6Tm+WXe*3xI'${+ ;Pg'$)zZE
+# also accepts a string
+                  text_authentication: '%{\_yAsNzOq'
+                  secondary_addresses:
+                    -
+# mandatory; also accepts a string
+                      address: O3H7^"5(K+_sx=ia4H${P$`6pLVC^*E-@k]h
+# range 1-255; also accepts a string
+                  timer_advertisement_seconds: 1
+# range 100-40950; also accepts a string
+                  timer_advertisement_milliseconds: 100
+                  timer_force: true
+                  preempt_disable: true
+# range 1-3600; also accepts a string
+                  preempt_delay: 1
+                  accept_mode_disable: true
+                  track_interfaces:
+                    -
+# mandatory; also accepts a string
+                      name: ;I%^RP1Krf?@n%{D@]-dT[Q\:Q
+# range 1-254; also accepts a string
+                      priority_decrement: 1
+                  track_objects:
+                    -
+# mandatory; also accepts a string
+                      name: "\"eci$1ncB/'*pX%{z;jF:0x\"( V'+1)"
+# mandatory; range 1-254; also accepts a string
+                      priority_decrement: 1
+# also accepts a string
+                  bfd_fast_detect_peer_ipv4: 4P&n-)Wius%{'2a1#$gv@
+# also accepts a string
+                  unicast_peer: F*'),ugP60H,%{V'8L YLT[*4(`D
+              ipv6:
+                -
+# mandatory; range 1-255; also accepts a string
+                  group: 1
+                  accept_mode_disable: true
+# also accepts a string
+                  linklocal_address: T-aw%{K1
+                  linklocal_address_autoconfig: true
+# also accepts a string
+                  bfd_fast_detect_peer_ipv6: TO2O1cf.&${f4\l
+                  global_addresses:
+                    -
+# mandatory; also accepts a string
+                      address: KdQA0tI\%{P M2/2S4,h`,;zA'F
+# also accepts a string
+                  name: (F_on@N@@[_z<tU<0#${5ap2GRjLF
+# range 1-3600; also accepts a string
+                  preempt_delay: 1
+                  preempt_disable: true
+# range 1-254; also accepts a string
+                  priority: 1
+# range 100-40950; also accepts a string
+                  timer_advertisement_milliseconds: 100
+# range 1-255; also accepts a string
+                  timer_advertisement_seconds: 1
+                  timer_force: true
+# also accepts a string
+                  unicast_peer: ?gOI%{Z)4=o
+                  track_interfaces:
+                    -
+# mandatory; also accepts a string
+                      name: GigabitEthernet0/0
+# range 1-254; also accepts a string
+                      priority_decrement: 1
+                  track_objects:
+                    -
+# mandatory; also accepts a string
+                      name: (sOs!,At#kK>bg.wg${J-Ho`SL3-*mgZ
+# mandatory; range 1-254; also accepts a string
+                      priority_decrement: 1

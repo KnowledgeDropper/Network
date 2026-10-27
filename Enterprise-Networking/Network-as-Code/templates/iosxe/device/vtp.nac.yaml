@@ -1,0 +1,39 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.vtp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/vtp/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        vtp:
+          file: <HOSTNAME>
+# range 1-3; also accepts a string
+          version: 1
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet, PortChannel; also accepts a string
+          interface_type: Loopback
+# also accepts an integer
+          interface_id: 0/0.1
+          interface_only: true
+          password: <SECRET>
+          password_hidden: true
+          password_secret: true
+          pruning: true
+          domain: example.com
+# allowed: client, off, server, transparent; also accepts a string
+          mode: client
+# allowed: mst, unknown, vlan; also accepts a string
+          mode_instance: mst

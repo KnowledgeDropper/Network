@@ -1,0 +1,120 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.system_profiles[].aaa
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_system/system_aaa/
+sdwan:
+  feature_profiles:
+    system_profiles:
+      -
+# mandatory
+        name: example-name
+        aaa:
+          name: example-name
+          description: <DESCRIPTION>
+          accounting_rules:
+            -
+# mandatory
+              groups:
+                - <HOSTNAME>
+# mandatory
+              id: 0/0.1
+# allowed: 1, 15
+              level: 1
+# mandatory; allowed: commands, exec, network, system
+              method: commands
+              start_stop: true
+              start_stop_variable: example-host
+          auth_order:
+            - <HOSTNAME>
+          authorization_config_commands: true
+          authorization_config_commands_variable: example-host
+          authorization_console: true
+          authorization_console_variable: example-host
+          authorization_rules:
+            - authenticated: true
+# mandatory
+              groups:
+                - <HOSTNAME>
+# mandatory
+              id: 0/0.1
+# allowed: 1, 15
+              level: 1
+# mandatory; allowed: commands
+              method: commands
+          dot1x_accounting: true
+          dot1x_accounting_variable: example-host
+          dot1x_authentication: true
+          dot1x_authentication_variable: example-host
+          radius_groups:
+            - group_name: <NAME>
+# mandatory
+              servers:
+                -
+# range 1-65534
+                  accounting_port: 1
+                  accounting_port_variable: example-host
+# mandatory
+                  address: 10.0.0.1
+# range 1-65534
+                  authentication_port: 1
+                  authentication_port_variable: example-host
+                  key: <HOSTNAME>
+                  key_variable: example-host
+# allowed: key, pac
+                  key_type: key
+                  key_type_variable: example-host
+# range 1-100
+                  retransmit: 1
+                  retransmit_variable: example-host
+# range 1-1000
+                  timeout: 1
+                  timeout_variable: example-host
+              source_interface: 0/0.1
+              source_interface_variable: 0/0.1
+# maximum 65530
+              vpn: 1
+              vpn_variable: example-host
+          tacacs_groups:
+            - group_name: <NAME>
+# mandatory
+              servers:
+                -
+# mandatory
+                  address: 10.0.0.1
+                  key: <HOSTNAME>
+                  key_variable: example-host
+# range 1-65535
+                  port: 1
+                  port_variable: example-host
+# range 1-1000
+                  timeout: 1
+                  timeout_variable: example-host
+              source_interface: 0/0.1
+              source_interface_variable: 0/0.1
+# maximum 65530
+              vpn: 1
+              vpn_variable: example-host
+          trustsec_cts_auth_list: <HOSTNAME>
+          trustsec_cts_auth_list_variable: example-host
+          trustsec_radius_group: <HOSTNAME>
+# mandatory
+          users:
+            - name: <NAME>
+              name_variable: example-host
+              password: <SECRET>
+              password_variable: SECRET
+# allowed: 1, 15
+              privilege: 1
+              privilege_variable: example-host
+              public_key_chains:
+                - key: AAAA3ZA3jHKNDL===
+                  key_variable: example-host

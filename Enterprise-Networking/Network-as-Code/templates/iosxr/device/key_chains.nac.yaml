@@ -1,0 +1,86 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.key_chains
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/key_chain/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        key_chains:
+          -
+# mandatory; also accepts a string
+            name: TjEv]v32k${t#1Ty!Yj=HHrh&fL
+# allowed: local, gmt; also accepts a string
+            timezone: local
+# allowed: infinite; also accepts an integer; also accepts a string
+            accept_tolerance: infinite
+            standard_keys:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                name: y[H!1$w zOR<IE2Mm${7PQ2e:Xa.NShAd'^ic(
+# allowed: 6, 7; also accepts a string
+                password_type: 6
+# also accepts a string
+                password: QU4W8YXV$U!Fl_('d%{OA_<Gh=]P0x86qZlOrG
+# allowed: aes-128-cmac-96, hmac-md5, hmac-sha-256, hmac-sha1-12, hmac-sha1-20, hmac-sha1-96, md5,
+# sha-1; also accepts a string
+                algorithm: aes-128-cmac-96
+                accept_lifetime:
+# mandatory; also accepts a string
+                  from_time: <_kqD6h@U0Hr;I%{?
+# mandatory; also accepts a string
+                  from_date: '&8Fajfj${sqx[xu'
+# also accepts a string
+                  to_time: O*5FWx8JK=${mK!C
+# also accepts a string
+                  to_date: =`?B%{EeI0l*#6t(Zn=-#%+q
+# range 1-2147483646; also accepts a string
+                  duration: 1
+                  infinite: true
+                send_lifetime:
+# mandatory; also accepts a string
+                  from_time: /OC${Y%'9gw[&nW"(1U
+# mandatory; also accepts a string
+                  from_date: Zu0wKf)jyc0T,${f+GfuGA`qylT!J^K`3
+# also accepts a string
+                  to_time: NAy%{_zx#l'9ZmU@5@9^_;Y
+# also accepts a string
+                  to_date: (Z^+??${m%"4c.*r5hL,a?AqD5I
+# range 1-2147483646; also accepts a string
+                  duration: 1
+                  infinite: true
+            macsec_keys:
+              -
+# mandatory; also accepts a string
+                name: ' &yk..eX&${B"_l_8LWJK^a#_QP'
+# allowed: 6, 7; also accepts a string
+                password_type: 6
+# also accepts a string
+                password: F(]UtBb,!<:oDdp?O%{L
+# mandatory; allowed: aes-128-cmac, aes-256-cmac; also accepts a string
+                algorithm: aes-128-cmac
+                lifetime:
+# mandatory; also accepts a string
+                  from_time: ${p@Q(<!GvuU
+# mandatory; also accepts a string
+                  from_date: x1%y4Le6tn%{4k8\ID]
+# also accepts a string
+                  to_time: .${7cBK*CP(n"
+# also accepts a string
+                  to_date: iq/'J${B
+# range 1-2147483646; also accepts a string
+                  duration: 1
+                  infinite: true

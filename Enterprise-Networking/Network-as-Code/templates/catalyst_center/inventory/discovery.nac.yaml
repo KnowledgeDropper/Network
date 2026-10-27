@@ -1,0 +1,40 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.inventory.discovery
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/inventory/discovery/
+catalyst_center:
+  inventory:
+    discovery:
+      -
+# mandatory
+        name: <NAME>
+# allowed: Single, Range, Multi Range, CDP, LLDP, CIDR
+        type: Single
+        create_per_site: true
+        global_credential_list:
+          - <HOSTNAME>
+        ip_address_list: 10.0.0.1
+# allowed: UseLoopBack, None
+        preferred_mgmt_ip_method: UseLoopBack
+# allowed: SSH, Telnet, SSH,Telnet, Telnet,SSH
+        protocol_order: SSH
+        time_out: 1
+        cdp_level: 1
+        lldp_level: 1
+        enable_password_list:
+          - <SECRET>
+        ip_filter_list:
+          - 10.0.0.1
+        netconf_port: <HOSTNAME>
+        retry: 1
+        user_name_list:
+          - <HOSTNAME>

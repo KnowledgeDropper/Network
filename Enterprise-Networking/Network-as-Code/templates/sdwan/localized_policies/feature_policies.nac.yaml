@@ -1,0 +1,50 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.localized_policies.feature_policies
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/localized_policies/localized_policy_feature_policy/
+#   https://netascode.cisco.com/docs/data_models/sdwan/security_policies/feature_policy/
+sdwan:
+  localized_policies:
+    feature_policies:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        definitions:
+          ipv4_access_control_lists:
+            - example-host
+          ipv4_device_access_policies:
+            - example-host
+          ipv6_access_control_lists:
+            - example-host
+          ipv6_device_access_policies:
+            - example-host
+          rewrite_rules:
+            - example-host
+          route_policies:
+            - example-host
+          qos_maps:
+            - example-host
+        implicit_acl_logging: true
+        ipv4_application_visibility: true
+        ipv4_flow_visibility: true
+# range 16-2000000
+        ipv4_visibility_cache_entries: 16
+        ipv6_application_visibility: true
+        ipv6_flow_visibility: true
+# range 16-2000000
+        ipv6_visibility_cache_entries: 16
+# range 1-2147483647
+        log_frequency: 1
+        cloud_qos: true
+        cloud_qos_service_side: true

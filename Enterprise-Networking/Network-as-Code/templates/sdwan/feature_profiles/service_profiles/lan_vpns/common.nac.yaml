@@ -1,0 +1,50 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.service_profiles[].lan_vpns[]
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_service/service_lan_vpn/
+sdwan:
+  feature_profiles:
+    service_profiles:
+      -
+# mandatory
+        name: example-name
+        lan_vpns:
+          -
+# mandatory
+            name: example-name
+            description: <DESCRIPTION>
+            bgp: example-host
+            eigrp: example-host
+# range 1-255
+            ipv4_omp_admin_distance: 1
+            ipv4_omp_admin_distance_variable: example-host
+            ipv4_primary_dns_address: 10.0.0.1
+            ipv4_primary_dns_address_variable: 10.0.0.1
+            ipv4_secondary_dns_address: 10.0.0.1
+            ipv4_secondary_dns_address_variable: 10.0.0.1
+# range 1-255
+            ipv6_omp_admin_distance: 1
+            ipv6_omp_admin_distance_variable: example-host
+            ipv6_primary_dns_address: 2001:db8::1
+            ipv6_primary_dns_address_variable: 10.0.0.1
+            ipv6_secondary_dns_address: 2001:db8::1
+            ipv6_secondary_dns_address_variable: 10.0.0.1
+            multicast: example-host
+            ospf: example-host
+            ospfv3_ipv4: example-host
+            ospfv3_ipv6: 2001:db8::1
+            sdwan_remote_access: true
+# also accepts an integer
+            vpn_id: '10'
+            vpn_id_variable: example-host
+            vpn_name: <NAME>
+            vpn_name_variable: example-host

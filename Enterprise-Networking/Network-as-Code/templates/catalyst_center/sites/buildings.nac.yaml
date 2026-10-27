@@ -1,0 +1,36 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.sites.buildings
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/sites/building/
+catalyst_center:
+  sites:
+    buildings:
+      -
+# mandatory
+        name: <NAME>
+        parent_name: <NAME>
+        cli_credentials: <HOSTNAME>
+        snmpv3_credentials: <HOSTNAME>
+        snmpv2_read_credentials: <HOSTNAME>
+        snmpv2_write_credentials: <HOSTNAME>
+        https_read_credentials: <HOSTNAME>
+        https_write_credentials: <HOSTNAME>
+        network_settings:
+          aaa_servers: <HOSTNAME>
+          network: <HOSTNAME>
+          telemetry: <HOSTNAME>
+        latitude: 1.0
+        longitude: 1.0
+        address: 10.0.0.1
+        country: <HOSTNAME>
+        ip_pools_reservations:
+          - 10.0.0.1

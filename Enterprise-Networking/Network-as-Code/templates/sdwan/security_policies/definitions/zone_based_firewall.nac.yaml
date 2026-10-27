@@ -1,0 +1,86 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.security_policies.definitions.zone_based_firewall
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/security_policies/zone_based_firewall_definition/
+sdwan:
+  security_policies:
+    definitions:
+      zone_based_firewall:
+        - name: example-name
+# mandatory
+          description: <DESCRIPTION>
+# mandatory; allowed: pass, drop
+          default_action_type: pass
+# allowed: security, unified
+          mode: security
+          rules:
+            -
+# mandatory; range 1-65534
+              id: 1
+# mandatory
+              name: <NAME>
+# allowed: ipv4, ipv6
+              ip_type: ipv4
+# mandatory; allowed: pass, drop, inspect
+              base_action: pass
+              match_criterias:
+                source_data_prefix_lists:
+                  - example-host
+                source_ip_prefix: 10.0.0.0/24
+                source_ip_prefix_variable: 10.0.0.1
+                source_fqdn_lists:
+                  - example-host
+                source_fqdn: example.com
+                source_geo_locations:
+                  - any
+                source_port_lists:
+                  - example-host
+                source_ports:
+                  - 1
+                source_port_ranges:
+                  -
+# mandatory; maximum 65535
+                    from: 1
+# mandatory; maximum 65535
+                    to: 1
+                destination_data_prefix_lists:
+                  - example-host
+                destination_ip_prefix: 10.0.0.0/24
+                destination_ip_prefix_variable: 10.0.0.1
+                destination_fqdn_lists:
+                  - example-host
+                destination_fqdn: example.com
+                destination_geo_locations:
+                  - any
+                destination_port_lists:
+                  - example-host
+                destination_ports:
+                  - 1
+                destination_port_ranges:
+                  -
+# mandatory; maximum 65535
+                    from: 1
+# mandatory; maximum 65535
+                    to: 1
+                protocol_names:
+                  - <HOSTNAME>
+                protocols:
+                  - 1
+                local_application_list: example-host
+              actions:
+                log: true
+          zone_pairs:
+            -
+# mandatory; allowed: self_zone; also accepts a string
+              source_zone: self_zone
+# mandatory; allowed: self_zone; also accepts a string
+              destination_zone: self_zone

@@ -1,0 +1,84 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.pim_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/pim/
+sdwan:
+  edge_feature_templates:
+    pim_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - ASR-1001-HX
+        auto_rp: true
+        auto_rp_variable: <HOSTNAME>
+        bsr_candidate_interface: 0/0.1
+        bsr_candidate_interface_variable: 0/0.1
+# maximum 32
+        bsr_candidate_hash_mask_length: 1
+        bsr_candidate_hash_mask_length_variable: 10.0.0.1
+# range 1-255
+        bsr_candidate_priority: 1
+        bsr_candidate_priority_variable: <HOSTNAME>
+        bsr_candidate_rp_access_list: <HOSTNAME>
+        bsr_candidate_rp_access_list_variable: <HOSTNAME>
+        interfaces:
+          - interface_name: 0/0.1
+            interface_name_variable: 0/0.1
+# range 10-600
+            join_prune_interval: 10
+            join_prune_interval_variable: <HOSTNAME>
+            optional: true
+# range 1-18725
+            query_interval: 1
+            query_interval_variable: <HOSTNAME>
+        rp_addresses:
+          - access_list: <HOSTNAME>
+            access_list_variable: <HOSTNAME>
+            ip_address: 10.0.0.1
+            ip_address_variable: 10.0.0.1
+            optional: true
+            override: true
+            override_variable: <HOSTNAME>
+        rp_announces:
+          - interface_name: 0/0.1
+            interface_name_variable: 0/0.1
+            optional: true
+# maximum 255
+            scope: 1
+            scope_variable: <HOSTNAME>
+        rp_candidates:
+          - access_list: <HOSTNAME>
+            access_list_variable: <HOSTNAME>
+            interface_name: 0/0.1
+            interface_name_variable: 0/0.1
+# range 1-16383
+            interval: 1
+            interval_variable: <HOSTNAME>
+            optional: true
+# range 1-255
+            priority: 1
+            priority_variable: <HOSTNAME>
+        rp_discovery_interface: 0/0.1
+        rp_discovery_interface_variable: 0/0.1
+# maximum 255
+        rp_discovery_scope: 1
+        rp_discovery_scope_variable: <HOSTNAME>
+# allowed: 0, infinity
+        spt_threshold: '0'
+        spt_threshold_variable: <HOSTNAME>
+        ssm_access_list_range: <HOSTNAME>
+        ssm_access_list_range_variable: <HOSTNAME>
+        ssm_default: true
+        ssm_default_variable: <HOSTNAME>

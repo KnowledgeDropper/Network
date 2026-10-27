@@ -1,0 +1,77 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.monitor_sessions
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/monitor_session/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        monitor_sessions:
+          default_capture_disable: true
+          local_capture:
+# range 1-4294967295; also accepts a string
+            size: 1
+# allowed: gb, kb, mb; also accepts a string
+            unit: gb
+# also accepts an integer
+          router_id: ']#&F%{4FdXkF4orM'
+          sessions:
+            -
+# mandatory; also accepts a string
+              name: 46Q/c&0ZNk:w3NsBa${rb"$q]
+              destination_file:
+                always_on: true
+# allowed: linear; also accepts a string
+                buffer_type: linear
+# also accepts a string
+                filter: vH_*L`tX%)e\GM_#${"Ef)LL)r%?K6`
+# allowed: pcapng; also accepts a string
+                format: pcapng
+# range 1-16777216; also accepts a string
+                size: 1
+# also accepts a string
+              destination_interface: ^kk%{(*1u\XujcJz2R]Wc'#
+              destination_pseudowire: true
+# allowed: rx, tx; also accepts a string
+              direction: rx
+# maximum 2; also accepts a string
+              discard_class: 1
+              drops:
+# allowed: rx, tx; also accepts a string
+                direction: rx
+# also accepts a string
+                filter: )aB+<F*qq)%{9fl
+                packet_processing: true
+                traffic_management: true
+# also accepts a string
+              inject_interface: 5%{\fm4C8)
+# range 1-10000; also accepts a string
+              mirror_first: 1
+# allowed: 128, 16, 16K, 1K, 2, 256, 2K, 32, 4, 4K, 512, 64, 8, 8K; also accepts a string
+              mirror_interval: '128'
+              protocol_capture:
+# allowed: rx, tx; also accepts a string
+                direction: rx
+# also accepts a string
+                filter: c-yMAp0RMYEFird-%{L
+# maximum 4294967295; also accepts a string
+              rate_limit_rx: 1
+# maximum 4294967295; also accepts a string
+              rate_limit_tx: 1
+# maximum 7; also accepts a string
+              traffic_class: 1
+# allowed: ethernet, ipv4, ipv6, mpls-ipv4, mpls-ipv6; also accepts a string
+              type: ethernet

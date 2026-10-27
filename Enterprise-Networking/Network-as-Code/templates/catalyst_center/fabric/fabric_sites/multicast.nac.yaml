@@ -1,0 +1,47 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.fabric.fabric_sites[].multicast
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/fabric/multicast/
+catalyst_center:
+  fabric:
+    fabric_sites:
+      -
+# mandatory
+        name: <NAME>
+        multicast:
+# allowed: NATIVE_MULTICAST, HEADEND_REPLICATION
+          replication_mode: NATIVE_MULTICAST
+          wireless_multicast_enabled: true
+          virtual_networks:
+            -
+# mandatory
+              name: <NAME>
+# mandatory
+              ip_pool_name: 10.0.0.1
+              ipv4_ssm_ranges:
+                - <HOSTNAME>
+              multicast_rps:
+                -
+# mandatory
+                  name: <NAME>
+# mandatory; allowed: FABRIC, EXTERNAL
+                  rp_location: FABRIC
+                  ipv4_address: 10.0.0.1
+                  ipv6_address: 2001:db8::1
+                  is_default_v4_rp: true
+                  is_default_v6_rp: true
+                  fabric_rps:
+                    - <HOSTNAME>
+                  ipv4_asm_ranges:
+                    - <HOSTNAME>
+                  ipv6_asm_ranges:
+                    - 2001:db8::1

@@ -1,0 +1,84 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.ipv6_dhcp_pools
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/ipv6_dhcp_pool/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        ipv6_dhcp_pools:
+          -
+# mandatory
+            name: <NAME>
+            vrf: <HOSTNAME>
+            address_prefixes:
+              -
+# mandatory; also accepts a string
+                address: fQ+an:Z7A1%{ujKdW+z*C>M33j(C
+# allowed: infinite; also accepts an integer; also accepts a string
+                valid_lifetime: infinite
+# allowed: infinite; also accepts an integer; also accepts a string
+                preferred_lifetime: infinite
+            prefix_delegation_pool_name: 10.0.0.1
+# allowed: infinite; also accepts an integer; also accepts a string
+            prefix_delegation_pool_valid_lifetime: infinite
+# allowed: infinite; also accepts an integer; also accepts a string
+            prefix_delegation_pool_preferred_lifetime: infinite
+            prefix_delegation_prefixes:
+              -
+# mandatory; also accepts a string
+                prefix: d9H_$?CxpPso5$${jWgNX8ysf2J1+]%
+# also accepts a string
+                hex_string: '10'
+# also accepts a string
+                iaid: '10'
+# allowed: infinite; also accepts an integer; also accepts a string
+                valid_lifetime: infinite
+# allowed: infinite; also accepts an integer; also accepts a string
+                preferred_lifetime: infinite
+# also accepts a string
+            dns_servers:
+              - <HOSTNAME>
+# also accepts an array
+            domain_names: njLe"BHR?u%{VE-6!I#jw [=
+            bootfile_url: https://example.com
+# also accepts a string
+            sntp_addresses:
+              - <HOSTNAME>
+            link_addresses:
+              -
+# mandatory; also accepts a string
+                address: ob'kJ+"5t9"4pEO9D${
+            option_include_all: true
+            vendor_specifics:
+              -
+# mandatory; also accepts an integer
+                enterprise_id: $ZV0^L]]xz9%{SD($
+                suboptions:
+                  -
+# mandatory; range 1-65535; also accepts a string
+                    number: 1
+                    address: 10.0.0.1
+                    ascii: <HOSTNAME>
+# also accepts a string
+                    hex: '10'
+            import_dns_server: true
+            import_domain_name: true
+# maximum 365; also accepts a string
+            information_refresh_days: 1
+# maximum 23; also accepts a string
+            information_refresh_hours: 1
+# maximum 59; also accepts a string
+            information_refresh_minutes: 1
+            information_refresh_infinite: true

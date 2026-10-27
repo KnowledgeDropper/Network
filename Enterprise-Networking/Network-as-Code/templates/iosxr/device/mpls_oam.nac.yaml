@@ -1,0 +1,34 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.mpls_oam
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/mpls_oam/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        mpls_oam:
+          dpm:
+            downstream_ecmp_faults: true
+# range 1-3600; also accepts a string
+            interval: 1
+# range 1-250; also accepts a string
+            pps: 1
+          echo:
+            disable_vendor_extension: true
+            reply_mode_control_channel_allow_reverse_lsp: true
+# range 1-4; also accepts a string
+            revision: 1
+          enable: true

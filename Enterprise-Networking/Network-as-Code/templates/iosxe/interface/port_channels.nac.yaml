@@ -1,0 +1,536 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.interfaces.port_channels
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/interface/port_channel/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        interfaces:
+          port_channels:
+            -
+# mandatory; also accepts an integer
+              id: lB3YAmOeU)%{hQ@i 33-B
+# also accepts a string
+              interface_groups:
+                - 0/0.1
+# allowed: merge, replace; also accepts a string
+              interface_group_policy: merge
+              description: <DESCRIPTION>
+              shutdown: true
+# range 64-18000; also accepts a string
+              mtu: 64
+              vrf_forwarding: <HOSTNAME>
+              ipv4:
+# also accepts a string
+                address: im(#?%{r&C"uhuo!@0`0UMarOK
+# also accepts a string
+                address_mask: _Vg9m*,c4*"DAOxNN%{=(VU7b'Uohd_?1hmUyq
+                proxy_arp: true
+                arp_inspection_trust: true
+# maximum 4294967295; also accepts a string
+                arp_inspection_limit_rate: 1
+                dhcp_snooping_trust: true
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet, PortChannel; also accepts a string
+                dhcp_relay_source_interface_type: Loopback
+# also accepts an integer
+                dhcp_relay_source_interface_id: 0/0.1
+                dhcp_relay_information_option_vpn_id: true
+                helper_addresses:
+                  -
+# mandatory; also accepts a string
+                    address: '&XEL${t.)A'
+                    global: true
+                    vrf: <HOSTNAME>
+                access_group_in: <HOSTNAME>
+                access_group_out: <HOSTNAME>
+                flow_monitors:
+                  -
+# mandatory
+                    name: <NAME>
+# mandatory; allowed: input, output; also accepts a string
+                    direction: input
+                redirects: true
+                unreachables: true
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet, PortChannel; also accepts a string
+                unnumbered_interface_type: Loopback
+# also accepts an integer
+                unnumbered_interface_id: 0/0.1
+                nat_inside: true
+                nat_outside: true
+                address_dhcp: true
+# allowed: any, rx; also accepts a string
+                verify_unicast_source_reachable_via: any
+                verify_unicast_source_allow_self_ping: true
+                verify_unicast_source_allow_default: true
+              ipv6:
+                enable: true
+                addresses:
+                  -
+# mandatory; also accepts a string
+                    prefix: '`%9r]ZjvxnB8${[u)^dqWkD_yc`P ['
+                    eui_64: true
+                link_local_addresses:
+                  - '3@ 40+,U]+d^L%{Mi]qtWM^z]>K:'
+                address_autoconfig_default: true
+                address_dhcp: true
+# range 1280-9976; also accepts a string
+                mtu: 1280
+                nd_ra_suppress_all: true
+                flow_monitors:
+                  -
+# mandatory
+                    name: <NAME>
+# mandatory; allowed: input, output; also accepts a string
+                    direction: input
+                pim:
+                  pim: true
+                  bfd: true
+                  bsr_border: true
+# maximum 4294967295; also accepts a string
+                  dr_priority: 1
+              bfd:
+                template: <HOSTNAME>
+                enable: true
+# also accepts a string
+                local_address: <CNl${ZSp=4<>A+j^)m7s
+# range 50-9999; also accepts a string
+                interval: 50
+# range 50-9999; also accepts a string
+                interval_min_rx: 50
+# range 3-50; also accepts a string
+                interval_multiplier: 3
+                echo: true
+              spanning_tree:
+                portfast: true
+                portfast_disable: true
+                bpduguard: true
+                bpduguard_disable: true
+# allowed: loop, none, root; also accepts a string
+                guard: loop
+# allowed: shared, point-to-point; also accepts a string
+                link_type: shared
+                portfast_trunk: true
+                portfast_edge: true
+# maximum 2147483; also accepts a string
+              arp_timeout: 1
+# range 30-600; also accepts a string
+              load_interval: 30
+              snmp_trap_link_status: true
+              logging_event_link_status: true
+              mpls:
+                ip: true
+# also accepts an integer
+                mtu: M"]u!GU%{iZx$WO^OLHGn*a_B
+              ospf:
+                authentication_key_chain: <HOSTNAME>
+                authentication_message_digest: true
+                authentication_null: true
+# range 1-65535; also accepts a string
+                cost: 1
+# range 1-65535; also accepts a string
+                dead_interval: 1
+# range 1-65535; also accepts a string
+                hello_interval: 1
+                message_digest_keys:
+                  -
+# mandatory; also accepts an integer
+                    id: Bnp, >snKAQ)2k+?O1Y${h^2zXZjAw+D*uWR
+                    md5_auth_key: <HOSTNAME>
+# allowed: 0, 7; also accepts a string
+                    md5_auth_type: '0'
+                mtu_ignore: true
+# also accepts a string
+                multi_area_ids:
+                  - 1
+# allowed: broadcast, non-broadcast, point-to-multipoint, point-to-point; also accepts a string
+                network_type: broadcast
+# maximum 255; also accepts a string
+                priority: 1
+                process_ids:
+                  -
+# also accepts an integer
+                    id: J>%{lzm,0[r_ky
+# also accepts a string
+                    areas:
+                      - 1
+# range 1-254; also accepts a string
+                ttl_security_hops: 1
+              ospfv3:
+                bfd: true
+# range 1-65535; also accepts a string
+                cost: 1
+# range 1-65535; also accepts a string
+                dead_interval: 1
+# range 1-65535; also accepts a string
+                hello_interval: 1
+                mtu_ignore: true
+# allowed: broadcast, non-broadcast, point-to-multipoint, point-to-point; also accepts a string
+                network_type: broadcast
+# maximum 255; also accepts a string
+                priority: 1
+              isis:
+# also accepts a string
+                area_tag: "%{5O9Rz#n'"
+                ipv4_metric_levels:
+                  -
+# mandatory; allowed: level-1, level-2; also accepts a string
+                    level: level-1
+# mandatory; range 1-16777214; also accepts a string
+                    value: 1
+                network_point_to_point: true
+              pim:
+                passive: true
+                dense_mode: true
+                sparse_mode: true
+                sparse_dense_mode: true
+                bfd: true
+                border: true
+                bsr_border: true
+# maximum 4294967294; also accepts a string
+                dr_priority: 1
+              igmp:
+# range 1-3; also accepts a string
+                version: 1
+              switchport:
+                enable: true
+# allowed: access, dot1q-tunnel, private-vlan-trunk, private-vlan-host, private-vlan-promiscuous,
+# trunk; also accepts a string
+                mode: access
+                nonegotiate: true
+# range 1-4094; also accepts a string
+                access_vlan: 1
+# allowed: dot1p, none, untagged; also accepts an integer; also accepts a string
+                voice_vlan: dot1p
+                trunk_allowed_vlans:
+                  all: true
+                  none: true
+                  vlans:
+# also accepts a string
+                    ids:
+                      - 1
+                    ranges:
+                      -
+# mandatory; range 1-4094; also accepts a string
+                        from: 1
+# mandatory; range 1-4094; also accepts a string
+                        to: 1
+                  add:
+# also accepts a string
+                    ids:
+                      - 1
+                    ranges:
+                      -
+# mandatory; range 1-4094; also accepts a string
+                        from: 1
+# mandatory; range 1-4094; also accepts a string
+                        to: 1
+                  except:
+# also accepts a string
+                    ids:
+                      - 1
+                    ranges:
+                      -
+# mandatory; range 1-4094; also accepts a string
+                        from: 1
+# mandatory; range 1-4094; also accepts a string
+                        to: 1
+                  remove:
+# also accepts a string
+                    ids:
+                      - 1
+                    ranges:
+                      -
+# mandatory; range 1-4094; also accepts a string
+                        from: 1
+# mandatory; range 1-4094; also accepts a string
+                        to: 1
+                trunk_allowed_vlans_legacy:
+# also accepts a string
+                  ids:
+                    - 1
+                  ranges:
+                    -
+# mandatory; range 1-4094; also accepts a string
+                      from: 1
+# mandatory; range 1-4094; also accepts a string
+                      to: 1
+                trunk_native_vlan_tag: true
+# also accepts an integer
+                trunk_native_vlan_id: qcbMRT^&^${
+                host: true
+              subinterfaces:
+                -
+# mandatory
+                  id: 0/0.1
+                  description: <DESCRIPTION>
+                  shutdown: true
+                  vrf_forwarding: <HOSTNAME>
+# range 68-18000; also accepts a string
+                  ip_mtu: 68
+                  ipv4:
+# also accepts a string
+                    address: '%{'
+# also accepts a string
+                    address_mask: '%APj%{MGT'
+                    proxy_arp: true
+                    arp_inspection_trust: true
+# maximum 4294967295; also accepts a string
+                    arp_inspection_limit_rate: 1
+                    dhcp_snooping_trust: true
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet, PortChannel; also accepts a string
+                    dhcp_relay_source_interface_type: Loopback
+# also accepts an integer
+                    dhcp_relay_source_interface_id: 0/0.1
+                    dhcp_relay_information_option_vpn_id: true
+                    helper_addresses:
+                      -
+# mandatory; also accepts a string
+                        address: v=C2"/S%{vbNPe*
+                        global: true
+                        vrf: <HOSTNAME>
+                    access_group_in: <HOSTNAME>
+                    access_group_out: <HOSTNAME>
+                    flow_monitors:
+                      -
+# mandatory
+                        name: <NAME>
+# mandatory; allowed: input, output; also accepts a string
+                        direction: input
+                    redirects: true
+                    unreachables: true
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet, PortChannel; also accepts a string
+                    unnumbered_interface_type: Loopback
+# also accepts an integer
+                    unnumbered_interface_id: 0/0.1
+                    nat_inside: true
+                    nat_outside: true
+                    address_dhcp: true
+# allowed: any, rx; also accepts a string
+                    verify_unicast_source_reachable_via: any
+                    verify_unicast_source_allow_self_ping: true
+                    verify_unicast_source_allow_default: true
+                  ipv6:
+                    enable: true
+                    addresses:
+                      -
+# mandatory; also accepts a string
+                        prefix: '%{v3x'
+                        eui_64: true
+                    link_local_addresses:
+                      - f${luPB
+                    address_autoconfig_default: true
+                    address_dhcp: true
+# range 1280-9976; also accepts a string
+                    mtu: 1280
+                    nd_ra_suppress_all: true
+                    flow_monitors:
+                      -
+# mandatory
+                        name: <NAME>
+# mandatory; allowed: input, output; also accepts a string
+                        direction: input
+                    pim:
+                      pim: true
+                      bfd: true
+                      bsr_border: true
+# maximum 4294967295; also accepts a string
+                      dr_priority: 1
+                  bfd:
+                    template: <HOSTNAME>
+                    enable: true
+# also accepts a string
+                    local_address: '.i$${f&"q:6SX/!QDx '
+# range 50-9999; also accepts a string
+                    interval: 50
+# range 50-9999; also accepts a string
+                    interval_min_rx: 50
+# range 3-50; also accepts a string
+                    interval_multiplier: 3
+                    echo: true
+# also accepts an integer
+                  encapsulation_dot1q_vlan_id: '>tjnzJ=v$5%{^"+m>j%'
+# maximum 2147483; also accepts a string
+                  arp_timeout: 1
+                  auto_qos:
+                    classify: true
+                    classify_police: true
+                    trust: true
+                    trust_cos: true
+                    trust_dscp: true
+                    video_cts: true
+                    video_ip_camera: true
+                    video_media_player: true
+                    voip_cisco_phone: true
+                    voip_cisco_softphone: true
+                    voip_trust: true
+# allowed: cisco-phone, cts, ip-camera, media-player; also accepts a string
+                    trust_device: cisco-phone
+                  mpls:
+                    ip: true
+# also accepts an integer
+                    mtu: M'klRTT`,dxu[bSbUHz%{)$>u>Lr`t4g>EL'7
+                  ospf:
+                    authentication_key_chain: <HOSTNAME>
+                    authentication_message_digest: true
+                    authentication_null: true
+# range 1-65535; also accepts a string
+                    cost: 1
+# range 1-65535; also accepts a string
+                    dead_interval: 1
+# range 1-65535; also accepts a string
+                    hello_interval: 1
+                    message_digest_keys:
+                      -
+# mandatory; also accepts an integer
+                        id: '%8&(z${l[qXH+] oyo'
+                        md5_auth_key: <HOSTNAME>
+# allowed: 0, 7; also accepts a string
+                        md5_auth_type: '0'
+                    mtu_ignore: true
+# also accepts a string
+                    multi_area_ids:
+                      - 1
+# allowed: broadcast, non-broadcast, point-to-multipoint, point-to-point; also accepts a string
+                    network_type: broadcast
+# maximum 255; also accepts a string
+                    priority: 1
+                    process_ids:
+                      -
+# also accepts an integer
+                        id: Efb8(=e$BtLg%{H
+# also accepts a string
+                        areas:
+                          - 1
+# range 1-254; also accepts a string
+                    ttl_security_hops: 1
+                  ospfv3:
+                    bfd: true
+# range 1-65535; also accepts a string
+                    cost: 1
+# range 1-65535; also accepts a string
+                    dead_interval: 1
+# range 1-65535; also accepts a string
+                    hello_interval: 1
+                    mtu_ignore: true
+# allowed: broadcast, non-broadcast, point-to-multipoint, point-to-point; also accepts a string
+                    network_type: broadcast
+# maximum 255; also accepts a string
+                    priority: 1
+                  isis:
+# also accepts a string
+                    area_tag: =G]3>AOxHlcK%${*ofGglos
+                    ipv4_metric_levels:
+                      -
+# mandatory; allowed: level-1, level-2; also accepts a string
+                        level: level-1
+# mandatory; range 1-16777214; also accepts a string
+                        value: 1
+                    network_point_to_point: true
+                  pim:
+                    passive: true
+                    dense_mode: true
+                    sparse_mode: true
+                    sparse_dense_mode: true
+                    bfd: true
+                    border: true
+                    bsr_border: true
+# maximum 4294967294; also accepts a string
+                    dr_priority: 1
+                  igmp:
+# range 1-3; also accepts a string
+                    version: 1
+                  vrrp_v2:
+                    -
+# mandatory; also accepts an integer
+                      group_id: 'oD&s&!g 51#]fLmx%{wVD&#b##.d` '
+# also accepts a string
+                      ip_primary_address: hD[6')*#w?.*ll${PF[H6
+# also accepts a string
+                      ip_secondary_addresses:
+                        - 10.0.0.1
+# range 1-254; also accepts a string
+                      priority: 1
+                      preempt: true
+# maximum 3600; also accepts a string
+                      preempt_delay_minimum: 1
+# range 1-255; also accepts a string
+                      timers_advertise_interval: 1
+                      authentication_text: <DESCRIPTION>
+                      description: <DESCRIPTION>
+                      tracks:
+                        -
+# mandatory; also accepts an integer
+                          object_id: $Imw]p\${r-KD U7Zu*yQb
+# range 1-255; also accepts a string
+                          decrement: 1
+                      shutdown: true
+                  zone_member_security: <HOSTNAME>
+              auto_qos:
+                classify: true
+                classify_police: true
+                trust: true
+                trust_cos: true
+                trust_dscp: true
+                video_cts: true
+                video_ip_camera: true
+                video_media_player: true
+                voip_cisco_phone: true
+                voip_cisco_softphone: true
+                voip_trust: true
+# allowed: cisco-phone, cts, ip-camera, media-player; also accepts a string
+                trust_device: cisco-phone
+              negotiation_auto: true
+              evpn_ethernet_segments:
+                -
+# mandatory; range 1-65535; also accepts a string
+                  es_value: 1
+              evpn_ethernet_segments_legacy:
+                -
+# mandatory; range 1-65535; also accepts a string
+                  es_value: 1
+              vrrp_v2:
+                -
+# mandatory; also accepts an integer
+                  group_id: 2$0n3(%{hdoWK4zD15sQU
+# also accepts a string
+                  ip_primary_address: '*UBlJf${lnV_A u!'
+# also accepts a string
+                  ip_secondary_addresses:
+                    - 10.0.0.1
+# range 1-254; also accepts a string
+                  priority: 1
+                  preempt: true
+# maximum 3600; also accepts a string
+                  preempt_delay_minimum: 1
+# range 1-255; also accepts a string
+                  timers_advertise_interval: 1
+                  authentication_text: <DESCRIPTION>
+                  description: <DESCRIPTION>
+                  tracks:
+                    -
+# mandatory; also accepts an integer
+                      object_id: q.f5i,K<5GOB4D j-%{ih
+# range 1-255; also accepts a string
+                      decrement: 1
+                  shutdown: true
+              zone_member_security: <HOSTNAME>

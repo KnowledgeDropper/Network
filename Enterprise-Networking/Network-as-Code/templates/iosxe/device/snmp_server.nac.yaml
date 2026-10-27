@@ -1,0 +1,313 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.snmp_server
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/snmp_server/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        snmp_server:
+          groups:
+            -
+# mandatory
+              name: <NAME>
+              v3_security_levels:
+                -
+# mandatory
+                  security_level: <HOSTNAME>
+                  context_node: <DESCRIPTION>
+# allowed: exact, prefix; also accepts a string
+                  match_node: exact
+                  read_node: <HOSTNAME>
+                  write_node: <HOSTNAME>
+                  notify_node: <HOSTNAME>
+                  access_ipv6_acl: 2001:db8::1
+# range 1-99; also accepts a string
+                  access_standard_acl: 1
+                  access_acl_name: <NAME>
+          users:
+            -
+# mandatory
+              name: <NAME>
+# mandatory
+              group: <HOSTNAME>
+# mandatory
+              v3_authentication:
+# mandatory; allowed: md5, sha, sha-2-256, sha-2-384, sha-2-512; also accepts a string
+                algorithm: md5
+# mandatory
+                password: <SECRET>
+                access:
+                  ipv6_acl: 2001:db8::1
+# range 1-99; also accepts a string
+                  standard_acl: 1
+                  acl_name: <NAME>
+                privacy:
+                  aes:
+                    enable: true
+# allowed: 128, 192, 256; also accepts a string
+                    algorithm: '128'
+                    password: <SECRET>
+                    access:
+                      ipv6_acl: 2001:db8::1
+# range 1-99; also accepts a string
+                      standard_acl: 1
+                      acl_name: <NAME>
+                  des:
+                    enable: true
+                    password: <SECRET>
+                    access:
+                      ipv6_acl: 2001:db8::1
+# range 1-99; also accepts a string
+                      standard_acl: 1
+                      acl_name: <NAME>
+                  des3:
+                    enable: true
+                    password: <SECRET>
+                    access:
+                      ipv6_acl: 2001:db8::1
+# range 1-99; also accepts a string
+                      standard_acl: 1
+                      acl_name: <NAME>
+          chassis_id: 0/0.1
+          contact: <HOSTNAME>
+          ifindex_persist: true
+          location: <HOSTNAME>
+# range 484-17892; also accepts a string
+          packet_size: 484
+# range 1-5000; also accepts a string
+          queue_length: 1
+          enable_logging_getop: true
+          enable_logging_setop: true
+          enable_informs: true
+          enable_traps: true
+          hosts:
+            -
+# mandatory; also accepts a string
+              ip: cCmp?yeIf`95%{'%\/Sn(o>Y3v2(i
+              vrf: <HOSTNAME>
+              community: rt 65000:1
+              user: <HOSTNAME>
+# allowed: 1, 2c, 3; also accepts a string
+              version: '1'
+# allowed: 0, 6, 7; also accepts a string
+              encryption: '0'
+# allowed: auth, noauth, priv; also accepts a string
+              security_level: auth
+          system_shutdown: true
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet, PortChannel, PortChannelSubinterface; also accepts a string
+          source_interface_informs_type: Loopback
+          source_interface_informs_id: 0/0.1
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet, PortChannel, PortChannelSubinterface; also accepts a string
+          source_interface_traps_type: Loopback
+          source_interface_traps_id: 0/0.1
+          traps:
+            snmp_authentication: true
+            snmp_coldstart: true
+            snmp_linkdown: true
+            snmp_linkup: true
+            snmp_warmstart: true
+            flowmon: true
+            entity_perf_throughput_notif: true
+            call_home_message_send_fail: true
+            call_home_server_fail: true
+            tty: true
+            ospfv3_config_state_change: true
+            ospfv3_config_errors: true
+            ospf_config_retransmit: true
+            ospf_config_lsa: true
+            ospf_nssa_trans_change: true
+            ospf_shamlink_interface: true
+            ospf_shamlink_neighbor: true
+            ospf_errors_enable: true
+            ospf_retransmit_enable: true
+            ospf_lsa_enable: true
+            eigrp: true
+            auth_framework_sec_violation: true
+            rep: true
+            vtp: true
+            vlancreate: true
+            vlandelete: true
+            port_security: true
+            license: true
+            smart_license: true
+            cpu_threshold: true
+            memory_bufferpeak: true
+            stackwise: true
+            udld_link_fail_rpt: true
+            udld_status_change: true
+            fru_ctrl: true
+            flash_insertion: true
+            flash_removal: true
+            flash_lowspace: true
+            energywise: true
+            power_ethernet_group: true
+            power_ethernet_police: true
+            entity: true
+            pw_vc: true
+            envmon: true
+            cef_resource_failure: true
+            cef_peer_state_change: true
+            cef_peer_fib_state_change: true
+            cef_inconsistency: true
+            isis: true
+            ipsla: true
+            bgp: true
+            cbgp2: true
+            entity_diag_boot_up_fail: true
+            entity_diag_hm_test_recover: true
+            entity_diag_hm_thresh_reached: true
+            entity_diag_scheduled_test_fail: true
+            bfd: true
+            ike_policy_add: true
+            ike_policy_delete: true
+            ike_tunnel_start: true
+            ike_tunnel_stop: true
+            ipsec_cryptomap_add: true
+            ipsec_cryptomap_attach: true
+            ipsec_cryptomap_delete: true
+            ipsec_cryptomap_detach: true
+            ipsec_tunnel_start: true
+            ipsec_tunnel_stop: true
+            ipsec_too_many_sas: true
+            config_copy: true
+            config: true
+            config_ctid: true
+            dhcp: true
+            event_manager: true
+            hsrp: true
+            ip_multicast: true
+            msdp: true
+            ospf_config_state_change: true
+            ospf_config_errors: true
+            pim_invalid_pim_message: true
+            pim_neighbor_change: true
+            pim_rp_mapping_change: true
+            bridge_newroot: true
+            bridge_topologychange: true
+            stpx_inconsistency: true
+            stpx_root_inconsistency: true
+            stpx_loop_inconsistency: true
+            syslog: true
+            bgp_cbgp2: true
+            nhrp_nhs: true
+            nhrp_nhc: true
+            nhrp_nhp: true
+            nhrp_quota_exceeded: true
+            mpls_traffic_eng: true
+            mpls_vpn: true
+            mpls_rfc_ldp: true
+            mpls_ldp: true
+            fast_reroute_protected: true
+            local_auth: true
+            vlan_membership: true
+            errdisable: true
+            rf: true
+            transceiver_all: true
+            bulkstat_collection: true
+            bulkstat_transfer: true
+            mac_notification_change: true
+            mac_notification_move: true
+            mac_notification_threshold: true
+            vrfmib_vrf_up: true
+            vrfmib_vrf_down: true
+            vrfmib_vnet_trunk_up: true
+            vrfmib_vnet_trunk_down: true
+            aaa_server: true
+            adslline: true
+            alarm_type: <HOSTNAME>
+            casa: true
+            cnpd: true
+            dial: true
+            dlsw: true
+            ds1: true
+            dsp_card_status: true
+            dsp_oper_state: true
+            ether_oam: true
+            ethernet_cfm_alarm: true
+            ethernet_cfm_cc_config: true
+            ethernet_cfm_cc_cross_connect: true
+            ethernet_cfm_cc_loop: true
+            ethernet_cfm_cc_mep_down: true
+            ethernet_cfm_cc_mep_up: true
+            ethernet_cfm_crosscheck_mep_missing: true
+            ethernet_cfm_crosscheck_mep_unknown: true
+            ethernet_cfm_crosscheck_service_up: true
+            ethernet_evc_create: true
+            ethernet_evc_delete: true
+            ethernet_evc_status: true
+            firewall_serverstatus: true
+            frame_relay_config_bundle_mismatch: true
+            frame_relay_config_only: true
+            frame_relay_config_subif_configs: true
+            frame_relay_multilink_bundle_mismatch: true
+# range 1-1000; also accepts a string
+            frame_relay_subif_count: 1
+# range 1-3600; also accepts a string
+            frame_relay_subif_interval: 1
+            ip_local_pool: true
+            isdn_call_information: true
+            isdn_chan_not_avail: true
+            isdn_ietf: true
+            isdn_layer2: true
+            l2tun_pseudowire_status: true
+            l2tun_session: true
+            l2tun_tunnel: true
+            lisp: true
+            mpls: true
+            mpls_rfc: true
+            mvpn: true
+            pfr: true
+            pimstdmib_interface_election: true
+            pimstdmib_invalid_join_prune: true
+            pimstdmib_invalid_register: true
+            pimstdmib_neighbor_loss: true
+            pimstdmib_rp_mapping_change: true
+            pki: true
+            pppoe: true
+            resource_policy: true
+            rsvp: true
+            sonet: true
+            srp: true
+            vdsl2line: true
+            voice: true
+            vrrp: true
+            entity_qfp_mem_res_thresh: true
+            entity_qfp_throughput_notif: true
+            entity_sensor: true
+            entity_state: true
+          snmp_communities:
+            -
+# mandatory
+              name: <NAME>
+              view: <HOSTNAME>
+# allowed: ro, rw; also accepts a string
+              permission: ro
+              ipv6_acl: 2001:db8::1
+              ipv4_acl: <HOSTNAME>
+# also accepts a string
+          contexts:
+            - <DESCRIPTION>
+          views:
+            -
+# mandatory
+              name: <NAME>
+# mandatory
+              mib: <HOSTNAME>
+# allowed: included, excluded; also accepts a string
+              scope: included

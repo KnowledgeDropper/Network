@@ -1,0 +1,30 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.network_hierarchy.collectors.cflowd.settings
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs: schema section without a dedicated page in the docs nav.
+sdwan:
+  network_hierarchy:
+    collectors:
+      cflowd:
+        settings:
+          collect_dscp_output: true
+          collect_tloc_loopback: true
+          collect_tos: true
+# range 30-3600
+          flow_active_timeout: 30
+# range 1-3600
+          flow_inactive_timeout: 1
+# range 60-86400
+          flow_refresh_time: 60
+# range 1-65536
+          flow_sampling_interval: 1
+# allowed: ipv4, ipv6, both
+          protocol: ipv4

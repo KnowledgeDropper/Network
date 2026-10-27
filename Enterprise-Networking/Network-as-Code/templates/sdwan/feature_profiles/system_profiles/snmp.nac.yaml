@@ -1,0 +1,85 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.system_profiles[].snmp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_system/system_snmp/
+sdwan:
+  feature_profiles:
+    system_profiles:
+      -
+# mandatory
+        name: example-name
+        snmp:
+          name: example-name
+          description: <DESCRIPTION>
+          communities:
+            -
+# allowed: read-only, read-write
+              authorization: read-only
+              authorization_variable: example-host
+              name: <NAME>
+              name_variable: example-host
+# mandatory
+              user_label: <HOSTNAME>
+              view: <HOSTNAME>
+              view_variable: example-host
+          contact_person: <HOSTNAME>
+          contact_person_variable: example-host
+          groups:
+            -
+# mandatory
+              name: <NAME>
+# mandatory; allowed: no-auth-no-priv, auth-no-priv, auth-priv
+              security_level: no-auth-no-priv
+              view: <HOSTNAME>
+              view_variable: example-host
+          location: <HOSTNAME>
+          location_variable: example-host
+          shutdown: true
+          shutdown_variable: example-host
+          trap_target_servers:
+            - ip: 10.0.0.1
+              ip_variable: 10.0.0.1
+# range 1-65535
+              port: 1
+              port_variable: example-host
+              source_interface: GigabitEthernet0/0
+              source_interface_variable: 0/0.1
+              user: <HOSTNAME>
+              user_variable: example-host
+              user_label: <HOSTNAME>
+# maximum 65530
+              vpn_id: 1
+              vpn_id_variable: example-host
+          users:
+            - authentication_password: <SECRET>
+              authentication_password_variable: SECRET
+# allowed: sha, sha256
+              authentication_protocol: sha
+              authentication_protocol_variable: example-host
+              group: <HOSTNAME>
+              group_variable: example-host
+# mandatory
+              name: <NAME>
+              privacy_password: <SECRET>
+              privacy_password_variable: SECRET
+# allowed: aes-cfb-128, aes-256-cfb-128
+              privacy_protocol: aes-cfb-128
+              privacy_protocol_variable: example-host
+          views:
+            -
+# mandatory
+              name: <NAME>
+              oids:
+                - exclude: true
+                  exclude_variable: example-host
+                  id: '0.1'
+                  id_variable: example-host

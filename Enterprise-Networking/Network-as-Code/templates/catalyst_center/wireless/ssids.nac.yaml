@@ -1,0 +1,116 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.wireless.ssids
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/wireless/ssid/
+catalyst_center:
+  wireless:
+    ssids:
+      -
+# mandatory
+        name: <NAME>
+# mandatory; allowed: WPA2_ENTERPRISE, WPA2_PERSONAL, OPEN, WPA3_ENTERPRISE, WPA3_PERSONAL,
+# WPA2_WPA3_PERSONAL, WPA2_WPA3_ENTERPRISE, OPEN_SECURED
+        auth_type: WPA2_ENTERPRISE
+# mandatory; allowed: Enterprise, Guest
+        wlan_type: Enterprise
+        aaa_override: true
+        acct_servers:
+          - <HOSTNAME>
+        acl_name: <NAME>
+        ap_beacon_protection: true
+        auth_key8021x: true
+        auth_key8021x_plus_ft: true
+        auth_key8021x_sha256: true
+        auth_key_easy_psk: true
+        auth_key_easy_psk_sha256: true
+        auth_key_owe: true
+        auth_key_psk: true
+        auth_key_psk_plus_ft: true
+        auth_key_sae: true
+        auth_key_sae_ext: true
+        auth_key_sae_ext_plus_ft: true
+        auth_key_sae_plus_ft: true
+        auth_key_suite_b1921x: true
+        auth_key_suite_b1x: true
+# allowed: auth_ise, auth_external, auth_internal
+        auth_server: auth_ise
+        auth_servers:
+          - <HOSTNAME>
+# range 15-100000
+        basic_service_set_client_idle_timeout: 15
+        basic_service_set_max_idle: true
+        broadcast_ssid: true
+        cckm: true
+# range 100-5000; also accepts an integer
+        cckm_tsf_tolerance: 100
+        client_exclusion: true
+# maximum 2147483647
+        client_exclusion_timeout: 1
+# range 8000-100000000000; also accepts an integer
+        client_rate_limit: 8000
+        coverage_hole_detection: true
+        directed_multicast_service: true
+# allowed: PLATINUM, SILVER, GOLD, BRONZE
+        egress_qos: PLATINUM
+        enabled: true
+        external_auth_ip_address: 10.0.0.1
+        fast_lane: true
+# allowed: ADAPTIVE, DISABLE, ENABLE
+        fast_transition: ADAPTIVE
+        fast_transition_over_the_distributed_system: true
+# allowed: dot11-g-only, dot11-bg-only
+        ghz24_policy: dot11-g-only
+        ghz6_policy_client_steering: true
+        hex: true
+# allowed: PLATINUM-UP, SILVER-UP, GOLD-UP, BRONZE-UP
+        ingress_qos: PLATINUM-UP
+# allowed: open, web_auth
+        l3_auth_type: open
+        mac_filtering: true
+# allowed: OPTIONAL, DISABLED, REQUIRED
+        mft_client_protection: OPTIONAL
+        multi_psk_settings:
+# mandatory
+          priority: <HOSTNAME>
+          passphrase: <HOSTNAME>
+# minimum 1
+          passphrase_version: 1
+# allowed: ASCII, HEX
+          passphrase_type: ASCII
+        nas_options:
+          - <HOSTNAME>
+        neighbor_list: true
+        open_ssid: true
+        passphrase: <HOSTNAME>
+# minimum 1
+        passphrase_version: 1
+        policy_profile_name: <NAME>
+        posturing: true
+        profile_name: <NAME>
+# allowed: REQUIRED, DISABLED, OPTIONAL
+        protected_management_frame: REQUIRED
+        radius_profiling: true
+        random_mac_filter: true
+        rsn_cipher_suite_ccmp128: true
+        rsn_cipher_suite_gcmp128: true
+        rsn_cipher_suite_ccmp256: true
+        rsn_cipher_suite_gcmp256: true
+# range 1-86400; also accepts an integer
+        session_timeout: 1
+        session_timeout_enable: true
+        sleeping_client: true
+# range 10-43200
+        sleeping_client_timeout: 10
+# allowed: Triple Band, 5GHz, 2.4GHz, 6GHz, 2.4GHz and 5GHz, 2.4GHz and 6GHz, 5GHz and 6GHz
+        ssid_radio_type: Triple Band
+        web_passthrough: true
+        wlan_band_select: true

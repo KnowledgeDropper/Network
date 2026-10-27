@@ -1,0 +1,53 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.system_settings.authentication_and_policy_servers.ise
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/system_settings/authentication_and_policy_servers/
+catalyst_center:
+  system_settings:
+    authentication_and_policy_servers:
+      ise:
+# mandatory
+        ip_address: 10.0.0.1
+# mandatory
+        shared_secret: <SECRET>
+# minimum 1
+        shared_secret_version: 1
+# mandatory
+        username: <NAME>
+# mandatory
+        password: <SECRET>
+# minimum 1
+        password_version: 1
+# mandatory
+        fqdn: <HOSTNAME>
+        pxgrid_enabled: true
+        use_catc_cert_for_pxgrid: true
+# mandatory; range 1-3
+        retries: 1
+# mandatory; range 2-20
+        timeout: 2
+        protocols:
+          tacacs:
+# range 1-65535
+            port: 1
+          radius:
+# range 1-65535
+            authentication_port: 1
+# range 1-65535
+            accounting_port: 1
+            enable_key_wrap:
+              encryption_key: <HOSTNAME>
+# minimum 1
+              encryption_key_version: 1
+              message_key: <DESCRIPTION>
+# minimum 1
+              message_key_version: 1

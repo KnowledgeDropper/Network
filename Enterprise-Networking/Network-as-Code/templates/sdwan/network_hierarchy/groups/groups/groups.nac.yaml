@@ -1,0 +1,44 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.network_hierarchy.groups[].groups[].groups
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/network_hierarchy/network_hierarchy_group/
+sdwan:
+  network_hierarchy:
+    groups:
+      -
+# mandatory
+        name: example-name
+        groups:
+          -
+# mandatory
+            name: example-name
+            groups:
+              -
+# mandatory
+                name: example-name
+                description: <DESCRIPTION>
+                sites:
+                  -
+# mandatory
+                    name: example-name
+                    description: <DESCRIPTION>
+                    address:
+                      city: <HOSTNAME>
+                      country: <HOSTNAME>
+                      state: <HOSTNAME>
+                      street: <HOSTNAME>
+                      zipcode: <HOSTNAME>
+                    latitude: 1.0
+                    location: <HOSTNAME>
+                    longitude: 1.0
+# range 1-4294967295
+                    site_id: 1

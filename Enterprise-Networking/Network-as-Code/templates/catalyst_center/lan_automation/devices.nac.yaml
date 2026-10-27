@@ -1,0 +1,51 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.lan_automation.devices
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/lan_automation/lan_automation/
+catalyst_center:
+  lan_automation:
+    devices:
+      -
+# mandatory
+        name: <NAME>
+# mandatory; allowed: START, STOP
+        status: START
+# mandatory
+        discovered_device_site_name_hierarchy: <HOSTNAME>
+# mandatory
+        primary_device_management_ip_address: 10.0.0.1
+        secondary_device_management_ip_address: 10.0.0.1
+        primary_device_interface_names:
+          - 0/0.1
+        ip_pools:
+          -
+# mandatory
+            name: <NAME>
+# allowed: PRINCIPAL_IP_ADDRESS_POOL, LINK_OVERLAPPING_IP_POOL
+            role: PRINCIPAL_IP_ADDRESS_POOL
+        multicast_enabled: true
+        host_name_prefix: <HOSTNAME>
+        isis_domain_password: <SECRET>
+# minimum 1
+        isis_domain_password_version: 1
+        advertise_lan_automation_routes_into_bgp: true
+# range 1-5
+        discovery_level: 1
+# range 20-10080
+        discovery_timeout: 20
+        discovery_devices:
+          -
+# mandatory
+            device_serial_number: <HOSTNAME>
+            device_host_name: <HOSTNAME>
+            device_site_name_hierarchy: <HOSTNAME>
+            device_management_ip_address: 10.0.0.1

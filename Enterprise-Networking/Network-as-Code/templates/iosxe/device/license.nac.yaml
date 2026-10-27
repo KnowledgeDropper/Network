@@ -1,0 +1,32 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.license
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/license/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        license:
+# allowed: network-essentials, network-advantage; also accepts a string
+          boot_level: network-essentials
+# allowed: dna-advantage, dna-essentials; also accepts a string
+          boot_level_network_advantage_addon: dna-advantage
+# allowed: dna-essentials; also accepts a string
+          boot_level_network_essentials_addon: dna-essentials
+# allowed: Off, automatic, callhome, cslu, smart; also accepts a string
+          smart_transport_type: Off
+          smart_url_cslu: https://example.com
+          accept_eula: true
+          udi_pid: <HOSTNAME>
+          udi_sn: <HOSTNAME>

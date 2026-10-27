@@ -1,0 +1,117 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.centralized_policies.definitions.control_policy.custom_control_topology
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/centralized_policies/custom_control_definition/
+sdwan:
+  centralized_policies:
+    definitions:
+      control_policy:
+        custom_control_topology:
+          -
+# mandatory
+            name: example-name
+# mandatory
+            description: <DESCRIPTION>
+# mandatory; allowed: accept, reject
+            default_action_type: accept
+            sequences:
+              -
+# mandatory; allowed: accept, reject
+                base_action: accept
+# mandatory; range 1-65534
+                id: 1
+# mandatory
+                name: <NAME>
+# allowed: ipv4, ipv6, all
+                ip_type: ipv4
+# mandatory; allowed: tloc, route
+                type: tloc
+                match_criterias:
+# allowed: default, carrier1, carrier2, carrier3, carrier4, carrier5, carrier6, carrier7, carrier8
+                  carrier: default
+                  color_list: example-host
+# range 1-4294967295
+                  domain_id: 1
+# maximum 4294967295
+                  group_id: 1
+# maximum 4294967295
+                  omp_tag: 1
+                  originator: <HOSTNAME>
+# maximum 4294967295
+                  preference: 1
+                  site_list: example-host
+# maximum 4294967295
+                  site_id: 1
+                  region_list: example-host
+# maximum 63
+                  region_id: 1
+# allowed: border-router, edge-router
+                  role: border-router
+                  tloc_list: example-host
+                  tloc:
+# mandatory
+                    ip: 10.0.0.1
+# mandatory; allowed: default, mpls, metro-ethernet, biz-internet, public-internet, lte, 3g, red,
+# green, blue, gold, silver, bronze, custom1, custom2, custom3, private1, private2, private3,
+# private4, private5, private6
+                    color: default
+# mandatory; allowed: ipsec, gre
+                    encap: ipsec
+                  community_list: example-host
+                  expanded_community_list: example-host
+# allowed: aggregrate, bgp, bgp-external, bgp-internal, connected, eigrp, ospf, ospf-inter-area,
+# ospf-intra-area, ospf-external1, ospf-external2, rip, static, eigrp-summary, eigrp-internal,
+# eigrp-external, lisp, nat-dia, natpool, isis, isis-level1, isis-level2
+                  origin: aggregrate
+# allowed: hierarchical-path, direct-path, transport-gateway-path
+                  path_type: hierarchical-path
+                  vpn_list: example-host
+# maximum 65536
+                  vpn: 1
+                  ipv4_prefix_list: example-host
+                actions:
+# maximum 4294967295
+                  omp_tag: 1
+# maximum 4294967295
+                  preference: 1
+# maximum 63
+                  affinity: 1
+                  community: 65000:1
+                  community_additive: true
+                  tloc:
+# mandatory
+                    ip: 10.0.0.1
+# mandatory; allowed: default, mpls, metro-ethernet, biz-internet, public-internet, lte, 3g, red,
+# green, blue, gold, silver, bronze, custom1, custom2, custom3, private1, private2, private3,
+# private4, private5, private6
+                    color: default
+# mandatory; allowed: ipsec, gre
+                    encap: ipsec
+                  tloc_list: example-host
+# allowed: strict, primary, backup, ecmp
+                  tloc_action: strict
+                  service:
+# mandatory; allowed: IDP, IDS, FW, netsvc1, netsvc2, netsvc3, netsvc4, netsvc5, appqoe
+                    type: IDP
+# mandatory; maximum 65530
+                    vpn: 1
+                    tloc:
+# mandatory
+                      ip: 10.0.0.1
+# mandatory; allowed: default, mpls, metro-ethernet, biz-internet, public-internet, lte, 3g, red,
+# green, blue, gold, silver, bronze, custom1, custom2, custom3, private1, private2, private3,
+# private4, private5, private6
+                      color: default
+# mandatory; allowed: ipsec, gre
+                      encap: ipsec
+                    tloc_list: example-host
+                  export_to_vpn_list: example-host

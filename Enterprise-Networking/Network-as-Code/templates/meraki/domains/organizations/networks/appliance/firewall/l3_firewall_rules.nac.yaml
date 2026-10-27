@@ -1,0 +1,65 @@
+# Cisco Network as Code template for Meraki.
+# Data model: meraki
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: meraki.domains[].organizations[].networks[].appliance.firewall.l3_firewall_rules
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_appliance/firewall/firewall_l3_firewall_rules/
+meraki:
+  domains:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      administrator: {}
+# mandatory
+      organizations:
+        - networks:
+            -
+# mandatory
+              name: <NAME>
+              appliance:
+                firewall:
+                  l3_firewall_rules:
+                    rules:
+                      - comment: <HOSTNAME>
+# mandatory; allowed: allow, deny
+                        policy: allow
+# mandatory; allowed: any, icmp, icmp6, tcp, udp
+                        protocol: any
+# maximum 65535; also accepts a string
+                        source_port: 1
+                        source_cidr: 10.0.0.1
+# maximum 65535; also accepts a string
+                        destination_port: 1
+                        destination_cidr: 10.0.0.1
+                        source_policy_objects:
+                          - <HOSTNAME>
+                        source_policy_object_groups:
+                          - <HOSTNAME>
+                        destination_policy_objects:
+                          - <HOSTNAME>
+                        destination_policy_object_groups:
+                          - <HOSTNAME>
+                        source_vlans:
+                          -
+# mandatory; range 1-4094; also accepts a string
+                            vlan_id: 1
+# range 1-254
+                            ipv4_offset: 1
+                            ipv6_offset: 2001:db8::1
+                        destination_vlans:
+                          -
+# mandatory; range 1-4094; also accepts a string
+                            vlan_id: 1
+# range 1-254
+                            ipv4_offset: 1
+                            ipv6_offset: 2001:db8::1
+                        syslog: true
+                    syslog_default_rule: true
