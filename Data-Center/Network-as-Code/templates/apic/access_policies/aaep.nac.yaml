@@ -1,0 +1,25 @@
+# Network-as-Code template: AAEP
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/aaep/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 6 (parsed 6); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    aaeps:  # List | optional
+      - name: "AAEP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+        infra_vlan: true  # Boolean | default: false | optional
+        physical_domains: ["PHY1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+        routed_domains: ["ROUTED1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+        vmware_vmm_domains: ["VMM1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+        nutanix_vmm_domains: ["NUTANIX_VMM_DOMAINS_1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+        endpoint_groups:  # List | optional
+          - tenant: "ABC"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            application_profile: "AP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            endpoint_group: "EPG1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            vlan: 1234  # Integer | min: 1 , max: 4096 | optional
+            primary_vlan: 1  # Integer | min: 1 , max: 4096 | optional
+            secondary_vlan: 1  # Integer | min: 1 , max: 4096 | optional
+            mode: "untagged"  # Choice | regular , native , untagged | default: regular | optional
+            deployment_immediacy: "immediate"  # Choice | immediate , lazy | default: lazy | optional

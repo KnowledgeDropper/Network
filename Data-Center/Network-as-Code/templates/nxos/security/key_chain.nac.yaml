@@ -1,0 +1,48 @@
+# Network-as-Code template: Key Chain
+# Source: https://netascode.cisco.com/docs/data_models/nxos/security/key_chain/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        key_chains:  # List | optional
+          - name: "OSPF-AUTH"  # String | required
+            keys:  # List | optional
+              - id: 1  # Integer | min: 0 , max: 65535 | required
+                cryptographic_algorithm: "hmac-sha-256"  # Choice | none , md5 , hmac-sha-1 , hmac-sha-256 , hmac-sha-384 , hmac-sha-512 , 3des , aes | optional
+                encryption_type: "type7"  # Choice | unencrypted , type7 , type6 | optional
+                key_string: "0739a6b5d4e1f208"  # String | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        key_chains:  # List | optional [shared class: structure documented on this page as key_chains(nxos.devices.configuration)]
+          - name: "NAME_1"  # String | required
+            keys:  # List | optional [shared class: structure documented on this page as keys(nxos.devices.configuration.key_chains)]
+              - id: 1  # Integer | min: 0 , max: 65535 | required
+                cryptographic_algorithm: "none"  # Choice | none , md5 , hmac-sha-1 , hmac-sha-256 , hmac-sha-384 , hmac-sha-512 , 3des , aes | optional
+                encryption_type: "unencrypted"  # Choice | unencrypted , type7 , type6 | optional
+                key_string: "KEY_STRING_1"  # String | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      key_chains:  # List | optional [shared class: structure documented on this page as key_chains(nxos.devices.configuration)]
+        - name: "NAME_1"  # String | required
+          keys:  # List | optional [shared class: structure documented on this page as keys(nxos.devices.configuration.key_chains)]
+            - id: 1  # Integer | min: 0 , max: 65535 | required
+              cryptographic_algorithm: "none"  # Choice | none , md5 , hmac-sha-1 , hmac-sha-256 , hmac-sha-384 , hmac-sha-512 , 3des , aes | optional
+              encryption_type: "unencrypted"  # Choice | unencrypted , type7 , type6 | optional
+              key_string: "KEY_STRING_1"  # String | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        key_chains:  # List | optional [shared class: structure documented on this page as key_chains(nxos.devices.configuration)]
+          - name: "NAME_1"  # String | required
+            keys:  # List | optional [shared class: structure documented on this page as keys(nxos.devices.configuration.key_chains)]
+              - id: 1  # Integer | min: 0 , max: 65535 | required
+                cryptographic_algorithm: "none"  # Choice | none , md5 , hmac-sha-1 , hmac-sha-256 , hmac-sha-384 , hmac-sha-512 , 3des , aes | optional
+                encryption_type: "unencrypted"  # Choice | unencrypted , type7 , type6 | optional
+                key_string: "KEY_STRING_1"  # String | optional

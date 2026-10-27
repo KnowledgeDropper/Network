@@ -1,0 +1,45 @@
+# Network-as-Code template: Set Rule
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/set_rule/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 7 (parsed 7); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        set_rules:  # List | optional
+          - name: "SET_STG_STG_L_65002:10002"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "desc1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            community_mode: "replace"  # Choice | append , replace | default: append | optional
+            community: "regular:as2-nn2:65002:10002"  # String | optional
+            tag: 1  # Integer | min: 0 , max: 4294967295 | optional
+            weight: 1  # Integer | min: 0 , max: 65535 | optional
+            next_hop: "10.1.1.1"  # IP | optional
+            preference: 1  # Integer | min: 0 , max: 4294967295 | optional
+            metric: 1  # Integer | min: 0 , max: 4294967295 | optional
+            metric_type: "ospf-type1"  # Choice | ospf-type1 , ospf-type2 | optional
+            dampening:  # Class | optional
+              half_life: 15  # Integer | min: 1 , max: 60 | default: 15 | optional
+              max_suppress_time: 60  # Integer | min: 1 , max: 255 | default: 60 | optional
+              reuse_limit: 750  # Integer | min: 1 , max: 20000 | default: 750 | optional
+              suppress_limit: 2000  # Integer | min: 1 , max: 20000 | default: 2000 | optional
+            additional_communities:  # List | optional
+              - community: "COMMUNITY_1"  # String | required
+                description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            set_as_paths:  # List | optional
+              - criteria: "prepend"  # Choice | prepend , prepend-last-as | default: prepend | optional
+                count: 8  # Integer | min: 0 , max: 10 | default: 0 | optional
+                asns:  # List | optional
+                  - number: 65098  # Integer | required
+                    order: 1  # Integer | min: 0 , max: 31 | default: 0 | optional
+            next_hop_propagation: false  # Boolean | default: false | optional
+            multipath: false  # Boolean | default: false | optional
+            external_endpoint_group:  # Class | optional
+              name: "default_extepg"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              l3out: "default"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              tenant: "common"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            endpoint_security_group:  # Class | optional
+              name: "default_esg"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              application_profile: "default_ap"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              tenant: "common"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional

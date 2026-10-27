@@ -1,0 +1,27 @@
+# Network-as-Code template: QoS Class
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/qos/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    qos:  # Class | optional
+      preserve_cos: false  # Boolean | default: false | optional
+      qos_classes:  # List | optional
+        - level: 1  # Integer | min: 1 , max: 6 | required
+          admin_state: false  # Boolean | optional
+          mtu: 1  # Integer | min: 1 , max: 9216 | optional
+          scheduling: "strict-priority"  # Choice | wrr , strict-priority | optional
+          bandwidth_percent: 20  # Integer | min: 0 , max: 100 | optional
+          congestion_algorithm: "tail-drop"  # Choice | tail-drop , wred | optional
+          minimum_buffer: 1  # Integer | min: 0 , max: 3 | optional
+          pfc_state: false  # Boolean | optional
+          no_drop_cos: "unspecified"  # Choice | unspecified , cos0 , cos1 , cos2 , cos3 , cos4 , cos5 , cos6 , cos7 | optional
+          pfc_scope: "tor"  # Choice | tor , fabric | optional
+          ecn: false  # Boolean | optional
+          forward_non_ecn: false  # Boolean | optional
+          wred_max_threshold: 1  # Integer | min: 0 , max: 100 | optional
+          wred_min_threshold: 1  # Integer | min: 0 , max: 100 | optional
+          wred_probability: 1  # Integer | min: 0 , max: 100 | optional
+          weight: 1  # Integer | min: 0 , max: 7 | optional

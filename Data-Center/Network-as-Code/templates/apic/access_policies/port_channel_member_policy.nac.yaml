@@ -1,0 +1,13 @@
+# Network-as-Code template: Port Channel Member Interface Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/port_channel_member_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    interface_policies:  # Class | optional
+      port_channel_member_policies:  # List | optional
+        - name: "FAST"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          rate: "fast"  # Choice | fast , normal | default: normal | optional
+          priority: 32768  # Integer | min: 1 , max: 65535 | default: 32768 | optional

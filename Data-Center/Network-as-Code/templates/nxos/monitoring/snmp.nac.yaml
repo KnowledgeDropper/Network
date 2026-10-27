@@ -1,0 +1,520 @@
+# Network-as-Code template: SNMP
+# Source: https://netascode.cisco.com/docs/data_models/nxos/monitoring/snmp/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 13 (parsed 13); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        snmp:  # Class | optional
+          contact: "noc@example.com"  # String | optional
+          location: "DC1-Room42-Rack5"  # String | optional
+          engine_id: "00:00:00:63:00:01:00:10:20:15:10:03"  # String | optional
+          global_enforce_priv: true  # Boolean | optional
+          logging_level: "warnings"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          packetsize: 8192  # Integer | min: 484 , max: 17382 | optional
+          tcp_session_auth: true  # Boolean | optional
+          disable_snmp_aaa_sync: true  # Boolean | optional
+          source_interface_type: "loopback"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          source_interface_id: "0"  # Any | String or Integer[min: 0 ] | optional
+          enable_traps: true  # Boolean | optional
+          traps:  # Class | optional
+            aaa_server_state_change: false  # Boolean | optional
+            bfd_session_down: false  # Boolean | optional
+            bfd_session_up: false  # Boolean | optional
+            bridge_newroot: true  # Boolean | optional
+            bridge_topology_change: true  # Boolean | optional
+            callhome_event_notify: false  # Boolean | optional
+            callhome_smtp_send_fail: false  # Boolean | optional
+            cfs_state_change_notif: false  # Boolean | optional
+            cfs_merge_failure: false  # Boolean | optional
+            config_ccm_cli_running_config_changed: true  # Boolean | optional
+            entity_mib_change: false  # Boolean | optional
+            entity_cefc_mib_enable_status_notification: false  # Boolean | optional
+            entity_fan_status_change: true  # Boolean | optional
+            entity_module_inserted: false  # Boolean | optional
+            entity_module_removed: false  # Boolean | optional
+            entity_module_status_change: false  # Boolean | optional
+            entity_power_out_change: false  # Boolean | optional
+            entity_power_status_change: true  # Boolean | optional
+            entity_sensor: true  # Boolean | optional
+            entity_unrecognised_module: false  # Boolean | optional
+            fcdomain_domain_id_not_assigned: false  # Boolean | optional
+            fcdomain_fabric_change: false  # Boolean | optional
+            fcdomain_new_principal_switch: false  # Boolean | optional
+            feature_control_feature_op_status_change: false  # Boolean | optional
+            feature_control_cisco_feat_op_status_change: false  # Boolean | optional
+            generic_cold_start: false  # Boolean | optional
+            generic_warm_start: false  # Boolean | optional
+            hsrp_state_change: true  # Boolean | optional
+            license_notify_license_expiry: false  # Boolean | optional
+            license_notify_license_expiry_warning: false  # Boolean | optional
+            license_notify_licensefile_missing: false  # Boolean | optional
+            license_notify_no_license_for_feature: false  # Boolean | optional
+            link_cie_link_down: false  # Boolean | optional
+            link_cie_link_up: false  # Boolean | optional
+            link_cisco_xcvr_mon_status_chg: false  # Boolean | optional
+            link_cmn_mac_move_notification: false  # Boolean | optional
+            link_delayed_link_state_change: false  # Boolean | optional
+            link_extended_link_down: false  # Boolean | optional
+            link_extended_link_up: false  # Boolean | optional
+            link_link_down: true  # Boolean | optional
+            link_link_up: true  # Boolean | optional
+            link_cerr_disable_interface_event_rev1: false  # Boolean | optional
+            lldp_rem_tables_change: false  # Boolean | optional
+            mmode_cse_maint_mode_change_notify: false  # Boolean | optional
+            mmode_cse_normal_mode_change_notify: false  # Boolean | optional
+            mpls_ldp: false  # Boolean | optional
+            mpls_ldp_session_down: false  # Boolean | optional
+            mpls_ldp_session_up: false  # Boolean | optional
+            mpls_vpn: false  # Boolean | optional
+            mpls_vpn_vrf_max_thresh_cleared: false  # Boolean | optional
+            mpls_vpn_vrf_max_thresh_exceeded: false  # Boolean | optional
+            mpls_vpn_vrf_mid_thresh_exceeded: false  # Boolean | optional
+            mpls_vpn_vrf_down: false  # Boolean | optional
+            mpls_vpn_vrf_up: false  # Boolean | optional
+            msdp_backward_transition: false  # Boolean | optional
+            pim_neighbor_loss: false  # Boolean | optional
+            port_security_access_secure_mac_violation: false  # Boolean | optional
+            port_security_trunk_secure_mac_violation: false  # Boolean | optional
+            rf_redundancy_framework: false  # Boolean | optional
+            rmon_rising_alarm: false  # Boolean | optional
+            rmon_falling_alarm: false  # Boolean | optional
+            rmon_hc_rising_alarm: false  # Boolean | optional
+            rmon_hc_falling_alarm: false  # Boolean | optional
+            snmp_authentication: true  # Boolean | optional
+            storm_control_cpsc_event_rev1: false  # Boolean | optional
+            stpx_inconsistency: true  # Boolean | optional
+            stpx_loop_inconsistency: false  # Boolean | optional
+            stpx_root_inconsistency: false  # Boolean | optional
+            syslog_message_generated: true  # Boolean | optional
+            sysmgr_cse_fail_sw_core_notify_extended: false  # Boolean | optional
+            system_clock_change_notification: false  # Boolean | optional
+            upgrade_job_status_notify: false  # Boolean | optional
+            upgrade_op_notify_on_completion: false  # Boolean | optional
+            vtp_notifs: false  # Boolean | optional
+            vtp_vlan_create: false  # Boolean | optional
+            vtp_vlan_delete: false  # Boolean | optional
+            license_notify_license_file_missing: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            link_err_disable_interface_event_rev1: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          users:  # List | optional
+            - name: "snmpv3user"  # String | required
+              groups: ["network-operator"]  # List | String | optional
+              auth_type: "sha"  # Choice | md5 , sha , sha-256 , sha-224 , sha-384 , sha-512 | optional
+              auth_password: "AuthP@ss123"  # String | optional
+              priv_type: "aes-128"  # Choice | des , aes-128 , aes-256 | optional
+              priv_password: "PrivP@ss456"  # String | optional
+              enforce_priv: true  # Boolean | optional
+              localized_key: false  # Boolean | optional
+              localized_v2_key: false  # Boolean | optional
+              engine_id: "ENGINE_ID_1"  # String | optional
+              use_ipv4acl: "USE_IPV4ACL_1"  # String | optional
+              use_ipv6acl: "USE_IPV6ACL_1"  # String | optional
+              authentication_type: "sha"  # Choice | md5 , sha , sha-256 , sha-224 , sha-384 , sha-512 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              authentication_password: "AuthP@ss123"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              privacy_type: "aes128"  # Choice | des , aes128 , aes256 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              privacy_password: "PrivP@ss456"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              enforce_privacy: true  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              ipv4_acl: "SNMP-ACL-V4"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              ipv6_acl: "IPV6_ACL_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          hosts:  # List | optional
+            - host: "10.50.100.10"  # String | required
+              udp_port: 1162  # Integer | min: 0 , max: 65535 | optional
+              version: "v2c"  # Choice | v1 , v2c , v3 | optional
+              notification_type: "traps"  # Choice | traps , informs | optional
+              community: "public"  # String | optional
+              security_level: "priv"  # Choice | noauth , auth , priv | optional
+              vrf: "management"  # String | optional
+          rmon_events:  # List | optional
+            - number: 1  # Integer | min: 1 , max: 65535 | required
+              description: "High CPU alert"  # String | optional
+              log: true  # Boolean | optional
+              owner: "admin"  # String | optional
+              trap: "public"  # String | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        snmp:  # Class | optional [shared class: structure documented on this page as snmp(nxos.devices.configuration)]
+          contact: "CONTACT_1"  # String | optional
+          location: "LOCATION_1"  # String | optional
+          engine_id: "ENGINE_ID_1"  # String | optional
+          global_enforce_priv: false  # Boolean | optional
+          logging_level: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          packetsize: 484  # Integer | min: 484 , max: 17382 | optional
+          tcp_session_auth: false  # Boolean | optional
+          disable_snmp_aaa_sync: false  # Boolean | optional
+          source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+          enable_traps: false  # Boolean | optional
+          traps:  # Class | optional [shared class: structure documented on this page as traps(nxos.devices.configuration.snmp)]
+            aaa_server_state_change: false  # Boolean | optional
+            bfd_session_down: false  # Boolean | optional
+            bfd_session_up: false  # Boolean | optional
+            bridge_newroot: false  # Boolean | optional
+            bridge_topology_change: false  # Boolean | optional
+            callhome_event_notify: false  # Boolean | optional
+            callhome_smtp_send_fail: false  # Boolean | optional
+            cfs_state_change_notif: false  # Boolean | optional
+            cfs_merge_failure: false  # Boolean | optional
+            config_ccm_cli_running_config_changed: false  # Boolean | optional
+            entity_mib_change: false  # Boolean | optional
+            entity_cefc_mib_enable_status_notification: false  # Boolean | optional
+            entity_fan_status_change: false  # Boolean | optional
+            entity_module_inserted: false  # Boolean | optional
+            entity_module_removed: false  # Boolean | optional
+            entity_module_status_change: false  # Boolean | optional
+            entity_power_out_change: false  # Boolean | optional
+            entity_power_status_change: false  # Boolean | optional
+            entity_sensor: false  # Boolean | optional
+            entity_unrecognised_module: false  # Boolean | optional
+            fcdomain_domain_id_not_assigned: false  # Boolean | optional
+            fcdomain_fabric_change: false  # Boolean | optional
+            fcdomain_new_principal_switch: false  # Boolean | optional
+            feature_control_feature_op_status_change: false  # Boolean | optional
+            feature_control_cisco_feat_op_status_change: false  # Boolean | optional
+            generic_cold_start: false  # Boolean | optional
+            generic_warm_start: false  # Boolean | optional
+            hsrp_state_change: false  # Boolean | optional
+            license_notify_license_expiry: false  # Boolean | optional
+            license_notify_license_expiry_warning: false  # Boolean | optional
+            license_notify_licensefile_missing: false  # Boolean | optional
+            license_notify_no_license_for_feature: false  # Boolean | optional
+            link_cie_link_down: false  # Boolean | optional
+            link_cie_link_up: false  # Boolean | optional
+            link_cisco_xcvr_mon_status_chg: false  # Boolean | optional
+            link_cmn_mac_move_notification: false  # Boolean | optional
+            link_delayed_link_state_change: false  # Boolean | optional
+            link_extended_link_down: false  # Boolean | optional
+            link_extended_link_up: false  # Boolean | optional
+            link_link_down: false  # Boolean | optional
+            link_link_up: false  # Boolean | optional
+            link_cerr_disable_interface_event_rev1: false  # Boolean | optional
+            lldp_rem_tables_change: false  # Boolean | optional
+            mmode_cse_maint_mode_change_notify: false  # Boolean | optional
+            mmode_cse_normal_mode_change_notify: false  # Boolean | optional
+            mpls_ldp: false  # Boolean | optional
+            mpls_ldp_session_down: false  # Boolean | optional
+            mpls_ldp_session_up: false  # Boolean | optional
+            mpls_vpn: false  # Boolean | optional
+            mpls_vpn_vrf_max_thresh_cleared: false  # Boolean | optional
+            mpls_vpn_vrf_max_thresh_exceeded: false  # Boolean | optional
+            mpls_vpn_vrf_mid_thresh_exceeded: false  # Boolean | optional
+            mpls_vpn_vrf_down: false  # Boolean | optional
+            mpls_vpn_vrf_up: false  # Boolean | optional
+            msdp_backward_transition: false  # Boolean | optional
+            pim_neighbor_loss: false  # Boolean | optional
+            port_security_access_secure_mac_violation: false  # Boolean | optional
+            port_security_trunk_secure_mac_violation: false  # Boolean | optional
+            rf_redundancy_framework: false  # Boolean | optional
+            rmon_rising_alarm: false  # Boolean | optional
+            rmon_falling_alarm: false  # Boolean | optional
+            rmon_hc_rising_alarm: false  # Boolean | optional
+            rmon_hc_falling_alarm: false  # Boolean | optional
+            snmp_authentication: false  # Boolean | optional
+            storm_control_cpsc_event_rev1: false  # Boolean | optional
+            stpx_inconsistency: false  # Boolean | optional
+            stpx_loop_inconsistency: false  # Boolean | optional
+            stpx_root_inconsistency: false  # Boolean | optional
+            syslog_message_generated: false  # Boolean | optional
+            sysmgr_cse_fail_sw_core_notify_extended: false  # Boolean | optional
+            system_clock_change_notification: false  # Boolean | optional
+            upgrade_job_status_notify: false  # Boolean | optional
+            upgrade_op_notify_on_completion: false  # Boolean | optional
+            vtp_notifs: false  # Boolean | optional
+            vtp_vlan_create: false  # Boolean | optional
+            vtp_vlan_delete: false  # Boolean | optional
+            license_notify_license_file_missing: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            link_err_disable_interface_event_rev1: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          users:  # List | optional [shared class: structure documented on this page as users(nxos.devices.configuration.snmp)]
+            - name: "NAME_1"  # String | required
+              groups: ["GROUPS_1"]  # List | String | optional
+              auth_type: "md5"  # Choice | md5 , sha , sha-256 , sha-224 , sha-384 , sha-512 | optional
+              auth_password: "AUTH_PASSWORD_1"  # String | optional
+              priv_type: "des"  # Choice | des , aes-128 , aes-256 | optional
+              priv_password: "PRIV_PASSWORD_1"  # String | optional
+              enforce_priv: false  # Boolean | optional
+              localized_key: false  # Boolean | optional
+              localized_v2_key: false  # Boolean | optional
+              engine_id: "ENGINE_ID_1"  # String | optional
+              use_ipv4acl: "USE_IPV4ACL_1"  # String | optional
+              use_ipv6acl: "USE_IPV6ACL_1"  # String | optional
+              authentication_type: "md5"  # Choice | md5 , sha , sha-256 , sha-224 , sha-384 , sha-512 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              authentication_password: "AUTHENTICATION_PASSWORD_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              privacy_type: "des"  # Choice | des , aes128 , aes256 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              privacy_password: "PRIVACY_PASSWORD_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              enforce_privacy: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              ipv4_acl: "IPV4_ACL_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              ipv6_acl: "IPV6_ACL_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          hosts:  # List | optional [shared class: structure documented on this page as hosts(nxos.devices.configuration.snmp)]
+            - host: "HOST_1"  # String | required
+              udp_port: 1  # Integer | min: 0 , max: 65535 | optional
+              version: "v1"  # Choice | v1 , v2c , v3 | optional
+              notification_type: "traps"  # Choice | traps , informs | optional
+              community: "COMMUNITY_1"  # String | optional
+              security_level: "noauth"  # Choice | noauth , auth , priv | optional
+              vrf: "VRF1"  # String | optional
+          rmon_events:  # List | optional [shared class: structure documented on this page as rmon_events(nxos.devices.configuration.snmp)]
+            - number: 1  # Integer | min: 1 , max: 65535 | required
+              description: "Example description"  # String | optional
+              log: false  # Boolean | optional
+              owner: "OWNER_1"  # String | optional
+              trap: "TRAP_1"  # String | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      snmp:  # Class | optional [shared class: structure documented on this page as snmp(nxos.devices.configuration)]
+        contact: "CONTACT_1"  # String | optional
+        location: "LOCATION_1"  # String | optional
+        engine_id: "ENGINE_ID_1"  # String | optional
+        global_enforce_priv: false  # Boolean | optional
+        logging_level: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+        packetsize: 484  # Integer | min: 484 , max: 17382 | optional
+        tcp_session_auth: false  # Boolean | optional
+        disable_snmp_aaa_sync: false  # Boolean | optional
+        source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+        source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+        enable_traps: false  # Boolean | optional
+        traps:  # Class | optional [shared class: structure documented on this page as traps(nxos.devices.configuration.snmp)]
+          aaa_server_state_change: false  # Boolean | optional
+          bfd_session_down: false  # Boolean | optional
+          bfd_session_up: false  # Boolean | optional
+          bridge_newroot: false  # Boolean | optional
+          bridge_topology_change: false  # Boolean | optional
+          callhome_event_notify: false  # Boolean | optional
+          callhome_smtp_send_fail: false  # Boolean | optional
+          cfs_state_change_notif: false  # Boolean | optional
+          cfs_merge_failure: false  # Boolean | optional
+          config_ccm_cli_running_config_changed: false  # Boolean | optional
+          entity_mib_change: false  # Boolean | optional
+          entity_cefc_mib_enable_status_notification: false  # Boolean | optional
+          entity_fan_status_change: false  # Boolean | optional
+          entity_module_inserted: false  # Boolean | optional
+          entity_module_removed: false  # Boolean | optional
+          entity_module_status_change: false  # Boolean | optional
+          entity_power_out_change: false  # Boolean | optional
+          entity_power_status_change: false  # Boolean | optional
+          entity_sensor: false  # Boolean | optional
+          entity_unrecognised_module: false  # Boolean | optional
+          fcdomain_domain_id_not_assigned: false  # Boolean | optional
+          fcdomain_fabric_change: false  # Boolean | optional
+          fcdomain_new_principal_switch: false  # Boolean | optional
+          feature_control_feature_op_status_change: false  # Boolean | optional
+          feature_control_cisco_feat_op_status_change: false  # Boolean | optional
+          generic_cold_start: false  # Boolean | optional
+          generic_warm_start: false  # Boolean | optional
+          hsrp_state_change: false  # Boolean | optional
+          license_notify_license_expiry: false  # Boolean | optional
+          license_notify_license_expiry_warning: false  # Boolean | optional
+          license_notify_licensefile_missing: false  # Boolean | optional
+          license_notify_no_license_for_feature: false  # Boolean | optional
+          link_cie_link_down: false  # Boolean | optional
+          link_cie_link_up: false  # Boolean | optional
+          link_cisco_xcvr_mon_status_chg: false  # Boolean | optional
+          link_cmn_mac_move_notification: false  # Boolean | optional
+          link_delayed_link_state_change: false  # Boolean | optional
+          link_extended_link_down: false  # Boolean | optional
+          link_extended_link_up: false  # Boolean | optional
+          link_link_down: false  # Boolean | optional
+          link_link_up: false  # Boolean | optional
+          link_cerr_disable_interface_event_rev1: false  # Boolean | optional
+          lldp_rem_tables_change: false  # Boolean | optional
+          mmode_cse_maint_mode_change_notify: false  # Boolean | optional
+          mmode_cse_normal_mode_change_notify: false  # Boolean | optional
+          mpls_ldp: false  # Boolean | optional
+          mpls_ldp_session_down: false  # Boolean | optional
+          mpls_ldp_session_up: false  # Boolean | optional
+          mpls_vpn: false  # Boolean | optional
+          mpls_vpn_vrf_max_thresh_cleared: false  # Boolean | optional
+          mpls_vpn_vrf_max_thresh_exceeded: false  # Boolean | optional
+          mpls_vpn_vrf_mid_thresh_exceeded: false  # Boolean | optional
+          mpls_vpn_vrf_down: false  # Boolean | optional
+          mpls_vpn_vrf_up: false  # Boolean | optional
+          msdp_backward_transition: false  # Boolean | optional
+          pim_neighbor_loss: false  # Boolean | optional
+          port_security_access_secure_mac_violation: false  # Boolean | optional
+          port_security_trunk_secure_mac_violation: false  # Boolean | optional
+          rf_redundancy_framework: false  # Boolean | optional
+          rmon_rising_alarm: false  # Boolean | optional
+          rmon_falling_alarm: false  # Boolean | optional
+          rmon_hc_rising_alarm: false  # Boolean | optional
+          rmon_hc_falling_alarm: false  # Boolean | optional
+          snmp_authentication: false  # Boolean | optional
+          storm_control_cpsc_event_rev1: false  # Boolean | optional
+          stpx_inconsistency: false  # Boolean | optional
+          stpx_loop_inconsistency: false  # Boolean | optional
+          stpx_root_inconsistency: false  # Boolean | optional
+          syslog_message_generated: false  # Boolean | optional
+          sysmgr_cse_fail_sw_core_notify_extended: false  # Boolean | optional
+          system_clock_change_notification: false  # Boolean | optional
+          upgrade_job_status_notify: false  # Boolean | optional
+          upgrade_op_notify_on_completion: false  # Boolean | optional
+          vtp_notifs: false  # Boolean | optional
+          vtp_vlan_create: false  # Boolean | optional
+          vtp_vlan_delete: false  # Boolean | optional
+          license_notify_license_file_missing: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          link_err_disable_interface_event_rev1: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        users:  # List | optional [shared class: structure documented on this page as users(nxos.devices.configuration.snmp)]
+          - name: "NAME_1"  # String | required
+            groups: ["GROUPS_1"]  # List | String | optional
+            auth_type: "md5"  # Choice | md5 , sha , sha-256 , sha-224 , sha-384 , sha-512 | optional
+            auth_password: "AUTH_PASSWORD_1"  # String | optional
+            priv_type: "des"  # Choice | des , aes-128 , aes-256 | optional
+            priv_password: "PRIV_PASSWORD_1"  # String | optional
+            enforce_priv: false  # Boolean | optional
+            localized_key: false  # Boolean | optional
+            localized_v2_key: false  # Boolean | optional
+            engine_id: "ENGINE_ID_1"  # String | optional
+            use_ipv4acl: "USE_IPV4ACL_1"  # String | optional
+            use_ipv6acl: "USE_IPV6ACL_1"  # String | optional
+            authentication_type: "md5"  # Choice | md5 , sha , sha-256 , sha-224 , sha-384 , sha-512 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            authentication_password: "AUTHENTICATION_PASSWORD_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            privacy_type: "des"  # Choice | des , aes128 , aes256 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            privacy_password: "PRIVACY_PASSWORD_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            enforce_privacy: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            ipv4_acl: "IPV4_ACL_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            ipv6_acl: "IPV6_ACL_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        hosts:  # List | optional [shared class: structure documented on this page as hosts(nxos.devices.configuration.snmp)]
+          - host: "HOST_1"  # String | required
+            udp_port: 1  # Integer | min: 0 , max: 65535 | optional
+            version: "v1"  # Choice | v1 , v2c , v3 | optional
+            notification_type: "traps"  # Choice | traps , informs | optional
+            community: "COMMUNITY_1"  # String | optional
+            security_level: "noauth"  # Choice | noauth , auth , priv | optional
+            vrf: "VRF1"  # String | optional
+        rmon_events:  # List | optional [shared class: structure documented on this page as rmon_events(nxos.devices.configuration.snmp)]
+          - number: 1  # Integer | min: 1 , max: 65535 | required
+            description: "Example description"  # String | optional
+            log: false  # Boolean | optional
+            owner: "OWNER_1"  # String | optional
+            trap: "TRAP_1"  # String | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        snmp:  # Class | optional [shared class: structure documented on this page as snmp(nxos.devices.configuration)]
+          contact: "CONTACT_1"  # String | optional
+          location: "LOCATION_1"  # String | optional
+          engine_id: "ENGINE_ID_1"  # String | optional
+          global_enforce_priv: false  # Boolean | optional
+          logging_level: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          packetsize: 484  # Integer | min: 484 , max: 17382 | optional
+          tcp_session_auth: false  # Boolean | optional
+          disable_snmp_aaa_sync: false  # Boolean | optional
+          source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+          enable_traps: false  # Boolean | optional
+          traps:  # Class | optional [shared class: structure documented on this page as traps(nxos.devices.configuration.snmp)]
+            aaa_server_state_change: false  # Boolean | optional
+            bfd_session_down: false  # Boolean | optional
+            bfd_session_up: false  # Boolean | optional
+            bridge_newroot: false  # Boolean | optional
+            bridge_topology_change: false  # Boolean | optional
+            callhome_event_notify: false  # Boolean | optional
+            callhome_smtp_send_fail: false  # Boolean | optional
+            cfs_state_change_notif: false  # Boolean | optional
+            cfs_merge_failure: false  # Boolean | optional
+            config_ccm_cli_running_config_changed: false  # Boolean | optional
+            entity_mib_change: false  # Boolean | optional
+            entity_cefc_mib_enable_status_notification: false  # Boolean | optional
+            entity_fan_status_change: false  # Boolean | optional
+            entity_module_inserted: false  # Boolean | optional
+            entity_module_removed: false  # Boolean | optional
+            entity_module_status_change: false  # Boolean | optional
+            entity_power_out_change: false  # Boolean | optional
+            entity_power_status_change: false  # Boolean | optional
+            entity_sensor: false  # Boolean | optional
+            entity_unrecognised_module: false  # Boolean | optional
+            fcdomain_domain_id_not_assigned: false  # Boolean | optional
+            fcdomain_fabric_change: false  # Boolean | optional
+            fcdomain_new_principal_switch: false  # Boolean | optional
+            feature_control_feature_op_status_change: false  # Boolean | optional
+            feature_control_cisco_feat_op_status_change: false  # Boolean | optional
+            generic_cold_start: false  # Boolean | optional
+            generic_warm_start: false  # Boolean | optional
+            hsrp_state_change: false  # Boolean | optional
+            license_notify_license_expiry: false  # Boolean | optional
+            license_notify_license_expiry_warning: false  # Boolean | optional
+            license_notify_licensefile_missing: false  # Boolean | optional
+            license_notify_no_license_for_feature: false  # Boolean | optional
+            link_cie_link_down: false  # Boolean | optional
+            link_cie_link_up: false  # Boolean | optional
+            link_cisco_xcvr_mon_status_chg: false  # Boolean | optional
+            link_cmn_mac_move_notification: false  # Boolean | optional
+            link_delayed_link_state_change: false  # Boolean | optional
+            link_extended_link_down: false  # Boolean | optional
+            link_extended_link_up: false  # Boolean | optional
+            link_link_down: false  # Boolean | optional
+            link_link_up: false  # Boolean | optional
+            link_cerr_disable_interface_event_rev1: false  # Boolean | optional
+            lldp_rem_tables_change: false  # Boolean | optional
+            mmode_cse_maint_mode_change_notify: false  # Boolean | optional
+            mmode_cse_normal_mode_change_notify: false  # Boolean | optional
+            mpls_ldp: false  # Boolean | optional
+            mpls_ldp_session_down: false  # Boolean | optional
+            mpls_ldp_session_up: false  # Boolean | optional
+            mpls_vpn: false  # Boolean | optional
+            mpls_vpn_vrf_max_thresh_cleared: false  # Boolean | optional
+            mpls_vpn_vrf_max_thresh_exceeded: false  # Boolean | optional
+            mpls_vpn_vrf_mid_thresh_exceeded: false  # Boolean | optional
+            mpls_vpn_vrf_down: false  # Boolean | optional
+            mpls_vpn_vrf_up: false  # Boolean | optional
+            msdp_backward_transition: false  # Boolean | optional
+            pim_neighbor_loss: false  # Boolean | optional
+            port_security_access_secure_mac_violation: false  # Boolean | optional
+            port_security_trunk_secure_mac_violation: false  # Boolean | optional
+            rf_redundancy_framework: false  # Boolean | optional
+            rmon_rising_alarm: false  # Boolean | optional
+            rmon_falling_alarm: false  # Boolean | optional
+            rmon_hc_rising_alarm: false  # Boolean | optional
+            rmon_hc_falling_alarm: false  # Boolean | optional
+            snmp_authentication: false  # Boolean | optional
+            storm_control_cpsc_event_rev1: false  # Boolean | optional
+            stpx_inconsistency: false  # Boolean | optional
+            stpx_loop_inconsistency: false  # Boolean | optional
+            stpx_root_inconsistency: false  # Boolean | optional
+            syslog_message_generated: false  # Boolean | optional
+            sysmgr_cse_fail_sw_core_notify_extended: false  # Boolean | optional
+            system_clock_change_notification: false  # Boolean | optional
+            upgrade_job_status_notify: false  # Boolean | optional
+            upgrade_op_notify_on_completion: false  # Boolean | optional
+            vtp_notifs: false  # Boolean | optional
+            vtp_vlan_create: false  # Boolean | optional
+            vtp_vlan_delete: false  # Boolean | optional
+            license_notify_license_file_missing: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            link_err_disable_interface_event_rev1: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          users:  # List | optional [shared class: structure documented on this page as users(nxos.devices.configuration.snmp)]
+            - name: "NAME_1"  # String | required
+              groups: ["GROUPS_1"]  # List | String | optional
+              auth_type: "md5"  # Choice | md5 , sha , sha-256 , sha-224 , sha-384 , sha-512 | optional
+              auth_password: "AUTH_PASSWORD_1"  # String | optional
+              priv_type: "des"  # Choice | des , aes-128 , aes-256 | optional
+              priv_password: "PRIV_PASSWORD_1"  # String | optional
+              enforce_priv: false  # Boolean | optional
+              localized_key: false  # Boolean | optional
+              localized_v2_key: false  # Boolean | optional
+              engine_id: "ENGINE_ID_1"  # String | optional
+              use_ipv4acl: "USE_IPV4ACL_1"  # String | optional
+              use_ipv6acl: "USE_IPV6ACL_1"  # String | optional
+              authentication_type: "md5"  # Choice | md5 , sha , sha-256 , sha-224 , sha-384 , sha-512 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              authentication_password: "AUTHENTICATION_PASSWORD_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              privacy_type: "des"  # Choice | des , aes128 , aes256 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              privacy_password: "PRIVACY_PASSWORD_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              enforce_privacy: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              ipv4_acl: "IPV4_ACL_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              ipv6_acl: "IPV6_ACL_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          hosts:  # List | optional [shared class: structure documented on this page as hosts(nxos.devices.configuration.snmp)]
+            - host: "HOST_1"  # String | required
+              udp_port: 1  # Integer | min: 0 , max: 65535 | optional
+              version: "v1"  # Choice | v1 , v2c , v3 | optional
+              notification_type: "traps"  # Choice | traps , informs | optional
+              community: "COMMUNITY_1"  # String | optional
+              security_level: "noauth"  # Choice | noauth , auth , priv | optional
+              vrf: "VRF1"  # String | optional
+          rmon_events:  # List | optional [shared class: structure documented on this page as rmon_events(nxos.devices.configuration.snmp)]
+            - number: 1  # Integer | min: 1 , max: 65535 | required
+              description: "Example description"  # String | optional
+              log: false  # Boolean | optional
+              owner: "OWNER_1"  # String | optional
+              trap: "TRAP_1"  # String | optional

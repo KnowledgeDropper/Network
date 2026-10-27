@@ -1,0 +1,10 @@
+# Network-as-Code template: Fabric
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/fabric/fabric/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  fabric:  # Class | optional
+    name: "NAME_1"  # String | Regex: ^[a-zA-Z][a-zA-Z0-9_-]{0,63}$ | required
+    type: "VXLAN_EVPN"  # Choice | VXLAN_EVPN , MSD , MCFG , ISN , External , eBGP_VXLAN | required

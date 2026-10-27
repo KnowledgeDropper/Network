@@ -1,0 +1,56 @@
+# Network-as-Code template: LLDP
+# Source: https://netascode.cisco.com/docs/data_models/nxos/layer2/lldp/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 6 (parsed 6); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        lldp:  # Class | optional
+          holdtime: 120  # Integer | min: 1 , max: 255 | optional
+          reinit: 2  # Integer | min: 1 , max: 10 | optional
+          timer: 30  # Integer | min: 1 , max: 254 | optional
+          tlv_select: "TLV_SELECT_1"  # String | optional
+          portid_subtype: "short"  # Choice | long , short | optional
+          chassis_id: true  # Boolean | optional
+          port_channel: true  # Boolean | optional
+          portchannel: true  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        lldp:  # Class | optional [shared class: structure documented on this page as lldp(nxos.devices.configuration)]
+          holdtime: 1  # Integer | min: 1 , max: 255 | optional
+          reinit: 1  # Integer | min: 1 , max: 10 | optional
+          timer: 1  # Integer | min: 1 , max: 254 | optional
+          tlv_select: "TLV_SELECT_1"  # String | optional
+          portid_subtype: "long"  # Choice | long , short | optional
+          chassis_id: false  # Boolean | optional
+          port_channel: false  # Boolean | optional
+          portchannel: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      lldp:  # Class | optional [shared class: structure documented on this page as lldp(nxos.devices.configuration)]
+        holdtime: 1  # Integer | min: 1 , max: 255 | optional
+        reinit: 1  # Integer | min: 1 , max: 10 | optional
+        timer: 1  # Integer | min: 1 , max: 254 | optional
+        tlv_select: "TLV_SELECT_1"  # String | optional
+        portid_subtype: "long"  # Choice | long , short | optional
+        chassis_id: false  # Boolean | optional
+        port_channel: false  # Boolean | optional
+        portchannel: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        lldp:  # Class | optional [shared class: structure documented on this page as lldp(nxos.devices.configuration)]
+          holdtime: 1  # Integer | min: 1 , max: 255 | optional
+          reinit: 1  # Integer | min: 1 , max: 10 | optional
+          timer: 1  # Integer | min: 1 , max: 254 | optional
+          tlv_select: "TLV_SELECT_1"  # String | optional
+          portid_subtype: "long"  # Choice | long , short | optional
+          chassis_id: false  # Boolean | optional
+          port_channel: false  # Boolean | optional
+          portchannel: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

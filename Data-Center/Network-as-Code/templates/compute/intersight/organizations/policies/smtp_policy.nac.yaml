@@ -1,0 +1,24 @@
+# Network-as-Code template: SMTP Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/smtp_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          smtp:  # List | optional
+            - name: "MySmtpPolicy"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              enabled: true  # Boolean | default: true | optional
+              smtp_server: "smtp.example.com"  # String | optional
+              smtp_port: 25  # Integer | min: 1 , max: 65535 | default: 25 | optional
+              sender_email: "intersight-alerts@example.com"  # String | optional
+              recipients: ["admin@example.com", "ops@example.com"]  # List | String | optional
+              min_severity: "critical"  # Choice | critical , major , minor , warning , condition | default: critical | optional
+              tls: true  # Boolean | default: false | optional

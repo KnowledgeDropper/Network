@@ -1,0 +1,25 @@
+# Network-as-Code template: DHCP Relay Policy
+# Source: https://netascode.cisco.com/docs/data_models/ndo/tenant_templates/dhcp_relay_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+ndo:
+  tenant_templates:  # Class | optional
+    tenant_policies:  # List | optional
+      - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        tenant: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        dhcp_relay_policies:  # List | optional
+          - name: "DRP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "DHCP Relay Policy"  # String | Regex: ^[a-zA-Z0-9\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            providers:  # List | optional
+              - name: "P1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                ip: "1.1.1.1"  # IP | required
+                type: "epg"  # Choice | epg , external_epg | required
+                schema: "ABC"  # String | Regex: ^[a-zA-Z0-9\s+_.:-]{1,64}$ | required
+                template: "TEMPLATE1"  # String | required
+                application_profile: "AP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                endpoint_group: "EPG1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                l3out: "L3OUT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                external_endpoint_group: "EXTERNAL_ENDPOINT_GROUP_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                use_server_vrf: true  # Boolean | default: false | optional

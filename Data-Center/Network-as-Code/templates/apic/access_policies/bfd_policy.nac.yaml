@@ -1,0 +1,29 @@
+# Network-as-Code template: BFD Switch Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/bfd_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    switch_policies:  # Class | optional
+      bfd_ipv4_policies:  # List | optional
+        - name: "BFD-IPV4-POLICY"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "BFD IPv4 Policy"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          detection_multiplier: 5  # Integer | min: 1 , max: 50 | default: 3 | optional
+          min_transmit_interval: 100  # Integer | min: 50 , max: 999 | default: 50 | optional
+          min_receive_interval: 50  # Integer | min: 50 , max: 999 | default: 50 | optional
+          slow_timer_interval: 3000  # Integer | min: 1000 , max: 30000 | default: 2000 | optional
+          startup_timer_interval: 10  # Integer | min: 0 , max: 60 | optional
+          echo_receive_interval: 50  # Integer | min: 0 , max: 999 | default: 50 | optional
+          echo_frame_source_address: "0.0.0.0"  # IP | default: 0.0.0.0 | optional
+      bfd_ipv6_policies:  # List | optional
+        - name: "BFD-IPV6-POLICY"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "BFD IPv6 Policy"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          detection_multiplier: 5  # Integer | min: 1 , max: 50 | default: 3 | optional
+          min_transmit_interval: 100  # Integer | min: 50 , max: 999 | default: 50 | optional
+          min_receive_interval: 50  # Integer | min: 50 , max: 999 | default: 50 | optional
+          slow_timer_interval: 3000  # Integer | min: 1000 , max: 30000 | default: 2000 | optional
+          startup_timer_interval: 10  # Integer | min: 0 , max: 60 | optional
+          echo_receive_interval: 50  # Integer | min: 0 , max: 999 | default: 50 | optional
+          echo_frame_source_address: "0.0.0.0"  # IP | default: 0.0.0.0 | optional

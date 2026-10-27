@@ -1,0 +1,62 @@
+# Network-as-Code template: Ethernet Adapter Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/ethernet_adapter/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          ethernet_adapter:  # List | optional
+            - name: "linux-high-perf"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "High-performance settings for Linux workloads"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              advanced_filter: false  # Boolean | optional
+              ether_channel_pinning: false  # Boolean | optional
+              geneve: false  # Boolean | optional
+              interrupt_scaling: false  # Boolean | optional
+              rss: true  # Boolean | optional
+              uplink_failback_timeout: 5  # Integer | min: 0 , max: 600 | optional
+              arfs: false  # Boolean | optional
+              completion_queue_settings:  # Class | optional
+                nr_count: 8  # Integer | min: 1 , max: 2000 | optional
+                ring_size: 1  # Integer | min: 1 , max: 256 | optional
+              interrupt_settings:  # Class | optional
+                coalescing_time: 125  # Integer | min: 0 , max: 65535 | optional
+                coalescing_type: "MIN"  # Choice | MIN , IDLE | optional
+                nr_count: 8  # Integer | min: 1 , max: 1024 | optional
+                mode: "MSIx"  # Choice | MSIx , MSI , INTx | optional
+              nvgre: false  # Boolean | optional
+              ptp: false  # Boolean | optional
+              roce_settings:  # Class | optional
+                enabled: true  # Boolean | optional
+                class_of_service: 5  # Choice | 1 , 2 , 4 , 5 , 6 | optional
+                memory_regions: 131072  # Integer | min: 1 , max: 524288 | optional
+                queue_pairs: 1024  # Integer | min: 1 , max: 8192 | optional
+                resource_groups: 2  # Integer | min: 1 , max: 128 | optional
+                version: 2  # Integer | min: 1 , max: 2 | optional
+              rss_hash_settings:  # Class | optional
+                ipv4_hash: false  # Boolean | optional
+                ipv6_ext_hash: false  # Boolean | optional
+                ipv6_hash: false  # Boolean | optional
+                tcp_ipv4_hash: false  # Boolean | optional
+                tcp_ipv6_ext_hash: false  # Boolean | optional
+                tcp_ipv6_hash: false  # Boolean | optional
+                udp_ipv4_hash: false  # Boolean | optional
+                udp_ipv6_hash: false  # Boolean | optional
+              rx_queue_settings:  # Class | optional
+                nr_count: 4  # Integer | min: 1 , max: 1000 | optional
+                ring_size: 512  # Integer | min: 64 , max: 4096 | optional
+              tcp_offload_settings:  # Class | optional
+                large_receive: true  # Boolean | optional
+                large_send: true  # Boolean | optional
+                rx_checksum: true  # Boolean | optional
+                tx_checksum: true  # Boolean | optional
+              tx_queue_settings:  # Class | optional
+                nr_count: 4  # Integer | min: 1 , max: 1000 | optional
+                ring_size: 512  # Integer | min: 64 , max: 4096 | optional
+              vxlan: false  # Boolean | optional

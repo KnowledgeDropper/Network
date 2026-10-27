@@ -1,0 +1,24 @@
+# Network-as-Code template: OSPF Interface Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/ospf_interface_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        ospf_interface_policies:  # List | optional
+          - name: "OIP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "My Desc"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            cost: 40  # Integer | min: 0 , max: 65535 | default: unspecified | optional
+            passive_interface: true  # Boolean | default: false | optional
+            mtu_ignore: true  # Boolean | default: false | optional
+            advertise_subnet: true  # Boolean | default: false | optional
+            bfd: true  # Boolean | default: false | optional
+            hello_interval: 30  # Integer | min: 1 , max: 65535 | default: 10 | optional
+            dead_interval: 180  # Integer | min: 1 , max: 65535 | default: 40 | optional
+            network_type: "p2p"  # Choice | p2p , bcast , unspecified | default: p2p | optional
+            priority: 2  # Integer | min: 0 , max: 255 | default: 1 | optional
+            lsa_retransmit_interval: 6  # Integer | min: 1 , max: 65535 | default: 5 | optional
+            lsa_transmit_delay: 2  # Integer | min: 1 , max: 450 | default: 1 | optional

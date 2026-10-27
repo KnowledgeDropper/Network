@@ -1,0 +1,35 @@
+# Network-as-Code template: Time Ranges
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/overlay_extensions/route_control/time_range/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+vxlan:
+  overlay_extensions:  # Class | optional
+    route_control:  # Class | optional
+      time_range:  # List | optional
+        - name: "workday-daytime"  # String | required
+          entries:  # List | optional
+            - seq_number: 10  # Integer | min: 1 , max: 4294967295 | required
+              periodic:  # Class | optional
+                day: ["weekdays"]  # List | Choice[ Monday , Tuesday , Wednesday , Thursday , Friday , Saturday , Sunday , daily , weekdays , weekend ] | required
+                start_hours: 0  # Integer | min: 0 , max: 24 | required
+                start_minutes: 0  # Integer | min: 0 , max: 59 | optional
+                start_seconds: 1  # Integer | min: 0 , max: 59 | optional
+                end_hours: 23  # Integer | min: 0 , max: 24 | required
+                end_minutes: 59  # Integer | min: 0 , max: 59 | optional
+                end_seconds: 59  # Integer | min: 0 , max: 59 | optional
+              absolute:  # Class | optional
+                start_day: 4  # Integer | min: 1 , max: 31 | optional
+                start_month: "July"  # Choice | January , February , March , April , May , June , July , August , September , October , November , December | optional
+                start_year: 2024  # Integer | min: 2000 , max: 2037 | optional
+                end_day: 4  # Integer | min: 1 , max: 31 | optional
+                end_month: "July"  # Choice | January , February , March , April , May , June , July , August , September , October , November , December | optional
+                end_year: 2024  # Integer | min: 2000 , max: 2037 | optional
+                start_hours: 0  # Integer | min: 0 , max: 24 | optional
+                start_minutes: 0  # Integer | min: 0 , max: 59 | optional
+                start_seconds: 0  # Integer | min: 0 , max: 59 | optional
+                end_hours: 23  # Integer | min: 0 , max: 24 | optional
+                end_minutes: 59  # Integer | min: 0 , max: 59 | optional
+                end_seconds: 59  # Integer | min: 0 , max: 59 | optional
+              remark: "workday"  # String | optional

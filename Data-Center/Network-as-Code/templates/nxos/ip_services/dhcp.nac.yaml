@@ -1,0 +1,160 @@
+# Network-as-Code template: DHCP
+# Source: https://netascode.cisco.com/docs/data_models/nxos/ip_services/dhcp/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        interfaces:  # Class | optional
+          loopbacks:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              loopbacks: []  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) (recursive)
+          vlans:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              vlans: []  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) (recursive)
+          ethernets:  # List | optional
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ethernets: []  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) (recursive)
+          port_channels:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              port_channels: []  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) (recursive)
+        dhcp:  # Class | optional
+          ip_dhcp_relay:  # Class | optional
+            enabled: true  # Boolean | optional
+            information_option: true  # Boolean | optional
+            information_option_trust: true  # Boolean | optional
+            information_option_vpn: true  # Boolean | optional
+            information_trust_all: false  # Boolean | optional
+            information_option_server_id_override: true  # Boolean | optional
+            sub_option_circuit_id_customized: true  # Boolean | optional
+            sub_option_circuit_id_format_string: "%p:%v"  # String | optional
+            sub_option_type_cisco: true  # Boolean | optional
+            sub_option_format_non_tlv: false  # Boolean | optional
+            v4_over_v6: false  # Boolean | optional
+          ipv6_dhcp_relay:  # Class | optional
+            enabled: true  # Boolean | optional
+            information_option_vpn: false  # Boolean | optional
+            option_type_cisco: false  # Boolean | optional
+            option79: true  # Boolean | optional
+            iapd_route_add: false  # Boolean | optional
+            smart_relay_global: true  # Boolean | optional
+          ip_dhcp_snooping:  # Class | optional
+            enabled: true  # Boolean | optional
+            information_option: true  # Boolean | optional
+            verify_mac_address: true  # Boolean | optional
+            sub_option_format_non_tlv: false  # Boolean | optional
+            sub_option_circuit_id_format_string: "SUB_OPTION_CIRCUIT_ID_FORMAT_STRING_1"  # String | optional
+          ip_dhcp_smart_relay_global: false  # Boolean | optional
+          ip_dhcp_packet_strict_validation: true  # Boolean | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          loopbacks: []  # List | optional [nested class not documented separately on this page]
+          vlans: []  # List | optional [nested class not documented separately on this page]
+          ethernets: []  # List | optional [nested class not documented separately on this page]
+          port_channels: []  # List | optional [nested class not documented separately on this page]
+        dhcp:  # Class | optional [shared class: structure documented on this page as dhcp(nxos.devices.configuration)]
+          ip_dhcp_relay:  # Class | optional [shared class: structure documented on this page as ip_dhcp_relay(nxos.devices.configuration.dhcp)]
+            enabled: false  # Boolean | optional
+            information_option: false  # Boolean | optional
+            information_option_trust: false  # Boolean | optional
+            information_option_vpn: false  # Boolean | optional
+            information_trust_all: false  # Boolean | optional
+            information_option_server_id_override: false  # Boolean | optional
+            sub_option_circuit_id_customized: false  # Boolean | optional
+            sub_option_circuit_id_format_string: "SUB_OPTION_CIRCUIT_ID_FORMAT_STRING_1"  # String | optional
+            sub_option_type_cisco: false  # Boolean | optional
+            sub_option_format_non_tlv: false  # Boolean | optional
+            v4_over_v6: false  # Boolean | optional
+          ipv6_dhcp_relay:  # Class | optional [shared class: structure documented on this page as ipv6_dhcp_relay(nxos.devices.configuration.dhcp)]
+            enabled: false  # Boolean | optional
+            information_option_vpn: false  # Boolean | optional
+            option_type_cisco: false  # Boolean | optional
+            option79: false  # Boolean | optional
+            iapd_route_add: false  # Boolean | optional
+            smart_relay_global: false  # Boolean | optional
+          ip_dhcp_snooping:  # Class | optional [shared class: structure documented on this page as ip_dhcp_snooping(nxos.devices.configuration.dhcp)]
+            enabled: false  # Boolean | optional
+            information_option: false  # Boolean | optional
+            verify_mac_address: false  # Boolean | optional
+            sub_option_format_non_tlv: false  # Boolean | optional
+            sub_option_circuit_id_format_string: "SUB_OPTION_CIRCUIT_ID_FORMAT_STRING_1"  # String | optional
+          ip_dhcp_smart_relay_global: false  # Boolean | optional
+          ip_dhcp_packet_strict_validation: false  # Boolean | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+        loopbacks: []  # List | optional [nested class not documented separately on this page]
+        vlans: []  # List | optional [nested class not documented separately on this page]
+        ethernets: []  # List | optional [nested class not documented separately on this page]
+        port_channels: []  # List | optional [nested class not documented separately on this page]
+      dhcp:  # Class | optional [shared class: structure documented on this page as dhcp(nxos.devices.configuration)]
+        ip_dhcp_relay:  # Class | optional [shared class: structure documented on this page as ip_dhcp_relay(nxos.devices.configuration.dhcp)]
+          enabled: false  # Boolean | optional
+          information_option: false  # Boolean | optional
+          information_option_trust: false  # Boolean | optional
+          information_option_vpn: false  # Boolean | optional
+          information_trust_all: false  # Boolean | optional
+          information_option_server_id_override: false  # Boolean | optional
+          sub_option_circuit_id_customized: false  # Boolean | optional
+          sub_option_circuit_id_format_string: "SUB_OPTION_CIRCUIT_ID_FORMAT_STRING_1"  # String | optional
+          sub_option_type_cisco: false  # Boolean | optional
+          sub_option_format_non_tlv: false  # Boolean | optional
+          v4_over_v6: false  # Boolean | optional
+        ipv6_dhcp_relay:  # Class | optional [shared class: structure documented on this page as ipv6_dhcp_relay(nxos.devices.configuration.dhcp)]
+          enabled: false  # Boolean | optional
+          information_option_vpn: false  # Boolean | optional
+          option_type_cisco: false  # Boolean | optional
+          option79: false  # Boolean | optional
+          iapd_route_add: false  # Boolean | optional
+          smart_relay_global: false  # Boolean | optional
+        ip_dhcp_snooping:  # Class | optional [shared class: structure documented on this page as ip_dhcp_snooping(nxos.devices.configuration.dhcp)]
+          enabled: false  # Boolean | optional
+          information_option: false  # Boolean | optional
+          verify_mac_address: false  # Boolean | optional
+          sub_option_format_non_tlv: false  # Boolean | optional
+          sub_option_circuit_id_format_string: "SUB_OPTION_CIRCUIT_ID_FORMAT_STRING_1"  # String | optional
+        ip_dhcp_smart_relay_global: false  # Boolean | optional
+        ip_dhcp_packet_strict_validation: false  # Boolean | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          loopbacks: []  # List | optional [nested class not documented separately on this page]
+          vlans: []  # List | optional [nested class not documented separately on this page]
+          ethernets: []  # List | optional [nested class not documented separately on this page]
+          port_channels: []  # List | optional [nested class not documented separately on this page]
+        dhcp:  # Class | optional [shared class: structure documented on this page as dhcp(nxos.devices.configuration)]
+          ip_dhcp_relay:  # Class | optional [shared class: structure documented on this page as ip_dhcp_relay(nxos.devices.configuration.dhcp)]
+            enabled: false  # Boolean | optional
+            information_option: false  # Boolean | optional
+            information_option_trust: false  # Boolean | optional
+            information_option_vpn: false  # Boolean | optional
+            information_trust_all: false  # Boolean | optional
+            information_option_server_id_override: false  # Boolean | optional
+            sub_option_circuit_id_customized: false  # Boolean | optional
+            sub_option_circuit_id_format_string: "SUB_OPTION_CIRCUIT_ID_FORMAT_STRING_1"  # String | optional
+            sub_option_type_cisco: false  # Boolean | optional
+            sub_option_format_non_tlv: false  # Boolean | optional
+            v4_over_v6: false  # Boolean | optional
+          ipv6_dhcp_relay:  # Class | optional [shared class: structure documented on this page as ipv6_dhcp_relay(nxos.devices.configuration.dhcp)]
+            enabled: false  # Boolean | optional
+            information_option_vpn: false  # Boolean | optional
+            option_type_cisco: false  # Boolean | optional
+            option79: false  # Boolean | optional
+            iapd_route_add: false  # Boolean | optional
+            smart_relay_global: false  # Boolean | optional
+          ip_dhcp_snooping:  # Class | optional [shared class: structure documented on this page as ip_dhcp_snooping(nxos.devices.configuration.dhcp)]
+            enabled: false  # Boolean | optional
+            information_option: false  # Boolean | optional
+            verify_mac_address: false  # Boolean | optional
+            sub_option_format_non_tlv: false  # Boolean | optional
+            sub_option_circuit_id_format_string: "SUB_OPTION_CIRCUIT_ID_FORMAT_STRING_1"  # String | optional
+          ip_dhcp_smart_relay_global: false  # Boolean | optional
+          ip_dhcp_packet_strict_validation: false  # Boolean | optional

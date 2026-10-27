@@ -1,0 +1,88 @@
+# Network-as-Code template: SR MPLS L3out
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/sr_mpls_l3out/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      sr_mpls_l3outs:  # List | optional
+        - name: "INFRA_SR_MPLS_L3"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          alias: "ALIAS_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          description: "Infra SR-MPLS L3out"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          vrf: "VRF1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          domain: "ROUTED1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          transport_data_plane: "mpls"  # Choice | sr_mpls , mpls | default: sr_mpls | optional
+          node_profiles:  # List | optional
+            - name: "SR_MPLS_NP"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              mpls_custom_qos_policy: "MPLS_QOS"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              bfd_multihop_node_policy: "BFD_POL"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              nodes:  # List | optional
+                - node_id: 101  # Integer | min: 1 , max: 4000 | required
+                  pod_id: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+                  router_id: "126.126.126.126"  # IP | optional
+                  bgp_evpn_loopback: "127.31.2.26"  # IP | required
+                  mpls_transport_loopback: "172.31.2.26"  # IP | required
+                  segment_id: 206  # Integer | min: 0 , max: 4294967295 | required
+              interface_profiles:  # List | optional
+                - name: "int_prof"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  bfd_policy: "BFD_POL"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  interfaces:  # List | optional
+                    - description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                      node_id: 101  # Integer | min: 1 , max: 4000 | optional
+                      pod_id: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+                      module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+                      port: 10  # Integer | min: 1 , max: 127 | optional
+                      channel: "PC1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      ip: "5.5.5.5/24"  # IP | optional
+                      vlan: 101  # Integer | min: 1 , max: 4096 | optional
+                      mac: "00:22:BD:F8:19:FF"  # MAC | default: 00:22:BD:F8:19:FF | optional
+                      mtu: 9000  # Any | Choice[ inherit ] or Integer[min: 576 , max: 9216 ] | default: inherit | optional
+                      bgp_peers:  # List | optional
+                        - ip: "10.10.10.1"  # IP | required
+                          remote_as: 65123  # Integer | min: 0 , max: 4294967295 | required
+                          description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                          allow_self_as: false  # Boolean | default: false | optional
+                          send_community: false  # Boolean | default: false | optional
+                          send_ext_community: false  # Boolean | default: false | optional
+                          password: "PASSWORD_1"  # String | optional
+                          bfd: false  # Boolean | default: false | optional
+                          unicast_address_family: true  # Boolean | default: true | optional
+                          admin_state: true  # Boolean | default: true | optional
+                          local_as: 1  # Integer | min: 0 , max: 4294967295 | optional
+                          peer_prefix_policy: "PEER_PREFIX_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              evpn_connectivity:  # List | optional
+                - ip: "172.31.2.54"  # IP | required
+                  description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  remote_as: 64001  # Integer | min: 0 , max: 4294967295 | required
+                  allow_self_as: true  # Boolean | default: false | optional
+                  disable_peer_as_check: true  # Boolean | default: false | optional
+                  ttl: 10  # Integer | min: 1 , max: 255 | default: 2 | optional
+                  bfd: false  # Boolean | default: false | optional
+                  password: "C1sco123"  # String | optional
+                  peer_prefix_policy: "BGP_PP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  admin_state: true  # Boolean | default: true | optional
+                  local_as: 31200  # Integer | min: 0 , max: 4294967295 | optional
+                  as_propagate: "dual-as"  # Choice | none , no-prepend , replace-as , dual-as | default: none | optional
+          external_endpoint_groups:  # List | optional
+            - name: "ext-epg"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              alias: "ALIAS_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              preferred_group: false  # Boolean | default: false | optional
+              subnets:  # List | optional
+                - name: "ALL"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  prefix: "0.0.0.0/0"  # IP | required
+                  route_leaking: true  # Boolean | default: false | optional
+                  security: true  # Boolean | default: false | optional
+                  aggregate_shared_route_control: true  # Boolean | default: false | optional
+              contracts:  # Class | optional
+                consumers: ["CON1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                providers: ["CON1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                imported_consumers: ["IMPORT-CON1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+          sr_mpls_infra_l3outs:  # List | optional
+            - name: "INFRA_SR_MPLS_L3"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              inbound_route_map: "import-map"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              outbound_route_map: "export-map"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              external_endpoint_groups: ["ext-epg", "ext-epg2"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | required

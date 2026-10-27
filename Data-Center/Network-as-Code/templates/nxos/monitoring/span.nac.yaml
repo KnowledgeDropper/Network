@@ -1,0 +1,176 @@
+# Network-as-Code template: SPAN
+# Source: https://netascode.cisco.com/docs/data_models/nxos/monitoring/span/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        system:  # Class | optional
+          erspan_origin_ip_address: "10.0.0.1"  # IP | optional
+        monitor_sessions:  # List | optional
+          - id: 1  # Integer | min: 1 , max: 32 | required
+            type: "local"  # Choice | local , erspan-source , erspan-destination | optional
+            shutdown: false  # Boolean | optional
+            description: "Mirror server traffic"  # String | optional
+            destination_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+            destination_interface_id: "1/2"  # Any | String or Integer[min: 0 ] | optional
+            filter_access_group: "SPAN-FILTER"  # String | optional
+            mtu: 9000  # Integer | min: 64 , max: 10240 | optional
+            erspan_id: 100  # Integer | min: 0 , max: 1023 | optional
+            destination_ip: "10.1.1.1"  # IP | optional
+            destination_ipv6: "10.1.1.1"  # IP | optional
+            source_ip: "10.1.1.1"  # IP | optional
+            source_ipv6: "10.1.1.1"  # IP | optional
+            ip_dscp: 10  # Integer | min: 0 , max: 63 | optional
+            ip_ttl: 64  # Integer | min: 1 , max: 255 | optional
+            vrf: "default"  # String | optional
+            header_type: "3"  # Choice | 2 , 3 , 3-rfc-compliant | optional
+            source_forward_drops: "none"  # Choice | none , rx , tx , both | optional
+            marker_packet: false  # Boolean | optional
+            marker_packet_interval: 1  # Integer | min: 1 , max: 1000 | optional
+            source_interfaces:  # List | optional
+              - interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | required
+                interface_id: "1/1"  # Any | String or Integer[min: 0 ] | required
+                direction: "both"  # Choice | rx , tx , both | optional
+            source_vlans:  # List | optional
+              - vlans:  # Class | required
+                  ids: [100]  # List | Integer[min: 1 , max: 4094 ] | optional
+                  ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.monitor_sessions.filter_vlans)]
+                    - from: 1  # Integer | min: 1 , max: 4094 | required
+                      to: 1  # Integer | min: 1 , max: 4094 | required
+                direction: "rx"  # Choice | rx , tx , both | optional
+            filter_vlans:  # Class | optional
+              ids: [100, 200]  # List | Integer[min: 1 , max: 4094 ] | optional
+              ranges:  # List | optional
+                - from: 1  # Integer | min: 1 , max: 4094 | required
+                  to: 1  # Integer | min: 1 , max: 4094 | required
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+          erspan_origin_ip_address: "10.1.1.1"  # IP | optional
+        monitor_sessions:  # List | optional [shared class: structure documented on this page as monitor_sessions(nxos.devices.configuration)]
+          - id: 1  # Integer | min: 1 , max: 32 | required
+            type: "local"  # Choice | local , erspan-source , erspan-destination | optional
+            shutdown: false  # Boolean | optional
+            description: "Example description"  # String | optional
+            destination_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+            destination_interface_id: "DESTINATION_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+            filter_access_group: "FILTER_ACCESS_GROUP_1"  # String | optional
+            mtu: 64  # Integer | min: 64 , max: 10240 | optional
+            erspan_id: 1  # Integer | min: 0 , max: 1023 | optional
+            destination_ip: "10.1.1.1"  # IP | optional
+            destination_ipv6: "10.1.1.1"  # IP | optional
+            source_ip: "10.1.1.1"  # IP | optional
+            source_ipv6: "10.1.1.1"  # IP | optional
+            ip_dscp: 1  # Integer | min: 0 , max: 63 | optional
+            ip_ttl: 1  # Integer | min: 1 , max: 255 | optional
+            vrf: "VRF1"  # String | optional
+            header_type: "2"  # Choice | 2 , 3 , 3-rfc-compliant | optional
+            source_forward_drops: "none"  # Choice | none , rx , tx , both | optional
+            marker_packet: false  # Boolean | optional
+            marker_packet_interval: 1  # Integer | min: 1 , max: 1000 | optional
+            source_interfaces:  # List | optional [shared class: structure documented on this page as source_interfaces(nxos.devices.configuration.monitor_sessions)]
+              - interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | required
+                interface_id: "INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | required
+                direction: "rx"  # Choice | rx , tx , both | optional
+            source_vlans:  # List | optional [shared class: structure documented on this page as source_vlans(nxos.devices.configuration.monitor_sessions)]
+              - vlans:  # Class | required [shared class: structure documented on this page as vlans(nxos.devices.configuration.monitor_sessions.source_vlans)]
+                  ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+                  ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.monitor_sessions.filter_vlans)]
+                    - from: 1  # Integer | min: 1 , max: 4094 | required
+                      to: 1  # Integer | min: 1 , max: 4094 | required
+                direction: "rx"  # Choice | rx , tx , both | optional
+            filter_vlans:  # Class | optional [shared class: structure documented on this page as filter_vlans(nxos.devices.configuration.monitor_sessions)]
+              ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+              ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.monitor_sessions.filter_vlans)]
+                - from: 1  # Integer | min: 1 , max: 4094 | required
+                  to: 1  # Integer | min: 1 , max: 4094 | required
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+        erspan_origin_ip_address: "10.1.1.1"  # IP | optional
+      monitor_sessions:  # List | optional [shared class: structure documented on this page as monitor_sessions(nxos.devices.configuration)]
+        - id: 1  # Integer | min: 1 , max: 32 | required
+          type: "local"  # Choice | local , erspan-source , erspan-destination | optional
+          shutdown: false  # Boolean | optional
+          description: "Example description"  # String | optional
+          destination_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          destination_interface_id: "DESTINATION_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+          filter_access_group: "FILTER_ACCESS_GROUP_1"  # String | optional
+          mtu: 64  # Integer | min: 64 , max: 10240 | optional
+          erspan_id: 1  # Integer | min: 0 , max: 1023 | optional
+          destination_ip: "10.1.1.1"  # IP | optional
+          destination_ipv6: "10.1.1.1"  # IP | optional
+          source_ip: "10.1.1.1"  # IP | optional
+          source_ipv6: "10.1.1.1"  # IP | optional
+          ip_dscp: 1  # Integer | min: 0 , max: 63 | optional
+          ip_ttl: 1  # Integer | min: 1 , max: 255 | optional
+          vrf: "VRF1"  # String | optional
+          header_type: "2"  # Choice | 2 , 3 , 3-rfc-compliant | optional
+          source_forward_drops: "none"  # Choice | none , rx , tx , both | optional
+          marker_packet: false  # Boolean | optional
+          marker_packet_interval: 1  # Integer | min: 1 , max: 1000 | optional
+          source_interfaces:  # List | optional [shared class: structure documented on this page as source_interfaces(nxos.devices.configuration.monitor_sessions)]
+            - interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | required
+              interface_id: "INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | required
+              direction: "rx"  # Choice | rx , tx , both | optional
+          source_vlans:  # List | optional [shared class: structure documented on this page as source_vlans(nxos.devices.configuration.monitor_sessions)]
+            - vlans:  # Class | required [shared class: structure documented on this page as vlans(nxos.devices.configuration.monitor_sessions.source_vlans)]
+                ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+                ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.monitor_sessions.filter_vlans)]
+                  - from: 1  # Integer | min: 1 , max: 4094 | required
+                    to: 1  # Integer | min: 1 , max: 4094 | required
+              direction: "rx"  # Choice | rx , tx , both | optional
+          filter_vlans:  # Class | optional [shared class: structure documented on this page as filter_vlans(nxos.devices.configuration.monitor_sessions)]
+            ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+            ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.monitor_sessions.filter_vlans)]
+              - from: 1  # Integer | min: 1 , max: 4094 | required
+                to: 1  # Integer | min: 1 , max: 4094 | required
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+          erspan_origin_ip_address: "10.1.1.1"  # IP | optional
+        monitor_sessions:  # List | optional [shared class: structure documented on this page as monitor_sessions(nxos.devices.configuration)]
+          - id: 1  # Integer | min: 1 , max: 32 | required
+            type: "local"  # Choice | local , erspan-source , erspan-destination | optional
+            shutdown: false  # Boolean | optional
+            description: "Example description"  # String | optional
+            destination_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+            destination_interface_id: "DESTINATION_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+            filter_access_group: "FILTER_ACCESS_GROUP_1"  # String | optional
+            mtu: 64  # Integer | min: 64 , max: 10240 | optional
+            erspan_id: 1  # Integer | min: 0 , max: 1023 | optional
+            destination_ip: "10.1.1.1"  # IP | optional
+            destination_ipv6: "10.1.1.1"  # IP | optional
+            source_ip: "10.1.1.1"  # IP | optional
+            source_ipv6: "10.1.1.1"  # IP | optional
+            ip_dscp: 1  # Integer | min: 0 , max: 63 | optional
+            ip_ttl: 1  # Integer | min: 1 , max: 255 | optional
+            vrf: "VRF1"  # String | optional
+            header_type: "2"  # Choice | 2 , 3 , 3-rfc-compliant | optional
+            source_forward_drops: "none"  # Choice | none , rx , tx , both | optional
+            marker_packet: false  # Boolean | optional
+            marker_packet_interval: 1  # Integer | min: 1 , max: 1000 | optional
+            source_interfaces:  # List | optional [shared class: structure documented on this page as source_interfaces(nxos.devices.configuration.monitor_sessions)]
+              - interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | required
+                interface_id: "INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | required
+                direction: "rx"  # Choice | rx , tx , both | optional
+            source_vlans:  # List | optional [shared class: structure documented on this page as source_vlans(nxos.devices.configuration.monitor_sessions)]
+              - vlans:  # Class | required [shared class: structure documented on this page as vlans(nxos.devices.configuration.monitor_sessions.source_vlans)]
+                  ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+                  ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.monitor_sessions.filter_vlans)]
+                    - from: 1  # Integer | min: 1 , max: 4094 | required
+                      to: 1  # Integer | min: 1 , max: 4094 | required
+                direction: "rx"  # Choice | rx , tx , both | optional
+            filter_vlans:  # Class | optional [shared class: structure documented on this page as filter_vlans(nxos.devices.configuration.monitor_sessions)]
+              ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+              ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.monitor_sessions.filter_vlans)]
+                - from: 1  # Integer | min: 1 , max: 4094 | required
+                  to: 1  # Integer | min: 1 , max: 4094 | required

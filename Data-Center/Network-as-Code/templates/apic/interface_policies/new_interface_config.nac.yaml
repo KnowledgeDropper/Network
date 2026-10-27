@@ -1,0 +1,39 @@
+# Network-as-Code template: Interface Configuration
+# Source: https://netascode.cisco.com/docs/data_models/apic/interface_policies/new_interface_config/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  new_interface_configuration: true  # Boolean | default: false | optional
+  interface_policies:  # Class | optional
+    nodes:  # List | optional
+      - id: 101  # Integer | min: 1 , max: 4000 | required
+        interfaces:  # List | optional
+          - port: 1  # Integer | min: 1 , max: 127 | required
+            description: "interface descr 1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+            policy_group: "ACC1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            fex_id: 101  # Integer | min: 101 , max: 199 | optional
+            type: "uplink"  # Choice | uplink , downlink | optional
+            sub_ports:  # List | optional
+              - port: 1  # Integer | min: 1 , max: 127 | required
+                description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                module: 1  # Integer | min: 1 , max: 9 | optional
+                policy_group: "ACC1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                fex_id: 101  # Integer | min: 101 , max: 199 | optional
+                shutdown: false  # Boolean | default: false | optional
+                port_channel_member_policy: "LACP_Fast"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            breakout: "10g-4x"  # Choice | 100g-2x , 100g-4x , 10g-4x , 25g-4x , 50g-8x , none | optional
+            fabric: false  # Boolean | default: false | optional
+            shutdown: false  # Boolean | default: false | optional
+            port_channel_member_policy: "LACP_Fast"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        fexes:  # List | optional
+          - id: 101  # Integer | min: 101 , max: 199 | required
+            interfaces:  # List | optional
+              - port: 1  # Integer | min: 1 , max: 127 | required
+                description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+                policy_group: "POLICY_GROUP_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                shutdown: false  # Boolean | default: false | optional
+                port_channel_member_policy: "PORT_CHANNEL_MEMBER_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional

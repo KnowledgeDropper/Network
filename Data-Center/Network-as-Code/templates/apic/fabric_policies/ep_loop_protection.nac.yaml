@@ -1,0 +1,15 @@
+# Network-as-Code template: EP Loop Protection
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/ep_loop_protection/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    ep_loop_protection:  # Class | optional
+      admin_state: true  # Boolean | default: false | optional
+      detection_interval: 180  # Integer | min: 30 , max: 300 | default: 60 | optional
+      detection_multiplier: 10  # Integer | min: 1 , max: 255 | default: 4 | optional
+      action: "bd-learn-disable"  # Choice | bd-learn-disable , port-disable | optional
+      bd_learn_disable: false  # Boolean | default: true | optional
+      port_disable: true  # Boolean | default: false | optional

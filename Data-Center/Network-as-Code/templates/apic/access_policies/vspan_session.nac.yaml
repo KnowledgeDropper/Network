@@ -1,0 +1,32 @@
+# Network-as-Code template: VSPAN Session
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/vspan_session/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    vspan:  # Class | optional
+      sessions:  # List | optional
+        - name: "SESSION1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          admin_state: true  # Boolean | default: true | optional
+          sources:  # List | optional
+            - name: "SRC1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              direction: "both"  # Choice | in , out , both | default: both | optional
+              access_paths:  # List | optional
+                - node_id: 101  # Integer | min: 1 , max: 4000 | optional
+                  node2_id: 1  # Integer | min: 1 , max: 4000 | optional
+                  pod_id: 1  # Integer | min: 1 , max: 255 | optional
+                  module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+                  port: 1  # Integer | min: 1 , max: 127 | optional
+                  channel: "CHANNEL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  type: "access"  # Choice | access , vpc , pc | optional
+              tenant: "ABC"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              application_profile: "AP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              endpoint_group: "EPG1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              endpoint: "00:50:56:96:6B:4F"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          destination:  # Class | required
+            name: "DST_GRP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional

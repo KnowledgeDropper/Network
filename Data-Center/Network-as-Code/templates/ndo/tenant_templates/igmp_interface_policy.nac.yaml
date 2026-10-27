@@ -1,0 +1,32 @@
+# Network-as-Code template: IGMP Interface Policy
+# Source: https://netascode.cisco.com/docs/data_models/ndo/tenant_templates/igmp_interface_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+ndo:
+  tenant_templates:  # Class | optional
+    tenant_policies:  # List | optional
+      - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        tenant: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        igmp_interface_policies:  # List | optional
+          - name: "IGMP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "IGMP Interface Policy 1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            version3_asm: true  # Boolean | default: false | optional
+            fast_leave: true  # Boolean | default: false | optional
+            report_link_local_groups: true  # Boolean | default: false | optional
+            igmp_version: "v3"  # Choice | v2 , v3 | default: v2 | optional
+            group_timeout: 300  # Integer | min: 3 , max: 65535 | default: 260 | optional
+            query_interval: 125  # Integer | min: 1 , max: 18000 | default: 125 | optional
+            query_response_interval: 10  # Integer | min: 1 , max: 25 | default: 10 | optional
+            last_member_count: 2  # Integer | min: 1 , max: 5 | default: 2 | optional
+            last_member_response_time: 1  # Integer | min: 1 , max: 25 | default: 1 | optional
+            startup_query_count: 2  # Integer | min: 1 , max: 10 | default: 2 | optional
+            startup_query_interval: 31  # Integer | min: 1 , max: 18000 | default: 31 | optional
+            querier_timeout: 255  # Integer | min: 1 , max: 65535 | default: 255 | optional
+            robustness_variable: 2  # Integer | min: 1 , max: 7 | default: 2 | optional
+            maximum_multicast_entries: 100000  # Integer | min: 1 , max: 4294967295 | optional
+            reserved_multicast_entries: 100  # Integer | min: 0 , max: 4294967295 | default: 0 | optional
+            state_limit_route_map: "STATE_LIMIT"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            report_policy_route_map: "REPORT_POLICY"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            static_report_route_map: "STATIC_REPORT"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional

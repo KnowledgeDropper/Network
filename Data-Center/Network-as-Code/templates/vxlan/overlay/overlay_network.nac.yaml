@@ -1,0 +1,46 @@
+# Network-as-Code template: Network
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/overlay/overlay_network/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  overlay:  # Class | optional
+    networks:  # List | optional
+      - name: "NAME_1"  # String | required
+        is_l2_only: false  # Boolean | default: false | optional
+        vrf_name: "VRF_NAME_1"  # String | optional
+        net_id: 1  # Integer | min: 1 , max: 16777214 | optional
+        vlan_id: 1  # Integer | min: 1 , max: 4094 | optional
+        vlan_name: "VLAN_NAME_1"  # String | optional
+        int_desc: "INT_DESC_1"  # String | optional
+        gw_ip_address: "10.1.1.1"  # IP | optional
+        gw_ipv6_address: "GW_IPV6_ADDRESS_1"  # String | optional
+        secondary_ip_addresses:  # List | optional
+          - ip_address: "10.1.1.1"  # IP | required
+            route_tag: 1  # Integer | min: 0 , max: 4294967295 | optional
+        mtu_l3intf: 9216  # Integer | default: 9216 | optional
+        l3gw_on_border: false  # Boolean | default: false | optional
+        route_tag: 12345  # Integer | min: 0 , max: 4294967295 | default: 12345 | optional
+        multicast_group_address: "239.1.1.1"  # IP | default: 239.1.1.1 | optional
+        arp_suppress: false  # Boolean | default: false | optional
+        route_target_both: false  # Boolean | default: false | optional
+        dhcp_loopback_id: 1  # Integer | min: 0 , max: 1023 | optional
+        dhcp_servers:  # List | optional
+          - ip_address: "10.1.1.1"  # IP | required
+            vrf: "VRF1"  # String | required
+        netflow_enable: false  # Boolean | default: false | optional
+        vlan_netflow_monitor: "VLAN_NETFLOW_MONITOR_1"  # String | optional
+        trm_enable: false  # Boolean | default: false | optional
+        xconnect: false  # Boolean | default: false | optional
+        network_attach_group: "NETWORK_ATTACH_GROUP_1"  # String | optional
+        switch_attach_overrides:  # List | optional
+          - hostname: "HOSTNAME_1"  # String | required
+            vlan_id: 1  # Integer | min: 1 , max: 4094 | optional
+            freeform_config: "FREEFORM_CONFIG_1"  # String | optional
+            svi_enabled: false  # Boolean | optional
+    network_attach_groups:  # List | optional
+      - name: "NAME_1"  # String | required
+        switches:  # List | optional
+          - hostname: "HOSTNAME_1"  # String | required
+            ports: ["Ethernet1/1"]  # List | String[Regex: (?i)^(?:e|eth(?:ernet)?)((\d)/\d{1,3})$|^(?:po|port-channel)([1-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|40[0-8][0-9]|409[0-6])$ ] | optional

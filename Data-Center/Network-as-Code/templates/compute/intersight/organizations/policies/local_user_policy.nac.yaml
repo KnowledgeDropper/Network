@@ -1,0 +1,29 @@
+# Network-as-Code template: Local User Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/local_user_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 0); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          local_user:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              strong_password: true  # Boolean | default: true | optional
+              password_expiry: false  # Boolean | default: false | optional
+              password_expiry_duration: 90  # Integer | min: 1 , max: 3650 | default: 90 | optional
+              password_history: 5  # Integer | min: 0 , max: 5 | default: 5 | optional
+              notification_period: 15  # Integer | min: 1 , max: 15 | default: 15 | optional
+              grace_period: 0  # Integer | min: 0 , max: 5 | default: 0 | optional
+              always_send_user_password: false  # Boolean | default: false | optional
+              users:  # List | optional
+                - username: "USERNAME_1"  # String | Regex: ^[a-zA-Z0-9._-]{1,16}$ | required
+                  role: "admin"  # Choice | admin , readonly , user | required
+                  password: "PASSWORD_1"  # String | optional
+                  enabled: true  # Boolean | default: true | optional

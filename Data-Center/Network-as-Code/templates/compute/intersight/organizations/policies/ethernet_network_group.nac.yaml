@@ -1,0 +1,21 @@
+# Network-as-Code template: Ethernet Network Group Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/ethernet_network_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          ethernet_network_group:  # List | optional
+            - name: "prod-vlans"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Production VLANs for FI-attached vNICs"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              allowed_vlans: "10,20,30-50"  # String | optional
+              native_vlan: 10  # Integer | min: 0 , max: 4093 | default: 0 | optional
+              qinq: false  # Boolean | default: false | optional
+              qinq_vlan: 1  # Integer | min: 1 , max: 4093 | optional

@@ -1,0 +1,28 @@
+# Network-as-Code template: Geolocation Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/geolocation/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    geolocation:  # Class | optional
+      sites:  # List | optional
+        - name: "site1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          buildings:  # List | optional
+            - name: "building1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              floors:  # List | optional
+                - name: "floor1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  rooms:  # List | optional
+                    - name: "room1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                      description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                      rows:  # List | optional
+                        - name: "row1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                          description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                          racks:  # List | optional
+                            - name: "rack1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                              description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                              nodes: [101, 102]  # List | Integer[min: 1 , max: 4000 ] | optional

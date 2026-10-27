@@ -1,0 +1,15 @@
+# Network-as-Code template: Smart Licensing
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/smart_licensing/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    smart_licensing:  # Class | optional
+      mode: "proxy"  # Choice | cslu , smart-licensing , offline , plr , proxy , satellite , transport-gateway | default: smart-licensing | optional
+      registration_token: "ABCDEFG"  # String | min: 1 , max: 512 | optional
+      url: "URL_1"  # String | min: 1 , max: 512 | optional
+      proxy:  # Class | optional
+        hostname_ip: "192.168.10.101"  # Any | String[Regex: ^[a-zA-Z0-9:\[][a-zA-Z0-9.:\-\]]{0,254}$ ] or IP | optional
+        port: 3128  # Integer | min: 0 , max: 65535 | default: 443 | optional

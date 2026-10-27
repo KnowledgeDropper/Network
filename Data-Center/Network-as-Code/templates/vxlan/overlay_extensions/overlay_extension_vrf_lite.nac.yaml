@@ -1,0 +1,184 @@
+# Network-as-Code template: VRF-Lite
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/overlay_extensions/overlay_extension_vrf_lite/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  overlay_extensions:  # Class | optional
+    vrf_lites:  # List | optional
+      - name: "NAME_1"  # String | required
+        vrf: "VRF1"  # String | required
+        ospf:  # Class | optional
+          process: "PROCESS_1"  # String | Regex: ^[A-Za-z0-9-_]{1,20}$ | required
+          default_area: 0  # Any | Integer[min: 0 , max: 4294967295 ] or IP | default: 0 | optional
+          areas:  # List | optional
+            - id: 1  # Any | Integer[min: 0 , max: 4294967295 ] or IP | optional
+              area_type: "standard"  # Choice | standard , stub , nssa , totally_stub | default: standard | optional
+              area_cost: 1  # Integer | min: 1 , max: 16777215 | optional
+              nssa:  # Class | optional
+                default_information_originate: false  # Boolean | optional
+                route_map: "ROUTE_MAP_1"  # String | optional
+                no_redistribution: false  # Boolean | optional
+                no_summary: false  # Boolean | optional
+                translate:  # Class | optional
+                  always: false  # Boolean | optional
+                  never: false  # Boolean | optional
+                  supress_fa: false  # Boolean | optional
+              default_information_originate:  # Class | optional
+                always: false  # Boolean | optional
+                route_map: "ROUTE_MAP_1"  # String | optional
+          distance: 110  # Integer | min: 1 , max: 255 | default: 110 | optional
+          bfd:  # Class | optional
+            enabled: false  # Boolean | default: false | optional
+        bgp:  # Class | optional
+          best_path_as_path_relax: false  # Boolean | default: false | optional
+          graceful_restart: true  # Boolean | default: true | optional
+          graceful_restart_helper: false  # Boolean | default: false | optional
+          local_as: 1  # Integer | min: 1 , max: 4294967295 | optional
+          address_family_ipv4_unicast:  # Class | optional
+            additional_paths_send: false  # Boolean | default: false | optional
+            additional_paths_receive: false  # Boolean | default: false | optional
+            additional_paths_selection_route_map: "ADDITIONAL_PATHS_SELECTION_ROUTE_MAP_1"  # String | optional
+            default_originate: false  # Boolean | default: false | optional
+            ebgp_distance: 20  # Integer | min: 1 , max: 255 | default: 20 | optional
+            ibgp_distance: 200  # Integer | min: 1 , max: 255 | default: 200 | optional
+            local_distance: 220  # Integer | min: 1 , max: 255 | default: 220 | optional
+          address_family_ipv6_unicast:  # Class | optional
+            additional_paths_send: false  # Boolean | default: false | optional
+            additional_paths_receive: false  # Boolean | default: false | optional
+            additional_paths_selection_route_map: "ADDITIONAL_PATHS_SELECTION_ROUTE_MAP_1"  # String | optional
+            default_originate: false  # Boolean | default: false | optional
+            ebgp_distance: 20  # Integer | min: 1 , max: 255 | default: 20 | optional
+            ibgp_distance: 200  # Integer | min: 1 , max: 255 | default: 200 | optional
+            local_distance: 220  # Integer | min: 1 , max: 255 | default: 220 | optional
+        redistribution:  # List | optional
+          - source: "bgp"  # Choice | bgp , ospf , static , direct | optional
+            protocol_tag: "PROTOCOL_TAG_1"  # String | optional
+            route_map_ipv4: "ROUTE_MAP_IPV4_1"  # String | optional
+            route_map_ipv6: "ROUTE_MAP_IPV6_1"  # String | optional
+        switches:  # List | optional
+          - name: "NAME_1"  # String | required
+            router_id: "10.1.1.1"  # IP | optional
+            loopback_id: 1  # Integer | min: 0 , max: 1023 | optional
+            static_routes:  # Class | optional
+              static_ipv4:  # List | optional
+                - prefix: "10.1.1.1"  # IP | optional
+                  route_tag: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  next_hops:  # List | optional
+                    - ip: "10.1.1.1"  # IP | optional
+                      name: "NAME_1"  # String | optional
+                      track: 1  # Integer | min: 1 , max: 512 | optional
+                      route_preference: 1  # Integer | min: 1 , max: 255 | optional
+              static_ipv6:  # List | optional
+                - prefix: "10.1.1.1"  # IP | optional
+                  route_tag: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  next_hops:  # List | optional
+                    - ip: "10.1.1.1"  # IP | optional
+                      name: "NAME_1"  # String | optional
+                      track: 1  # Integer | min: 1 , max: 512 | optional
+                      route_preference: 1  # Integer | min: 1 , max: 255 | optional
+            interfaces:  # List | optional
+              - name: "Ethernet1/1"  # Any | String[Regex: (?i)^(?:e|eth(?:ernet)?)\d(?:\/\d+){1,2}$ ] or String[Regex: (?i)^(po|port-channel)([1-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|40[0-8][0-9]|409[0-6])$ ] or String[Regex: (?i)^(?:e|eth(?:ernet)?)\d(?:\/\d+){1,2}\.\d{1,4}$ ] or String[Regex: (?i)^(?:po|port-channel:?)((?:[1-9]|[1-9]\d{1,2}|[1-3]\d{3}|40[0-8]\d|409[0-6]:?)\.(?:[1-9]|[1-9]\d{1,2}|[1-3]\d{3}|40[0-8]\d|409[0-3]:?))$ ] or String[Regex: (?i)^(lo|loopback)([0-9]|[1-9][0-9]{1,2}|10[0-1][0-9]|102[0-3])$ ] | required
+                ospf:  # Class | optional
+                  area: 1  # Any | Integer[min: 0 , max: 4294967295 ] or IP | optional
+                  auth_type: "none"  # Choice | none , simple , md5 | default: none | optional
+                  auth_key_id: 0  # Integer | min: 0 , max: 255 | default: 0 | optional
+                  auth_key: "AUTH_KEY_1"  # String | optional
+                  cost: 1  # Integer | min: 1 , max: 65535 | default: 1 | optional
+                  passive_interface: false  # Boolean | default: false | optional
+                  mtu_ignore: false  # Boolean | default: false | optional
+                  advertise_subnet: false  # Boolean | default: false | optional
+                  bfd:  # Class | optional [shared class: structure documented on this page as bfd(vxlan.overlay_extensions.vrf_lites.ospf)]
+                    enabled: false  # Boolean | default: false | optional
+                  hello_interval: 10  # Integer | min: 1 , max: 65535 | default: 10 | optional
+                  dead_interval: 40  # Integer | min: 1 , max: 65535 | default: 40 | optional
+                  network_type: "broadcast"  # Choice | point-to-point , broadcast | default: broadcast | optional
+                  priority: 1  # Integer | min: 0 , max: 255 | default: 1 | optional
+                  lsa_retransmit_interval: 5  # Integer | min: 1 , max: 65535 | default: 5 | optional
+                  lsa_transmit_delay: 1  # Integer | min: 1 , max: 65535 | default: 1 | optional
+            bgp:  # Class | optional [shared class: structure documented on this page as bgp(vxlan.overlay_extensions.vrf_lites)]
+              best_path_as_path_relax: false  # Boolean | default: false | optional
+              graceful_restart: true  # Boolean | default: true | optional
+              graceful_restart_helper: false  # Boolean | default: false | optional
+              local_as: 1  # Integer | min: 1 , max: 4294967295 | optional
+              address_family_ipv4_unicast:  # Class | optional [shared class: structure documented on this page as address_family_ipv4_unicast(vxlan.overlay_extensions.vrf_lites.bgp)]
+                additional_paths_send: false  # Boolean | default: false | optional
+                additional_paths_receive: false  # Boolean | default: false | optional
+                additional_paths_selection_route_map: "ADDITIONAL_PATHS_SELECTION_ROUTE_MAP_1"  # String | optional
+                default_originate: false  # Boolean | default: false | optional
+                ebgp_distance: 20  # Integer | min: 1 , max: 255 | default: 20 | optional
+                ibgp_distance: 200  # Integer | min: 1 , max: 255 | default: 200 | optional
+                local_distance: 220  # Integer | min: 1 , max: 255 | default: 220 | optional
+              address_family_ipv6_unicast:  # Class | optional [shared class: structure documented on this page as address_family_ipv6_unicast(vxlan.overlay_extensions.vrf_lites.bgp)]
+                additional_paths_send: false  # Boolean | default: false | optional
+                additional_paths_receive: false  # Boolean | default: false | optional
+                additional_paths_selection_route_map: "ADDITIONAL_PATHS_SELECTION_ROUTE_MAP_1"  # String | optional
+                default_originate: false  # Boolean | default: false | optional
+                ebgp_distance: 20  # Integer | min: 1 , max: 255 | default: 20 | optional
+                ibgp_distance: 200  # Integer | min: 1 , max: 255 | default: 200 | optional
+                local_distance: 220  # Integer | min: 1 , max: 255 | default: 220 | optional
+            ospf:  # Class | optional [shared class: structure documented on this page as ospf(vxlan.overlay_extensions.vrf_lites)]
+              process: "PROCESS_1"  # String | Regex: ^[A-Za-z0-9-_]{1,20}$ | required
+              default_area: 0  # Any | Integer[min: 0 , max: 4294967295 ] or IP | default: 0 | optional
+              areas:  # List | optional [shared class: structure documented on this page as areas(vxlan.overlay_extensions.vrf_lites.ospf)]
+                - id: 1  # Any | Integer[min: 0 , max: 4294967295 ] or IP | optional
+                  area_type: "standard"  # Choice | standard , stub , nssa , totally_stub | default: standard | optional
+                  area_cost: 1  # Integer | min: 1 , max: 16777215 | optional
+                  nssa:  # Class | optional [shared class: structure documented on this page as nssa(vxlan.overlay_extensions.vrf_lites.ospf.areas)]
+                    default_information_originate: false  # Boolean | optional
+                    route_map: "ROUTE_MAP_1"  # String | optional
+                    no_redistribution: false  # Boolean | optional
+                    no_summary: false  # Boolean | optional
+                    translate:  # Class | optional [shared class: structure documented on this page as translate(vxlan.overlay_extensions.vrf_lites.ospf.areas.nssa)]
+                      always: false  # Boolean | optional
+                      never: false  # Boolean | optional
+                      supress_fa: false  # Boolean | optional
+                  default_information_originate:  # Class | optional [shared class: structure documented on this page as default_information_originate(vxlan.overlay_extensions.vrf_lites.ospf.areas)]
+                    always: false  # Boolean | optional
+                    route_map: "ROUTE_MAP_1"  # String | optional
+              distance: 110  # Integer | min: 1 , max: 255 | default: 110 | optional
+              bfd:  # Class | optional [shared class: structure documented on this page as bfd(vxlan.overlay_extensions.vrf_lites.ospf)]
+                enabled: false  # Boolean | default: false | optional
+            bgp_peers:  # List | optional
+              - address: "10.1.1.1"  # IP | required
+                remote_as: 1  # Integer | min: 1 , max: 4294967295 | optional
+                local_as: 1  # Integer | min: 1 , max: 4294967295 | optional
+                update_source: "Ethernet1/1"  # Any | String[Regex: ^(?:Ethernet:?)\d(?:\/\d+){1,2}$ ] or String[Regex: ^(?:Ethernet:?)\d(?:\/\d+){1,2}\.\d{1,4}$ ] or String[Regex: ^(?:port-channel:?)([1-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|40[0-8][0-9]|409[0-6])$ ] or String[Regex: ^(?:port-channel:?)((?:[1-9]|[1-9]\d{1,2}|[1-3]\d{3}|40[0-8]\d|409[0-6]:?)\.(?:[1-9]|[1-9]\d{1,2}|[1-3]\d{3}|40[0-8]\d|409[0-3]:?))$ ] or String[Regex: ^(?:loopback:?)([0-9]|[1-9][0-9]{1,2}|10[0-1][0-9]|102[0-3])$ ] | optional
+                description: "Example description"  # String | optional
+                password: "PASSWORD_1"  # String | optional
+                bfd:  # Class | optional [shared class: structure documented on this page as bfd(vxlan.overlay_extensions.vrf_lites.ospf)]
+                  enabled: false  # Boolean | default: false | optional
+                disable_connected_check: false  # Boolean | default: false | optional
+                remove_private_as: false  # Boolean | default: false | optional
+                remove_private_as_all: false  # Boolean | default: false | optional
+                ebgp_multihop: 2  # Integer | min: 2 , max: 255 | optional
+                address_family_ipv4_unicast:  # Class | optional
+                  send_community: false  # Boolean | default: false | optional
+                  send_ext_community: false  # Boolean | default: false | optional
+                  allow_as_in: false  # Boolean | default: false | optional
+                  allow_as_in_number: 3  # Integer | min: 1 , max: 10 | default: 3 | optional
+                  as_override: false  # Boolean | default: false | optional
+                  default_originate: false  # Boolean | default: false | optional
+                  next_hop_self: false  # Boolean | default: false | optional
+                  route_reflector_client: false  # Boolean | default: false | optional
+                  weight: 1  # Integer | min: 0 , max: 65535 | optional
+                  route_map_in: "ROUTE_MAP_IN_1"  # String | optional
+                  route_map_out: "ROUTE_MAP_OUT_1"  # String | optional
+                address_family_ipv6_unicast:  # Class | optional
+                  send_community: false  # Boolean | default: false | optional
+                  send_ext_community: false  # Boolean | default: false | optional
+                  allow_as_in: false  # Boolean | default: false | optional
+                  allow_as_in_number: 3  # Integer | min: 1 , max: 10 | default: 3 | optional
+                  as_override: false  # Boolean | default: false | optional
+                  default_originate: false  # Boolean | default: false | optional
+                  next_hop_self: false  # Boolean | default: false | optional
+                  route_reflector_client: false  # Boolean | default: false | optional
+                  weight: 1  # Integer | min: 0 , max: 65535 | optional
+                  route_map_in: "ROUTE_MAP_IN_1"  # String | optional
+                  route_map_out: "ROUTE_MAP_OUT_1"  # String | optional
+            redistribution:  # List | optional [shared class: structure documented on this page as redistribution(vxlan.overlay_extensions.vrf_lites)]
+              - source: "bgp"  # Choice | bgp , ospf , static , direct | optional
+                protocol_tag: "PROTOCOL_TAG_1"  # String | optional
+                route_map_ipv4: "ROUTE_MAP_IPV4_1"  # String | optional
+                route_map_ipv6: "ROUTE_MAP_IPV6_1"  # String | optional

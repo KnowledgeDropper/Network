@@ -1,0 +1,13 @@
+# Network-as-Code template: Spine Interface Policy Group
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/fp_spine_interface_policy_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    spine_interface_policy_groups:  # List | optional
+      - name: "ALL_SPINES"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        description: "All Spine Interfaces"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+        link_level_policy: "link-level-policy1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        macsec_policy: "macsec-fab1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional

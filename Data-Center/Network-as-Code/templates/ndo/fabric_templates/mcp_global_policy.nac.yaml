@@ -1,0 +1,21 @@
+# Network-as-Code template: MCP Global Policy
+# Source: https://netascode.cisco.com/docs/data_models/ndo/fabric_templates/mcp_global_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+ndo:
+  fabric_templates:  # Class | optional
+    fabric_policies:  # List | optional
+      - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        mcp_global_policy:  # Class | optional
+          name: "MCP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "MCP Global Policy"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          admin_state: true  # Boolean | default: false | optional
+          enable_mcp_pdu_per_vlan: true  # Boolean | default: false | optional
+          key: "cisco123"  # String | required
+          loop_detection: 5  # Integer | min: 1 , max: 255 | default: 3 | optional
+          transmission_frequency_sec: 5  # Integer | min: 0 , max: 300 | default: 2 | optional
+          transmission_frequency_msec: 500  # Integer | min: 0 , max: 999 | default: 0 | optional
+          initial_delay: 360  # Integer | min: 0 , max: 1800 | default: 180 | optional
+          port_disable_protection: true  # Boolean | default: true | optional

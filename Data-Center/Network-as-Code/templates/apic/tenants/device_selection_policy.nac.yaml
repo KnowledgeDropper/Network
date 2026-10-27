@@ -1,0 +1,114 @@
+# Network-as-Code template: Device Selection Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/device_selection_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 23 (parsed 20); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      services:  # Class | optional
+        device_selection_policies:  # List | optional
+          - contract: "PBR_1_CT0"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            service_graph_template: "PBR_SG_Minimal"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            device_name: "PROD_EW_FW"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            node_name: "N1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            consumer:  # Class | optional
+              l3_destination: true  # Boolean | default: true | optional
+              permit_logging: false  # Boolean | default: false | optional
+              logical_interface: "OneArm"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              redirect_policy:  # Class | optional
+                name: "PROD_EW_FW_PBRPol"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              bridge_domain:  # Class | optional
+                name: "SVC_BD"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              external_endpoint_group:  # Class | optional
+                tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                l3out: "L3OUT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                redistribute:  # Class | optional
+                  bgp: false  # Boolean | default: false | optional
+                  ospf: false  # Boolean | default: false | optional
+                  connected: false  # Boolean | default: false | optional
+                  static: false  # Boolean | default: false | optional
+              service_epg_policy: "SERVICE_EPG1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              custom_qos_policy: "QOS_POLICY"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            provider:  # Class | optional
+              l3_destination: true  # Boolean | default: true | optional
+              permit_logging: false  # Boolean | default: false | optional
+              logical_interface: "OneArm"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              redirect_policy:  # Class | optional [shared class: structure documented on this page as redirect_policy(apic.tenants.services.device_selection_policies.consumer)]
+                name: "PROD_EW_FW_PBRPol"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              bridge_domain:  # Class | optional [shared class: structure documented on this page as bridge_domain(apic.tenants.services.device_selection_policies.consumer)]
+                name: "SVC_BD"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              external_endpoint_group:  # Class | optional [shared class: structure documented on this page as external_endpoint_group(apic.tenants.services.device_selection_policies.consumer)]
+                tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                l3out: "L3OUT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                redistribute:  # Class | optional [shared class: structure documented on this page as redistribute(apic.tenants.services.device_selection_policies.consumer.external_endpoint_group)]
+                  bgp: false  # Boolean | default: false | optional
+                  ospf: false  # Boolean | default: false | optional
+                  connected: false  # Boolean | default: false | optional
+                  static: false  # Boolean | default: false | optional
+              service_epg_policy: "SERVICE_EPG2"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              custom_qos_policy: "QOS_POLICY"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            copy_service:  # Class | optional
+              l3_destination: true  # Boolean | default: true | optional
+              permit_logging: false  # Boolean | default: false | optional
+              logical_interface: "INT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              service_epg_policy: "SERVICE_EPG_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              custom_qos_policy: "CUSTOM_QOS_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            devices:  # List | optional
+              - name: "FW"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                node_name: "N1_NodeName"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                consumer:  # Class | optional
+                  l3_destination: false  # Boolean | default: true | optional
+                  permit_logging: true  # Boolean | default: false | optional
+                  logical_interface: "FW_CLUSTER_v812"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  redirect_policy:  # Class | optional
+                    name: "RP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    tenant: "ABC"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  bridge_domain:  # Class | optional
+                    name: "BD1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    tenant: "ABC"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  external_endpoint_group:  # Class | optional
+                    tenant: "ABC"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                    l3out: "L3OUT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    name: "EEPG1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    redistribute:  # Class | optional
+                      bgp: true  # Boolean | default: false | optional
+                      ospf: true  # Boolean | default: false | optional
+                      connected: true  # Boolean | default: false | optional
+                      static: true  # Boolean | default: false | optional
+                  service_epg_policy: "SEP"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  custom_qos_policy: "CQoSP"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                provider:  # Class | optional
+                  l3_destination: true  # Boolean | default: true | optional
+                  permit_logging: false  # Boolean | default: false | optional
+                  logical_interface: "FW_CLUSTER_v813"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  redirect_policy:  # Class | optional [shared class: structure documented on this page as redirect_policy(apic.tenants.services.device_selection_policies.consumer)]
+                    name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  bridge_domain:  # Class | optional [shared class: structure documented on this page as bridge_domain(apic.tenants.services.device_selection_policies.consumer)]
+                    name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  external_endpoint_group:  # Class | optional [shared class: structure documented on this page as external_endpoint_group(apic.tenants.services.device_selection_policies.consumer)]
+                    tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                    l3out: "L3OUT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    redistribute:  # Class | optional [shared class: structure documented on this page as redistribute(apic.tenants.services.device_selection_policies.consumer.external_endpoint_group)]
+                      bgp: false  # Boolean | default: false | optional
+                      ospf: false  # Boolean | default: false | optional
+                      connected: false  # Boolean | default: false | optional
+                      static: false  # Boolean | default: false | optional
+                  service_epg_policy: "SERVICE_EPG_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  custom_qos_policy: "CUSTOM_QOS_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                copy_service:  # Class | optional
+                  l3_destination: false  # Boolean | default: true | optional
+                  permit_logging: false  # Boolean | default: false | optional
+                  logical_interface: "CP_Iface_v816"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  service_epg_policy: "SEP2"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  custom_qos_policy: "CQoSP2"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional

@@ -1,0 +1,72 @@
+# Network-as-Code template: SSH
+# Source: https://netascode.cisco.com/docs/data_models/nxos/system/ssh/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        system:  # Class | optional
+          ssh:  # Class | optional
+            ciphers_all: true  # Boolean | optional
+            ciphers_weak: false  # Boolean | optional
+            kexalgos_all: true  # Boolean | optional
+            keytypes_all: true  # Boolean | optional
+            login_attempts: 3  # Integer | min: 1 , max: 10 | optional
+            login_gracetime: 60  # Integer | min: 0 , max: 3600 | optional
+            macs_all: true  # Boolean | optional
+            port: 2222  # Integer | min: 22 , max: 65535 | optional
+            keys:  # List | optional
+              - type: "rsa"  # Choice | rsa , dsa , ecdsa | required
+                key_length: 2048  # Integer | min: 0 , max: 4096 | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+          ssh:  # Class | optional [shared class: structure documented on this page as ssh(nxos.devices.configuration.system)]
+            ciphers_all: false  # Boolean | optional
+            ciphers_weak: false  # Boolean | optional
+            kexalgos_all: false  # Boolean | optional
+            keytypes_all: false  # Boolean | optional
+            login_attempts: 1  # Integer | min: 1 , max: 10 | optional
+            login_gracetime: 1  # Integer | min: 0 , max: 3600 | optional
+            macs_all: false  # Boolean | optional
+            port: 22  # Integer | min: 22 , max: 65535 | optional
+            keys:  # List | optional [shared class: structure documented on this page as keys(nxos.devices.configuration.system.ssh)]
+              - type: "rsa"  # Choice | rsa , dsa , ecdsa | required
+                key_length: 1  # Integer | min: 0 , max: 4096 | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+        ssh:  # Class | optional [shared class: structure documented on this page as ssh(nxos.devices.configuration.system)]
+          ciphers_all: false  # Boolean | optional
+          ciphers_weak: false  # Boolean | optional
+          kexalgos_all: false  # Boolean | optional
+          keytypes_all: false  # Boolean | optional
+          login_attempts: 1  # Integer | min: 1 , max: 10 | optional
+          login_gracetime: 1  # Integer | min: 0 , max: 3600 | optional
+          macs_all: false  # Boolean | optional
+          port: 22  # Integer | min: 22 , max: 65535 | optional
+          keys:  # List | optional [shared class: structure documented on this page as keys(nxos.devices.configuration.system.ssh)]
+            - type: "rsa"  # Choice | rsa , dsa , ecdsa | required
+              key_length: 1  # Integer | min: 0 , max: 4096 | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+          ssh:  # Class | optional [shared class: structure documented on this page as ssh(nxos.devices.configuration.system)]
+            ciphers_all: false  # Boolean | optional
+            ciphers_weak: false  # Boolean | optional
+            kexalgos_all: false  # Boolean | optional
+            keytypes_all: false  # Boolean | optional
+            login_attempts: 1  # Integer | min: 1 , max: 10 | optional
+            login_gracetime: 1  # Integer | min: 0 , max: 3600 | optional
+            macs_all: false  # Boolean | optional
+            port: 22  # Integer | min: 22 , max: 65535 | optional
+            keys:  # List | optional [shared class: structure documented on this page as keys(nxos.devices.configuration.system.ssh)]
+              - type: "rsa"  # Choice | rsa , dsa , ecdsa | required
+                key_length: 1  # Integer | min: 0 , max: 4096 | optional

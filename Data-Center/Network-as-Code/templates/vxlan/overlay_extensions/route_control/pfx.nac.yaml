@@ -1,0 +1,31 @@
+# Network-as-Code template: IP Prefix-Lists
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/overlay_extensions/route_control/pfx/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 3); example values used as placeholders where available.
+---
+vxlan:
+  overlay_extensions:  # Class | optional
+    route_control:  # Class | optional
+      ipv4_prefix_lists:  # List | optional
+        - name: "sac-ipv4_prefix-list"  # String | Regex: ^[A-Za-z0-9-_]{1,63}$ | required
+          description: "SAC IPv4 prefix-list"  # String | optional
+          entries:  # List | optional
+            - seq_number: 10  # Integer | min: 1 , max: 4294967294 | required
+              operation: "permit"  # Choice | permit , deny | required
+              prefix: "41.0.0.0/24"  # IP | required
+              eq: 25  # Integer | min: 1 , max: 32 | optional
+              ge: 25  # Integer | min: 1 , max: 32 | optional
+              le: 32  # Integer | min: 1 , max: 32 | optional
+              mask: "255.255.255.0"  # IP | optional
+      ipv6_prefix_lists:  # List | optional
+        - name: "NAME_1"  # String | Regex: ^[A-Za-z0-9-_]{1,63}$ | required
+          description: "Example description"  # String | optional
+          entries:  # List | optional
+            - seq_number: 1  # Integer | min: 1 , max: 4294967294 | required
+              operation: "permit"  # Choice | permit , deny | required
+              prefix: "10.1.1.1"  # IP | required
+              eq: 1  # Integer | min: 1 , max: 128 | optional
+              ge: 1  # Integer | min: 1 , max: 128 | optional
+              le: 1  # Integer | min: 1 , max: 128 | optional
+              mask: "10.1.1.1"  # IP | optional

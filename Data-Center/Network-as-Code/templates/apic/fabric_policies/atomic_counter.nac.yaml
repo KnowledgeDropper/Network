@@ -1,0 +1,11 @@
+# Network-as-Code template: Atomic Counter
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/atomic_counter/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    atomic_counter:  # Class | optional
+      mode: "trail"  # Choice | path , trail | default: trail | optional
+      admin_state: true  # Boolean | required

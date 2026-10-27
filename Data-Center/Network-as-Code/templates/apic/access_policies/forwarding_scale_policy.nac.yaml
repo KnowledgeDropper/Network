@@ -1,0 +1,12 @@
+# Network-as-Code template: Forwarding Scale Switch Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/forwarding_scale_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    switch_policies:  # Class | optional
+      forwarding_scale_policies:  # List | optional
+        - name: "HIGH-DUAL-STACK"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          profile: "high-dual-stack"  # Choice | dual-stack , ipv4 , high-dual-stack , high-lpm , high-policy , high-ipv4-ep , mcast-heavy , max-lpm | default: dual-stack | optional

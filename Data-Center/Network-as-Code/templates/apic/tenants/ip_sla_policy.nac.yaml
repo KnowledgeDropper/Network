@@ -1,0 +1,20 @@
+# Network-as-Code template: IP SLA Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/ip_sla_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        ip_sla_policies:  # List | optional
+          - name: "L2PingEach30sec"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Send L2 ping each 30 seconds"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            frequency: 30  # Integer | min: 1 , max: 300 | default: 60 | optional
+            multiplier: 2  # Integer | min: 1 , max: 100 | default: 3 | optional
+            sla_type: "l2ping"  # Choice | icmp , tcp , l2ping , http | default: icmp | optional
+            port: 80  # Integer | min: 1 , max: 65535 | default: 0 | optional
+            http_method: "get"  # Choice | get | default: get | optional
+            http_version: "HTTP10"  # Choice | HTTP10 , HTTP11 | default: HTTP11 | optional
+            http_uri: "/example"  # String | Regex: ^/.{0,512}$ | default: / | optional

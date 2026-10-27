@@ -1,0 +1,29 @@
+# Network-as-Code template: Fabric Spine Switch Profile
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/fp_spine_switch_profile/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    spine_switch_profile_name: "SPINE\\g<id>"  # String | min: 1 , max: 64 | default: SPINE\g<id> | optional
+    spine_switch_selector_name: "SPINE\\g<id>"  # String | min: 1 , max: 64 | default: SPINE\g<id> | optional
+    spine_interface_profile_name: "SPINE\\g<id>"  # String | min: 1 , max: 64 | default: SPINE\g<id> | optional
+    spine_switch_profiles:  # List | optional
+      - name: "SPINE1001"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        selectors:  # List | optional
+          - name: "SEL1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            policy: "ALL_SPINES"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            node_blocks:  # List | optional
+              - name: "BLOCK1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                from: 1001  # Integer | min: 1 , max: 4000 | required
+                to: 1002  # Integer | min: 1 , max: 4000 | optional
+        interface_profiles: ["SPINE1001"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+  node_policies:  # Class | optional
+    nodes:  # List | optional
+      - role: "leaf"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        id: 1001  # Integer | min: 1 , max: 4000 | required
+        name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        fabric_policy_group: "ALL_SPINES"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+  auto_generate_switch_pod_profiles: false  # Boolean | default: false | optional
+  auto_generate_fabric_spine_switch_interface_profiles: true  # Boolean | default: false | optional

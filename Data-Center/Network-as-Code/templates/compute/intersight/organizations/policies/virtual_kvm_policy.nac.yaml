@@ -1,0 +1,23 @@
+# Network-as-Code template: Virtual KVM Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/virtual_kvm_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          virtual_kvm:  # List | optional
+            - name: "MyKvmPolicy"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              enabled: true  # Boolean | default: true | optional
+              maximum_sessions: 1  # Integer | min: 1 , max: 4 | default: 4 | optional
+              remote_port: 2069  # Integer | min: 1024 , max: 65535 | default: 2069 | optional
+              video_encryption: true  # Boolean | default: true | optional
+              local_server_video: false  # Boolean | default: true | optional
+              tunneled_kvm: true  # Boolean | default: false | optional

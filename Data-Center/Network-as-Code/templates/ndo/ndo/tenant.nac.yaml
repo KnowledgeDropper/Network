@@ -1,0 +1,18 @@
+# Network-as-Code template: Tenant
+# Source: https://netascode.cisco.com/docs/data_models/ndo/ndo/tenant/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+ndo:
+  tenants:  # List | optional
+    - name: "MSO1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+      description: "Description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+      sites:  # List | optional
+        - name: "APIC1"  # String | required
+          azure_subscription_id: "11111111-1111-1111-1111-111111111111"  # String | optional
+          azure_shared_tenant: "AZURE"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+      users:  # List | optional
+        - name: "NAME_1"  # String | required
+          domain: "DOMAIN_1"  # String | optional
+      orchestrator_only: true  # Boolean | default: true | optional

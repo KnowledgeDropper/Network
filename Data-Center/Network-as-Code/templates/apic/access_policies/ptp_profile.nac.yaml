@@ -1,0 +1,18 @@
+# Network-as-Code template: PTP Profile
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/ptp_profile/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    ptp_profiles:  # List | optional
+      - name: "MY_PTP_PROFILE"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,16}$ | required
+        announce_interval: -3  # Integer | min: -3 , max: 4 | default: 1 | optional
+        announce_timeout: 3  # Integer | min: 2 , max: 10 | default: 3 | optional
+        delay_interval: -4  # Integer | min: -4 , max: 5 | default: -3 | optional
+        sync_interval: -4  # Integer | min: -4 , max: 1 | default: -3 | optional
+        priority: 128  # Integer | min: 1 , max: 255 | default: 128 | optional
+        template: "telecom"  # Choice | aes67 , default , smpte , telecom | default: aes67 | optional
+        forwardable: true  # Boolean | default: true | optional
+        mismatch_handling: "configured"  # Choice | drop , received , configured | default: configured | optional

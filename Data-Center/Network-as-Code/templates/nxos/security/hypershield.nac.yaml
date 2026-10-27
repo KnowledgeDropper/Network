@@ -1,0 +1,60 @@
+# Network-as-Code template: Hypershield
+# Source: https://netascode.cisco.com/docs/data_models/nxos/security/hypershield/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        system:  # Class | optional
+          hypershield:  # Class | optional
+            source_interface_type: "loopback"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+            source_interface_id: "lo100"  # Any | String or Integer[min: 0 ] | optional
+            https_proxy: "proxy.example.com"  # String | optional
+            https_proxy_port: 80  # Integer | min: 1 , max: 65535 | optional
+            firewall_in_service: true  # Boolean | optional
+            firewall_vrfs:  # List | optional
+              - name: "red"  # String | required
+                module_affinity: 0  # Integer | min: 0 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+          hypershield:  # Class | optional [shared class: structure documented on this page as hypershield(nxos.devices.configuration.system)]
+            source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+            source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+            https_proxy: "HTTPS_PROXY_1"  # String | optional
+            https_proxy_port: 1  # Integer | min: 1 , max: 65535 | optional
+            firewall_in_service: false  # Boolean | optional
+            firewall_vrfs:  # List | optional [shared class: structure documented on this page as firewall_vrfs(nxos.devices.configuration.system.hypershield)]
+              - name: "NAME_1"  # String | required
+                module_affinity: 1  # Integer | min: 0 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+        hypershield:  # Class | optional [shared class: structure documented on this page as hypershield(nxos.devices.configuration.system)]
+          source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+          https_proxy: "HTTPS_PROXY_1"  # String | optional
+          https_proxy_port: 1  # Integer | min: 1 , max: 65535 | optional
+          firewall_in_service: false  # Boolean | optional
+          firewall_vrfs:  # List | optional [shared class: structure documented on this page as firewall_vrfs(nxos.devices.configuration.system.hypershield)]
+            - name: "NAME_1"  # String | required
+              module_affinity: 1  # Integer | min: 0 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+          hypershield:  # Class | optional [shared class: structure documented on this page as hypershield(nxos.devices.configuration.system)]
+            source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+            source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+            https_proxy: "HTTPS_PROXY_1"  # String | optional
+            https_proxy_port: 1  # Integer | min: 1 , max: 65535 | optional
+            firewall_in_service: false  # Boolean | optional
+            firewall_vrfs:  # List | optional [shared class: structure documented on this page as firewall_vrfs(nxos.devices.configuration.system.hypershield)]
+              - name: "NAME_1"  # String | required
+                module_affinity: 1  # Integer | min: 0 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

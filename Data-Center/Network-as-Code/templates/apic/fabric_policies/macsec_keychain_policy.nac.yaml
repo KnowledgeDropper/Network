@@ -1,0 +1,18 @@
+# Network-as-Code template: Fabric MACsec Keychain Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/macsec_keychain_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    macsec_keychain_policies:  # List | optional
+      - name: "fabric-macsec-keychain-1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        description: "Fabric MACsec Keychain Policy"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+        key_policies:  # List | optional
+          - name: "fabric-primary-key-spine"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            description: "Primary encryption key"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            key_name: "abcdef0123456789"  # String | Regex: ^[a-fA-F0-9]{0,64}$ | required
+            pre_shared_key: "deadbeefcafebabefeedface12345678deadbeefcafebabefeedface12345678"  # String | Regex: ^[a-fA-F0-9]{0,64}$ | required
+            start_time: "now"  # Choice | now | default: now | optional
+            end_time: "infinite"  # Choice | infinite | default: infinite | optional

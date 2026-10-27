@@ -1,0 +1,100 @@
+# Network-as-Code template: Clock
+# Source: https://netascode.cisco.com/docs/data_models/nxos/system/clock/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        system:  # Class | optional
+          clock:  # Class | optional
+            format: "24hours"  # Choice | 24hours , 12hours | optional
+            format_show_timezone_debug: false  # Boolean | optional
+            format_show_timezone_syslog: false  # Boolean | optional
+            protocol: "unspecified"  # Choice | unspecified , ptp , ntp , none , gnss | optional
+            timezone_name: "PST"  # String | optional
+            timezone_hours: -8  # Integer | min: -12 , max: 14 | optional
+            timezone_minutes: 0  # Integer | min: 0 , max: 59 | optional
+            summer_time:  # Class | optional
+              name: "PDT"  # String | required
+              offset_minutes: 60  # Integer | min: 1 , max: 1440 | optional
+              start_week: 2  # Integer | min: 1 , max: 5 | optional
+              start_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+              start_month: "Mar"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+              start_time: "02:00"  # String | optional
+              end_week: 1  # Integer | min: 1 , max: 5 | optional
+              end_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+              end_month: "Nov"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+              end_time: "02:00"  # String | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+          clock:  # Class | optional [shared class: structure documented on this page as clock(nxos.devices.configuration.system)]
+            format: "24hours"  # Choice | 24hours , 12hours | optional
+            format_show_timezone_debug: false  # Boolean | optional
+            format_show_timezone_syslog: false  # Boolean | optional
+            protocol: "unspecified"  # Choice | unspecified , ptp , ntp , none , gnss | optional
+            timezone_name: "TIMEZONE_NAME_1"  # String | optional
+            timezone_hours: 1  # Integer | min: -12 , max: 14 | optional
+            timezone_minutes: 1  # Integer | min: 0 , max: 59 | optional
+            summer_time:  # Class | optional [shared class: structure documented on this page as summer_time(nxos.devices.configuration.system.clock)]
+              name: "NAME_1"  # String | required
+              offset_minutes: 1  # Integer | min: 1 , max: 1440 | optional
+              start_week: 1  # Integer | min: 1 , max: 5 | optional
+              start_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+              start_month: "Jan"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+              start_time: "START_TIME_1"  # String | optional
+              end_week: 1  # Integer | min: 1 , max: 5 | optional
+              end_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+              end_month: "Jan"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+              end_time: "END_TIME_1"  # String | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+        clock:  # Class | optional [shared class: structure documented on this page as clock(nxos.devices.configuration.system)]
+          format: "24hours"  # Choice | 24hours , 12hours | optional
+          format_show_timezone_debug: false  # Boolean | optional
+          format_show_timezone_syslog: false  # Boolean | optional
+          protocol: "unspecified"  # Choice | unspecified , ptp , ntp , none , gnss | optional
+          timezone_name: "TIMEZONE_NAME_1"  # String | optional
+          timezone_hours: 1  # Integer | min: -12 , max: 14 | optional
+          timezone_minutes: 1  # Integer | min: 0 , max: 59 | optional
+          summer_time:  # Class | optional [shared class: structure documented on this page as summer_time(nxos.devices.configuration.system.clock)]
+            name: "NAME_1"  # String | required
+            offset_minutes: 1  # Integer | min: 1 , max: 1440 | optional
+            start_week: 1  # Integer | min: 1 , max: 5 | optional
+            start_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+            start_month: "Jan"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+            start_time: "START_TIME_1"  # String | optional
+            end_week: 1  # Integer | min: 1 , max: 5 | optional
+            end_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+            end_month: "Jan"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+            end_time: "END_TIME_1"  # String | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+          clock:  # Class | optional [shared class: structure documented on this page as clock(nxos.devices.configuration.system)]
+            format: "24hours"  # Choice | 24hours , 12hours | optional
+            format_show_timezone_debug: false  # Boolean | optional
+            format_show_timezone_syslog: false  # Boolean | optional
+            protocol: "unspecified"  # Choice | unspecified , ptp , ntp , none , gnss | optional
+            timezone_name: "TIMEZONE_NAME_1"  # String | optional
+            timezone_hours: 1  # Integer | min: -12 , max: 14 | optional
+            timezone_minutes: 1  # Integer | min: 0 , max: 59 | optional
+            summer_time:  # Class | optional [shared class: structure documented on this page as summer_time(nxos.devices.configuration.system.clock)]
+              name: "NAME_1"  # String | required
+              offset_minutes: 1  # Integer | min: 1 , max: 1440 | optional
+              start_week: 1  # Integer | min: 1 , max: 5 | optional
+              start_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+              start_month: "Jan"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+              start_time: "START_TIME_1"  # String | optional
+              end_week: 1  # Integer | min: 1 , max: 5 | optional
+              end_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+              end_month: "Jan"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+              end_time: "END_TIME_1"  # String | optional

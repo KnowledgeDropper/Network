@@ -1,0 +1,24 @@
+# Network-as-Code template: Syslog Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/syslog_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          syslog:  # List | optional
+            - name: "MySyslogPolicy"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              local_min_severity: "warning"  # Choice | warning , emergency , alert , critical , error , notice , informational , debug | default: warning | optional
+              remote_clients:  # List | optional
+                - hostname: "10.0.0.200"  # String | required
+                  enabled: false  # Boolean | optional
+                  port: 514  # Integer | min: 1 , max: 65535 | optional
+                  protocol: "udp"  # Choice | udp , tcp | optional
+                  min_severity: "critical"  # Choice | warning , emergency , alert , critical , error , notice , informational , debug | optional

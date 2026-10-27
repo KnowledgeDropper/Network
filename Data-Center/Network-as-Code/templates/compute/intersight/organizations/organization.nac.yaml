@@ -1,0 +1,608 @@
+# Network-as-Code template: Organization
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/organization/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - name: "MyOrganization"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        policies:  # Class | optional
+          bios:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              bios_template: "AnalyticalDatabaseSystems-M5-Intel"  # Choice | AnalyticalDatabaseSystems-M5-Intel , AnalyticalDatabaseSystems-M5-Intel-Tpm , AnalyticalDatabaseSystems-M6-Intel , AnalyticalDatabaseSystems-M6-Intel-Tpm , AnalyticalDatabaseSystems-M7-Intel , AnalyticalDatabaseSystems-M7-Intel-Tpm , Analytics-M8-AMD , Analytics-M8-AMD-Tpm , AzureStack-M6-Intel , AzureStack-M6-Intel-Tpm , AzureStack-M7-Intel , AzureStack-M7-Intel-Tpm , ComputationIntensive-M6-AMD , ComputationIntensive-M6-AMD-Tpm , CPUIntensive-M6-Intel , CPUIntensive-M6-Intel-Tpm , CPUIntensive-M7-Intel , CPUIntensive-M7-Intel-Tpm , CPUIntensive-M8-AMD , CPUIntensive-M8-AMD-Tpm , DataAnalytics-M6-Intel , DataAnalytics-M6-Intel-Tpm , DataAnalytics-M7-Intel , DataAnalytics-M7-Intel-Tpm , EnergyEfficiency-M5-Intel , EnergyEfficiency-M5-Intel-Tpm , EnergyEfficiency-M6-AMD , EnergyEfficiency-M6-AMD-Tpm , EnergyEfficiency-M6-Intel , EnergyEfficiency-M6-Intel-Tpm , EnergyEfficient-M7-Intel , EnergyEfficient-M7-Intel-Tpm , EnergyEfficiency-M8-AMD , EnergyEfficiency-M8-AMD-Tpm , HighPerformanceComputing-M5-Intel , HighPerformanceComputing-M5-Intel-Tpm , HighPerformanceComputing-M6-AMD , HighPerformanceComputing-M6-AMD-Tpm , HighPerformanceComputing-M6-Intel , HighPerformanceComputing-M6-Intel-Tpm , HighPerformanceComputing-M7-Intel , HighPerformanceComputing-M7-Intel-Tpm , HPC-M8-AMD , HPC-M8-AMD-Tpm , IOIntensive-M6-AMD , IOIntensive-M6-AMD-Tpm , IOIntensive-M6-Intel , IOIntensive-M6-Intel-Tpm , IOIntensive-M8-AMD , IOIntensive-M8-AMD-Tpm , JavaApplicationServer-M5-Intel , JavaApplicationServer-M5-Intel-Tpm , LowLatency-M5-Intel , LowLatency-M5-Intel-Tpm , LowLatency-M6-AMD , LowLatency-M6-AMD-Tpm , LowLatency-M6-Intel , LowLatency-M6-Intel-Tpm , LowLatency-M7-Intel , LowLatency-M7-Intel-Tpm , LowLatency-M8-AMD , LowLatency-M8-AMD-Tpm , M5-amd-virtual , M5-amd-virtual-Tpm , M5-intel-virtual , M5-intel-virtual-Tpm , M6-amd-virtual , M6-amd-virtual-Tpm , M6-intel-analytical-db , M6-intel-analytical-db-Tpm , M6-intel-virtual , M6-intel-virtual-Tpm , MaximumPerformance-M5-Intel , MaximumPerformance-M5-Intel-Tpm , OnlineTransactionProcessing-M5-Intel , OnlineTransactionProcessing-M5-Intel-Tpm , RDBMS-M8-AMD , RDBMS-M8-AMD-Tpm , RelationalDatabaseSystems-M6-Intel , RelationalDatabaseSystems-M6-Intel-Tpm , RelationalDatabaseSystems-M7-Intel , RelationalDatabaseSystems-M7-Intel-Tpm , VDI-M6-AMD , VDI-M6-AMD-Tpm , Virtualization-M5-Intel , Virtualization-M5-Intel-Tpm , Virtualization-M6-AMD , Virtualization-M6-AMD-Tpm , Virtualization-M6-Intel , Virtualization-M6-Intel-Tpm , Virtualization-M7-Intel , Virtualization-M7-Intel-Tpm , Virtualization-M8-AMD , Virtualization-M8-AMD-Tpm , Virtualization-M8-Intel , Virtualization-M8-Intel-Tpm | optional
+          boot_order:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              boot_mode: "Uefi"  # Choice | Uefi , Legacy | default: Uefi | optional
+              secure_boot: true  # Boolean | default: true | optional
+              boot_devices:  # List | optional
+                - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_-]{1,30}$ | required
+                  device_type: "flex_mmc"  # Choice | flex_mmc , http_boot , iscsi_boot , local_cdd , local_disk , nvme , pch_storage , pxe_boot , san_boot , sd_card , uefi_shell , usb , virtual_media | required
+                  enabled: true  # Boolean | default: true | optional
+                  slot: "SLOT_1"  # String | optional
+                  lun: 1  # Integer | min: 0 , max: 255 | optional
+                  subtype: "None"  # Choice | None , flex-util , flex-flash , SDCARD , cimc-mapped-dvd , cimc-mapped-hdd , kvm-mapped-dvd , kvm-mapped-hdd , kvm-mapped-fdd , usb-cd , usb-fdd , usb-hdd , flexmmc-mapped-dvd , flexmmc-mapped-hdd | optional
+                  interface_name: "INTERFACE_NAME_1"  # String | optional
+                  interface_source: "name"  # Choice | name , mac , port | optional
+                  ip_type: "None"  # Choice | None , IPv4 , IPv6 | optional
+                  ip_config_type: "DHCP"  # Choice | DHCP , Static | optional
+                  mac_address: "MAC_ADDRESS_1"  # String | optional
+                  port: 1  # Integer | min: -1 , max: 255 | optional
+                  protocol: "HTTP"  # Choice | HTTP , HTTPS | optional
+                  target_wwpn: "TARGET_WWPN_1"  # String | optional
+                  uri: "URI_1"  # String | optional
+                  ipv4_config:  # Class | optional
+                    ip: "10.1.1.1"  # IP | required
+                    network_mask: "NETWORK_MASK_1"  # String | required
+                    gateway_ip: "10.1.1.1"  # IP | required
+                    dns_ip: "10.1.1.1"  # IP | optional
+                  ipv6_config:  # Class | optional
+                    ip: "10.1.1.1"  # IP | required
+                    prefix_length: 1  # Integer | min: 1 , max: 128 | required
+                    gateway_ip: "10.1.1.1"  # IP | required
+                    dns_ip: "10.1.1.1"  # IP | optional
+                  bootloader:  # Class | optional
+                    name: "NAME_1"  # String | required
+                    path: "PATH_1"  # String | required
+                    description: "Example description"  # String | optional
+          ethernet_adapter:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              advanced_filter: false  # Boolean | optional
+              ether_channel_pinning: false  # Boolean | optional
+              geneve: false  # Boolean | optional
+              interrupt_scaling: false  # Boolean | optional
+              rss: false  # Boolean | optional
+              uplink_failback_timeout: 1  # Integer | min: 0 , max: 600 | optional
+              arfs: false  # Boolean | optional
+              completion_queue_settings:  # Class | optional
+                nr_count: 1  # Integer | min: 1 , max: 2000 | optional
+                ring_size: 1  # Integer | min: 1 , max: 256 | optional
+              interrupt_settings:  # Class | optional
+                coalescing_time: 1  # Integer | min: 0 , max: 65535 | optional
+                coalescing_type: "MIN"  # Choice | MIN , IDLE | optional
+                nr_count: 1  # Integer | min: 1 , max: 1024 | optional
+                mode: "MSIx"  # Choice | MSIx , MSI , INTx | optional
+              nvgre: false  # Boolean | optional
+              ptp: false  # Boolean | optional
+              roce_settings:  # Class | optional
+                enabled: false  # Boolean | optional
+                class_of_service: "1"  # Choice | 1 , 2 , 4 , 5 , 6 | optional
+                memory_regions: 1  # Integer | min: 1 , max: 524288 | optional
+                queue_pairs: 1  # Integer | min: 1 , max: 8192 | optional
+                resource_groups: 1  # Integer | min: 1 , max: 128 | optional
+                version: 1  # Integer | min: 1 , max: 2 | optional
+              rss_hash_settings:  # Class | optional
+                ipv4_hash: false  # Boolean | optional
+                ipv6_ext_hash: false  # Boolean | optional
+                ipv6_hash: false  # Boolean | optional
+                tcp_ipv4_hash: false  # Boolean | optional
+                tcp_ipv6_ext_hash: false  # Boolean | optional
+                tcp_ipv6_hash: false  # Boolean | optional
+                udp_ipv4_hash: false  # Boolean | optional
+                udp_ipv6_hash: false  # Boolean | optional
+              rx_queue_settings:  # Class | optional
+                nr_count: 1  # Integer | min: 1 , max: 1000 | optional
+                ring_size: 64  # Integer | min: 64 , max: 4096 | optional
+              tcp_offload_settings:  # Class | optional
+                large_receive: false  # Boolean | optional
+                large_send: false  # Boolean | optional
+                rx_checksum: false  # Boolean | optional
+                tx_checksum: false  # Boolean | optional
+              tx_queue_settings:  # Class | optional
+                nr_count: 1  # Integer | min: 1 , max: 1000 | optional
+                ring_size: 64  # Integer | min: 64 , max: 4096 | optional
+              vxlan: false  # Boolean | optional
+          ethernet_network:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              default_vlan: 0  # Integer | min: 0 , max: 4094 | default: 0 | optional
+              vlan_mode: "ACCESS"  # Choice | ACCESS , TRUNK | default: ACCESS | optional
+              allowed_vlans: "ALLOWED_VLANS_1"  # String | optional
+              qinq: false  # Boolean | default: false | optional
+              qinq_vlan: 1  # Integer | min: 1 , max: 4093 | optional
+          ethernet_network_control:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              cdp: false  # Boolean | default: false | optional
+              forge_mac: "allow"  # Choice | allow , deny | default: allow | optional
+              mac_registration_mode: "nativeVlanOnly"  # Choice | nativeVlanOnly , allVlans | default: nativeVlanOnly | optional
+              uplink_fail_action: "linkDown"  # Choice | linkDown , warning | default: linkDown | optional
+              lldp_receive: false  # Boolean | default: false | optional
+              lldp_transmit: false  # Boolean | default: false | optional
+          ethernet_network_group:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              allowed_vlans: "ALLOWED_VLANS_1"  # String | optional
+              native_vlan: 0  # Integer | min: 0 , max: 4093 | default: 0 | optional
+              qinq: false  # Boolean | default: false | optional
+              qinq_vlan: 1  # Integer | min: 1 , max: 4093 | optional
+          ethernet_qos:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              burst: 10240  # Integer | min: 1 , max: 1000000 | default: 10240 | optional
+              cos: 0  # Integer | min: 0 , max: 6 | default: 0 | optional
+              mtu: 1500  # Integer | min: 1500 , max: 9000 | default: 1500 | optional
+              priority: "Best Effort"  # Choice | Best Effort , FC , Platinum , Gold , Silver , Bronze | default: Best Effort | optional
+              rate_limit: 0  # Integer | min: 0 , max: 100000 | default: 0 | optional
+              trust_host_cos: false  # Boolean | default: false | optional
+          fibre_channel_adapter:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              error_detection_timeout: 2000  # Integer | min: 1000 , max: 100000 | default: 2000 | optional
+              io_throttle_count: 512  # Integer | min: 1 , max: 1024 | default: 512 | optional
+              lun_count: 1024  # Integer | min: 1 , max: 4096 | default: 1024 | optional
+              lun_queue_depth: 20  # Integer | min: 1 , max: 254 | default: 20 | optional
+              resource_allocation_timeout: 10000  # Integer | min: 5000 , max: 100000 | default: 10000 | optional
+              interrupt_mode: "MSIx"  # Choice | MSIx , MSI , INTx | optional
+              flogi_retries: 1  # Integer | min: 0 | optional
+              flogi_timeout: 1000  # Integer | min: 1000 | optional
+              plogi_retries: 1  # Integer | min: 0 | optional
+              plogi_timeout: 1000  # Integer | min: 1000 | optional
+              rx_queue_ring_size: 64  # Integer | min: 64 , max: 2048 | optional
+              scsi_queue_ring_size: 64  # Integer | min: 64 , max: 512 | optional
+              tx_queue_ring_size: 64  # Integer | min: 64 , max: 128 | optional
+              error_recovery_settings:  # Class | optional
+                enabled: false  # Boolean | optional
+                io_retry_count: 1  # Integer | min: 1 , max: 255 | optional
+                io_retry_timeout: 1  # Integer | min: 1 , max: 59 | optional
+                link_down_timeout: 1  # Integer | min: 0 | optional
+                port_down_timeout: 1  # Integer | min: 0 | optional
+          fibre_channel_network:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              vsan_id: 1  # Integer | min: 1 , max: 4094 | default: 1 | optional
+              default_vlan_id: 0  # Integer | min: 0 , max: 4094 | default: 0 | optional
+          fibre_channel_qos:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              burst: 10240  # Integer | min: 1 | default: 10240 | optional
+              cos: 3  # Integer | min: 0 , max: 6 | default: 3 | optional
+              max_data_field_size: 2112  # Integer | min: 256 , max: 2112 | default: 2112 | optional
+              rate_limit: 0  # Integer | min: 0 | default: 0 | optional
+          firmware:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              target_platform: "Standalone"  # Choice | Standalone , FIAttached , UnifiedEdgeServer | default: Standalone | optional
+              exclude_component_list: ["none"]  # List | Choice[ none , local-disk , drives-except-boot-drives , storage-controller , storage-sasexpander , storage-u2 ] | optional
+              model_bundle_combo:  # List | optional
+                - model_family: "UCSC-C220-M5"  # Choice | UCSC-C220-M5 , UCSC-C220-M4 , UCSC-C240-M4 , UCSC-C460-M4 , UCSC-C240-M5 , UCSC-C480-M5 , UCSB-B200-M5 , UCSB-B480-M5 , UCSC-C220-M6 , UCSC-C240-M6 , UCSC-C225-M6 , UCSC-C245-M6 , UCSB-B200-M6 , UCSX-210C-M6 , UCSX-210C-M7 , UCSC-C220-M7 , UCSC-C240-M7 , UCSC-C125 , UCSX-410C-M7 , UCSC-C245-M8 , UCSC-C225-M8 , UCSX-215C-M8 , UCSX-210C-M8 , UCSX-410C-M8 , UCSXE-130C-M8 , UCSC-C220-M8 , UCSC-C240-M8 , CAI-845A-M8 | required
+                  bundle_version: "BUNDLE_VERSION_1"  # String | required
+          imc_access:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              configure_inband: true  # Boolean | default: true | optional
+              configure_out_of_band: false  # Boolean | default: false | optional
+              inband_vlan: 4  # Integer | min: 4 , max: 4093 | optional
+              ipv4: true  # Boolean | default: true | optional
+              ipv6: false  # Boolean | default: false | optional
+              inband_ip_pool: "INBAND_IP_POOL_1"  # String | optional
+              out_of_band_ip_pool: "OUT_OF_BAND_IP_POOL_1"  # String | optional
+          ipmi_over_lan:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              enabled: true  # Boolean | default: true | optional
+              privilege: "admin"  # Choice | admin , user , read-only | default: admin | optional
+              encryption_key: "ENCRYPTION_KEY_1"  # String | optional
+          lan_connectivity:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              target_platform: "FIAttached"  # Choice | FIAttached , Standalone , UnifiedEdgeServer | default: FIAttached | optional
+              vnic_placement_mode: "custom"  # Choice | auto , custom | default: custom | optional
+              iqn_allocation_type: "None"  # Choice | None , Static , Pool | default: None | optional
+              vnics:  # List | optional
+                - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  order: 0  # Integer | min: 0 , max: 255 | default: 0 | optional
+                  fabric: "A"  # Choice | A , B , None | default: A | optional
+                  slot: "SLOT_1"  # String | optional
+                  pci_link: 1  # Integer | min: 0 , max: 1 | optional
+                  failover: false  # Boolean | default: false | optional
+                  mac_pool: "MAC_POOL_1"  # String | optional
+                  ethernet_adapter_policy: "ETHERNET_ADAPTER_POLICY_1"  # String | optional
+                  ethernet_network_control_policy: "ETHERNET_NETWORK_CONTROL_POLICY_1"  # String | optional
+                  ethernet_network_policy: "ETHERNET_NETWORK_POLICY_1"  # String | optional
+                  ethernet_network_group_policy: "ETHERNET_NETWORK_GROUP_POLICY_1"  # String | optional
+                  ethernet_qos_policy: "ETHERNET_QOS_POLICY_1"  # String | optional
+          local_user:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              strong_password: true  # Boolean | default: true | optional
+              password_expiry: false  # Boolean | default: false | optional
+              password_expiry_duration: 90  # Integer | min: 1 , max: 3650 | default: 90 | optional
+              password_history: 5  # Integer | min: 0 , max: 5 | default: 5 | optional
+              notification_period: 15  # Integer | min: 1 , max: 15 | default: 15 | optional
+              grace_period: 0  # Integer | min: 0 , max: 5 | default: 0 | optional
+              always_send_user_password: false  # Boolean | default: false | optional
+              users:  # List | optional
+                - username: "USERNAME_1"  # String | Regex: ^[a-zA-Z0-9._-]{1,16}$ | required
+                  role: "admin"  # Choice | admin , readonly , user | required
+                  password: "PASSWORD_1"  # String | optional
+                  enabled: true  # Boolean | default: true | optional
+          network_connectivity:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              preferred_ipv4_dns: "PREFERRED_IPV4_DNS_1"  # String | optional
+              alternate_ipv4_dns: "ALTERNATE_IPV4_DNS_1"  # String | optional
+              ipv4_dns_from_dhcp: false  # Boolean | default: false | optional
+              ipv6: false  # Boolean | default: false | optional
+              preferred_ipv6_dns: "PREFERRED_IPV6_DNS_1"  # String | optional
+              alternate_ipv6_dns: "ALTERNATE_IPV6_DNS_1"  # String | optional
+              ipv6_dns_from_dhcp: false  # Boolean | default: false | optional
+              dynamic_dns: false  # Boolean | default: false | optional
+              dynamic_dns_domain: "DYNAMIC_DNS_DOMAIN_1"  # String | optional
+          ntp:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              enabled: true  # Boolean | default: true | optional
+              timezone: "UTC"  # String | default: UTC | optional
+              ntp_servers: ["NTP_SERVERS_1"]  # List | String | optional
+              authenticated_ntp_servers:  # List | optional
+                - server_name: "SERVER_NAME_1"  # String | required
+                  key_type: "SHA1"  # Choice | SHA1 | optional
+                  sym_key_id: 1  # Integer | min: 1 | optional
+                  sym_key_value: "SYM_KEY_VALUE_1"  # String | optional
+          power:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              allocated_budget: 0  # Integer | min: 0 | default: 0 | optional
+              dynamic_rebalancing: "Enabled"  # Choice | Enabled , Disabled | default: Enabled | optional
+              extended_power_capacity: "Enabled"  # Choice | Enabled , Disabled | default: Enabled | optional
+              power_priority: "Low"  # Choice | Low , Medium , High | default: Low | optional
+              power_profiling: "Enabled"  # Choice | Enabled , Disabled | default: Enabled | optional
+              power_restore_state: "AlwaysOff"  # Choice | AlwaysOff , AlwaysOn , LastState | default: AlwaysOff | optional
+              power_save_mode: "Enabled"  # Choice | Enabled , Disabled | default: Enabled | optional
+              processor_package_power_limit: "Default"  # Choice | Default , Maximum , Minimum | default: Default | optional
+              redundancy_mode: "Grid"  # Choice | Grid , NotRedundant , N+1 , N+2 | default: Grid | optional
+          san_connectivity:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              target_platform: "FIAttached"  # Choice | FIAttached , Standalone , UnifiedEdgeServer | default: FIAttached | optional
+              vhba_placement_mode: "custom"  # Choice | auto , custom | default: custom | optional
+              wwnn_pool: "WWNN_POOL_1"  # String | optional
+              vhbas:  # List | optional
+                - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  order: 0  # Integer | min: 0 , max: 255 | default: 0 | optional
+                  fabric: "A"  # Choice | A , B , None | default: A | optional
+                  slot: "SLOT_1"  # String | optional
+                  pci_link: 1  # Integer | min: 0 , max: 1 | optional
+                  uplink: 1  # Integer | min: 0 | optional
+                  auto_pci_link: false  # Boolean | optional
+                  auto_slot_id: false  # Boolean | optional
+                  persistent_lun_bindings: false  # Boolean | optional
+                  vhba_type: "fc-initiator"  # Choice | fc-initiator , fc-nvme-initiator , fc-nvme-target , fc-target | default: fc-initiator | optional
+                  wwpn_pool: "WWPN_POOL_1"  # String | optional
+                  fibre_channel_adapter_policy: "FIBRE_CHANNEL_ADAPTER_POLICY_1"  # String | optional
+                  fibre_channel_network_policy: "FIBRE_CHANNEL_NETWORK_POLICY_1"  # String | optional
+                  fibre_channel_qos_policy: "FIBRE_CHANNEL_QOS_POLICY_1"  # String | optional
+          serial_over_lan:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              enabled: true  # Boolean | default: true | optional
+              baud_rate: "9600"  # Choice | 9600 , 19200 , 38400 , 57600 , 115200 | default: 9600 | optional
+              com_port: "com0"  # Choice | com0 , com1 | default: com0 | optional
+              ssh_port: 2400  # Integer | min: 1024 , max: 65535 | default: 2400 | optional
+          smtp:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              enabled: true  # Boolean | default: true | optional
+              smtp_server: "SMTP_SERVER_1"  # String | optional
+              smtp_port: 25  # Integer | min: 1 , max: 65535 | default: 25 | optional
+              sender_email: "SENDER_EMAIL_1"  # String | optional
+              recipients: ["RECIPIENTS_1"]  # List | String | optional
+              min_severity: "critical"  # Choice | critical , major , minor , warning , condition | default: critical | optional
+              tls: false  # Boolean | default: false | optional
+          snmp:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              enabled: true  # Boolean | default: true | optional
+              port: 161  # Integer | min: 1 , max: 65535 | default: 161 | optional
+              access_community_string: "ACCESS_COMMUNITY_STRING_1"  # String | optional
+              community_access: "Disabled"  # Choice | Disabled , Limited , Full | default: Disabled | optional
+              trap_community: "TRAP_COMMUNITY_1"  # String | optional
+              sys_contact: "SYS_CONTACT_1"  # String | optional
+              sys_location: "SYS_LOCATION_1"  # String | optional
+              engine_id: "ENGINE_ID_1"  # String | optional
+              v2: false  # Boolean | default: false | optional
+              v3: true  # Boolean | default: true | optional
+              users:  # List | optional
+                - name: "NAME_1"  # String | required
+                  security_level: "AuthPriv"  # Choice | AuthPriv , NoAuthNoPriv , AuthNoPriv | default: AuthPriv | required
+                  auth_type: "SHA"  # Choice | NA , MD5 , SHA , SHA-224 , SHA-256 , SHA-384 , SHA-512 | default: SHA | optional
+                  auth_password: "AUTH_PASSWORD_1"  # String | optional
+                  privacy_type: "AES"  # Choice | NA , DES , AES | default: AES | optional
+                  privacy_password: "PRIVACY_PASSWORD_1"  # String | optional
+              traps:  # List | optional
+                - destination: "DESTINATION_1"  # String | required
+                  port: 162  # Integer | min: 1 , max: 65535 | default: 162 | optional
+                  version: "V3"  # Choice | V1 , V2 , V3 | default: V3 | required
+                  type: "Trap"  # Choice | Trap , Inform | default: Trap | optional
+                  enabled: true  # Boolean | default: true | optional
+                  user: "USER_1"  # String | optional
+                  community: "COMMUNITY_1"  # String | optional
+          storage:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              unused_disks_state: "NoChange"  # Choice | NoChange , UnconfiguredGood , Jbod | default: NoChange | optional
+              use_jbod_for_vd_creation: false  # Boolean | default: false | optional
+              global_hot_spares: "GLOBAL_HOT_SPARES_1"  # String | optional
+              m2_virtual_drive:  # Class | optional
+                enabled: false  # Boolean | optional
+                controller_slot: "MSTOR-RAID-1"  # Choice | MSTOR-RAID-1 , MSTOR-RAID-2 , MSTOR-RAID-1,MSTOR-RAID-2 | optional
+                name: "NAME_1"  # String | optional
+              drive_groups:  # List | optional
+                - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  raid_level: "Raid1"  # Choice | Raid0 , Raid1 , Raid5 , Raid6 , Raid10 , Raid50 , Raid60 | default: Raid1 | optional
+                  secure: false  # Boolean | optional
+                  manual_drive_group:  # Class | optional
+                    dedicated_hot_spares: "DEDICATED_HOT_SPARES_1"  # String | optional
+                    drive_array_spans: ["DRIVE_ARRAY_SPANS_1"]  # List | String | required
+                  virtual_drives:  # List | optional
+                    - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_-]{1,15}$ | required
+                      size: 1  # Integer | min: 1 | optional
+                      boot_drive: false  # Boolean | default: false | optional
+                      expand_to_available: false  # Boolean | default: false | optional
+                      access_policy: "Default"  # Choice | Default , ReadWrite , ReadOnly , Blocked | default: Default | optional
+                      drive_cache: "Default"  # Choice | Default , NoChange , Enable , Disable | default: Default | optional
+                      read_policy: "Default"  # Choice | Default , ReadAhead , NoReadAhead | default: Default | optional
+                      write_policy: "Default"  # Choice | Default , WriteThrough , WriteBackGoodBbu , AlwaysWriteBack | default: Default | optional
+                      strip_size: "64"  # Choice | 64 , 128 , 256 , 512 , 1024 | default: 64 | optional
+          ssh:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              enabled: true  # Boolean | default: true | optional
+              port: 22  # Integer | min: 1 , max: 65535 | default: 22 | optional
+              timeout: 1800  # Integer | min: 60 , max: 10800 | default: 1800 | optional
+          syslog:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              local_min_severity: "warning"  # Choice | warning , emergency , alert , critical , error , notice , informational , debug | default: warning | optional
+              remote_clients:  # List | optional
+                - hostname: "HOSTNAME_1"  # String | required
+                  enabled: false  # Boolean | optional
+                  port: 1  # Integer | min: 1 , max: 65535 | optional
+                  protocol: "udp"  # Choice | udp , tcp | optional
+                  min_severity: "warning"  # Choice | warning , emergency , alert , critical , error , notice , informational , debug | optional
+          thermal:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              fan_control_mode: "Balanced"  # Choice | Balanced , LowPower , HighPower , MaximumPower , Acoustic , MaximumCooling | default: Balanced | optional
+          virtual_kvm:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              enabled: true  # Boolean | default: true | optional
+              maximum_sessions: 4  # Integer | min: 1 , max: 4 | default: 4 | optional
+              remote_port: 2069  # Integer | min: 1024 , max: 65535 | default: 2069 | optional
+              video_encryption: true  # Boolean | default: true | optional
+              local_server_video: true  # Boolean | default: true | optional
+              tunneled_kvm: false  # Boolean | default: false | optional
+          virtual_media:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              enabled: true  # Boolean | default: true | optional
+              encryption: true  # Boolean | default: true | optional
+              low_power_usb: true  # Boolean | default: true | optional
+              mappings:  # List | optional
+                - volume_name: "VOLUME_NAME_1"  # String | required
+                  device_type: "cdd"  # Choice | cdd , hdd | default: cdd | optional
+                  mount_protocol: "nfs"  # Choice | nfs , cifs , http , https | default: nfs | optional
+                  file_location: "FILE_LOCATION_1"  # String | optional
+                  mount_options: "MOUNT_OPTIONS_1"  # String | optional
+                  username: "USERNAME_1"  # String | optional
+                  password: "PASSWORD_1"  # String | optional
+                  authentication_protocol: "none"  # Choice | none , ntlm , ntlmi , ntlmv2 , ntlmv2i , ntlmssp , ntlmsspi | default: none | optional
+        pools:  # Class | optional
+          ip:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              ipv4_config:  # Class | optional
+                gateway: "10.1.1.1"  # IP | required
+                netmask: "NETMASK_1"  # String | required
+                primary_dns: "10.1.1.1"  # IP | optional
+                secondary_dns: "10.1.1.1"  # IP | optional
+              ipv4_blocks:  # List | optional
+                - from: "10.1.1.1"  # IP | required
+                  size: 1  # Integer | min: 1 | optional
+                  to: "10.1.1.1"  # IP | optional
+              ipv6_config:  # Class | optional
+                gateway: "10.1.1.1"  # IP | required
+                prefix: 1  # Integer | min: 1 , max: 128 | required
+                primary_dns: "10.1.1.1"  # IP | optional
+                secondary_dns: "10.1.1.1"  # IP | optional
+              ipv6_blocks:  # List | optional
+                - from: "10.1.1.1"  # IP | required
+                  size: 1  # Integer | min: 1 | optional
+                  to: "10.1.1.1"  # IP | optional
+          mac:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              mac_blocks:  # List | required
+                - from: "00:11:22:33:44:55"  # MAC | required
+                  size: 1  # Integer | min: 1 , max: 1024 | optional
+                  to: "00:11:22:33:44:55"  # MAC | optional
+          uuid:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              prefix: "CHANGE_ME"  # String | Regex: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}$ | optional
+              uuid_suffix_blocks:  # List | required
+                - from: "CHANGE_ME"  # String | Regex: ^[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$ | required
+                  size: 1  # Integer | min: 1 , max: 1024 | optional
+                  to: "CHANGE_ME"  # String | Regex: ^[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$ | optional
+          wwnn:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              wwnn_blocks:  # List | required
+                - from: "CHANGE_ME"  # String | Regex: ^[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){7}$ | required
+                  size: 1  # Integer | min: 1 , max: 1024 | optional
+                  to: "CHANGE_ME"  # String | Regex: ^[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){7}$ | optional
+          wwpn:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              wwpn_blocks:  # List | required
+                - from: "CHANGE_ME"  # String | Regex: ^[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){7}$ | required
+                  size: 1  # Integer | min: 1 , max: 1024 | optional
+                  to: "CHANGE_ME"  # String | Regex: ^[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){7}$ | optional
+        templates:  # Class | optional
+          server:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional [shared class: structure assumed from tags(compute.intersight.organizations.policies.bios)]
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              target_platform: "FIAttached"  # Choice | FIAttached , Standalone , UnifiedEdgeServer | default: FIAttached | optional
+              bios_policy: "BIOS_POLICY_1"  # String | optional
+              boot_order_policy: "BOOT_ORDER_POLICY_1"  # String | optional
+              imc_access_policy: "IMC_ACCESS_POLICY_1"  # String | optional
+              ipmi_over_lan_policy: "IPMI_OVER_LAN_POLICY_1"  # String | optional
+              lan_connectivity_policy: "LAN_CONNECTIVITY_POLICY_1"  # String | optional
+              local_user_policy: "LOCAL_USER_POLICY_1"  # String | optional
+              network_connectivity_policy: "NETWORK_CONNECTIVITY_POLICY_1"  # String | optional
+              ntp_policy: "NTP_POLICY_1"  # String | optional
+              power_policy: "POWER_POLICY_1"  # String | optional
+              san_connectivity_policy: "SAN_CONNECTIVITY_POLICY_1"  # String | optional
+              serial_over_lan_policy: "SERIAL_OVER_LAN_POLICY_1"  # String | optional
+              smtp_policy: "SMTP_POLICY_1"  # String | optional
+              snmp_policy: "SNMP_POLICY_1"  # String | optional
+              ssh_policy: "SSH_POLICY_1"  # String | optional
+              storage_policy: "STORAGE_POLICY_1"  # String | optional
+              syslog_policy: "SYSLOG_POLICY_1"  # String | optional
+              thermal_policy: "THERMAL_POLICY_1"  # String | optional
+              firmware_policy: "FIRMWARE_POLICY_1"  # String | optional
+              virtual_kvm_policy: "VIRTUAL_KVM_POLICY_1"  # String | optional
+              virtual_media_policy: "VIRTUAL_MEDIA_POLICY_1"  # String | optional
+              uuid_pool: "UUID_POOL_1"  # String | optional

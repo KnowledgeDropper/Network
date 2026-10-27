@@ -1,0 +1,28 @@
+# Network-as-Code template: Community List
+# Source: https://netascode.cisco.com/docs/data_models/nxos/routing_policy/ip_community_list/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        community_lists:  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          - name: "CL-STANDARD-TENANT"  # String | required
+            mode: "standard"  # Choice | standard , expanded | optional
+            entries:  # List | optional
+              - seq: 10  # Integer | min: 1 , max: 4294967294 | required
+                action: "permit"  # Choice | permit , deny | optional
+                regex: "65000:.*"  # String | optional
+                communities: ["regular:as2-nn2:65000:100", "regular:as2-nn2:65000:200"]  # List | String | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration: {}  # Class | optional [nested class not documented separately on this page]
+  global:  # Class | optional
+    configuration: {}  # Class | optional [nested class not documented separately on this page]
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration: {}  # Class | optional [nested class not documented separately on this page]

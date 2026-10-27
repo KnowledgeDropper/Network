@@ -1,0 +1,40 @@
+# Network-as-Code template: LDAP
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/ldap/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    aaa:  # Class | optional
+      ldap:  # Class | optional
+        providers:  # List | optional
+          - hostname_ip: "2.2.2.2"  # Any | String[Regex: ^[a-zA-Z0-9:][a-zA-Z0-9.:-]{0,254}$ ] or IP | required
+            description: "descr"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            port: 3389  # Integer | min: 0 , max: 65535 | default: 389 | optional
+            bind_dn: "CN=testuser,OU=Employees,DC=example,DC=com"  # String | optional
+            base_dn: "OU=Employees,DC=example,DC=com"  # String | optional
+            password: "test@1234"  # String | optional
+            timeout: 10  # Integer | min: 5 , max: 60 | default: 30 | optional
+            retries: 4  # Integer | min: 0 , max: 5 | optional
+            enable_ssl: true  # Boolean | default: false | optional
+            filter: "cn=$userid"  # String | optional
+            attribute: "memberOf"  # String | optional
+            ssl_validation_level: "permissive"  # Choice | permissive , strict | default: strict | optional
+            mgmt_epg: "oob"  # Choice | inb , oob | default: inb | optional
+            server_monitoring: true  # Boolean | default: false | optional
+            monitoring_username: "user1"  # String | Regex: ^[a-zA-Z0-9][a-zA-Z0-9_.@-]{0,31}$ | default: default | optional
+            monitoring_password: "pass1"  # String | optional
+        group_map_rules:  # List | optional
+          - name: "test-users-rules"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "descr"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            group_dn: "CN=test-users,DC=example,DC=com"  # String | optional
+            security_domains:  # List | optional
+              - name: "all"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,31}$ | required
+                roles:  # List | optional
+                  - name: "admin"  # String | Regex: ^[a-zA-Z0-9_.-]{1,31}$ | required
+                    privilege_type: "write"  # Choice | write , read | default: write | optional
+        group_maps:  # List | optional
+          - name: "test-users-map"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            rules:  # List | optional
+              - name: "test-users-rules"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required

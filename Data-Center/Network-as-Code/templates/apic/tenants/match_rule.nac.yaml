@@ -1,0 +1,31 @@
+# Network-as-Code template: Match Rule
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/match_rule/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 5 (parsed 4); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        match_rules:  # List | optional
+          - name: "HQ_DC_SUBNETS"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Match HQ DC prefixes for route advertisement"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            regex_community_terms:  # List | optional
+              - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                regex: "REGEX_1"  # String | min: 0 , max: 64 | required
+                type: "regular"  # Choice | regular , extended | default: regular | optional
+                description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            community_terms:  # List | optional
+              - name: "HQ_DC_COMMUNITY"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                description: "HQ DC prefixes community"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                factors:  # List | optional
+                  - community: "regular:as2-nn2:65000:100"  # String | required
+                    description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                    scope: "transitive"  # Choice | transitive , non-transitive | default: transitive | optional
+            prefixes:  # List | optional
+              - ip: "10.0.0.0/16"  # IP | required
+                description: "HQ DC specific subnets"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                aggregate: true  # Boolean | default: false | optional
+                from_length: 24  # Integer | min: 0 , max: 128 | default: 0 | optional
+                to_length: 32  # Integer | min: 0 , max: 128 | default: 0 | optional

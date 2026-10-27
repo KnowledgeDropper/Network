@@ -1,0 +1,24 @@
+# Network-as-Code template: VSPAN Destination Group
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/vspan_destination_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    vspan:  # Class | optional
+      destination_groups:  # List | optional
+        - name: "DST_GRP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          destinations:  # List | optional
+            - name: "DST1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              tenant: "ABC"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              application_profile: "AP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              endpoint_group: "EPG1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              endpoint: "00:50:56:96:6B:4F"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              ip: "10.1.1.1"  # IP | optional
+              dscp: "unspecified"  # Any | Choice[ CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 , unspecified ] or Integer[min: 0 , max: 63 ] | default: unspecified | optional
+              flow_id: 1  # Integer | min: 1 , max: 1023 | default: 1 | optional
+              mtu: 1518  # Integer | min: 64 , max: 9216 | default: 1518 | optional
+              ttl: 64  # Integer | min: 1 , max: 255 | default: 64 | optional

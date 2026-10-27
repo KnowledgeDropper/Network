@@ -1,0 +1,13 @@
+# Network-as-Code template: Tenant
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/tenant/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 5 (parsed 5); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "ABC"  # String | Regex: ^[a-zA-Z0-9_.-]{1,63}$ | required
+      alias: "ABC-ALIAS"  # String | Regex: ^[a-zA-Z0-9_.-]{1,63}$ | optional
+      description: "My Description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+      managed: true  # Boolean | default: true | optional
+      security_domains: ["SECURITY-DOMAIN1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional

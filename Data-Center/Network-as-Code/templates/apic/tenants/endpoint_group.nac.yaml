@@ -1,0 +1,145 @@
+# Network-as-Code template: Endpoint Group
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/endpoint_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 19 (parsed 19); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      application_profiles:  # List | optional
+        - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          endpoint_groups:  # List | optional
+            - name: "EPG1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              alias: "ALIAS_1"  # String | Regex: ^[a-zA-Z0-9_.-]{1,63}$ | optional
+              ndo_managed: false  # Boolean | default: false | optional
+              description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              flood_in_encap: false  # Boolean | default: false | optional
+              intra_epg_isolation: false  # Boolean | default: false | optional
+              preferred_group: false  # Boolean | default: false | optional
+              proxy_arp: false  # Boolean | default: false | optional
+              bridge_domain: "BD1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              shutdown: false  # Boolean | default: false | optional
+              monitoring_policy: "MP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              physical_domains: ["PHY1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+              vmware_vmm_domains:  # List | optional
+                - name: "VMM1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  u_segmentation: true  # Boolean | default: false | optional
+                  delimiter: "|"  # String | Regex: ^[|~!@^+=]$ | optional
+                  vlan: 123  # Integer | min: 1 , max: 4096 | optional
+                  primary_vlan: 100  # Integer | min: 1 , max: 4096 | optional
+                  secondary_vlan: 101  # Integer | min: 1 , max: 4096 | optional
+                  netflow: false  # Boolean | default: false | optional
+                  deployment_immediacy: "lazy"  # Choice | immediate , lazy | default: lazy | optional
+                  resolution_immediacy: "immediate"  # Choice | immediate , lazy , pre-provision | default: pre-provision | optional
+                  port_binding: "dynamic"  # Choice | dynamic , ephemeral , default , static | default: default | optional
+                  allow_promiscuous: "reject"  # Choice | reject , accept | default: reject | optional
+                  forged_transmits: "reject"  # Choice | reject , accept | default: reject | optional
+                  mac_changes: "reject"  # Choice | reject , accept | default: reject | optional
+                  elag: "ELAGCustom"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,16}$ | optional
+                  active_uplinks_order: "1,2"  # String | Regex: ^(\d+(,\d+)*)?$ | optional
+                  standby_uplinks: "3,4"  # String | Regex: ^(\d+(,\d+)*)?$ | optional
+                  custom_epg_name: "CUSTOM_EPG_NAME_1"  # String | Regex: ^.{1,80}$ | optional
+              nutanix_vmm_domains:  # List | optional
+                - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  deployment_immediacy: "lazy"  # Choice | immediate , lazy | default: lazy | optional
+                  vlan: 1  # Integer | min: 1 , max: 4096 | optional
+                  ipam:  # Class | optional
+                    gateway_address: "0.0.0.0"  # IP | default: 0.0.0.0 | required
+                    dhcp_server_address_override: "0.0.0.0"  # IP | default: 0.0.0.0 | optional
+                    dhcp_address_pool: "DHCP_ADDRESS_POOL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  custom_epg_name: "CUSTOM_EPG_NAME_1"  # String | Regex: ^.{1,80}$ | optional
+              static_ports:  # List | optional
+                - node_id: 101  # Integer | min: 1 , max: 4000 | optional
+                  node2_id: 1011  # Integer | min: 1 , max: 4000 | optional
+                  fex_id: 101  # Integer | min: 101 , max: 199 | optional
+                  fex2_id: 101  # Integer | min: 101 , max: 199 | optional
+                  pod_id: 1  # Integer | min: 1 , max: 255 | optional
+                  module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+                  port: 10  # Integer | min: 1 , max: 127 | optional
+                  sub_port: 1  # Integer | min: 1 , max: 16 | optional
+                  channel: "Lf1010_Lf1011_eth1_1_vPC"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  vlan: 135  # Integer | min: 1 , max: 4096 | required
+                  primary_vlan: 1  # Integer | min: 1 , max: 4096 | optional
+                  deployment_immediacy: "immediate"  # Choice | immediate , lazy | default: lazy | optional
+                  mode: "regular"  # Choice | regular , native , untagged | default: regular | optional
+                  ptp:  # Class | optional
+                    mode: "multicast"  # Choice | multicast , multicast-master , unicast-master | default: multicast | optional
+                    source_ip: "0.0.0.0"  # IP | default: 0.0.0.0 | optional
+                    profile: "PROFILE_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,16}$ | required
+                  description: "Static Port Description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              static_leafs:  # List | optional
+                - node_id: 101  # Integer | min: 1 , max: 4000 | required
+                  pod_id: 1  # Integer | min: 1 , max: 255 | optional
+                  vlan: 135  # Integer | min: 1 , max: 4096 | required
+                  deployment_immediacy: "lazy"  # Choice | immediate , lazy | default: lazy | optional
+                  mode: "regular"  # Choice | regular , native , untagged | default: regular | optional
+              static_endpoints:  # List | optional
+                - name: "ST_EP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  alias: "ALIAS_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  vlan: 123  # Integer | min: 1 , max: 4096 | optional
+                  mac: "00:00:00:00:00:01"  # MAC | required
+                  ip: "1.1.1.1"  # IP | default: 0.0.0.0 | optional
+                  type: "silent-host"  # Choice | silent-host , tep , vep | required
+                  node_id: 101  # Integer | min: 1 , max: 4000 | optional
+                  node2_id: 1  # Integer | min: 1 , max: 4000 | optional
+                  pod_id: 1  # Integer | min: 1 , max: 255 | optional
+                  module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+                  port: 1  # Integer | min: 1 , max: 127 | optional
+                  channel: "CHANNEL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  additional_ips: ["10.1.1.1"]  # List | IP | optional
+              subnets:  # List | optional
+                - description: "My Desc"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  ip: "5.50.5.1/30"  # IP | required
+                  public: true  # Boolean | default: false | optional
+                  shared: true  # Boolean | default: false | optional
+                  igmp_querier: true  # Boolean | default: false | optional
+                  nd_ra_prefix: true  # Boolean | default: true | optional
+                  no_default_gateway: false  # Boolean | default: false | optional
+                  virtual: false  # Boolean | default: false | optional
+                  next_hop_ip: "8.8.8.8"  # IP | optional
+                  anycast_mac: "00:11:22:33:44:55"  # MAC | optional
+                  nlb_mode: "mode-mcast-igmp"  # Choice | mode-mcast-igmp , mode-uc , mode-mcast-static | optional
+                  nlb_group: "0.0.0.0"  # IP | default: 0.0.0.0 | optional
+                  nlb_mac: "00:00:00:00:00:00"  # MAC | default: 00:00:00:00:00:00 | optional
+                  ip_pools:  # List | optional
+                    - name: "POOL1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                      start_ip: "172.16.0.1"  # IP | default: 0.0.0.0 | optional
+                      end_ip: "172.16.0.10"  # IP | default: 0.0.0.0 | optional
+                      dns_search_suffix: "cisco"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      dns_server: "dns.cisco.com"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      dns_suffix: "cisco"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      wins_server: "wins"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  nd_ra_prefix_policy: "ND-RA-PREFIX1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  ip_dataplane_learning: false  # Boolean | optional
+              contracts:  # Class | optional
+                consumers: ["CON1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                providers: ["CON1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                imported_consumers: ["IMPORT-CON1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                intra_epgs: ["CON1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                masters:  # List | optional
+                  - application_profile: "APPLICATION_PROFILE_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                    endpoint_group: "ENDPOINT_GROUP_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              qos_class: "unspecified"  # Choice | level1 , level2 , level3 , level4 , level5 , level6 , unspecified | default: unspecified | optional
+              custom_qos_policy: "CUSTOM_QOS_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              tags: ["tag1", "tag2"]  # List | String[Regex: ^[a-zA-Z0-9_.-]{1,64}$ ] | optional
+              tag_annotations:  # List | optional
+                - key: "env"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  value: "production"  # String | min: 1 , max: 2048 | required
+              trust_control_policy: "TRUST_CONTROL_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              l4l7_virtual_ips:  # List | optional
+                - ip: "11.11.11.11"  # IP | required
+                  description: "My LB VIP"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              l4l7_address_pools:  # List | optional
+                - name: "L4L7_POOL1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  gateway_address: "11.11.11.254/24"  # IP | required
+                  from: "11.11.11.100"  # IP | optional
+                  to: "11.11.11.200"  # IP | optional
+              data_plane_policing_policy: "DPP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              static_aaeps:  # List | optional
+                - name: "aaep_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  encap: 102  # Integer | min: 1 , max: 4094 | required
+                  primary_encap: 303  # Integer | min: 1 , max: 4094 | optional
+                  deployment_immediacy: "lazy"  # Choice | immediate , lazy | default: lazy | optional
+                  mode: "regular"  # Choice | regular , native , untagged | default: regular | optional
+  bulk_static_ports: true  # Boolean | default: false | optional

@@ -1,0 +1,18 @@
+# Network-as-Code template: ISIS
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/underlay/underlay_isis/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  underlay:  # Class | optional
+    isis:  # Class | optional
+      level: "level-2"  # Choice | level-1 , level-2 | default: level-2 | optional
+      net_area_number: "0001"  # String | Regex: ^[0-9a-fA-F]{4}$ | default: 0001 | optional
+      network_point_to_point: true  # Boolean | default: true | optional
+      authentication_keychain_name: "AUTHENTICATION_KEYCHAIN_NAME_1"  # String | optional
+      authentication_enable: false  # Boolean | default: false | optional
+      authentication_key_id: 127  # Integer | default: 127 | optional
+      authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+      overload_bit: true  # Boolean | default: true | optional
+      overload_bit_elapsed_time: 60  # Integer | min: 5 , max: 86400 | default: 60 | optional

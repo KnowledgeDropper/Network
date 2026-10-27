@@ -1,0 +1,220 @@
+# Network-as-Code template: vPC
+# Source: https://netascode.cisco.com/docs/data_models/nxos/layer2/vpc/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 9 (parsed 9); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        vpc:  # Class | optional
+          domain_id: 1  # Integer | min: 1 , max: 1000 | required
+          auto_recovery: true  # Boolean | optional
+          auto_recovery_reload_delay: 240  # Integer | min: 60 , max: 3600 | optional
+          delay_restore: 150  # Integer | min: 1 , max: 3600 | optional
+          delay_restore_orphan_port: 60  # Integer | min: 0 , max: 300 | optional
+          delay_restore_interface_vlan: 90  # Integer | min: 1 , max: 3600 | optional
+          delay_peer_link: 1  # Integer | min: 0 , max: 7200 | optional
+          dscp: 1  # Integer | min: 0 , max: 63 | optional
+          dual_active_exclude_interface_vlans:  # Class | optional
+            ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+            ranges:  # List | optional
+              - from: 1  # Integer | min: 1 , max: 4094 | required
+                to: 1  # Integer | min: 1 , max: 4094 | required
+          fast_convergence: true  # Boolean | optional
+          graceful_consistency_check: true  # Boolean | optional
+          layer3_peer_router: true  # Boolean | optional
+          layer3_peer_router_syslog: true  # Boolean | optional
+          layer3_peer_router_syslog_interval: 3600  # Integer | min: 1 , max: 3600 | optional
+          mac_address_bpdu_source_version_2: false  # Boolean | optional
+          peer_gateway: true  # Boolean | optional
+          peer_gateway_exclude_vlans:  # Class | optional
+            ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+            ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.vpc.dual_active_exclude_interface_vlans)]
+              - from: 1  # Integer | min: 1 , max: 4094 | required
+                to: 1  # Integer | min: 1 , max: 4094 | required
+          virtual_peer_link_destination: "10.1.1.1"  # IP | optional
+          peer_switch: true  # Boolean | optional
+          role_priority: 32768  # Integer | min: 1 , max: 65535 | optional
+          system_mac: "SYSTEM_MAC_1"  # String | optional
+          system_priority: 2000  # Integer | min: 1 , max: 65535 | optional
+          track: 3  # Integer | min: 0 , max: 500 | optional
+          virtual_peer_link_source: "10.1.1.1"  # IP | optional
+          keepalive:  # Class | optional
+            destination_ip: "10.1.50.2"  # IP | required
+            source_ip: "10.1.50.1"  # IP | required
+            hold_timeout: 3  # Integer | min: 3 , max: 10 | optional
+            interval: 1000  # Integer | min: 400 , max: 10000 | optional
+            timeout: 5  # Integer | min: 3 , max: 20 | optional
+            udp_port: 1  # Integer | min: 1 , max: 65535 | optional
+            vrf: "management"  # String | optional
+            precedence: 1  # Any | Integer[min: 0 , max: 7 ] or Choice[ network , internet , critical , flash-override , flash , immediate , priority , routine ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+            tos: 1  # Any | Integer[min: 0 , max: 15 ] or Choice[ min-delay , max-throughput , max-reliability , min-monetary-cost , normal ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+            tos_byte: 1  # Integer | min: 0 , max: 255 | optional
+          ip_arp_synchronize: true  # Boolean | optional
+          ipv6_nd_synchronize: true  # Boolean | optional
+          peer_link_port_channel: 1  # Integer | min: 1 , max: 4096 | optional
+          dual_active_exclude_interface_vlan: "DUAL_ACTIVE_EXCLUDE_INTERFACE_VLAN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          peer_gateway_exclude_vlan: "PEER_GATEWAY_EXCLUDE_VLAN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          peer_link_channel_group: 1  # Integer | min: 1 , max: 4096 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        vpc:  # Class | optional [shared class: structure documented on this page as vpc(nxos.devices.configuration)]
+          domain_id: 1  # Integer | min: 1 , max: 1000 | required
+          auto_recovery: false  # Boolean | optional
+          auto_recovery_reload_delay: 60  # Integer | min: 60 , max: 3600 | optional
+          delay_restore: 1  # Integer | min: 1 , max: 3600 | optional
+          delay_restore_orphan_port: 1  # Integer | min: 0 , max: 300 | optional
+          delay_restore_interface_vlan: 1  # Integer | min: 1 , max: 3600 | optional
+          delay_peer_link: 1  # Integer | min: 0 , max: 7200 | optional
+          dscp: 1  # Integer | min: 0 , max: 63 | optional
+          dual_active_exclude_interface_vlans:  # Class | optional [shared class: structure documented on this page as dual_active_exclude_interface_vlans(nxos.devices.configuration.vpc)]
+            ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+            ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.vpc.dual_active_exclude_interface_vlans)]
+              - from: 1  # Integer | min: 1 , max: 4094 | required
+                to: 1  # Integer | min: 1 , max: 4094 | required
+          fast_convergence: false  # Boolean | optional
+          graceful_consistency_check: false  # Boolean | optional
+          layer3_peer_router: false  # Boolean | optional
+          layer3_peer_router_syslog: false  # Boolean | optional
+          layer3_peer_router_syslog_interval: 1  # Integer | min: 1 , max: 3600 | optional
+          mac_address_bpdu_source_version_2: false  # Boolean | optional
+          peer_gateway: false  # Boolean | optional
+          peer_gateway_exclude_vlans:  # Class | optional [shared class: structure documented on this page as peer_gateway_exclude_vlans(nxos.devices.configuration.vpc)]
+            ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+            ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.vpc.dual_active_exclude_interface_vlans)]
+              - from: 1  # Integer | min: 1 , max: 4094 | required
+                to: 1  # Integer | min: 1 , max: 4094 | required
+          virtual_peer_link_destination: "10.1.1.1"  # IP | optional
+          peer_switch: false  # Boolean | optional
+          role_priority: 1  # Integer | min: 1 , max: 65535 | optional
+          system_mac: "SYSTEM_MAC_1"  # String | optional
+          system_priority: 1  # Integer | min: 1 , max: 65535 | optional
+          track: 1  # Integer | min: 0 , max: 500 | optional
+          virtual_peer_link_source: "10.1.1.1"  # IP | optional
+          keepalive:  # Class | optional [shared class: structure documented on this page as keepalive(nxos.devices.configuration.vpc)]
+            destination_ip: "10.1.1.1"  # IP | required
+            source_ip: "10.1.1.1"  # IP | required
+            hold_timeout: 3  # Integer | min: 3 , max: 10 | optional
+            interval: 400  # Integer | min: 400 , max: 10000 | optional
+            timeout: 3  # Integer | min: 3 , max: 20 | optional
+            udp_port: 1  # Integer | min: 1 , max: 65535 | optional
+            vrf: "VRF1"  # String | optional
+            precedence: 1  # Any | Integer[min: 0 , max: 7 ] or Choice[ network , internet , critical , flash-override , flash , immediate , priority , routine ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+            tos: 1  # Any | Integer[min: 0 , max: 15 ] or Choice[ min-delay , max-throughput , max-reliability , min-monetary-cost , normal ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+            tos_byte: 1  # Integer | min: 0 , max: 255 | optional
+          ip_arp_synchronize: false  # Boolean | optional
+          ipv6_nd_synchronize: false  # Boolean | optional
+          peer_link_port_channel: 1  # Integer | min: 1 , max: 4096 | optional
+          dual_active_exclude_interface_vlan: "DUAL_ACTIVE_EXCLUDE_INTERFACE_VLAN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          peer_gateway_exclude_vlan: "PEER_GATEWAY_EXCLUDE_VLAN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          peer_link_channel_group: 1  # Integer | min: 1 , max: 4096 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      vpc:  # Class | optional [shared class: structure documented on this page as vpc(nxos.devices.configuration)]
+        domain_id: 1  # Integer | min: 1 , max: 1000 | required
+        auto_recovery: false  # Boolean | optional
+        auto_recovery_reload_delay: 60  # Integer | min: 60 , max: 3600 | optional
+        delay_restore: 1  # Integer | min: 1 , max: 3600 | optional
+        delay_restore_orphan_port: 1  # Integer | min: 0 , max: 300 | optional
+        delay_restore_interface_vlan: 1  # Integer | min: 1 , max: 3600 | optional
+        delay_peer_link: 1  # Integer | min: 0 , max: 7200 | optional
+        dscp: 1  # Integer | min: 0 , max: 63 | optional
+        dual_active_exclude_interface_vlans:  # Class | optional [shared class: structure documented on this page as dual_active_exclude_interface_vlans(nxos.devices.configuration.vpc)]
+          ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+          ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.vpc.dual_active_exclude_interface_vlans)]
+            - from: 1  # Integer | min: 1 , max: 4094 | required
+              to: 1  # Integer | min: 1 , max: 4094 | required
+        fast_convergence: false  # Boolean | optional
+        graceful_consistency_check: false  # Boolean | optional
+        layer3_peer_router: false  # Boolean | optional
+        layer3_peer_router_syslog: false  # Boolean | optional
+        layer3_peer_router_syslog_interval: 1  # Integer | min: 1 , max: 3600 | optional
+        mac_address_bpdu_source_version_2: false  # Boolean | optional
+        peer_gateway: false  # Boolean | optional
+        peer_gateway_exclude_vlans:  # Class | optional [shared class: structure documented on this page as peer_gateway_exclude_vlans(nxos.devices.configuration.vpc)]
+          ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+          ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.vpc.dual_active_exclude_interface_vlans)]
+            - from: 1  # Integer | min: 1 , max: 4094 | required
+              to: 1  # Integer | min: 1 , max: 4094 | required
+        virtual_peer_link_destination: "10.1.1.1"  # IP | optional
+        peer_switch: false  # Boolean | optional
+        role_priority: 1  # Integer | min: 1 , max: 65535 | optional
+        system_mac: "SYSTEM_MAC_1"  # String | optional
+        system_priority: 1  # Integer | min: 1 , max: 65535 | optional
+        track: 1  # Integer | min: 0 , max: 500 | optional
+        virtual_peer_link_source: "10.1.1.1"  # IP | optional
+        keepalive:  # Class | optional [shared class: structure documented on this page as keepalive(nxos.devices.configuration.vpc)]
+          destination_ip: "10.1.1.1"  # IP | required
+          source_ip: "10.1.1.1"  # IP | required
+          hold_timeout: 3  # Integer | min: 3 , max: 10 | optional
+          interval: 400  # Integer | min: 400 , max: 10000 | optional
+          timeout: 3  # Integer | min: 3 , max: 20 | optional
+          udp_port: 1  # Integer | min: 1 , max: 65535 | optional
+          vrf: "VRF1"  # String | optional
+          precedence: 1  # Any | Integer[min: 0 , max: 7 ] or Choice[ network , internet , critical , flash-override , flash , immediate , priority , routine ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+          tos: 1  # Any | Integer[min: 0 , max: 15 ] or Choice[ min-delay , max-throughput , max-reliability , min-monetary-cost , normal ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+          tos_byte: 1  # Integer | min: 0 , max: 255 | optional
+        ip_arp_synchronize: false  # Boolean | optional
+        ipv6_nd_synchronize: false  # Boolean | optional
+        peer_link_port_channel: 1  # Integer | min: 1 , max: 4096 | optional
+        dual_active_exclude_interface_vlan: "DUAL_ACTIVE_EXCLUDE_INTERFACE_VLAN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        peer_gateway_exclude_vlan: "PEER_GATEWAY_EXCLUDE_VLAN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        peer_link_channel_group: 1  # Integer | min: 1 , max: 4096 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        vpc:  # Class | optional [shared class: structure documented on this page as vpc(nxos.devices.configuration)]
+          domain_id: 1  # Integer | min: 1 , max: 1000 | required
+          auto_recovery: false  # Boolean | optional
+          auto_recovery_reload_delay: 60  # Integer | min: 60 , max: 3600 | optional
+          delay_restore: 1  # Integer | min: 1 , max: 3600 | optional
+          delay_restore_orphan_port: 1  # Integer | min: 0 , max: 300 | optional
+          delay_restore_interface_vlan: 1  # Integer | min: 1 , max: 3600 | optional
+          delay_peer_link: 1  # Integer | min: 0 , max: 7200 | optional
+          dscp: 1  # Integer | min: 0 , max: 63 | optional
+          dual_active_exclude_interface_vlans:  # Class | optional [shared class: structure documented on this page as dual_active_exclude_interface_vlans(nxos.devices.configuration.vpc)]
+            ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+            ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.vpc.dual_active_exclude_interface_vlans)]
+              - from: 1  # Integer | min: 1 , max: 4094 | required
+                to: 1  # Integer | min: 1 , max: 4094 | required
+          fast_convergence: false  # Boolean | optional
+          graceful_consistency_check: false  # Boolean | optional
+          layer3_peer_router: false  # Boolean | optional
+          layer3_peer_router_syslog: false  # Boolean | optional
+          layer3_peer_router_syslog_interval: 1  # Integer | min: 1 , max: 3600 | optional
+          mac_address_bpdu_source_version_2: false  # Boolean | optional
+          peer_gateway: false  # Boolean | optional
+          peer_gateway_exclude_vlans:  # Class | optional [shared class: structure documented on this page as peer_gateway_exclude_vlans(nxos.devices.configuration.vpc)]
+            ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+            ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.vpc.dual_active_exclude_interface_vlans)]
+              - from: 1  # Integer | min: 1 , max: 4094 | required
+                to: 1  # Integer | min: 1 , max: 4094 | required
+          virtual_peer_link_destination: "10.1.1.1"  # IP | optional
+          peer_switch: false  # Boolean | optional
+          role_priority: 1  # Integer | min: 1 , max: 65535 | optional
+          system_mac: "SYSTEM_MAC_1"  # String | optional
+          system_priority: 1  # Integer | min: 1 , max: 65535 | optional
+          track: 1  # Integer | min: 0 , max: 500 | optional
+          virtual_peer_link_source: "10.1.1.1"  # IP | optional
+          keepalive:  # Class | optional [shared class: structure documented on this page as keepalive(nxos.devices.configuration.vpc)]
+            destination_ip: "10.1.1.1"  # IP | required
+            source_ip: "10.1.1.1"  # IP | required
+            hold_timeout: 3  # Integer | min: 3 , max: 10 | optional
+            interval: 400  # Integer | min: 400 , max: 10000 | optional
+            timeout: 3  # Integer | min: 3 , max: 20 | optional
+            udp_port: 1  # Integer | min: 1 , max: 65535 | optional
+            vrf: "VRF1"  # String | optional
+            precedence: 1  # Any | Integer[min: 0 , max: 7 ] or Choice[ network , internet , critical , flash-override , flash , immediate , priority , routine ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+            tos: 1  # Any | Integer[min: 0 , max: 15 ] or Choice[ min-delay , max-throughput , max-reliability , min-monetary-cost , normal ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+            tos_byte: 1  # Integer | min: 0 , max: 255 | optional
+          ip_arp_synchronize: false  # Boolean | optional
+          ipv6_nd_synchronize: false  # Boolean | optional
+          peer_link_port_channel: 1  # Integer | min: 1 , max: 4096 | optional
+          dual_active_exclude_interface_vlan: "DUAL_ACTIVE_EXCLUDE_INTERFACE_VLAN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          peer_gateway_exclude_vlan: "PEER_GATEWAY_EXCLUDE_VLAN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          peer_link_channel_group: 1  # Integer | min: 1 , max: 4096 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

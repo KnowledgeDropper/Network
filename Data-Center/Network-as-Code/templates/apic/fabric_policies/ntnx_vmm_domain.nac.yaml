@@ -1,0 +1,32 @@
+# Network-as-Code template: Nutanix VMM Domain
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/ntnx_vmm_domain/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    nutanix_vmm_domains:  # List | optional
+      - name: "ntnx_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        access_mode: "read-only"  # Choice | read-only , read-write | default: read-write | optional
+        vlan_pool: "VPOOL2"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        allocation: "dynamic"  # Choice | dynamic , static | default: dynamic | optional
+        custom_vswitch_name: "open_vswitch"  # String | min: 0 , max: 512 | optional
+        controller_profile:  # Class | optional
+          name: "ntnx_prism_central"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          hostname_ip: "10.10.10.10"  # Any | String[Regex: ^[a-zA-Z0-9:][a-zA-Z0-9.:-]{0,254}$ ] or IP | required
+          datacenter: "DC1"  # String | min: 1 , max: 512 | required
+          aos_version: "6.5"  # Choice | unknown , 6.5 , 6.6 | default: unknown | optional
+          credentials: "credentials_central"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          statistics: true  # Boolean | default: false | optional
+          cluster_controller:  # Class | optional
+            name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            hostname_ip: "EXAMPLE1"  # Any | String[Regex: ^[a-zA-Z0-9:][a-zA-Z0-9.:-]{0,254}$ ] or IP | required
+            cluster_name: "CLUSTER_NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            credentials: "CREDENTIALS_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            port: 0  # Integer | min: 0 , max: 65535 | default: 0 | optional
+        security_domains: ["ntnx_2_SD1", "ntnx_2_SD2", "ntnx_2_SD3"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+        credential_policies:  # List | optional
+          - name: "credentials_central"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            username: "admin"  # String | Regex: [a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | required
+            password: "C1sco123"  # String | required

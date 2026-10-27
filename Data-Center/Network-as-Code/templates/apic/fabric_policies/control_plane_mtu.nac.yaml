@@ -1,0 +1,11 @@
+# Network-as-Code template: Control Plane MTU
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/control_plane_mtu/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    control_plane_mtu:  # Class | optional
+      mtu: 9000  # Integer | min: 576 , max: 9000 | default: 9000 | optional
+      apic_mtu_apply: true  # Boolean | optional

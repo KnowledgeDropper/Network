@@ -1,0 +1,19 @@
+# Network-as-Code template: Track List
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/track_list/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        track_lists:  # List | optional
+          - name: "TRACK_LIST"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            type: "percentage"  # Choice | percentage , weight | default: percentage | optional
+            percentage_up: 10  # Integer | min: 0 , max: 100 | default: 1 | optional
+            percentage_down: 2  # Integer | min: 0 , max: 100 | default: 0 | optional
+            weight_up: 1  # Integer | min: 0 , max: 255 | default: 1 | optional
+            weight_down: 0  # Integer | min: 0 , max: 255 | default: 0 | optional
+            track_members: ["FW_1_Track_Mem", "FW_2_Track_Mem"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional

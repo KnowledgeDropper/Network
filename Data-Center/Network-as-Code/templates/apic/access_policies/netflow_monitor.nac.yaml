@@ -1,0 +1,14 @@
+# Network-as-Code template: NetFlow Monitors
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/netflow_monitor/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    interface_policies:  # Class | optional
+      netflow_monitors:  # List | optional
+        - name: "MONITOR1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "monitor 1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          flow_record: "RECORD1"  # String | optional
+          flow_exporters: ["EXPORTER1", "EXPORTER2"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional

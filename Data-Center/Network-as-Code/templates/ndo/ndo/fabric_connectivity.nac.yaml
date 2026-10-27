@@ -1,0 +1,63 @@
+# Network-as-Code template: Site Fabric Connectivity
+# Source: https://netascode.cisco.com/docs/data_models/ndo/ndo/fabric_connectivity/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+ndo:
+  sites:  # List | optional
+    - apic_urls: ["EXAMPLE1"]  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      multisite: true  # Boolean | default: true | optional
+      routed_domain: "L3"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+      name: "NLD1"  # String | required
+      id: 1  # Integer | min: 1 | optional
+      multicast_tep: "239.1.1.1"  # IP | optional
+      bgp:  # Class | optional
+        as: 65009  # Integer | min: 1 , max: 4294967295 | optional
+        password: "cisco"  # Any | String or Null | optional
+      ospf:  # Class | optional
+        area_id: 0  # Any | Integer[min: 0 , max: 4294967295 ] or Choice[ backbone ] or IP | default: 0 | optional
+        area_type: "regular"  # Choice | regular , stub , nssa | default: regular | optional
+      ospf_policies:  # List | optional
+        - name: "IPN"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          network_type: "point-to-point"  # Choice | point-to-point , broadcast | default: point-to-point | optional
+          priority: 1  # Integer | min: 0 , max: 255 | default: 1 | optional
+          interface_cost: 0  # Integer | min: 0 , max: 65535 | default: 0 | optional
+          passive_interface: false  # Boolean | default: false | optional
+          mtu_ignore: false  # Boolean | default: false | optional
+          advertise_subnet: false  # Boolean | default: false | optional
+          bfd: false  # Boolean | default: false | optional
+          hello_interval: 10  # Integer | min: 1 , max: 65535 | default: 10 | optional
+          dead_interval: 40  # Integer | min: 1 , max: 65535 | default: 40 | optional
+          retransmit_interval: 5  # Integer | min: 1 , max: 65535 | default: 5 | optional
+          retransmit_delay: 1  # Integer | min: 1 , max: 450 | default: 1 | optional
+      pods:  # List | optional
+        - id: 1  # Integer | min: 1 , max: 255 | default: 1 | required
+          unicast_tep: "10.12.12.13"  # IP | optional
+          spines:  # List | optional
+            - id: 1001  # Integer | min: 1 , max: 4000 | required
+              name: "SPINE1001"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              bgp_peering: true  # Boolean | default: true | optional
+              bgp_route_reflector: false  # Boolean | default: false | optional
+              control_plane_tep: "100.100.100.1"  # IP | optional
+              interfaces:  # List | optional
+                - port: 1  # Integer | min: 1 , max: 127 | required
+                  module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+                  ip: "11.11.11.1/24"  # IP | required
+                  mtu: "inherit"  # Any | Choice[ inherit ] or Integer[min: 576 , max: 9216 ] | default: inherit | optional
+                  ospf:  # Class | optional
+                    policy: "IPN"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    authentication_type: "none"  # Choice | none , simple , md5 | default: none | optional
+                    authentication_key: "cisco"  # Any | String or Null | optional
+                    authentication_key_id: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+          external_tep_pools:  # List | optional
+            - ip: "10.10.10.0/24"  # IP | required
+  fabric_connectivity:  # Class | optional
+    bgp:  # Class | optional
+      peering_type: "full-mesh"  # Choice | full-mesh , route-reflector | default: full-mesh | optional
+      ttl: 15  # Integer | min: 1 , max: 255 | default: 16 | optional
+      max_as: 10  # Integer | min: 0 , max: 2000 | default: 0 | optional
+      keepalive_interval: 30  # Integer | min: 0 , max: 3600 | default: 60 | optional
+      hold_interval: 90  # Integer | min: 0 , max: 3600 | default: 180 | optional
+      stale_interval: 180  # Integer | min: 1 , max: 3600 | default: 300 | optional
+      graceful_restart: false  # Boolean | default: true | optional

@@ -1,0 +1,41 @@
+# Network-as-Code template: Storage Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/storage_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          storage:  # List | optional
+            - name: "web-storage"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Storage policy for web servers"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              unused_disks_state: "UnconfiguredGood"  # Choice | NoChange , UnconfiguredGood , Jbod | default: NoChange | optional
+              use_jbod_for_vd_creation: false  # Boolean | default: false | optional
+              global_hot_spares: "GLOBAL_HOT_SPARES_1"  # String | optional
+              m2_virtual_drive:  # Class | optional
+                enabled: true  # Boolean | optional
+                controller_slot: "MSTOR-RAID-1"  # Choice | MSTOR-RAID-1 , MSTOR-RAID-2 , MSTOR-RAID-1,MSTOR-RAID-2 | optional
+                name: "BootVd"  # String | optional
+              drive_groups:  # List | optional
+                - name: "dg-data"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  raid_level: "Raid5"  # Choice | Raid0 , Raid1 , Raid5 , Raid6 , Raid10 , Raid50 , Raid60 | default: Raid1 | optional
+                  secure: false  # Boolean | optional
+                  manual_drive_group:  # Class | optional
+                    dedicated_hot_spares: "DEDICATED_HOT_SPARES_1"  # String | optional
+                    drive_array_spans: ["1,2,3,4,5"]  # List | String | required
+                  virtual_drives:  # List | optional
+                    - name: "data"  # String | Regex: ^[a-zA-Z0-9_-]{1,15}$ | required
+                      size: 102400  # Integer | min: 1 | optional
+                      boot_drive: true  # Boolean | default: false | optional
+                      expand_to_available: true  # Boolean | default: false | optional
+                      access_policy: "Default"  # Choice | Default , ReadWrite , ReadOnly , Blocked | default: Default | optional
+                      drive_cache: "Default"  # Choice | Default , NoChange , Enable , Disable | default: Default | optional
+                      read_policy: "ReadAhead"  # Choice | Default , ReadAhead , NoReadAhead | default: Default | optional
+                      write_policy: "WriteBackGoodBbu"  # Choice | Default , WriteThrough , WriteBackGoodBbu , AlwaysWriteBack | default: Default | optional
+                      strip_size: 256  # Choice | 64 , 128 , 256 , 512 , 1024 | default: 64 | optional

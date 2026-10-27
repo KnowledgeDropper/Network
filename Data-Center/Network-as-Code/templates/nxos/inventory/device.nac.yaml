@@ -1,0 +1,13 @@
+# Network-as-Code template: Device
+# Source: https://netascode.cisco.com/docs/data_models/nxos/inventory/device/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "SPINE1"  # String | required
+      url: "https://10.50.202.116"  # String | required
+      device_groups: ["SPINES"]  # List | String | optional
+      variables: {}  # Map | optional
+      templates: ["L3_SERVICE"]  # List | String | optional

@@ -1,0 +1,23 @@
+# Network-as-Code template: HSRP Group Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/hsrp_group_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        hsrp_group_policies:  # List | optional
+          - name: "HSRP_GRP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "My HSRP Group Policy"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            preempt: true  # Boolean | default: false | optional
+            hello_interval: 1000  # Integer | min: 250 , max: 254000 | default: 3000 | optional
+            hold_interval: 3000  # Integer | min: 1000 , max: 255000 | default: 10000 | optional
+            priority: 150  # Integer | min: 0 , max: 255 | default: 100 | optional
+            auth_type: "md5"  # Choice | simple , md5 | default: simple | optional
+            key: "secure_key"  # String | min: 0 , max: 127 | optional
+            preempt_delay_min: 60  # Integer | min: 0 , max: 3600 | default: 0 | optional
+            preempt_delay_reload: 300  # Integer | min: 0 , max: 3600 | default: 0 | optional
+            preempt_delay_max: 60  # Integer | min: 0 , max: 3600 | default: 0 | optional
+            timeout: 90  # Integer | min: 0 , max: 3600 | default: 0 | optional

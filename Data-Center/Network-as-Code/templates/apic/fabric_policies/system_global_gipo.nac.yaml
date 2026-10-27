@@ -1,0 +1,9 @@
+# Network-as-Code template: System Global GIPo Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/system_global_gipo/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    use_infra_gipo: true  # Boolean | default: false | optional

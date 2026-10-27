@@ -1,0 +1,23 @@
+# Network-as-Code template: MLD Snooping Policy
+# Source: https://netascode.cisco.com/docs/data_models/ndo/tenant_templates/mld_snooping_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+ndo:
+  tenant_templates:  # Class | optional
+    tenant_policies:  # List | optional
+      - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        tenant: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        mld_snooping_policies:  # List | optional
+          - name: "MLD1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "MLD Snooping Policy 1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            admin_state: true  # Boolean | default: false | optional
+            fast_leave_control: true  # Boolean | default: false | optional
+            querier_control: true  # Boolean | default: false | optional
+            querier_version: "v2"  # Choice | v1 , v2 | default: v2 | optional
+            query_interval: 200  # Integer | min: 1 , max: 18000 | default: 125 | optional
+            query_response_interval: 15  # Integer | min: 1 , max: 25 | default: 10 | optional
+            last_member_query_interval: 5  # Integer | min: 1 , max: 25 | default: 1 | optional
+            start_query_interval: 50  # Integer | min: 1 , max: 18000 | default: 31 | optional
+            start_query_count: 3  # Integer | min: 1 , max: 10 | default: 2 | optional

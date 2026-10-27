@@ -1,0 +1,78 @@
+# Network-as-Code template: Service Device
+# Source: https://netascode.cisco.com/docs/data_models/ndo/tenant_templates/service_device/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 7 (parsed 7); example values used as placeholders where available.
+---
+ndo:
+  tenant_templates:  # Class | optional
+    service_devices:  # List | optional
+      - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+        tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        sites: ["SITES_1"]  # List | String | optional
+        cluster:  # List | optional
+          - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            device_type: "firewall"  # Choice | firewall , load_balancer , other | default: firewall | optional
+            device_mode: "layer3"  # Choice | layer3 , layer2 , layer1 | default: layer3 | optional
+            sites:  # List | optional
+              - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                domain_type: "physical"  # Choice | vmm , physical | default: physical | optional
+                domain_name: "DOMAIN_NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                vmm_type: "VMware"  # Choice | VMware , Microsoft , Redhat | default: VMware | optional
+                trunking_port: false  # Boolean | default: false | optional
+                promiscuous_mode: false  # Boolean | default: false | optional
+                site_vlan: 1  # Integer | min: 1 , max: 4096 | optional
+                high_availability_mode: "activeStandby"  # Choice | activeActive , activeStandby | default: activeStandby | optional
+            interfaces:  # List | optional
+              - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                interface_type: "l3out"  # Choice | l3out , bd | required
+                schema: "SCHEMA_1"  # String | Regex: ^[a-zA-Z0-9\s+_.:-]{1,64}$ | required
+                template: "TEMPLATE_1"  # String | required
+                bridge_domain: "BRIDGE_DOMAIN_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                external_endpoint_group: "EXTERNAL_ENDPOINT_GROUP_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                vlan: 1  # Integer | min: 1 , max: 4096 | optional
+                ip_sla:  # Class | optional
+                  name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  template: "TEMPLATE_1"  # String | required
+                redirect: false  # Boolean | default: false | optional
+                load_balance_hashing: "sourceDestinationAndProtocol"  # Choice | sourceIP , destinationIP , sourceDestinationAndProtocol | default: sourceDestinationAndProtocol | optional
+                pod_aware_redirection: false  # Boolean | default: false | optional
+                anycast: false  # Boolean | default: false | optional
+                rewrite_source_mac: false  # Boolean | default: false | optional
+                advanced_tracking_options: false  # Boolean | default: false | optional
+                static_mac: false  # Boolean | default: false | optional
+                tag_based_sorting: false  # Boolean | default: false | optional
+                preferred_group: false  # Boolean | default: false | optional
+                resilient_hash: false  # Boolean | default: false | optional
+                backup_redirect_ip: false  # Boolean | default: false | optional
+                threshold:  # Class | optional
+                  min_threshold: 0  # Integer | min: 0 , max: 100 | default: 0 | optional
+                  max_threshold: 100  # Integer | min: 0 , max: 100 | default: 100 | optional
+                  down_action: "permit"  # Choice | permit , deny , bypass | default: permit | optional
+                sites:  # List | optional
+                  - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    elag: "ELAG_1"  # String | optional
+                    domain_name: "DOMAIN_NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                    vlan: 1  # Integer | min: 1 , max: 4096 | optional
+                    pbr_destinations:  # List | optional
+                      - tag: "TAG_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                        mac: "00:11:22:33:44:55"  # MAC | optional
+                        ip: "10.1.1.1"  # IP | optional
+                        weight: 1  # Integer | min: 1 , max: 10 | default: 1 | optional
+                        backup: false  # Boolean | optional
+                        additional_tracking_ip: "10.1.1.1"  # IP | optional
+                        pod: 1  # Integer | min: 1 , max: 255 | optional
+                    fabric_interfaces:  # List | optional
+                      - type: "port"  # Choice | port , vpc , dpc | default: port | optional
+                        node: 1  # Integer | min: 1 , max: 4000 | optional
+                        node_2: 1  # Integer | min: 1 , max: 4000 | optional
+                        pod: 1  # Integer | min: 1 , max: 255 | optional
+                        vlan: 1  # Integer | min: 1 , max: 4096 | optional
+                        channel: "CHANNEL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                        module: 1  # Integer | min: 1 , max: 9 | optional
+                        port: 1  # Integer | min: 1 , max: 127 | optional
+                        tag: "TAG_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                        vmm_name: "VMM_NAME_1"  # String | optional
+                        vnic: "VNIC_1"  # String | optional

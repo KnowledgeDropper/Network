@@ -1,0 +1,26 @@
+# Network-as-Code template: Power Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/power_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          power:  # List | optional
+            - name: "web-power"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Power policy for web servers"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              allocated_budget: 2000  # Integer | min: 0 | default: 0 | optional
+              dynamic_rebalancing: "Enabled"  # Choice | Enabled , Disabled | default: Enabled | optional
+              extended_power_capacity: "Enabled"  # Choice | Enabled , Disabled | default: Enabled | optional
+              power_priority: "Low"  # Choice | Low , Medium , High | default: Low | optional
+              power_profiling: "Enabled"  # Choice | Enabled , Disabled | default: Enabled | optional
+              power_restore_state: "LastState"  # Choice | AlwaysOff , AlwaysOn , LastState | default: AlwaysOff | optional
+              power_save_mode: "Enabled"  # Choice | Enabled , Disabled | default: Enabled | optional
+              processor_package_power_limit: "Default"  # Choice | Default , Maximum , Minimum | default: Default | optional
+              redundancy_mode: "Grid"  # Choice | Grid , NotRedundant , N+1 , N+2 | default: Grid | optional

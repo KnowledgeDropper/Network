@@ -1,0 +1,24 @@
+# Network-as-Code template: Endpoint MAC Tag Policy
+# Source: https://netascode.cisco.com/docs/data_models/ndo/tenant_templates/endpoint_mac_tag_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+ndo:
+  tenant_templates:  # Class | optional
+    tenant_policies:  # List | optional
+      - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        tenant: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        endpoint_mac_tag_policies:  # List | optional
+          - mac: "AA:BB:A1:B2:C3:D4"  # String | Regex: ^([0-9a-fA-F]{2}[:-]){5}[0-9a-fA-F]{2}$ | required
+            scope_type: "bd"  # Choice | bd , vrf | required
+            schema: "SCHEMA1"  # String | Regex: ^[a-zA-Z0-9\s+_.:-]{1,64}$ | required
+            template: "TEMPLATE1"  # String | required
+            bridge_domain: "BD1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            vrf: "VRF1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            tag_annotations:  # List | optional
+              - key: "env"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                value: "prod"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            policy_tags:  # List | optional
+              - key: "role"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                value: "web"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required

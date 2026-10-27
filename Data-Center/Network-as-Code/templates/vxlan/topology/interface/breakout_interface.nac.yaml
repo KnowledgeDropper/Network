@@ -1,0 +1,16 @@
+# Network-as-Code template: Breakout Interface
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/topology/interface/breakout_interface/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  topology:  # Class | optional
+    switches:  # List | optional
+      - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        interface_breakouts:  # List | optional
+          - module: 1  # Integer | min: 0 , max: 32 | default: 1 | optional
+            from: 1  # Integer | min: 0 , max: 256 | default: 1 | optional
+            to: 1  # Integer | min: 0 , max: 256 | default: 1 | optional
+            map: "10g-4x"  # Choice | 10g-4x , 25g-4x , 50g-2x , 50g-4x , 100g-2x , 100g-2x-pam4 , 100g-4x , 200g-2x | default: 10g-4x | optional
+            enable_during_bootstrap: false  # Boolean | default: false | optional

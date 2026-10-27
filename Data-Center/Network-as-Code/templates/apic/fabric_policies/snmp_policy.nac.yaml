@@ -1,0 +1,32 @@
+# Network-as-Code template: SNMP Pod Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/snmp_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    pod_policies:  # Class | optional
+      snmp_policies:  # List | optional
+        - name: "SNMP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          admin_state: true  # Boolean | default: true | optional
+          location: "LOCATION"  # String | min: 0 , max: 512 | optional
+          contact: "CONTACT"  # String | min: 0 , max: 255 | optional
+          users:  # List | optional
+            - name: "USER1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Description of USER1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              privacy_type: "aes-128"  # Choice | none , des , aes-128 | default: aes-128 | optional
+              privacy_key: "Key123456"  # String | min: 8 , max: 130 | optional
+              authorization_type: "hmac-sha1-96"  # Choice | hmac-md5-96 , hmac-sha1-96 , hmac-sha2-224 , hmac-sha2-256 , hmac-sha2-384 , hmac-sha2-512 | default: hmac-sha1-96 | optional
+              authorization_key: "Key123456"  # String | min: 8 , max: 130 | required
+          communities: ["abcABC123"]  # List | String[min: 0 , max: 32 ] | optional
+          trap_forwarders:  # List | optional
+            - ip: "10.1.1.1"  # IP | optional
+              port: 162  # Integer | min: 0 , max: 65535 | default: 162 | optional
+          clients:  # List | optional
+            - name: "CLIENTS"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Description of CLIENTS"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              mgmt_epg: "inb"  # Choice | inb , oob | required
+              entries:  # List | optional
+                - name: "NMS1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  ip: "1.1.1.1"  # IP | required

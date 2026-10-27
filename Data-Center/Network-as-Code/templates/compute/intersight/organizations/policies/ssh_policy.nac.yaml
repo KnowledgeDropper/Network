@@ -1,0 +1,20 @@
+# Network-as-Code template: SSH Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/ssh_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          ssh:  # List | optional
+            - name: "MySshPolicy"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              enabled: true  # Boolean | default: true | optional
+              port: 22  # Integer | min: 1 , max: 65535 | default: 22 | optional
+              timeout: 1800  # Integer | min: 60 , max: 10800 | default: 1800 | optional

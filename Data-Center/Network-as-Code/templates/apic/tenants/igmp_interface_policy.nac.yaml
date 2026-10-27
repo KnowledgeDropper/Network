@@ -1,0 +1,31 @@
+# Network-as-Code template: IGMP Interface Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/igmp_interface_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        igmp_interface_policies:  # List | optional
+          - name: "IGMP-IF1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            grp_timeout: 260  # Integer | min: 3 , max: 65535 | default: 260 | optional
+            allow_v3_asm: false  # Boolean | default: false | optional
+            fast_leave: false  # Boolean | default: false | optional
+            report_link_local_groups: false  # Boolean | default: false | optional
+            last_member_count: 2  # Integer | min: 1 , max: 5 | default: 2 | optional
+            last_member_response_time: 1  # Integer | min: 1 , max: 25 | default: 1 | optional
+            querier_timeout: 255  # Integer | min: 1 , max: 255 | default: 255 | optional
+            query_interval: 125  # Integer | min: 1 , max: 18000 | default: 125 | optional
+            robustness_variable: 2  # Integer | min: 1 , max: 7 | default: 2 | optional
+            query_response_interval: 25  # Integer | min: 1 , max: 25 | default: 25 | optional
+            startup_query_count: 2  # Integer | min: 1 , max: 10 | default: 2 | optional
+            startup_query_interval: 31  # Integer | min: 1 , max: 18000 | default: 31 | optional
+            version: "v2"  # Choice | v2 , v3 | default: v2 | optional
+            max_mcast_entries: "unlimited"  # Any | Integer[min: 1 , max: 4294967295 ] or Choice[ unlimited ] | default: unlimited | optional
+            reserved_mcast_entries: "undefined"  # Any | Integer[min: 0 , max: 4294967295 ] or Choice[ undefined ] | default: undefined | optional
+            state_limit_multicast_route_map: "STATE_LIMIT_MULTICAST_ROUTE_MAP_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            report_policy_multicast_route_map: "MRM1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            static_report_multicast_route_map: "MRM2"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional

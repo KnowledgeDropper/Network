@@ -1,0 +1,16 @@
+# Network-as-Code template: Scheduler
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/scheduler/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    schedulers:  # List | optional
+      - name: "scheduler1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        description: "desc1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+        recurring_windows:  # List | optional
+          - name: "window1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            day: "Monday"  # Choice | every-day , odd-day , even-day , Monday , Tuesday , Wednesday , Thursday , Friday , Saturday , Sunday | default: every-day | optional
+            hour: 23  # Integer | min: 0 , max: 23 | default: 0 | optional
+            minute: 1  # Integer | min: 0 , max: 59 | default: 0 | optional

@@ -1,0 +1,25 @@
+# Network-as-Code template: Remote VXLAN Fabric
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/remote_vxlan_fabric/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        remote_vxlan_fabrics:  # List | optional
+          - name: "Fabric-1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            border_gateway_set_policy: "BorderGatewaySet"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            remote_evpn_peers:  # List | optional
+              - ip: "172.16.2.10"  # IP | required
+                description: "peer1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                remote_as: 65123  # Integer | min: 0 , max: 4294967295 | required
+                allow_self_as: false  # Boolean | default: false | optional
+                disable_peer_as_check: true  # Boolean | default: false | optional
+                ttl: 5  # Integer | min: 1 , max: 255 | default: 2 | optional
+                password: "Secure@123"  # String | optional
+                peer_prefix_policy: "PEER_POL"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                admin_state: true  # Boolean | default: true | optional
+                local_as: 123  # Integer | min: 0 , max: 4294967295 | optional
+                as_propagate: "no-prepend"  # Choice | none , no-prepend , replace-as , dual-as | default: none | optional

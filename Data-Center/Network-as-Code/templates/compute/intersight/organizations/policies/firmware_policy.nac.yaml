@@ -1,0 +1,22 @@
+# Network-as-Code template: Firmware Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/firmware_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          firmware:  # List | optional
+            - name: "prod-firmware"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Firmware policy for M6 and M7 servers, disks excluded"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              target_platform: "Standalone"  # Choice | Standalone , FIAttached , UnifiedEdgeServer | default: Standalone | optional
+              exclude_component_list: ["local-disk"]  # List | Choice[ none , local-disk , drives-except-boot-drives , storage-controller , storage-sasexpander , storage-u2 ] | optional
+              model_bundle_combo:  # List | optional
+                - model_family: "UCSC-C220-M7"  # Choice | UCSC-C220-M5 , UCSC-C220-M4 , UCSC-C240-M4 , UCSC-C460-M4 , UCSC-C240-M5 , UCSC-C480-M5 , UCSB-B200-M5 , UCSB-B480-M5 , UCSC-C220-M6 , UCSC-C240-M6 , UCSC-C225-M6 , UCSC-C245-M6 , UCSB-B200-M6 , UCSX-210C-M6 , UCSX-210C-M7 , UCSC-C220-M7 , UCSC-C240-M7 , UCSC-C125 , UCSX-410C-M7 , UCSC-C245-M8 , UCSC-C225-M8 , UCSX-215C-M8 , UCSX-210C-M8 , UCSX-410C-M8 , UCSXE-130C-M8 , UCSC-C220-M8 , UCSC-C240-M8 , CAI-845A-M8 | required
+                  bundle_version: "4.3(2.240010)"  # String | required

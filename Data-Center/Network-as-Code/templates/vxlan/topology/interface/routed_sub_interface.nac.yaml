@@ -1,0 +1,30 @@
+# Network-as-Code template: Routed Sub-interface
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/topology/interface/routed_sub_interface/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  topology:  # Class | optional
+    switches:  # List | optional
+      - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        interfaces:  # List | Any[Class[ [topology_switch_access_interface] ] or Class[ [topology_switch_trunk_interface] ] or Class[ [topology_switch_access_po_interface] ] or Class[ [topology_switch_trunk_po_interface] ] or Class[ [topology_switch_routed_interface] ] or Class[ topology_switch_routed_sub_interface ] or Class[ [topology_switch_routed_po_interface] ] or Class[ [topology_switch_loopback_interface] ] or Class[ [topology_switch_dot1q_host_interface] ]] | optional [shared class: structure documented on this page as topology_switch_routed_sub_interface(vxlan.topology.switches.interfaces)]
+          - name: "po2607.4077"  # String | Regex: (?i)^(?:e|eth(?:ernet)?)\d(?:\/\d{1,3})\.\d{1,4}$|^(?:po|port-channel:?)((?:[1-9]|[1-9]\d{1,2}|[1-3]\d{3}|40[0-8]\d|409[0-6]:?)\.(?:[1-9]|[1-9]\d{1,2}|[1-3]\d{3}|40[0-8]\d|409[0-3]:?))$ | required
+            mode: "routed_sub"  # Choice | routed_sub | required
+            description: "NetAsCode Routed Sub Interface"  # String | max: 256 | default: NetAsCode Routed Sub Interface | optional
+            dot1q_id: 1  # Integer | min: 1 , max: 4096 | required
+            vrf: "VRF1"  # String | optional
+            mtu: 9216  # Integer | min: 1500 , max: 9216 | default: 9216 | optional
+            speed: "auto"  # String | Regex: (?i)^(auto|100mb|1gb|10gb|25gb|40gb|100gb|200gb|400gb|800gb)$ | default: auto | optional
+            enabled: true  # Boolean | default: true | optional
+            ipv4_address: "10.1.1.1"  # IP | optional
+            ipv4_route_tag: 1  # Integer | min: 0 , max: 4294967295 | optional
+            secondary_ipv4_addresses:  # List | optional [shared class: structure documented on this page as secondary_ipv4_addresses(vxlan.topology.switches.interfaces.topology_switch_routed_sub_interface)]
+              - ip_address: "10.1.1.1"  # IP | required
+                route_tag: 1  # Integer | min: 0 , max: 4294967295 | optional
+            ipv6_address: "10.1.1.1"  # IP | optional
+            ipv6_route_tag: 1  # Integer | min: 0 , max: 4294967295 | optional
+            secondary_ipv6_addresses:  # List | optional [shared class: structure documented on this page as secondary_ipv6_addresses(vxlan.topology.switches.interfaces.topology_switch_routed_sub_interface)]
+              - ip_address: "10.1.1.1"  # IP | required
+                route_tag: 1  # Integer | min: 0 , max: 4294967295 | optional
+            freeform_config: "FREEFORM_CONFIG_1"  # String | optional

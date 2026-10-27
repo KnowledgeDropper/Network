@@ -1,0 +1,26 @@
+# Network-as-Code template: QoS Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/qos_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        qos:  # List | optional
+          - name: "QOS_POLICY"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            alias: "ALIAS_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            dscp_priority_maps:  # List | optional
+              - priority: "level2"  # Choice | unspecified , level1 , level2 , level3 , level4 , level5 , level6 , level7 | default: level3 | optional
+                dscp_from: "AF11"  # Any | Choice[ unspecified , CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | required
+                dscp_to: "AF12"  # Any | Choice[ unspecified , CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | required
+                dscp_target: "AF11"  # Any | Choice[ unspecified , CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | default: unspecified | optional
+                cos_target: 1  # Any | Choice[ unspecified ] or Integer[min: 0 , max: 7 ] | default: unspecified | optional
+            dot1p_classifiers:  # List | optional
+              - priority: "level3"  # Choice | unspecified , level1 , level2 , level3 , level4 , level5 , level6 , level7 | default: level3 | optional
+                dot1p_from: 1  # Any | Choice[ unspecified ] or Integer[min: 0 , max: 7 ] | required
+                dot1p_to: 2  # Any | Choice[ unspecified ] or Integer[min: 0 , max: 7 ] | required
+                dscp_target: "CS2"  # Any | Choice[ unspecified , CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | default: unspecified | optional
+                cos_target: "unspecified"  # Any | Choice[ unspecified ] or Integer[min: 0 , max: 7 ] | default: unspecified | optional

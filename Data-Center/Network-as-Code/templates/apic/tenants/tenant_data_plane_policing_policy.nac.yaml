@@ -1,0 +1,33 @@
+# Network-as-Code template: Data Plane Policing Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/tenant_data_plane_policing_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        data_plane_policing_policies:  # List | optional
+          - name: "DPP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            admin_state: true  # Boolean | default: false | optional
+            mode: "packet"  # Choice | bit , packet | default: bit | optional
+            type: "2R3C"  # Choice | 1R2C , 2R3C | default: 1R2C | optional
+            sharing_mode: "shared"  # Choice | dedicated , shared | default: dedicated | optional
+            conform_action: "mark"  # Choice | transmit , mark , drop | default: transmit | optional
+            conform_mark_cos: 1  # Any | Integer[min: 0 , max: 7 ] or Choice[ unspecified ] | default: unspecified | optional
+            conform_mark_dscp: 10  # Any | Integer[min: 0 , max: 63 ] or Choice[ unspecified ] | default: unspecified | optional
+            exceed_action: "mark"  # Choice | transmit , mark , drop | default: drop | optional
+            exceed_mark_cos: 2  # Any | Integer[min: 0 , max: 7 ] or Choice[ unspecified ] | default: unspecified | optional
+            exceed_mark_dscp: 20  # Any | Integer[min: 0 , max: 63 ] or Choice[ unspecified ] | default: unspecified | optional
+            violate_action: "mark"  # Choice | transmit , mark , drop | default: drop | optional
+            violate_mark_cos: 3  # Any | Integer[min: 0 , max: 7 ] or Choice[ unspecified ] | default: unspecified | optional
+            violate_mark_dscp: 30  # Any | Integer[min: 0 , max: 63 ] or Choice[ unspecified ] | default: unspecified | optional
+            rate: 10  # Integer | min: 0 , max: 4398046510080 | default: 0 | optional
+            peak_rate: 30  # Integer | min: 0 , max: 4398046510080 | default: 0 | optional
+            peak_rate_unit: "mega"  # Choice | unspecified , kilo , mega , giga | default: unspecified | optional
+            rate_unit: "mega"  # Choice | unspecified , kilo , mega , giga | default: unspecified | optional
+            burst_excessive: 40  # Any | Integer[min: 0 , max: 549755813760 ] or Choice[ unspecified ] | default: unspecified | optional
+            burst_excessive_unit: "mega"  # Choice | unspecified , kilo , mega , giga , msec , usec | default: unspecified | optional
+            burst: 20  # Any | Integer[min: 0 , max: 549755813760 ] or Choice[ unspecified ] | default: unspecified | optional
+            burst_unit: "mega"  # Choice | unspecified , kilo , mega , giga , msec , usec | default: unspecified | optional

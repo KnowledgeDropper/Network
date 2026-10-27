@@ -1,0 +1,14 @@
+# Network-as-Code template: Priority Flow Control Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/priority_flow_control_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    interface_policies:  # Class | optional
+      priority_flow_control_policies:  # List | optional
+        - name: "PFC-ON"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "Priority Flow Control Enabled"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          admin_state: true  # Boolean | default: true | optional
+          auto_state: false  # Boolean | default: true | optional

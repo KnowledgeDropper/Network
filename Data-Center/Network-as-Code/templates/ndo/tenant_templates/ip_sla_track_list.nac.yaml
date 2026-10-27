@@ -1,0 +1,27 @@
+# Network-as-Code template: IP SLA Track List
+# Source: https://netascode.cisco.com/docs/data_models/ndo/tenant_templates/ip_sla_track_list/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+ndo:
+  tenant_templates:  # Class | optional
+    tenant_policies:  # List | optional
+      - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        tenant: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        ip_sla_track_lists:  # List | optional
+          - name: "TL1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Track List 1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            type: "percentage"  # Choice | percentage , weight | default: percentage | optional
+            percentage_up: 50  # Integer | min: 0 , max: 100 | default: 1 | optional
+            percentage_down: 20  # Integer | min: 0 , max: 100 | default: 0 | optional
+            weight_up: 100  # Integer | min: 0 , max: 65535 | default: 1 | optional
+            weight_down: 50  # Integer | min: 0 , max: 65535 | default: 0 | optional
+            members:  # List | optional
+              - destination_ip: "10.0.0.1"  # IP | required
+                ip_sla_policy: "HTTP"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                scope_type: "bd"  # Choice | bd , l3out | required
+                schema: "Schema1"  # String | Regex: ^[a-zA-Z0-9\s+_.:-]{1,64}$ | required
+                template: "Template1"  # String | required
+                bridge_domain: "BD1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                l3out: "L3OUT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional

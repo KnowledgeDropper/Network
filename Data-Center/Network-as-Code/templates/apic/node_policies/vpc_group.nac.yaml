@@ -1,0 +1,16 @@
+# Network-as-Code template: VPC Groups
+# Source: https://netascode.cisco.com/docs/data_models/apic/node_policies/vpc_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 7 (parsed 7); example values used as placeholders where available.
+---
+apic:
+  node_policies:  # Class | optional
+    vpc_groups:  # Class | optional
+      mode: "explicit"  # Choice | explicit , consecutive , reciprocal | default: explicit | optional
+      groups:  # List | optional
+        - id: 101  # Integer | min: 1 , max: 1000 | required
+          name: "vpc-group-1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          switch_1: 101  # Integer | min: 1 , max: 16000 | required
+          switch_2: 102  # Integer | min: 1 , max: 16000 | required
+          policy: "myVpcPolicy"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional

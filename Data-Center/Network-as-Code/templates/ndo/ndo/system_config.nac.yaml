@@ -1,0 +1,13 @@
+# Network-as-Code template: System Config
+# Source: https://netascode.cisco.com/docs/data_models/ndo/ndo/system_config/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+ndo:
+  system_config:  # Class | optional
+    banner:  # Class | optional
+      alias: "Banner New"  # String | optional
+      type: "informational"  # Choice | informational , warning , critical | default: informational | optional
+      message: "Message New"  # String | optional
+      state: "active"  # Choice | active , inactive | default: active | optional

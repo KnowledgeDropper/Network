@@ -1,0 +1,39 @@
+# Network-as-Code template: Monitoring Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/monitoring_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    monitoring:  # Class | optional
+      policies:  # List | optional
+        - name: "Custom_Policy"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "This is a custom policy for policy monitoring."  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          snmp_traps:  # List | optional
+            - name: "policy_trap1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              destination_group: "pol_snmp_dst_grp"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          syslogs:  # List | optional
+            - name: "policy_syslog1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "desc1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              audit: false  # Boolean | default: true | optional
+              events: false  # Boolean | default: true | optional
+              faults: false  # Boolean | default: true | optional
+              session: true  # Boolean | default: false | optional
+              minimum_severity: "debugging"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | default: warnings | optional
+              destination_group: "pol_syslog_dst_grp"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          tacacs:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              audit: false  # Boolean | optional
+              destination_group: "DESTINATION_GROUP_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          fault_severity_policies:  # List | optional
+            - class: "snmpClient"  # String | Regex: ^[a-zA-Z0-9]{1,64}$ | required
+              faults:  # List | optional
+                - fault_id: "F1368"  # String | Regex: ^F\d+$ | required
+                  description: "Fault 1368 nice description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  initial_severity: "minor"  # Choice | warning , minor , major , critical , squelched , inherit | default: inherit | optional
+                  target_severity: "major"  # Choice | warning , minor , major , critical , inherit | default: inherit | optional
+      snmp_traps:  # List | optional
+        - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+      syslogs:  # List | optional
+        - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required

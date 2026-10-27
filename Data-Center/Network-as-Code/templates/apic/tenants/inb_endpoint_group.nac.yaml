@@ -1,0 +1,22 @@
+# Network-as-Code template: INB Endpoint Group
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/inb_endpoint_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      inb_endpoint_groups:  # List | optional
+        - name: "INB"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          vlan: 2  # Integer | min: 1 , max: 4096 | required
+          bridge_domain: "inb"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          contracts:  # Class | optional
+            consumers: ["STD-CON1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+            providers: ["STD-CON1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+            imported_consumers: ["IMPORTED_CONSUMERS_1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+          static_routes: ["10.1.1.1"]  # List | IP | optional
+          subnets:  # List | optional
+            - ip: "10.1.1.1"  # IP | required
+              public: false  # Boolean | default: false | optional
+              shared: false  # Boolean | default: false | optional

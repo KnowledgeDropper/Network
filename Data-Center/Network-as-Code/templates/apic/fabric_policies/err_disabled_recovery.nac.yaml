@@ -1,0 +1,13 @@
+# Network-as-Code template: Error Disabled Recovery Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/err_disabled_recovery/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    err_disabled_recovery:  # Class | optional
+      interval: 360  # Integer | min: 30 , max: 65535 | default: 300 | optional
+      mcp_loop: true  # Boolean | default: false | optional
+      ep_move: true  # Boolean | default: false | optional
+      bpdu_guard: true  # Boolean | default: false | optional

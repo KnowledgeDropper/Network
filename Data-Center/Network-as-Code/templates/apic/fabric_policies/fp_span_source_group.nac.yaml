@@ -1,0 +1,29 @@
+# Network-as-Code template: Fabric SPAN Source Group
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/fp_span_source_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    span:  # Class | optional
+      source_groups:  # List | optional
+        - name: "INT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          admin_state: true  # Boolean | default: true | optional
+          sources:  # List | optional
+            - name: "SRC1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              direction: "both"  # Choice | in , out , both | default: both | optional
+              span_drop: false  # Boolean | default: false | optional
+              tenant: "AP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              vrf: "VRF1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              bridge_domain: "BRIDGE_DOMAIN_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              fabric_paths:  # List | optional
+                - node_id: 101  # Integer | min: 1 , max: 4000 | required
+                  pod_id: 1  # Integer | min: 1 , max: 255 | optional
+                  module: 1  # Integer | min: 1 , max: 9 | optional
+                  port: 1  # Integer | min: 1 , max: 127 | required
+          destination:  # Class | required
+            name: "TAP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional

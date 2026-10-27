@@ -1,0 +1,16 @@
+# Network-as-Code template: Fabric Wide Settings
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/fabric_wide_settings/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    global_settings:  # Class | optional
+      domain_validation: true  # Boolean | default: true | optional
+      enforce_subnet_check: true  # Boolean | default: true | optional
+      opflex_authentication: true  # Boolean | default: false | optional
+      disable_remote_endpoint_learn: false  # Boolean | default: false | optional
+      overlapping_vlan_validation: true  # Boolean | default: true | optional
+      remote_leaf_direct: true  # Boolean | default: true | optional
+      reallocate_gipo: false  # Boolean | default: false | optional

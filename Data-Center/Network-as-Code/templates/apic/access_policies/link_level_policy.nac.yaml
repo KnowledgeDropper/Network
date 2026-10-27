@@ -1,0 +1,18 @@
+# Network-as-Code template: Link Level Interface Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/link_level_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 5 (parsed 5); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    interface_policies:  # Class | optional
+      link_level_policies:  # List | optional
+        - name: "10G-CX5"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          speed: "10G"  # Choice | auto , 100M , 1G , 10G , 25G , 40G , 100G , 400G , inherit | default: inherit | optional
+          link_delay_interval: 10  # Integer | min: 0 , max: 10000 | default: 0 | optional
+          link_debounce_interval: 110  # Integer | min: 0 , max: 5000 | default: 100 | optional
+          auto: true  # Boolean | default: true | optional
+          auto_enforce: true  # Boolean | default: false | optional
+          fec_mode: "inherit"  # Choice | inherit , cl91-rs-fec , cl74-fc-fec , auto-fec , ieee-rs-fec , cons16-rs-fec , disable-fec | default: inherit | optional
+          physical_media_type: "sfp-10g-tx"  # Choice | auto , sfp-10g-tx | optional

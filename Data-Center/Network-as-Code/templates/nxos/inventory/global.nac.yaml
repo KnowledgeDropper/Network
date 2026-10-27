@@ -1,0 +1,10 @@
+# Network-as-Code template: Global
+# Source: https://netascode.cisco.com/docs/data_models/nxos/inventory/global/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 6 (parsed 6); example values used as placeholders where available.
+---
+nxos:
+  global:  # Class | optional
+    variables: {}  # Map | optional
+    templates: ["GLOBAL_NTP", "GLOBAL_LOGGING"]  # List | String | optional

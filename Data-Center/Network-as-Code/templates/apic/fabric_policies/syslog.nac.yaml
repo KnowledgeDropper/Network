@@ -1,0 +1,34 @@
+# Network-as-Code template: Syslog
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/syslog/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    monitoring:  # Class | optional
+      syslogs:  # List | optional
+        - name: "syslog_policy_simple"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "Simple Syslog Example"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          admin_state: false  # Boolean | default: true | optional
+          format: "nxos"  # Choice | aci , nxos , enhanced-log | default: aci | optional
+          show_millisecond: true  # Boolean | default: false | optional
+          show_timezone: true  # Boolean | default: false | optional
+          local_admin_state: false  # Boolean | default: true | optional
+          local_severity: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | default: information | optional
+          console_admin_state: false  # Boolean | default: true | optional
+          console_severity: "alerts"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | default: alerts | optional
+          destinations:  # List | optional
+            - name: "syslog_server_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              hostname_ip: "10.0.0.100"  # Any | String[Regex: ^[a-zA-Z0-9:][a-zA-Z0-9.:-]{0,254}$ ] or IP | required
+              protocol: "tcp"  # Choice | udp , tcp , ssl | optional
+              port: 514  # Integer | min: 1 , max: 65535 | default: 514 | optional
+              admin_state: false  # Boolean | default: true | optional
+              facility: "local7"  # Choice | local0 , local1 , local2 , local3 , local4 , local5 , local6 , local7 | default: local7 | optional
+              severity: "warnings"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | default: warnings | optional
+              mgmt_epg: "oob"  # Choice | inb , oob | default: inb | optional
+          audit: true  # Boolean | default: true | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          events: true  # Boolean | default: true | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          faults: true  # Boolean | default: true | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          session: false  # Boolean | default: false | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          minimum_severity: "warnings"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | default: warnings | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

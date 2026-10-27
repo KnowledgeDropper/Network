@@ -1,0 +1,24 @@
+# Network-as-Code template: NetFlow Exporters
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/netflow_exporter/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    interface_policies:  # Class | optional
+      netflow_exporters:  # List | optional
+        - name: "EXPORTER1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "exporter 1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          source_type: "custom-src-ip"  # Choice | custom-src-ip , inband-mgmt-ip , oob-mgmt-ip , ptep | default: custom-src-ip | optional
+          source_ip: "1.1.1.1/20"  # IP | default: 0.0.0.0 | optional
+          destination_port: 1234  # Integer | min: 0 , max: 65535 | required
+          destination_ip: "2.2.2.2"  # IP | required
+          dscp: "AF11"  # Any | Choice[ unspecified , CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | default: CS2 | optional
+          epg_type: "epg"  # Choice | epg , external_epg | optional
+          tenant: "ABC"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          application_profile: "AP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          endpoint_group: "EPG1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          vrf: "VRF1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          l3out: "L3OUT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          external_endpoint_group: "EXTERNAL_ENDPOINT_GROUP_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional

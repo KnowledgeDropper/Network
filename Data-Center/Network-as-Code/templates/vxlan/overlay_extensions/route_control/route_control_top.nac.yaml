@@ -1,0 +1,38 @@
+# Network-as-Code template: Route Control
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/overlay_extensions/route_control/route_control_top/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+vxlan:
+  overlay_extensions:  # Class | optional
+    route_control:  # Class | optional
+      groups:  # List | optional
+        - name: "external_policies_RCtrlGrp"  # String | required
+          route_maps:  # List | optional
+            - name: "rm-bgp"  # String | required
+          ipv4_prefix_lists:  # List | optional
+            - name: "IPPREF1"  # String | required
+          ipv6_prefix_lists:  # List | optional
+            - name: "NAME_1"  # String | required
+          standard_community_lists:  # List | optional
+            - name: "CL-LPREF110"  # String | required
+          extended_community_lists:  # List | optional
+            - name: "NAME_1"  # String | required
+          mac_list:  # List | optional
+            - name: "NAME_1"  # String | required
+          ip_as_path_access_lists:  # List | optional
+            - name: "NAME_1"  # String | required
+          ipv4_access_lists:  # List | optional
+            - name: "NAME_1"  # String | required
+          ipv6_access_lists:  # List | optional
+            - name: "NAME_1"  # String | required
+          time_range:  # List | optional
+            - name: "NAME_1"  # String | required
+          ipv4_object_groups:  # List | optional
+            - name: "NAME_1"  # String | required
+          ipv6_object_groups:  # List | optional
+            - name: "NAME_1"  # String | required
+      switches:  # List | optional
+        - name: "netascode-leaf21"  # String | required
+          groups: ["external_policies_RCtrlGrp"]  # List | String | required

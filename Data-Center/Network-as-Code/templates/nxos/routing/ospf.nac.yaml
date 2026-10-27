@@ -1,0 +1,796 @@
+# Network-as-Code template: OSPF
+# Source: https://netascode.cisco.com/docs/data_models/nxos/routing/ospf/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 10 (parsed 10); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        routing:  # Class | optional
+          ospf_processes:  # List | optional
+            - name: "1"  # String | required
+              shutdown: false  # Boolean | optional
+              auto_cost_reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+              auto_cost_reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+              bfd: true  # Boolean | optional
+              capability_vrf_lite: "l3vpn"  # Choice | l3vpn , evpn | optional
+              default_metric: 1  # Integer | min: 0 , max: 16777214 | optional
+              passive_interface_default: false  # Boolean | optional
+              default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+              discard_route_external: false  # Boolean | optional
+              discard_route_internal: false  # Boolean | optional
+              distance: 1  # Integer | min: 1 , max: 255 | optional
+              down_bit_ignore: false  # Boolean | optional
+              log_adjacency_changes: "detail"  # Choice | none , brief , detail | optional
+              maximum_paths: 8  # Integer | min: 1 , max: 64 | optional
+              name_lookup: false  # Boolean | optional
+              name_lookup_use_vrf: "VRF1"  # String | optional
+              rfc1583compatibility: false  # Boolean | optional
+              router_id: "10.1.100.3"  # IP | optional
+              max_metric_router_lsa:  # Class | optional
+                on_startup_wait_for_bgp: "ON_STARTUP_WAIT_FOR_BGP_1"  # String | optional
+                external_lsa: true  # Boolean | optional
+                external_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+                include_stub: false  # Boolean | optional
+                summary_lsa: true  # Boolean | optional
+                summary_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+                on_startup: true  # Boolean | optional
+                on_startup_timeout: 600  # Integer | min: 0 , max: 4294967295 | optional
+              areas:  # List | optional
+                - id: "0.0.0.0"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                  authentication: "simple"  # Choice | simple , message-digest | optional
+                  default_cost: 10  # Integer | min: 0 , max: 16777215 | optional
+                  nssa_no_redistribution: false  # Boolean | optional
+                  no_summary: true  # Boolean | optional
+                  nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                  segment_routing_mpls: false  # Boolean | optional
+                  nssa_translate_type7_suppress_fa: false  # Boolean | optional
+                  type: "stub"  # Choice | regular , stub , nssa | optional
+              redistributions:  # List | optional
+                - protocol: "static"  # Choice | static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                  protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                  asn: "65000"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                  route_map: "STATIC_TO_OSPF"  # String | optional
+              vrfs:  # List | optional
+                - vrf: "BLUE"  # String | required
+                  shutdown: false  # Boolean | optional
+                  auto_cost_reference_bandwidth: 100  # Integer | min: 0 , max: 4294967295 | optional
+                  auto_cost_reference_bandwidth_unit: "gbps"  # Choice | mbps , gbps | optional
+                  bfd: false  # Boolean | optional
+                  capability_vrf_lite: "l3vpn"  # Choice | l3vpn , evpn | optional
+                  default_metric: 1  # Integer | min: 0 , max: 16777214 | optional
+                  passive_interface_default: true  # Boolean | optional
+                  default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+                  discard_route_external: false  # Boolean | optional
+                  discard_route_internal: false  # Boolean | optional
+                  distance: 1  # Integer | min: 1 , max: 255 | optional
+                  down_bit_ignore: false  # Boolean | optional
+                  log_adjacency_changes: "none"  # Choice | none , brief , detail | optional
+                  maximum_paths: 1  # Integer | min: 1 , max: 64 | optional
+                  name_lookup: false  # Boolean | optional
+                  name_lookup_use_vrf: "VRF1"  # String | optional
+                  rfc1583compatibility: false  # Boolean | optional
+                  router_id: "10.1.100.3"  # IP | optional
+                  max_metric_router_lsa:  # Class | optional [shared class: structure documented on this page as max_metric_router_lsa(nxos.devices.configuration.routing.ospf_processes)]
+                    on_startup_wait_for_bgp: "ON_STARTUP_WAIT_FOR_BGP_1"  # String | optional
+                    external_lsa: false  # Boolean | optional
+                    external_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+                    include_stub: false  # Boolean | optional
+                    summary_lsa: false  # Boolean | optional
+                    summary_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+                    on_startup: false  # Boolean | optional
+                    on_startup_timeout: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  areas:  # List | optional [shared class: structure documented on this page as areas(nxos.devices.configuration.routing.ospf_processes)]
+                    - id: "0.0.0.0"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                      authentication: "simple"  # Choice | simple , message-digest | optional
+                      default_cost: 1  # Integer | min: 0 , max: 16777215 | optional
+                      nssa_no_redistribution: false  # Boolean | optional
+                      no_summary: false  # Boolean | optional
+                      nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                      segment_routing_mpls: false  # Boolean | optional
+                      nssa_translate_type7_suppress_fa: false  # Boolean | optional
+                      type: "regular"  # Choice | regular , stub , nssa | optional
+                  redistributions:  # List | optional [shared class: structure documented on this page as redistributions(nxos.devices.configuration.routing.ospf_processes)]
+                    - protocol: "direct"  # Choice | static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                      protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                      asn: "65001"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                      route_map: "DIRECT_TO_OSPF"  # String | optional
+        interfaces:  # Class | optional
+          loopbacks:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospf:  # Class | optional
+                process: "1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                advertise_subnet: false  # Boolean | optional
+                area: "0.0.0.0"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                mtu_ignore: false  # Boolean | optional
+                network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+                prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+                authentication_key_secure_mode: false  # Boolean | optional
+                authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+                message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+                message_digest_key_secure_mode: false  # Boolean | optional
+                authentication: "simple"  # Choice | simple , md5 , none | optional
+                prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          vlans:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospf:  # Class | optional [shared class: structure documented on this page as ospf(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "100"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                advertise_subnet: false  # Boolean | optional
+                area: "0.0.0.0"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                mtu_ignore: false  # Boolean | optional
+                network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+                prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+                authentication_key_secure_mode: false  # Boolean | optional
+                authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+                message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+                message_digest_key_secure_mode: false  # Boolean | optional
+                authentication: "simple"  # Choice | simple , md5 , none | optional
+                prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          ethernets:  # List | optional
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospf:  # Class | optional [shared class: structure documented on this page as ospf(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                advertise_subnet: false  # Boolean | optional
+                area: "0.0.0.0"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 12  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 3  # Integer | min: 0 , max: 65535 | optional
+                mtu_ignore: false  # Boolean | optional
+                network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+                prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+                authentication_key_secure_mode: false  # Boolean | optional
+                authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+                message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+                message_digest_key_secure_mode: false  # Boolean | optional
+                authentication: "simple"  # Choice | simple , md5 , none | optional
+                prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          port_channels:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospf:  # Class | optional [shared class: structure documented on this page as ospf(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                advertise_subnet: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                mtu_ignore: false  # Boolean | optional
+                network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+                prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+                authentication_key_secure_mode: false  # Boolean | optional
+                authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+                message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+                message_digest_key_secure_mode: false  # Boolean | optional
+                authentication: "simple"  # Choice | simple , md5 , none | optional
+                prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        routing:  # Class | optional [shared class: structure documented on this page as routing(nxos.devices.configuration)]
+          ospf_processes:  # List | optional [shared class: structure documented on this page as ospf_processes(nxos.devices.configuration.routing)]
+            - name: "NAME_1"  # String | required
+              shutdown: false  # Boolean | optional
+              auto_cost_reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+              auto_cost_reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+              bfd: false  # Boolean | optional
+              capability_vrf_lite: "l3vpn"  # Choice | l3vpn , evpn | optional
+              default_metric: 1  # Integer | min: 0 , max: 16777214 | optional
+              passive_interface_default: false  # Boolean | optional
+              default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+              discard_route_external: false  # Boolean | optional
+              discard_route_internal: false  # Boolean | optional
+              distance: 1  # Integer | min: 1 , max: 255 | optional
+              down_bit_ignore: false  # Boolean | optional
+              log_adjacency_changes: "none"  # Choice | none , brief , detail | optional
+              maximum_paths: 1  # Integer | min: 1 , max: 64 | optional
+              name_lookup: false  # Boolean | optional
+              name_lookup_use_vrf: "VRF1"  # String | optional
+              rfc1583compatibility: false  # Boolean | optional
+              router_id: "10.1.1.1"  # IP | optional
+              max_metric_router_lsa:  # Class | optional [shared class: structure documented on this page as max_metric_router_lsa(nxos.devices.configuration.routing.ospf_processes)]
+                on_startup_wait_for_bgp: "ON_STARTUP_WAIT_FOR_BGP_1"  # String | optional
+                external_lsa: false  # Boolean | optional
+                external_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+                include_stub: false  # Boolean | optional
+                summary_lsa: false  # Boolean | optional
+                summary_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+                on_startup: false  # Boolean | optional
+                on_startup_timeout: 1  # Integer | min: 0 , max: 4294967295 | optional
+              areas:  # List | optional [shared class: structure documented on this page as areas(nxos.devices.configuration.routing.ospf_processes)]
+                - id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                  authentication: "simple"  # Choice | simple , message-digest | optional
+                  default_cost: 1  # Integer | min: 0 , max: 16777215 | optional
+                  nssa_no_redistribution: false  # Boolean | optional
+                  no_summary: false  # Boolean | optional
+                  nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                  segment_routing_mpls: false  # Boolean | optional
+                  nssa_translate_type7_suppress_fa: false  # Boolean | optional
+                  type: "regular"  # Choice | regular , stub , nssa | optional
+              redistributions:  # List | optional [shared class: structure documented on this page as redistributions(nxos.devices.configuration.routing.ospf_processes)]
+                - protocol: "static"  # Choice | static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                  protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                  asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                  route_map: "ROUTE_MAP_1"  # String | optional
+              vrfs:  # List | optional [shared class: structure documented on this page as vrfs(nxos.devices.configuration.routing.ospf_processes)]
+                - vrf: "VRF1"  # String | required
+                  shutdown: false  # Boolean | optional
+                  auto_cost_reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  auto_cost_reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+                  bfd: false  # Boolean | optional
+                  capability_vrf_lite: "l3vpn"  # Choice | l3vpn , evpn | optional
+                  default_metric: 1  # Integer | min: 0 , max: 16777214 | optional
+                  passive_interface_default: false  # Boolean | optional
+                  default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+                  discard_route_external: false  # Boolean | optional
+                  discard_route_internal: false  # Boolean | optional
+                  distance: 1  # Integer | min: 1 , max: 255 | optional
+                  down_bit_ignore: false  # Boolean | optional
+                  log_adjacency_changes: "none"  # Choice | none , brief , detail | optional
+                  maximum_paths: 1  # Integer | min: 1 , max: 64 | optional
+                  name_lookup: false  # Boolean | optional
+                  name_lookup_use_vrf: "VRF1"  # String | optional
+                  rfc1583compatibility: false  # Boolean | optional
+                  router_id: "10.1.1.1"  # IP | optional
+                  max_metric_router_lsa:  # Class | optional [shared class: structure documented on this page as max_metric_router_lsa(nxos.devices.configuration.routing.ospf_processes)]
+                    on_startup_wait_for_bgp: "ON_STARTUP_WAIT_FOR_BGP_1"  # String | optional
+                    external_lsa: false  # Boolean | optional
+                    external_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+                    include_stub: false  # Boolean | optional
+                    summary_lsa: false  # Boolean | optional
+                    summary_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+                    on_startup: false  # Boolean | optional
+                    on_startup_timeout: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  areas:  # List | optional [shared class: structure documented on this page as areas(nxos.devices.configuration.routing.ospf_processes)]
+                    - id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                      authentication: "simple"  # Choice | simple , message-digest | optional
+                      default_cost: 1  # Integer | min: 0 , max: 16777215 | optional
+                      nssa_no_redistribution: false  # Boolean | optional
+                      no_summary: false  # Boolean | optional
+                      nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                      segment_routing_mpls: false  # Boolean | optional
+                      nssa_translate_type7_suppress_fa: false  # Boolean | optional
+                      type: "regular"  # Choice | regular , stub , nssa | optional
+                  redistributions:  # List | optional [shared class: structure documented on this page as redistributions(nxos.devices.configuration.routing.ospf_processes)]
+                    - protocol: "static"  # Choice | static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                      protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                      asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                      route_map: "ROUTE_MAP_1"  # String | optional
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          loopbacks:  # List | optional [shared class: structure documented on this page as loopbacks(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospf:  # Class | optional [shared class: structure documented on this page as ospf(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                advertise_subnet: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                mtu_ignore: false  # Boolean | optional
+                network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+                prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+                authentication_key_secure_mode: false  # Boolean | optional
+                authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+                message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+                message_digest_key_secure_mode: false  # Boolean | optional
+                authentication: "simple"  # Choice | simple , md5 , none | optional
+                prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospf:  # Class | optional [shared class: structure documented on this page as ospf(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                advertise_subnet: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                mtu_ignore: false  # Boolean | optional
+                network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+                prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+                authentication_key_secure_mode: false  # Boolean | optional
+                authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+                message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+                message_digest_key_secure_mode: false  # Boolean | optional
+                authentication: "simple"  # Choice | simple , md5 , none | optional
+                prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospf:  # Class | optional [shared class: structure documented on this page as ospf(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                advertise_subnet: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                mtu_ignore: false  # Boolean | optional
+                network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+                prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+                authentication_key_secure_mode: false  # Boolean | optional
+                authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+                message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+                message_digest_key_secure_mode: false  # Boolean | optional
+                authentication: "simple"  # Choice | simple , md5 , none | optional
+                prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospf:  # Class | optional [shared class: structure documented on this page as ospf(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                advertise_subnet: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                mtu_ignore: false  # Boolean | optional
+                network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+                prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+                authentication_key_secure_mode: false  # Boolean | optional
+                authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+                message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+                message_digest_key_secure_mode: false  # Boolean | optional
+                authentication: "simple"  # Choice | simple , md5 , none | optional
+                prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      routing:  # Class | optional [shared class: structure documented on this page as routing(nxos.devices.configuration)]
+        ospf_processes:  # List | optional [shared class: structure documented on this page as ospf_processes(nxos.devices.configuration.routing)]
+          - name: "NAME_1"  # String | required
+            shutdown: false  # Boolean | optional
+            auto_cost_reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+            auto_cost_reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+            bfd: false  # Boolean | optional
+            capability_vrf_lite: "l3vpn"  # Choice | l3vpn , evpn | optional
+            default_metric: 1  # Integer | min: 0 , max: 16777214 | optional
+            passive_interface_default: false  # Boolean | optional
+            default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+            discard_route_external: false  # Boolean | optional
+            discard_route_internal: false  # Boolean | optional
+            distance: 1  # Integer | min: 1 , max: 255 | optional
+            down_bit_ignore: false  # Boolean | optional
+            log_adjacency_changes: "none"  # Choice | none , brief , detail | optional
+            maximum_paths: 1  # Integer | min: 1 , max: 64 | optional
+            name_lookup: false  # Boolean | optional
+            name_lookup_use_vrf: "VRF1"  # String | optional
+            rfc1583compatibility: false  # Boolean | optional
+            router_id: "10.1.1.1"  # IP | optional
+            max_metric_router_lsa:  # Class | optional [shared class: structure documented on this page as max_metric_router_lsa(nxos.devices.configuration.routing.ospf_processes)]
+              on_startup_wait_for_bgp: "ON_STARTUP_WAIT_FOR_BGP_1"  # String | optional
+              external_lsa: false  # Boolean | optional
+              external_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+              include_stub: false  # Boolean | optional
+              summary_lsa: false  # Boolean | optional
+              summary_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+              on_startup: false  # Boolean | optional
+              on_startup_timeout: 1  # Integer | min: 0 , max: 4294967295 | optional
+            areas:  # List | optional [shared class: structure documented on this page as areas(nxos.devices.configuration.routing.ospf_processes)]
+              - id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                authentication: "simple"  # Choice | simple , message-digest | optional
+                default_cost: 1  # Integer | min: 0 , max: 16777215 | optional
+                nssa_no_redistribution: false  # Boolean | optional
+                no_summary: false  # Boolean | optional
+                nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                segment_routing_mpls: false  # Boolean | optional
+                nssa_translate_type7_suppress_fa: false  # Boolean | optional
+                type: "regular"  # Choice | regular , stub , nssa | optional
+            redistributions:  # List | optional [shared class: structure documented on this page as redistributions(nxos.devices.configuration.routing.ospf_processes)]
+              - protocol: "static"  # Choice | static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                route_map: "ROUTE_MAP_1"  # String | optional
+            vrfs:  # List | optional [shared class: structure documented on this page as vrfs(nxos.devices.configuration.routing.ospf_processes)]
+              - vrf: "VRF1"  # String | required
+                shutdown: false  # Boolean | optional
+                auto_cost_reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+                auto_cost_reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+                bfd: false  # Boolean | optional
+                capability_vrf_lite: "l3vpn"  # Choice | l3vpn , evpn | optional
+                default_metric: 1  # Integer | min: 0 , max: 16777214 | optional
+                passive_interface_default: false  # Boolean | optional
+                default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+                discard_route_external: false  # Boolean | optional
+                discard_route_internal: false  # Boolean | optional
+                distance: 1  # Integer | min: 1 , max: 255 | optional
+                down_bit_ignore: false  # Boolean | optional
+                log_adjacency_changes: "none"  # Choice | none , brief , detail | optional
+                maximum_paths: 1  # Integer | min: 1 , max: 64 | optional
+                name_lookup: false  # Boolean | optional
+                name_lookup_use_vrf: "VRF1"  # String | optional
+                rfc1583compatibility: false  # Boolean | optional
+                router_id: "10.1.1.1"  # IP | optional
+                max_metric_router_lsa:  # Class | optional [shared class: structure documented on this page as max_metric_router_lsa(nxos.devices.configuration.routing.ospf_processes)]
+                  on_startup_wait_for_bgp: "ON_STARTUP_WAIT_FOR_BGP_1"  # String | optional
+                  external_lsa: false  # Boolean | optional
+                  external_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+                  include_stub: false  # Boolean | optional
+                  summary_lsa: false  # Boolean | optional
+                  summary_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+                  on_startup: false  # Boolean | optional
+                  on_startup_timeout: 1  # Integer | min: 0 , max: 4294967295 | optional
+                areas:  # List | optional [shared class: structure documented on this page as areas(nxos.devices.configuration.routing.ospf_processes)]
+                  - id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                    authentication: "simple"  # Choice | simple , message-digest | optional
+                    default_cost: 1  # Integer | min: 0 , max: 16777215 | optional
+                    nssa_no_redistribution: false  # Boolean | optional
+                    no_summary: false  # Boolean | optional
+                    nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                    segment_routing_mpls: false  # Boolean | optional
+                    nssa_translate_type7_suppress_fa: false  # Boolean | optional
+                    type: "regular"  # Choice | regular , stub , nssa | optional
+                redistributions:  # List | optional [shared class: structure documented on this page as redistributions(nxos.devices.configuration.routing.ospf_processes)]
+                  - protocol: "static"  # Choice | static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                    protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                    asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                    route_map: "ROUTE_MAP_1"  # String | optional
+      interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+        loopbacks:  # List | optional [shared class: structure documented on this page as loopbacks(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            ospf:  # Class | optional [shared class: structure documented on this page as ospf(nxos.devices.configuration.interfaces.loopbacks)]
+              process: "PROCESS_1"  # String | required
+              advertise_secondaries: false  # Boolean | optional
+              advertise_subnet: false  # Boolean | optional
+              area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+              bfd: false  # Boolean | optional
+              cost: 1  # Integer | min: 0 , max: 65535 | optional
+              dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+              hello_interval: 1  # Integer | min: 0 , max: 65535 | optional
+              mtu_ignore: false  # Boolean | optional
+              network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+              prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+              passive_interface: false  # Boolean | optional
+              priority: 1  # Integer | min: 0 , max: 255 | optional
+              retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+              transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+              authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+              message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+              authentication_key_secure_mode: false  # Boolean | optional
+              authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+              message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+              message_digest_key_secure_mode: false  # Boolean | optional
+              authentication: "simple"  # Choice | simple , md5 , none | optional
+              prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            ospf:  # Class | optional [shared class: structure documented on this page as ospf(nxos.devices.configuration.interfaces.loopbacks)]
+              process: "PROCESS_1"  # String | required
+              advertise_secondaries: false  # Boolean | optional
+              advertise_subnet: false  # Boolean | optional
+              area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+              bfd: false  # Boolean | optional
+              cost: 1  # Integer | min: 0 , max: 65535 | optional
+              dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+              hello_interval: 1  # Integer | min: 0 , max: 65535 | optional
+              mtu_ignore: false  # Boolean | optional
+              network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+              prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+              passive_interface: false  # Boolean | optional
+              priority: 1  # Integer | min: 0 , max: 255 | optional
+              retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+              transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+              authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+              message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+              authentication_key_secure_mode: false  # Boolean | optional
+              authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+              message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+              message_digest_key_secure_mode: false  # Boolean | optional
+              authentication: "simple"  # Choice | simple , md5 , none | optional
+              prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+          - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            ospf:  # Class | optional [shared class: structure documented on this page as ospf(nxos.devices.configuration.interfaces.loopbacks)]
+              process: "PROCESS_1"  # String | required
+              advertise_secondaries: false  # Boolean | optional
+              advertise_subnet: false  # Boolean | optional
+              area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+              bfd: false  # Boolean | optional
+              cost: 1  # Integer | min: 0 , max: 65535 | optional
+              dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+              hello_interval: 1  # Integer | min: 0 , max: 65535 | optional
+              mtu_ignore: false  # Boolean | optional
+              network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+              prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+              passive_interface: false  # Boolean | optional
+              priority: 1  # Integer | min: 0 , max: 255 | optional
+              retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+              transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+              authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+              message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+              authentication_key_secure_mode: false  # Boolean | optional
+              authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+              message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+              message_digest_key_secure_mode: false  # Boolean | optional
+              authentication: "simple"  # Choice | simple , md5 , none | optional
+              prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            ospf:  # Class | optional [shared class: structure documented on this page as ospf(nxos.devices.configuration.interfaces.loopbacks)]
+              process: "PROCESS_1"  # String | required
+              advertise_secondaries: false  # Boolean | optional
+              advertise_subnet: false  # Boolean | optional
+              area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+              bfd: false  # Boolean | optional
+              cost: 1  # Integer | min: 0 , max: 65535 | optional
+              dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+              hello_interval: 1  # Integer | min: 0 , max: 65535 | optional
+              mtu_ignore: false  # Boolean | optional
+              network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+              prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+              passive_interface: false  # Boolean | optional
+              priority: 1  # Integer | min: 0 , max: 255 | optional
+              retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+              transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+              authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+              message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+              authentication_key_secure_mode: false  # Boolean | optional
+              authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+              message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+              message_digest_key_secure_mode: false  # Boolean | optional
+              authentication: "simple"  # Choice | simple , md5 , none | optional
+              prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        routing:  # Class | optional [shared class: structure documented on this page as routing(nxos.devices.configuration)]
+          ospf_processes:  # List | optional [shared class: structure documented on this page as ospf_processes(nxos.devices.configuration.routing)]
+            - name: "NAME_1"  # String | required
+              shutdown: false  # Boolean | optional
+              auto_cost_reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+              auto_cost_reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+              bfd: false  # Boolean | optional
+              capability_vrf_lite: "l3vpn"  # Choice | l3vpn , evpn | optional
+              default_metric: 1  # Integer | min: 0 , max: 16777214 | optional
+              passive_interface_default: false  # Boolean | optional
+              default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+              discard_route_external: false  # Boolean | optional
+              discard_route_internal: false  # Boolean | optional
+              distance: 1  # Integer | min: 1 , max: 255 | optional
+              down_bit_ignore: false  # Boolean | optional
+              log_adjacency_changes: "none"  # Choice | none , brief , detail | optional
+              maximum_paths: 1  # Integer | min: 1 , max: 64 | optional
+              name_lookup: false  # Boolean | optional
+              name_lookup_use_vrf: "VRF1"  # String | optional
+              rfc1583compatibility: false  # Boolean | optional
+              router_id: "10.1.1.1"  # IP | optional
+              max_metric_router_lsa:  # Class | optional [shared class: structure documented on this page as max_metric_router_lsa(nxos.devices.configuration.routing.ospf_processes)]
+                on_startup_wait_for_bgp: "ON_STARTUP_WAIT_FOR_BGP_1"  # String | optional
+                external_lsa: false  # Boolean | optional
+                external_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+                include_stub: false  # Boolean | optional
+                summary_lsa: false  # Boolean | optional
+                summary_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+                on_startup: false  # Boolean | optional
+                on_startup_timeout: 1  # Integer | min: 0 , max: 4294967295 | optional
+              areas:  # List | optional [shared class: structure documented on this page as areas(nxos.devices.configuration.routing.ospf_processes)]
+                - id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                  authentication: "simple"  # Choice | simple , message-digest | optional
+                  default_cost: 1  # Integer | min: 0 , max: 16777215 | optional
+                  nssa_no_redistribution: false  # Boolean | optional
+                  no_summary: false  # Boolean | optional
+                  nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                  segment_routing_mpls: false  # Boolean | optional
+                  nssa_translate_type7_suppress_fa: false  # Boolean | optional
+                  type: "regular"  # Choice | regular , stub , nssa | optional
+              redistributions:  # List | optional [shared class: structure documented on this page as redistributions(nxos.devices.configuration.routing.ospf_processes)]
+                - protocol: "static"  # Choice | static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                  protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                  asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                  route_map: "ROUTE_MAP_1"  # String | optional
+              vrfs:  # List | optional [shared class: structure documented on this page as vrfs(nxos.devices.configuration.routing.ospf_processes)]
+                - vrf: "VRF1"  # String | required
+                  shutdown: false  # Boolean | optional
+                  auto_cost_reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  auto_cost_reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+                  bfd: false  # Boolean | optional
+                  capability_vrf_lite: "l3vpn"  # Choice | l3vpn , evpn | optional
+                  default_metric: 1  # Integer | min: 0 , max: 16777214 | optional
+                  passive_interface_default: false  # Boolean | optional
+                  default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+                  discard_route_external: false  # Boolean | optional
+                  discard_route_internal: false  # Boolean | optional
+                  distance: 1  # Integer | min: 1 , max: 255 | optional
+                  down_bit_ignore: false  # Boolean | optional
+                  log_adjacency_changes: "none"  # Choice | none , brief , detail | optional
+                  maximum_paths: 1  # Integer | min: 1 , max: 64 | optional
+                  name_lookup: false  # Boolean | optional
+                  name_lookup_use_vrf: "VRF1"  # String | optional
+                  rfc1583compatibility: false  # Boolean | optional
+                  router_id: "10.1.1.1"  # IP | optional
+                  max_metric_router_lsa:  # Class | optional [shared class: structure documented on this page as max_metric_router_lsa(nxos.devices.configuration.routing.ospf_processes)]
+                    on_startup_wait_for_bgp: "ON_STARTUP_WAIT_FOR_BGP_1"  # String | optional
+                    external_lsa: false  # Boolean | optional
+                    external_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+                    include_stub: false  # Boolean | optional
+                    summary_lsa: false  # Boolean | optional
+                    summary_lsa_max_metric: 1  # Integer | min: 0 , max: 16777215 | optional
+                    on_startup: false  # Boolean | optional
+                    on_startup_timeout: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  areas:  # List | optional [shared class: structure documented on this page as areas(nxos.devices.configuration.routing.ospf_processes)]
+                    - id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                      authentication: "simple"  # Choice | simple , message-digest | optional
+                      default_cost: 1  # Integer | min: 0 , max: 16777215 | optional
+                      nssa_no_redistribution: false  # Boolean | optional
+                      no_summary: false  # Boolean | optional
+                      nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                      segment_routing_mpls: false  # Boolean | optional
+                      nssa_translate_type7_suppress_fa: false  # Boolean | optional
+                      type: "regular"  # Choice | regular , stub , nssa | optional
+                  redistributions:  # List | optional [shared class: structure documented on this page as redistributions(nxos.devices.configuration.routing.ospf_processes)]
+                    - protocol: "static"  # Choice | static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                      protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                      asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                      route_map: "ROUTE_MAP_1"  # String | optional
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          loopbacks:  # List | optional [shared class: structure documented on this page as loopbacks(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospf:  # Class | optional [shared class: structure documented on this page as ospf(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                advertise_subnet: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                mtu_ignore: false  # Boolean | optional
+                network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+                prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+                authentication_key_secure_mode: false  # Boolean | optional
+                authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+                message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+                message_digest_key_secure_mode: false  # Boolean | optional
+                authentication: "simple"  # Choice | simple , md5 , none | optional
+                prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospf:  # Class | optional [shared class: structure documented on this page as ospf(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                advertise_subnet: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                mtu_ignore: false  # Boolean | optional
+                network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+                prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+                authentication_key_secure_mode: false  # Boolean | optional
+                authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+                message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+                message_digest_key_secure_mode: false  # Boolean | optional
+                authentication: "simple"  # Choice | simple , md5 , none | optional
+                prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospf:  # Class | optional [shared class: structure documented on this page as ospf(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                advertise_subnet: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                mtu_ignore: false  # Boolean | optional
+                network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+                prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+                authentication_key_secure_mode: false  # Boolean | optional
+                authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+                message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+                message_digest_key_secure_mode: false  # Boolean | optional
+                authentication: "simple"  # Choice | simple , md5 , none | optional
+                prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospf:  # Class | optional [shared class: structure documented on this page as ospf(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                advertise_subnet: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                mtu_ignore: false  # Boolean | optional
+                network: "point-to-point"  # Choice | point-to-point , broadcast | optional
+                prefix_attributes_n_flag_clear: "unspecified"  # Choice | unspecified , clear | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                message_digest_key_id: 1  # Integer | min: 0 , max: 255 | optional
+                authentication_key_secure_mode: false  # Boolean | optional
+                authentication_key_chain: "AUTHENTICATION_KEY_CHAIN_1"  # String | optional
+                message_digest_key: "MESSAGE_DIGEST_KEY_1"  # String | optional
+                message_digest_key_secure_mode: false  # Boolean | optional
+                authentication: "simple"  # Choice | simple , md5 , none | optional
+                prefix_attribute_n_flag: "unspecified"  # Choice | unspecified , clear | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

@@ -1,0 +1,13 @@
+# Network-as-Code template: Port Tracking
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/port_tracking/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    port_tracking:  # Class | optional
+      admin_state: false  # Boolean | default: true | optional
+      delay: 130  # Integer | min: 1 , max: 300 | default: 120 | optional
+      min_links: 1  # Integer | min: 0 , max: 48 | default: 0 | optional
+      include_apic: false  # Boolean | default: false | optional

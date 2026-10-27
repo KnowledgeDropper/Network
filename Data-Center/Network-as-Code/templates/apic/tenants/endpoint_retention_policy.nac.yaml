@@ -1,0 +1,18 @@
+# Network-as-Code template: Endpoint Retention Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/endpoint_retention_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        endpoint_retention_policies:  # List | optional
+          - name: "ERP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "My Endpoint Retention policy"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            hold_interval: 180  # Integer | min: 5 , max: 65535 | default: 300 | optional
+            bounce_entry_aging_interval: 180  # Any | Integer or Integer[min: 150 , max: 65535 ] | default: 630 | optional
+            local_endpoint_aging_interval: 0  # Any | Integer or Integer[min: 120 , max: 65535 ] | default: 900 | optional
+            remote_endpoint_aging_interval: 180  # Any | Integer or Integer[min: 120 , max: 65535 ] | default: 300 | optional
+            move_frequency: 180  # Integer | min: 0 , max: 65535 | default: 256 | optional

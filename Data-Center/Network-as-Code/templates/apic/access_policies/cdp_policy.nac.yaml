@@ -1,0 +1,12 @@
+# Network-as-Code template: CDP Interface Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/cdp_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    interface_policies:  # Class | optional
+      cdp_policies:  # List | optional
+        - name: "CDP-ENABLED"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          admin_state: true  # Boolean | required

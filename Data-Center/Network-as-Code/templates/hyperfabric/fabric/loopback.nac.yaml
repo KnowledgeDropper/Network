@@ -1,0 +1,21 @@
+# Network-as-Code template: Loopback
+# Source: https://netascode.cisco.com/docs/data_models/hyperfabric/fabric/loopback/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+hyperfabric:
+  fabrics:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      nodes:  # List | optional
+        - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          model: "HF6100-32D"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          roles: ["LEAF"]  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          loopbacks:  # List | optional
+            - name: "Loopback10"  # String | required
+              ipv4_address: "10.1.1.1"  # IP | optional
+              ipv6_address: "10.1.1.1"  # IP | optional
+              description: "Loopback Interface 10"  # String | optional
+              vrf: "VRF1"  # String | optional
+              labels: ["LABELS_1"]  # List | String | optional
+              annotations: {}  # Map | optional

@@ -1,0 +1,21 @@
+# Network-as-Code template: Interface Shutdown
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/interface_shutdown/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  interface_policies:  # Class | optional
+    nodes:  # List | optional
+      - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        interfaces:  # List | optional
+          - port: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            sub_ports:  # List | optional
+              - port: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+                shutdown: false  # Boolean | default: false | optional
+            shutdown: true  # Boolean | default: false | optional
+        fexes:  # List | optional
+          - id: 101  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            interfaces:  # List | optional
+              - port: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+                shutdown: false  # Boolean | default: false | optional

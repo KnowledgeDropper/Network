@@ -1,0 +1,59 @@
+# Network-as-Code template: External
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/global/external/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  global:  # Class | optional
+    external:  # Class | optional
+      bgp_asn: "1"  # String | Regex: ^(?:\d{1,10}|\d{1,5}\.\d{1,5})$ | required
+      enable_nxapi_http: false  # Boolean | default: false | optional
+      nxapi_http_port: 80  # Integer | default: 80 | optional
+      enable_nxapi_https: true  # Boolean | default: true | optional
+      nxapi_https_port: 443  # Integer | default: 443 | optional
+      auth_proto: "MD5"  # Choice | MD5 , SHA , MD5_DES , MD5_AES , SHA_DES , SHA_AES | default: MD5 | optional
+      ptp:  # Class | optional
+        enable: false  # Boolean | default: false | optional
+        domain_id: 0  # Integer | min: 0 , max: 127 | default: 0 | optional
+        lb_id: 0  # Integer | min: 0 , max: 1023 | default: 0 | optional
+        vlan_id: 2  # Integer | min: 2 , max: 3967 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+      snmp_server_host_trap: true  # Boolean | default: true | optional
+      netflow:  # Class | optional
+        enable: false  # Boolean | default: false | optional
+        exporter:  # List | optional
+          - name: "NAME_1"  # String | required
+            ip_address: "10.1.1.1"  # IP | required
+            vrf: "VRF1"  # String | optional
+            source_interface: "Ethernet1/1"  # String | Regex: (?i)^(?:mgmt0|(?:e|eth(?:ernet)?)\d(?:/\d+){1,2}(?:\.\d{1,4})?)$ | required
+            udp_port: 1  # Integer | min: 1 , max: 65535 | required
+        record:  # List | optional
+          - name: "NAME_1"  # String | required
+            template: "netflow_ipv4_record"  # Choice | netflow_ipv4_record , netflow_l2_record | required
+            layer2: false  # Boolean | optional
+        monitor:  # List | optional
+          - name: "NAME_1"  # String | required
+            record: "RECORD_1"  # String | required
+            exporter1: "EXPORTER1_1"  # String | required
+            exporter2: "EXPORTER2_1"  # String | optional
+      bootstrap:  # Class | optional
+        enable_bootstrap: false  # Boolean | default: false | optional
+        enable_local_dhcp_server: false  # Boolean | default: false | optional
+        dhcp_version: "DHCPv4"  # Choice | DHCPv4 , DHCPv6 | optional
+        dhcp_v4:  # Class | optional
+          scope_start_address: "10.1.1.1"  # IP | required
+          scope_end_address: "10.1.1.1"  # IP | required
+          switch_mgmt_default_gw: "10.1.1.1"  # IP | required
+          mgmt_prefix: 8  # Integer | min: 8 , max: 30 | required
+          multi_subnet_scope: "MULTI_SUBNET_SCOPE_1"  # String | optional
+          domain_name: "DOMAIN_NAME_1"  # String | optional
+        dhcp_v6:  # Class | optional
+          scope_start_address: "10.1.1.1"  # IP | required
+          scope_end_address: "10.1.1.1"  # IP | required
+          switch_mgmt_default_gw: "10.1.1.1"  # IP | required
+          mgmt_prefix: 64  # Integer | min: 64 , max: 126 | required
+          multi_subnet_scope: "MULTI_SUBNET_SCOPE_1"  # String | optional
+          domain_name: "DOMAIN_NAME_1"  # String | optional
+        enable_cdp_mgmt: false  # Boolean | default: false | optional
+        bootstrap_freeform: "BOOTSTRAP_FREEFORM_1"  # String | optional
+      aaa_freeform: "AAA_FREEFORM_1"  # String | optional

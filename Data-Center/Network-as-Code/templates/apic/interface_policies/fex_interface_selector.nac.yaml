@@ -1,0 +1,23 @@
+# Network-as-Code template: Access FEX Interface Selector
+# Source: https://netascode.cisco.com/docs/data_models/apic/interface_policies/fex_interface_selector/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    fex_interface_selector_name: "ETH\\g<mod>-\\g<port>"  # String | min: 1 , max: 64 | default: ETH\g<mod>-\g<port> | optional
+  interface_policies:  # Class | optional
+    nodes:  # List | optional
+      - fexes:  # List | optional
+          - interfaces:  # List | optional
+              - port: 1  # Integer | min: 1 , max: 127 | required
+                description: "interface descr"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+                policy_group: "ACC1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                shutdown: false  # Boolean | default: false | optional
+            id: 101  # Integer | min: 101 , max: 199 | required
+        id: 101  # Integer | min: 1 , max: 4000 | required
+  auto_generate_switch_pod_profiles: false  # Boolean | default: false | optional
+  auto_generate_access_leaf_switch_interface_profiles: true  # Boolean | default: false | optional
+  interface_selector_description: false  # Boolean | default: false | optional

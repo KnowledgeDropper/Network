@@ -1,0 +1,212 @@
+# Network-as-Code template: Route Map
+# Source: https://netascode.cisco.com/docs/data_models/nxos/routing_policy/route_map/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 19 (parsed 19); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        route_maps:  # List | optional
+          - name: "RM-LOOPBACKS-OUT"  # String | required
+            pbr_statistics: true  # Boolean | optional
+            entries:  # List | optional
+              - order: 10  # Integer | min: 0 , max: 65535 | required
+                action: "permit"  # Choice | permit , deny | optional
+                description: "Match loopback prefixes and set community"  # String | optional
+                drop_on_fail_v4: false  # Boolean | optional
+                drop_on_fail_v6: false  # Boolean | optional
+                force_order_v4: false  # Boolean | optional
+                force_order_v6: false  # Boolean | optional
+                load_share_v4: false  # Boolean | optional
+                load_share_v6: false  # Boolean | optional
+                set_default_next_hop_v4: true  # Boolean | optional
+                set_default_next_hop_v6: false  # Boolean | optional
+                set_vrf_v4: false  # Boolean | optional
+                set_vrf_v6: false  # Boolean | optional
+                verify_availability_v4: false  # Boolean | optional
+                verify_availability_v6: false  # Boolean | optional
+                match_ip_address_prefix_list: "PL-LOOPBACKS"  # String | optional
+                match_ipv6_address_prefix_list: "PLV6-ALLOWED-V6"  # String | optional
+                match_ip_address_access_list: "ACL-ROUTES"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                match_ip_next_hop_prefix_list: "PL-VALID-NEXTHOPS"  # String | optional
+                match_community: "CL-PREFERRED"  # String | optional
+                match_community_exact_match: true  # Boolean | optional
+                match_tags: [1000]  # List | Integer[min: 0 , max: 4294967295 ] | optional
+                set_community: "65000:100"  # String | optional
+                set_community_additive: true  # Boolean | optional
+                set_community_none: false  # Boolean | optional
+                set_local_preference: 200  # Integer | min: 0 , max: 4294967295 | optional
+                set_metric: "200"  # String | optional
+                set_metric_delay: 100  # Integer | min: 0 , max: 4294967295 | optional
+                set_metric_load: 1  # Integer | min: 0 , max: 255 | optional
+                set_metric_mtu: 1500  # Integer | min: 0 , max: 16777215 | optional
+                set_metric_reliability: 255  # Integer | min: 0 , max: 255 | optional
+                set_metric_type: "type-1"  # Choice | type-1 , type-2 , internal , external | optional
+                set_path_selection_advertise: "all"  # Choice | unspecified , all , backup , best2 , multipaths | optional
+                set_evpn_gateway_ip: "10.255.0.1"  # IP | optional
+                set_evpn_gateway_ip_type: "ip-address"  # Choice | ip-address , nexthop | optional
+                set_ip_next_hop_peer_address: true  # Boolean | optional
+                set_ip_next_hop_unchanged: true  # Boolean | optional
+                set_ip_next_hop_redist_unchanged: true  # Boolean | optional
+                set_ipv6_next_hop_peer_address: true  # Boolean | optional
+                set_ipv6_next_hop_unchanged: true  # Boolean | optional
+                set_ipv6_next_hop_redist_unchanged: true  # Boolean | optional
+                match_ip_prefix_list: "PL-LOOPBACKS"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                set_community_criteria: "replace"  # Choice | none , append , replace , igp , pre-bestpath | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                set_metric_is_bgp: true  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        route_maps:  # List | optional [shared class: structure documented on this page as route_maps(nxos.devices.configuration)]
+          - name: "NAME_1"  # String | required
+            pbr_statistics: false  # Boolean | optional
+            entries:  # List | optional [shared class: structure documented on this page as entries(nxos.devices.configuration.route_maps)]
+              - order: 1  # Integer | min: 0 , max: 65535 | required
+                action: "permit"  # Choice | permit , deny | optional
+                description: "Example description"  # String | optional
+                drop_on_fail_v4: false  # Boolean | optional
+                drop_on_fail_v6: false  # Boolean | optional
+                force_order_v4: false  # Boolean | optional
+                force_order_v6: false  # Boolean | optional
+                load_share_v4: false  # Boolean | optional
+                load_share_v6: false  # Boolean | optional
+                set_default_next_hop_v4: false  # Boolean | optional
+                set_default_next_hop_v6: false  # Boolean | optional
+                set_vrf_v4: false  # Boolean | optional
+                set_vrf_v6: false  # Boolean | optional
+                verify_availability_v4: false  # Boolean | optional
+                verify_availability_v6: false  # Boolean | optional
+                match_ip_address_prefix_list: "MATCH_IP_ADDRESS_PREFIX_LIST_1"  # String | optional
+                match_ipv6_address_prefix_list: "MATCH_IPV6_ADDRESS_PREFIX_LIST_1"  # String | optional
+                match_ip_address_access_list: "MATCH_IP_ADDRESS_ACCESS_LIST_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                match_ip_next_hop_prefix_list: "MATCH_IP_NEXT_HOP_PREFIX_LIST_1"  # String | optional
+                match_community: "MATCH_COMMUNITY_1"  # String | optional
+                match_community_exact_match: false  # Boolean | optional
+                match_tags: [1]  # List | Integer[min: 0 , max: 4294967295 ] | optional
+                set_community: "SET_COMMUNITY_1"  # String | optional
+                set_community_additive: false  # Boolean | optional
+                set_community_none: false  # Boolean | optional
+                set_local_preference: 1  # Integer | min: 0 , max: 4294967295 | optional
+                set_metric: "SET_METRIC_1"  # String | optional
+                set_metric_delay: 1  # Integer | min: 0 , max: 4294967295 | optional
+                set_metric_load: 1  # Integer | min: 0 , max: 255 | optional
+                set_metric_mtu: 1  # Integer | min: 0 , max: 16777215 | optional
+                set_metric_reliability: 1  # Integer | min: 0 , max: 255 | optional
+                set_metric_type: "type-1"  # Choice | type-1 , type-2 , internal , external | optional
+                set_path_selection_advertise: "unspecified"  # Choice | unspecified , all , backup , best2 , multipaths | optional
+                set_evpn_gateway_ip: "10.1.1.1"  # IP | optional
+                set_evpn_gateway_ip_type: "ip-address"  # Choice | ip-address , nexthop | optional
+                set_ip_next_hop_peer_address: false  # Boolean | optional
+                set_ip_next_hop_unchanged: false  # Boolean | optional
+                set_ip_next_hop_redist_unchanged: false  # Boolean | optional
+                set_ipv6_next_hop_peer_address: false  # Boolean | optional
+                set_ipv6_next_hop_unchanged: false  # Boolean | optional
+                set_ipv6_next_hop_redist_unchanged: false  # Boolean | optional
+                match_ip_prefix_list: "MATCH_IP_PREFIX_LIST_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                set_community_criteria: "none"  # Choice | none , append , replace , igp , pre-bestpath | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                set_metric_is_bgp: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      route_maps:  # List | optional [shared class: structure documented on this page as route_maps(nxos.devices.configuration)]
+        - name: "NAME_1"  # String | required
+          pbr_statistics: false  # Boolean | optional
+          entries:  # List | optional [shared class: structure documented on this page as entries(nxos.devices.configuration.route_maps)]
+            - order: 1  # Integer | min: 0 , max: 65535 | required
+              action: "permit"  # Choice | permit , deny | optional
+              description: "Example description"  # String | optional
+              drop_on_fail_v4: false  # Boolean | optional
+              drop_on_fail_v6: false  # Boolean | optional
+              force_order_v4: false  # Boolean | optional
+              force_order_v6: false  # Boolean | optional
+              load_share_v4: false  # Boolean | optional
+              load_share_v6: false  # Boolean | optional
+              set_default_next_hop_v4: false  # Boolean | optional
+              set_default_next_hop_v6: false  # Boolean | optional
+              set_vrf_v4: false  # Boolean | optional
+              set_vrf_v6: false  # Boolean | optional
+              verify_availability_v4: false  # Boolean | optional
+              verify_availability_v6: false  # Boolean | optional
+              match_ip_address_prefix_list: "MATCH_IP_ADDRESS_PREFIX_LIST_1"  # String | optional
+              match_ipv6_address_prefix_list: "MATCH_IPV6_ADDRESS_PREFIX_LIST_1"  # String | optional
+              match_ip_address_access_list: "MATCH_IP_ADDRESS_ACCESS_LIST_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              match_ip_next_hop_prefix_list: "MATCH_IP_NEXT_HOP_PREFIX_LIST_1"  # String | optional
+              match_community: "MATCH_COMMUNITY_1"  # String | optional
+              match_community_exact_match: false  # Boolean | optional
+              match_tags: [1]  # List | Integer[min: 0 , max: 4294967295 ] | optional
+              set_community: "SET_COMMUNITY_1"  # String | optional
+              set_community_additive: false  # Boolean | optional
+              set_community_none: false  # Boolean | optional
+              set_local_preference: 1  # Integer | min: 0 , max: 4294967295 | optional
+              set_metric: "SET_METRIC_1"  # String | optional
+              set_metric_delay: 1  # Integer | min: 0 , max: 4294967295 | optional
+              set_metric_load: 1  # Integer | min: 0 , max: 255 | optional
+              set_metric_mtu: 1  # Integer | min: 0 , max: 16777215 | optional
+              set_metric_reliability: 1  # Integer | min: 0 , max: 255 | optional
+              set_metric_type: "type-1"  # Choice | type-1 , type-2 , internal , external | optional
+              set_path_selection_advertise: "unspecified"  # Choice | unspecified , all , backup , best2 , multipaths | optional
+              set_evpn_gateway_ip: "10.1.1.1"  # IP | optional
+              set_evpn_gateway_ip_type: "ip-address"  # Choice | ip-address , nexthop | optional
+              set_ip_next_hop_peer_address: false  # Boolean | optional
+              set_ip_next_hop_unchanged: false  # Boolean | optional
+              set_ip_next_hop_redist_unchanged: false  # Boolean | optional
+              set_ipv6_next_hop_peer_address: false  # Boolean | optional
+              set_ipv6_next_hop_unchanged: false  # Boolean | optional
+              set_ipv6_next_hop_redist_unchanged: false  # Boolean | optional
+              match_ip_prefix_list: "MATCH_IP_PREFIX_LIST_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              set_community_criteria: "none"  # Choice | none , append , replace , igp , pre-bestpath | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              set_metric_is_bgp: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        route_maps:  # List | optional [shared class: structure documented on this page as route_maps(nxos.devices.configuration)]
+          - name: "NAME_1"  # String | required
+            pbr_statistics: false  # Boolean | optional
+            entries:  # List | optional [shared class: structure documented on this page as entries(nxos.devices.configuration.route_maps)]
+              - order: 1  # Integer | min: 0 , max: 65535 | required
+                action: "permit"  # Choice | permit , deny | optional
+                description: "Example description"  # String | optional
+                drop_on_fail_v4: false  # Boolean | optional
+                drop_on_fail_v6: false  # Boolean | optional
+                force_order_v4: false  # Boolean | optional
+                force_order_v6: false  # Boolean | optional
+                load_share_v4: false  # Boolean | optional
+                load_share_v6: false  # Boolean | optional
+                set_default_next_hop_v4: false  # Boolean | optional
+                set_default_next_hop_v6: false  # Boolean | optional
+                set_vrf_v4: false  # Boolean | optional
+                set_vrf_v6: false  # Boolean | optional
+                verify_availability_v4: false  # Boolean | optional
+                verify_availability_v6: false  # Boolean | optional
+                match_ip_address_prefix_list: "MATCH_IP_ADDRESS_PREFIX_LIST_1"  # String | optional
+                match_ipv6_address_prefix_list: "MATCH_IPV6_ADDRESS_PREFIX_LIST_1"  # String | optional
+                match_ip_address_access_list: "MATCH_IP_ADDRESS_ACCESS_LIST_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                match_ip_next_hop_prefix_list: "MATCH_IP_NEXT_HOP_PREFIX_LIST_1"  # String | optional
+                match_community: "MATCH_COMMUNITY_1"  # String | optional
+                match_community_exact_match: false  # Boolean | optional
+                match_tags: [1]  # List | Integer[min: 0 , max: 4294967295 ] | optional
+                set_community: "SET_COMMUNITY_1"  # String | optional
+                set_community_additive: false  # Boolean | optional
+                set_community_none: false  # Boolean | optional
+                set_local_preference: 1  # Integer | min: 0 , max: 4294967295 | optional
+                set_metric: "SET_METRIC_1"  # String | optional
+                set_metric_delay: 1  # Integer | min: 0 , max: 4294967295 | optional
+                set_metric_load: 1  # Integer | min: 0 , max: 255 | optional
+                set_metric_mtu: 1  # Integer | min: 0 , max: 16777215 | optional
+                set_metric_reliability: 1  # Integer | min: 0 , max: 255 | optional
+                set_metric_type: "type-1"  # Choice | type-1 , type-2 , internal , external | optional
+                set_path_selection_advertise: "unspecified"  # Choice | unspecified , all , backup , best2 , multipaths | optional
+                set_evpn_gateway_ip: "10.1.1.1"  # IP | optional
+                set_evpn_gateway_ip_type: "ip-address"  # Choice | ip-address , nexthop | optional
+                set_ip_next_hop_peer_address: false  # Boolean | optional
+                set_ip_next_hop_unchanged: false  # Boolean | optional
+                set_ip_next_hop_redist_unchanged: false  # Boolean | optional
+                set_ipv6_next_hop_peer_address: false  # Boolean | optional
+                set_ipv6_next_hop_unchanged: false  # Boolean | optional
+                set_ipv6_next_hop_redist_unchanged: false  # Boolean | optional
+                match_ip_prefix_list: "MATCH_IP_PREFIX_LIST_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                set_community_criteria: "none"  # Choice | none , append , replace , igp , pre-bestpath | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                set_metric_is_bgp: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

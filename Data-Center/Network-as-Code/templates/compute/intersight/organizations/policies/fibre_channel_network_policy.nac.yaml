@@ -1,0 +1,19 @@
+# Network-as-Code template: Fibre Channel Network Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/fibre_channel_network_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          fibre_channel_network:  # List | optional
+            - name: "vsan-100-a"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Fabric A VSAN"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              vsan_id: 100  # Integer | min: 1 , max: 4094 | default: 1 | optional
+              default_vlan_id: 0  # Integer | min: 0 , max: 4094 | default: 0 | optional

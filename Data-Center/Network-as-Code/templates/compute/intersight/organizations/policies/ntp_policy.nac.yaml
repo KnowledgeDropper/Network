@@ -1,0 +1,25 @@
+# Network-as-Code template: NTP Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/ntp_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          ntp:  # List | optional
+            - name: "MyNtpPolicy"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              enabled: true  # Boolean | default: true | optional
+              timezone: "UTC"  # String | default: UTC | optional
+              ntp_servers: ["0.pool.ntp.org", "1.pool.ntp.org"]  # List | String | optional
+              authenticated_ntp_servers:  # List | optional
+                - server_name: "SERVER_NAME_1"  # String | required
+                  key_type: "SHA1"  # Choice | SHA1 | optional
+                  sym_key_id: 1  # Integer | min: 1 | optional
+                  sym_key_value: "SYM_KEY_VALUE_1"  # String | optional

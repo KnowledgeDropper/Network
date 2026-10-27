@@ -1,0 +1,11 @@
+# Network-as-Code template: Trunk Interface Port
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/topology/interface/trunk_interface/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  topology:  # Class | optional
+    switches:  # List | optional
+      - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        interfaces: []  # List | Any[Class[ [topology_switch_access_interface] ] or Class[ topology_switch_trunk_interface ] or Class[ [topology_switch_access_po_interface] ] or Class[ [topology_switch_trunk_po_interface] ] or Class[ [topology_switch_routed_interface] ] or Class[ [topology_switch_routed_sub_interface] ] or Class[ [topology_switch_routed_po_interface] ] or Class[ [topology_switch_loopback_interface] ] or Class[ [topology_switch_dot1q_host_interface] ]] | optional [nested class not documented separately on this page]

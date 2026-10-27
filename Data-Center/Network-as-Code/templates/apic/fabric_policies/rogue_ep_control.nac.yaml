@@ -1,0 +1,13 @@
+# Network-as-Code template: Rogue EP Control
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/rogue_ep_control/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    rogue_ep_control:  # Class | optional
+      admin_state: true  # Boolean | default: true | optional
+      detection_interval: 180  # Integer | min: 30 , max: 3600 | default: 30 | optional
+      detection_multiplier: 10  # Integer | min: 2 , max: 65535 | default: 10 | optional
+      hold_interval: 1800  # Integer | min: 300 , max: 3600 | default: 1800 | optional

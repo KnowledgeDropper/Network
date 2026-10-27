@@ -1,0 +1,20 @@
+# Network-as-Code template: MCP Interface Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/mcp_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 7 (parsed 7); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    interface_policies:  # Class | optional
+      mcp_policies:  # List | optional
+        - name: "mcpEnabled"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          admin_state: true  # Boolean | default: false | optional
+          per_vlan_mcp: true  # Boolean | default: true | optional
+          strict_mode: true  # Boolean | default: false | optional
+          max_vlans: 512  # Integer | min: 1 , max: 2000 | default: 256 | optional
+          grace_period: 5  # Integer | min: 0 , max: 300 | default: 3 | optional
+          grace_period_msec: 500  # Integer | min: 0 , max: 999 | default: 0 | optional
+          initial_delay: 180  # Integer | min: 0 , max: 1800 | default: 0 | optional
+          frequency_sec: 2  # Integer | min: 0 , max: 300 | default: 0 | optional
+          frequency_msec: 0  # Integer | min: 0 , max: 999 | default: 500 | optional

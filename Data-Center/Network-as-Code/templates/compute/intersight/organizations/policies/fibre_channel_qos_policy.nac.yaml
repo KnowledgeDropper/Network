@@ -1,0 +1,21 @@
+# Network-as-Code template: Fibre Channel QoS Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/fibre_channel_qos_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          fibre_channel_qos:  # List | optional
+            - name: "fc-qos-default"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Standard FC QoS policy"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              burst: 10240  # Integer | min: 1 | default: 10240 | optional
+              cos: 3  # Integer | min: 0 , max: 6 | default: 3 | optional
+              max_data_field_size: 2112  # Integer | min: 256 , max: 2112 | default: 2112 | optional
+              rate_limit: 4000  # Integer | min: 0 | default: 0 | optional

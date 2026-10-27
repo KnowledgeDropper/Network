@@ -1,0 +1,30 @@
+# Network-as-Code template: Access Spine Interface Profile
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/ap_spine_interface_profile/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    spine_interface_profile_name: "SPINE\\g<id>"  # String | min: 1 , max: 64 | default: SPINE\g<id> | optional
+    spine_interface_profiles:  # List | optional
+      - name: "SPINE1001"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        selectors:  # List | optional
+          - name: "SEL1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            fex_id: 101  # Integer | min: 101 , max: 199 | optional
+            fex_profile: "FEX_PROFILE_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            policy_group: "IPN"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            port_blocks:  # List | optional
+              - name: "BLOCK1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                description: "IPN1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                from_module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+                from_port: 1  # Integer | min: 1 , max: 127 | required
+                to_module: 1  # Integer | min: 1 , max: 9 | optional
+                to_port: 1  # Integer | min: 1 , max: 127 | optional
+  node_policies:  # Class | optional
+    nodes:  # List | optional
+      - role: "leaf"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        id: 1  # Integer | min: 1 , max: 4000 | required
+        name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+  auto_generate_switch_pod_profiles: false  # Boolean | default: false | optional
+  auto_generate_access_spine_switch_interface_profiles: true  # Boolean | default: false | optional

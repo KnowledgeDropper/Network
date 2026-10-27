@@ -1,0 +1,36 @@
+# Network-as-Code template: Fibre Channel Adapter Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/fibre_channel_adapter_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          fibre_channel_adapter:  # List | optional
+            - name: "fc-adapter-default"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Standard FC adapter policy"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              error_detection_timeout: 2000  # Integer | min: 1000 , max: 100000 | default: 2000 | optional
+              io_throttle_count: 512  # Integer | min: 1 , max: 1024 | default: 512 | optional
+              lun_count: 1024  # Integer | min: 1 , max: 4096 | default: 1024 | optional
+              lun_queue_depth: 20  # Integer | min: 1 , max: 254 | default: 20 | optional
+              resource_allocation_timeout: 10000  # Integer | min: 5000 , max: 100000 | default: 10000 | optional
+              interrupt_mode: "MSIx"  # Choice | MSIx , MSI , INTx | optional
+              flogi_retries: 1  # Integer | min: 0 | optional
+              flogi_timeout: 1000  # Integer | min: 1000 | optional
+              plogi_retries: 1  # Integer | min: 0 | optional
+              plogi_timeout: 1000  # Integer | min: 1000 | optional
+              rx_queue_ring_size: 64  # Integer | min: 64 , max: 2048 | optional
+              scsi_queue_ring_size: 64  # Integer | min: 64 , max: 512 | optional
+              tx_queue_ring_size: 64  # Integer | min: 64 , max: 128 | optional
+              error_recovery_settings:  # Class | optional
+                enabled: true  # Boolean | optional
+                io_retry_count: 8  # Integer | min: 1 , max: 255 | optional
+                io_retry_timeout: 5  # Integer | min: 1 , max: 59 | optional
+                link_down_timeout: 30000  # Integer | min: 0 | optional
+                port_down_timeout: 10000  # Integer | min: 0 | optional

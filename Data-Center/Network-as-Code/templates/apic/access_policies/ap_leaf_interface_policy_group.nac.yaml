@@ -1,0 +1,33 @@
+# Network-as-Code template: Access Leaf Interface Policy Group
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/ap_leaf_interface_policy_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 14 (parsed 14); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    leaf_interface_policy_groups:  # List | optional
+      - name: "SERVER1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        description: "Server1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+        type: "access"  # Choice | access , vpc , pc , breakout | required
+        map: "none"  # Choice | none , 10g-4x , 25g-4x , 100g-2x , 50g-8 , 100g-4x | default: none | optional
+        link_level_policy: "10G"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        cdp_policy: "CDP-ENABLED"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        lldp_policy: "LLDP-ENABLED"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        spanning_tree_policy: "BPDU-FILTER"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        mcp_policy: "system-mcp-enabled"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        l2_policy: "PORT-LOCAL"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        port_channel_policy: "system-lacp-active"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        port_channel_member_name: "PG-Member"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        port_channel_member_policy: "FAST"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        storm_control_policy: "10P"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        port_security_policy: "PORT-SEC1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        priority_flow_control_policy: "PFC1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        monitoring_policy: "MONITOR-POL1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        aaep: "AAEP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        netflow_monitor_policies:  # List | optional
+          - name: "MONITOR1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            ip_filter_type: "ipv6"  # Choice | ipv4 , ipv6 , ce , unspecified | default: ipv4 | optional
+        macsec_interface_policy: "MACSEC_INT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        ingress_data_plane_policing_policy: "DPP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        egress_data_plane_policing_policy: "DPP2"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional

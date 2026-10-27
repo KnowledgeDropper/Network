@@ -1,0 +1,113 @@
+# Network-as-Code template: VXLAN EVPN eBGP
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/global/vxlan_evpn_ebgp/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  global:  # Class | optional
+    ebgp:  # Class | optional
+      spine_bgp_asn: "1"  # String | Regex: ^(?:\d{1,10}|\d{1,5}\.\d{1,5})$ | required
+      super_spine_bgp_asn: "1"  # String | Regex: ^(?:\d{1,10}|\d{1,5}\.\d{1,5})$ | optional
+      bgp_asn_mode: "Multi-AS"  # Choice | Multi-AS , Same-Tier-AS | default: Multi-AS | optional
+      leaf_bgp_asn: "1"  # String | Regex: ^(?:\d{1,10}|\d{1,5}\.\d{1,5})$ | optional
+      border_bgp_asn: "1"  # String | Regex: ^(?:\d{1,10}|\d{1,5}\.\d{1,5})$ | optional
+      leaf_same_bgp_asn: false  # Boolean | default: false | optional
+      bgp_asn_auto_allocation: true  # Boolean | default: true | optional
+      anycast_gateway_mac: "20:20:00:00:00:aa"  # Any | String[Regex: ^[a-f0-9]{1}\.[a-f0-9]{1}\.[a-f0-9]{1}$ ] or String[Regex: ^[a-f0-9]{4}\.[a-f0-9]{4}\.[a-f0-9]{4}$ ] or String[Regex: ^[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}$ ] or String[Regex: ^[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}$ ] | default: 20:20:00:00:00:aa | optional
+      overlay_mode: "cli"  # Choice | cli , config-profile | default: cli | optional
+      greenfield_cleanup: "Disable"  # Choice | Enable , Disable | default: Disable | optional
+      layer2_vni_range:  # Class | optional
+        from: 30000  # Integer | min: 1 , max: 16777214 | default: 30000 | required
+        to: 49000  # Integer | min: 1 , max: 16777214 | default: 49000 | optional
+      layer3_vni_range:  # Class | optional
+        from: 50000  # Integer | min: 1 , max: 16777214 | default: 50000 | required
+        to: 59000  # Integer | min: 1 , max: 16777214 | default: 59000 | optional
+      layer2_vlan_range:  # Class | optional
+        from: 2300  # Integer | min: 2 , max: 4094 | default: 2300 | required
+        to: 2999  # Integer | min: 2 , max: 4094 | default: 2999 | optional
+      layer3_vlan_range:  # Class | optional
+        from: 2000  # Integer | min: 2 , max: 4094 | default: 2000 | required
+        to: 2299  # Integer | min: 2 , max: 4094 | default: 2299 | optional
+      enable_l3_vni_no_vlan: false  # Boolean | default: false | optional
+      multisite_site_id: 1  # Integer | min: 1 , max: 281474976710655 | optional
+      vpc:  # Class | optional
+        peer_link_vlan: 3600  # Integer | min: 2 , max: 3967 | default: 3600 | optional
+        peer_keep_alive: "management"  # Choice | loopback , management | default: management | optional
+        auto_recovery_time: 360  # Integer | min: 240 , max: 3600 | default: 360 | optional
+        delay_restore_time: 150  # Integer | min: 1 , max: 3600 | default: 150 | optional
+        peer_link_port_channel_id: 500  # Integer | min: 1 , max: 4096 | default: 500 | optional
+        ipv6_nd_sync: true  # Boolean | default: true | optional
+        advertise_pip: false  # Boolean | default: false | optional
+        advertise_pip_border_only: true  # Boolean | default: true | optional
+        advertise_pip_border_gateway: false  # Boolean | default: false | optional
+        domain_id_range: "1-1000"  # String | default: 1-1000 | optional
+        fabric_vpc_qos: false  # Boolean | default: false | optional
+        fabric_vpc_qos_policy_name: "spine_qos_for_fabric_vpc_peering"  # String | default: spine_qos_for_fabric_vpc_peering | optional
+      ptp:  # Class | optional
+        enable: false  # Boolean | default: false | optional
+        domain_id: 0  # Integer | min: 0 , max: 127 | default: 0 | optional
+        lb_id: 0  # Integer | min: 0 , max: 1023 | default: 0 | optional
+        vlan_id: 2  # Integer | min: 2 , max: 3967 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+      snmp_server_host_trap: true  # Boolean | default: true | optional
+      enable_nxapi_http: false  # Boolean | default: false | optional
+      nxapi_http_port: 80  # Integer | default: 80 | optional
+      enable_nxapi_https: true  # Boolean | default: true | optional
+      nxapi_https_port: 443  # Integer | default: 443 | optional
+      auth_proto: "MD5"  # Choice | MD5 , SHA , MD5_DES , MD5_AES , SHA_DES , SHA_AES | default: MD5 | optional
+      dns_servers:  # List | optional
+        - ip_address: "10.1.1.1"  # IP | required
+          vrf: "VRF1"  # String | required
+      ntp_servers:  # List | optional
+        - ip_address: "10.1.1.1"  # IP | required
+          vrf: "VRF1"  # String | required
+      syslog_servers:  # List | optional
+        - ip_address: "10.1.1.1"  # IP | required
+          vrf: "VRF1"  # String | required
+          severity: 1  # Integer | min: 0 , max: 7 | required
+      netflow:  # Class | optional
+        enable: false  # Boolean | default: false | optional
+        exporter:  # List | optional
+          - name: "NAME_1"  # String | required
+            ip_address: "10.1.1.1"  # IP | required
+            vrf: "VRF1"  # String | optional
+            source_interface: "Ethernet1/1"  # String | Regex: (?i)^(?:mgmt0|(?:e|eth(?:ernet)?)\d(?:/\d+){1,2}(?:\.\d{1,4})?)$ | required
+            udp_port: 1  # Integer | min: 1 , max: 65535 | required
+        record:  # List | optional
+          - name: "NAME_1"  # String | required
+            template: "netflow_ipv4_record"  # Choice | netflow_ipv4_record , netflow_l2_record | required
+            layer2: false  # Boolean | optional
+        monitor:  # List | optional
+          - name: "NAME_1"  # String | required
+            record: "RECORD_1"  # String | required
+            exporter1: "EXPORTER1_1"  # String | required
+            exporter2: "EXPORTER2_1"  # String | optional
+      bootstrap:  # Class | optional
+        enable_bootstrap: false  # Boolean | default: false | optional
+        enable_local_dhcp_server: false  # Boolean | default: false | optional
+        dhcp_version: "DHCPv4"  # Choice | DHCPv4 , DHCPv6 | optional
+        dhcp_v4:  # Class | optional
+          scope_start_address: "10.1.1.1"  # IP | required
+          scope_end_address: "10.1.1.1"  # IP | required
+          switch_mgmt_default_gw: "10.1.1.1"  # IP | required
+          mgmt_prefix: 8  # Integer | min: 8 , max: 30 | required
+          multi_subnet_scope: "MULTI_SUBNET_SCOPE_1"  # String | optional
+          domain_name: "DOMAIN_NAME_1"  # String | optional
+        dhcp_v6:  # Class | optional
+          scope_start_address: "10.1.1.1"  # IP | required
+          scope_end_address: "10.1.1.1"  # IP | required
+          switch_mgmt_default_gw: "10.1.1.1"  # IP | required
+          mgmt_prefix: 64  # Integer | min: 64 , max: 126 | required
+          multi_subnet_scope: "MULTI_SUBNET_SCOPE_1"  # String | optional
+          domain_name: "DOMAIN_NAME_1"  # String | optional
+        enable_cdp_mgmt: false  # Boolean | default: false | optional
+        bootstrap_freeform: "BOOTSTRAP_FREEFORM_1"  # String | optional
+      aaa_freeform: "AAA_FREEFORM_1"  # String | optional
+      banner_freeform: "BANNER_FREEFORM_1"  # String | optional
+      leaf_pre_interface_freeform: "LEAF_PRE_INTERFACE_FREEFORM_1"  # String | optional
+      leaf_post_interface_freeform: "LEAF_POST_INTERFACE_FREEFORM_1"  # String | optional
+      spine_pre_interface_freeform: "SPINE_PRE_INTERFACE_FREEFORM_1"  # String | optional
+      spine_post_interface_freeform: "SPINE_POST_INTERFACE_FREEFORM_1"  # String | optional
+      tor_pre_interface_freeform: "TOR_PRE_INTERFACE_FREEFORM_1"  # String | optional
+      tor_post_interface_freeform: "TOR_POST_INTERFACE_FREEFORM_1"  # String | optional
+      intra_fabric_link_freeform: "INTRA_FABRIC_LINK_FREEFORM_1"  # String | optional

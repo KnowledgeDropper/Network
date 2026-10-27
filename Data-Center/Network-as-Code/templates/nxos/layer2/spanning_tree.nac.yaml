@@ -1,0 +1,224 @@
+# Network-as-Code template: Spanning Tree
+# Source: https://netascode.cisco.com/docs/data_models/nxos/layer2/spanning_tree/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 14 (parsed 14); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        interfaces:  # Class | optional
+          ethernets:  # List | optional
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              spanning_tree:  # Class | optional
+                bpdufilter: false  # Boolean | optional
+                bpduguard: true  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 200000000 | optional
+                guard: "root"  # Choice | root , loop , none | optional
+                link_type: "auto"  # Choice | auto , point-to-point , shared | optional
+                port_type: "edge"  # Choice | edge , network , normal | optional
+                port_priority: 1  # Integer | min: 0 , max: 224 | optional
+                mst_pre_standard: true  # Boolean | optional
+                mst_simulate_pvst: true  # Boolean | optional
+          port_channels:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              spanning_tree:  # Class | optional [shared class: structure documented on this page as spanning_tree(nxos.devices.configuration.interfaces.ethernets)]
+                bpdufilter: false  # Boolean | optional
+                bpduguard: false  # Boolean | optional
+                cost: 500  # Integer | min: 0 , max: 200000000 | optional
+                guard: "loop"  # Choice | root , loop , none | optional
+                link_type: "auto"  # Choice | auto , point-to-point , shared | optional
+                port_type: "network"  # Choice | edge , network , normal | optional
+                port_priority: 128  # Integer | min: 0 , max: 224 | optional
+                mst_pre_standard: false  # Boolean | optional
+                mst_simulate_pvst: false  # Boolean | optional
+        spanning_tree:  # Class | optional
+          bridge_assurance: true  # Boolean | optional
+          fcoe: true  # Boolean | optional
+          l2gateway_stp_domain_id: 100  # Integer | min: 0 , max: 200000000 | optional
+          lc_issu: "non-disruptive"  # Choice | disruptive , non-disruptive , auto | optional
+          loopguard: true  # Boolean | optional
+          mode: "rapid-pvst"  # Choice | mst , rapid-pvst | optional
+          pathcost_method: "long"  # Choice | auto , short , long | optional
+          port_type_edge_default: true  # Boolean | optional
+          port_type_edge_bpdufilter_default: false  # Boolean | optional
+          port_type_edge_bpduguard_default: true  # Boolean | optional
+          vlans:  # List | optional
+            - vlans:  # Class | required
+                ids: [100]  # List | Integer[min: 1 , max: 4094 ] | optional
+                ranges:  # List | optional
+                  - from: 1  # Integer | min: 1 , max: 4094 | required
+                    to: 1  # Integer | min: 1 , max: 4094 | required
+              forward_time: 15  # Integer | min: 4 , max: 30 | optional
+              hello_time: 2  # Integer | min: 1 , max: 10 | optional
+              max_age: 20  # Integer | min: 6 , max: 40 | optional
+              priority: 4096  # Integer | min: 0 , max: 61440 | optional
+              root: "primary"  # Choice | primary , secondary | optional
+              diameter: 3  # Integer | min: 2 , max: 7 | optional
+              vlan_id: 100  # Integer | min: 1 , max: 4094 | required | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          l2_gateway_stp_domain_id: 100  # Integer | min: 0 , max: 200000000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          linecard_issu: "non-disruptive"  # Choice | disruptive , non-disruptive , auto | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              spanning_tree:  # Class | optional [shared class: structure documented on this page as spanning_tree(nxos.devices.configuration.interfaces.ethernets)]
+                bpdufilter: false  # Boolean | optional
+                bpduguard: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 200000000 | optional
+                guard: "root"  # Choice | root , loop , none | optional
+                link_type: "auto"  # Choice | auto , point-to-point , shared | optional
+                port_type: "edge"  # Choice | edge , network , normal | optional
+                port_priority: 1  # Integer | min: 0 , max: 224 | optional
+                mst_pre_standard: false  # Boolean | optional
+                mst_simulate_pvst: false  # Boolean | optional
+          port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              spanning_tree:  # Class | optional [shared class: structure documented on this page as spanning_tree(nxos.devices.configuration.interfaces.ethernets)]
+                bpdufilter: false  # Boolean | optional
+                bpduguard: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 200000000 | optional
+                guard: "root"  # Choice | root , loop , none | optional
+                link_type: "auto"  # Choice | auto , point-to-point , shared | optional
+                port_type: "edge"  # Choice | edge , network , normal | optional
+                port_priority: 1  # Integer | min: 0 , max: 224 | optional
+                mst_pre_standard: false  # Boolean | optional
+                mst_simulate_pvst: false  # Boolean | optional
+        spanning_tree:  # Class | optional [shared class: structure documented on this page as spanning_tree(nxos.devices.configuration)]
+          bridge_assurance: false  # Boolean | optional
+          fcoe: false  # Boolean | optional
+          l2gateway_stp_domain_id: 1  # Integer | min: 0 , max: 200000000 | optional
+          lc_issu: "disruptive"  # Choice | disruptive , non-disruptive , auto | optional
+          loopguard: false  # Boolean | optional
+          mode: "mst"  # Choice | mst , rapid-pvst | optional
+          pathcost_method: "auto"  # Choice | auto , short , long | optional
+          port_type_edge_default: false  # Boolean | optional
+          port_type_edge_bpdufilter_default: false  # Boolean | optional
+          port_type_edge_bpduguard_default: false  # Boolean | optional
+          vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.spanning_tree)]
+            - vlans:  # Class | required [shared class: structure documented on this page as vlans(nxos.devices.configuration.spanning_tree.vlans)]
+                ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+                ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.spanning_tree.vlans.vlans)]
+                  - from: 1  # Integer | min: 1 , max: 4094 | required
+                    to: 1  # Integer | min: 1 , max: 4094 | required
+              forward_time: 4  # Integer | min: 4 , max: 30 | optional
+              hello_time: 1  # Integer | min: 1 , max: 10 | optional
+              max_age: 6  # Integer | min: 6 , max: 40 | optional
+              priority: 1  # Integer | min: 0 , max: 61440 | optional
+              root: "primary"  # Choice | primary , secondary | optional
+              diameter: 2  # Integer | min: 2 , max: 7 | optional
+              vlan_id: 1  # Integer | min: 1 , max: 4094 | required | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          l2_gateway_stp_domain_id: 1  # Integer | min: 0 , max: 200000000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          linecard_issu: "disruptive"  # Choice | disruptive , non-disruptive , auto | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+        ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+          - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            spanning_tree:  # Class | optional [shared class: structure documented on this page as spanning_tree(nxos.devices.configuration.interfaces.ethernets)]
+              bpdufilter: false  # Boolean | optional
+              bpduguard: false  # Boolean | optional
+              cost: 1  # Integer | min: 0 , max: 200000000 | optional
+              guard: "root"  # Choice | root , loop , none | optional
+              link_type: "auto"  # Choice | auto , point-to-point , shared | optional
+              port_type: "edge"  # Choice | edge , network , normal | optional
+              port_priority: 1  # Integer | min: 0 , max: 224 | optional
+              mst_pre_standard: false  # Boolean | optional
+              mst_simulate_pvst: false  # Boolean | optional
+        port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            spanning_tree:  # Class | optional [shared class: structure documented on this page as spanning_tree(nxos.devices.configuration.interfaces.ethernets)]
+              bpdufilter: false  # Boolean | optional
+              bpduguard: false  # Boolean | optional
+              cost: 1  # Integer | min: 0 , max: 200000000 | optional
+              guard: "root"  # Choice | root , loop , none | optional
+              link_type: "auto"  # Choice | auto , point-to-point , shared | optional
+              port_type: "edge"  # Choice | edge , network , normal | optional
+              port_priority: 1  # Integer | min: 0 , max: 224 | optional
+              mst_pre_standard: false  # Boolean | optional
+              mst_simulate_pvst: false  # Boolean | optional
+      spanning_tree:  # Class | optional [shared class: structure documented on this page as spanning_tree(nxos.devices.configuration)]
+        bridge_assurance: false  # Boolean | optional
+        fcoe: false  # Boolean | optional
+        l2gateway_stp_domain_id: 1  # Integer | min: 0 , max: 200000000 | optional
+        lc_issu: "disruptive"  # Choice | disruptive , non-disruptive , auto | optional
+        loopguard: false  # Boolean | optional
+        mode: "mst"  # Choice | mst , rapid-pvst | optional
+        pathcost_method: "auto"  # Choice | auto , short , long | optional
+        port_type_edge_default: false  # Boolean | optional
+        port_type_edge_bpdufilter_default: false  # Boolean | optional
+        port_type_edge_bpduguard_default: false  # Boolean | optional
+        vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.spanning_tree)]
+          - vlans:  # Class | required [shared class: structure documented on this page as vlans(nxos.devices.configuration.spanning_tree.vlans)]
+              ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+              ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.spanning_tree.vlans.vlans)]
+                - from: 1  # Integer | min: 1 , max: 4094 | required
+                  to: 1  # Integer | min: 1 , max: 4094 | required
+            forward_time: 4  # Integer | min: 4 , max: 30 | optional
+            hello_time: 1  # Integer | min: 1 , max: 10 | optional
+            max_age: 6  # Integer | min: 6 , max: 40 | optional
+            priority: 1  # Integer | min: 0 , max: 61440 | optional
+            root: "primary"  # Choice | primary , secondary | optional
+            diameter: 2  # Integer | min: 2 , max: 7 | optional
+            vlan_id: 1  # Integer | min: 1 , max: 4094 | required | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        l2_gateway_stp_domain_id: 1  # Integer | min: 0 , max: 200000000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        linecard_issu: "disruptive"  # Choice | disruptive , non-disruptive , auto | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              spanning_tree:  # Class | optional [shared class: structure documented on this page as spanning_tree(nxos.devices.configuration.interfaces.ethernets)]
+                bpdufilter: false  # Boolean | optional
+                bpduguard: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 200000000 | optional
+                guard: "root"  # Choice | root , loop , none | optional
+                link_type: "auto"  # Choice | auto , point-to-point , shared | optional
+                port_type: "edge"  # Choice | edge , network , normal | optional
+                port_priority: 1  # Integer | min: 0 , max: 224 | optional
+                mst_pre_standard: false  # Boolean | optional
+                mst_simulate_pvst: false  # Boolean | optional
+          port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              spanning_tree:  # Class | optional [shared class: structure documented on this page as spanning_tree(nxos.devices.configuration.interfaces.ethernets)]
+                bpdufilter: false  # Boolean | optional
+                bpduguard: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 200000000 | optional
+                guard: "root"  # Choice | root , loop , none | optional
+                link_type: "auto"  # Choice | auto , point-to-point , shared | optional
+                port_type: "edge"  # Choice | edge , network , normal | optional
+                port_priority: 1  # Integer | min: 0 , max: 224 | optional
+                mst_pre_standard: false  # Boolean | optional
+                mst_simulate_pvst: false  # Boolean | optional
+        spanning_tree:  # Class | optional [shared class: structure documented on this page as spanning_tree(nxos.devices.configuration)]
+          bridge_assurance: false  # Boolean | optional
+          fcoe: false  # Boolean | optional
+          l2gateway_stp_domain_id: 1  # Integer | min: 0 , max: 200000000 | optional
+          lc_issu: "disruptive"  # Choice | disruptive , non-disruptive , auto | optional
+          loopguard: false  # Boolean | optional
+          mode: "mst"  # Choice | mst , rapid-pvst | optional
+          pathcost_method: "auto"  # Choice | auto , short , long | optional
+          port_type_edge_default: false  # Boolean | optional
+          port_type_edge_bpdufilter_default: false  # Boolean | optional
+          port_type_edge_bpduguard_default: false  # Boolean | optional
+          vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.spanning_tree)]
+            - vlans:  # Class | required [shared class: structure documented on this page as vlans(nxos.devices.configuration.spanning_tree.vlans)]
+                ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+                ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.spanning_tree.vlans.vlans)]
+                  - from: 1  # Integer | min: 1 , max: 4094 | required
+                    to: 1  # Integer | min: 1 , max: 4094 | required
+              forward_time: 4  # Integer | min: 4 , max: 30 | optional
+              hello_time: 1  # Integer | min: 1 , max: 10 | optional
+              max_age: 6  # Integer | min: 6 , max: 40 | optional
+              priority: 1  # Integer | min: 0 , max: 61440 | optional
+              root: "primary"  # Choice | primary , secondary | optional
+              diameter: 2  # Integer | min: 2 , max: 7 | optional
+              vlan_id: 1  # Integer | min: 1 , max: 4094 | required | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          l2_gateway_stp_domain_id: 1  # Integer | min: 0 , max: 200000000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          linecard_issu: "disruptive"  # Choice | disruptive , non-disruptive , auto | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

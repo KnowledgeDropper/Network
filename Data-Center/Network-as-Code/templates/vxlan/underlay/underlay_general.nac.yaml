@@ -1,0 +1,19 @@
+# Network-as-Code template: General
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/underlay/underlay_general/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  underlay:  # Class | optional
+    general:  # Class | optional
+      routing_protocol: "ospf"  # Choice | ospf , is-is | default: ospf | optional
+      enable_ipv6_underlay: false  # Boolean | default: false | optional
+      replication_mode: "multicast"  # Choice | multicast , ingress | default: multicast | optional
+      manual_underlay_allocation: false  # Boolean | default: false | optional
+      underlay_routing_loopback_id: 0  # Integer | min: 0 , max: 1023 | default: 0 | optional
+      underlay_vtep_loopback_id: 1  # Integer | min: 0 , max: 1023 | default: 1 | optional
+      underlay_routing_protocol_tag: "UNDERLAY"  # String | default: UNDERLAY | optional
+      intra_fabric_interface_mtu: 9216  # Integer | max: 9216 | default: 9216 | optional
+      layer2_host_interface_mtu: 9216  # Integer | max: 9216 | default: 9216 | optional
+      unshut_host_interfaces: true  # Boolean | default: true | optional

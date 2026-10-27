@@ -1,0 +1,320 @@
+# Network-as-Code template: BFD
+# Source: https://netascode.cisco.com/docs/data_models/nxos/routing/bfd/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        interfaces:  # Class | optional
+          loopbacks:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              bfd:  # Class | optional
+                interval: 1  # Integer | min: 0 , max: 999 | optional
+                min_rx: 1  # Integer | min: 0 , max: 999 | optional
+                multiplier: 1  # Integer | min: 0 , max: 50 | optional
+                echo: false  # Boolean | optional
+                echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+                optimize_subinterface: false  # Boolean | optional
+                per_link: false  # Boolean | optional
+                source_ip: "10.1.1.1"  # IP | optional
+                vpc_watch: false  # Boolean | optional
+                track_member_link: false  # Boolean | optional
+                authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+                authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                authentication_interop: false  # Boolean | optional
+          vlans:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration.interfaces.loopbacks)]
+                interval: 100  # Integer | min: 0 , max: 999 | optional
+                min_rx: 100  # Integer | min: 0 , max: 999 | optional
+                multiplier: 5  # Integer | min: 0 , max: 50 | optional
+                echo: false  # Boolean | optional
+                echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+                optimize_subinterface: false  # Boolean | optional
+                per_link: false  # Boolean | optional
+                source_ip: "10.1.1.1"  # IP | optional
+                vpc_watch: false  # Boolean | optional
+                track_member_link: false  # Boolean | optional
+                authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+                authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+                authentication_key: "BFD-SECRET"  # String | optional
+                authentication_interop: false  # Boolean | optional
+          ethernets:  # List | optional
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration.interfaces.loopbacks)]
+                interval: 50  # Integer | min: 0 , max: 999 | optional
+                min_rx: 50  # Integer | min: 0 , max: 999 | optional
+                multiplier: 3  # Integer | min: 0 , max: 50 | optional
+                echo: false  # Boolean | optional
+                echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+                optimize_subinterface: false  # Boolean | optional
+                per_link: false  # Boolean | optional
+                source_ip: "10.1.1.1"  # IP | optional
+                vpc_watch: false  # Boolean | optional
+                track_member_link: false  # Boolean | optional
+                authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+                authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                authentication_interop: false  # Boolean | optional
+          port_channels:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration.interfaces.loopbacks)]
+                interval: 50  # Integer | min: 0 , max: 999 | optional
+                min_rx: 50  # Integer | min: 0 , max: 999 | optional
+                multiplier: 3  # Integer | min: 0 , max: 50 | optional
+                echo: false  # Boolean | optional
+                echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+                optimize_subinterface: false  # Boolean | optional
+                per_link: true  # Boolean | optional
+                source_ip: "10.1.1.1"  # IP | optional
+                vpc_watch: true  # Boolean | optional
+                track_member_link: true  # Boolean | optional
+                authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+                authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                authentication_interop: false  # Boolean | optional
+        bfd:  # Class | optional
+          echo_interface_type: "loopback"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          echo_interface_id: "0"  # Any | String or Integer[min: 0 ] | optional
+          hardware_offload: true  # Boolean | optional
+          slow_timer: 2000  # Integer | min: 1000 , max: 30000 | optional
+          startup_timer: 1  # Integer | min: 0 , max: 60 | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          loopbacks:  # List | optional [shared class: structure documented on this page as loopbacks(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration.interfaces.loopbacks)]
+                interval: 1  # Integer | min: 0 , max: 999 | optional
+                min_rx: 1  # Integer | min: 0 , max: 999 | optional
+                multiplier: 1  # Integer | min: 0 , max: 50 | optional
+                echo: false  # Boolean | optional
+                echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+                optimize_subinterface: false  # Boolean | optional
+                per_link: false  # Boolean | optional
+                source_ip: "10.1.1.1"  # IP | optional
+                vpc_watch: false  # Boolean | optional
+                track_member_link: false  # Boolean | optional
+                authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+                authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                authentication_interop: false  # Boolean | optional
+          vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration.interfaces.loopbacks)]
+                interval: 1  # Integer | min: 0 , max: 999 | optional
+                min_rx: 1  # Integer | min: 0 , max: 999 | optional
+                multiplier: 1  # Integer | min: 0 , max: 50 | optional
+                echo: false  # Boolean | optional
+                echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+                optimize_subinterface: false  # Boolean | optional
+                per_link: false  # Boolean | optional
+                source_ip: "10.1.1.1"  # IP | optional
+                vpc_watch: false  # Boolean | optional
+                track_member_link: false  # Boolean | optional
+                authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+                authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                authentication_interop: false  # Boolean | optional
+          ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration.interfaces.loopbacks)]
+                interval: 1  # Integer | min: 0 , max: 999 | optional
+                min_rx: 1  # Integer | min: 0 , max: 999 | optional
+                multiplier: 1  # Integer | min: 0 , max: 50 | optional
+                echo: false  # Boolean | optional
+                echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+                optimize_subinterface: false  # Boolean | optional
+                per_link: false  # Boolean | optional
+                source_ip: "10.1.1.1"  # IP | optional
+                vpc_watch: false  # Boolean | optional
+                track_member_link: false  # Boolean | optional
+                authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+                authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                authentication_interop: false  # Boolean | optional
+          port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration.interfaces.loopbacks)]
+                interval: 1  # Integer | min: 0 , max: 999 | optional
+                min_rx: 1  # Integer | min: 0 , max: 999 | optional
+                multiplier: 1  # Integer | min: 0 , max: 50 | optional
+                echo: false  # Boolean | optional
+                echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+                optimize_subinterface: false  # Boolean | optional
+                per_link: false  # Boolean | optional
+                source_ip: "10.1.1.1"  # IP | optional
+                vpc_watch: false  # Boolean | optional
+                track_member_link: false  # Boolean | optional
+                authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+                authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                authentication_interop: false  # Boolean | optional
+        bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration)]
+          echo_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          echo_interface_id: "ECHO_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+          hardware_offload: false  # Boolean | optional
+          slow_timer: 1000  # Integer | min: 1000 , max: 30000 | optional
+          startup_timer: 1  # Integer | min: 0 , max: 60 | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+        loopbacks:  # List | optional [shared class: structure documented on this page as loopbacks(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration.interfaces.loopbacks)]
+              interval: 1  # Integer | min: 0 , max: 999 | optional
+              min_rx: 1  # Integer | min: 0 , max: 999 | optional
+              multiplier: 1  # Integer | min: 0 , max: 50 | optional
+              echo: false  # Boolean | optional
+              echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+              optimize_subinterface: false  # Boolean | optional
+              per_link: false  # Boolean | optional
+              source_ip: "10.1.1.1"  # IP | optional
+              vpc_watch: false  # Boolean | optional
+              track_member_link: false  # Boolean | optional
+              authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+              authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+              authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+              authentication_interop: false  # Boolean | optional
+        vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration.interfaces.loopbacks)]
+              interval: 1  # Integer | min: 0 , max: 999 | optional
+              min_rx: 1  # Integer | min: 0 , max: 999 | optional
+              multiplier: 1  # Integer | min: 0 , max: 50 | optional
+              echo: false  # Boolean | optional
+              echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+              optimize_subinterface: false  # Boolean | optional
+              per_link: false  # Boolean | optional
+              source_ip: "10.1.1.1"  # IP | optional
+              vpc_watch: false  # Boolean | optional
+              track_member_link: false  # Boolean | optional
+              authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+              authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+              authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+              authentication_interop: false  # Boolean | optional
+        ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+          - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration.interfaces.loopbacks)]
+              interval: 1  # Integer | min: 0 , max: 999 | optional
+              min_rx: 1  # Integer | min: 0 , max: 999 | optional
+              multiplier: 1  # Integer | min: 0 , max: 50 | optional
+              echo: false  # Boolean | optional
+              echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+              optimize_subinterface: false  # Boolean | optional
+              per_link: false  # Boolean | optional
+              source_ip: "10.1.1.1"  # IP | optional
+              vpc_watch: false  # Boolean | optional
+              track_member_link: false  # Boolean | optional
+              authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+              authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+              authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+              authentication_interop: false  # Boolean | optional
+        port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration.interfaces.loopbacks)]
+              interval: 1  # Integer | min: 0 , max: 999 | optional
+              min_rx: 1  # Integer | min: 0 , max: 999 | optional
+              multiplier: 1  # Integer | min: 0 , max: 50 | optional
+              echo: false  # Boolean | optional
+              echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+              optimize_subinterface: false  # Boolean | optional
+              per_link: false  # Boolean | optional
+              source_ip: "10.1.1.1"  # IP | optional
+              vpc_watch: false  # Boolean | optional
+              track_member_link: false  # Boolean | optional
+              authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+              authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+              authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+              authentication_interop: false  # Boolean | optional
+      bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration)]
+        echo_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+        echo_interface_id: "ECHO_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+        hardware_offload: false  # Boolean | optional
+        slow_timer: 1000  # Integer | min: 1000 , max: 30000 | optional
+        startup_timer: 1  # Integer | min: 0 , max: 60 | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          loopbacks:  # List | optional [shared class: structure documented on this page as loopbacks(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration.interfaces.loopbacks)]
+                interval: 1  # Integer | min: 0 , max: 999 | optional
+                min_rx: 1  # Integer | min: 0 , max: 999 | optional
+                multiplier: 1  # Integer | min: 0 , max: 50 | optional
+                echo: false  # Boolean | optional
+                echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+                optimize_subinterface: false  # Boolean | optional
+                per_link: false  # Boolean | optional
+                source_ip: "10.1.1.1"  # IP | optional
+                vpc_watch: false  # Boolean | optional
+                track_member_link: false  # Boolean | optional
+                authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+                authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                authentication_interop: false  # Boolean | optional
+          vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration.interfaces.loopbacks)]
+                interval: 1  # Integer | min: 0 , max: 999 | optional
+                min_rx: 1  # Integer | min: 0 , max: 999 | optional
+                multiplier: 1  # Integer | min: 0 , max: 50 | optional
+                echo: false  # Boolean | optional
+                echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+                optimize_subinterface: false  # Boolean | optional
+                per_link: false  # Boolean | optional
+                source_ip: "10.1.1.1"  # IP | optional
+                vpc_watch: false  # Boolean | optional
+                track_member_link: false  # Boolean | optional
+                authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+                authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                authentication_interop: false  # Boolean | optional
+          ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration.interfaces.loopbacks)]
+                interval: 1  # Integer | min: 0 , max: 999 | optional
+                min_rx: 1  # Integer | min: 0 , max: 999 | optional
+                multiplier: 1  # Integer | min: 0 , max: 50 | optional
+                echo: false  # Boolean | optional
+                echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+                optimize_subinterface: false  # Boolean | optional
+                per_link: false  # Boolean | optional
+                source_ip: "10.1.1.1"  # IP | optional
+                vpc_watch: false  # Boolean | optional
+                track_member_link: false  # Boolean | optional
+                authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+                authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                authentication_interop: false  # Boolean | optional
+          port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration.interfaces.loopbacks)]
+                interval: 1  # Integer | min: 0 , max: 999 | optional
+                min_rx: 1  # Integer | min: 0 , max: 999 | optional
+                multiplier: 1  # Integer | min: 0 , max: 50 | optional
+                echo: false  # Boolean | optional
+                echo_rx_interval: 1  # Integer | min: 0 , max: 999 | optional
+                optimize_subinterface: false  # Boolean | optional
+                per_link: false  # Boolean | optional
+                source_ip: "10.1.1.1"  # IP | optional
+                vpc_watch: false  # Boolean | optional
+                track_member_link: false  # Boolean | optional
+                authentication_type: "none"  # Choice | none , keyed-sha1 , meticulous-keyed-sha1 | optional
+                authentication_key_id: 1  # Integer | min: 1 , max: 255 | optional
+                authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+                authentication_interop: false  # Boolean | optional
+        bfd:  # Class | optional [shared class: structure documented on this page as bfd(nxos.devices.configuration)]
+          echo_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          echo_interface_id: "ECHO_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+          hardware_offload: false  # Boolean | optional
+          slow_timer: 1000  # Integer | min: 1000 , max: 30000 | optional
+          startup_timer: 1  # Integer | min: 0 , max: 60 | optional

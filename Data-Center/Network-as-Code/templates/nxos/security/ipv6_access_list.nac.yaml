@@ -1,0 +1,272 @@
+# Network-as-Code template: IPv6 Access List
+# Source: https://netascode.cisco.com/docs/data_models/nxos/security/ipv6_access_list/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        ipv6_access_lists:  # List | optional
+          - name: "ACLv6-MGMT-ACCESS"  # String | required
+            extension_header: "deny-all"  # Choice | permit-all , deny-all | optional
+            fragments: "deny-all"  # Choice | permit-all , deny-all | optional
+            ignore_routable: true  # Boolean | optional
+            statistics_per_entry: true  # Boolean | optional
+            entries:  # List | optional
+              - sequence_number: 10  # Integer | min: 1 , max: 4294967295 | required
+                remark: "Allow SSH from management subnet"  # String | optional
+                action: "permit"  # Choice | permit , deny | optional
+                protocol: "tcp"  # Any | Choice[ ipv6 , tcp , udp , gre , esp , ahp , icmp , eigrp , ospf , nos , pim , pcp , sctp , udf ] or String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                source:  # Class | optional
+                  prefix: "2001:db8:cafe::"  # Any | IP or Choice[ any ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  prefix_length: 48  # Integer | min: 0 , max: 128 | optional
+                  prefix_mask: "PREFIX_MASK_1"  # String | optional
+                  addrgroup: "ADDRGROUP_1"  # String | optional
+                  port_operator: "none"  # Choice | none , eq , neq , lt , gt , range | optional
+                  port_1: "PORT_1_1"  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  port_2: "PORT_2_1"  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  portgroup: "PORTGROUP_1"  # String | optional
+                destination:  # Class | optional
+                  prefix: "any"  # Any | IP or Choice[ any ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  prefix_length: 48  # Integer | min: 0 , max: 128 | optional
+                  prefix_mask: "PREFIX_MASK_1"  # String | optional
+                  addrgroup: "ADDRGROUP_1"  # String | optional
+                  port_operator: "eq"  # Choice | none , eq , neq , lt , gt , range | optional
+                  port_1: 22  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  port_2: "PORT_2_1"  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  portgroup: "PORTGROUP_1"  # String | optional
+                dscp: 46  # Integer | min: 0 , max: 63 | optional
+                flow_label: 1  # Integer | min: 0 , max: 1048576 | optional
+                fragment: false  # Boolean | optional
+                log: true  # Boolean | optional
+                established: true  # Boolean | optional
+                ack: false  # Boolean | optional
+                fin: false  # Boolean | optional
+                psh: false  # Boolean | optional
+                rst: false  # Boolean | optional
+                syn: false  # Boolean | optional
+                urg: false  # Boolean | optional
+                icmp_type: 1  # Integer | min: 0 , max: 255 | optional
+                icmp_code: 1  # Integer | min: 0 , max: 255 | optional
+                icmp_message: "nd-ns"  # String | optional
+                http_method: "get"  # Choice | get , put , head , post , delete , trace , connect | optional
+                time_range: "TIME_RANGE_1"  # String | optional
+                redirect: "REDIRECT_1"  # String | optional
+                packet_length_operator: "none"  # Choice | none , eq , neq , lt , gt , range | optional
+                packet_length_1: 19  # Integer | min: 19 , max: 9210 | optional
+                packet_length_2: 19  # Integer | min: 19 , max: 9210 | optional
+                vlan: 1  # Integer | min: 0 , max: 4095 | optional
+                vni: 1  # Integer | min: 0 , max: 16777216 | optional
+                rev: false  # Boolean | optional
+                tcp_flags_mask: 1  # Integer | min: 0 , max: 64 | optional
+                tcp_option_length: 1  # Integer | min: 0 , max: 41 | optional
+                capture_session: 1  # Integer | min: 0 , max: 48 | optional
+                dscp_mask: 1  # Integer | min: 0 , max: 63 | optional
+                load_share: false  # Boolean | optional
+                priority_all: false  # Boolean | optional
+                protocol_mask: "PROTOCOL_MASK_1"  # String | optional
+                redirect_all_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                redirect_all_interface_id: "REDIRECT_ALL_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                telemetry_path: false  # Boolean | optional
+                telemetry_queue: true  # Boolean | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        ipv6_access_lists:  # List | optional [shared class: structure documented on this page as ipv6_access_lists(nxos.devices.configuration)]
+          - name: "NAME_1"  # String | required
+            extension_header: "permit-all"  # Choice | permit-all , deny-all | optional
+            fragments: "permit-all"  # Choice | permit-all , deny-all | optional
+            ignore_routable: false  # Boolean | optional
+            statistics_per_entry: false  # Boolean | optional
+            entries:  # List | optional [shared class: structure documented on this page as entries(nxos.devices.configuration.ipv6_access_lists)]
+              - sequence_number: 1  # Integer | min: 1 , max: 4294967295 | required
+                remark: "REMARK_1"  # String | optional
+                action: "permit"  # Choice | permit , deny | optional
+                protocol: "ipv6"  # Any | Choice[ ipv6 , tcp , udp , gre , esp , ahp , icmp , eigrp , ospf , nos , pim , pcp , sctp , udf ] or String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                source:  # Class | optional [shared class: structure documented on this page as source(nxos.devices.configuration.ipv6_access_lists.entries)]
+                  prefix: "10.1.1.1"  # Any | IP or Choice[ any ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  prefix_length: 1  # Integer | min: 0 , max: 128 | optional
+                  prefix_mask: "PREFIX_MASK_1"  # String | optional
+                  addrgroup: "ADDRGROUP_1"  # String | optional
+                  port_operator: "none"  # Choice | none , eq , neq , lt , gt , range | optional
+                  port_1: "PORT_1_1"  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  port_2: "PORT_2_1"  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  portgroup: "PORTGROUP_1"  # String | optional
+                destination:  # Class | optional [shared class: structure documented on this page as destination(nxos.devices.configuration.ipv6_access_lists.entries)]
+                  prefix: "10.1.1.1"  # Any | IP or Choice[ any ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  prefix_length: 1  # Integer | min: 0 , max: 128 | optional
+                  prefix_mask: "PREFIX_MASK_1"  # String | optional
+                  addrgroup: "ADDRGROUP_1"  # String | optional
+                  port_operator: "none"  # Choice | none , eq , neq , lt , gt , range | optional
+                  port_1: "PORT_1_1"  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  port_2: "PORT_2_1"  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  portgroup: "PORTGROUP_1"  # String | optional
+                dscp: 1  # Integer | min: 0 , max: 63 | optional
+                flow_label: 1  # Integer | min: 0 , max: 1048576 | optional
+                fragment: false  # Boolean | optional
+                log: false  # Boolean | optional
+                established: false  # Boolean | optional
+                ack: false  # Boolean | optional
+                fin: false  # Boolean | optional
+                psh: false  # Boolean | optional
+                rst: false  # Boolean | optional
+                syn: false  # Boolean | optional
+                urg: false  # Boolean | optional
+                icmp_type: 1  # Integer | min: 0 , max: 255 | optional
+                icmp_code: 1  # Integer | min: 0 , max: 255 | optional
+                icmp_message: "ICMP_MESSAGE_1"  # String | optional
+                http_method: "get"  # Choice | get , put , head , post , delete , trace , connect | optional
+                time_range: "TIME_RANGE_1"  # String | optional
+                redirect: "REDIRECT_1"  # String | optional
+                packet_length_operator: "none"  # Choice | none , eq , neq , lt , gt , range | optional
+                packet_length_1: 19  # Integer | min: 19 , max: 9210 | optional
+                packet_length_2: 19  # Integer | min: 19 , max: 9210 | optional
+                vlan: 1  # Integer | min: 0 , max: 4095 | optional
+                vni: 1  # Integer | min: 0 , max: 16777216 | optional
+                rev: false  # Boolean | optional
+                tcp_flags_mask: 1  # Integer | min: 0 , max: 64 | optional
+                tcp_option_length: 1  # Integer | min: 0 , max: 41 | optional
+                capture_session: 1  # Integer | min: 0 , max: 48 | optional
+                dscp_mask: 1  # Integer | min: 0 , max: 63 | optional
+                load_share: false  # Boolean | optional
+                priority_all: false  # Boolean | optional
+                protocol_mask: "PROTOCOL_MASK_1"  # String | optional
+                redirect_all_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                redirect_all_interface_id: "REDIRECT_ALL_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                telemetry_path: false  # Boolean | optional
+                telemetry_queue: false  # Boolean | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      ipv6_access_lists:  # List | optional [shared class: structure documented on this page as ipv6_access_lists(nxos.devices.configuration)]
+        - name: "NAME_1"  # String | required
+          extension_header: "permit-all"  # Choice | permit-all , deny-all | optional
+          fragments: "permit-all"  # Choice | permit-all , deny-all | optional
+          ignore_routable: false  # Boolean | optional
+          statistics_per_entry: false  # Boolean | optional
+          entries:  # List | optional [shared class: structure documented on this page as entries(nxos.devices.configuration.ipv6_access_lists)]
+            - sequence_number: 1  # Integer | min: 1 , max: 4294967295 | required
+              remark: "REMARK_1"  # String | optional
+              action: "permit"  # Choice | permit , deny | optional
+              protocol: "ipv6"  # Any | Choice[ ipv6 , tcp , udp , gre , esp , ahp , icmp , eigrp , ospf , nos , pim , pcp , sctp , udf ] or String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+              source:  # Class | optional [shared class: structure documented on this page as source(nxos.devices.configuration.ipv6_access_lists.entries)]
+                prefix: "10.1.1.1"  # Any | IP or Choice[ any ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                prefix_length: 1  # Integer | min: 0 , max: 128 | optional
+                prefix_mask: "PREFIX_MASK_1"  # String | optional
+                addrgroup: "ADDRGROUP_1"  # String | optional
+                port_operator: "none"  # Choice | none , eq , neq , lt , gt , range | optional
+                port_1: "PORT_1_1"  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                port_2: "PORT_2_1"  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                portgroup: "PORTGROUP_1"  # String | optional
+              destination:  # Class | optional [shared class: structure documented on this page as destination(nxos.devices.configuration.ipv6_access_lists.entries)]
+                prefix: "10.1.1.1"  # Any | IP or Choice[ any ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                prefix_length: 1  # Integer | min: 0 , max: 128 | optional
+                prefix_mask: "PREFIX_MASK_1"  # String | optional
+                addrgroup: "ADDRGROUP_1"  # String | optional
+                port_operator: "none"  # Choice | none , eq , neq , lt , gt , range | optional
+                port_1: "PORT_1_1"  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                port_2: "PORT_2_1"  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                portgroup: "PORTGROUP_1"  # String | optional
+              dscp: 1  # Integer | min: 0 , max: 63 | optional
+              flow_label: 1  # Integer | min: 0 , max: 1048576 | optional
+              fragment: false  # Boolean | optional
+              log: false  # Boolean | optional
+              established: false  # Boolean | optional
+              ack: false  # Boolean | optional
+              fin: false  # Boolean | optional
+              psh: false  # Boolean | optional
+              rst: false  # Boolean | optional
+              syn: false  # Boolean | optional
+              urg: false  # Boolean | optional
+              icmp_type: 1  # Integer | min: 0 , max: 255 | optional
+              icmp_code: 1  # Integer | min: 0 , max: 255 | optional
+              icmp_message: "ICMP_MESSAGE_1"  # String | optional
+              http_method: "get"  # Choice | get , put , head , post , delete , trace , connect | optional
+              time_range: "TIME_RANGE_1"  # String | optional
+              redirect: "REDIRECT_1"  # String | optional
+              packet_length_operator: "none"  # Choice | none , eq , neq , lt , gt , range | optional
+              packet_length_1: 19  # Integer | min: 19 , max: 9210 | optional
+              packet_length_2: 19  # Integer | min: 19 , max: 9210 | optional
+              vlan: 1  # Integer | min: 0 , max: 4095 | optional
+              vni: 1  # Integer | min: 0 , max: 16777216 | optional
+              rev: false  # Boolean | optional
+              tcp_flags_mask: 1  # Integer | min: 0 , max: 64 | optional
+              tcp_option_length: 1  # Integer | min: 0 , max: 41 | optional
+              capture_session: 1  # Integer | min: 0 , max: 48 | optional
+              dscp_mask: 1  # Integer | min: 0 , max: 63 | optional
+              load_share: false  # Boolean | optional
+              priority_all: false  # Boolean | optional
+              protocol_mask: "PROTOCOL_MASK_1"  # String | optional
+              redirect_all_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+              redirect_all_interface_id: "REDIRECT_ALL_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+              telemetry_path: false  # Boolean | optional
+              telemetry_queue: false  # Boolean | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        ipv6_access_lists:  # List | optional [shared class: structure documented on this page as ipv6_access_lists(nxos.devices.configuration)]
+          - name: "NAME_1"  # String | required
+            extension_header: "permit-all"  # Choice | permit-all , deny-all | optional
+            fragments: "permit-all"  # Choice | permit-all , deny-all | optional
+            ignore_routable: false  # Boolean | optional
+            statistics_per_entry: false  # Boolean | optional
+            entries:  # List | optional [shared class: structure documented on this page as entries(nxos.devices.configuration.ipv6_access_lists)]
+              - sequence_number: 1  # Integer | min: 1 , max: 4294967295 | required
+                remark: "REMARK_1"  # String | optional
+                action: "permit"  # Choice | permit , deny | optional
+                protocol: "ipv6"  # Any | Choice[ ipv6 , tcp , udp , gre , esp , ahp , icmp , eigrp , ospf , nos , pim , pcp , sctp , udf ] or String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                source:  # Class | optional [shared class: structure documented on this page as source(nxos.devices.configuration.ipv6_access_lists.entries)]
+                  prefix: "10.1.1.1"  # Any | IP or Choice[ any ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  prefix_length: 1  # Integer | min: 0 , max: 128 | optional
+                  prefix_mask: "PREFIX_MASK_1"  # String | optional
+                  addrgroup: "ADDRGROUP_1"  # String | optional
+                  port_operator: "none"  # Choice | none , eq , neq , lt , gt , range | optional
+                  port_1: "PORT_1_1"  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  port_2: "PORT_2_1"  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  portgroup: "PORTGROUP_1"  # String | optional
+                destination:  # Class | optional [shared class: structure documented on this page as destination(nxos.devices.configuration.ipv6_access_lists.entries)]
+                  prefix: "10.1.1.1"  # Any | IP or Choice[ any ] or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  prefix_length: 1  # Integer | min: 0 , max: 128 | optional
+                  prefix_mask: "PREFIX_MASK_1"  # String | optional
+                  addrgroup: "ADDRGROUP_1"  # String | optional
+                  port_operator: "none"  # Choice | none , eq , neq , lt , gt , range | optional
+                  port_1: "PORT_1_1"  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  port_2: "PORT_2_1"  # Any | String or Integer or String[Regex: ^.*[\$\%]\{.*$ ] | optional
+                  portgroup: "PORTGROUP_1"  # String | optional
+                dscp: 1  # Integer | min: 0 , max: 63 | optional
+                flow_label: 1  # Integer | min: 0 , max: 1048576 | optional
+                fragment: false  # Boolean | optional
+                log: false  # Boolean | optional
+                established: false  # Boolean | optional
+                ack: false  # Boolean | optional
+                fin: false  # Boolean | optional
+                psh: false  # Boolean | optional
+                rst: false  # Boolean | optional
+                syn: false  # Boolean | optional
+                urg: false  # Boolean | optional
+                icmp_type: 1  # Integer | min: 0 , max: 255 | optional
+                icmp_code: 1  # Integer | min: 0 , max: 255 | optional
+                icmp_message: "ICMP_MESSAGE_1"  # String | optional
+                http_method: "get"  # Choice | get , put , head , post , delete , trace , connect | optional
+                time_range: "TIME_RANGE_1"  # String | optional
+                redirect: "REDIRECT_1"  # String | optional
+                packet_length_operator: "none"  # Choice | none , eq , neq , lt , gt , range | optional
+                packet_length_1: 19  # Integer | min: 19 , max: 9210 | optional
+                packet_length_2: 19  # Integer | min: 19 , max: 9210 | optional
+                vlan: 1  # Integer | min: 0 , max: 4095 | optional
+                vni: 1  # Integer | min: 0 , max: 16777216 | optional
+                rev: false  # Boolean | optional
+                tcp_flags_mask: 1  # Integer | min: 0 , max: 64 | optional
+                tcp_option_length: 1  # Integer | min: 0 , max: 41 | optional
+                capture_session: 1  # Integer | min: 0 , max: 48 | optional
+                dscp_mask: 1  # Integer | min: 0 , max: 63 | optional
+                load_share: false  # Boolean | optional
+                priority_all: false  # Boolean | optional
+                protocol_mask: "PROTOCOL_MASK_1"  # String | optional
+                redirect_all_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                redirect_all_interface_id: "REDIRECT_ALL_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                telemetry_path: false  # Boolean | optional
+                telemetry_queue: false  # Boolean | optional

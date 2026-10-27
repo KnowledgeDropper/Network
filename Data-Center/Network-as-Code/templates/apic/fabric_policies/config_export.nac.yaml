@@ -1,0 +1,15 @@
+# Network-as-Code template: Config Exports
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/config_export/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    config_exports:  # List | optional
+      - name: "ACI_EXPORT"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        description: "Export ACI JSON configuration to remote server"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+        format: "json"  # Choice | json , xml | default: json | optional
+        remote_location: "BKP_SRV"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        scheduler: "MIDNIGHT"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        snapshot: false  # Boolean | default: false | optional

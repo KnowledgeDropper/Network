@@ -1,0 +1,28 @@
+# Network-as-Code template: Fabric Spine Interface Selector
+# Source: https://netascode.cisco.com/docs/data_models/apic/interface_policies/fabric_spine_interface_selector/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    spine_interface_selector_name: "ETH\\g<mod>-\\g<port>"  # String | min: 1 , max: 64 | default: ETH\g<mod>-\g<port> | optional
+    spine_interface_selector_sub_port_name: "ETH\\g<mod>-\\g<port>-\\g<sport>"  # String | min: 1 , max: 64 | default: ETH\g<mod>-\g<port>-\g<sport> | optional
+  interface_policies:  # Class | optional
+    nodes:  # List | optional
+      - interfaces:  # List | optional
+          - sub_ports:  # List | optional
+              - port: 1  # Integer | min: 1 , max: 127 | required
+                description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                module: 1  # Integer | min: 1 , max: 9 | optional
+                policy_group: "POLICY_GROUP_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                shutdown: false  # Boolean | default: false | optional
+            port: 1  # Integer | min: 1 , max: 127 | required
+            description: "interface descr 1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+            policy_group: "FAB1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            shutdown: false  # Boolean | default: false | optional
+        id: 101  # Integer | min: 1 , max: 4000 | required
+  auto_generate_switch_pod_profiles: false  # Boolean | default: false | optional
+  auto_generate_fabric_spine_switch_interface_profiles: true  # Boolean | default: false | optional
+  interface_selector_description: false  # Boolean | default: false | optional

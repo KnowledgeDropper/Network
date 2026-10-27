@@ -1,0 +1,45 @@
+# Network-as-Code template: Redirect Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/redirect_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 8 (parsed 8); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      services:  # Class | optional
+        redirect_policies:  # List | optional
+          - name: "L4L7_PBR"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            alias: "PBR1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            description: "L4-L7 PBR with SG"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            anycast: false  # Boolean | default: false | optional
+            type: "L3"  # Choice | L3 , L2 , L1 | default: L3 | optional
+            hashing: "sip-dip-prototype"  # Choice | sip-dip-prototype , sip , dip | default: sip-dip-prototype | optional
+            threshold: false  # Boolean | default: false | optional
+            max_threshold: 0  # Integer | min: 0 , max: 100 | default: 0 | optional
+            min_threshold: 0  # Integer | min: 0 , max: 100 | default: 0 | optional
+            pod_aware: false  # Boolean | default: false | optional
+            resilient_hashing: false  # Boolean | default: false | optional
+            redirect_backup_policy: "L4L7_REDIRECT_BACKUP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            threshold_down_action: "permit"  # Choice | permit , deny , bypass | default: permit | optional
+            rewrite_source_mac: false  # Boolean | optional
+            l1l2_destinations:  # List | optional
+              - description: "L1 destination"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                name: "L1_DEST1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                mac: "00:00:00:11:22:34"  # MAC | optional
+                weight: 1  # Integer | min: 1 | optional
+                pod: 1  # Integer | min: 1 , max: 255 | optional
+                redirect_health_group: "HEALTH_GROUP_L1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                concrete_interface:  # Class | required
+                  l4l7_device: "DEV-L1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  concrete_device: "DEV1-L1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  interface: "INT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            l3_destinations:  # List | optional
+              - description: "FW virtual interface"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                name: "FW_Virtual_Interface"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                ip: "10.0.0.5"  # IP | required
+                ip_2: "2.2.2.2"  # IP | optional
+                mac: "AA:AA:BB:BB:CC:CC"  # MAC | optional
+                pod: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+                redirect_health_group: "L4L7RedirectHealthGroup"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            ip_sla_policy: "PingEach20sec"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional

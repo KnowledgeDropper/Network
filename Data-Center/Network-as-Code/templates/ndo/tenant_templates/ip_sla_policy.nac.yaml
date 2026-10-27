@@ -1,0 +1,25 @@
+# Network-as-Code template: IP SLA Policy
+# Source: https://netascode.cisco.com/docs/data_models/ndo/tenant_templates/ip_sla_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 2); example values used as placeholders where available.
+---
+ndo:
+  tenant_templates:  # Class | optional
+    tenant_policies:  # List | optional
+      - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        tenant: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        ip_sla_policies:  # List | optional
+          - name: "HTTP"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "HTTP SLA Policy"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            frequency: 120  # Integer | min: 1 , max: 300 | default: 60 | optional
+            multiplier: 4  # Integer | min: 1 , max: 100 | default: 3 | optional
+            sla_type: "http"  # Choice | icmp , tcp , l2ping , http | default: icmp | optional
+            port: 1  # Integer | min: 1 , max: 65535 | default: 0 | optional
+            http_version: "HTTP11"  # Choice | HTTP10 , HTTP11 | default: HTTP10 | optional
+            http_uri: "/tmp"  # String | Regex: ^/.{0,512}$ | default: / | optional
+            request_data_size: 1024  # Integer | min: 0 , max: 17512 | default: 28 | optional
+            type_of_service: 2  # Integer | min: 0 , max: 255 | default: 0 | optional
+            timeout: 800  # Integer | min: 1 , max: 604800000 | default: 900 | optional
+            threshold: 800  # Integer | min: 1 , max: 604800000 | default: 900 | optional
+            ipv6_traffic_class: 2  # Integer | min: 0 , max: 255 | default: 0 | optional

@@ -1,0 +1,12 @@
+# Network-as-Code template: Date and Time Format
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/date_time_format/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    date_time_format:  # Class | optional
+      display_format: "local"  # Choice | local , utc | default: local | optional
+      timezone: "p0_UTC"  # String | default: p0_UTC | optional
+      show_offset: true  # Boolean | default: true | optional

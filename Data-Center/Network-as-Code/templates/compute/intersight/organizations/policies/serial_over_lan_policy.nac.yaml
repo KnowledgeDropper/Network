@@ -1,0 +1,21 @@
+# Network-as-Code template: Serial over LAN Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/serial_over_lan_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          serial_over_lan:  # List | optional
+            - name: "MySolPolicy"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              enabled: true  # Boolean | default: true | optional
+              baud_rate: 9600  # Choice | 9600 , 19200 , 38400 , 57600 , 115200 | default: 9600 | optional
+              com_port: "com0"  # Choice | com0 , com1 | default: com0 | optional
+              ssh_port: 2400  # Integer | min: 1024 , max: 65535 | default: 2400 | optional

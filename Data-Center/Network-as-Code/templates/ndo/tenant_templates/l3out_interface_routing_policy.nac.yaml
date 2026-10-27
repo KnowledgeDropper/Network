@@ -1,0 +1,39 @@
+# Network-as-Code template: L3Out Interface Routing Policy
+# Source: https://netascode.cisco.com/docs/data_models/ndo/tenant_templates/l3out_interface_routing_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+ndo:
+  tenant_templates:  # Class | optional
+    tenant_policies:  # List | optional
+      - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        tenant: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        l3out_interface_routing_policies:  # List | optional
+          - name: "IRP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "L3Out Interface Routing Policy 1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            bfd_multi_hop_settings:  # Class | optional
+              admin_state: true  # Boolean | default: true | optional
+              detection_multiplier: 3  # Integer | min: 1 , max: 50 | default: 3 | optional
+              min_rx_interval: 250  # Integer | min: 250 , max: 999 | default: 250 | optional
+              min_tx_interval: 250  # Integer | min: 250 , max: 999 | default: 250 | optional
+            bfd_settings:  # Class | optional
+              admin_state: true  # Boolean | default: true | optional
+              detection_multiplier: 3  # Integer | min: 1 , max: 50 | default: 3 | optional
+              min_rx_interval: 250  # Integer | min: 50 , max: 999 | default: 50 | optional
+              min_tx_interval: 250  # Integer | min: 50 , max: 999 | default: 50 | optional
+              echo_rx_interval: 50  # Integer | min: 50 , max: 999 | default: 50 | optional
+              echo_admin_state: true  # Boolean | default: true | optional
+              interface_control: true  # Boolean | default: false | optional
+            ospf_interface_settings:  # Class | optional
+              network_type: "point-to-point"  # Choice | broadcast , point-to-point | default: broadcast | optional
+              priority: 1  # Integer | min: 0 , max: 255 | default: 1 | optional
+              interface_cost: 10  # Integer | min: 0 , max: 65535 | default: 0 | optional
+              hello_interval: 10  # Integer | min: 1 , max: 65535 | default: 10 | optional
+              dead_interval: 40  # Integer | min: 1 , max: 65535 | default: 40 | optional
+              retransmit_interval: 5  # Integer | min: 1 , max: 65535 | default: 5 | optional
+              transmit_delay: 1  # Integer | min: 1 , max: 450 | default: 1 | optional
+              advertise_subnet: true  # Boolean | optional
+              bfd: false  # Boolean | optional
+              mtu_ignore: false  # Boolean | optional
+              passive_participation: false  # Boolean | optional

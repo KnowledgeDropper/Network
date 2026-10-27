@@ -1,0 +1,12 @@
+# Network-as-Code template: RBAC Node Rules
+# Source: https://netascode.cisco.com/docs/data_models/apic/node_policies/rbac_node_rule/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  node_policies:  # Class | optional
+    nodes:  # List | optional
+      - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        role: "leaf"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        security_domains: ["SEC1"]  # List | String[Regex: ^[a-zA-Z][a-zA-Z0-9_.-]{0,31}$ ] | optional

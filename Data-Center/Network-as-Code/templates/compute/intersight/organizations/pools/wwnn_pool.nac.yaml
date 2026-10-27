@@ -1,0 +1,21 @@
+# Network-as-Code template: WWNN Pool
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/pools/wwnn_pool/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - pools:  # Class | optional
+          wwnn:  # List | optional
+            - name: "wwnn-pool"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "WWNN pool for all servers"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              wwnn_blocks:  # List | required
+                - from: "20:00:00:25:B5:00:00:00"  # String | Regex: ^[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){7}$ | required
+                  size: 1000  # Integer | min: 1 , max: 1024 | optional
+                  to: "20:00:00:25:B5:00:03:E7"  # String | Regex: ^[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){7}$ | optional

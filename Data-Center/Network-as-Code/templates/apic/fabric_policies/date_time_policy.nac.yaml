@@ -1,0 +1,26 @@
+# Network-as-Code template: Date and Time Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/date_time_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    pod_policies:  # Class | optional
+      date_time_policies:  # List | optional
+        - name: "ntp_policy_simple"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          ntp_admin_state: true  # Boolean | default: true | optional
+          ntp_auth_state: true  # Boolean | default: false | optional
+          apic_ntp_server_state: false  # Boolean | default: false | optional
+          apic_ntp_server_master_mode: false  # Boolean | default: false | optional
+          apic_ntp_server_master_stratum: 8  # Integer | min: 1 , max: 14 | default: 8 | optional
+          ntp_servers:  # List | optional
+            - hostname_ip: "10.0.0.100"  # Any | String[Regex: ^[a-zA-Z0-9:][a-zA-Z0-9.:-]{0,254}$ ] or IP | required
+              auth_key_id: 1  # Integer | min: 1 , max: 65535 | optional
+              preferred: true  # Boolean | default: true | optional
+              mgmt_epg: "oob"  # Choice | inb , oob | default: inb | optional
+          ntp_keys:  # List | optional
+            - id: 1  # Integer | min: 1 , max: 65535 | required
+              key: "My$ecretKey"  # String | min: 0 , max: 40 | required
+              auth_type: "md5"  # Choice | md5 , sha1 | required
+              trusted: false  # Boolean | required

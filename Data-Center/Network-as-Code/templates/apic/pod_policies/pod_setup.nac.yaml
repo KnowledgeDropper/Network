@@ -1,0 +1,24 @@
+# Network-as-Code template: Pod Setup
+# Source: https://netascode.cisco.com/docs/data_models/apic/pod_policies/pod_setup/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 5 (parsed 5); example values used as placeholders where available.
+---
+apic:
+  pod_policies:  # Class | optional
+    pods:  # List | optional
+      - id: 1  # Integer | min: 1 , max: 255 | required
+        tep_pool: "10.1.0.0/16"  # IP | optional
+        data_plane_tep: "192.168.3.1"  # IP | optional
+        unicast_tep: "172.16.13.3"  # IP | optional
+        policy: "Policy1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        external_tep_pools:  # List | optional
+          - prefix: "172.16.1.0/24"  # IP | required
+            reserved_address_count: 2  # Integer | min: 1 , max: 4294967295 | required
+        remote_pools:  # List | optional
+          - id: 1  # Integer | min: 1 , max: 255 | required
+            remote_pool: "10.2.0.0/24"  # IP | required
+        resiliency_groups:  # List | optional
+          - name: "1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Resiliency Group 1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            remote_pool_ids: [1, 2, 3]  # List | Integer[min: 1 , max: 255 ] | optional

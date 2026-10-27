@@ -1,0 +1,14 @@
+# Network-as-Code template: Bootstrap
+# Source: https://netascode.cisco.com/docs/data_models/apic/bootstrap/bootstrap/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  bootstrap:  # Class | optional
+    admin_username: "admin"  # String | optional
+    admin_password: "cisco"  # String | required
+    snapshot_policy: "SNAPSHOT_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+    objects_to_delete:  # List | optional
+      - name: "NAME_1"  # String | required
+        dn: "DN_1"  # String | Regex: ^[a-zA-Z0-9_.:\-\/]{1,256}$ | required

@@ -1,0 +1,16 @@
+# Network-as-Code template: Template
+# Source: https://netascode.cisco.com/docs/data_models/ndo/schema/template/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+ndo:
+  schemas:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      templates:  # List | optional
+        - name: "site1_app_template"  # String | required
+          description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          type: "multi_site"  # Choice | multi_site , autonomous | default: multi_site | optional
+          tenant: "tnt"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          sites: ["fabric_site1"]  # List | String | optional
+          deploy_order: 1  # Integer | min: 1 , max: 3 | optional

@@ -1,0 +1,88 @@
+# Network-as-Code template: IP Route
+# Source: https://netascode.cisco.com/docs/data_models/nxos/routing/ip_route/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        routing:  # Class | optional
+          ip_routes:  # List | optional
+            - vrf: "management"  # String | optional
+              prefix: "0.0.0.0/0"  # String | required
+              preference: 1  # Integer | min: 1 , max: 255 | optional
+              tag: 1000  # Integer | min: 0 , max: 4294967295 | optional
+              bfd: false  # Boolean | optional
+              next_hops:  # List | optional
+                - interface_type: "mgmt"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                  interface_id: "0"  # Any | String or Integer[min: 0 ] | optional
+                  address: "10.50.202.1"  # IP | optional
+                  vrf: "VRF1"  # String | optional
+                  track: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  preference: 10  # Integer | min: 0 , max: 255 | optional
+                  tag: 100  # Integer | min: 0 , max: 4294967295 | optional
+                  name: "MGMT-GW"  # String | optional
+              pervasive: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        routing:  # Class | optional [shared class: structure documented on this page as routing(nxos.devices.configuration)]
+          ip_routes:  # List | optional [shared class: structure documented on this page as ip_routes(nxos.devices.configuration.routing)]
+            - vrf: "VRF1"  # String | optional
+              prefix: "PREFIX_1"  # String | required
+              preference: 1  # Integer | min: 1 , max: 255 | optional
+              tag: 1  # Integer | min: 0 , max: 4294967295 | optional
+              bfd: false  # Boolean | optional
+              next_hops:  # List | optional [shared class: structure documented on this page as next_hops(nxos.devices.configuration.routing.ip_routes)]
+                - interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                  interface_id: "INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                  address: "10.1.1.1"  # IP | optional
+                  vrf: "VRF1"  # String | optional
+                  track: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  preference: 1  # Integer | min: 0 , max: 255 | optional
+                  tag: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  name: "NAME_1"  # String | optional
+              pervasive: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      routing:  # Class | optional [shared class: structure documented on this page as routing(nxos.devices.configuration)]
+        ip_routes:  # List | optional [shared class: structure documented on this page as ip_routes(nxos.devices.configuration.routing)]
+          - vrf: "VRF1"  # String | optional
+            prefix: "PREFIX_1"  # String | required
+            preference: 1  # Integer | min: 1 , max: 255 | optional
+            tag: 1  # Integer | min: 0 , max: 4294967295 | optional
+            bfd: false  # Boolean | optional
+            next_hops:  # List | optional [shared class: structure documented on this page as next_hops(nxos.devices.configuration.routing.ip_routes)]
+              - interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                interface_id: "INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                address: "10.1.1.1"  # IP | optional
+                vrf: "VRF1"  # String | optional
+                track: 1  # Integer | min: 0 , max: 4294967295 | optional
+                preference: 1  # Integer | min: 0 , max: 255 | optional
+                tag: 1  # Integer | min: 0 , max: 4294967295 | optional
+                name: "NAME_1"  # String | optional
+            pervasive: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        routing:  # Class | optional [shared class: structure documented on this page as routing(nxos.devices.configuration)]
+          ip_routes:  # List | optional [shared class: structure documented on this page as ip_routes(nxos.devices.configuration.routing)]
+            - vrf: "VRF1"  # String | optional
+              prefix: "PREFIX_1"  # String | required
+              preference: 1  # Integer | min: 1 , max: 255 | optional
+              tag: 1  # Integer | min: 0 , max: 4294967295 | optional
+              bfd: false  # Boolean | optional
+              next_hops:  # List | optional [shared class: structure documented on this page as next_hops(nxos.devices.configuration.routing.ip_routes)]
+                - interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                  interface_id: "INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                  address: "10.1.1.1"  # IP | optional
+                  vrf: "VRF1"  # String | optional
+                  track: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  preference: 1  # Integer | min: 0 , max: 255 | optional
+                  tag: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  name: "NAME_1"  # String | optional
+              pervasive: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

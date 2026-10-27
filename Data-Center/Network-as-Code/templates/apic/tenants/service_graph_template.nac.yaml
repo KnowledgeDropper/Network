@@ -1,0 +1,40 @@
+# Network-as-Code template: Service Graph Template
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/service_graph_template/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 23 (parsed 23); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      services:  # Class | optional
+        service_graph_templates:  # List | optional
+          - name: "PBR_SG_Minimal"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            ndo_managed: false  # Boolean | default: false | optional
+            alias: "TEMPLATE1-ALIAS"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            description: "This is a PBR SG template"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            filter_between_nodes: "filters-from-contract"  # Choice | allow-all , filters-from-contract | default: allow-all | optional
+            template_type: "FW_ROUTED"  # Choice | FW_TRANS , FW_ROUTED , ADC_ONE_ARM , ADC_TWO_ARM , OTHER , CLOUD_NATIVE_LB , CLOUD_VENDOR_LB , CLOUD_NATIVE_FW , CLOUD_VENDOR_FW | default: FW_ROUTED | optional
+            redirect: true  # Boolean | default: false | optional
+            share_encapsulation: false  # Boolean | default: false | optional
+            device:  # Class | optional
+              name: "FW"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              tenant: "ABC"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              node_name: "FW_Cluster"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              adjacency_type: "L2"  # Choice | L2 , L3 | default: L3 | optional
+            consumer:  # Class | optional
+              direct_connect: false  # Boolean | default: false | optional
+            provider:  # Class | optional
+              direct_connect: true  # Boolean | default: false | optional
+            devices:  # List | optional
+              - name: "FW"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                tenant: "ABC"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                node_name: "N1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                template_type: "FW_TRANS"  # Choice | FW_TRANS , FW_ROUTED , ADC_ONE_ARM , ADC_TWO_ARM , OTHER , CLOUD_NATIVE_LB , CLOUD_VENDOR_LB , CLOUD_NATIVE_FW , CLOUD_VENDOR_FW | default: OTHER | optional
+            connections:  # List | optional
+              - provider_node: "EPG-Provider"  # Choice | EPG-Provider | required
+                consumer_node: "EPG-Consumer"  # Choice | EPG-Consumer | required
+                copy_node: "C1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                adjacency_type: "L2"  # Choice | L2 , L3 | default: L2 | optional
+                unicast_route: false  # Boolean | default: true | optional
+                direct_connect: true  # Boolean | default: false | optional

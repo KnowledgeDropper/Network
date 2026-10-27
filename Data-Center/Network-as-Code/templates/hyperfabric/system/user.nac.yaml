@@ -1,0 +1,12 @@
+# Network-as-Code template: User
+# Source: https://netascode.cisco.com/docs/data_models/hyperfabric/system/user/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+hyperfabric:
+  users:  # List | optional
+    - email: "abc@cisco.com"  # String | required
+      enabled: true  # Boolean | default: true | optional
+      role: "ADMIN"  # Choice | ADMIN , READ_WRITE , READ_ONLY | default: READ_ONLY | required
+      labels: ["LABELS_1"]  # List | String | optional

@@ -1,0 +1,53 @@
+# Network-as-Code template: Management Access Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/management_access_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    pod_policies:  # Class | optional
+      management_access_policies:  # List | optional
+        - name: "MGMT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          alias: "ALIAS_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          ssh:  # Class | optional
+            admin_state: true  # Boolean | default: true | optional
+            password_auth: true  # Boolean | default: true | optional
+            port: 22  # Integer | min: 1 , max: 65535 | default: 22 | optional
+            aes128_ctr: true  # Boolean | default: true | optional
+            aes128_gcm: true  # Boolean | default: true | optional
+            aes192_ctr: true  # Boolean | default: true | optional
+            aes256_ctr: true  # Boolean | default: true | optional
+            aes256_gcm: true  # Boolean | default: true | optional
+            chacha: false  # Boolean | default: false | optional
+            hmac_sha1: false  # Boolean | default: false | optional
+            hmac_sha2_256: true  # Boolean | default: true | optional
+            hmac_sha2_512: true  # Boolean | default: true | optional
+            curve25519_sha256: true  # Boolean | default: true | optional
+            curve25519_sha256_libssh: true  # Boolean | default: true | optional
+            dh1_sha1: false  # Boolean | default: false | optional
+            dh14_sha1: false  # Boolean | default: false | optional
+            dh14_sha256: true  # Boolean | default: true | optional
+            dh16_sha512: true  # Boolean | default: true | optional
+            ecdh_sha2_nistp256: true  # Boolean | default: true | optional
+            ecdh_sha2_nistp384: true  # Boolean | default: true | optional
+            ecdh_sha2_nistp521: true  # Boolean | default: true | optional
+          telnet:  # Class | optional
+            admin_state: true  # Boolean | default: false | optional
+            port: 23  # Integer | min: 1 , max: 65535 | default: 23 | optional
+          https:  # Class | optional
+            admin_state: true  # Boolean | default: true | optional
+            client_cert_auth_state: false  # Boolean | default: false | optional
+            dh: "1024"  # Choice | 1024 , 2048 , 4096 | default: none | optional
+            port: 443  # Integer | min: 1 , max: 65535 | default: 443 | optional
+            tlsv1: true  # Boolean | default: false | optional
+            tlsv1_1: false  # Boolean | default: false | optional
+            tlsv1_2: true  # Boolean | default: true | optional
+            tlsv1_3: false  # Boolean | default: false | optional
+            key_ring: "default"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | default: default | optional
+            allow_origins: "ALLOW_ORIGINS_1"  # String | Regex: ^[a-zA-Z0-9-_:/.,]{1,256}$ | optional
+          http:  # Class | optional
+            admin_state: true  # Boolean | default: false | optional
+            port: 8080  # Integer | min: 1 , max: 65535 | default: 80 | optional
+            allow_origins: "ALLOW_ORIGINS_1"  # String | Regex: ^[a-zA-Z0-9-_:/.,]{1,256}$ | optional

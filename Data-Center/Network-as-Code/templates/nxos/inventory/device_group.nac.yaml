@@ -1,0 +1,12 @@
+# Network-as-Code template: Device Group
+# Source: https://netascode.cisco.com/docs/data_models/nxos/inventory/device_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+nxos:
+  device_groups:  # List | optional
+    - name: "SPINES"  # String | required
+      devices: ["SPINE1", "SPINE2"]  # List | String | optional
+      variables: {}  # Map | optional
+      templates: ["TEMPLATES_1"]  # List | String | optional
