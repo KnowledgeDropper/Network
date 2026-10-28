@@ -1,0 +1,25 @@
+# Network-as-Code template: ND Interface Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/nd_interface_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        nd_interface_policies:  # List | optional
+          - name: "ND-INTF-POL1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            controller_state: ["managed-cfg"]  # List | Choice[ managed-cfg , other-cfg , suppress-ra , suppress-ra-mtu , unsolicit-na-glean ] | optional
+            hop_limit: 8  # Integer | min: 0 , max: 255 | default: 64 | optional
+            ns_tx_interval: 1000  # Integer | min: 0 , max: 3600000 | default: 1000 | optional
+            mtu: 9000  # Integer | min: 1280 , max: 9000 | default: 9000 | optional
+            retransmit_retry_count: 3  # Integer | min: 1 , max: 100 | default: 3 | optional
+            nud_retransmit_base: 1  # Integer | min: 1 , max: 3 | default: 1 | optional
+            nud_retransmit_interval: 1000  # Integer | min: 1000 , max: 10000 | default: 1000 | optional
+            nud_retransmit_count: 3  # Integer | min: 3 , max: 10 | default: 3 | optional
+            route_advertise_interval: 600  # Integer | min: 200 , max: 1800 | default: 600 | optional
+            router_lifetime: 1800  # Integer | min: 0 , max: 9000 | default: 1800 | optional
+            reachable_time: 0  # Integer | min: 0 , max: 3600000 | default: 0 | optional
+            retransmit_timer: 0  # Integer | min: 0 , max: 4294967295 | default: 0 | optional

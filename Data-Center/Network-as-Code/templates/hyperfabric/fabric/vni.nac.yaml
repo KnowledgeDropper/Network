@@ -1,0 +1,22 @@
+# Network-as-Code template: VNI
+# Source: https://netascode.cisco.com/docs/data_models/hyperfabric/fabric/vni/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+hyperfabric:
+  fabrics:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      vnis:  # List | optional
+        - name: "L3VNI01"  # String | required
+          vni: 10001  # Integer | optional
+          svi:  # Class | optional
+            enabled: true  # Boolean | default: true | optional
+            ipv4_addresses: ["10.1.11.1/24"]  # List | IP | optional
+            ipv6_addresses: ["10.1.1.1"]  # List | IP | optional
+          members:  # List | optional
+            - node: "Leaf01"  # String | optional
+              nodes: ["Leaf02", "Leaf03"]  # List | String | optional
+              port: "Ethernet1_1"  # String | optional
+              ports: ["Ethernet1_1", "Ethernet1_2"]  # List | String | optional
+              vlan_id: 101  # Integer | min: 2 , max: 3600 | optional

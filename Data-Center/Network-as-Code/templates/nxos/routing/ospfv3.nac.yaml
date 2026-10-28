@@ -1,0 +1,508 @@
+# Network-as-Code template: OSPFv3
+# Source: https://netascode.cisco.com/docs/data_models/nxos/routing/ospfv3/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        routing:  # Class | optional
+          ospfv3_processes:  # List | optional
+            - name: "1"  # String | required
+              flush_routes: false  # Boolean | optional
+              isolate: false  # Boolean | optional
+              shutdown: false  # Boolean | optional
+              auto_cost_reference_bandwidth: 100  # Integer | min: 0 , max: 4294967295 | optional
+              auto_cost_reference_bandwidth_unit: "gbps"  # Choice | mbps , gbps | optional
+              router_id: "10.1.100.3"  # IP | optional
+              bfd: true  # Boolean | optional
+              log_adjacency_changes: "detail"  # Choice | none , brief , detail | optional
+              discard_route_external: false  # Boolean | optional
+              discard_route_internal: false  # Boolean | optional
+              name_lookup: false  # Boolean | optional
+              passive_interface_default: false  # Boolean | optional
+              areas:  # List | optional
+                - id: "0.0.0.0"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                  type: "nssa"  # Choice | regular , stub , nssa | optional
+                  redistribute: false  # Boolean | optional
+                  nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                  summary: false  # Boolean | optional
+                  nssa_translate_type7_suppress_fa: false  # Boolean | optional
+              address_families:  # List | optional
+                - address_family: "ipv6-unicast"  # Choice | ipv6-unicast | required
+                  distance: 1  # Integer | min: 1 , max: 255 | optional
+                  default_metric: 100  # Integer | min: 0 , max: 16777214 | optional
+                  default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+                  maximum_paths: 8  # Integer | min: 1 , max: 64 | optional
+              vrfs:  # List | optional
+                - vrf: "BLUE"  # String | required
+                  shutdown: false  # Boolean | optional
+                  auto_cost_reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  auto_cost_reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+                  router_id: "10.1.100.4"  # IP | optional
+                  bfd: false  # Boolean | optional
+                  log_adjacency_changes: "none"  # Choice | none , brief , detail | optional
+                  discard_route_external: false  # Boolean | optional
+                  discard_route_internal: false  # Boolean | optional
+                  name_lookup: false  # Boolean | optional
+                  passive_interface_default: true  # Boolean | optional
+                  areas:  # List | optional [shared class: structure documented on this page as areas(nxos.devices.configuration.routing.ospfv3_processes)]
+                    - id: "0.0.0.0"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                      type: "regular"  # Choice | regular , stub , nssa | optional
+                      redistribute: false  # Boolean | optional
+                      nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                      summary: false  # Boolean | optional
+                      nssa_translate_type7_suppress_fa: false  # Boolean | optional
+                  address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.ospfv3_processes)]
+                    - address_family: "ipv6-unicast"  # Choice | ipv6-unicast | required
+                      distance: 1  # Integer | min: 1 , max: 255 | optional
+                      default_metric: 1  # Integer | min: 0 , max: 16777214 | optional
+                      default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+                      maximum_paths: 4  # Integer | min: 1 , max: 64 | optional
+        interfaces:  # Class | optional
+          loopbacks:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospfv3:  # Class | optional
+                process: "1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                area: "0.0.0.0"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                network: "none"  # Choice | none , p2p , bcast | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                instance_id: 1  # Integer | min: 0 , max: 255 | optional
+                mtu_ignore: false  # Boolean | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+          vlans:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospfv3:  # Class | optional [shared class: structure documented on this page as ospfv3(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "100"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                area: "0.0.0.0"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                network: "none"  # Choice | none , p2p , bcast | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                instance_id: 1  # Integer | min: 0 , max: 255 | optional
+                mtu_ignore: false  # Boolean | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+          ethernets:  # List | optional
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospfv3:  # Class | optional [shared class: structure documented on this page as ospfv3(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                area: "0.0.0.0"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 100  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 12  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 3  # Integer | min: 1 , max: 65535 | optional
+                network: "p2p"  # Choice | none , p2p , bcast | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                instance_id: 1  # Integer | min: 0 , max: 255 | optional
+                mtu_ignore: false  # Boolean | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+          port_channels:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospfv3:  # Class | optional [shared class: structure documented on this page as ospfv3(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                network: "none"  # Choice | none , p2p , bcast | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                instance_id: 1  # Integer | min: 0 , max: 255 | optional
+                mtu_ignore: false  # Boolean | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        routing:  # Class | optional [shared class: structure documented on this page as routing(nxos.devices.configuration)]
+          ospfv3_processes:  # List | optional [shared class: structure documented on this page as ospfv3_processes(nxos.devices.configuration.routing)]
+            - name: "NAME_1"  # String | required
+              flush_routes: false  # Boolean | optional
+              isolate: false  # Boolean | optional
+              shutdown: false  # Boolean | optional
+              auto_cost_reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+              auto_cost_reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+              router_id: "10.1.1.1"  # IP | optional
+              bfd: false  # Boolean | optional
+              log_adjacency_changes: "none"  # Choice | none , brief , detail | optional
+              discard_route_external: false  # Boolean | optional
+              discard_route_internal: false  # Boolean | optional
+              name_lookup: false  # Boolean | optional
+              passive_interface_default: false  # Boolean | optional
+              areas:  # List | optional [shared class: structure documented on this page as areas(nxos.devices.configuration.routing.ospfv3_processes)]
+                - id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                  type: "regular"  # Choice | regular , stub , nssa | optional
+                  redistribute: false  # Boolean | optional
+                  nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                  summary: false  # Boolean | optional
+                  nssa_translate_type7_suppress_fa: false  # Boolean | optional
+              address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.ospfv3_processes)]
+                - address_family: "ipv6-unicast"  # Choice | ipv6-unicast | required
+                  distance: 1  # Integer | min: 1 , max: 255 | optional
+                  default_metric: 1  # Integer | min: 0 , max: 16777214 | optional
+                  default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+                  maximum_paths: 1  # Integer | min: 1 , max: 64 | optional
+              vrfs:  # List | optional [shared class: structure documented on this page as vrfs(nxos.devices.configuration.routing.ospfv3_processes)]
+                - vrf: "VRF1"  # String | required
+                  shutdown: false  # Boolean | optional
+                  auto_cost_reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  auto_cost_reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+                  router_id: "10.1.1.1"  # IP | optional
+                  bfd: false  # Boolean | optional
+                  log_adjacency_changes: "none"  # Choice | none , brief , detail | optional
+                  discard_route_external: false  # Boolean | optional
+                  discard_route_internal: false  # Boolean | optional
+                  name_lookup: false  # Boolean | optional
+                  passive_interface_default: false  # Boolean | optional
+                  areas:  # List | optional [shared class: structure documented on this page as areas(nxos.devices.configuration.routing.ospfv3_processes)]
+                    - id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                      type: "regular"  # Choice | regular , stub , nssa | optional
+                      redistribute: false  # Boolean | optional
+                      nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                      summary: false  # Boolean | optional
+                      nssa_translate_type7_suppress_fa: false  # Boolean | optional
+                  address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.ospfv3_processes)]
+                    - address_family: "ipv6-unicast"  # Choice | ipv6-unicast | required
+                      distance: 1  # Integer | min: 1 , max: 255 | optional
+                      default_metric: 1  # Integer | min: 0 , max: 16777214 | optional
+                      default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+                      maximum_paths: 1  # Integer | min: 1 , max: 64 | optional
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          loopbacks:  # List | optional [shared class: structure documented on this page as loopbacks(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospfv3:  # Class | optional [shared class: structure documented on this page as ospfv3(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                network: "none"  # Choice | none , p2p , bcast | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                instance_id: 1  # Integer | min: 0 , max: 255 | optional
+                mtu_ignore: false  # Boolean | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+          vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospfv3:  # Class | optional [shared class: structure documented on this page as ospfv3(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                network: "none"  # Choice | none , p2p , bcast | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                instance_id: 1  # Integer | min: 0 , max: 255 | optional
+                mtu_ignore: false  # Boolean | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+          ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospfv3:  # Class | optional [shared class: structure documented on this page as ospfv3(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                network: "none"  # Choice | none , p2p , bcast | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                instance_id: 1  # Integer | min: 0 , max: 255 | optional
+                mtu_ignore: false  # Boolean | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+          port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospfv3:  # Class | optional [shared class: structure documented on this page as ospfv3(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                network: "none"  # Choice | none , p2p , bcast | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                instance_id: 1  # Integer | min: 0 , max: 255 | optional
+                mtu_ignore: false  # Boolean | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      routing:  # Class | optional [shared class: structure documented on this page as routing(nxos.devices.configuration)]
+        ospfv3_processes:  # List | optional [shared class: structure documented on this page as ospfv3_processes(nxos.devices.configuration.routing)]
+          - name: "NAME_1"  # String | required
+            flush_routes: false  # Boolean | optional
+            isolate: false  # Boolean | optional
+            shutdown: false  # Boolean | optional
+            auto_cost_reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+            auto_cost_reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+            router_id: "10.1.1.1"  # IP | optional
+            bfd: false  # Boolean | optional
+            log_adjacency_changes: "none"  # Choice | none , brief , detail | optional
+            discard_route_external: false  # Boolean | optional
+            discard_route_internal: false  # Boolean | optional
+            name_lookup: false  # Boolean | optional
+            passive_interface_default: false  # Boolean | optional
+            areas:  # List | optional [shared class: structure documented on this page as areas(nxos.devices.configuration.routing.ospfv3_processes)]
+              - id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                type: "regular"  # Choice | regular , stub , nssa | optional
+                redistribute: false  # Boolean | optional
+                nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                summary: false  # Boolean | optional
+                nssa_translate_type7_suppress_fa: false  # Boolean | optional
+            address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.ospfv3_processes)]
+              - address_family: "ipv6-unicast"  # Choice | ipv6-unicast | required
+                distance: 1  # Integer | min: 1 , max: 255 | optional
+                default_metric: 1  # Integer | min: 0 , max: 16777214 | optional
+                default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+                maximum_paths: 1  # Integer | min: 1 , max: 64 | optional
+            vrfs:  # List | optional [shared class: structure documented on this page as vrfs(nxos.devices.configuration.routing.ospfv3_processes)]
+              - vrf: "VRF1"  # String | required
+                shutdown: false  # Boolean | optional
+                auto_cost_reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+                auto_cost_reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+                router_id: "10.1.1.1"  # IP | optional
+                bfd: false  # Boolean | optional
+                log_adjacency_changes: "none"  # Choice | none , brief , detail | optional
+                discard_route_external: false  # Boolean | optional
+                discard_route_internal: false  # Boolean | optional
+                name_lookup: false  # Boolean | optional
+                passive_interface_default: false  # Boolean | optional
+                areas:  # List | optional [shared class: structure documented on this page as areas(nxos.devices.configuration.routing.ospfv3_processes)]
+                  - id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                    type: "regular"  # Choice | regular , stub , nssa | optional
+                    redistribute: false  # Boolean | optional
+                    nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                    summary: false  # Boolean | optional
+                    nssa_translate_type7_suppress_fa: false  # Boolean | optional
+                address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.ospfv3_processes)]
+                  - address_family: "ipv6-unicast"  # Choice | ipv6-unicast | required
+                    distance: 1  # Integer | min: 1 , max: 255 | optional
+                    default_metric: 1  # Integer | min: 0 , max: 16777214 | optional
+                    default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+                    maximum_paths: 1  # Integer | min: 1 , max: 64 | optional
+      interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+        loopbacks:  # List | optional [shared class: structure documented on this page as loopbacks(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            ospfv3:  # Class | optional [shared class: structure documented on this page as ospfv3(nxos.devices.configuration.interfaces.loopbacks)]
+              process: "PROCESS_1"  # String | required
+              advertise_secondaries: false  # Boolean | optional
+              area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+              bfd: false  # Boolean | optional
+              cost: 1  # Integer | min: 0 , max: 65535 | optional
+              dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+              hello_interval: 1  # Integer | min: 1 , max: 65535 | optional
+              network: "none"  # Choice | none , p2p , bcast | optional
+              passive_interface: false  # Boolean | optional
+              priority: 1  # Integer | min: 0 , max: 255 | optional
+              instance_id: 1  # Integer | min: 0 , max: 255 | optional
+              mtu_ignore: false  # Boolean | optional
+              retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+              transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+        vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            ospfv3:  # Class | optional [shared class: structure documented on this page as ospfv3(nxos.devices.configuration.interfaces.loopbacks)]
+              process: "PROCESS_1"  # String | required
+              advertise_secondaries: false  # Boolean | optional
+              area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+              bfd: false  # Boolean | optional
+              cost: 1  # Integer | min: 0 , max: 65535 | optional
+              dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+              hello_interval: 1  # Integer | min: 1 , max: 65535 | optional
+              network: "none"  # Choice | none , p2p , bcast | optional
+              passive_interface: false  # Boolean | optional
+              priority: 1  # Integer | min: 0 , max: 255 | optional
+              instance_id: 1  # Integer | min: 0 , max: 255 | optional
+              mtu_ignore: false  # Boolean | optional
+              retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+              transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+        ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+          - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            ospfv3:  # Class | optional [shared class: structure documented on this page as ospfv3(nxos.devices.configuration.interfaces.loopbacks)]
+              process: "PROCESS_1"  # String | required
+              advertise_secondaries: false  # Boolean | optional
+              area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+              bfd: false  # Boolean | optional
+              cost: 1  # Integer | min: 0 , max: 65535 | optional
+              dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+              hello_interval: 1  # Integer | min: 1 , max: 65535 | optional
+              network: "none"  # Choice | none , p2p , bcast | optional
+              passive_interface: false  # Boolean | optional
+              priority: 1  # Integer | min: 0 , max: 255 | optional
+              instance_id: 1  # Integer | min: 0 , max: 255 | optional
+              mtu_ignore: false  # Boolean | optional
+              retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+              transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+        port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            ospfv3:  # Class | optional [shared class: structure documented on this page as ospfv3(nxos.devices.configuration.interfaces.loopbacks)]
+              process: "PROCESS_1"  # String | required
+              advertise_secondaries: false  # Boolean | optional
+              area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+              bfd: false  # Boolean | optional
+              cost: 1  # Integer | min: 0 , max: 65535 | optional
+              dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+              hello_interval: 1  # Integer | min: 1 , max: 65535 | optional
+              network: "none"  # Choice | none , p2p , bcast | optional
+              passive_interface: false  # Boolean | optional
+              priority: 1  # Integer | min: 0 , max: 255 | optional
+              instance_id: 1  # Integer | min: 0 , max: 255 | optional
+              mtu_ignore: false  # Boolean | optional
+              retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+              transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        routing:  # Class | optional [shared class: structure documented on this page as routing(nxos.devices.configuration)]
+          ospfv3_processes:  # List | optional [shared class: structure documented on this page as ospfv3_processes(nxos.devices.configuration.routing)]
+            - name: "NAME_1"  # String | required
+              flush_routes: false  # Boolean | optional
+              isolate: false  # Boolean | optional
+              shutdown: false  # Boolean | optional
+              auto_cost_reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+              auto_cost_reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+              router_id: "10.1.1.1"  # IP | optional
+              bfd: false  # Boolean | optional
+              log_adjacency_changes: "none"  # Choice | none , brief , detail | optional
+              discard_route_external: false  # Boolean | optional
+              discard_route_internal: false  # Boolean | optional
+              name_lookup: false  # Boolean | optional
+              passive_interface_default: false  # Boolean | optional
+              areas:  # List | optional [shared class: structure documented on this page as areas(nxos.devices.configuration.routing.ospfv3_processes)]
+                - id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                  type: "regular"  # Choice | regular , stub , nssa | optional
+                  redistribute: false  # Boolean | optional
+                  nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                  summary: false  # Boolean | optional
+                  nssa_translate_type7_suppress_fa: false  # Boolean | optional
+              address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.ospfv3_processes)]
+                - address_family: "ipv6-unicast"  # Choice | ipv6-unicast | required
+                  distance: 1  # Integer | min: 1 , max: 255 | optional
+                  default_metric: 1  # Integer | min: 0 , max: 16777214 | optional
+                  default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+                  maximum_paths: 1  # Integer | min: 1 , max: 64 | optional
+              vrfs:  # List | optional [shared class: structure documented on this page as vrfs(nxos.devices.configuration.routing.ospfv3_processes)]
+                - vrf: "VRF1"  # String | required
+                  shutdown: false  # Boolean | optional
+                  auto_cost_reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  auto_cost_reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+                  router_id: "10.1.1.1"  # IP | optional
+                  bfd: false  # Boolean | optional
+                  log_adjacency_changes: "none"  # Choice | none , brief , detail | optional
+                  discard_route_external: false  # Boolean | optional
+                  discard_route_internal: false  # Boolean | optional
+                  name_lookup: false  # Boolean | optional
+                  passive_interface_default: false  # Boolean | optional
+                  areas:  # List | optional [shared class: structure documented on this page as areas(nxos.devices.configuration.routing.ospfv3_processes)]
+                    - id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | required
+                      type: "regular"  # Choice | regular , stub , nssa | optional
+                      redistribute: false  # Boolean | optional
+                      nssa_translate_type7: "always"  # Choice | always , candidate , never | optional
+                      summary: false  # Boolean | optional
+                      nssa_translate_type7_suppress_fa: false  # Boolean | optional
+                  address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.ospfv3_processes)]
+                    - address_family: "ipv6-unicast"  # Choice | ipv6-unicast | required
+                      distance: 1  # Integer | min: 1 , max: 255 | optional
+                      default_metric: 1  # Integer | min: 0 , max: 16777214 | optional
+                      default_route_nssa_abr_pbit_clear: false  # Boolean | optional
+                      maximum_paths: 1  # Integer | min: 1 , max: 64 | optional
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          loopbacks:  # List | optional [shared class: structure documented on this page as loopbacks(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospfv3:  # Class | optional [shared class: structure documented on this page as ospfv3(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                network: "none"  # Choice | none , p2p , bcast | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                instance_id: 1  # Integer | min: 0 , max: 255 | optional
+                mtu_ignore: false  # Boolean | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+          vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospfv3:  # Class | optional [shared class: structure documented on this page as ospfv3(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                network: "none"  # Choice | none , p2p , bcast | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                instance_id: 1  # Integer | min: 0 , max: 255 | optional
+                mtu_ignore: false  # Boolean | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+          ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospfv3:  # Class | optional [shared class: structure documented on this page as ospfv3(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                network: "none"  # Choice | none , p2p , bcast | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                instance_id: 1  # Integer | min: 0 , max: 255 | optional
+                mtu_ignore: false  # Boolean | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional
+          port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ospfv3:  # Class | optional [shared class: structure documented on this page as ospfv3(nxos.devices.configuration.interfaces.loopbacks)]
+                process: "PROCESS_1"  # String | required
+                advertise_secondaries: false  # Boolean | optional
+                area: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] | optional
+                bfd: false  # Boolean | optional
+                cost: 1  # Integer | min: 0 , max: 65535 | optional
+                dead_interval: 1  # Integer | min: 0 , max: 65535 | optional
+                hello_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                network: "none"  # Choice | none , p2p , bcast | optional
+                passive_interface: false  # Boolean | optional
+                priority: 1  # Integer | min: 0 , max: 255 | optional
+                instance_id: 1  # Integer | min: 0 , max: 255 | optional
+                mtu_ignore: false  # Boolean | optional
+                retransmit_interval: 1  # Integer | min: 1 , max: 65535 | optional
+                transmit_delay: 1  # Integer | min: 1 , max: 450 | optional

@@ -1,0 +1,128 @@
+# Network-as-Code template: Logging
+# Source: https://netascode.cisco.com/docs/data_models/nxos/monitoring/logging/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 15 (parsed 15); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        logging:  # Class | optional
+          level: "warnings"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          facilities:  # List | optional
+            - name: "aaa"  # Choice | spanning-tree , session-mgr , radius , security , plugin , cdp , bootvar , aaa , interface-vlan , vshd , cfs , monitor , ntp , acllog , track , pltfm-config , lacp , otm | required
+              level: "information"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          logfile_name: "messages"  # String | optional
+          logfile_severity: "notifications"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          logfile_size: 4194304  # Integer | min: 4096 , max: 4194304 | optional
+          logfile_persistent_threshold: 90  # Integer | min: 0 , max: 99 | optional
+          source_interface_type: "loopback"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          source_interface_id: "0"  # Any | String or Integer[min: 0 ] | optional
+          timestamp: "milliseconds"  # Choice | microseconds , milliseconds , seconds | optional
+          monitor: false  # Boolean | optional
+          monitor_severity: "warnings"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          console: false  # Boolean | optional
+          console_severity: "errors"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          origin_id_type: "hostname"  # Choice | hostname , ip , string | optional
+          origin_id_value: "ORIGIN_ID_VALUE_1"  # String | optional
+          servers:  # List | optional
+            - host: "10.0.0.1"  # String | required
+              severity: "warnings"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+              port: 514  # Integer | min: 1 , max: 65535 | optional
+              use_vrf: "management"  # String | optional
+              facility: "local7"  # Choice | kern , user , mail , daemon , auth , syslog , lpr , news , uucp , cron , authpriv , ftp , local0 , local1 , local2 , local3 , local4 , local5 , local6 , local7 | optional
+              transport: "udp"  # Choice | udp , tcp , tls | optional
+              trustpoint_client_identity: "syslog-cert"  # String | optional
+              vrf: "management"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        logging:  # Class | optional [shared class: structure documented on this page as logging(nxos.devices.configuration)]
+          level: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          facilities:  # List | optional [shared class: structure documented on this page as facilities(nxos.devices.configuration.logging)]
+            - name: "spanning-tree"  # Choice | spanning-tree , session-mgr , radius , security , plugin , cdp , bootvar , aaa , interface-vlan , vshd , cfs , monitor , ntp , acllog , track , pltfm-config , lacp , otm | required
+              level: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          logfile_name: "LOGFILE_NAME_1"  # String | optional
+          logfile_severity: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          logfile_size: 4096  # Integer | min: 4096 , max: 4194304 | optional
+          logfile_persistent_threshold: 1  # Integer | min: 0 , max: 99 | optional
+          source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+          timestamp: "microseconds"  # Choice | microseconds , milliseconds , seconds | optional
+          monitor: false  # Boolean | optional
+          monitor_severity: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          console: false  # Boolean | optional
+          console_severity: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          origin_id_type: "hostname"  # Choice | hostname , ip , string | optional
+          origin_id_value: "ORIGIN_ID_VALUE_1"  # String | optional
+          servers:  # List | optional [shared class: structure documented on this page as servers(nxos.devices.configuration.logging)]
+            - host: "HOST_1"  # String | required
+              severity: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+              port: 1  # Integer | min: 1 , max: 65535 | optional
+              use_vrf: "VRF1"  # String | optional
+              facility: "kern"  # Choice | kern , user , mail , daemon , auth , syslog , lpr , news , uucp , cron , authpriv , ftp , local0 , local1 , local2 , local3 , local4 , local5 , local6 , local7 | optional
+              transport: "udp"  # Choice | udp , tcp , tls | optional
+              trustpoint_client_identity: "TRUSTPOINT_CLIENT_IDENTITY_1"  # String | optional
+              vrf: "VRF1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      logging:  # Class | optional [shared class: structure documented on this page as logging(nxos.devices.configuration)]
+        level: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+        facilities:  # List | optional [shared class: structure documented on this page as facilities(nxos.devices.configuration.logging)]
+          - name: "spanning-tree"  # Choice | spanning-tree , session-mgr , radius , security , plugin , cdp , bootvar , aaa , interface-vlan , vshd , cfs , monitor , ntp , acllog , track , pltfm-config , lacp , otm | required
+            level: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+        logfile_name: "LOGFILE_NAME_1"  # String | optional
+        logfile_severity: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+        logfile_size: 4096  # Integer | min: 4096 , max: 4194304 | optional
+        logfile_persistent_threshold: 1  # Integer | min: 0 , max: 99 | optional
+        source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+        source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+        timestamp: "microseconds"  # Choice | microseconds , milliseconds , seconds | optional
+        monitor: false  # Boolean | optional
+        monitor_severity: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+        console: false  # Boolean | optional
+        console_severity: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+        origin_id_type: "hostname"  # Choice | hostname , ip , string | optional
+        origin_id_value: "ORIGIN_ID_VALUE_1"  # String | optional
+        servers:  # List | optional [shared class: structure documented on this page as servers(nxos.devices.configuration.logging)]
+          - host: "HOST_1"  # String | required
+            severity: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+            port: 1  # Integer | min: 1 , max: 65535 | optional
+            use_vrf: "VRF1"  # String | optional
+            facility: "kern"  # Choice | kern , user , mail , daemon , auth , syslog , lpr , news , uucp , cron , authpriv , ftp , local0 , local1 , local2 , local3 , local4 , local5 , local6 , local7 | optional
+            transport: "udp"  # Choice | udp , tcp , tls | optional
+            trustpoint_client_identity: "TRUSTPOINT_CLIENT_IDENTITY_1"  # String | optional
+            vrf: "VRF1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        logging:  # Class | optional [shared class: structure documented on this page as logging(nxos.devices.configuration)]
+          level: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          facilities:  # List | optional [shared class: structure documented on this page as facilities(nxos.devices.configuration.logging)]
+            - name: "spanning-tree"  # Choice | spanning-tree , session-mgr , radius , security , plugin , cdp , bootvar , aaa , interface-vlan , vshd , cfs , monitor , ntp , acllog , track , pltfm-config , lacp , otm | required
+              level: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          logfile_name: "LOGFILE_NAME_1"  # String | optional
+          logfile_severity: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          logfile_size: 4096  # Integer | min: 4096 , max: 4194304 | optional
+          logfile_persistent_threshold: 1  # Integer | min: 0 , max: 99 | optional
+          source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+          timestamp: "microseconds"  # Choice | microseconds , milliseconds , seconds | optional
+          monitor: false  # Boolean | optional
+          monitor_severity: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          console: false  # Boolean | optional
+          console_severity: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+          origin_id_type: "hostname"  # Choice | hostname , ip , string | optional
+          origin_id_value: "ORIGIN_ID_VALUE_1"  # String | optional
+          servers:  # List | optional [shared class: structure documented on this page as servers(nxos.devices.configuration.logging)]
+            - host: "HOST_1"  # String | required
+              severity: "emergencies"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | optional
+              port: 1  # Integer | min: 1 , max: 65535 | optional
+              use_vrf: "VRF1"  # String | optional
+              facility: "kern"  # Choice | kern , user , mail , daemon , auth , syslog , lpr , news , uucp , cron , authpriv , ftp , local0 , local1 , local2 , local3 , local4 , local5 , local6 , local7 | optional
+              transport: "udp"  # Choice | udp , tcp , tls | optional
+              trustpoint_client_identity: "TRUSTPOINT_CLIENT_IDENTITY_1"  # String | optional
+              vrf: "VRF1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

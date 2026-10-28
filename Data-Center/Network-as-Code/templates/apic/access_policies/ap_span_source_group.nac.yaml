@@ -1,0 +1,37 @@
+# Network-as-Code template: Access SPAN Source Groups
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/ap_span_source_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    span:  # Class | optional
+      source_groups:  # List | optional
+        - name: "Lf1011-EPC-CP-SrcGr"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "Port-based SPAN sources on leaf 1011 (L3Out EPC-CP-L3Out, VLAN 2001) to destination Lf1011-EPC-CP-DstGrp."  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          admin_state: true  # Boolean | default: true | optional
+          sources:  # List | optional
+            - name: "Lf1011-port10"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "EPG-based source with single-port access paths."  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              direction: "both"  # Choice | in , out , both | default: both | optional
+              span_drop: false  # Boolean | default: false | optional
+              tenant: "Core"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              application_profile: "Core-AP"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              endpoint_group: "VLAN-2010-EPG"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              l3out: "EPC-CP-L3Out"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              vlan: 2001  # Integer | min: 1 , max: 4096 | optional
+              access_paths:  # List | optional
+                - node_id: 1011  # Integer | min: 1 , max: 4000 | optional
+                  node2_id: 1021  # Integer | min: 1 , max: 4000 | optional
+                  pod_id: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+                  module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+                  port: 10  # Integer | min: 1 , max: 127 | optional
+                  fex_id: 101  # Integer | min: 101 , max: 199 | optional
+                  sub_port: 1  # Integer | min: 1 , max: 16 | optional
+                  channel: "SVR-vPC1-IfPolGrp"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  type: "access"  # Choice | access , vpc , pc , component | optional
+          destination:  # Class | required
+            name: "Lf1011-EPC-CP-DstGrp"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          filter_group: "FILTER_GROUP_1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional

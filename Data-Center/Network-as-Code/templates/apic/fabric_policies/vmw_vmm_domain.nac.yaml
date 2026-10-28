@@ -1,0 +1,52 @@
+# Network-as-Code template: VMware VMM Domain
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/vmw_vmm_domain/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 5 (parsed 5); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    vmware_vmm_domains:  # List | optional
+      - name: "VMM_DOM"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        access_mode: "read-write"  # Choice | read-only , read-write | default: read-write | optional
+        delimiter: "|"  # String | Regex: ^[|~!@^+=]$ | optional
+        tag_collection: true  # Boolean | default: false | optional
+        vlan_pool: "VMM_VLP"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        allocation: "dynamic"  # Choice | dynamic , static | default: dynamic | optional
+        security_domains: ["SECURITY_DOMAINS_1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+        vswitch:  # Class | optional
+          cdp_policy: "system_cdp_pol_enabled"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          lldp_policy: "system_lldp_pol_disabled"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          port_channel_policy: "system_mac_pinning"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          enhanced_lags:  # List | optional
+            - name: "ELAGCUSTOM"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,16}$ | required
+              mode: "active"  # Choice | active , passive | default: active | optional
+              lb_mode: "src-dst-l4port"  # Choice | dst-ip , dst-ip-l4port , dst-ip-vlan , dst-ip-l4port-vlan , dst-mac , dst-l4port , src-ip , src-ip-l4port , src-ip-vlan , src-ip-l4port-vlan , src-mac , src-l4port , src-dst-ip , src-dst-ip-l4port , src-dst-ip-vlan , src-dst-ip-l4port-vlan , src-dst-mac , src-dst-l4port , src-port-id , vlan | default: src-dst-ip | optional
+              num_links: 3  # Integer | min: 2 , max: 8 | default: 2 | optional
+          mtu_policy: "MTU_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          netflow_exporter_policy: "VMM-EXPORTER1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        credential_policies:  # List | optional
+          - name: "VCENTER_CREDS"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            username: "admin"  # String | Regex: [a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | required
+            password: "password"  # String | required
+        vcenters:  # List | optional
+          - name: "PROD_VCENTER"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            hostname_ip: "10.10.10.10"  # Any | String[Regex: ^[a-zA-Z0-9:][a-zA-Z0-9.:-]{0,254}$ ] or IP | required
+            datacenter: "DC1"  # String | min: 1 , max: 512 | required
+            dvs_version: "unmanaged"  # String | Regex: ^(unmanaged|\d+\.\d+)$ | default: unmanaged | optional
+            statistics: true  # Boolean | default: false | optional
+            credential_policy: "VCENTER_CREDS"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            mgmt_epg: "inb"  # Choice | inb , oob | default: inb | optional
+        uplinks:  # List | optional
+          - id: 1  # Integer | min: 1 , max: 32 | required
+            name: "UPLINK_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        trunk_port_groups:  # List | optional
+          - name: "trunk_port_group_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            promiscuous_mode: true  # Boolean | default: false | optional
+            immediacy: "immediate"  # Choice | immediate , lazy | default: lazy | optional
+            mac_change: true  # Boolean | default: false | optional
+            forged_transmit: true  # Boolean | default: false | optional
+            enhanced_lag_policy: "ELAGCUSTOM"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,16}$ | optional
+            vlan_ranges:  # List | optional
+              - from: 12  # Integer | min: 1 , max: 4094 | required
+                to: 20  # Integer | min: 1 , max: 4094 | required

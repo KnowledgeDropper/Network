@@ -1,0 +1,26 @@
+# Network-as-Code template: Custom QoS Policy
+# Source: https://netascode.cisco.com/docs/data_models/ndo/tenant_templates/custom_qos_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+ndo:
+  tenant_templates:  # Class | optional
+    tenant_policies:  # List | optional
+      - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        tenant: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        custom_qos_policies:  # List | optional
+          - name: "QOS1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Custom QoS Policy 1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            dscp_mappings:  # List | optional
+              - dscp_from: "af11"  # Choice | unspecified , af11 , af12 , af13 , af21 , af22 , af23 , af31 , af32 , af33 , af41 , af42 , af43 , cs0 , cs1 , cs2 , cs3 , cs4 , cs5 , cs6 , cs7 , expedited_forwarding , voice_admit | default: unspecified | optional
+                dscp_to: "af12"  # Choice | unspecified , af11 , af12 , af13 , af21 , af22 , af23 , af31 , af32 , af33 , af41 , af42 , af43 , cs0 , cs1 , cs2 , cs3 , cs4 , cs5 , cs6 , cs7 , expedited_forwarding , voice_admit | default: unspecified | optional
+                dscp_target: "af13"  # Choice | unspecified , af11 , af12 , af13 , af21 , af22 , af23 , af31 , af32 , af33 , af41 , af42 , af43 , cs0 , cs1 , cs2 , cs3 , cs4 , cs5 , cs6 , cs7 , expedited_forwarding , voice_admit | default: unspecified | optional
+                cos_target: "voice"  # Any | Integer[min: 0 , max: 7 ] or Choice[ unspecified , background , best_effort , excellent_effort , critical_applications , video , voice , internetwork_control , network_control ] | default: unspecified | optional
+                priority: "level1"  # Choice | unspecified , level1 , level2 , level3 , level4 , level5 , level6 | default: unspecified | optional
+            cos_mappings:  # List | optional
+              - dot1p_from: "voice"  # Any | Integer[min: 0 , max: 7 ] or Choice[ unspecified , background , best_effort , excellent_effort , critical_applications , video , voice , internetwork_control , network_control ] | default: unspecified | optional
+                dot1p_to: "video"  # Any | Integer[min: 0 , max: 7 ] or Choice[ unspecified , background , best_effort , excellent_effort , critical_applications , video , voice , internetwork_control , network_control ] | default: unspecified | optional
+                dscp_target: "af21"  # Choice | unspecified , af11 , af12 , af13 , af21 , af22 , af23 , af31 , af32 , af33 , af41 , af42 , af43 , cs0 , cs1 , cs2 , cs3 , cs4 , cs5 , cs6 , cs7 , expedited_forwarding , voice_admit | default: unspecified | optional
+                cos_target: 5  # Any | Integer[min: 0 , max: 7 ] or Choice[ unspecified , background , best_effort , excellent_effort , critical_applications , video , voice , internetwork_control , network_control ] | default: unspecified | optional
+                priority: "level2"  # Choice | unspecified , level1 , level2 , level3 , level4 , level5 , level6 | default: unspecified | optional

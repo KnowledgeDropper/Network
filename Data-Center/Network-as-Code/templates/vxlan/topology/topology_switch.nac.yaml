@@ -1,0 +1,40 @@
+# Network-as-Code template: Switch
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/topology/topology_switch/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  topology:  # Class | optional
+    switches:  # List | optional
+      - name: "NAME_1"  # String | required
+        serial_number: "SERIAL_NUMBER_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,16}$ | optional
+        role: "spine"  # Choice | spine , leaf , border , border_spine , border_gateway , border_gateway_spine , super_spine , border_super_spine , border_gateway_super_spine , tor , core_router , edge_router | optional
+        management:  # Class | optional
+          default_gateway_v4: "10.1.1.1"  # IP | optional
+          default_gateway_v6: "10.1.1.1"  # IP | optional
+          management_ipv4_address: "10.1.1.1"  # IP | optional
+          management_ipv6_address: "10.1.1.1"  # IP | optional
+          subnet_mask_ipv4: 8  # Integer | min: 8 , max: 30 | optional
+          subnet_mask_ipv6: 16  # Integer | min: 16 , max: 128 | optional
+          username: "USERNAME_1"  # String | optional
+          password: "PASSWORD_1"  # String | optional
+        poap:  # Class | optional
+          bootstrap: false  # Boolean | default: false | optional
+          preprovision:  # Class | optional
+            serial_number: "SERIAL_NUMBER_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,16}$ | optional
+            model: "MODEL_1"  # String | required
+            version: "VERSION_1"  # String | required
+            modulesModel: ["MODULESMODEL_1"]  # List | String | required
+          discovery_creds: false  # Boolean | default: false | optional
+          discovery_username: "DISCOVERY_USERNAME_1"  # String | optional
+          discovery_password: "DISCOVERY_PASSWORD_1"  # String | optional
+        routing_loopback_id: 0  # Integer | min: 0 , max: 1023 | default: 0 | optional
+        vtep_loopback_id: 1  # Integer | min: 0 , max: 1023 | default: 1 | optional
+        interface_breakouts:  # List | optional
+          - module: 1  # Integer | min: 0 , max: 32 | default: 1 | optional
+            from: 1  # Integer | min: 0 , max: 256 | default: 1 | optional
+            to: 1  # Integer | min: 0 , max: 256 | default: 1 | optional
+            map: "10g-4x"  # Choice | 10g-4x , 25g-4x , 50g-2x , 50g-4x , 100g-2x , 100g-2x-pam4 , 100g-4x , 200g-2x | default: 10g-4x | optional
+            enable_during_bootstrap: false  # Boolean | default: false | optional
+        interfaces: []  # List | Any[Class[ [topology_switch_access_interface] ] or Class[ [topology_switch_trunk_interface] ] or Class[ [topology_switch_access_po_interface] ] or Class[ [topology_switch_trunk_po_interface] ] or Class[ [topology_switch_routed_interface] ] or Class[ [topology_switch_routed_sub_interface] ] or Class[ [topology_switch_routed_po_interface] ] or Class[ [topology_switch_loopback_interface] ] or Class[ [topology_switch_dot1q_host_interface] ]] | optional (element classes documented on the vxlan/topology/interface/* pages)

@@ -1,0 +1,20 @@
+# Network-as-Code template: Port Channel Interface Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/port_channel_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    interface_policies:  # Class | optional
+      port_channel_policies:  # List | optional
+        - name: "LACP-ACTIVE"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          mode: "active"  # Choice | off , active , passive , mac-pin , mac-pin-nicload , explicit-failover | required
+          min_links: 1  # Integer | min: 1 , max: 16 | default: 1 | optional
+          max_links: 16  # Integer | min: 1 , max: 16 | default: 16 | optional
+          suspend_individual: true  # Boolean | default: true | optional
+          graceful_convergence: true  # Boolean | default: true | optional
+          fast_select_standby: true  # Boolean | default: true | optional
+          load_defer: false  # Boolean | default: false | optional
+          symmetric_hash: false  # Boolean | default: false | optional
+          hash_key: "src-ip"  # Choice | src-ip , dst-ip , l4-src-port , l4-dst-port | optional

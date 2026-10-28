@@ -1,0 +1,16 @@
+# Network-as-Code template: Endpoint IP Tag
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/endpoint_ip_tag/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        endpoint_ip_tags:  # List | optional
+          - ip: "1.1.1.1"  # IP | required
+            vrf: "VRF1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            tags:  # List | optional
+              - key: "Environment"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                value: "Prod"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,128}$ | required

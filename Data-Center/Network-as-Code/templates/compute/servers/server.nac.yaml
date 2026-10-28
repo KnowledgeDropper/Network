@@ -1,0 +1,17 @@
+# Network-as-Code template: Server
+# Source: https://netascode.cisco.com/docs/data_models/compute/servers/server/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  servers:  # List | optional
+    - name: "node-01"  # String | required
+      provisioning:  # Class | optional
+        managed_by: "intersight"  # Choice | intersight , redfish | required
+        profile_template: "web-server-template"  # String | required
+        managed: true  # Boolean | default: true | optional
+        intersight:  # Class | optional
+          organization: "MyOrganization"  # String | required
+          serial_number: "FCH2345V0AB"  # String | optional
+          resource_pool: "server-pool-a"  # String | optional

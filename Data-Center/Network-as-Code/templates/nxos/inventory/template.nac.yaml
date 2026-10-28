@@ -1,0 +1,13 @@
+# Network-as-Code template: Template
+# Source: https://netascode.cisco.com/docs/data_models/nxos/inventory/template/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+nxos:
+  templates:  # List | optional
+    - name: "L2_SERVICE"  # String | required
+      type: "model"  # Choice | model , file , cli | required
+      order: 1  # Integer | min: 0 , max: 9 | default: 0 | optional
+      file: "security_baseline.cfg"  # String | optional
+      content: "ntp server 10.50.100.1 use-vrf management\nntp server 10.50.100.2 use-vrf management\nntp source-interface mgmt0\n"  # String | optional

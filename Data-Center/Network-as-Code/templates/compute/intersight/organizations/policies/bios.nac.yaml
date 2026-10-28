@@ -1,0 +1,18 @@
+# Network-as-Code template: BIOS Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/bios/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          bios:  # List | optional
+            - name: "web-servers"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Energy-optimized profile for idle nodes"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              bios_template: "Virtualization-M7-Intel"  # Choice | AnalyticalDatabaseSystems-M5-Intel , AnalyticalDatabaseSystems-M5-Intel-Tpm , AnalyticalDatabaseSystems-M6-Intel , AnalyticalDatabaseSystems-M6-Intel-Tpm , AnalyticalDatabaseSystems-M7-Intel , AnalyticalDatabaseSystems-M7-Intel-Tpm , Analytics-M8-AMD , Analytics-M8-AMD-Tpm , AzureStack-M6-Intel , AzureStack-M6-Intel-Tpm , AzureStack-M7-Intel , AzureStack-M7-Intel-Tpm , ComputationIntensive-M6-AMD , ComputationIntensive-M6-AMD-Tpm , CPUIntensive-M6-Intel , CPUIntensive-M6-Intel-Tpm , CPUIntensive-M7-Intel , CPUIntensive-M7-Intel-Tpm , CPUIntensive-M8-AMD , CPUIntensive-M8-AMD-Tpm , DataAnalytics-M6-Intel , DataAnalytics-M6-Intel-Tpm , DataAnalytics-M7-Intel , DataAnalytics-M7-Intel-Tpm , EnergyEfficiency-M5-Intel , EnergyEfficiency-M5-Intel-Tpm , EnergyEfficiency-M6-AMD , EnergyEfficiency-M6-AMD-Tpm , EnergyEfficiency-M6-Intel , EnergyEfficiency-M6-Intel-Tpm , EnergyEfficient-M7-Intel , EnergyEfficient-M7-Intel-Tpm , EnergyEfficiency-M8-AMD , EnergyEfficiency-M8-AMD-Tpm , HighPerformanceComputing-M5-Intel , HighPerformanceComputing-M5-Intel-Tpm , HighPerformanceComputing-M6-AMD , HighPerformanceComputing-M6-AMD-Tpm , HighPerformanceComputing-M6-Intel , HighPerformanceComputing-M6-Intel-Tpm , HighPerformanceComputing-M7-Intel , HighPerformanceComputing-M7-Intel-Tpm , HPC-M8-AMD , HPC-M8-AMD-Tpm , IOIntensive-M6-AMD , IOIntensive-M6-AMD-Tpm , IOIntensive-M6-Intel , IOIntensive-M6-Intel-Tpm , IOIntensive-M8-AMD , IOIntensive-M8-AMD-Tpm , JavaApplicationServer-M5-Intel , JavaApplicationServer-M5-Intel-Tpm , LowLatency-M5-Intel , LowLatency-M5-Intel-Tpm , LowLatency-M6-AMD , LowLatency-M6-AMD-Tpm , LowLatency-M6-Intel , LowLatency-M6-Intel-Tpm , LowLatency-M7-Intel , LowLatency-M7-Intel-Tpm , LowLatency-M8-AMD , LowLatency-M8-AMD-Tpm , M5-amd-virtual , M5-amd-virtual-Tpm , M5-intel-virtual , M5-intel-virtual-Tpm , M6-amd-virtual , M6-amd-virtual-Tpm , M6-intel-analytical-db , M6-intel-analytical-db-Tpm , M6-intel-virtual , M6-intel-virtual-Tpm , MaximumPerformance-M5-Intel , MaximumPerformance-M5-Intel-Tpm , OnlineTransactionProcessing-M5-Intel , OnlineTransactionProcessing-M5-Intel-Tpm , RDBMS-M8-AMD , RDBMS-M8-AMD-Tpm , RelationalDatabaseSystems-M6-Intel , RelationalDatabaseSystems-M6-Intel-Tpm , RelationalDatabaseSystems-M7-Intel , RelationalDatabaseSystems-M7-Intel-Tpm , VDI-M6-AMD , VDI-M6-AMD-Tpm , Virtualization-M5-Intel , Virtualization-M5-Intel-Tpm , Virtualization-M6-AMD , Virtualization-M6-AMD-Tpm , Virtualization-M6-Intel , Virtualization-M6-Intel-Tpm , Virtualization-M7-Intel , Virtualization-M7-Intel-Tpm , Virtualization-M8-AMD , Virtualization-M8-AMD-Tpm , Virtualization-M8-Intel , Virtualization-M8-Intel-Tpm | optional

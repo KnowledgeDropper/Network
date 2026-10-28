@@ -1,0 +1,43 @@
+# Network-as-Code template: Access Leaf Interface Profile
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/ap_leaf_interface_profile/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 6 (parsed 6); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    leaf_interface_profile_name: "LEAF\\g<id>"  # String | min: 1 , max: 64 | default: LEAF\g<id> | optional
+    leaf_interface_profiles:  # List | optional
+      - name: "LEAF101"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        description: "Leaf 101 Interface Profile"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+        selectors:  # List | optional
+          - name: "SEL1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Leaf Interface Profile Description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            fex_id: 101  # Integer | min: 101 , max: 199 | optional
+            fex_profile: "LEAF101-FEX101"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            policy_group: "10G-SERVER"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            port_blocks:  # List | optional
+              - name: "BLOCK1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                description: "Server ABC"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                from_module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+                from_port: 1  # Integer | min: 1 , max: 127 | required
+                to_module: 1  # Integer | min: 1 , max: 9 | optional
+                to_port: 1  # Integer | min: 1 , max: 127 | optional
+                port_channel_member_policy: "PORT_CHANNEL_MEMBER_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            sub_port_blocks:  # List | optional
+              - name: "1-5-1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                from_module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+                from_port: 5  # Integer | min: 1 , max: 127 | required
+                to_module: 1  # Integer | min: 1 , max: 9 | optional
+                to_port: 1  # Integer | min: 1 , max: 127 | optional
+                from_sub_port: 1  # Integer | min: 1 , max: 16 | required
+                to_sub_port: 1  # Integer | min: 1 , max: 16 | optional
+                port_channel_member_policy: "PORT_CHANNEL_MEMBER_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+  node_policies:  # Class | optional
+    nodes:  # List | optional
+      - role: "leaf"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        id: 1  # Integer | min: 1 , max: 4000 | required
+        name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+  auto_generate_switch_pod_profiles: false  # Boolean | default: false | optional
+  auto_generate_access_leaf_switch_interface_profiles: true  # Boolean | default: false | optional

@@ -1,0 +1,13 @@
+# Network-as-Code template: BGP
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/underlay/underlay_bgp/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  underlay:  # Class | optional
+    bgp:  # Class | optional
+      authentication_enable: false  # Boolean | default: false | optional
+      authentication_key_type: 3  # Choice | 3 , 6 , 7 | default: 3 | optional
+      authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+      max_paths: 4  # Integer | min: 1 , max: 64 | default: 4 | optional

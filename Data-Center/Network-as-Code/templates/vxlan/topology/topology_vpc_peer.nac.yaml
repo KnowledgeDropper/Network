@@ -1,0 +1,24 @@
+# Network-as-Code template: vPC Peers
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/topology/topology_vpc_peer/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  topology:  # Class | optional
+    vpc_peers:  # List | optional
+      - peer1: "PEER1_1"  # String | required
+        peer1_peerlink_interfaces:  # List | optional
+          - name: "eth1/1"  # String | Regex: ^(?:e|eth(?:ernet)?)\d(?:\/\d+){1,2}$ | required
+        peer2: "PEER2_1"  # String | required
+        peer2_peerlink_interfaces:  # List | optional
+          - name: "eth1/1"  # String | Regex: ^(?:e|eth(?:ernet)?)\d(?:\/\d+){1,2}$ | required
+        fabric_peering: false  # Boolean | optional
+        domain_id: 1  # Integer | min: 1 , max: 1000 | default: 1 | optional
+        vtep_vip: "10.1.1.1"  # IP | optional
+        keepalive_hold_time: 3  # Integer | min: 3 , max: 10 | default: 3 | optional
+        peer1_keepalive_ipv4: "10.1.1.1"  # IP | optional
+        peer2_keepalive_ipv4: "10.1.1.1"  # IP | optional
+        peer1_domain_conf: "PEER1_DOMAIN_CONF_1"  # String | optional
+        peer2_domain_conf: "PEER2_DOMAIN_CONF_1"  # String | optional
+        keepalive_vrf: "VRF1"  # String | optional

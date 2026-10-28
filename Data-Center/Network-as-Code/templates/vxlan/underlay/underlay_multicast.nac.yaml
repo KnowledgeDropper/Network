@@ -1,0 +1,31 @@
+# Network-as-Code template: Multicast
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/underlay/underlay_multicast/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  underlay:  # Class | optional
+    multicast:  # Class | optional
+      rendezvous_points: 2  # Choice | 2 , 4 | default: 2 | optional
+      rp_mode: "asm"  # Choice | asm , bidir | default: asm | optional
+      underlay_rp_loopback_id: 254  # Integer | min: 0 , max: 1023 | default: 254 | optional
+      ipv4:  # Class | optional
+        anycast_rp: "10.1.1.1"  # IP | optional
+        group_subnet: "239.1.1.0/25"  # IP | default: 239.1.1.0/25 | optional
+        authentication_enable: false  # Boolean | default: false | optional
+        authentication_key: "AUTHENTICATION_KEY_1"  # String | optional
+        trm_enable: false  # Boolean | default: false | optional
+        trm_default_group: "239.1.1.0"  # IP | default: 239.1.1.0 | optional
+      ipv6:  # Class | optional
+        group_subnet: "ff1e::/121"  # IP | default: ff1e::/121 | optional
+        trmv6_enable: false  # Boolean | default: false | optional
+        trmv6_default_group: "ff1e::"  # IP | default: ff1e:: | optional
+      underlay_primary_rp_loopback_id: 2  # Integer | min: 0 , max: 1023 | default: 2 | optional
+      underlay_backup_rp_loopback_id: 3  # Integer | min: 0 , max: 1023 | default: 3 | optional
+      underlay_second_backup_rp_loopback_id: 4  # Integer | min: 0 , max: 1023 | default: 4 | optional
+      underlay_third_backup_rp_loopback_id: 5  # Integer | min: 0 , max: 1023 | default: 5 | optional
+      enable_mvpn_vri_id_range: true  # Boolean | default: true | optional
+      mvpn_vri_id_range:  # Class | optional
+        from: 1  # Integer | min: 1 , max: 65535 | required
+        to: 1  # Integer | min: 1 , max: 65535 | optional

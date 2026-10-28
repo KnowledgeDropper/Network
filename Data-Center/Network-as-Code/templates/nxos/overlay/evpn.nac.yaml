@@ -1,0 +1,84 @@
+# Network-as-Code template: EVPN
+# Source: https://netascode.cisco.com/docs/data_models/nxos/overlay/evpn/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 7 (parsed 7); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        evpn:  # Class | optional
+          multisite_border_gateway:  # Class | optional
+            site_id: 1  # Integer | min: 1 , max: 281474976710655 | required
+            dci_advertise_pip: true  # Boolean | optional
+            delay_restore_time: 300  # Integer | min: 30 , max: 1000 | optional
+            df_election_time: 2.0  # Number | min: 1 , max: 1000 | optional
+            fabric_advertise_pip: true  # Boolean | optional
+            split_horizon_per_site: true  # Boolean | optional
+          vnis:  # List | optional
+            - vni: 10101  # Integer | min: 1 , max: 16777215 | required
+              rd: "10.1.100.3:10101"  # String | optional
+              route_target_both_auto: true  # Boolean | optional
+              route_target_imports: ["65000:10101"]  # List | String | optional
+              route_target_exports: ["65000:10101"]  # List | String | optional
+              table_map: "EVPN-TABLE-MAP"  # String | optional
+              table_map_filter: true  # Boolean | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        evpn:  # Class | optional [shared class: structure documented on this page as evpn(nxos.devices.configuration)]
+          multisite_border_gateway:  # Class | optional [shared class: structure documented on this page as multisite_border_gateway(nxos.devices.configuration.evpn)]
+            site_id: 1  # Integer | min: 1 , max: 281474976710655 | required
+            dci_advertise_pip: false  # Boolean | optional
+            delay_restore_time: 30  # Integer | min: 30 , max: 1000 | optional
+            df_election_time: 1.0  # Number | min: 1 , max: 1000 | optional
+            fabric_advertise_pip: false  # Boolean | optional
+            split_horizon_per_site: false  # Boolean | optional
+          vnis:  # List | optional [shared class: structure documented on this page as vnis(nxos.devices.configuration.evpn)]
+            - vni: 1  # Integer | min: 1 , max: 16777215 | required
+              rd: "RD_1"  # String | optional
+              route_target_both_auto: false  # Boolean | optional
+              route_target_imports: ["ROUTE_TARGET_IMPORTS_1"]  # List | String | optional
+              route_target_exports: ["ROUTE_TARGET_EXPORTS_1"]  # List | String | optional
+              table_map: "TABLE_MAP_1"  # String | optional
+              table_map_filter: false  # Boolean | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      evpn:  # Class | optional [shared class: structure documented on this page as evpn(nxos.devices.configuration)]
+        multisite_border_gateway:  # Class | optional [shared class: structure documented on this page as multisite_border_gateway(nxos.devices.configuration.evpn)]
+          site_id: 1  # Integer | min: 1 , max: 281474976710655 | required
+          dci_advertise_pip: false  # Boolean | optional
+          delay_restore_time: 30  # Integer | min: 30 , max: 1000 | optional
+          df_election_time: 1.0  # Number | min: 1 , max: 1000 | optional
+          fabric_advertise_pip: false  # Boolean | optional
+          split_horizon_per_site: false  # Boolean | optional
+        vnis:  # List | optional [shared class: structure documented on this page as vnis(nxos.devices.configuration.evpn)]
+          - vni: 1  # Integer | min: 1 , max: 16777215 | required
+            rd: "RD_1"  # String | optional
+            route_target_both_auto: false  # Boolean | optional
+            route_target_imports: ["ROUTE_TARGET_IMPORTS_1"]  # List | String | optional
+            route_target_exports: ["ROUTE_TARGET_EXPORTS_1"]  # List | String | optional
+            table_map: "TABLE_MAP_1"  # String | optional
+            table_map_filter: false  # Boolean | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        evpn:  # Class | optional [shared class: structure documented on this page as evpn(nxos.devices.configuration)]
+          multisite_border_gateway:  # Class | optional [shared class: structure documented on this page as multisite_border_gateway(nxos.devices.configuration.evpn)]
+            site_id: 1  # Integer | min: 1 , max: 281474976710655 | required
+            dci_advertise_pip: false  # Boolean | optional
+            delay_restore_time: 30  # Integer | min: 30 , max: 1000 | optional
+            df_election_time: 1.0  # Number | min: 1 , max: 1000 | optional
+            fabric_advertise_pip: false  # Boolean | optional
+            split_horizon_per_site: false  # Boolean | optional
+          vnis:  # List | optional [shared class: structure documented on this page as vnis(nxos.devices.configuration.evpn)]
+            - vni: 1  # Integer | min: 1 , max: 16777215 | required
+              rd: "RD_1"  # String | optional
+              route_target_both_auto: false  # Boolean | optional
+              route_target_imports: ["ROUTE_TARGET_IMPORTS_1"]  # List | String | optional
+              route_target_exports: ["ROUTE_TARGET_EXPORTS_1"]  # List | String | optional
+              table_map: "TABLE_MAP_1"  # String | optional
+              table_map_filter: false  # Boolean | optional

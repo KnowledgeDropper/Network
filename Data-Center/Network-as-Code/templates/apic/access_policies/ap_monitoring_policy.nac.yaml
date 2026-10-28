@@ -1,0 +1,29 @@
+# Network-as-Code template: Access Monitoring Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/ap_monitoring_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    monitoring:  # Class | optional
+      policies:  # List | optional
+        - name: "test_mon_pol"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          snmp_traps:  # List | optional
+            - name: "test_trap"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              destination_group: "test_destination"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          syslogs:  # List | optional
+            - name: "test_syslog"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              audit: false  # Boolean | default: true | optional
+              events: false  # Boolean | default: true | optional
+              faults: true  # Boolean | default: true | optional
+              session: false  # Boolean | default: false | optional
+              minimum_severity: "alerts"  # Choice | emergencies , alerts , critical , errors , warnings , notifications , information , debugging | default: warnings | optional
+              destination_group: "syslog_destination"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          fault_severity_policies:  # List | optional
+            - class: "l1PhysIf"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              faults:  # List | optional
+                - fault_id: "F1696"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  initial_severity: "warning"  # Choice | warning , minor , major , critical , inherit , squelched | optional
+                  target_severity: "inherit"  # Choice | warning , minor , major , critical , inherit | optional
+                  description: "test"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional

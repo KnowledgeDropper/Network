@@ -1,0 +1,22 @@
+# Network-as-Code template: Tenant SPAN Source Group
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/tenant_span_source_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        span:  # Class | optional
+          source_groups:  # List | optional
+            - name: "SRC_GRP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "My Source Group"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              admin_state: false  # Boolean | default: false | optional
+              destination: "DESTINATION_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              sources:  # List | optional
+                - name: "SRC1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  description: "My source"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  direction: "in"  # Choice | in , both , out | default: both | optional
+                  application_profile: "AP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  endpoint_group: "EPG1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional

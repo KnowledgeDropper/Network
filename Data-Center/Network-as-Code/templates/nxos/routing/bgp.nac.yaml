@@ -1,0 +1,1724 @@
+# Network-as-Code template: BGP
+# Source: https://netascode.cisco.com/docs/data_models/nxos/routing/bgp/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 13 (parsed 13); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        routing:  # Class | optional
+          bgp:  # Class | optional
+            asn: "65000"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+            shutdown: false  # Boolean | optional
+            disable_policy_batching: false  # Boolean | optional
+            disable_policy_batching_nexthop: false  # Boolean | optional
+            disable_policy_batching_ipv4_prefix_list: "DISABLE_POLICY_BATCHING_IPV4_PREFIX_LIST_1"  # String | optional
+            disable_policy_batching_ipv6_prefix_list: "DISABLE_POLICY_BATCHING_IPV6_PREFIX_LIST_1"  # String | optional
+            fabric_soo: "FABRIC_SOO_1"  # String | optional
+            flush_routes: true  # Boolean | optional
+            isolate: "enabled"  # Choice | enabled , disabled , include-local , custom | optional
+            isolate_route_map: "ISOLATE_ROUTE_MAP_1"  # String | optional
+            med_dampening_interval: 60  # Integer | min: 60 , max: 4294967295 | optional
+            nexthop_suppress_default_resolution: false  # Boolean | optional
+            rd_dual: false  # Boolean | optional
+            rd_dual_id: 1  # Integer | min: 1 , max: 65535 | optional
+            peer_templates:  # List | optional
+              - name: "LEAF-PEERS"  # String | required
+                remote_as: "65000"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                description: "Example description"  # String | optional
+                peer_type: "fabric-external"  # Choice | fabric-internal , fabric-external , fabric-border-leaf | optional
+                update_source_interface_type: "loopback"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                update_source_interface_id: "0"  # Any | String or Integer[min: 0 ] | optional
+                shutdown: false  # Boolean | optional
+                affinity_group: 1  # Integer | min: 0 , max: 65535 | optional
+                bfd_multihop: false  # Boolean | optional
+                bmp_activate_server_1: false  # Boolean | optional
+                bmp_activate_server_2: false  # Boolean | optional
+                capability_suppress_4_byte_as: false  # Boolean | optional
+                connection_mode: "passive"  # Choice | passive | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                bfd: true  # Boolean | optional
+                disable_connected_check: false  # Boolean | optional
+                dont_capability_negotiate: false  # Boolean | optional
+                dynamic_capability: false  # Boolean | optional
+                hold_time: 30  # Integer | min: 3 , max: 3600 | optional
+                keepalive_interval: 10  # Integer | min: 0 , max: 3600 | optional
+                log_neighbor_changes: true  # Boolean | optional
+                low_memory_exempt: false  # Boolean | optional
+                maximum_peers: 1  # Integer | min: 1 , max: 1000 | optional
+                password_type: "0"  # Choice | 0 , 3 , line , 6 , 7 | optional
+                password: "PASSWORD_1"  # String | optional
+                remove_private_as: "none"  # Choice | none , enabled , all , replace-as | optional
+                inherit_peer_session: "INHERIT_PEER_SESSION_1"  # String | optional
+                ebgp_multihop_ttl: 2  # Integer | min: 2 , max: 255 | optional
+                ttl_security_hops: 1  # Integer | min: 1 , max: 254 | optional
+                address_families:  # List | optional
+                  - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv6-unicast , vpnv4-unicast , vpnv6-unicast , l2vpn-evpn , link-state | required
+                    send_community_standard: true  # Boolean | optional
+                    send_community_extended: true  # Boolean | optional
+                    route_reflector_client: true  # Boolean | optional
+                    next_hop_self: false  # Boolean | optional
+                    next_hop_self_all: false  # Boolean | optional
+                    disable_peer_as_check: false  # Boolean | optional
+                    allowas_in: false  # Boolean | optional
+                    default_originate: false  # Boolean | optional
+                    suppress_inactive: false  # Boolean | optional
+                    advertisement_interval: 1  # Integer | min: 1 , max: 600 | optional
+                    advertise_gateway_ip: false  # Boolean | optional
+                    advertise_local_labeled_route: false  # Boolean | optional
+                    aigp: false  # Boolean | optional
+                    allowas_in_count: 1  # Integer | min: 0 , max: 10 | optional
+                    as_override: false  # Boolean | optional
+                    default_originate_route_map: "DEFAULT_ORIGINATE_ROUTE_MAP_1"  # String | optional
+                    dmz_link_bandwidth: false  # Boolean | optional
+                    encapsulation_mpls: false  # Boolean | optional
+                    link_bandwidth_cumulative: false  # Boolean | optional
+                    next_hop_third_party: false  # Boolean | optional
+                    rewrite_evpn_rt_asn: false  # Boolean | optional
+                    soft_reconfiguration_inbound: "none"  # Choice | none , inbound , inbound-always | optional
+                    soo: "SOO_1"  # String | optional
+                    unsuppress_map: "UNSUPPRESS_MAP_1"  # String | optional
+                    weight: 1  # Integer | min: 0 , max: 65535 | optional
+                    maximum_prefix:  # Class | optional
+                      number: 10000  # Integer | min: 0 , max: 4294967295 | optional
+                      action: "log"  # Choice | log , shut , restart | optional
+                      restart_time: 1  # Integer | min: 1 , max: 65535 | optional
+                      threshold: 80  # Integer | min: 1 , max: 100 | optional
+                    site_of_origin: "SITE_OF_ORIGIN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                remote_as_type: "none"  # Choice | none , external , internal | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                bfd_type: "none"  # Choice | none , singlehop , multihop | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                capability_suppress_4_byte_asn: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            router_id: "10.1.100.1"  # IP | optional
+            allocate_index: 1  # Integer | min: 1 , max: 8000 | optional
+            bestpath_limit_always: false  # Boolean | optional
+            bestpath_limit: 1  # Integer | min: 1 , max: 3600 | optional
+            bandwidth_reference: 1  # Integer | min: 0 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            bandwidth_reference_unit: "mbps"  # Choice | mbps , gbps | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            cluster_id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] or String[Regex: ^.*[$%]\{.*$ ] | optional
+            hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+            keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+            local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+            maxas_limit: 1  # Integer | min: 1 , max: 512 | optional
+            mode: "fabric"  # Choice | fabric , external , proxy | optional
+            prefix_peer_timeout: 1  # Integer | min: 0 , max: 1200 | optional
+            prefix_peer_wait: 1  # Integer | min: 0 , max: 1200 | optional
+            reconnect_interval: 1  # Integer | min: 1 , max: 60 | optional
+            router_id_auto: false  # Boolean | optional
+            log_neighbor_changes: true  # Boolean | optional
+            enforce_first_as: false  # Boolean | optional
+            neighbor_down_fib_accelerate: false  # Boolean | optional
+            suppress_fib_pending: false  # Boolean | optional
+            graceful_restart: "complete"  # Choice | helper , complete | optional
+            graceful_restart_restart_time: 120  # Integer | min: 1 , max: 3600 | optional
+            graceful_restart_stalepath_time: 300  # Integer | min: 1 , max: 3600 | optional
+            neighbors:  # List | optional
+              - ip: "10.1.100.3"  # IP | optional
+                interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                interface_id: "1/1"  # Any | String or Integer[min: 0 ] | optional
+                remote_as: "REMOTE_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                description: "DC-Interconnect-Router"  # String | optional
+                inherit_peer: "LEAF-PEERS"  # String | optional
+                peer_type: "fabric-internal"  # Choice | fabric-internal , fabric-external , fabric-border-leaf | optional
+                update_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                update_source_interface_id: "UPDATE_SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+                keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+                ebgp_multihop_ttl: 2  # Integer | min: 2 , max: 255 | optional
+                bfd: true  # Boolean | optional
+                disable_connected_check: false  # Boolean | optional
+                dont_capability_negotiate: false  # Boolean | optional
+                dynamic_capability: false  # Boolean | optional
+                password_type: "0"  # Choice | 0 , 3 , line , 6 , 7 | optional
+                password: "PASSWORD_1"  # String | optional
+                shutdown: false  # Boolean | optional
+                affinity_group: 1  # Integer | min: 0 , max: 65535 | optional
+                bfd_multihop: false  # Boolean | optional
+                bmp_activate_server_1: false  # Boolean | optional
+                bmp_activate_server_2: false  # Boolean | optional
+                capability_suppress_4_byte_as: false  # Boolean | optional
+                transport_connection_mode: "passive"  # Choice | passive | optional
+                log_neighbor_changes: false  # Boolean | optional
+                low_memory_exempt: false  # Boolean | optional
+                maximum_peers: 1  # Integer | min: 1 , max: 1000 | optional
+                remove_private_as: "none"  # Choice | none , enabled , all , replace-as | optional
+                inherit_peer_session: "INHERIT_PEER_SESSION_1"  # String | optional
+                ttl_security_hops: 1  # Integer | min: 1 , max: 254 | optional
+                local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                local_as_propagation: "none"  # Choice | none , no-prepend , replace-as , dual-as | optional
+                dscp: 1  # Integer | min: 0 , max: 63 | optional
+                dynamic_route_map: "DYNAMIC_ROUTE_MAP_1"  # String | optional
+                egress_engineering: false  # Boolean | optional
+                egress_engineering_peer_set: "EGRESS_ENGINEERING_PEER_SET_1"  # String | optional
+                internal_vpn_client: false  # Boolean | optional
+                address_families:  # List | optional
+                  - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-mvpn , vpnv4-unicast , ipv6-unicast , vpnv6-unicast , l2vpn-evpn , link-state | required
+                    send_community_standard: false  # Boolean | optional
+                    send_community_extended: false  # Boolean | optional
+                    route_reflector_client: false  # Boolean | optional
+                    next_hop_self: false  # Boolean | optional
+                    next_hop_self_all: false  # Boolean | optional
+                    disable_peer_as_check: false  # Boolean | optional
+                    allowas_in: false  # Boolean | optional
+                    default_originate: false  # Boolean | optional
+                    suppress_inactive: false  # Boolean | optional
+                    advertisement_interval: 1  # Integer | min: 1 , max: 600 | optional
+                    advertise_gateway_ip: false  # Boolean | optional
+                    advertise_local_labeled_route: false  # Boolean | optional
+                    aigp: false  # Boolean | optional
+                    allowas_in_count: 1  # Integer | min: 0 , max: 10 | optional
+                    as_override: false  # Boolean | optional
+                    default_originate_route_map: "DEFAULT_ORIGINATE_ROUTE_MAP_1"  # String | optional
+                    dmz_link_bandwidth: false  # Boolean | optional
+                    encapsulation_mpls: false  # Boolean | optional
+                    link_bandwidth_cumulative: false  # Boolean | optional
+                    next_hop_third_party: false  # Boolean | optional
+                    rewrite_evpn_rt_asn: false  # Boolean | optional
+                    soft_reconfiguration_inbound: "none"  # Choice | none , inbound , inbound-always | optional
+                    soo: "SOO_1"  # String | optional
+                    unsuppress_map: "UNSUPPRESS_MAP_1"  # String | optional
+                    weight: 1  # Integer | min: 0 , max: 65535 | optional
+                    maximum_prefix:  # Class | optional [shared class: structure documented on this page as maximum_prefix(nxos.devices.configuration.routing.bgp.peer_templates.address_families)]
+                      number: 1  # Integer | min: 0 , max: 4294967295 | optional
+                      action: "log"  # Choice | log , shut , restart | optional
+                      restart_time: 1  # Integer | min: 1 , max: 65535 | optional
+                      threshold: 1  # Integer | min: 1 , max: 100 | optional
+                    route_map_in: "INBOUND-FILTER"  # String | optional
+                    route_map_out: "OUTBOUND-FILTER"  # String | optional
+                    prefix_list_in: "PREFIX_LIST_IN_1"  # String | optional
+                    prefix_list_out: "PREFIX_LIST_OUT_1"  # String | optional
+                    site_of_origin: "SITE_OF_ORIGIN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                remote_as_type: "none"  # Choice | none , external , internal | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                bfd_type: "none"  # Choice | none , singlehop , multihop | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                capability_suppress_4_byte_asn: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                connection_mode: "passive"  # Choice | passive | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            address_families:  # List | optional
+              - address_family: "l2vpn-evpn"  # Choice | ipv4-unicast , ipv4-multicast , vpnv4-unicast , ipv6-unicast , ipv6-multicast , vpnv6-unicast , vpnv6-multicast , l2vpn-evpn , ipv4-lucast , ipv6-lucast , link-state , ipv4-mvpn , ipv6-mvpn , l2vpn-vpls , ipv4-mdt | required
+                advertise_l2vpn_evpn: false  # Boolean | optional
+                advertise_only_active_routes: false  # Boolean | optional
+                advertise_pip: false  # Boolean | optional
+                advertise_system_mac: false  # Boolean | optional
+                allocate_label_all: false  # Boolean | optional
+                allocate_label_option_b: false  # Boolean | optional
+                allocate_label_route_map: "ALLOCATE_LABEL_ROUTE_MAP_1"  # String | optional
+                bestpath_origin_as_allow_invalid: false  # Boolean | optional
+                bestpath_origin_as_use_validity: false  # Boolean | optional
+                client_to_client_reflection: false  # Boolean | optional
+                nexthop_trigger_delay_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+                default_information_originate: true  # Boolean | optional
+                default_information_originate_always_rd: "rd:as2-nn2:1:1"  # String | optional
+                default_information_originate_always_route_target: "route-target:as2-nn2:1:1"  # String | optional
+                default_metric: 1  # Integer | min: 0 , max: 4294967295 | optional
+                export_gateway_ip: false  # Boolean | optional
+                dampen_igp_metric: 1  # Integer | min: 0 , max: 3600 | optional
+                label_allocation_mode: false  # Boolean | optional
+                load_balance_egress_filter_policy_route_map: "LB-EGRESS-FILTER"  # String | optional
+                load_balance_egress_multipath_auto_policy_route_map: "LB-EGRESS-MPATH"  # String | optional
+                maximum_paths: 1  # Integer | min: 1 , max: 512 | optional
+                maximum_paths_eibgp: 1  # Integer | min: 1 , max: 512 | optional
+                maximum_paths_ibgp: 1  # Integer | min: 1 , max: 512 | optional
+                maximum_paths_local: 1  # Integer | min: 1 , max: 512 | optional
+                maximum_paths_mixed: 1  # Integer | min: 1 , max: 512 | optional
+                maximum_paths_unequal_cost: false  # Boolean | optional
+                nexthop_route_map: "NEXTHOP_ROUTE_MAP_1"  # String | optional
+                nexthop_load_balance_egress_multisite: false  # Boolean | optional
+                nexthop_trigger_delay_non_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+                originate_map: "ORIGINATE_MAP_1"  # String | optional
+                origin_as_validate: false  # Boolean | optional
+                origin_as_validate_signal_ibgp: false  # Boolean | optional
+                prefix_priority: "none"  # Choice | none , high | optional
+                retain_route_target_all: true  # Boolean | optional
+                retain_route_target_route_map: "RETAIN_ROUTE_TARGET_ROUTE_MAP_1"  # String | optional
+                table_map: "TABLE_MAP_1"  # String | optional
+                table_map_filter: false  # Boolean | optional
+                timers_bestpath_defer: 100  # Integer | min: 100 , max: 3000 | optional
+                timers_bestpath_defer_maximum: 300  # Integer | min: 300 , max: 300000 | optional
+                allow_vni_in_ethertag: false  # Boolean | optional
+                wait_igp_convergence: false  # Boolean | optional
+                additional_paths_send: true  # Boolean | optional
+                additional_paths_receive: true  # Boolean | optional
+                additional_paths_install_backup: true  # Boolean | optional
+                additional_paths_selection_route_map: "ADD-PATH-SELECT"  # String | optional
+                networks:  # List | optional
+                  - prefix: "PREFIX_1"  # String | required
+                    evpn: false  # Boolean | optional
+                    route_map: "ROUTE_MAP_1"  # String | optional
+                redistributions:  # List | optional
+                  - protocol: "srv6"  # Choice | srv6 , unspecified , static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                    protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                    route_map: "ROUTE_MAP_1"  # String | optional
+                    asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                    scope: "intra"  # Choice | intra , inter , defrt | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    srv6_prefix_type: "unspecified"  # Choice | unspecified , locator | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                aggregate_addresses:  # List | optional
+                  - prefix: "10.0.0.0/8"  # String | required
+                    as_set: true  # Boolean | optional
+                    summary_only: true  # Boolean | optional
+                    advertise_map: "AGG-ADV-MAP"  # String | optional
+                    attribute_map: "AGG-ATTR-MAP"  # String | optional
+                    suppress_map: "AGG-SUPPR-MAP"  # String | optional
+                maximum_paths_eibgp_ibgp: 1  # Integer | min: 1 , max: 512 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            vrfs:  # List | optional
+              - vrf: "BLUE"  # String | required
+                router_id: "10.1.100.3"  # IP | optional
+                allocate_index: 1  # Integer | min: 1 , max: 8000 | optional
+                bestpath_limit_always: false  # Boolean | optional
+                bestpath_limit: 1  # Integer | min: 1 , max: 3600 | optional
+                reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+                reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+                cluster_id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] or String[Regex: ^.*[$%]\{.*$ ] | optional
+                hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+                keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+                local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                maxas_limit: 1  # Integer | min: 1 , max: 512 | optional
+                mode: "fabric"  # Choice | fabric , external , proxy | optional
+                prefix_peer_timeout: 1  # Integer | min: 0 , max: 1200 | optional
+                prefix_peer_wait: 1  # Integer | min: 0 , max: 1200 | optional
+                reconnect_interval: 1  # Integer | min: 1 , max: 60 | optional
+                router_id_auto: false  # Boolean | optional
+                log_neighbor_changes: true  # Boolean | optional
+                enforce_first_as: false  # Boolean | optional
+                neighbor_down_fib_accelerate: false  # Boolean | optional
+                suppress_fib_pending: false  # Boolean | optional
+                graceful_restart: "helper"  # Choice | helper , complete | optional
+                graceful_restart_restart_time: 1  # Integer | min: 1 , max: 3600 | optional
+                graceful_restart_stalepath_time: 1  # Integer | min: 1 , max: 3600 | optional
+                neighbors:  # List | optional [shared class: structure documented on this page as neighbors(nxos.devices.configuration.routing.bgp)]
+                  - ip: "10.1.1.1"  # IP | optional
+                    interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                    interface_id: "1/3"  # Any | String or Integer[min: 0 ] | optional
+                    remote_as: "65100"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                    description: "CE-Router"  # String | optional
+                    inherit_peer: "INHERIT_PEER_1"  # String | optional
+                    peer_type: "fabric-internal"  # Choice | fabric-internal , fabric-external , fabric-border-leaf | optional
+                    update_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                    update_source_interface_id: "UPDATE_SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                    hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+                    keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+                    ebgp_multihop_ttl: 2  # Integer | min: 2 , max: 255 | optional
+                    bfd: false  # Boolean | optional
+                    disable_connected_check: false  # Boolean | optional
+                    dont_capability_negotiate: false  # Boolean | optional
+                    dynamic_capability: false  # Boolean | optional
+                    password_type: "0"  # Choice | 0 , 3 , line , 6 , 7 | optional
+                    password: "PASSWORD_1"  # String | optional
+                    shutdown: false  # Boolean | optional
+                    affinity_group: 1  # Integer | min: 0 , max: 65535 | optional
+                    bfd_multihop: false  # Boolean | optional
+                    bmp_activate_server_1: false  # Boolean | optional
+                    bmp_activate_server_2: false  # Boolean | optional
+                    capability_suppress_4_byte_as: false  # Boolean | optional
+                    transport_connection_mode: "passive"  # Choice | passive | optional
+                    log_neighbor_changes: false  # Boolean | optional
+                    low_memory_exempt: false  # Boolean | optional
+                    maximum_peers: 1  # Integer | min: 1 , max: 1000 | optional
+                    remove_private_as: "none"  # Choice | none , enabled , all , replace-as | optional
+                    inherit_peer_session: "INHERIT_PEER_SESSION_1"  # String | optional
+                    ttl_security_hops: 1  # Integer | min: 1 , max: 254 | optional
+                    local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                    local_as_propagation: "none"  # Choice | none , no-prepend , replace-as , dual-as | optional
+                    dscp: 1  # Integer | min: 0 , max: 63 | optional
+                    dynamic_route_map: "DYNAMIC_ROUTE_MAP_1"  # String | optional
+                    egress_engineering: false  # Boolean | optional
+                    egress_engineering_peer_set: "EGRESS_ENGINEERING_PEER_SET_1"  # String | optional
+                    internal_vpn_client: false  # Boolean | optional
+                    address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp.neighbors)]
+                      - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-mvpn , vpnv4-unicast , ipv6-unicast , vpnv6-unicast , l2vpn-evpn , link-state | required
+                        send_community_standard: false  # Boolean | optional
+                        send_community_extended: false  # Boolean | optional
+                        route_reflector_client: false  # Boolean | optional
+                        next_hop_self: false  # Boolean | optional
+                        next_hop_self_all: false  # Boolean | optional
+                        disable_peer_as_check: false  # Boolean | optional
+                        allowas_in: false  # Boolean | optional
+                        default_originate: false  # Boolean | optional
+                        suppress_inactive: false  # Boolean | optional
+                        advertisement_interval: 1  # Integer | min: 1 , max: 600 | optional
+                        advertise_gateway_ip: false  # Boolean | optional
+                        advertise_local_labeled_route: false  # Boolean | optional
+                        aigp: false  # Boolean | optional
+                        allowas_in_count: 1  # Integer | min: 0 , max: 10 | optional
+                        as_override: false  # Boolean | optional
+                        default_originate_route_map: "DEFAULT_ORIGINATE_ROUTE_MAP_1"  # String | optional
+                        dmz_link_bandwidth: false  # Boolean | optional
+                        encapsulation_mpls: false  # Boolean | optional
+                        link_bandwidth_cumulative: false  # Boolean | optional
+                        next_hop_third_party: false  # Boolean | optional
+                        rewrite_evpn_rt_asn: false  # Boolean | optional
+                        soft_reconfiguration_inbound: "none"  # Choice | none , inbound , inbound-always | optional
+                        soo: "SOO_1"  # String | optional
+                        unsuppress_map: "UNSUPPRESS_MAP_1"  # String | optional
+                        weight: 1  # Integer | min: 0 , max: 65535 | optional
+                        maximum_prefix:  # Class | optional [shared class: structure documented on this page as maximum_prefix(nxos.devices.configuration.routing.bgp.peer_templates.address_families)]
+                          number: 1  # Integer | min: 0 , max: 4294967295 | optional
+                          action: "log"  # Choice | log , shut , restart | optional
+                          restart_time: 1  # Integer | min: 1 , max: 65535 | optional
+                          threshold: 1  # Integer | min: 1 , max: 100 | optional
+                        route_map_in: "ROUTE_MAP_IN_1"  # String | optional
+                        route_map_out: "ROUTE_MAP_OUT_1"  # String | optional
+                        prefix_list_in: "PREFIX_LIST_IN_1"  # String | optional
+                        prefix_list_out: "PREFIX_LIST_OUT_1"  # String | optional
+                        site_of_origin: "SITE_OF_ORIGIN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    remote_as_type: "none"  # Choice | none , external , internal | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    bfd_type: "none"  # Choice | none , singlehop , multihop | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    capability_suppress_4_byte_asn: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    connection_mode: "passive"  # Choice | passive | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp)]
+                  - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-multicast , vpnv4-unicast , ipv6-unicast , ipv6-multicast , vpnv6-unicast , vpnv6-multicast , l2vpn-evpn , ipv4-lucast , ipv6-lucast , link-state , ipv4-mvpn , ipv6-mvpn , l2vpn-vpls , ipv4-mdt | required
+                    advertise_l2vpn_evpn: true  # Boolean | optional
+                    advertise_only_active_routes: false  # Boolean | optional
+                    advertise_pip: false  # Boolean | optional
+                    advertise_system_mac: false  # Boolean | optional
+                    allocate_label_all: false  # Boolean | optional
+                    allocate_label_option_b: false  # Boolean | optional
+                    allocate_label_route_map: "ALLOCATE_LABEL_ROUTE_MAP_1"  # String | optional
+                    bestpath_origin_as_allow_invalid: false  # Boolean | optional
+                    bestpath_origin_as_use_validity: false  # Boolean | optional
+                    client_to_client_reflection: false  # Boolean | optional
+                    nexthop_trigger_delay_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+                    default_information_originate: false  # Boolean | optional
+                    default_information_originate_always_rd: "DEFAULT_INFORMATION_ORIGINATE_ALWAYS_RD_1"  # String | optional
+                    default_information_originate_always_route_target: "DEFAULT_INFORMATION_ORIGINATE_ALWAYS_ROUTE_TARGET_1"  # String | optional
+                    default_metric: 1  # Integer | min: 0 , max: 4294967295 | optional
+                    export_gateway_ip: false  # Boolean | optional
+                    dampen_igp_metric: 1  # Integer | min: 0 , max: 3600 | optional
+                    label_allocation_mode: false  # Boolean | optional
+                    load_balance_egress_filter_policy_route_map: "LOAD_BALANCE_EGRESS_FILTER_POLICY_ROUTE_MAP_1"  # String | optional
+                    load_balance_egress_multipath_auto_policy_route_map: "LOAD_BALANCE_EGRESS_MULTIPATH_AUTO_POLICY_ROUTE_MAP_1"  # String | optional
+                    maximum_paths: 2  # Integer | min: 1 , max: 512 | optional
+                    maximum_paths_eibgp: 1  # Integer | min: 1 , max: 512 | optional
+                    maximum_paths_ibgp: 1  # Integer | min: 1 , max: 512 | optional
+                    maximum_paths_local: 1  # Integer | min: 1 , max: 512 | optional
+                    maximum_paths_mixed: 1  # Integer | min: 1 , max: 512 | optional
+                    maximum_paths_unequal_cost: false  # Boolean | optional
+                    nexthop_route_map: "NEXTHOP_ROUTE_MAP_1"  # String | optional
+                    nexthop_load_balance_egress_multisite: false  # Boolean | optional
+                    nexthop_trigger_delay_non_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+                    originate_map: "ORIGINATE_MAP_1"  # String | optional
+                    origin_as_validate: false  # Boolean | optional
+                    origin_as_validate_signal_ibgp: false  # Boolean | optional
+                    prefix_priority: "none"  # Choice | none , high | optional
+                    retain_route_target_all: false  # Boolean | optional
+                    retain_route_target_route_map: "RETAIN_ROUTE_TARGET_ROUTE_MAP_1"  # String | optional
+                    table_map: "TABLE_MAP_1"  # String | optional
+                    table_map_filter: false  # Boolean | optional
+                    timers_bestpath_defer: 100  # Integer | min: 100 , max: 3000 | optional
+                    timers_bestpath_defer_maximum: 300  # Integer | min: 300 , max: 300000 | optional
+                    allow_vni_in_ethertag: false  # Boolean | optional
+                    wait_igp_convergence: false  # Boolean | optional
+                    additional_paths_send: false  # Boolean | optional
+                    additional_paths_receive: false  # Boolean | optional
+                    additional_paths_install_backup: false  # Boolean | optional
+                    additional_paths_selection_route_map: "ADDITIONAL_PATHS_SELECTION_ROUTE_MAP_1"  # String | optional
+                    networks:  # List | optional [shared class: structure documented on this page as networks(nxos.devices.configuration.routing.bgp.address_families)]
+                      - prefix: "192.168.1.0/24"  # String | required
+                        evpn: false  # Boolean | optional
+                        route_map: "ROUTE_MAP_1"  # String | optional
+                    redistributions:  # List | optional [shared class: structure documented on this page as redistributions(nxos.devices.configuration.routing.bgp.address_families)]
+                      - protocol: "direct"  # Choice | srv6 , unspecified , static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                        protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                        route_map: "PERMIT-CONNECTED"  # String | optional
+                        asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                        scope: "intra"  # Choice | intra , inter , defrt | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                        srv6_prefix_type: "unspecified"  # Choice | unspecified , locator | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    aggregate_addresses:  # List | optional [shared class: structure documented on this page as aggregate_addresses(nxos.devices.configuration.routing.bgp.address_families)]
+                      - prefix: "PREFIX_1"  # String | required
+                        as_set: false  # Boolean | optional
+                        summary_only: false  # Boolean | optional
+                        advertise_map: "ADVERTISE_MAP_1"  # String | optional
+                        attribute_map: "ATTRIBUTE_MAP_1"  # String | optional
+                        suppress_map: "SUPPRESS_MAP_1"  # String | optional
+                    maximum_paths_eibgp_ibgp: 1  # Integer | min: 1 , max: 512 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                bandwidth_reference: 1  # Integer | min: 0 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                bandwidth_reference_unit: "mbps"  # Choice | mbps , gbps | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        routing:  # Class | optional [shared class: structure documented on this page as routing(nxos.devices.configuration)]
+          bgp:  # Class | optional [shared class: structure documented on this page as bgp(nxos.devices.configuration.routing)]
+            asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+            shutdown: false  # Boolean | optional
+            disable_policy_batching: false  # Boolean | optional
+            disable_policy_batching_nexthop: false  # Boolean | optional
+            disable_policy_batching_ipv4_prefix_list: "DISABLE_POLICY_BATCHING_IPV4_PREFIX_LIST_1"  # String | optional
+            disable_policy_batching_ipv6_prefix_list: "DISABLE_POLICY_BATCHING_IPV6_PREFIX_LIST_1"  # String | optional
+            fabric_soo: "FABRIC_SOO_1"  # String | optional
+            flush_routes: false  # Boolean | optional
+            isolate: "enabled"  # Choice | enabled , disabled , include-local , custom | optional
+            isolate_route_map: "ISOLATE_ROUTE_MAP_1"  # String | optional
+            med_dampening_interval: 60  # Integer | min: 60 , max: 4294967295 | optional
+            nexthop_suppress_default_resolution: false  # Boolean | optional
+            rd_dual: false  # Boolean | optional
+            rd_dual_id: 1  # Integer | min: 1 , max: 65535 | optional
+            peer_templates:  # List | optional [shared class: structure documented on this page as peer_templates(nxos.devices.configuration.routing.bgp)]
+              - name: "NAME_1"  # String | required
+                remote_as: "REMOTE_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                description: "Example description"  # String | optional
+                peer_type: "fabric-internal"  # Choice | fabric-internal , fabric-external , fabric-border-leaf | optional
+                update_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                update_source_interface_id: "UPDATE_SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                shutdown: false  # Boolean | optional
+                affinity_group: 1  # Integer | min: 0 , max: 65535 | optional
+                bfd_multihop: false  # Boolean | optional
+                bmp_activate_server_1: false  # Boolean | optional
+                bmp_activate_server_2: false  # Boolean | optional
+                capability_suppress_4_byte_as: false  # Boolean | optional
+                connection_mode: "passive"  # Choice | passive | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                bfd: false  # Boolean | optional
+                disable_connected_check: false  # Boolean | optional
+                dont_capability_negotiate: false  # Boolean | optional
+                dynamic_capability: false  # Boolean | optional
+                hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+                keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+                log_neighbor_changes: false  # Boolean | optional
+                low_memory_exempt: false  # Boolean | optional
+                maximum_peers: 1  # Integer | min: 1 , max: 1000 | optional
+                password_type: "0"  # Choice | 0 , 3 , line , 6 , 7 | optional
+                password: "PASSWORD_1"  # String | optional
+                remove_private_as: "none"  # Choice | none , enabled , all , replace-as | optional
+                inherit_peer_session: "INHERIT_PEER_SESSION_1"  # String | optional
+                ebgp_multihop_ttl: 2  # Integer | min: 2 , max: 255 | optional
+                ttl_security_hops: 1  # Integer | min: 1 , max: 254 | optional
+                address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp.neighbors)]
+                  - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-mvpn , vpnv4-unicast , ipv6-unicast , vpnv6-unicast , l2vpn-evpn , link-state | required
+                    send_community_standard: false  # Boolean | optional
+                    send_community_extended: false  # Boolean | optional
+                    route_reflector_client: false  # Boolean | optional
+                    next_hop_self: false  # Boolean | optional
+                    next_hop_self_all: false  # Boolean | optional
+                    disable_peer_as_check: false  # Boolean | optional
+                    allowas_in: false  # Boolean | optional
+                    default_originate: false  # Boolean | optional
+                    suppress_inactive: false  # Boolean | optional
+                    advertisement_interval: 1  # Integer | min: 1 , max: 600 | optional
+                    advertise_gateway_ip: false  # Boolean | optional
+                    advertise_local_labeled_route: false  # Boolean | optional
+                    aigp: false  # Boolean | optional
+                    allowas_in_count: 1  # Integer | min: 0 , max: 10 | optional
+                    as_override: false  # Boolean | optional
+                    default_originate_route_map: "DEFAULT_ORIGINATE_ROUTE_MAP_1"  # String | optional
+                    dmz_link_bandwidth: false  # Boolean | optional
+                    encapsulation_mpls: false  # Boolean | optional
+                    link_bandwidth_cumulative: false  # Boolean | optional
+                    next_hop_third_party: false  # Boolean | optional
+                    rewrite_evpn_rt_asn: false  # Boolean | optional
+                    soft_reconfiguration_inbound: "none"  # Choice | none , inbound , inbound-always | optional
+                    soo: "SOO_1"  # String | optional
+                    unsuppress_map: "UNSUPPRESS_MAP_1"  # String | optional
+                    weight: 1  # Integer | min: 0 , max: 65535 | optional
+                    maximum_prefix:  # Class | optional [shared class: structure documented on this page as maximum_prefix(nxos.devices.configuration.routing.bgp.peer_templates.address_families)]
+                      number: 1  # Integer | min: 0 , max: 4294967295 | optional
+                      action: "log"  # Choice | log , shut , restart | optional
+                      restart_time: 1  # Integer | min: 1 , max: 65535 | optional
+                      threshold: 1  # Integer | min: 1 , max: 100 | optional
+                    route_map_in: "ROUTE_MAP_IN_1"  # String | optional
+                    route_map_out: "ROUTE_MAP_OUT_1"  # String | optional
+                    prefix_list_in: "PREFIX_LIST_IN_1"  # String | optional
+                    prefix_list_out: "PREFIX_LIST_OUT_1"  # String | optional
+                    site_of_origin: "SITE_OF_ORIGIN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                remote_as_type: "none"  # Choice | none , external , internal | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                bfd_type: "none"  # Choice | none , singlehop , multihop | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                capability_suppress_4_byte_asn: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            router_id: "10.1.1.1"  # IP | optional
+            allocate_index: 1  # Integer | min: 1 , max: 8000 | optional
+            bestpath_limit_always: false  # Boolean | optional
+            bestpath_limit: 1  # Integer | min: 1 , max: 3600 | optional
+            bandwidth_reference: 1  # Integer | min: 0 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            bandwidth_reference_unit: "mbps"  # Choice | mbps , gbps | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            cluster_id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] or String[Regex: ^.*[$%]\{.*$ ] | optional
+            hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+            keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+            local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+            maxas_limit: 1  # Integer | min: 1 , max: 512 | optional
+            mode: "fabric"  # Choice | fabric , external , proxy | optional
+            prefix_peer_timeout: 1  # Integer | min: 0 , max: 1200 | optional
+            prefix_peer_wait: 1  # Integer | min: 0 , max: 1200 | optional
+            reconnect_interval: 1  # Integer | min: 1 , max: 60 | optional
+            router_id_auto: false  # Boolean | optional
+            log_neighbor_changes: false  # Boolean | optional
+            enforce_first_as: false  # Boolean | optional
+            neighbor_down_fib_accelerate: false  # Boolean | optional
+            suppress_fib_pending: false  # Boolean | optional
+            graceful_restart: "helper"  # Choice | helper , complete | optional
+            graceful_restart_restart_time: 1  # Integer | min: 1 , max: 3600 | optional
+            graceful_restart_stalepath_time: 1  # Integer | min: 1 , max: 3600 | optional
+            neighbors:  # List | optional [shared class: structure documented on this page as neighbors(nxos.devices.configuration.routing.bgp)]
+              - ip: "10.1.1.1"  # IP | optional
+                interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                interface_id: "INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                remote_as: "REMOTE_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                description: "Example description"  # String | optional
+                inherit_peer: "INHERIT_PEER_1"  # String | optional
+                peer_type: "fabric-internal"  # Choice | fabric-internal , fabric-external , fabric-border-leaf | optional
+                update_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                update_source_interface_id: "UPDATE_SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+                keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+                ebgp_multihop_ttl: 2  # Integer | min: 2 , max: 255 | optional
+                bfd: false  # Boolean | optional
+                disable_connected_check: false  # Boolean | optional
+                dont_capability_negotiate: false  # Boolean | optional
+                dynamic_capability: false  # Boolean | optional
+                password_type: "0"  # Choice | 0 , 3 , line , 6 , 7 | optional
+                password: "PASSWORD_1"  # String | optional
+                shutdown: false  # Boolean | optional
+                affinity_group: 1  # Integer | min: 0 , max: 65535 | optional
+                bfd_multihop: false  # Boolean | optional
+                bmp_activate_server_1: false  # Boolean | optional
+                bmp_activate_server_2: false  # Boolean | optional
+                capability_suppress_4_byte_as: false  # Boolean | optional
+                transport_connection_mode: "passive"  # Choice | passive | optional
+                log_neighbor_changes: false  # Boolean | optional
+                low_memory_exempt: false  # Boolean | optional
+                maximum_peers: 1  # Integer | min: 1 , max: 1000 | optional
+                remove_private_as: "none"  # Choice | none , enabled , all , replace-as | optional
+                inherit_peer_session: "INHERIT_PEER_SESSION_1"  # String | optional
+                ttl_security_hops: 1  # Integer | min: 1 , max: 254 | optional
+                local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                local_as_propagation: "none"  # Choice | none , no-prepend , replace-as , dual-as | optional
+                dscp: 1  # Integer | min: 0 , max: 63 | optional
+                dynamic_route_map: "DYNAMIC_ROUTE_MAP_1"  # String | optional
+                egress_engineering: false  # Boolean | optional
+                egress_engineering_peer_set: "EGRESS_ENGINEERING_PEER_SET_1"  # String | optional
+                internal_vpn_client: false  # Boolean | optional
+                address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp.neighbors)]
+                  - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-mvpn , vpnv4-unicast , ipv6-unicast , vpnv6-unicast , l2vpn-evpn , link-state | required
+                    send_community_standard: false  # Boolean | optional
+                    send_community_extended: false  # Boolean | optional
+                    route_reflector_client: false  # Boolean | optional
+                    next_hop_self: false  # Boolean | optional
+                    next_hop_self_all: false  # Boolean | optional
+                    disable_peer_as_check: false  # Boolean | optional
+                    allowas_in: false  # Boolean | optional
+                    default_originate: false  # Boolean | optional
+                    suppress_inactive: false  # Boolean | optional
+                    advertisement_interval: 1  # Integer | min: 1 , max: 600 | optional
+                    advertise_gateway_ip: false  # Boolean | optional
+                    advertise_local_labeled_route: false  # Boolean | optional
+                    aigp: false  # Boolean | optional
+                    allowas_in_count: 1  # Integer | min: 0 , max: 10 | optional
+                    as_override: false  # Boolean | optional
+                    default_originate_route_map: "DEFAULT_ORIGINATE_ROUTE_MAP_1"  # String | optional
+                    dmz_link_bandwidth: false  # Boolean | optional
+                    encapsulation_mpls: false  # Boolean | optional
+                    link_bandwidth_cumulative: false  # Boolean | optional
+                    next_hop_third_party: false  # Boolean | optional
+                    rewrite_evpn_rt_asn: false  # Boolean | optional
+                    soft_reconfiguration_inbound: "none"  # Choice | none , inbound , inbound-always | optional
+                    soo: "SOO_1"  # String | optional
+                    unsuppress_map: "UNSUPPRESS_MAP_1"  # String | optional
+                    weight: 1  # Integer | min: 0 , max: 65535 | optional
+                    maximum_prefix:  # Class | optional [shared class: structure documented on this page as maximum_prefix(nxos.devices.configuration.routing.bgp.peer_templates.address_families)]
+                      number: 1  # Integer | min: 0 , max: 4294967295 | optional
+                      action: "log"  # Choice | log , shut , restart | optional
+                      restart_time: 1  # Integer | min: 1 , max: 65535 | optional
+                      threshold: 1  # Integer | min: 1 , max: 100 | optional
+                    route_map_in: "ROUTE_MAP_IN_1"  # String | optional
+                    route_map_out: "ROUTE_MAP_OUT_1"  # String | optional
+                    prefix_list_in: "PREFIX_LIST_IN_1"  # String | optional
+                    prefix_list_out: "PREFIX_LIST_OUT_1"  # String | optional
+                    site_of_origin: "SITE_OF_ORIGIN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                remote_as_type: "none"  # Choice | none , external , internal | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                bfd_type: "none"  # Choice | none , singlehop , multihop | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                capability_suppress_4_byte_asn: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                connection_mode: "passive"  # Choice | passive | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp)]
+              - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-multicast , vpnv4-unicast , ipv6-unicast , ipv6-multicast , vpnv6-unicast , vpnv6-multicast , l2vpn-evpn , ipv4-lucast , ipv6-lucast , link-state , ipv4-mvpn , ipv6-mvpn , l2vpn-vpls , ipv4-mdt | required
+                advertise_l2vpn_evpn: false  # Boolean | optional
+                advertise_only_active_routes: false  # Boolean | optional
+                advertise_pip: false  # Boolean | optional
+                advertise_system_mac: false  # Boolean | optional
+                allocate_label_all: false  # Boolean | optional
+                allocate_label_option_b: false  # Boolean | optional
+                allocate_label_route_map: "ALLOCATE_LABEL_ROUTE_MAP_1"  # String | optional
+                bestpath_origin_as_allow_invalid: false  # Boolean | optional
+                bestpath_origin_as_use_validity: false  # Boolean | optional
+                client_to_client_reflection: false  # Boolean | optional
+                nexthop_trigger_delay_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+                default_information_originate: false  # Boolean | optional
+                default_information_originate_always_rd: "DEFAULT_INFORMATION_ORIGINATE_ALWAYS_RD_1"  # String | optional
+                default_information_originate_always_route_target: "DEFAULT_INFORMATION_ORIGINATE_ALWAYS_ROUTE_TARGET_1"  # String | optional
+                default_metric: 1  # Integer | min: 0 , max: 4294967295 | optional
+                export_gateway_ip: false  # Boolean | optional
+                dampen_igp_metric: 1  # Integer | min: 0 , max: 3600 | optional
+                label_allocation_mode: false  # Boolean | optional
+                load_balance_egress_filter_policy_route_map: "LOAD_BALANCE_EGRESS_FILTER_POLICY_ROUTE_MAP_1"  # String | optional
+                load_balance_egress_multipath_auto_policy_route_map: "LOAD_BALANCE_EGRESS_MULTIPATH_AUTO_POLICY_ROUTE_MAP_1"  # String | optional
+                maximum_paths: 1  # Integer | min: 1 , max: 512 | optional
+                maximum_paths_eibgp: 1  # Integer | min: 1 , max: 512 | optional
+                maximum_paths_ibgp: 1  # Integer | min: 1 , max: 512 | optional
+                maximum_paths_local: 1  # Integer | min: 1 , max: 512 | optional
+                maximum_paths_mixed: 1  # Integer | min: 1 , max: 512 | optional
+                maximum_paths_unequal_cost: false  # Boolean | optional
+                nexthop_route_map: "NEXTHOP_ROUTE_MAP_1"  # String | optional
+                nexthop_load_balance_egress_multisite: false  # Boolean | optional
+                nexthop_trigger_delay_non_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+                originate_map: "ORIGINATE_MAP_1"  # String | optional
+                origin_as_validate: false  # Boolean | optional
+                origin_as_validate_signal_ibgp: false  # Boolean | optional
+                prefix_priority: "none"  # Choice | none , high | optional
+                retain_route_target_all: false  # Boolean | optional
+                retain_route_target_route_map: "RETAIN_ROUTE_TARGET_ROUTE_MAP_1"  # String | optional
+                table_map: "TABLE_MAP_1"  # String | optional
+                table_map_filter: false  # Boolean | optional
+                timers_bestpath_defer: 100  # Integer | min: 100 , max: 3000 | optional
+                timers_bestpath_defer_maximum: 300  # Integer | min: 300 , max: 300000 | optional
+                allow_vni_in_ethertag: false  # Boolean | optional
+                wait_igp_convergence: false  # Boolean | optional
+                additional_paths_send: false  # Boolean | optional
+                additional_paths_receive: false  # Boolean | optional
+                additional_paths_install_backup: false  # Boolean | optional
+                additional_paths_selection_route_map: "ADDITIONAL_PATHS_SELECTION_ROUTE_MAP_1"  # String | optional
+                networks:  # List | optional [shared class: structure documented on this page as networks(nxos.devices.configuration.routing.bgp.address_families)]
+                  - prefix: "PREFIX_1"  # String | required
+                    evpn: false  # Boolean | optional
+                    route_map: "ROUTE_MAP_1"  # String | optional
+                redistributions:  # List | optional [shared class: structure documented on this page as redistributions(nxos.devices.configuration.routing.bgp.address_families)]
+                  - protocol: "srv6"  # Choice | srv6 , unspecified , static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                    protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                    route_map: "ROUTE_MAP_1"  # String | optional
+                    asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                    scope: "intra"  # Choice | intra , inter , defrt | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    srv6_prefix_type: "unspecified"  # Choice | unspecified , locator | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                aggregate_addresses:  # List | optional [shared class: structure documented on this page as aggregate_addresses(nxos.devices.configuration.routing.bgp.address_families)]
+                  - prefix: "PREFIX_1"  # String | required
+                    as_set: false  # Boolean | optional
+                    summary_only: false  # Boolean | optional
+                    advertise_map: "ADVERTISE_MAP_1"  # String | optional
+                    attribute_map: "ATTRIBUTE_MAP_1"  # String | optional
+                    suppress_map: "SUPPRESS_MAP_1"  # String | optional
+                maximum_paths_eibgp_ibgp: 1  # Integer | min: 1 , max: 512 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            vrfs:  # List | optional [shared class: structure documented on this page as vrfs(nxos.devices.configuration.routing.bgp)]
+              - vrf: "VRF1"  # String | required
+                router_id: "10.1.1.1"  # IP | optional
+                allocate_index: 1  # Integer | min: 1 , max: 8000 | optional
+                bestpath_limit_always: false  # Boolean | optional
+                bestpath_limit: 1  # Integer | min: 1 , max: 3600 | optional
+                reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+                reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+                cluster_id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] or String[Regex: ^.*[$%]\{.*$ ] | optional
+                hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+                keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+                local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                maxas_limit: 1  # Integer | min: 1 , max: 512 | optional
+                mode: "fabric"  # Choice | fabric , external , proxy | optional
+                prefix_peer_timeout: 1  # Integer | min: 0 , max: 1200 | optional
+                prefix_peer_wait: 1  # Integer | min: 0 , max: 1200 | optional
+                reconnect_interval: 1  # Integer | min: 1 , max: 60 | optional
+                router_id_auto: false  # Boolean | optional
+                log_neighbor_changes: false  # Boolean | optional
+                enforce_first_as: false  # Boolean | optional
+                neighbor_down_fib_accelerate: false  # Boolean | optional
+                suppress_fib_pending: false  # Boolean | optional
+                graceful_restart: "helper"  # Choice | helper , complete | optional
+                graceful_restart_restart_time: 1  # Integer | min: 1 , max: 3600 | optional
+                graceful_restart_stalepath_time: 1  # Integer | min: 1 , max: 3600 | optional
+                neighbors:  # List | optional [shared class: structure documented on this page as neighbors(nxos.devices.configuration.routing.bgp)]
+                  - ip: "10.1.1.1"  # IP | optional
+                    interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                    interface_id: "INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                    remote_as: "REMOTE_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                    description: "Example description"  # String | optional
+                    inherit_peer: "INHERIT_PEER_1"  # String | optional
+                    peer_type: "fabric-internal"  # Choice | fabric-internal , fabric-external , fabric-border-leaf | optional
+                    update_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                    update_source_interface_id: "UPDATE_SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                    hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+                    keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+                    ebgp_multihop_ttl: 2  # Integer | min: 2 , max: 255 | optional
+                    bfd: false  # Boolean | optional
+                    disable_connected_check: false  # Boolean | optional
+                    dont_capability_negotiate: false  # Boolean | optional
+                    dynamic_capability: false  # Boolean | optional
+                    password_type: "0"  # Choice | 0 , 3 , line , 6 , 7 | optional
+                    password: "PASSWORD_1"  # String | optional
+                    shutdown: false  # Boolean | optional
+                    affinity_group: 1  # Integer | min: 0 , max: 65535 | optional
+                    bfd_multihop: false  # Boolean | optional
+                    bmp_activate_server_1: false  # Boolean | optional
+                    bmp_activate_server_2: false  # Boolean | optional
+                    capability_suppress_4_byte_as: false  # Boolean | optional
+                    transport_connection_mode: "passive"  # Choice | passive | optional
+                    log_neighbor_changes: false  # Boolean | optional
+                    low_memory_exempt: false  # Boolean | optional
+                    maximum_peers: 1  # Integer | min: 1 , max: 1000 | optional
+                    remove_private_as: "none"  # Choice | none , enabled , all , replace-as | optional
+                    inherit_peer_session: "INHERIT_PEER_SESSION_1"  # String | optional
+                    ttl_security_hops: 1  # Integer | min: 1 , max: 254 | optional
+                    local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                    local_as_propagation: "none"  # Choice | none , no-prepend , replace-as , dual-as | optional
+                    dscp: 1  # Integer | min: 0 , max: 63 | optional
+                    dynamic_route_map: "DYNAMIC_ROUTE_MAP_1"  # String | optional
+                    egress_engineering: false  # Boolean | optional
+                    egress_engineering_peer_set: "EGRESS_ENGINEERING_PEER_SET_1"  # String | optional
+                    internal_vpn_client: false  # Boolean | optional
+                    address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp.neighbors)]
+                      - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-mvpn , vpnv4-unicast , ipv6-unicast , vpnv6-unicast , l2vpn-evpn , link-state | required
+                        send_community_standard: false  # Boolean | optional
+                        send_community_extended: false  # Boolean | optional
+                        route_reflector_client: false  # Boolean | optional
+                        next_hop_self: false  # Boolean | optional
+                        next_hop_self_all: false  # Boolean | optional
+                        disable_peer_as_check: false  # Boolean | optional
+                        allowas_in: false  # Boolean | optional
+                        default_originate: false  # Boolean | optional
+                        suppress_inactive: false  # Boolean | optional
+                        advertisement_interval: 1  # Integer | min: 1 , max: 600 | optional
+                        advertise_gateway_ip: false  # Boolean | optional
+                        advertise_local_labeled_route: false  # Boolean | optional
+                        aigp: false  # Boolean | optional
+                        allowas_in_count: 1  # Integer | min: 0 , max: 10 | optional
+                        as_override: false  # Boolean | optional
+                        default_originate_route_map: "DEFAULT_ORIGINATE_ROUTE_MAP_1"  # String | optional
+                        dmz_link_bandwidth: false  # Boolean | optional
+                        encapsulation_mpls: false  # Boolean | optional
+                        link_bandwidth_cumulative: false  # Boolean | optional
+                        next_hop_third_party: false  # Boolean | optional
+                        rewrite_evpn_rt_asn: false  # Boolean | optional
+                        soft_reconfiguration_inbound: "none"  # Choice | none , inbound , inbound-always | optional
+                        soo: "SOO_1"  # String | optional
+                        unsuppress_map: "UNSUPPRESS_MAP_1"  # String | optional
+                        weight: 1  # Integer | min: 0 , max: 65535 | optional
+                        maximum_prefix:  # Class | optional [shared class: structure documented on this page as maximum_prefix(nxos.devices.configuration.routing.bgp.peer_templates.address_families)]
+                          number: 1  # Integer | min: 0 , max: 4294967295 | optional
+                          action: "log"  # Choice | log , shut , restart | optional
+                          restart_time: 1  # Integer | min: 1 , max: 65535 | optional
+                          threshold: 1  # Integer | min: 1 , max: 100 | optional
+                        route_map_in: "ROUTE_MAP_IN_1"  # String | optional
+                        route_map_out: "ROUTE_MAP_OUT_1"  # String | optional
+                        prefix_list_in: "PREFIX_LIST_IN_1"  # String | optional
+                        prefix_list_out: "PREFIX_LIST_OUT_1"  # String | optional
+                        site_of_origin: "SITE_OF_ORIGIN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    remote_as_type: "none"  # Choice | none , external , internal | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    bfd_type: "none"  # Choice | none , singlehop , multihop | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    capability_suppress_4_byte_asn: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    connection_mode: "passive"  # Choice | passive | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp)]
+                  - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-multicast , vpnv4-unicast , ipv6-unicast , ipv6-multicast , vpnv6-unicast , vpnv6-multicast , l2vpn-evpn , ipv4-lucast , ipv6-lucast , link-state , ipv4-mvpn , ipv6-mvpn , l2vpn-vpls , ipv4-mdt | required
+                    advertise_l2vpn_evpn: false  # Boolean | optional
+                    advertise_only_active_routes: false  # Boolean | optional
+                    advertise_pip: false  # Boolean | optional
+                    advertise_system_mac: false  # Boolean | optional
+                    allocate_label_all: false  # Boolean | optional
+                    allocate_label_option_b: false  # Boolean | optional
+                    allocate_label_route_map: "ALLOCATE_LABEL_ROUTE_MAP_1"  # String | optional
+                    bestpath_origin_as_allow_invalid: false  # Boolean | optional
+                    bestpath_origin_as_use_validity: false  # Boolean | optional
+                    client_to_client_reflection: false  # Boolean | optional
+                    nexthop_trigger_delay_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+                    default_information_originate: false  # Boolean | optional
+                    default_information_originate_always_rd: "DEFAULT_INFORMATION_ORIGINATE_ALWAYS_RD_1"  # String | optional
+                    default_information_originate_always_route_target: "DEFAULT_INFORMATION_ORIGINATE_ALWAYS_ROUTE_TARGET_1"  # String | optional
+                    default_metric: 1  # Integer | min: 0 , max: 4294967295 | optional
+                    export_gateway_ip: false  # Boolean | optional
+                    dampen_igp_metric: 1  # Integer | min: 0 , max: 3600 | optional
+                    label_allocation_mode: false  # Boolean | optional
+                    load_balance_egress_filter_policy_route_map: "LOAD_BALANCE_EGRESS_FILTER_POLICY_ROUTE_MAP_1"  # String | optional
+                    load_balance_egress_multipath_auto_policy_route_map: "LOAD_BALANCE_EGRESS_MULTIPATH_AUTO_POLICY_ROUTE_MAP_1"  # String | optional
+                    maximum_paths: 1  # Integer | min: 1 , max: 512 | optional
+                    maximum_paths_eibgp: 1  # Integer | min: 1 , max: 512 | optional
+                    maximum_paths_ibgp: 1  # Integer | min: 1 , max: 512 | optional
+                    maximum_paths_local: 1  # Integer | min: 1 , max: 512 | optional
+                    maximum_paths_mixed: 1  # Integer | min: 1 , max: 512 | optional
+                    maximum_paths_unequal_cost: false  # Boolean | optional
+                    nexthop_route_map: "NEXTHOP_ROUTE_MAP_1"  # String | optional
+                    nexthop_load_balance_egress_multisite: false  # Boolean | optional
+                    nexthop_trigger_delay_non_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+                    originate_map: "ORIGINATE_MAP_1"  # String | optional
+                    origin_as_validate: false  # Boolean | optional
+                    origin_as_validate_signal_ibgp: false  # Boolean | optional
+                    prefix_priority: "none"  # Choice | none , high | optional
+                    retain_route_target_all: false  # Boolean | optional
+                    retain_route_target_route_map: "RETAIN_ROUTE_TARGET_ROUTE_MAP_1"  # String | optional
+                    table_map: "TABLE_MAP_1"  # String | optional
+                    table_map_filter: false  # Boolean | optional
+                    timers_bestpath_defer: 100  # Integer | min: 100 , max: 3000 | optional
+                    timers_bestpath_defer_maximum: 300  # Integer | min: 300 , max: 300000 | optional
+                    allow_vni_in_ethertag: false  # Boolean | optional
+                    wait_igp_convergence: false  # Boolean | optional
+                    additional_paths_send: false  # Boolean | optional
+                    additional_paths_receive: false  # Boolean | optional
+                    additional_paths_install_backup: false  # Boolean | optional
+                    additional_paths_selection_route_map: "ADDITIONAL_PATHS_SELECTION_ROUTE_MAP_1"  # String | optional
+                    networks:  # List | optional [shared class: structure documented on this page as networks(nxos.devices.configuration.routing.bgp.address_families)]
+                      - prefix: "PREFIX_1"  # String | required
+                        evpn: false  # Boolean | optional
+                        route_map: "ROUTE_MAP_1"  # String | optional
+                    redistributions:  # List | optional [shared class: structure documented on this page as redistributions(nxos.devices.configuration.routing.bgp.address_families)]
+                      - protocol: "srv6"  # Choice | srv6 , unspecified , static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                        protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                        route_map: "ROUTE_MAP_1"  # String | optional
+                        asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                        scope: "intra"  # Choice | intra , inter , defrt | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                        srv6_prefix_type: "unspecified"  # Choice | unspecified , locator | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    aggregate_addresses:  # List | optional [shared class: structure documented on this page as aggregate_addresses(nxos.devices.configuration.routing.bgp.address_families)]
+                      - prefix: "PREFIX_1"  # String | required
+                        as_set: false  # Boolean | optional
+                        summary_only: false  # Boolean | optional
+                        advertise_map: "ADVERTISE_MAP_1"  # String | optional
+                        attribute_map: "ATTRIBUTE_MAP_1"  # String | optional
+                        suppress_map: "SUPPRESS_MAP_1"  # String | optional
+                    maximum_paths_eibgp_ibgp: 1  # Integer | min: 1 , max: 512 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                bandwidth_reference: 1  # Integer | min: 0 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                bandwidth_reference_unit: "mbps"  # Choice | mbps , gbps | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      routing:  # Class | optional [shared class: structure documented on this page as routing(nxos.devices.configuration)]
+        bgp:  # Class | optional [shared class: structure documented on this page as bgp(nxos.devices.configuration.routing)]
+          asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+          shutdown: false  # Boolean | optional
+          disable_policy_batching: false  # Boolean | optional
+          disable_policy_batching_nexthop: false  # Boolean | optional
+          disable_policy_batching_ipv4_prefix_list: "DISABLE_POLICY_BATCHING_IPV4_PREFIX_LIST_1"  # String | optional
+          disable_policy_batching_ipv6_prefix_list: "DISABLE_POLICY_BATCHING_IPV6_PREFIX_LIST_1"  # String | optional
+          fabric_soo: "FABRIC_SOO_1"  # String | optional
+          flush_routes: false  # Boolean | optional
+          isolate: "enabled"  # Choice | enabled , disabled , include-local , custom | optional
+          isolate_route_map: "ISOLATE_ROUTE_MAP_1"  # String | optional
+          med_dampening_interval: 60  # Integer | min: 60 , max: 4294967295 | optional
+          nexthop_suppress_default_resolution: false  # Boolean | optional
+          rd_dual: false  # Boolean | optional
+          rd_dual_id: 1  # Integer | min: 1 , max: 65535 | optional
+          peer_templates:  # List | optional [shared class: structure documented on this page as peer_templates(nxos.devices.configuration.routing.bgp)]
+            - name: "NAME_1"  # String | required
+              remote_as: "REMOTE_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+              description: "Example description"  # String | optional
+              peer_type: "fabric-internal"  # Choice | fabric-internal , fabric-external , fabric-border-leaf | optional
+              update_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+              update_source_interface_id: "UPDATE_SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+              shutdown: false  # Boolean | optional
+              affinity_group: 1  # Integer | min: 0 , max: 65535 | optional
+              bfd_multihop: false  # Boolean | optional
+              bmp_activate_server_1: false  # Boolean | optional
+              bmp_activate_server_2: false  # Boolean | optional
+              capability_suppress_4_byte_as: false  # Boolean | optional
+              connection_mode: "passive"  # Choice | passive | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              bfd: false  # Boolean | optional
+              disable_connected_check: false  # Boolean | optional
+              dont_capability_negotiate: false  # Boolean | optional
+              dynamic_capability: false  # Boolean | optional
+              hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+              keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+              log_neighbor_changes: false  # Boolean | optional
+              low_memory_exempt: false  # Boolean | optional
+              maximum_peers: 1  # Integer | min: 1 , max: 1000 | optional
+              password_type: "0"  # Choice | 0 , 3 , line , 6 , 7 | optional
+              password: "PASSWORD_1"  # String | optional
+              remove_private_as: "none"  # Choice | none , enabled , all , replace-as | optional
+              inherit_peer_session: "INHERIT_PEER_SESSION_1"  # String | optional
+              ebgp_multihop_ttl: 2  # Integer | min: 2 , max: 255 | optional
+              ttl_security_hops: 1  # Integer | min: 1 , max: 254 | optional
+              address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp.neighbors)]
+                - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-mvpn , vpnv4-unicast , ipv6-unicast , vpnv6-unicast , l2vpn-evpn , link-state | required
+                  send_community_standard: false  # Boolean | optional
+                  send_community_extended: false  # Boolean | optional
+                  route_reflector_client: false  # Boolean | optional
+                  next_hop_self: false  # Boolean | optional
+                  next_hop_self_all: false  # Boolean | optional
+                  disable_peer_as_check: false  # Boolean | optional
+                  allowas_in: false  # Boolean | optional
+                  default_originate: false  # Boolean | optional
+                  suppress_inactive: false  # Boolean | optional
+                  advertisement_interval: 1  # Integer | min: 1 , max: 600 | optional
+                  advertise_gateway_ip: false  # Boolean | optional
+                  advertise_local_labeled_route: false  # Boolean | optional
+                  aigp: false  # Boolean | optional
+                  allowas_in_count: 1  # Integer | min: 0 , max: 10 | optional
+                  as_override: false  # Boolean | optional
+                  default_originate_route_map: "DEFAULT_ORIGINATE_ROUTE_MAP_1"  # String | optional
+                  dmz_link_bandwidth: false  # Boolean | optional
+                  encapsulation_mpls: false  # Boolean | optional
+                  link_bandwidth_cumulative: false  # Boolean | optional
+                  next_hop_third_party: false  # Boolean | optional
+                  rewrite_evpn_rt_asn: false  # Boolean | optional
+                  soft_reconfiguration_inbound: "none"  # Choice | none , inbound , inbound-always | optional
+                  soo: "SOO_1"  # String | optional
+                  unsuppress_map: "UNSUPPRESS_MAP_1"  # String | optional
+                  weight: 1  # Integer | min: 0 , max: 65535 | optional
+                  maximum_prefix:  # Class | optional [shared class: structure documented on this page as maximum_prefix(nxos.devices.configuration.routing.bgp.peer_templates.address_families)]
+                    number: 1  # Integer | min: 0 , max: 4294967295 | optional
+                    action: "log"  # Choice | log , shut , restart | optional
+                    restart_time: 1  # Integer | min: 1 , max: 65535 | optional
+                    threshold: 1  # Integer | min: 1 , max: 100 | optional
+                  route_map_in: "ROUTE_MAP_IN_1"  # String | optional
+                  route_map_out: "ROUTE_MAP_OUT_1"  # String | optional
+                  prefix_list_in: "PREFIX_LIST_IN_1"  # String | optional
+                  prefix_list_out: "PREFIX_LIST_OUT_1"  # String | optional
+                  site_of_origin: "SITE_OF_ORIGIN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              remote_as_type: "none"  # Choice | none , external , internal | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              bfd_type: "none"  # Choice | none , singlehop , multihop | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              capability_suppress_4_byte_asn: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          router_id: "10.1.1.1"  # IP | optional
+          allocate_index: 1  # Integer | min: 1 , max: 8000 | optional
+          bestpath_limit_always: false  # Boolean | optional
+          bestpath_limit: 1  # Integer | min: 1 , max: 3600 | optional
+          bandwidth_reference: 1  # Integer | min: 0 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          bandwidth_reference_unit: "mbps"  # Choice | mbps , gbps | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          cluster_id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] or String[Regex: ^.*[$%]\{.*$ ] | optional
+          hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+          keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+          local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+          maxas_limit: 1  # Integer | min: 1 , max: 512 | optional
+          mode: "fabric"  # Choice | fabric , external , proxy | optional
+          prefix_peer_timeout: 1  # Integer | min: 0 , max: 1200 | optional
+          prefix_peer_wait: 1  # Integer | min: 0 , max: 1200 | optional
+          reconnect_interval: 1  # Integer | min: 1 , max: 60 | optional
+          router_id_auto: false  # Boolean | optional
+          log_neighbor_changes: false  # Boolean | optional
+          enforce_first_as: false  # Boolean | optional
+          neighbor_down_fib_accelerate: false  # Boolean | optional
+          suppress_fib_pending: false  # Boolean | optional
+          graceful_restart: "helper"  # Choice | helper , complete | optional
+          graceful_restart_restart_time: 1  # Integer | min: 1 , max: 3600 | optional
+          graceful_restart_stalepath_time: 1  # Integer | min: 1 , max: 3600 | optional
+          neighbors:  # List | optional [shared class: structure documented on this page as neighbors(nxos.devices.configuration.routing.bgp)]
+            - ip: "10.1.1.1"  # IP | optional
+              interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+              interface_id: "INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+              remote_as: "REMOTE_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+              description: "Example description"  # String | optional
+              inherit_peer: "INHERIT_PEER_1"  # String | optional
+              peer_type: "fabric-internal"  # Choice | fabric-internal , fabric-external , fabric-border-leaf | optional
+              update_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+              update_source_interface_id: "UPDATE_SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+              hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+              keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+              ebgp_multihop_ttl: 2  # Integer | min: 2 , max: 255 | optional
+              bfd: false  # Boolean | optional
+              disable_connected_check: false  # Boolean | optional
+              dont_capability_negotiate: false  # Boolean | optional
+              dynamic_capability: false  # Boolean | optional
+              password_type: "0"  # Choice | 0 , 3 , line , 6 , 7 | optional
+              password: "PASSWORD_1"  # String | optional
+              shutdown: false  # Boolean | optional
+              affinity_group: 1  # Integer | min: 0 , max: 65535 | optional
+              bfd_multihop: false  # Boolean | optional
+              bmp_activate_server_1: false  # Boolean | optional
+              bmp_activate_server_2: false  # Boolean | optional
+              capability_suppress_4_byte_as: false  # Boolean | optional
+              transport_connection_mode: "passive"  # Choice | passive | optional
+              log_neighbor_changes: false  # Boolean | optional
+              low_memory_exempt: false  # Boolean | optional
+              maximum_peers: 1  # Integer | min: 1 , max: 1000 | optional
+              remove_private_as: "none"  # Choice | none , enabled , all , replace-as | optional
+              inherit_peer_session: "INHERIT_PEER_SESSION_1"  # String | optional
+              ttl_security_hops: 1  # Integer | min: 1 , max: 254 | optional
+              local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+              local_as_propagation: "none"  # Choice | none , no-prepend , replace-as , dual-as | optional
+              dscp: 1  # Integer | min: 0 , max: 63 | optional
+              dynamic_route_map: "DYNAMIC_ROUTE_MAP_1"  # String | optional
+              egress_engineering: false  # Boolean | optional
+              egress_engineering_peer_set: "EGRESS_ENGINEERING_PEER_SET_1"  # String | optional
+              internal_vpn_client: false  # Boolean | optional
+              address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp.neighbors)]
+                - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-mvpn , vpnv4-unicast , ipv6-unicast , vpnv6-unicast , l2vpn-evpn , link-state | required
+                  send_community_standard: false  # Boolean | optional
+                  send_community_extended: false  # Boolean | optional
+                  route_reflector_client: false  # Boolean | optional
+                  next_hop_self: false  # Boolean | optional
+                  next_hop_self_all: false  # Boolean | optional
+                  disable_peer_as_check: false  # Boolean | optional
+                  allowas_in: false  # Boolean | optional
+                  default_originate: false  # Boolean | optional
+                  suppress_inactive: false  # Boolean | optional
+                  advertisement_interval: 1  # Integer | min: 1 , max: 600 | optional
+                  advertise_gateway_ip: false  # Boolean | optional
+                  advertise_local_labeled_route: false  # Boolean | optional
+                  aigp: false  # Boolean | optional
+                  allowas_in_count: 1  # Integer | min: 0 , max: 10 | optional
+                  as_override: false  # Boolean | optional
+                  default_originate_route_map: "DEFAULT_ORIGINATE_ROUTE_MAP_1"  # String | optional
+                  dmz_link_bandwidth: false  # Boolean | optional
+                  encapsulation_mpls: false  # Boolean | optional
+                  link_bandwidth_cumulative: false  # Boolean | optional
+                  next_hop_third_party: false  # Boolean | optional
+                  rewrite_evpn_rt_asn: false  # Boolean | optional
+                  soft_reconfiguration_inbound: "none"  # Choice | none , inbound , inbound-always | optional
+                  soo: "SOO_1"  # String | optional
+                  unsuppress_map: "UNSUPPRESS_MAP_1"  # String | optional
+                  weight: 1  # Integer | min: 0 , max: 65535 | optional
+                  maximum_prefix:  # Class | optional [shared class: structure documented on this page as maximum_prefix(nxos.devices.configuration.routing.bgp.peer_templates.address_families)]
+                    number: 1  # Integer | min: 0 , max: 4294967295 | optional
+                    action: "log"  # Choice | log , shut , restart | optional
+                    restart_time: 1  # Integer | min: 1 , max: 65535 | optional
+                    threshold: 1  # Integer | min: 1 , max: 100 | optional
+                  route_map_in: "ROUTE_MAP_IN_1"  # String | optional
+                  route_map_out: "ROUTE_MAP_OUT_1"  # String | optional
+                  prefix_list_in: "PREFIX_LIST_IN_1"  # String | optional
+                  prefix_list_out: "PREFIX_LIST_OUT_1"  # String | optional
+                  site_of_origin: "SITE_OF_ORIGIN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              remote_as_type: "none"  # Choice | none , external , internal | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              bfd_type: "none"  # Choice | none , singlehop , multihop | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              capability_suppress_4_byte_asn: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              connection_mode: "passive"  # Choice | passive | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp)]
+            - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-multicast , vpnv4-unicast , ipv6-unicast , ipv6-multicast , vpnv6-unicast , vpnv6-multicast , l2vpn-evpn , ipv4-lucast , ipv6-lucast , link-state , ipv4-mvpn , ipv6-mvpn , l2vpn-vpls , ipv4-mdt | required
+              advertise_l2vpn_evpn: false  # Boolean | optional
+              advertise_only_active_routes: false  # Boolean | optional
+              advertise_pip: false  # Boolean | optional
+              advertise_system_mac: false  # Boolean | optional
+              allocate_label_all: false  # Boolean | optional
+              allocate_label_option_b: false  # Boolean | optional
+              allocate_label_route_map: "ALLOCATE_LABEL_ROUTE_MAP_1"  # String | optional
+              bestpath_origin_as_allow_invalid: false  # Boolean | optional
+              bestpath_origin_as_use_validity: false  # Boolean | optional
+              client_to_client_reflection: false  # Boolean | optional
+              nexthop_trigger_delay_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+              default_information_originate: false  # Boolean | optional
+              default_information_originate_always_rd: "DEFAULT_INFORMATION_ORIGINATE_ALWAYS_RD_1"  # String | optional
+              default_information_originate_always_route_target: "DEFAULT_INFORMATION_ORIGINATE_ALWAYS_ROUTE_TARGET_1"  # String | optional
+              default_metric: 1  # Integer | min: 0 , max: 4294967295 | optional
+              export_gateway_ip: false  # Boolean | optional
+              dampen_igp_metric: 1  # Integer | min: 0 , max: 3600 | optional
+              label_allocation_mode: false  # Boolean | optional
+              load_balance_egress_filter_policy_route_map: "LOAD_BALANCE_EGRESS_FILTER_POLICY_ROUTE_MAP_1"  # String | optional
+              load_balance_egress_multipath_auto_policy_route_map: "LOAD_BALANCE_EGRESS_MULTIPATH_AUTO_POLICY_ROUTE_MAP_1"  # String | optional
+              maximum_paths: 1  # Integer | min: 1 , max: 512 | optional
+              maximum_paths_eibgp: 1  # Integer | min: 1 , max: 512 | optional
+              maximum_paths_ibgp: 1  # Integer | min: 1 , max: 512 | optional
+              maximum_paths_local: 1  # Integer | min: 1 , max: 512 | optional
+              maximum_paths_mixed: 1  # Integer | min: 1 , max: 512 | optional
+              maximum_paths_unequal_cost: false  # Boolean | optional
+              nexthop_route_map: "NEXTHOP_ROUTE_MAP_1"  # String | optional
+              nexthop_load_balance_egress_multisite: false  # Boolean | optional
+              nexthop_trigger_delay_non_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+              originate_map: "ORIGINATE_MAP_1"  # String | optional
+              origin_as_validate: false  # Boolean | optional
+              origin_as_validate_signal_ibgp: false  # Boolean | optional
+              prefix_priority: "none"  # Choice | none , high | optional
+              retain_route_target_all: false  # Boolean | optional
+              retain_route_target_route_map: "RETAIN_ROUTE_TARGET_ROUTE_MAP_1"  # String | optional
+              table_map: "TABLE_MAP_1"  # String | optional
+              table_map_filter: false  # Boolean | optional
+              timers_bestpath_defer: 100  # Integer | min: 100 , max: 3000 | optional
+              timers_bestpath_defer_maximum: 300  # Integer | min: 300 , max: 300000 | optional
+              allow_vni_in_ethertag: false  # Boolean | optional
+              wait_igp_convergence: false  # Boolean | optional
+              additional_paths_send: false  # Boolean | optional
+              additional_paths_receive: false  # Boolean | optional
+              additional_paths_install_backup: false  # Boolean | optional
+              additional_paths_selection_route_map: "ADDITIONAL_PATHS_SELECTION_ROUTE_MAP_1"  # String | optional
+              networks:  # List | optional [shared class: structure documented on this page as networks(nxos.devices.configuration.routing.bgp.address_families)]
+                - prefix: "PREFIX_1"  # String | required
+                  evpn: false  # Boolean | optional
+                  route_map: "ROUTE_MAP_1"  # String | optional
+              redistributions:  # List | optional [shared class: structure documented on this page as redistributions(nxos.devices.configuration.routing.bgp.address_families)]
+                - protocol: "srv6"  # Choice | srv6 , unspecified , static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                  protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                  route_map: "ROUTE_MAP_1"  # String | optional
+                  asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                  scope: "intra"  # Choice | intra , inter , defrt | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                  srv6_prefix_type: "unspecified"  # Choice | unspecified , locator | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              aggregate_addresses:  # List | optional [shared class: structure documented on this page as aggregate_addresses(nxos.devices.configuration.routing.bgp.address_families)]
+                - prefix: "PREFIX_1"  # String | required
+                  as_set: false  # Boolean | optional
+                  summary_only: false  # Boolean | optional
+                  advertise_map: "ADVERTISE_MAP_1"  # String | optional
+                  attribute_map: "ATTRIBUTE_MAP_1"  # String | optional
+                  suppress_map: "SUPPRESS_MAP_1"  # String | optional
+              maximum_paths_eibgp_ibgp: 1  # Integer | min: 1 , max: 512 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          vrfs:  # List | optional [shared class: structure documented on this page as vrfs(nxos.devices.configuration.routing.bgp)]
+            - vrf: "VRF1"  # String | required
+              router_id: "10.1.1.1"  # IP | optional
+              allocate_index: 1  # Integer | min: 1 , max: 8000 | optional
+              bestpath_limit_always: false  # Boolean | optional
+              bestpath_limit: 1  # Integer | min: 1 , max: 3600 | optional
+              reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+              reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+              cluster_id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] or String[Regex: ^.*[$%]\{.*$ ] | optional
+              hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+              keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+              local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+              maxas_limit: 1  # Integer | min: 1 , max: 512 | optional
+              mode: "fabric"  # Choice | fabric , external , proxy | optional
+              prefix_peer_timeout: 1  # Integer | min: 0 , max: 1200 | optional
+              prefix_peer_wait: 1  # Integer | min: 0 , max: 1200 | optional
+              reconnect_interval: 1  # Integer | min: 1 , max: 60 | optional
+              router_id_auto: false  # Boolean | optional
+              log_neighbor_changes: false  # Boolean | optional
+              enforce_first_as: false  # Boolean | optional
+              neighbor_down_fib_accelerate: false  # Boolean | optional
+              suppress_fib_pending: false  # Boolean | optional
+              graceful_restart: "helper"  # Choice | helper , complete | optional
+              graceful_restart_restart_time: 1  # Integer | min: 1 , max: 3600 | optional
+              graceful_restart_stalepath_time: 1  # Integer | min: 1 , max: 3600 | optional
+              neighbors:  # List | optional [shared class: structure documented on this page as neighbors(nxos.devices.configuration.routing.bgp)]
+                - ip: "10.1.1.1"  # IP | optional
+                  interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                  interface_id: "INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                  remote_as: "REMOTE_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                  description: "Example description"  # String | optional
+                  inherit_peer: "INHERIT_PEER_1"  # String | optional
+                  peer_type: "fabric-internal"  # Choice | fabric-internal , fabric-external , fabric-border-leaf | optional
+                  update_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                  update_source_interface_id: "UPDATE_SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                  hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+                  keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+                  ebgp_multihop_ttl: 2  # Integer | min: 2 , max: 255 | optional
+                  bfd: false  # Boolean | optional
+                  disable_connected_check: false  # Boolean | optional
+                  dont_capability_negotiate: false  # Boolean | optional
+                  dynamic_capability: false  # Boolean | optional
+                  password_type: "0"  # Choice | 0 , 3 , line , 6 , 7 | optional
+                  password: "PASSWORD_1"  # String | optional
+                  shutdown: false  # Boolean | optional
+                  affinity_group: 1  # Integer | min: 0 , max: 65535 | optional
+                  bfd_multihop: false  # Boolean | optional
+                  bmp_activate_server_1: false  # Boolean | optional
+                  bmp_activate_server_2: false  # Boolean | optional
+                  capability_suppress_4_byte_as: false  # Boolean | optional
+                  transport_connection_mode: "passive"  # Choice | passive | optional
+                  log_neighbor_changes: false  # Boolean | optional
+                  low_memory_exempt: false  # Boolean | optional
+                  maximum_peers: 1  # Integer | min: 1 , max: 1000 | optional
+                  remove_private_as: "none"  # Choice | none , enabled , all , replace-as | optional
+                  inherit_peer_session: "INHERIT_PEER_SESSION_1"  # String | optional
+                  ttl_security_hops: 1  # Integer | min: 1 , max: 254 | optional
+                  local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                  local_as_propagation: "none"  # Choice | none , no-prepend , replace-as , dual-as | optional
+                  dscp: 1  # Integer | min: 0 , max: 63 | optional
+                  dynamic_route_map: "DYNAMIC_ROUTE_MAP_1"  # String | optional
+                  egress_engineering: false  # Boolean | optional
+                  egress_engineering_peer_set: "EGRESS_ENGINEERING_PEER_SET_1"  # String | optional
+                  internal_vpn_client: false  # Boolean | optional
+                  address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp.neighbors)]
+                    - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-mvpn , vpnv4-unicast , ipv6-unicast , vpnv6-unicast , l2vpn-evpn , link-state | required
+                      send_community_standard: false  # Boolean | optional
+                      send_community_extended: false  # Boolean | optional
+                      route_reflector_client: false  # Boolean | optional
+                      next_hop_self: false  # Boolean | optional
+                      next_hop_self_all: false  # Boolean | optional
+                      disable_peer_as_check: false  # Boolean | optional
+                      allowas_in: false  # Boolean | optional
+                      default_originate: false  # Boolean | optional
+                      suppress_inactive: false  # Boolean | optional
+                      advertisement_interval: 1  # Integer | min: 1 , max: 600 | optional
+                      advertise_gateway_ip: false  # Boolean | optional
+                      advertise_local_labeled_route: false  # Boolean | optional
+                      aigp: false  # Boolean | optional
+                      allowas_in_count: 1  # Integer | min: 0 , max: 10 | optional
+                      as_override: false  # Boolean | optional
+                      default_originate_route_map: "DEFAULT_ORIGINATE_ROUTE_MAP_1"  # String | optional
+                      dmz_link_bandwidth: false  # Boolean | optional
+                      encapsulation_mpls: false  # Boolean | optional
+                      link_bandwidth_cumulative: false  # Boolean | optional
+                      next_hop_third_party: false  # Boolean | optional
+                      rewrite_evpn_rt_asn: false  # Boolean | optional
+                      soft_reconfiguration_inbound: "none"  # Choice | none , inbound , inbound-always | optional
+                      soo: "SOO_1"  # String | optional
+                      unsuppress_map: "UNSUPPRESS_MAP_1"  # String | optional
+                      weight: 1  # Integer | min: 0 , max: 65535 | optional
+                      maximum_prefix:  # Class | optional [shared class: structure documented on this page as maximum_prefix(nxos.devices.configuration.routing.bgp.peer_templates.address_families)]
+                        number: 1  # Integer | min: 0 , max: 4294967295 | optional
+                        action: "log"  # Choice | log , shut , restart | optional
+                        restart_time: 1  # Integer | min: 1 , max: 65535 | optional
+                        threshold: 1  # Integer | min: 1 , max: 100 | optional
+                      route_map_in: "ROUTE_MAP_IN_1"  # String | optional
+                      route_map_out: "ROUTE_MAP_OUT_1"  # String | optional
+                      prefix_list_in: "PREFIX_LIST_IN_1"  # String | optional
+                      prefix_list_out: "PREFIX_LIST_OUT_1"  # String | optional
+                      site_of_origin: "SITE_OF_ORIGIN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                  remote_as_type: "none"  # Choice | none , external , internal | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                  bfd_type: "none"  # Choice | none , singlehop , multihop | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                  capability_suppress_4_byte_asn: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                  connection_mode: "passive"  # Choice | passive | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp)]
+                - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-multicast , vpnv4-unicast , ipv6-unicast , ipv6-multicast , vpnv6-unicast , vpnv6-multicast , l2vpn-evpn , ipv4-lucast , ipv6-lucast , link-state , ipv4-mvpn , ipv6-mvpn , l2vpn-vpls , ipv4-mdt | required
+                  advertise_l2vpn_evpn: false  # Boolean | optional
+                  advertise_only_active_routes: false  # Boolean | optional
+                  advertise_pip: false  # Boolean | optional
+                  advertise_system_mac: false  # Boolean | optional
+                  allocate_label_all: false  # Boolean | optional
+                  allocate_label_option_b: false  # Boolean | optional
+                  allocate_label_route_map: "ALLOCATE_LABEL_ROUTE_MAP_1"  # String | optional
+                  bestpath_origin_as_allow_invalid: false  # Boolean | optional
+                  bestpath_origin_as_use_validity: false  # Boolean | optional
+                  client_to_client_reflection: false  # Boolean | optional
+                  nexthop_trigger_delay_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+                  default_information_originate: false  # Boolean | optional
+                  default_information_originate_always_rd: "DEFAULT_INFORMATION_ORIGINATE_ALWAYS_RD_1"  # String | optional
+                  default_information_originate_always_route_target: "DEFAULT_INFORMATION_ORIGINATE_ALWAYS_ROUTE_TARGET_1"  # String | optional
+                  default_metric: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  export_gateway_ip: false  # Boolean | optional
+                  dampen_igp_metric: 1  # Integer | min: 0 , max: 3600 | optional
+                  label_allocation_mode: false  # Boolean | optional
+                  load_balance_egress_filter_policy_route_map: "LOAD_BALANCE_EGRESS_FILTER_POLICY_ROUTE_MAP_1"  # String | optional
+                  load_balance_egress_multipath_auto_policy_route_map: "LOAD_BALANCE_EGRESS_MULTIPATH_AUTO_POLICY_ROUTE_MAP_1"  # String | optional
+                  maximum_paths: 1  # Integer | min: 1 , max: 512 | optional
+                  maximum_paths_eibgp: 1  # Integer | min: 1 , max: 512 | optional
+                  maximum_paths_ibgp: 1  # Integer | min: 1 , max: 512 | optional
+                  maximum_paths_local: 1  # Integer | min: 1 , max: 512 | optional
+                  maximum_paths_mixed: 1  # Integer | min: 1 , max: 512 | optional
+                  maximum_paths_unequal_cost: false  # Boolean | optional
+                  nexthop_route_map: "NEXTHOP_ROUTE_MAP_1"  # String | optional
+                  nexthop_load_balance_egress_multisite: false  # Boolean | optional
+                  nexthop_trigger_delay_non_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+                  originate_map: "ORIGINATE_MAP_1"  # String | optional
+                  origin_as_validate: false  # Boolean | optional
+                  origin_as_validate_signal_ibgp: false  # Boolean | optional
+                  prefix_priority: "none"  # Choice | none , high | optional
+                  retain_route_target_all: false  # Boolean | optional
+                  retain_route_target_route_map: "RETAIN_ROUTE_TARGET_ROUTE_MAP_1"  # String | optional
+                  table_map: "TABLE_MAP_1"  # String | optional
+                  table_map_filter: false  # Boolean | optional
+                  timers_bestpath_defer: 100  # Integer | min: 100 , max: 3000 | optional
+                  timers_bestpath_defer_maximum: 300  # Integer | min: 300 , max: 300000 | optional
+                  allow_vni_in_ethertag: false  # Boolean | optional
+                  wait_igp_convergence: false  # Boolean | optional
+                  additional_paths_send: false  # Boolean | optional
+                  additional_paths_receive: false  # Boolean | optional
+                  additional_paths_install_backup: false  # Boolean | optional
+                  additional_paths_selection_route_map: "ADDITIONAL_PATHS_SELECTION_ROUTE_MAP_1"  # String | optional
+                  networks:  # List | optional [shared class: structure documented on this page as networks(nxos.devices.configuration.routing.bgp.address_families)]
+                    - prefix: "PREFIX_1"  # String | required
+                      evpn: false  # Boolean | optional
+                      route_map: "ROUTE_MAP_1"  # String | optional
+                  redistributions:  # List | optional [shared class: structure documented on this page as redistributions(nxos.devices.configuration.routing.bgp.address_families)]
+                    - protocol: "srv6"  # Choice | srv6 , unspecified , static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                      protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                      route_map: "ROUTE_MAP_1"  # String | optional
+                      asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                      scope: "intra"  # Choice | intra , inter , defrt | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                      srv6_prefix_type: "unspecified"  # Choice | unspecified , locator | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                  aggregate_addresses:  # List | optional [shared class: structure documented on this page as aggregate_addresses(nxos.devices.configuration.routing.bgp.address_families)]
+                    - prefix: "PREFIX_1"  # String | required
+                      as_set: false  # Boolean | optional
+                      summary_only: false  # Boolean | optional
+                      advertise_map: "ADVERTISE_MAP_1"  # String | optional
+                      attribute_map: "ATTRIBUTE_MAP_1"  # String | optional
+                      suppress_map: "SUPPRESS_MAP_1"  # String | optional
+                  maximum_paths_eibgp_ibgp: 1  # Integer | min: 1 , max: 512 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              bandwidth_reference: 1  # Integer | min: 0 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              bandwidth_reference_unit: "mbps"  # Choice | mbps , gbps | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        routing:  # Class | optional [shared class: structure documented on this page as routing(nxos.devices.configuration)]
+          bgp:  # Class | optional [shared class: structure documented on this page as bgp(nxos.devices.configuration.routing)]
+            asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+            shutdown: false  # Boolean | optional
+            disable_policy_batching: false  # Boolean | optional
+            disable_policy_batching_nexthop: false  # Boolean | optional
+            disable_policy_batching_ipv4_prefix_list: "DISABLE_POLICY_BATCHING_IPV4_PREFIX_LIST_1"  # String | optional
+            disable_policy_batching_ipv6_prefix_list: "DISABLE_POLICY_BATCHING_IPV6_PREFIX_LIST_1"  # String | optional
+            fabric_soo: "FABRIC_SOO_1"  # String | optional
+            flush_routes: false  # Boolean | optional
+            isolate: "enabled"  # Choice | enabled , disabled , include-local , custom | optional
+            isolate_route_map: "ISOLATE_ROUTE_MAP_1"  # String | optional
+            med_dampening_interval: 60  # Integer | min: 60 , max: 4294967295 | optional
+            nexthop_suppress_default_resolution: false  # Boolean | optional
+            rd_dual: false  # Boolean | optional
+            rd_dual_id: 1  # Integer | min: 1 , max: 65535 | optional
+            peer_templates:  # List | optional [shared class: structure documented on this page as peer_templates(nxos.devices.configuration.routing.bgp)]
+              - name: "NAME_1"  # String | required
+                remote_as: "REMOTE_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                description: "Example description"  # String | optional
+                peer_type: "fabric-internal"  # Choice | fabric-internal , fabric-external , fabric-border-leaf | optional
+                update_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                update_source_interface_id: "UPDATE_SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                shutdown: false  # Boolean | optional
+                affinity_group: 1  # Integer | min: 0 , max: 65535 | optional
+                bfd_multihop: false  # Boolean | optional
+                bmp_activate_server_1: false  # Boolean | optional
+                bmp_activate_server_2: false  # Boolean | optional
+                capability_suppress_4_byte_as: false  # Boolean | optional
+                connection_mode: "passive"  # Choice | passive | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                bfd: false  # Boolean | optional
+                disable_connected_check: false  # Boolean | optional
+                dont_capability_negotiate: false  # Boolean | optional
+                dynamic_capability: false  # Boolean | optional
+                hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+                keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+                log_neighbor_changes: false  # Boolean | optional
+                low_memory_exempt: false  # Boolean | optional
+                maximum_peers: 1  # Integer | min: 1 , max: 1000 | optional
+                password_type: "0"  # Choice | 0 , 3 , line , 6 , 7 | optional
+                password: "PASSWORD_1"  # String | optional
+                remove_private_as: "none"  # Choice | none , enabled , all , replace-as | optional
+                inherit_peer_session: "INHERIT_PEER_SESSION_1"  # String | optional
+                ebgp_multihop_ttl: 2  # Integer | min: 2 , max: 255 | optional
+                ttl_security_hops: 1  # Integer | min: 1 , max: 254 | optional
+                address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp.neighbors)]
+                  - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-mvpn , vpnv4-unicast , ipv6-unicast , vpnv6-unicast , l2vpn-evpn , link-state | required
+                    send_community_standard: false  # Boolean | optional
+                    send_community_extended: false  # Boolean | optional
+                    route_reflector_client: false  # Boolean | optional
+                    next_hop_self: false  # Boolean | optional
+                    next_hop_self_all: false  # Boolean | optional
+                    disable_peer_as_check: false  # Boolean | optional
+                    allowas_in: false  # Boolean | optional
+                    default_originate: false  # Boolean | optional
+                    suppress_inactive: false  # Boolean | optional
+                    advertisement_interval: 1  # Integer | min: 1 , max: 600 | optional
+                    advertise_gateway_ip: false  # Boolean | optional
+                    advertise_local_labeled_route: false  # Boolean | optional
+                    aigp: false  # Boolean | optional
+                    allowas_in_count: 1  # Integer | min: 0 , max: 10 | optional
+                    as_override: false  # Boolean | optional
+                    default_originate_route_map: "DEFAULT_ORIGINATE_ROUTE_MAP_1"  # String | optional
+                    dmz_link_bandwidth: false  # Boolean | optional
+                    encapsulation_mpls: false  # Boolean | optional
+                    link_bandwidth_cumulative: false  # Boolean | optional
+                    next_hop_third_party: false  # Boolean | optional
+                    rewrite_evpn_rt_asn: false  # Boolean | optional
+                    soft_reconfiguration_inbound: "none"  # Choice | none , inbound , inbound-always | optional
+                    soo: "SOO_1"  # String | optional
+                    unsuppress_map: "UNSUPPRESS_MAP_1"  # String | optional
+                    weight: 1  # Integer | min: 0 , max: 65535 | optional
+                    maximum_prefix:  # Class | optional [shared class: structure documented on this page as maximum_prefix(nxos.devices.configuration.routing.bgp.peer_templates.address_families)]
+                      number: 1  # Integer | min: 0 , max: 4294967295 | optional
+                      action: "log"  # Choice | log , shut , restart | optional
+                      restart_time: 1  # Integer | min: 1 , max: 65535 | optional
+                      threshold: 1  # Integer | min: 1 , max: 100 | optional
+                    route_map_in: "ROUTE_MAP_IN_1"  # String | optional
+                    route_map_out: "ROUTE_MAP_OUT_1"  # String | optional
+                    prefix_list_in: "PREFIX_LIST_IN_1"  # String | optional
+                    prefix_list_out: "PREFIX_LIST_OUT_1"  # String | optional
+                    site_of_origin: "SITE_OF_ORIGIN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                remote_as_type: "none"  # Choice | none , external , internal | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                bfd_type: "none"  # Choice | none , singlehop , multihop | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                capability_suppress_4_byte_asn: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            router_id: "10.1.1.1"  # IP | optional
+            allocate_index: 1  # Integer | min: 1 , max: 8000 | optional
+            bestpath_limit_always: false  # Boolean | optional
+            bestpath_limit: 1  # Integer | min: 1 , max: 3600 | optional
+            bandwidth_reference: 1  # Integer | min: 0 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            bandwidth_reference_unit: "mbps"  # Choice | mbps , gbps | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            cluster_id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] or String[Regex: ^.*[$%]\{.*$ ] | optional
+            hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+            keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+            local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+            maxas_limit: 1  # Integer | min: 1 , max: 512 | optional
+            mode: "fabric"  # Choice | fabric , external , proxy | optional
+            prefix_peer_timeout: 1  # Integer | min: 0 , max: 1200 | optional
+            prefix_peer_wait: 1  # Integer | min: 0 , max: 1200 | optional
+            reconnect_interval: 1  # Integer | min: 1 , max: 60 | optional
+            router_id_auto: false  # Boolean | optional
+            log_neighbor_changes: false  # Boolean | optional
+            enforce_first_as: false  # Boolean | optional
+            neighbor_down_fib_accelerate: false  # Boolean | optional
+            suppress_fib_pending: false  # Boolean | optional
+            graceful_restart: "helper"  # Choice | helper , complete | optional
+            graceful_restart_restart_time: 1  # Integer | min: 1 , max: 3600 | optional
+            graceful_restart_stalepath_time: 1  # Integer | min: 1 , max: 3600 | optional
+            neighbors:  # List | optional [shared class: structure documented on this page as neighbors(nxos.devices.configuration.routing.bgp)]
+              - ip: "10.1.1.1"  # IP | optional
+                interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                interface_id: "INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                remote_as: "REMOTE_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                description: "Example description"  # String | optional
+                inherit_peer: "INHERIT_PEER_1"  # String | optional
+                peer_type: "fabric-internal"  # Choice | fabric-internal , fabric-external , fabric-border-leaf | optional
+                update_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                update_source_interface_id: "UPDATE_SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+                keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+                ebgp_multihop_ttl: 2  # Integer | min: 2 , max: 255 | optional
+                bfd: false  # Boolean | optional
+                disable_connected_check: false  # Boolean | optional
+                dont_capability_negotiate: false  # Boolean | optional
+                dynamic_capability: false  # Boolean | optional
+                password_type: "0"  # Choice | 0 , 3 , line , 6 , 7 | optional
+                password: "PASSWORD_1"  # String | optional
+                shutdown: false  # Boolean | optional
+                affinity_group: 1  # Integer | min: 0 , max: 65535 | optional
+                bfd_multihop: false  # Boolean | optional
+                bmp_activate_server_1: false  # Boolean | optional
+                bmp_activate_server_2: false  # Boolean | optional
+                capability_suppress_4_byte_as: false  # Boolean | optional
+                transport_connection_mode: "passive"  # Choice | passive | optional
+                log_neighbor_changes: false  # Boolean | optional
+                low_memory_exempt: false  # Boolean | optional
+                maximum_peers: 1  # Integer | min: 1 , max: 1000 | optional
+                remove_private_as: "none"  # Choice | none , enabled , all , replace-as | optional
+                inherit_peer_session: "INHERIT_PEER_SESSION_1"  # String | optional
+                ttl_security_hops: 1  # Integer | min: 1 , max: 254 | optional
+                local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                local_as_propagation: "none"  # Choice | none , no-prepend , replace-as , dual-as | optional
+                dscp: 1  # Integer | min: 0 , max: 63 | optional
+                dynamic_route_map: "DYNAMIC_ROUTE_MAP_1"  # String | optional
+                egress_engineering: false  # Boolean | optional
+                egress_engineering_peer_set: "EGRESS_ENGINEERING_PEER_SET_1"  # String | optional
+                internal_vpn_client: false  # Boolean | optional
+                address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp.neighbors)]
+                  - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-mvpn , vpnv4-unicast , ipv6-unicast , vpnv6-unicast , l2vpn-evpn , link-state | required
+                    send_community_standard: false  # Boolean | optional
+                    send_community_extended: false  # Boolean | optional
+                    route_reflector_client: false  # Boolean | optional
+                    next_hop_self: false  # Boolean | optional
+                    next_hop_self_all: false  # Boolean | optional
+                    disable_peer_as_check: false  # Boolean | optional
+                    allowas_in: false  # Boolean | optional
+                    default_originate: false  # Boolean | optional
+                    suppress_inactive: false  # Boolean | optional
+                    advertisement_interval: 1  # Integer | min: 1 , max: 600 | optional
+                    advertise_gateway_ip: false  # Boolean | optional
+                    advertise_local_labeled_route: false  # Boolean | optional
+                    aigp: false  # Boolean | optional
+                    allowas_in_count: 1  # Integer | min: 0 , max: 10 | optional
+                    as_override: false  # Boolean | optional
+                    default_originate_route_map: "DEFAULT_ORIGINATE_ROUTE_MAP_1"  # String | optional
+                    dmz_link_bandwidth: false  # Boolean | optional
+                    encapsulation_mpls: false  # Boolean | optional
+                    link_bandwidth_cumulative: false  # Boolean | optional
+                    next_hop_third_party: false  # Boolean | optional
+                    rewrite_evpn_rt_asn: false  # Boolean | optional
+                    soft_reconfiguration_inbound: "none"  # Choice | none , inbound , inbound-always | optional
+                    soo: "SOO_1"  # String | optional
+                    unsuppress_map: "UNSUPPRESS_MAP_1"  # String | optional
+                    weight: 1  # Integer | min: 0 , max: 65535 | optional
+                    maximum_prefix:  # Class | optional [shared class: structure documented on this page as maximum_prefix(nxos.devices.configuration.routing.bgp.peer_templates.address_families)]
+                      number: 1  # Integer | min: 0 , max: 4294967295 | optional
+                      action: "log"  # Choice | log , shut , restart | optional
+                      restart_time: 1  # Integer | min: 1 , max: 65535 | optional
+                      threshold: 1  # Integer | min: 1 , max: 100 | optional
+                    route_map_in: "ROUTE_MAP_IN_1"  # String | optional
+                    route_map_out: "ROUTE_MAP_OUT_1"  # String | optional
+                    prefix_list_in: "PREFIX_LIST_IN_1"  # String | optional
+                    prefix_list_out: "PREFIX_LIST_OUT_1"  # String | optional
+                    site_of_origin: "SITE_OF_ORIGIN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                remote_as_type: "none"  # Choice | none , external , internal | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                bfd_type: "none"  # Choice | none , singlehop , multihop | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                capability_suppress_4_byte_asn: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                connection_mode: "passive"  # Choice | passive | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp)]
+              - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-multicast , vpnv4-unicast , ipv6-unicast , ipv6-multicast , vpnv6-unicast , vpnv6-multicast , l2vpn-evpn , ipv4-lucast , ipv6-lucast , link-state , ipv4-mvpn , ipv6-mvpn , l2vpn-vpls , ipv4-mdt | required
+                advertise_l2vpn_evpn: false  # Boolean | optional
+                advertise_only_active_routes: false  # Boolean | optional
+                advertise_pip: false  # Boolean | optional
+                advertise_system_mac: false  # Boolean | optional
+                allocate_label_all: false  # Boolean | optional
+                allocate_label_option_b: false  # Boolean | optional
+                allocate_label_route_map: "ALLOCATE_LABEL_ROUTE_MAP_1"  # String | optional
+                bestpath_origin_as_allow_invalid: false  # Boolean | optional
+                bestpath_origin_as_use_validity: false  # Boolean | optional
+                client_to_client_reflection: false  # Boolean | optional
+                nexthop_trigger_delay_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+                default_information_originate: false  # Boolean | optional
+                default_information_originate_always_rd: "DEFAULT_INFORMATION_ORIGINATE_ALWAYS_RD_1"  # String | optional
+                default_information_originate_always_route_target: "DEFAULT_INFORMATION_ORIGINATE_ALWAYS_ROUTE_TARGET_1"  # String | optional
+                default_metric: 1  # Integer | min: 0 , max: 4294967295 | optional
+                export_gateway_ip: false  # Boolean | optional
+                dampen_igp_metric: 1  # Integer | min: 0 , max: 3600 | optional
+                label_allocation_mode: false  # Boolean | optional
+                load_balance_egress_filter_policy_route_map: "LOAD_BALANCE_EGRESS_FILTER_POLICY_ROUTE_MAP_1"  # String | optional
+                load_balance_egress_multipath_auto_policy_route_map: "LOAD_BALANCE_EGRESS_MULTIPATH_AUTO_POLICY_ROUTE_MAP_1"  # String | optional
+                maximum_paths: 1  # Integer | min: 1 , max: 512 | optional
+                maximum_paths_eibgp: 1  # Integer | min: 1 , max: 512 | optional
+                maximum_paths_ibgp: 1  # Integer | min: 1 , max: 512 | optional
+                maximum_paths_local: 1  # Integer | min: 1 , max: 512 | optional
+                maximum_paths_mixed: 1  # Integer | min: 1 , max: 512 | optional
+                maximum_paths_unequal_cost: false  # Boolean | optional
+                nexthop_route_map: "NEXTHOP_ROUTE_MAP_1"  # String | optional
+                nexthop_load_balance_egress_multisite: false  # Boolean | optional
+                nexthop_trigger_delay_non_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+                originate_map: "ORIGINATE_MAP_1"  # String | optional
+                origin_as_validate: false  # Boolean | optional
+                origin_as_validate_signal_ibgp: false  # Boolean | optional
+                prefix_priority: "none"  # Choice | none , high | optional
+                retain_route_target_all: false  # Boolean | optional
+                retain_route_target_route_map: "RETAIN_ROUTE_TARGET_ROUTE_MAP_1"  # String | optional
+                table_map: "TABLE_MAP_1"  # String | optional
+                table_map_filter: false  # Boolean | optional
+                timers_bestpath_defer: 100  # Integer | min: 100 , max: 3000 | optional
+                timers_bestpath_defer_maximum: 300  # Integer | min: 300 , max: 300000 | optional
+                allow_vni_in_ethertag: false  # Boolean | optional
+                wait_igp_convergence: false  # Boolean | optional
+                additional_paths_send: false  # Boolean | optional
+                additional_paths_receive: false  # Boolean | optional
+                additional_paths_install_backup: false  # Boolean | optional
+                additional_paths_selection_route_map: "ADDITIONAL_PATHS_SELECTION_ROUTE_MAP_1"  # String | optional
+                networks:  # List | optional [shared class: structure documented on this page as networks(nxos.devices.configuration.routing.bgp.address_families)]
+                  - prefix: "PREFIX_1"  # String | required
+                    evpn: false  # Boolean | optional
+                    route_map: "ROUTE_MAP_1"  # String | optional
+                redistributions:  # List | optional [shared class: structure documented on this page as redistributions(nxos.devices.configuration.routing.bgp.address_families)]
+                  - protocol: "srv6"  # Choice | srv6 , unspecified , static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                    protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                    route_map: "ROUTE_MAP_1"  # String | optional
+                    asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                    scope: "intra"  # Choice | intra , inter , defrt | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    srv6_prefix_type: "unspecified"  # Choice | unspecified , locator | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                aggregate_addresses:  # List | optional [shared class: structure documented on this page as aggregate_addresses(nxos.devices.configuration.routing.bgp.address_families)]
+                  - prefix: "PREFIX_1"  # String | required
+                    as_set: false  # Boolean | optional
+                    summary_only: false  # Boolean | optional
+                    advertise_map: "ADVERTISE_MAP_1"  # String | optional
+                    attribute_map: "ATTRIBUTE_MAP_1"  # String | optional
+                    suppress_map: "SUPPRESS_MAP_1"  # String | optional
+                maximum_paths_eibgp_ibgp: 1  # Integer | min: 1 , max: 512 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            vrfs:  # List | optional [shared class: structure documented on this page as vrfs(nxos.devices.configuration.routing.bgp)]
+              - vrf: "VRF1"  # String | required
+                router_id: "10.1.1.1"  # IP | optional
+                allocate_index: 1  # Integer | min: 1 , max: 8000 | optional
+                bestpath_limit_always: false  # Boolean | optional
+                bestpath_limit: 1  # Integer | min: 1 , max: 3600 | optional
+                reference_bandwidth: 1  # Integer | min: 0 , max: 4294967295 | optional
+                reference_bandwidth_unit: "mbps"  # Choice | mbps , gbps | optional
+                cluster_id: "10.1.1.1"  # Any | IP or Integer[min: 0 , max: 4294967295 ] or String[Regex: ^.*[$%]\{.*$ ] | optional
+                hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+                keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+                local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                maxas_limit: 1  # Integer | min: 1 , max: 512 | optional
+                mode: "fabric"  # Choice | fabric , external , proxy | optional
+                prefix_peer_timeout: 1  # Integer | min: 0 , max: 1200 | optional
+                prefix_peer_wait: 1  # Integer | min: 0 , max: 1200 | optional
+                reconnect_interval: 1  # Integer | min: 1 , max: 60 | optional
+                router_id_auto: false  # Boolean | optional
+                log_neighbor_changes: false  # Boolean | optional
+                enforce_first_as: false  # Boolean | optional
+                neighbor_down_fib_accelerate: false  # Boolean | optional
+                suppress_fib_pending: false  # Boolean | optional
+                graceful_restart: "helper"  # Choice | helper , complete | optional
+                graceful_restart_restart_time: 1  # Integer | min: 1 , max: 3600 | optional
+                graceful_restart_stalepath_time: 1  # Integer | min: 1 , max: 3600 | optional
+                neighbors:  # List | optional [shared class: structure documented on this page as neighbors(nxos.devices.configuration.routing.bgp)]
+                  - ip: "10.1.1.1"  # IP | optional
+                    interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                    interface_id: "INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                    remote_as: "REMOTE_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                    description: "Example description"  # String | optional
+                    inherit_peer: "INHERIT_PEER_1"  # String | optional
+                    peer_type: "fabric-internal"  # Choice | fabric-internal , fabric-external , fabric-border-leaf | optional
+                    update_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                    update_source_interface_id: "UPDATE_SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                    hold_time: 3  # Integer | min: 3 , max: 3600 | optional
+                    keepalive_interval: 1  # Integer | min: 0 , max: 3600 | optional
+                    ebgp_multihop_ttl: 2  # Integer | min: 2 , max: 255 | optional
+                    bfd: false  # Boolean | optional
+                    disable_connected_check: false  # Boolean | optional
+                    dont_capability_negotiate: false  # Boolean | optional
+                    dynamic_capability: false  # Boolean | optional
+                    password_type: "0"  # Choice | 0 , 3 , line , 6 , 7 | optional
+                    password: "PASSWORD_1"  # String | optional
+                    shutdown: false  # Boolean | optional
+                    affinity_group: 1  # Integer | min: 0 , max: 65535 | optional
+                    bfd_multihop: false  # Boolean | optional
+                    bmp_activate_server_1: false  # Boolean | optional
+                    bmp_activate_server_2: false  # Boolean | optional
+                    capability_suppress_4_byte_as: false  # Boolean | optional
+                    transport_connection_mode: "passive"  # Choice | passive | optional
+                    log_neighbor_changes: false  # Boolean | optional
+                    low_memory_exempt: false  # Boolean | optional
+                    maximum_peers: 1  # Integer | min: 1 , max: 1000 | optional
+                    remove_private_as: "none"  # Choice | none , enabled , all , replace-as | optional
+                    inherit_peer_session: "INHERIT_PEER_SESSION_1"  # String | optional
+                    ttl_security_hops: 1  # Integer | min: 1 , max: 254 | optional
+                    local_as: "LOCAL_AS_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                    local_as_propagation: "none"  # Choice | none , no-prepend , replace-as , dual-as | optional
+                    dscp: 1  # Integer | min: 0 , max: 63 | optional
+                    dynamic_route_map: "DYNAMIC_ROUTE_MAP_1"  # String | optional
+                    egress_engineering: false  # Boolean | optional
+                    egress_engineering_peer_set: "EGRESS_ENGINEERING_PEER_SET_1"  # String | optional
+                    internal_vpn_client: false  # Boolean | optional
+                    address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp.neighbors)]
+                      - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-mvpn , vpnv4-unicast , ipv6-unicast , vpnv6-unicast , l2vpn-evpn , link-state | required
+                        send_community_standard: false  # Boolean | optional
+                        send_community_extended: false  # Boolean | optional
+                        route_reflector_client: false  # Boolean | optional
+                        next_hop_self: false  # Boolean | optional
+                        next_hop_self_all: false  # Boolean | optional
+                        disable_peer_as_check: false  # Boolean | optional
+                        allowas_in: false  # Boolean | optional
+                        default_originate: false  # Boolean | optional
+                        suppress_inactive: false  # Boolean | optional
+                        advertisement_interval: 1  # Integer | min: 1 , max: 600 | optional
+                        advertise_gateway_ip: false  # Boolean | optional
+                        advertise_local_labeled_route: false  # Boolean | optional
+                        aigp: false  # Boolean | optional
+                        allowas_in_count: 1  # Integer | min: 0 , max: 10 | optional
+                        as_override: false  # Boolean | optional
+                        default_originate_route_map: "DEFAULT_ORIGINATE_ROUTE_MAP_1"  # String | optional
+                        dmz_link_bandwidth: false  # Boolean | optional
+                        encapsulation_mpls: false  # Boolean | optional
+                        link_bandwidth_cumulative: false  # Boolean | optional
+                        next_hop_third_party: false  # Boolean | optional
+                        rewrite_evpn_rt_asn: false  # Boolean | optional
+                        soft_reconfiguration_inbound: "none"  # Choice | none , inbound , inbound-always | optional
+                        soo: "SOO_1"  # String | optional
+                        unsuppress_map: "UNSUPPRESS_MAP_1"  # String | optional
+                        weight: 1  # Integer | min: 0 , max: 65535 | optional
+                        maximum_prefix:  # Class | optional [shared class: structure documented on this page as maximum_prefix(nxos.devices.configuration.routing.bgp.peer_templates.address_families)]
+                          number: 1  # Integer | min: 0 , max: 4294967295 | optional
+                          action: "log"  # Choice | log , shut , restart | optional
+                          restart_time: 1  # Integer | min: 1 , max: 65535 | optional
+                          threshold: 1  # Integer | min: 1 , max: 100 | optional
+                        route_map_in: "ROUTE_MAP_IN_1"  # String | optional
+                        route_map_out: "ROUTE_MAP_OUT_1"  # String | optional
+                        prefix_list_in: "PREFIX_LIST_IN_1"  # String | optional
+                        prefix_list_out: "PREFIX_LIST_OUT_1"  # String | optional
+                        site_of_origin: "SITE_OF_ORIGIN_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    remote_as_type: "none"  # Choice | none , external , internal | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    bfd_type: "none"  # Choice | none , singlehop , multihop | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    capability_suppress_4_byte_asn: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    connection_mode: "passive"  # Choice | passive | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.routing.bgp)]
+                  - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv4-multicast , vpnv4-unicast , ipv6-unicast , ipv6-multicast , vpnv6-unicast , vpnv6-multicast , l2vpn-evpn , ipv4-lucast , ipv6-lucast , link-state , ipv4-mvpn , ipv6-mvpn , l2vpn-vpls , ipv4-mdt | required
+                    advertise_l2vpn_evpn: false  # Boolean | optional
+                    advertise_only_active_routes: false  # Boolean | optional
+                    advertise_pip: false  # Boolean | optional
+                    advertise_system_mac: false  # Boolean | optional
+                    allocate_label_all: false  # Boolean | optional
+                    allocate_label_option_b: false  # Boolean | optional
+                    allocate_label_route_map: "ALLOCATE_LABEL_ROUTE_MAP_1"  # String | optional
+                    bestpath_origin_as_allow_invalid: false  # Boolean | optional
+                    bestpath_origin_as_use_validity: false  # Boolean | optional
+                    client_to_client_reflection: false  # Boolean | optional
+                    nexthop_trigger_delay_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+                    default_information_originate: false  # Boolean | optional
+                    default_information_originate_always_rd: "DEFAULT_INFORMATION_ORIGINATE_ALWAYS_RD_1"  # String | optional
+                    default_information_originate_always_route_target: "DEFAULT_INFORMATION_ORIGINATE_ALWAYS_ROUTE_TARGET_1"  # String | optional
+                    default_metric: 1  # Integer | min: 0 , max: 4294967295 | optional
+                    export_gateway_ip: false  # Boolean | optional
+                    dampen_igp_metric: 1  # Integer | min: 0 , max: 3600 | optional
+                    label_allocation_mode: false  # Boolean | optional
+                    load_balance_egress_filter_policy_route_map: "LOAD_BALANCE_EGRESS_FILTER_POLICY_ROUTE_MAP_1"  # String | optional
+                    load_balance_egress_multipath_auto_policy_route_map: "LOAD_BALANCE_EGRESS_MULTIPATH_AUTO_POLICY_ROUTE_MAP_1"  # String | optional
+                    maximum_paths: 1  # Integer | min: 1 , max: 512 | optional
+                    maximum_paths_eibgp: 1  # Integer | min: 1 , max: 512 | optional
+                    maximum_paths_ibgp: 1  # Integer | min: 1 , max: 512 | optional
+                    maximum_paths_local: 1  # Integer | min: 1 , max: 512 | optional
+                    maximum_paths_mixed: 1  # Integer | min: 1 , max: 512 | optional
+                    maximum_paths_unequal_cost: false  # Boolean | optional
+                    nexthop_route_map: "NEXTHOP_ROUTE_MAP_1"  # String | optional
+                    nexthop_load_balance_egress_multisite: false  # Boolean | optional
+                    nexthop_trigger_delay_non_critical: 1  # Integer | min: 1 , max: 4294967295 | optional
+                    originate_map: "ORIGINATE_MAP_1"  # String | optional
+                    origin_as_validate: false  # Boolean | optional
+                    origin_as_validate_signal_ibgp: false  # Boolean | optional
+                    prefix_priority: "none"  # Choice | none , high | optional
+                    retain_route_target_all: false  # Boolean | optional
+                    retain_route_target_route_map: "RETAIN_ROUTE_TARGET_ROUTE_MAP_1"  # String | optional
+                    table_map: "TABLE_MAP_1"  # String | optional
+                    table_map_filter: false  # Boolean | optional
+                    timers_bestpath_defer: 100  # Integer | min: 100 , max: 3000 | optional
+                    timers_bestpath_defer_maximum: 300  # Integer | min: 300 , max: 300000 | optional
+                    allow_vni_in_ethertag: false  # Boolean | optional
+                    wait_igp_convergence: false  # Boolean | optional
+                    additional_paths_send: false  # Boolean | optional
+                    additional_paths_receive: false  # Boolean | optional
+                    additional_paths_install_backup: false  # Boolean | optional
+                    additional_paths_selection_route_map: "ADDITIONAL_PATHS_SELECTION_ROUTE_MAP_1"  # String | optional
+                    networks:  # List | optional [shared class: structure documented on this page as networks(nxos.devices.configuration.routing.bgp.address_families)]
+                      - prefix: "PREFIX_1"  # String | required
+                        evpn: false  # Boolean | optional
+                        route_map: "ROUTE_MAP_1"  # String | optional
+                    redistributions:  # List | optional [shared class: structure documented on this page as redistributions(nxos.devices.configuration.routing.bgp.address_families)]
+                      - protocol: "srv6"  # Choice | srv6 , unspecified , static , direct , bgp , isis , ospf , ospfv3 , eigrp , host , rip , amt , lisp , hmm , am , dhcpv6 , icmpv6 | required
+                        protocol_instance: "PROTOCOL_INSTANCE_1"  # String | optional
+                        route_map: "ROUTE_MAP_1"  # String | optional
+                        asn: "ASN_1"  # Any | String or Integer[min: 0 , max: 4294967295 ] | optional
+                        scope: "intra"  # Choice | intra , inter , defrt | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                        srv6_prefix_type: "unspecified"  # Choice | unspecified , locator | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    aggregate_addresses:  # List | optional [shared class: structure documented on this page as aggregate_addresses(nxos.devices.configuration.routing.bgp.address_families)]
+                      - prefix: "PREFIX_1"  # String | required
+                        as_set: false  # Boolean | optional
+                        summary_only: false  # Boolean | optional
+                        advertise_map: "ADVERTISE_MAP_1"  # String | optional
+                        attribute_map: "ATTRIBUTE_MAP_1"  # String | optional
+                        suppress_map: "SUPPRESS_MAP_1"  # String | optional
+                    maximum_paths_eibgp_ibgp: 1  # Integer | min: 1 , max: 512 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                bandwidth_reference: 1  # Integer | min: 0 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                bandwidth_reference_unit: "mbps"  # Choice | mbps , gbps | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

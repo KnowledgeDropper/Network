@@ -1,0 +1,42 @@
+# Network-as-Code template: SNMP Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/snmp_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 0); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          snmp:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "KEY_1"  # String | required
+                  value: "VALUE_1"  # String | required
+              enabled: true  # Boolean | default: true | optional
+              port: 161  # Integer | min: 1 , max: 65535 | default: 161 | optional
+              access_community_string: "ACCESS_COMMUNITY_STRING_1"  # String | optional
+              community_access: "Disabled"  # Choice | Disabled , Limited , Full | default: Disabled | optional
+              trap_community: "TRAP_COMMUNITY_1"  # String | optional
+              sys_contact: "SYS_CONTACT_1"  # String | optional
+              sys_location: "SYS_LOCATION_1"  # String | optional
+              engine_id: "ENGINE_ID_1"  # String | optional
+              v2: false  # Boolean | default: false | optional
+              v3: true  # Boolean | default: true | optional
+              users:  # List | optional
+                - name: "NAME_1"  # String | required
+                  security_level: "AuthPriv"  # Choice | AuthPriv , NoAuthNoPriv , AuthNoPriv | default: AuthPriv | required
+                  auth_type: "SHA"  # Choice | NA , MD5 , SHA , SHA-224 , SHA-256 , SHA-384 , SHA-512 | default: SHA | optional
+                  auth_password: "AUTH_PASSWORD_1"  # String | optional
+                  privacy_type: "AES"  # Choice | NA , DES , AES | default: AES | optional
+                  privacy_password: "PRIVACY_PASSWORD_1"  # String | optional
+              traps:  # List | optional
+                - destination: "DESTINATION_1"  # String | required
+                  port: 162  # Integer | min: 1 , max: 65535 | default: 162 | optional
+                  version: "V3"  # Choice | V1 , V2 , V3 | default: V3 | required
+                  type: "Trap"  # Choice | Trap , Inform | default: Trap | optional
+                  enabled: true  # Boolean | default: true | optional
+                  user: "USER_1"  # String | optional
+                  community: "COMMUNITY_1"  # String | optional

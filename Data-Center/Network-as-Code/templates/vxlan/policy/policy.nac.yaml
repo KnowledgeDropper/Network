@@ -1,0 +1,22 @@
+# Network-as-Code template: Policy
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/policy/policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  policy:  # Class | optional
+    policies:  # List | optional
+      - name: "NAME_1"  # String | required
+        template_name: "TEMPLATE_NAME_1"  # String | optional
+        filename: "FILENAME_1"  # String | optional
+        template_vars: {}  # Map | optional
+    groups:  # List | optional
+      - name: "NAME_1"  # String | required
+        priority: 1  # Integer | min: 1 , max: 1000 | optional
+        policies:  # List | optional
+          - name: "NAME_1"  # String | required
+            priority: 1  # Integer | min: 1 , max: 1000 | optional
+    switches:  # List | optional
+      - name: "NAME_1"  # String | required
+        groups: ["GROUPS_1"]  # List | String | required

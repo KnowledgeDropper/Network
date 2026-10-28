@@ -1,0 +1,362 @@
+# Network-as-Code template: AAA
+# Source: https://netascode.cisco.com/docs/data_models/nxos/security/aaa/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 7 (parsed 7); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        aaa:  # Class | optional
+          tacacs:  # Class | optional
+            deadtime: 10  # Integer | min: 0 , max: 1440 | optional
+            key: "Gl0b@lT@c@cs"  # String | optional
+            key_encryption: "7"  # Choice | 0 , 6 , 7 | optional
+            retries: 2  # Integer | min: 0 , max: 5 | optional
+            source_interface_type: "mgmt"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+            source_interface_id: "0"  # Any | String or Integer[min: 0 ] | optional
+            timeout: 5  # Integer | min: 1 , max: 60 | optional
+            servers:  # List | optional
+              - host: "10.50.100.10"  # String | required
+                test_authentication_protocol: "pap"  # Choice | pap , chap , mschap , mschapv2 , ascii | optional
+                key: "T@c@csK3y!"  # String | optional
+                key_encryption: "7"  # Choice | 0 , 6 , 7 | optional
+                test_idle_time: 5  # Integer | min: 0 , max: 1440 | optional
+                test_password: "t3stP@ss"  # String | optional
+                test_password_type: "7"  # Choice | 0 , 7 | optional
+                test_username: "test"  # String | optional
+                port: 1  # Integer | min: 1 , max: 65535 | optional
+                retries: 1  # Integer | min: 0 , max: 5 | optional
+                single_connection: true  # Boolean | optional
+                timeout: 3  # Integer | min: 0 , max: 60 | optional
+                description: "Primary TACACS Server"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                authentication_protocol: "chap"  # Choice | pap , chap , mschap , mschapv2 , ascii | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            server_groups:  # List | optional
+              - name: "TACACS_SERVERS"  # String | required
+                deadtime: 10  # Integer | min: 0 , max: 1440 | optional
+                source_interface_type: "mgmt"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                source_interface_id: "0"  # Any | String or Integer[min: 0 ] | optional
+                vrf: "management"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                servers:  # List | optional
+                  - host: "10.50.100.10"  # String | required
+                    order: 1  # Integer | min: 0 , max: 16 | optional
+                    description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                description: "Production TACACS+ Server Group"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          users:  # Class | optional
+            password_strength_check: true  # Boolean | optional
+            service_password_recovery: false  # Boolean | optional
+            max_logins: 4  # Integer | min: 0 , max: 7 | optional
+            userpassphrase:  # Class | optional
+              min_length: 12  # Integer | min: 0 , max: 65535 | optional
+              max_length: 127  # Integer | min: 0 , max: 65535 | optional
+              default_lifetime: 180  # Integer | min: 0 , max: 99999 | optional
+              default_gracetime: 7  # Integer | min: 0 , max: 99999 | optional
+              default_warntime: 14  # Integer | min: 0 , max: 99999 | optional
+              sequence_alphabet_length: 3  # Integer | min: 0 , max: 10 | optional
+              sequence_keyboard_length: 3  # Integer | min: 0 , max: 10 | optional
+              min_unique: 1  # Integer | min: 0 , max: 10 | optional
+            accounts:  # List | optional
+              - username: "admin"  # String | required
+                expiration: "2026-12-31"  # String | optional
+                expires: true  # Boolean | optional
+                password: "N3tw0rkAdm!n"  # String | optional
+                password_encryption_type: "scrypt"  # Choice | 0 , 5 , pbkdf2 , scrypt | optional
+                shelltype: "vsh"  # Choice | vsh , bash | optional
+                roles:  # List | optional
+                  - name: "network-admin"  # String | required
+                    description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    privilege_type: "read-priv"  # Choice | no-data-priv , read-priv , write-priv | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                description: "Network Admin"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                account_status: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                allow_expired: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                clear_password_history: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                email: "EMAIL_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                first_name: "FIRST_NAME_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                force: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                last_name: "LAST_NAME_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                password_hash: "unspecified"  # Choice | unspecified , pbkdf2 , scrypt | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                phone: "PHONE_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                shell_type: "bash"  # Choice | vsh , bash | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                unix_user_id: 99  # Integer | min: 99 , max: 15999 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            password_secure_mode: true  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          authentication:  # Class | optional
+            default_role: "no-login"  # Choice | no-login , assign-default-role | optional
+            radius_directed_request: false  # Boolean | optional
+            tacacs_directed_request: true  # Boolean | optional
+            login_default_groups: ["TACACS_PRIMARY"]  # List | String | optional
+            login_default_fallback: true  # Boolean | optional
+            login_default_local: true  # Boolean | optional
+            login_default_none: false  # Boolean | optional
+            login_default_error_enable: true  # Boolean | optional
+            login_default_invalid_username_log: true  # Boolean | optional
+            login_console_groups: ["TACACS_PRIMARY"]  # List | String | optional
+            login_console_fallback: false  # Boolean | optional
+            login_console_local: true  # Boolean | optional
+            login_console_none: false  # Boolean | optional
+            login_console_error_enable: false  # Boolean | optional
+            login_console_invalid_username_log: false  # Boolean | optional
+            login_default_realm: "tacacs"  # Choice | local , radius , tacacs , ldap | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            login_console_realm: "tacacs"  # Choice | local , radius , tacacs , ldap | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          authorization:  # List | optional
+            - command_type: "config-commands"  # Choice | config-commands , commands | required
+              groups: ["TACACS_PRIMARY"]  # List | String | optional
+              none: false  # Boolean | optional
+              local: true  # Boolean | optional
+          accounting:  # Class | optional
+            groups: ["TACACS_PRIMARY"]  # List | String | optional
+            none: false  # Boolean | optional
+            local: true  # Boolean | optional
+            realm: "tacacs"  # Choice | local , radius , tacacs , ldap | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        aaa:  # Class | optional [shared class: structure documented on this page as aaa(nxos.devices.configuration)]
+          tacacs:  # Class | optional [shared class: structure documented on this page as tacacs(nxos.devices.configuration.aaa)]
+            deadtime: 1  # Integer | min: 0 , max: 1440 | optional
+            key: "KEY_1"  # String | optional
+            key_encryption: "0"  # Choice | 0 , 6 , 7 | optional
+            retries: 1  # Integer | min: 0 , max: 5 | optional
+            source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+            source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+            timeout: 1  # Integer | min: 1 , max: 60 | optional
+            servers:  # List | optional [shared class: structure documented on this page as servers(nxos.devices.configuration.aaa.tacacs)]
+              - host: "HOST_1"  # String | required
+                test_authentication_protocol: "pap"  # Choice | pap , chap , mschap , mschapv2 , ascii | optional
+                key: "KEY_1"  # String | optional
+                key_encryption: "0"  # Choice | 0 , 6 , 7 | optional
+                test_idle_time: 1  # Integer | min: 0 , max: 1440 | optional
+                test_password: "TEST_PASSWORD_1"  # String | optional
+                test_password_type: "0"  # Choice | 0 , 7 | optional
+                test_username: "TEST_USERNAME_1"  # String | optional
+                port: 1  # Integer | min: 1 , max: 65535 | optional
+                retries: 1  # Integer | min: 0 , max: 5 | optional
+                single_connection: false  # Boolean | optional
+                timeout: 1  # Integer | min: 0 , max: 60 | optional
+                description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                authentication_protocol: "pap"  # Choice | pap , chap , mschap , mschapv2 , ascii | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            server_groups:  # List | optional [shared class: structure documented on this page as server_groups(nxos.devices.configuration.aaa.tacacs)]
+              - name: "NAME_1"  # String | required
+                deadtime: 1  # Integer | min: 0 , max: 1440 | optional
+                source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                vrf: "VRF1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                servers:  # List | optional [shared class: structure documented on this page as servers(nxos.devices.configuration.aaa.tacacs.server_groups)]
+                  - host: "HOST_1"  # String | required
+                    order: 1  # Integer | min: 0 , max: 16 | optional
+                    description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          users:  # Class | optional [shared class: structure documented on this page as users(nxos.devices.configuration.aaa)]
+            password_strength_check: false  # Boolean | optional
+            service_password_recovery: false  # Boolean | optional
+            max_logins: 1  # Integer | min: 0 , max: 7 | optional
+            userpassphrase:  # Class | optional [shared class: structure documented on this page as userpassphrase(nxos.devices.configuration.aaa.users)]
+              min_length: 1  # Integer | min: 0 , max: 65535 | optional
+              max_length: 1  # Integer | min: 0 , max: 65535 | optional
+              default_lifetime: 1  # Integer | min: 0 , max: 99999 | optional
+              default_gracetime: 1  # Integer | min: 0 , max: 99999 | optional
+              default_warntime: 1  # Integer | min: 0 , max: 99999 | optional
+              sequence_alphabet_length: 1  # Integer | min: 0 , max: 10 | optional
+              sequence_keyboard_length: 1  # Integer | min: 0 , max: 10 | optional
+              min_unique: 1  # Integer | min: 0 , max: 10 | optional
+            accounts: []  # List | optional [nested class not documented separately on this page]
+            password_secure_mode: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          authentication:  # Class | optional [shared class: structure documented on this page as authentication(nxos.devices.configuration.aaa)]
+            default_role: "no-login"  # Choice | no-login , assign-default-role | optional
+            radius_directed_request: false  # Boolean | optional
+            tacacs_directed_request: false  # Boolean | optional
+            login_default_groups: ["LOGIN_DEFAULT_GROUPS_1"]  # List | String | optional
+            login_default_fallback: false  # Boolean | optional
+            login_default_local: false  # Boolean | optional
+            login_default_none: false  # Boolean | optional
+            login_default_error_enable: false  # Boolean | optional
+            login_default_invalid_username_log: false  # Boolean | optional
+            login_console_groups: ["LOGIN_CONSOLE_GROUPS_1"]  # List | String | optional
+            login_console_fallback: false  # Boolean | optional
+            login_console_local: false  # Boolean | optional
+            login_console_none: false  # Boolean | optional
+            login_console_error_enable: false  # Boolean | optional
+            login_console_invalid_username_log: false  # Boolean | optional
+            login_default_realm: "local"  # Choice | local , radius , tacacs , ldap | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            login_console_realm: "local"  # Choice | local , radius , tacacs , ldap | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          authorization:  # List | optional [shared class: structure documented on this page as authorization(nxos.devices.configuration.aaa)]
+            - command_type: "config-commands"  # Choice | config-commands , commands | required
+              groups: ["GROUPS_1"]  # List | String | optional
+              none: false  # Boolean | optional
+              local: false  # Boolean | optional
+          accounting:  # Class | optional [shared class: structure documented on this page as accounting(nxos.devices.configuration.aaa)]
+            groups: ["GROUPS_1"]  # List | String | optional
+            none: false  # Boolean | optional
+            local: false  # Boolean | optional
+            realm: "local"  # Choice | local , radius , tacacs , ldap | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      aaa:  # Class | optional [shared class: structure documented on this page as aaa(nxos.devices.configuration)]
+        tacacs:  # Class | optional [shared class: structure documented on this page as tacacs(nxos.devices.configuration.aaa)]
+          deadtime: 1  # Integer | min: 0 , max: 1440 | optional
+          key: "KEY_1"  # String | optional
+          key_encryption: "0"  # Choice | 0 , 6 , 7 | optional
+          retries: 1  # Integer | min: 0 , max: 5 | optional
+          source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+          timeout: 1  # Integer | min: 1 , max: 60 | optional
+          servers:  # List | optional [shared class: structure documented on this page as servers(nxos.devices.configuration.aaa.tacacs)]
+            - host: "HOST_1"  # String | required
+              test_authentication_protocol: "pap"  # Choice | pap , chap , mschap , mschapv2 , ascii | optional
+              key: "KEY_1"  # String | optional
+              key_encryption: "0"  # Choice | 0 , 6 , 7 | optional
+              test_idle_time: 1  # Integer | min: 0 , max: 1440 | optional
+              test_password: "TEST_PASSWORD_1"  # String | optional
+              test_password_type: "0"  # Choice | 0 , 7 | optional
+              test_username: "TEST_USERNAME_1"  # String | optional
+              port: 1  # Integer | min: 1 , max: 65535 | optional
+              retries: 1  # Integer | min: 0 , max: 5 | optional
+              single_connection: false  # Boolean | optional
+              timeout: 1  # Integer | min: 0 , max: 60 | optional
+              description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              authentication_protocol: "pap"  # Choice | pap , chap , mschap , mschapv2 , ascii | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          server_groups:  # List | optional [shared class: structure documented on this page as server_groups(nxos.devices.configuration.aaa.tacacs)]
+            - name: "NAME_1"  # String | required
+              deadtime: 1  # Integer | min: 0 , max: 1440 | optional
+              source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+              source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+              vrf: "VRF1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              servers:  # List | optional [shared class: structure documented on this page as servers(nxos.devices.configuration.aaa.tacacs.server_groups)]
+                - host: "HOST_1"  # String | required
+                  order: 1  # Integer | min: 0 , max: 16 | optional
+                  description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        users:  # Class | optional [shared class: structure documented on this page as users(nxos.devices.configuration.aaa)]
+          password_strength_check: false  # Boolean | optional
+          service_password_recovery: false  # Boolean | optional
+          max_logins: 1  # Integer | min: 0 , max: 7 | optional
+          userpassphrase:  # Class | optional [shared class: structure documented on this page as userpassphrase(nxos.devices.configuration.aaa.users)]
+            min_length: 1  # Integer | min: 0 , max: 65535 | optional
+            max_length: 1  # Integer | min: 0 , max: 65535 | optional
+            default_lifetime: 1  # Integer | min: 0 , max: 99999 | optional
+            default_gracetime: 1  # Integer | min: 0 , max: 99999 | optional
+            default_warntime: 1  # Integer | min: 0 , max: 99999 | optional
+            sequence_alphabet_length: 1  # Integer | min: 0 , max: 10 | optional
+            sequence_keyboard_length: 1  # Integer | min: 0 , max: 10 | optional
+            min_unique: 1  # Integer | min: 0 , max: 10 | optional
+          accounts: []  # List | optional [nested class not documented separately on this page]
+          password_secure_mode: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        authentication:  # Class | optional [shared class: structure documented on this page as authentication(nxos.devices.configuration.aaa)]
+          default_role: "no-login"  # Choice | no-login , assign-default-role | optional
+          radius_directed_request: false  # Boolean | optional
+          tacacs_directed_request: false  # Boolean | optional
+          login_default_groups: ["LOGIN_DEFAULT_GROUPS_1"]  # List | String | optional
+          login_default_fallback: false  # Boolean | optional
+          login_default_local: false  # Boolean | optional
+          login_default_none: false  # Boolean | optional
+          login_default_error_enable: false  # Boolean | optional
+          login_default_invalid_username_log: false  # Boolean | optional
+          login_console_groups: ["LOGIN_CONSOLE_GROUPS_1"]  # List | String | optional
+          login_console_fallback: false  # Boolean | optional
+          login_console_local: false  # Boolean | optional
+          login_console_none: false  # Boolean | optional
+          login_console_error_enable: false  # Boolean | optional
+          login_console_invalid_username_log: false  # Boolean | optional
+          login_default_realm: "local"  # Choice | local , radius , tacacs , ldap | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          login_console_realm: "local"  # Choice | local , radius , tacacs , ldap | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        authorization:  # List | optional [shared class: structure documented on this page as authorization(nxos.devices.configuration.aaa)]
+          - command_type: "config-commands"  # Choice | config-commands , commands | required
+            groups: ["GROUPS_1"]  # List | String | optional
+            none: false  # Boolean | optional
+            local: false  # Boolean | optional
+        accounting:  # Class | optional [shared class: structure documented on this page as accounting(nxos.devices.configuration.aaa)]
+          groups: ["GROUPS_1"]  # List | String | optional
+          none: false  # Boolean | optional
+          local: false  # Boolean | optional
+          realm: "local"  # Choice | local , radius , tacacs , ldap | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        aaa:  # Class | optional [shared class: structure documented on this page as aaa(nxos.devices.configuration)]
+          tacacs:  # Class | optional [shared class: structure documented on this page as tacacs(nxos.devices.configuration.aaa)]
+            deadtime: 1  # Integer | min: 0 , max: 1440 | optional
+            key: "KEY_1"  # String | optional
+            key_encryption: "0"  # Choice | 0 , 6 , 7 | optional
+            retries: 1  # Integer | min: 0 , max: 5 | optional
+            source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+            source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+            timeout: 1  # Integer | min: 1 , max: 60 | optional
+            servers:  # List | optional [shared class: structure documented on this page as servers(nxos.devices.configuration.aaa.tacacs)]
+              - host: "HOST_1"  # String | required
+                test_authentication_protocol: "pap"  # Choice | pap , chap , mschap , mschapv2 , ascii | optional
+                key: "KEY_1"  # String | optional
+                key_encryption: "0"  # Choice | 0 , 6 , 7 | optional
+                test_idle_time: 1  # Integer | min: 0 , max: 1440 | optional
+                test_password: "TEST_PASSWORD_1"  # String | optional
+                test_password_type: "0"  # Choice | 0 , 7 | optional
+                test_username: "TEST_USERNAME_1"  # String | optional
+                port: 1  # Integer | min: 1 , max: 65535 | optional
+                retries: 1  # Integer | min: 0 , max: 5 | optional
+                single_connection: false  # Boolean | optional
+                timeout: 1  # Integer | min: 0 , max: 60 | optional
+                description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                authentication_protocol: "pap"  # Choice | pap , chap , mschap , mschapv2 , ascii | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            server_groups:  # List | optional [shared class: structure documented on this page as server_groups(nxos.devices.configuration.aaa.tacacs)]
+              - name: "NAME_1"  # String | required
+                deadtime: 1  # Integer | min: 0 , max: 1440 | optional
+                source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+                source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+                vrf: "VRF1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                servers:  # List | optional [shared class: structure documented on this page as servers(nxos.devices.configuration.aaa.tacacs.server_groups)]
+                  - host: "HOST_1"  # String | required
+                    order: 1  # Integer | min: 0 , max: 16 | optional
+                    description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          users:  # Class | optional [shared class: structure documented on this page as users(nxos.devices.configuration.aaa)]
+            password_strength_check: false  # Boolean | optional
+            service_password_recovery: false  # Boolean | optional
+            max_logins: 1  # Integer | min: 0 , max: 7 | optional
+            userpassphrase:  # Class | optional [shared class: structure documented on this page as userpassphrase(nxos.devices.configuration.aaa.users)]
+              min_length: 1  # Integer | min: 0 , max: 65535 | optional
+              max_length: 1  # Integer | min: 0 , max: 65535 | optional
+              default_lifetime: 1  # Integer | min: 0 , max: 99999 | optional
+              default_gracetime: 1  # Integer | min: 0 , max: 99999 | optional
+              default_warntime: 1  # Integer | min: 0 , max: 99999 | optional
+              sequence_alphabet_length: 1  # Integer | min: 0 , max: 10 | optional
+              sequence_keyboard_length: 1  # Integer | min: 0 , max: 10 | optional
+              min_unique: 1  # Integer | min: 0 , max: 10 | optional
+            accounts: []  # List | optional [nested class not documented separately on this page]
+            password_secure_mode: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            description: "Example description"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          authentication:  # Class | optional [shared class: structure documented on this page as authentication(nxos.devices.configuration.aaa)]
+            default_role: "no-login"  # Choice | no-login , assign-default-role | optional
+            radius_directed_request: false  # Boolean | optional
+            tacacs_directed_request: false  # Boolean | optional
+            login_default_groups: ["LOGIN_DEFAULT_GROUPS_1"]  # List | String | optional
+            login_default_fallback: false  # Boolean | optional
+            login_default_local: false  # Boolean | optional
+            login_default_none: false  # Boolean | optional
+            login_default_error_enable: false  # Boolean | optional
+            login_default_invalid_username_log: false  # Boolean | optional
+            login_console_groups: ["LOGIN_CONSOLE_GROUPS_1"]  # List | String | optional
+            login_console_fallback: false  # Boolean | optional
+            login_console_local: false  # Boolean | optional
+            login_console_none: false  # Boolean | optional
+            login_console_error_enable: false  # Boolean | optional
+            login_console_invalid_username_log: false  # Boolean | optional
+            login_default_realm: "local"  # Choice | local , radius , tacacs , ldap | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            login_console_realm: "local"  # Choice | local , radius , tacacs , ldap | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          authorization:  # List | optional [shared class: structure documented on this page as authorization(nxos.devices.configuration.aaa)]
+            - command_type: "config-commands"  # Choice | config-commands , commands | required
+              groups: ["GROUPS_1"]  # List | String | optional
+              none: false  # Boolean | optional
+              local: false  # Boolean | optional
+          accounting:  # Class | optional [shared class: structure documented on this page as accounting(nxos.devices.configuration.aaa)]
+            groups: ["GROUPS_1"]  # List | String | optional
+            none: false  # Boolean | optional
+            local: false  # Boolean | optional
+            realm: "local"  # Choice | local , radius , tacacs , ldap | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

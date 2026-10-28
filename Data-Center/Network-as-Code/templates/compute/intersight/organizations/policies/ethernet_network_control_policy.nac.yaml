@@ -1,0 +1,23 @@
+# Network-as-Code template: Ethernet Network Control Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/ethernet_network_control_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          ethernet_network_control:  # List | optional
+            - name: "MyEthCtrlPolicy"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              cdp: true  # Boolean | default: false | optional
+              forge_mac: "allow"  # Choice | allow , deny | default: allow | optional
+              mac_registration_mode: "nativeVlanOnly"  # Choice | nativeVlanOnly , allVlans | default: nativeVlanOnly | optional
+              uplink_fail_action: "linkDown"  # Choice | linkDown , warning | default: linkDown | optional
+              lldp_receive: true  # Boolean | default: false | optional
+              lldp_transmit: true  # Boolean | default: false | optional

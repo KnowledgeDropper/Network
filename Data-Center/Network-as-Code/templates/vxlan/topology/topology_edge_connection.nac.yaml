@@ -1,0 +1,27 @@
+# Network-as-Code template: Edge Connection
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/topology/topology_edge_connection/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  topology:  # Class | optional
+    edge_connections:  # List | optional
+      - dest_fabric: "DEST_FABRIC_1"  # String | required
+        dest_device: "DEST_DEVICE_1"  # String | required
+        dest_interface: "DEST_INTERFACE_1"  # String | optional
+        source_device: "SOURCE_DEVICE_1"  # String | required
+        source_interface: "SOURCE_INTERFACE_1"  # String | required
+        source_interface_enabled: true  # Boolean | default: true | optional
+        source_interface_mtu: 9216  # Integer | min: 1500 , max: 9216 | default: 9216 | optional
+        local_ip: "10.1.1.1"  # IP | required
+        neighbor_ip: "10.1.1.1"  # IP | required
+        bgp_section:  # Class | optional
+          bgp_password_enable: true  # Boolean | default: true | optional
+          bgp_password: "BGP_PASSWORD_1"  # String | optional
+          neighbor_asn: "1"  # String | Regex: ^(?:\d{1,10}|\d{1,5}\.\d{1,5})$ | required
+          routing_tag: 1  # Integer | min: 0 , max: 4294967295 | optional
+          description: "Example description"  # String | optional
+          peer_template_freeform: "PEER_TEMPLATE_FREEFORM_1"  # String | optional
+          interface_freeform: "INTERFACE_FREEFORM_1"  # String | optional
+          bgp_freeform: "BGP_FREEFORM_1"  # String | optional

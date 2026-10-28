@@ -1,0 +1,16 @@
+# Network-as-Code template: BFD Multihop Node Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/bfd_multihop_node_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        bfd_multihop_node_policies:  # List | optional
+          - name: "BFD_MHOP_POL"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "BFD multihop node policy"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            detection_multiplier: 5  # Integer | min: 1 , max: 50 | default: 3 | optional
+            min_rx_interval: 300  # Integer | min: 250 , max: 999 | default: 250 | optional
+            min_tx_interval: 300  # Integer | min: 250 , max: 999 | default: 250 | optional

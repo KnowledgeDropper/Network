@@ -1,0 +1,17 @@
+# Network-as-Code template: MCP Global Instance
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/mcp/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    mcp:  # Class | optional
+      action: true  # Boolean | default: true | optional
+      admin_state: true  # Boolean | default: true | optional
+      frequency_sec: 5  # Integer | min: 0 , max: 300 | default: 2 | optional
+      frequency_msec: 0  # Integer | min: 0 , max: 999 | default: 0 | optional
+      initial_delay: 180  # Integer | min: 0 , max: 1800 | default: 180 | optional
+      loop_detection: 3  # Integer | min: 1 , max: 255 | default: 3 | optional
+      per_vlan: false  # Boolean | default: true | optional
+      key: "cisco"  # String | default: cisco | required

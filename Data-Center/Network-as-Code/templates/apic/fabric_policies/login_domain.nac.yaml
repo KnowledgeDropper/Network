@@ -1,0 +1,24 @@
+# Network-as-Code template: Login Domain
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/login_domain/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    aaa:  # Class | optional
+      login_domains:  # List | optional
+        - name: "yourDomainRadius"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          realm: "radius"  # Choice | local , tacacs , ldap , radius | required
+          description: "login domain radius"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          auth_choice: "LdapGroupMap"  # Choice | CiscoAVPair , LdapGroupMap | default: CiscoAVPair | optional
+          ldap_group_map: "test-users-map"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,31}$ | optional
+          tacacs_providers:  # List | optional
+            - hostname_ip: "11.11.11.1"  # Any | String[Regex: ^[a-zA-Z0-9:][a-zA-Z0-9.:-]{0,254}$ ] or IP | required
+              priority: 1  # Integer | min: 0 , max: 16 | default: 0 | optional
+          ldap_providers:  # List | optional
+            - hostname_ip: "2.2.2.2"  # Any | String[Regex: ^[a-zA-Z0-9:][a-zA-Z0-9.:-]{0,254}$ ] or IP | required
+              priority: 1  # Integer | min: 0 , max: 16 | default: 0 | optional
+          radius_providers:  # List | optional
+            - hostname_ip: "10.10.10.1"  # Any | String[Regex: ^[a-zA-Z0-9:][a-zA-Z0-9.:-]{0,254}$ ] or IP | required
+              priority: 1  # Integer | min: 0 , max: 16 | default: 0 | optional

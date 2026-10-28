@@ -1,0 +1,15 @@
+# Network-as-Code template: IPv6
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/underlay/underlay_ipv6/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  underlay:  # Class | optional
+    ipv6:  # Class | optional
+      enable_ipv6_link_local_address: true  # Boolean | default: true | optional
+      underlay_subnet_mask: 126  # Choice | 126 , 127 | default: 126 | optional
+      underlay_routing_loopback_ip_range: "fd00::a02:0/119"  # IP | default: fd00::a02:0/119 | optional
+      underlay_vtep_loopback_ip_range: "fd00::a03:0/118"  # IP | default: fd00::a03:0/118 | optional
+      underlay_rp_loopback_ip_range: "fd00::254:254:0/118"  # IP | default: fd00::254:254:0/118 | optional
+      underlay_subnet_ip_range: "fd00::a04:0/112"  # IP | default: fd00::a04:0/112 | optional

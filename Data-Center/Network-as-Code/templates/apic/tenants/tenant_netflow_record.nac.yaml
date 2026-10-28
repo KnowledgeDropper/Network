@@ -1,0 +1,14 @@
+# Network-as-Code template: Tenant NetFlow Records
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/tenant_netflow_record/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        netflow_records:  # List | optional
+          - name: "RECORD1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "record 1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            match_parameters: ["dst-ip", "src-ip", "dst-port", "src-port"]  # List | Choice[ dst-ip , dst-ipv4 , dst-ipv6 , dst-mac , dst-port , ethertype , proto , src-ip , src-ipv4 , src-ipv6 , src-mac , src-port , tos , vlan , unspecified ] | optional

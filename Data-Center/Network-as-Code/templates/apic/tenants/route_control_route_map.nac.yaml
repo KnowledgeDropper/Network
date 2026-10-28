@@ -1,0 +1,21 @@
+# Network-as-Code template: Route Control Route Map
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/route_control_route_map/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        route_control_route_maps:  # List | optional
+          - name: "ROUTE_MAP_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            type: "combinable"  # Choice | combinable , global | default: combinable | optional
+            contexts:  # List | optional
+              - name: "DC_PREFIXES"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                action: "permit"  # Choice | deny , permit | default: permit | optional
+                order: 4  # Integer | min: 0 , max: 9 | default: 0 | optional
+                set_rule: "SET_BGP_ATTRS"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                match_rules: ["DC_PREFIXES"]  # List | String | optional

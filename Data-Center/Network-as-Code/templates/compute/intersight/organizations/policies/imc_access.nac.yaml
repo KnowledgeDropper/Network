@@ -1,0 +1,24 @@
+# Network-as-Code template: IMC Access Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/imc_access/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          imc_access:  # List | optional
+            - name: "inband-access"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "In-Band IMC access with IP pool"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              configure_inband: true  # Boolean | default: true | optional
+              configure_out_of_band: true  # Boolean | default: false | optional
+              inband_vlan: 100  # Integer | min: 4 , max: 4093 | optional
+              ipv4: true  # Boolean | default: true | optional
+              ipv6: false  # Boolean | default: false | optional
+              inband_ip_pool: "mgmt-ip-pool"  # String | optional
+              out_of_band_ip_pool: "oob-mgmt-pool"  # String | optional

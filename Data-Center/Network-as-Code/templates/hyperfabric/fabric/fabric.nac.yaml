@@ -1,0 +1,17 @@
+# Network-as-Code template: Fabric
+# Source: https://netascode.cisco.com/docs/data_models/hyperfabric/fabric/fabric/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+hyperfabric:
+  fabrics:  # List | optional
+    - name: "My Fabric 01"  # String | required
+      topology: "MESH"  # Choice | MESH , SPINE_LEAF | default: MESH | optional
+      description: "My first HyperFabric"  # String | optional
+      address: "170 West Tasman Dr."  # String | optional
+      city: "San Jose"  # String | optional
+      country: "USA"  # String | optional
+      location: "sj01-1-101-AAA01"  # String | optional
+      labels: ["LABELS_1"]  # List | String | optional
+      annotations: {}  # Map | optional

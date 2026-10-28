@@ -1,0 +1,17 @@
+# Network-as-Code template: BGP Route Summarization Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/bgp_route_summarization_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        bgp_route_summarization_policies:  # List | optional
+          - name: "BGP_SUMM"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Policy to only advertise unicast summary prefixes and generate AS-SET data"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            as_set: true  # Boolean | default: false | optional
+            summary_only: true  # Boolean | default: false | optional
+            af_mcast: false  # Boolean | default: false | optional
+            af_ucast: true  # Boolean | default: true | optional

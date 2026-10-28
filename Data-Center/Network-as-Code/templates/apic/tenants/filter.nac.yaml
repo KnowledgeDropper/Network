@@ -1,0 +1,24 @@
+# Network-as-Code template: Filter
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/filter/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 11 (parsed 11); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      filters:  # List | optional
+        - name: "FILTER1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          alias: "ABC-FILTER1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          description: "Matches HTTP and HTTPS traffic"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          entries:  # List | optional
+            - name: "HTTP"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              alias: "ENTRY1-ALIAS"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              ethertype: "ip"  # Choice | unspecified , ipv4 , trill , arp , ipv6 , mpls_ucast , mac_security , fcoe , ip | default: ip | optional
+              protocol: "tcp"  # Any | Integer[min: 0 , max: 255 ] or Choice[ unspecified , icmp , igmp , tcp , egp , igp , udp , icmpv6 , eigrp , ospfigp , pim , l2tp ] | default: tcp | optional
+              match_only_fragments: true  # Boolean | default: false | optional
+              source_from_port: 80  # Any | Integer[min: 0 , max: 65535 ] or Choice[ unspecified , ftpData , smtp , dns , http , pop3 , https , rtsp , ssh ] | default: unspecified | optional
+              source_to_port: 80  # Any | Integer[min: 0 , max: 65535 ] or Choice[ unspecified , ftpData , smtp , dns , http , pop3 , https , rtsp , ssh ] | optional
+              destination_from_port: 80  # Any | Integer[min: 0 , max: 65535 ] or Choice[ unspecified , ftpData , smtp , dns , http , pop3 , https , rtsp , ssh ] | default: unspecified | optional
+              destination_to_port: 80  # Any | Integer[min: 0 , max: 65535 ] or Choice[ unspecified , ftpData , smtp , dns , http , pop3 , https , rtsp , ssh ] | optional
+              stateful: true  # Boolean | default: false | optional

@@ -1,0 +1,29 @@
+# Network-as-Code template: Access SPAN Destination Groups
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/ap_span_destination_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    span:  # Class | optional
+      destination_groups:  # List | optional
+        - name: "Lf1011-EPC-CP-DstGrp"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "ERSPAN destination group for the EPC-CP collector."  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          node_id: 1011  # Integer | min: 1 , max: 4000 | optional
+          pod_id: 1  # Integer | min: 1 , max: 255 | optional
+          sub_port: 1  # Integer | min: 1 , max: 16 | optional
+          module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+          port: 10  # Integer | min: 1 , max: 127 | optional
+          channel: "CHANNEL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          ip: "192.168.101.151"  # IP | optional
+          source_prefix: "10.1.1.1"  # String | optional
+          dscp: "unspecified"  # Any | Choice[ unspecified , CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | default: unspecified | optional
+          flow_id: 1  # Integer | min: 1 , max: 1023 | default: 1 | optional
+          mtu: 9216  # Integer | min: 64 , max: 9216 | default: 1518 | optional
+          ttl: 64  # Integer | min: 1 , max: 255 | default: 64 | optional
+          version: 1  # Choice | 1 , 2 | default: 2 | optional
+          enforce_version: false  # Boolean | default: false | optional
+          tenant: "mgmt"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          application_profile: "Mgmt-AP"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          endpoint_group: "VLAN-1001-EPG"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional

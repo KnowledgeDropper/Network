@@ -1,0 +1,14 @@
+# Network-as-Code template: ToR Peers
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/topology/topology_tor_peer/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  topology:  # Class | optional
+    tor_peers:  # List | optional
+      - pairing_id: "PAIRING_ID_1"  # String | optional
+        parent_leaf1: "PARENT_LEAF1_1"  # String | required
+        parent_leaf2: "PARENT_LEAF2_1"  # String | optional
+        tor1: "TOR1_1"  # String | required
+        tor2: "TOR2_1"  # String | optional

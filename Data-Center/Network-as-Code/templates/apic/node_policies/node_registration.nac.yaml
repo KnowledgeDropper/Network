@@ -1,0 +1,17 @@
+# Network-as-Code template: Node Registration
+# Source: https://netascode.cisco.com/docs/data_models/apic/node_policies/node_registration/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 5 (parsed 5); example values used as placeholders where available.
+---
+apic:
+  node_policies:  # Class | optional
+    nodes:  # List | optional
+      - role: "leaf"  # Choice | leaf , spine , apic | required
+        set_role: true  # Boolean | default: false | optional
+        serial_number: "ABC1234567"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,16}$ | optional
+        name: "LEAF101"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        id: 101  # Integer | min: 1 , max: 4000 | required
+        pod: 1  # Integer | min: 0 , max: 255 | default: 1 | optional
+        type: "remote-leaf-wan"  # Choice | tier-2-leaf , remote-leaf-wan , virtual , border-gateway | optional
+        remote_pool_id: 1  # Integer | min: 1 , max: 255 | optional

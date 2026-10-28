@@ -1,0 +1,62 @@
+# Network-as-Code template: External Endpoint Group
+# Source: https://netascode.cisco.com/docs/data_models/ndo/schema/external_endpoint_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+ndo:
+  schemas:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      templates:  # List | optional
+        - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          tenant: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          external_endpoint_groups:  # List | optional
+            - name: "EXT-EPG1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              type: "cloud"  # Choice | on-premise , cloud | default: on-premise | optional
+              preferred_group: false  # Boolean | default: false | optional
+              vrf:  # Class | required
+                name: "VRF1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                schema: "ABC"  # String | optional
+                template: "TEMPLATE1"  # String | optional
+              l3out:  # Class | optional
+                name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                schema: "SCHEMA_1"  # String | optional
+                template: "TEMPLATE_1"  # String | optional
+              application_profile:  # Class | optional
+                name: "AP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                schema: "SCHEMA_1"  # String | optional
+                template: "TEMPLATE_1"  # String | optional
+              subnets:  # List | optional
+                - prefix: "0.0.0.0/0"  # IP | required
+                  import_route_control: true  # Boolean | default: false | optional
+                  export_route_control: true  # Boolean | default: false | optional
+                  shared_route_control: true  # Boolean | default: false | optional
+                  import_security: true  # Boolean | default: true | optional
+                  shared_security: true  # Boolean | default: false | optional
+                  aggregate_import: true  # Boolean | default: false | optional
+                  aggregate_export: true  # Boolean | default: false | optional
+                  aggregate_shared: true  # Boolean | default: false | optional
+              contracts:  # Class | optional
+                consumers:  # List | optional
+                  - name: "CONTRACT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    schema: "ABC"  # String | optional
+                    template: "TEMPLATE1"  # String | optional
+                providers:  # List | optional
+                  - name: "CONTRACT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    schema: "ABC"  # String | optional
+                    template: "TEMPLATE1"  # String | optional
+              selectors:  # List | optional
+                - name: "SELECTOR1"  # String | required
+                  ips: ["10.1.1.1", "10.1.1.2"]  # List | IP | required
+              sites:  # List | optional
+                - name: "APIC1"  # String | required
+                  tenant: "MSO1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  l3out:  # Class | optional
+                    name: "ANS-L3OUT"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                    schema: "SCHEMA_1"  # String | optional
+                    template: "TEMPLATE_1"  # String | optional
+                  route_reachability: "internet"  # Choice | internet , site-ext | default: internet | optional
+                  selectors:  # List | optional
+                    - name: "SELECTOR2"  # String | required
+                      ips: ["10.1.1.3", "10.1.1.4"]  # List | IP | required

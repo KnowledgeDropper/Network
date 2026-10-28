@@ -1,0 +1,32 @@
+# Network-as-Code template: User
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/user/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    aaa:  # Class | optional
+      users:  # List | optional
+        - username: "user1"  # String | Regex: ^[a-zA-Z0-9_.-]{1,31}$ | required
+          password: "ciscocisco"  # String | min: 1 , max: 256 | required
+          first_name: "cisco"  # String | min: 1 , max: 32 | optional
+          last_name: "cisco"  # String | min: 1 , max: 32 | optional
+          phone: "1234567"  # String | min: 1 , max: 16 | optional
+          email: "cisco@cisco.com"  # String | Regex: ^(?!.{64,})[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+$ | optional
+          certificate_name: "cisco"  # String | min: 1 , max: 128 | optional
+          description: "descr"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          status: "active"  # Choice | active , inactive , blocked | default: active | optional
+          expires: false  # Boolean | default: false | optional
+          expire_date: "CHANGE_ME"  # Any | Choice[ never ] or | optional
+          domains:  # List | optional
+            - name: "all"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              roles:  # List | optional
+                - name: "admin"  # String | Regex: ^[a-zA-Z0-9_.-]{1,31}$ | required
+                  privilege_type: "write"  # Choice | write , read | default: write | optional
+          certificates:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              data: "DATA_1"  # String | required
+          ssh_keys:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              data: "DATA_1"  # String | Regex: ^[a-zA-Z0-9=\n\r/+ _.@-]{1,16384}$ | required

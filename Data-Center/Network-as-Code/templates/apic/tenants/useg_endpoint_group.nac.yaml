@@ -1,0 +1,75 @@
+# Network-as-Code template: uSeg Endpoint Group
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/useg_endpoint_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 8 (parsed 8); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      application_profiles:  # List | optional
+        - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          useg_endpoint_groups:  # List | optional
+            - name: "uSeg_EPG1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              alias: "ALIAS_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              flood_in_encap: false  # Boolean | default: false | optional
+              intra_epg_isolation: false  # Boolean | default: false | optional
+              preferred_group: false  # Boolean | default: false | optional
+              bridge_domain: "BD1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              monitoring_policy: "MP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              physical_domains: ["PHY1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+              vmware_vmm_domains:  # List | optional
+                - name: "VMM1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  deployment_immediacy: "lazy"  # Choice | immediate , lazy | default: immediate | optional
+                  port_binding: "dynamic"  # Choice | dynamic , ephemeral , default , static | default: default | optional
+                  elag: "ELAGCustom"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,16}$ | optional
+                  netflow: false  # Boolean | default: false | optional
+                  active_uplinks_order: "1,2"  # String | Regex: ^(\d+(,\d+)*)?$ | optional
+                  standby_uplinks: "3,4"  # String | Regex: ^(\d+(,\d+)*)?$ | optional
+              static_leafs:  # List | optional
+                - node_id: 102  # Integer | min: 1 , max: 4000 | required
+                  pod_id: 1  # Integer | min: 1 , max: 255 | optional
+              subnets:  # List | optional
+                - description: "My Desc"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  ip: "5.50.6.1/30"  # IP | required
+                  public: true  # Boolean | default: false | optional
+                  shared: true  # Boolean | default: false | optional
+                  igmp_querier: true  # Boolean | default: false | optional
+                  nd_ra_prefix: true  # Boolean | default: true | optional
+                  no_default_gateway: false  # Boolean | default: false | optional
+                  virtual: false  # Boolean | default: false | optional
+                  next_hop_ip: "8.8.8.8"  # IP | optional
+                  anycast_mac: "00:00:00:01:02:03"  # MAC | optional
+                  nlb_mode: "mode-mcast-igmp"  # Choice | mode-mcast-igmp , mode-uc , mode-mcast-static | optional
+                  nlb_group: "230.1.1.1"  # IP | default: 0.0.0.0 | optional
+                  nlb_mac: "00:00:00:01:01:01"  # MAC | default: 00:00:00:00:00:00 | optional
+                  ip_pools:  # List | optional
+                    - name: "POOL1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                      start_ip: "172.16.1.1"  # IP | default: 0.0.0.0 | optional
+                      end_ip: "172.16.1.10"  # IP | default: 0.0.0.0 | optional
+                      dns_search_suffix: "cisco"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      dns_server: "dns.cisco.com"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      dns_suffix: "cisco"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      wins_server: "wins"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  nd_ra_prefix_policy: "ND_RA_PREFIX1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              contracts:  # Class | optional
+                consumers: ["CON1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                providers: ["CON1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                imported_consumers: ["IMPORT-CON1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                intra_epgs: ["CON1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                masters:  # List | optional
+                  - application_profile: "AP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                    endpoint_group: "EPG1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              qos_class: "level3"  # Choice | level1 , level2 , level3 , level4 , level5 , level6 , unspecified | default: level3 | optional
+              custom_qos_policy: "QOS_POL"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              tags: ["tag1", "tag2"]  # List | String[Regex: ^[a-zA-Z0-9_.-]{1,64}$ ] | optional
+              tag_annotations:  # List | optional
+                - key: "env"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  value: "production"  # String | min: 1 , max: 2048 | required
+              trust_control_policy: "TRUST_ALL"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              l4l7_address_pools:  # List | optional
+                - name: "L4L7_POOL1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  gateway_address: "11.11.12.254/24"  # IP | required
+                  from: "11.11.12.100"  # IP | optional
+                  to: "11.11.12.200"  # IP | optional

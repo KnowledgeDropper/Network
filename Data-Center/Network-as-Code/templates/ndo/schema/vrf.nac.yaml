@@ -1,0 +1,42 @@
+# Network-as-Code template: VRF
+# Source: https://netascode.cisco.com/docs/data_models/ndo/schema/vrf/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 5 (parsed 5); example values used as placeholders where available.
+---
+ndo:
+  schemas:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      templates:  # List | optional
+        - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          tenant: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          vrfs:  # List | optional
+            - name: "VRF_STAGING"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              data_plane_learning: true  # Boolean | default: true | optional
+              preferred_group: false  # Boolean | default: false | optional
+              l3_multicast: true  # Boolean | default: false | optional
+              vzany: true  # Boolean | default: false | optional
+              sites:  # List | optional
+                - name: "AZURE-SITE1"  # String | required
+                  regions:  # List | optional
+                    - name: "eastus"  # String | required
+                      hub_network: true  # Boolean | default: false | optional
+                      hub_network_name: "default"  # String | optional
+                      hub_network_tenant: "infra"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      vpn_gateway: false  # Boolean | default: false | optional
+                      cidrs:  # List | optional
+                        - ip: "172.31.0.0/24"  # IP | required
+                          subnets:  # List | optional
+                            - ip: "10.1.1.1"  # IP | required
+                              zone: "ZONE_1"  # String | optional
+                              name: "NAME_1"  # String | optional
+              contracts:  # Class | optional
+                consumers:  # List | optional
+                  - name: "CONTRACT2"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    schema: "SCHEMA_1"  # String | optional
+                    template: "TEMPLATE_1"  # String | optional
+                providers:  # List | optional
+                  - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    schema: "SCHEMA_1"  # String | optional
+                    template: "TEMPLATE_1"  # String | optional
+              site_aware_policy_enforcement: true  # Boolean | default: false | optional

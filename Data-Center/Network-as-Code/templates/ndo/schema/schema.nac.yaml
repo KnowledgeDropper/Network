@@ -1,0 +1,303 @@
+# Network-as-Code template: Schema
+# Source: https://netascode.cisco.com/docs/data_models/ndo/schema/schema/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+ndo:
+  schemas:  # List | optional
+    - name: "site1-schema"  # String | Regex: ^[a-zA-Z0-9\s+_.:-]{1,64}$ | required
+      templates:  # List | optional
+        - name: "NAME_1"  # String | required
+          description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          type: "multi_site"  # Choice | multi_site , autonomous | default: multi_site | optional
+          tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          application_profiles:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              endpoint_groups:  # List | optional
+                - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  useg: false  # Boolean | default: false | optional
+                  intra_epg_isolation: false  # Boolean | default: false | optional
+                  proxy_arp: false  # Boolean | default: false | optional
+                  preferred_group: false  # Boolean | default: false | optional
+                  bridge_domain:  # Class | optional
+                    name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    schema: "SCHEMA_1"  # String | optional
+                    template: "TEMPLATE_1"  # String | optional
+                  vrf:  # Class | optional
+                    name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    schema: "SCHEMA_1"  # String | optional
+                    template: "TEMPLATE_1"  # String | optional
+                  subnets:  # List | optional
+                    - ip: "10.1.1.1"  # IP | required
+                      scope: "private"  # Choice | private , public | default: private | optional
+                      shared: false  # Boolean | default: false | optional
+                      no_default_gateway: false  # Boolean | default: false | optional
+                      primary: false  # Boolean | default: false | optional
+                  contracts:  # Class | optional
+                    consumers:  # List | optional
+                      - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                        schema: "SCHEMA_1"  # String | optional
+                        template: "TEMPLATE_1"  # String | optional
+                    providers:  # List | optional
+                      - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                        schema: "SCHEMA_1"  # String | optional
+                        template: "TEMPLATE_1"  # String | optional
+                  sites:  # List | optional
+                    - name: "NAME_1"  # String | required
+                      physical_domains:  # List | optional
+                        - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                          deployment_immediacy: "lazy"  # Choice | immediate , lazy | default: lazy | optional
+                          resolution_immediacy: "immediate"  # Choice | immediate , lazy , pre-provision | default: immediate | optional
+                      vmware_vmm_domains:  # List | optional
+                        - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                          deployment_immediacy: "lazy"  # Choice | immediate , lazy | default: lazy | optional
+                          resolution_immediacy: "pre-provision"  # Choice | immediate , lazy , pre-provision | default: pre-provision | optional
+                          custom_epg_name: "CUSTOM_EPG_NAME_1"  # String | Regex: ^.{1,80}$ | optional
+                          vlan_mode: "dynamic"  # Choice | static , dynamic | default: dynamic | optional
+                          vlan: 1  # Integer | min: 1 , max: 4096 | optional
+                          u_segmentation: false  # Boolean | default: false | optional
+                          useg_vlan: 1  # Integer | min: 1 , max: 4096 | optional
+                          enhanced_lag_policy_name: "ENHANCED_LAG_POLICY_NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      static_ports:  # List | optional
+                        - type: "port"  # Choice | port , vpc , pc | default: port | optional
+                          pod: 1  # Integer | min: 1 , max: 255 | optional
+                          node: 1  # Integer | min: 1 , max: 4000 | optional
+                          fex: 101  # Integer | min: 101 , max: 199 | optional
+                          fex_2: 101  # Integer | min: 101 , max: 199 | optional
+                          node_1: 1  # Integer | min: 1 , max: 4000 | optional
+                          node_2: 1  # Integer | min: 1 , max: 4000 | optional
+                          port: 1  # Integer | min: 1 , max: 127 | optional
+                          sub_port: 1  # Integer | min: 1 , max: 16 | optional
+                          module: 1  # Integer | min: 1 , max: 9 | optional
+                          channel: "CHANNEL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                          vlan: 1  # Integer | min: 1 , max: 4096 | required
+                          useg_vlan: 1  # Integer | min: 1 , max: 4096 | optional
+                          deployment_immediacy: "lazy"  # Choice | immediate , lazy | default: lazy | optional
+                          mode: "regular"  # Choice | regular , native , untagged | default: regular | optional
+                      static_leafs:  # List | optional
+                        - pod: 1  # Integer | min: 1 , max: 255 | optional
+                          node: 1  # Integer | min: 1 , max: 4000 | required
+                          vlan: 1  # Integer | min: 1 , max: 4096 | required
+                      subnets:  # List | optional
+                        - ip: "10.1.1.1"  # IP | required
+                          description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                          scope: "private"  # Choice | private , public | default: private | optional
+                          shared: false  # Boolean | default: false | optional
+                          no_default_gateway: false  # Boolean | default: false | optional
+                          primary: false  # Boolean | default: false | optional
+                      selectors:  # List | optional
+                        - name: "NAME_1"  # String | required
+                          expressions:  # List | optional
+                            - key: "ipAddress"  # Choice | ipAddress , region | required
+                              operator: "equals"  # Choice | equals , notEquals | required
+                              value: "VALUE_1"  # String | required
+          vrfs:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              data_plane_learning: true  # Boolean | default: true | optional
+              preferred_group: false  # Boolean | default: false | optional
+              l3_multicast: false  # Boolean | default: false | optional
+              vzany: false  # Boolean | default: false | optional
+              sites:  # List | optional
+                - name: "NAME_1"  # String | required
+                  regions:  # List | optional
+                    - name: "NAME_1"  # String | required
+                      hub_network: false  # Boolean | default: false | optional
+                      hub_network_name: "HUB_NETWORK_NAME_1"  # String | optional
+                      hub_network_tenant: "HUB_NETWORK_TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      vpn_gateway: false  # Boolean | default: false | optional
+                      cidrs:  # List | optional
+                        - ip: "10.1.1.1"  # IP | required
+                          subnets:  # List | optional
+                            - ip: "10.1.1.1"  # IP | required
+                              zone: "ZONE_1"  # String | optional
+                              name: "NAME_1"  # String | optional
+              contracts:  # Class | optional
+                consumers:  # List | optional
+                  - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    schema: "SCHEMA_1"  # String | optional
+                    template: "TEMPLATE_1"  # String | optional
+                providers:  # List | optional
+                  - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    schema: "SCHEMA_1"  # String | optional
+                    template: "TEMPLATE_1"  # String | optional
+              site_aware_policy_enforcement: false  # Boolean | default: false | optional
+          bridge_domains:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              l2_unknown_unicast: "proxy"  # Choice | proxy , flood | default: proxy | optional
+              intersite_bum_traffic: false  # Boolean | default: false | optional
+              optimize_wan_bandwidth: false  # Boolean | default: false | optional
+              l2_stretch: true  # Boolean | default: true | optional
+              unicast_routing: true  # Boolean | default: true | optional
+              arp_flooding: false  # Boolean | default: false | optional
+              l3_multicast: false  # Boolean | default: false | optional
+              virtual_mac: "00:11:22:33:44:55"  # MAC | optional
+              multi_destination_flooding: "bd-flood"  # Choice | bd-flood , encap-flood , drop | default: bd-flood | optional
+              unknown_ipv4_multicast: "flood"  # Choice | flood , opt-flood | default: flood | optional
+              unknown_ipv6_multicast: "flood"  # Choice | flood , opt-flood | default: flood | optional
+              ep_move_detection_mode: "none"  # Choice | garp , none | default: none | optional
+              vrf:  # Class | required
+                name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                schema: "SCHEMA_1"  # String | optional
+                template: "TEMPLATE_1"  # String | optional
+              subnets:  # List | optional
+                - ip: "10.1.1.1"  # IP | required
+                  scope: "private"  # Choice | private , public | default: private | optional
+                  shared: false  # Boolean | default: false | optional
+                  no_default_gateway: false  # Boolean | default: false | optional
+                  querier: false  # Boolean | default: false | optional
+                  primary: false  # Boolean | default: false | optional
+              sites:  # List | optional
+                - name: "NAME_1"  # String | required
+                  advertise_host_routes: false  # Boolean | default: false | optional
+                  subnets:  # List | optional [shared class: structure documented on this page as subnets(ndo.schemas.templates.bridge_domains)]
+                    - ip: "10.1.1.1"  # IP | required
+                      scope: "private"  # Choice | private , public | default: private | optional
+                      shared: false  # Boolean | default: false | optional
+                      no_default_gateway: false  # Boolean | default: false | optional
+                      querier: false  # Boolean | default: false | optional
+                      primary: false  # Boolean | default: false | optional
+                  l3outs: ["L3OUTS_1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                  mac: "00:22:BD:F8:19:FF"  # MAC | default: 00:22:BD:F8:19:FF | optional
+          filters:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              entries:  # List | optional
+                - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  ethertype: "ip"  # Choice | unspecified , ipv4 , trill , arp , ipv6 , mpls_ucast , mac_security , fcoe , ip | default: ip | optional
+                  protocol: "tcp"  # Any | Integer[min: 0 , max: 255 ] or Choice[ unspecified , icmp , igmp , tcp , egp , igp , udp , icmpv6 , eigrp , ospfigp , pim , l2tp ] | default: tcp | optional
+                  source_from_port: "unspecified"  # Any | Integer[min: 0 , max: 65535 ] or Choice[ unspecified , ftpData , smtp , dns , http , pop3 , https , rtsp , ssh ] | default: unspecified | optional
+                  source_to_port: 1  # Any | Integer[min: 0 , max: 65535 ] or Choice[ unspecified , ftpData , smtp , dns , http , pop3 , https , rtsp , ssh ] | optional
+                  destination_from_port: "unspecified"  # Any | Integer[min: 0 , max: 65535 ] or Choice[ unspecified , ftpData , smtp , dns , http , pop3 , https , rtsp , ssh ] | default: unspecified | optional
+                  destination_to_port: 1  # Any | Integer[min: 0 , max: 65535 ] or Choice[ unspecified , ftpData , smtp , dns , http , pop3 , https , rtsp , ssh ] | optional
+                  stateful: false  # Boolean | default: false | optional
+          contracts:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              scope: "context"  # Choice | application-profile , tenant , context , global | default: context | optional
+              type: "bothWay"  # Choice | bothWay , oneWay | default: bothWay | optional
+              filters:  # List | optional
+                - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  schema: "SCHEMA_1"  # String | optional
+                  template: "TEMPLATE_1"  # String | optional
+                  log: false  # Boolean | default: false | optional
+                  policy_compression: false  # Boolean | default: false | optional
+              provider_to_consumer_filters:  # List | optional
+                - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  schema: "SCHEMA_1"  # String | optional
+                  template: "TEMPLATE_1"  # String | optional
+                  log: false  # Boolean | optional
+                  policy_compression: false  # Boolean | optional
+              consumer_to_provider_filters:  # List | optional
+                - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  schema: "SCHEMA_1"  # String | optional
+                  template: "TEMPLATE_1"  # String | optional
+                  log: false  # Boolean | optional
+                  policy_compression: false  # Boolean | optional
+              service_graph:  # Class | optional
+                name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                schema: "SCHEMA_1"  # String | optional
+                template: "TEMPLATE_1"  # String | optional
+                nodes:  # List | required
+                  - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    index: 1  # Integer | min: 1 , max: 3 | optional
+                    provider:  # Class | required
+                      bridge_domain: "BRIDGE_DOMAIN_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                      schema: "SCHEMA_1"  # String | optional
+                      template: "TEMPLATE_1"  # String | optional
+                      sites:  # List | required
+                        - name: "NAME_1"  # String | required
+                          tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                          device: "DEVICE_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                          logical_interface: "LOGICAL_INTERFACE_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                          redirect_policy: "REDIRECT_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                    consumer:  # Class | required
+                      bridge_domain: "BRIDGE_DOMAIN_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                      schema: "SCHEMA_1"  # String | optional
+                      template: "TEMPLATE_1"  # String | optional
+                      sites:  # List | required
+                        - name: "NAME_1"  # String | required
+                          tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                          device: "DEVICE_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                          logical_interface: "LOGICAL_INTERFACE_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                          redirect_policy: "REDIRECT_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              service_chaining:  # Class | optional
+                node_filter: "allow-all"  # Choice | allow-all , filters-from-contract | default: allow-all | optional
+                nodes:  # List | required
+                  - service_device_template: "SERVICE_DEVICE_TEMPLATE_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    device: "DEVICE_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    device_type: "firewall"  # Choice | firewall , load_balancer , other | default: firewall | optional
+                    consumer_interface: "CONSUMER_INTERFACE_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    consumer_redirect: false  # Boolean | default: false | optional
+                    provider_interface: "PROVIDER_INTERFACE_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    provider_redirect: false  # Boolean | default: false | optional
+          l3outs:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              vrf:  # Class | required
+                name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                schema: "SCHEMA_1"  # String | optional
+                template: "TEMPLATE_1"  # String | optional
+          external_endpoint_groups:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              type: "on-premise"  # Choice | on-premise , cloud | default: on-premise | optional
+              preferred_group: false  # Boolean | default: false | optional
+              vrf:  # Class | required
+                name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                schema: "SCHEMA_1"  # String | optional
+                template: "TEMPLATE_1"  # String | optional
+              l3out:  # Class | optional
+                name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                schema: "SCHEMA_1"  # String | optional
+                template: "TEMPLATE_1"  # String | optional
+              application_profile:  # Class | optional
+                name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                schema: "SCHEMA_1"  # String | optional
+                template: "TEMPLATE_1"  # String | optional
+              subnets:  # List | optional
+                - prefix: "10.1.1.1"  # IP | required
+                  import_route_control: false  # Boolean | default: false | optional
+                  export_route_control: false  # Boolean | default: false | optional
+                  shared_route_control: false  # Boolean | default: false | optional
+                  import_security: true  # Boolean | default: true | optional
+                  shared_security: false  # Boolean | default: false | optional
+                  aggregate_import: false  # Boolean | default: false | optional
+                  aggregate_export: false  # Boolean | default: false | optional
+                  aggregate_shared: false  # Boolean | default: false | optional
+              contracts:  # Class | optional
+                consumers:  # List | optional
+                  - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    schema: "SCHEMA_1"  # String | optional
+                    template: "TEMPLATE_1"  # String | optional
+                providers:  # List | optional
+                  - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    schema: "SCHEMA_1"  # String | optional
+                    template: "TEMPLATE_1"  # String | optional
+              selectors:  # List | optional
+                - name: "NAME_1"  # String | required
+                  ips: ["10.1.1.1"]  # List | IP | required
+              sites:  # List | optional
+                - name: "NAME_1"  # String | required
+                  tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  l3out:  # Class | optional
+                    name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                    tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                    schema: "SCHEMA_1"  # String | optional
+                    template: "TEMPLATE_1"  # String | optional
+                  route_reachability: "internet"  # Choice | internet , site-ext | default: internet | optional
+                  selectors:  # List | optional
+                    - name: "NAME_1"  # String | required
+                      ips: ["10.1.1.1"]  # List | IP | required
+          service_graphs:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              nodes:  # List | required
+                - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  type: "firewall"  # Choice | firewall , load-balancer , other | optional
+                  index: 1  # Integer | min: 1 , max: 3 | optional
+                  sites:  # List | required
+                    - name: "NAME_1"  # String | required
+                      tenant: "TENANT_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      device: "DEVICE_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          sites: ["SITES_1"]  # List | String | optional
+          deploy_order: 1  # Integer | min: 1 , max: 3 | optional

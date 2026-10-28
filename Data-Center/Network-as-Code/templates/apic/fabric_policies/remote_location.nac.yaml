@@ -1,0 +1,22 @@
+# Network-as-Code template: Remote Location
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/remote_location/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    remote_locations:  # List | optional
+      - name: "remote1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        description: "desc1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+        hostname_ip: "1.2.3.4"  # Any | String[Regex: ^[a-zA-Z0-9:][a-zA-Z0-9.:-]{0,254}$ ] or IP | required
+        protocol: "scp"  # Choice | ftp , sftp , scp | required
+        path: "/path"  # String | min: 0 , max: 512 | default: / | optional
+        port: 22  # Integer | min: 0 , max: 65535 | optional
+        auth_type: "password"  # Choice | password , ssh_keys | default: password | optional
+        username: "cisco"  # String | Regex: ^[a-zA-Z0-9][a-zA-Z0-9_.@\\-]{0,31}$ | required
+        password: "cisco"  # String | optional
+        ssh_public_key: "SSH_PUBLIC_KEY_1"  # String | optional
+        ssh_private_key: "SSH_PRIVATE_KEY_1"  # String | optional
+        ssh_passphrase: "SSH_PASSPHRASE_1"  # String | min: 1 , max: 512 | optional
+        mgmt_epg: "inb"  # Choice | inb , oob | default: inb | optional

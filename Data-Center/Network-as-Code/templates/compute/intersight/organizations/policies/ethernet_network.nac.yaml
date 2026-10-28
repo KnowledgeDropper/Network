@@ -1,0 +1,22 @@
+# Network-as-Code template: Ethernet Network Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/ethernet_network/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          ethernet_network:  # List | optional
+            - name: "access-vlan100"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Access port on VLAN 100 for standalone servers"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              default_vlan: 100  # Integer | min: 0 , max: 4094 | default: 0 | optional
+              vlan_mode: "ACCESS"  # Choice | ACCESS , TRUNK | default: ACCESS | optional
+              allowed_vlans: "100-200"  # String | optional
+              qinq: false  # Boolean | default: false | optional
+              qinq_vlan: 1  # Integer | min: 1 , max: 4093 | optional

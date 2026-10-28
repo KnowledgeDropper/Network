@@ -1,0 +1,9 @@
+# Network-as-Code template: APIC Connectivity Preference
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/apic_connectivity_pref/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    apic_conn_pref: "ooband"  # Choice | inband , ooband | default: inband | optional

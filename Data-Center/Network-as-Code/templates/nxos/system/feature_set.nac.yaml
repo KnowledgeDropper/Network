@@ -1,0 +1,36 @@
+# Network-as-Code template: Feature Set
+# Source: https://netascode.cisco.com/docs/data_models/nxos/system/feature_set/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        feature_set:  # Class | optional
+          fex: true  # Boolean | optional
+          mpls: true  # Boolean | optional
+          virtualization: true  # Boolean | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        feature_set:  # Class | optional [shared class: structure documented on this page as feature_set(nxos.devices.configuration)]
+          fex: false  # Boolean | optional
+          mpls: false  # Boolean | optional
+          virtualization: false  # Boolean | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      feature_set:  # Class | optional [shared class: structure documented on this page as feature_set(nxos.devices.configuration)]
+        fex: false  # Boolean | optional
+        mpls: false  # Boolean | optional
+        virtualization: false  # Boolean | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        feature_set:  # Class | optional [shared class: structure documented on this page as feature_set(nxos.devices.configuration)]
+          fex: false  # Boolean | optional
+          mpls: false  # Boolean | optional
+          virtualization: false  # Boolean | optional

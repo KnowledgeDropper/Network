@@ -1,0 +1,35 @@
+# Network-as-Code template: IP Pool
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/pools/ip_pool/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - pools:  # Class | optional
+          ip:  # List | optional
+            - name: "ip-pool-mgmt"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Management network IP pool"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              ipv4_config:  # Class | optional
+                gateway: "10.0.0.1"  # IP | required
+                netmask: "255.255.255.0"  # String | required
+                primary_dns: "8.8.8.8"  # IP | optional
+                secondary_dns: "8.8.4.4"  # IP | optional
+              ipv4_blocks:  # List | optional
+                - from: "10.0.0.100"  # IP | required
+                  size: 100  # Integer | min: 1 | optional
+                  to: "10.0.0.199"  # IP | optional
+              ipv6_config:  # Class | optional
+                gateway: "2001:db8::1"  # IP | required
+                prefix: 64  # Integer | min: 1 , max: 128 | required
+                primary_dns: "2001:4860:4860::8888"  # IP | optional
+                secondary_dns: "10.1.1.1"  # IP | optional
+              ipv6_blocks:  # List | optional
+                - from: "2001:db8::100"  # IP | required
+                  size: 100  # Integer | min: 1 | optional
+                  to: "2001:db8::163"  # IP | optional

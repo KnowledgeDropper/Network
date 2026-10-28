@@ -1,0 +1,17 @@
+# Network-as-Code template: GUI and CLI Banner
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/banner/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    banners:  # Class | optional
+      apic_gui_alias: "San Francisco DC"  # String | optional
+      apic_gui_banner_url: "APIC GUI BANNER URL"  # String | optional
+      apic_gui_banner_message: "By logging in, you agree to the terms and conditions of use. Unauthorized access is prohibited."  # String | optional
+      apic_cli_banner: "*************************************************\n*   WARNING: Unauthorized access is prohibited! *\n*   This system is for authorized users only.   *\n*   All activities are monitored and recorded.  *\n*************************************************"  # String | optional
+      switch_cli_banner: "*************************************************\n*   WARNING: Unauthorized access is prohibited! *\n*   This system is for authorized users only.   *\n*   All activities are monitored and recorded.  *\n*************************************************"  # String | optional
+      apic_app_banner: "APIC APP BANNER"  # String | optional
+      apic_app_banner_severity: "critical"  # Choice | critical , info , warning | default: info | optional
+      escape_html: false  # Boolean | default: true | optional

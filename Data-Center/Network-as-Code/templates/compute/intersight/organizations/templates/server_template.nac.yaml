@@ -1,0 +1,39 @@
+# Network-as-Code template: Server Template
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/templates/server_template/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - templates:  # Class | optional
+          server:  # List | optional
+            - name: "fi-server-template"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "FI-attached template for SAN-boot servers"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              target_platform: "FIAttached"  # Choice | FIAttached , Standalone , UnifiedEdgeServer | default: FIAttached | optional
+              bios_policy: "web-bios"  # String | optional
+              boot_order_policy: "san-boot"  # String | optional
+              imc_access_policy: "inband-access"  # String | optional
+              ipmi_over_lan_policy: "IPMI_OVER_LAN_POLICY_1"  # String | optional
+              lan_connectivity_policy: "web-lan"  # String | optional
+              local_user_policy: "standard-local-users"  # String | optional
+              network_connectivity_policy: "NETWORK_CONNECTIVITY_POLICY_1"  # String | optional
+              ntp_policy: "ntp-standard"  # String | optional
+              power_policy: "power-standard"  # String | optional
+              san_connectivity_policy: "fc-san"  # String | optional
+              serial_over_lan_policy: "SERIAL_OVER_LAN_POLICY_1"  # String | optional
+              smtp_policy: "SMTP_POLICY_1"  # String | optional
+              snmp_policy: "snmp-standard"  # String | optional
+              ssh_policy: "SSH_POLICY_1"  # String | optional
+              storage_policy: "raid-standard"  # String | optional
+              syslog_policy: "syslog-standard"  # String | optional
+              thermal_policy: "thermal-standard"  # String | optional
+              firmware_policy: "prod-firmware"  # String | optional
+              virtual_kvm_policy: "kvm-standard"  # String | optional
+              virtual_media_policy: "vmedia-standard"  # String | optional
+              uuid_pool: "uuid-pool-a"  # String | optional

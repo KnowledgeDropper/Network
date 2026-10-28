@@ -1,0 +1,30 @@
+# Network-as-Code template: Storm Control Interface Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/storm_control_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 5 (parsed 5); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    interface_policies:  # Class | optional
+      storm_control_policies:  # List | optional
+        - name: "20P"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "Separate storm control for each traffic type"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          alias: "20P"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          broadcast_burst_pps: "unspecified"  # Any | Integer[min: 1 , max: 4882812 ] or Choice[ unspecified ] | default: unspecified | optional
+          broadcast_burst_rate: 10  # Any | Number[min: 0 , max: 100 ] or String[Regex: ^(100|[1-9]?[0-9])(\.\d+)?$ ] or Choice[ defaultValue ] | default: 100.000000 | optional
+          broadcast_rate: 10  # Any | Number[min: 0 , max: 100 ] or String[Regex: ^(100|[1-9]?[0-9])(\.\d+)?$ ] or Choice[ defaultValue ] | default: 100.000000 | optional
+          broadcast_pps: "unspecified"  # Any | Integer[min: 1 , max: 4882812 ] or Choice[ unspecified ] | default: unspecified | optional
+          multicast_burst_pps: "unspecified"  # Any | Integer[min: 1 , max: 4882812 ] or Choice[ unspecified ] | default: unspecified | optional
+          multicast_burst_rate: 10  # Any | Number[min: 0 , max: 100 ] or String[Regex: ^(100|[1-9]?[0-9])(\.\d+)?$ ] or Choice[ defaultValue ] | default: 100.000000 | optional
+          multicast_rate: 10  # Any | Number[min: 0 , max: 100 ] or String[Regex: ^(100|[1-9]?[0-9])(\.\d+)?$ ] or Choice[ defaultValue ] | default: 100.000000 | optional
+          multicast_pps: "unspecified"  # Any | Integer[min: 1 , max: 4882812 ] or Choice[ unspecified ] | default: unspecified | optional
+          unknown_unicast_burst_pps: "unspecified"  # Any | Integer[min: 1 , max: 4882812 ] or Choice[ unspecified ] | default: unspecified | optional
+          unknown_unicast_burst_rate: 10  # Any | Number[min: 0 , max: 100 ] or String[Regex: ^(100|[1-9]?[0-9])(\.\d+)?$ ] or Choice[ defaultValue ] | default: 100.000000 | optional
+          unknown_unicast_rate: 10  # Any | Number[min: 0 , max: 100 ] or String[Regex: ^(100|[1-9]?[0-9])(\.\d+)?$ ] or Choice[ defaultValue ] | default: 100.000000 | optional
+          unknown_unicast_pps: "unspecified"  # Any | Integer[min: 1 , max: 4882812 ] or Choice[ unspecified ] | default: unspecified | optional
+          action: "drop"  # Choice | drop , shutdown | default: drop | optional
+          rate: 20  # Any | Number[min: 0 , max: 100 ] or String[Regex: ^(100|[1-9]?[0-9])(\.\d+)?$ ] or Choice[ defaultValue ] | default: 100.000000 | optional
+          rate_pps: "unspecified"  # Any | Integer[min: 1 , max: 4882812 ] or Choice[ unspecified ] | default: unspecified | optional
+          burst_rate: 20  # Any | Number[min: 0 , max: 100 ] or String[Regex: ^(100|[1-9]?[0-9])(\.\d+)?$ ] or Choice[ defaultValue ] | default: 100.000000 | optional
+          burst_pps: "unspecified"  # Any | Integer[min: 1 , max: 4882812 ] or Choice[ unspecified ] | default: unspecified | optional

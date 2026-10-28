@@ -1,0 +1,61 @@
+# Network-as-Code template: Bridge Domain
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/bridge_domain/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 11 (parsed 11); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      bridge_domains:  # List | optional
+        - name: "BD1"  # String | Regex: ^[a-zA-Z0-9_.-]{1,64}$ | required
+          ndo_managed: false  # Boolean | default: false | optional
+          alias: "ABC_BD1"  # String | Regex: ^[a-zA-Z0-9_.-]{1,63}$ | optional
+          description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          arp_flooding: true  # Boolean | default: true | optional
+          advertise_host_routes: true  # Boolean | default: false | optional
+          ip_dataplane_learning: false  # Boolean | default: true | optional
+          clear_remote_mac_entries: true  # Boolean | default: false | optional
+          limit_ip_learn_to_subnets: false  # Boolean | default: true | optional
+          mac: "00:22:BD:F8:19:FE"  # MAC | default: 00:22:BD:F8:19:FF | optional
+          virtual_mac: "00:23:BD:F8:19:12"  # Any | MAC or Choice[ not-applicable ] | default: not-applicable | optional
+          ep_move_detection: true  # Boolean | default: false | optional
+          l3_multicast: false  # Boolean | default: false | optional
+          l3_multicast_ipv6: false  # Boolean | default: false | optional
+          multicast_arp_drop: false  # Boolean | optional
+          pim_source_filter: "PIM_SOURCE_FILTER_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          pim_destination_filter: "PIM_DESTINATION_FILTER_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          multi_destination_flooding: "encap-flood"  # Choice | bd-flood , encap-flood , drop | default: bd-flood | optional
+          unicast_routing: false  # Boolean | default: true | optional
+          unknown_unicast: "flood"  # Choice | flood , proxy | default: flood | optional
+          unknown_ipv4_multicast: "flood"  # Choice | flood , opt-flood | default: flood | optional
+          unknown_ipv6_multicast: "flood"  # Choice | flood , opt-flood | default: flood | optional
+          vrf: "VRF1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          subnets:  # List | optional
+            - description: "My Desc"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              ip: "1.1.1.1/24"  # IP | required
+              primary_ip: true  # Boolean | default: false | optional
+              public: true  # Boolean | default: false | optional
+              shared: true  # Boolean | default: false | optional
+              virtual: false  # Boolean | default: false | optional
+              igmp_querier: true  # Boolean | default: false | optional
+              nd_ra_prefix: true  # Boolean | default: true | optional
+              no_default_gateway: false  # Boolean | default: false | optional
+              nd_ra_prefix_policy: "ND-RA-PREFIX1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              ip_dataplane_learning: false  # Boolean | optional
+          l3outs: ["L3OUT1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+          dhcp_labels:  # List | optional
+            - dhcp_relay_policy: "DHCP-RELAY1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              dhcp_option_policy: "DHCP-OPTION1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              scope: "tenant"  # Choice | infra , tenant | default: tenant | optional
+          igmp_interface_policy: "IGMP_INTERFACE_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          igmp_snooping_policy: "IGMP_SNOOPING_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          nd_interface_policy: "ND_INTF_POL1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          endpoint_retention_policy: "ERP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          netflow_monitor_policies:  # List | optional
+            - name: "MONITOR1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              ip_filter_type: "ipv4"  # Choice | ipv4 , ipv6 , ce , unspecified | default: ipv4 | optional
+          vxlan_stretch:  # Class | optional
+            normalized_vni: 1  # Integer | min: 1 , max: 16777215 | required
+            border_gateway_set_policy: "BORDER_GATEWAY_SET_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          legacy_mode_vlan: 1  # Integer | min: 1 , max: 4094 | optional

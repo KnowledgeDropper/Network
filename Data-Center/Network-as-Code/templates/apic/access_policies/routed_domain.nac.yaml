@@ -1,0 +1,12 @@
+# Network-as-Code template: Routed Domain
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/routed_domain/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    routed_domains:  # List | optional
+      - name: "routedDomain"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        vlan_pool: "routedVlanPool"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        security_domains: ["mySecurityDomain"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional

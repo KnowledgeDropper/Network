@@ -1,0 +1,14 @@
+# Network-as-Code template: Application Profile
+# Source: https://netascode.cisco.com/docs/data_models/ndo/schema/application_profile/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+ndo:
+  schemas:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      templates:  # List | optional
+        - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          tenant: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          application_profiles:  # List | optional
+            - name: "Prod"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required

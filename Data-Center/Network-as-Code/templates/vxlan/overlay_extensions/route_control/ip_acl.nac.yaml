@@ -1,0 +1,130 @@
+# Network-as-Code template: IP ACLs
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/overlay_extensions/route_control/ip_acl/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 8 (parsed 8); example values used as placeholders where available.
+---
+vxlan:
+  overlay_extensions:  # Class | optional
+    route_control:  # Class | optional
+      ipv4_access_lists:  # List | optional
+        - name: "myACL"  # String | Regex: ^[A-Za-z0-9-_]{1,63}$ | required
+          entries:  # List | optional
+            - seq_number: 5  # Integer | min: 1 , max: 4294967294 | required
+              operation: "permit"  # Choice | permit , deny | optional
+              remark: "Allow_traffic"  # String | optional
+              protocol: "ip"  # Any | Integer[min: 0 , max: 255 ] or Choice[ ahp , eigrp , esp , gre , icmp , igmp , ip , nos , ospf , pcp , pim , tcp , udf , udp ] | optional
+              source:  # Class | optional
+                ip: "192.168.10.0"  # IP | optional
+                wildcard: "0.0.0.255"  # IP | optional
+                addrgroup: "ADDRGROUP_1"  # String | optional
+                any: true  # Boolean | optional
+                host: "10.1.1.1"  # IP | optional
+                port_number:  # Class | optional
+                  operator: "eq"  # Choice | eq , gt , lt , neq , range | optional
+                  port: 80  # Integer | min: 0 , max: 65535 | optional
+                  from: 1  # Integer | min: 0 , max: 65535 | optional
+                  to: 1  # Integer | min: 0 , max: 65535 | optional
+              destination:  # Class | optional
+                ip: "192.168.200.0"  # IP | optional
+                wildcard: "0.0.0.255"  # IP | optional
+                addrgroup: "ADDRGROUP_1"  # String | optional
+                any: true  # Boolean | optional
+                host: "192.168.1.100/32"  # IP | optional
+                port_number:  # Class | optional [shared class: structure documented on this page as port_number(vxlan.overlay_extensions.route_control.ipv4_access_lists.entries.source)]
+                  operator: "gt"  # Choice | eq , gt , lt , neq , range | optional
+                  port: 1023  # Integer | min: 0 , max: 65535 | optional
+                  from: 1  # Integer | min: 0 , max: 65535 | optional
+                  to: 1  # Integer | min: 0 , max: 65535 | optional
+              filtering_options:  # List | optional
+                - flags:  # List | optional
+                    - establish: true  # Boolean | optional
+                      ack: false  # Boolean | optional
+                      fin: false  # Boolean | optional
+                      psh: false  # Boolean | optional
+                      rst: false  # Boolean | optional
+                      syn: false  # Boolean | optional
+                      urg: false  # Boolean | optional
+                  dscp: 1  # Any | Integer[min: 0 , max: 63 ] or Choice[ af11 , af12 , af13 , af21 , af22 , af23 , af31 , af32 , af33 , af41 , af42 , af43 , cs1 , cs2 , cs3 , cs4 , cs5 , cs6 , cs7 , ef , default ] | optional
+                  http_method: "get"  # Any | Integer[min: 1 , max: 7 ] or Choice[ connect , delete , get , head , post , put , trace ] | optional
+                  tcp_option_length: 4  # Integer | min: 0 , max: 40 | optional
+                  tcp_flags_mask: 1  # Integer | min: 0 , max: 63 | optional
+                  ttl: 1  # Integer | min: 0 , max: 255 | optional
+                  udf:  # Class | optional
+                    name: "NAME_1"  # String | optional
+                    value: 1  # Integer | min: 0 , max: 65535 | optional
+                    mask: 1  # Integer | min: 0 , max: 65535 | optional
+                  packet_length:  # Class | optional
+                    operation: "eq"  # Choice | eq , gt , lt , neq , range | optional
+                    size: 20  # Integer | min: 20 , max: 9210 | optional
+                    from: 20  # Integer | min: 20 , max: 9210 | optional
+                    to: 20  # Integer | min: 20 , max: 9210 | optional
+                  time_range: "TIME_RANGE_1"  # String | optional
+                  precedence: 1  # Any | Integer[min: 0 , max: 7 ] or Choice[ critical , flash , flash-override , immediate , internet , network , priority , routine ] | optional
+                  set_erspan_dscp: 1  # Integer | min: 1 , max: 63 | optional
+                  set_erspan_gre_proto: 1  # Integer | min: 1 , max: 65535 | optional
+                  load_share: false  # Boolean | optional
+                  fragments: false  # Boolean | optional
+              log: true  # Boolean | optional
+          statistics_per_entry: true  # Boolean | optional
+          fragments: "deny-all"  # Choice | deny-all , permit-all | optional
+          ignore_routable: false  # Boolean | optional
+      ipv6_access_lists:  # List | optional
+        - name: "NAME_1"  # String | Regex: ^[A-Za-z0-9-_]{1,63}$ | required
+          entries:  # List | optional
+            - seq_number: 1  # Integer | min: 1 , max: 4294967294 | required
+              operation: "permit"  # Choice | permit , deny | optional
+              remark: "REMARK_1"  # String | optional
+              protocol: 1  # Any | Integer[min: 0 , max: 255 ] or Choice[ ahp , eigrp , esp , icmp , ipv6 , pcp , pim , sctp , tcp , udf , udp ] | optional
+              source:  # Class | optional
+                ip: "10.1.1.1"  # IP | optional
+                wildcard: "10.1.1.1"  # IP | optional
+                addrgroup: "ADDRGROUP_1"  # String | optional
+                any: false  # Boolean | optional
+                host: "10.1.1.1"  # IP | optional
+                port_number:  # Class | optional [shared class: structure documented on this page as port_number(vxlan.overlay_extensions.route_control.ipv4_access_lists.entries.source)]
+                  operator: "eq"  # Choice | eq , gt , lt , neq , range | optional
+                  port: 1  # Integer | min: 0 , max: 65535 | optional
+                  from: 1  # Integer | min: 0 , max: 65535 | optional
+                  to: 1  # Integer | min: 0 , max: 65535 | optional
+              destination:  # Class | optional
+                ip: "10.1.1.1"  # IP | optional
+                wildcard: "10.1.1.1"  # IP | optional
+                addrgroup: "ADDRGROUP_1"  # String | optional
+                any: false  # Boolean | optional
+                host: "10.1.1.1"  # IP | optional
+                port_number:  # Class | optional [shared class: structure documented on this page as port_number(vxlan.overlay_extensions.route_control.ipv4_access_lists.entries.source)]
+                  operator: "eq"  # Choice | eq , gt , lt , neq , range | optional
+                  port: 1  # Integer | min: 0 , max: 65535 | optional
+                  from: 1  # Integer | min: 0 , max: 65535 | optional
+                  to: 1  # Integer | min: 0 , max: 65535 | optional
+              filtering_options:  # List | optional
+                - flags:  # List | optional [shared class: structure documented on this page as flags(vxlan.overlay_extensions.route_control.ipv4_access_lists.entries.filtering_options)]
+                    - establish: false  # Boolean | optional
+                      ack: false  # Boolean | optional
+                      fin: false  # Boolean | optional
+                      psh: false  # Boolean | optional
+                      rst: false  # Boolean | optional
+                      syn: false  # Boolean | optional
+                      urg: false  # Boolean | optional
+                  dscp: 1  # Any | Integer[min: 0 , max: 63 ] or Choice[ af11 , af12 , af13 , af21 , af22 , af23 , af31 , af32 , af33 , af41 , af42 , af43 , cs1 , cs2 , cs3 , cs4 , cs5 , cs6 , cs7 , ef , default ] | optional
+                  tcp_flags_mask: 1  # Integer | min: 0 , max: 63 | optional
+                  ttl: 1  # Integer | min: 0 , max: 255 | optional
+                  udf:  # Class | optional [shared class: structure documented on this page as udf(vxlan.overlay_extensions.route_control.ipv4_access_lists.entries.filtering_options)]
+                    name: "NAME_1"  # String | optional
+                    value: 1  # Integer | min: 0 , max: 65535 | optional
+                    mask: 1  # Integer | min: 0 , max: 65535 | optional
+                  packet_length:  # Class | optional [shared class: structure documented on this page as packet_length(vxlan.overlay_extensions.route_control.ipv4_access_lists.entries.filtering_options)]
+                    operation: "eq"  # Choice | eq , gt , lt , neq , range | optional
+                    size: 20  # Integer | min: 20 , max: 9210 | optional
+                    from: 20  # Integer | min: 20 , max: 9210 | optional
+                    to: 20  # Integer | min: 20 , max: 9210 | optional
+                  time_range: "TIME_RANGE_1"  # String | optional
+                  precedence: 1  # Any | Integer[min: 0 , max: 7 ] or Choice[ critical , flash , flash-override , immediate , internet , network , priority , routine ] | optional
+                  load_share: false  # Boolean | optional
+                  fragments: false  # Boolean | optional
+              log: false  # Boolean | optional
+          statistics_per_entry: false  # Boolean | optional
+          fragments: "deny-all"  # Choice | deny-all , permit-all | optional
+          ignore_routable: false  # Boolean | optional
+          extension_header: "permit-all"  # Choice | permit-all , deny-all | optional

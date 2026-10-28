@@ -1,0 +1,20 @@
+# Network-as-Code template: Infra DSCP Translation Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/infra_dscp_translation_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    infra_dscp_translation_policy:  # Class | optional
+      admin_state: true  # Boolean | default: false | optional
+      control_plane: "CS7"  # Any | Choice[ CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | default: CS7 | optional
+      policy_plane: "CS4"  # Any | Choice[ CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | default: CS4 | optional
+      span: "CS1"  # Any | Choice[ CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | default: CS1 | optional
+      traceroute: "CS2"  # Any | Choice[ CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | default: CS2 | optional
+      level_1: "EF"  # Any | Choice[ CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | default: EF | optional
+      level_2: "CS3"  # Any | Choice[ CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | default: CS3 | optional
+      level_3: "CS0"  # Any | Choice[ CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | default: CS0 | optional
+      level_4: "AF11"  # Any | Choice[ CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | default: AF11 | optional
+      level_5: "AF21"  # Any | Choice[ CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | default: AF21 | optional
+      level_6: "AF31"  # Any | Choice[ CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 ] or Integer[min: 0 , max: 63 ] | default: AF31 | optional

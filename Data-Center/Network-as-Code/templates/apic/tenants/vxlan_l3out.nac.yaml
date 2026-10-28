@@ -1,0 +1,48 @@
+# Network-as-Code template: VXLAN L3out
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/vxlan_l3out/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      vxlan_l3outs:  # List | optional
+        - name: "vxlan-l3out"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          alias: "ALIAS_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          description: "vxlan l3out"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          border_gateway_set_policy: "BorderGatewaySet"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          node_profiles:  # List | optional
+            - name: "BGW-NP"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Border Gateway Node Profile"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              vxlan_custom_qos_policy: "VxlanCustomQos"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              nodes:  # List | optional
+                - node_id: 401  # Integer | min: 1 , max: 4000 | required
+                  pod_id: 1  # Integer | min: 1 , max: 255 | optional
+                  router_id: "10.1.1.1"  # IP | optional
+                  loopback: "1.1.1.1/32"  # IP | required
+              interface_profiles:  # List | optional
+                - name: "BWG-IP"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  description: "Border Gateway Interface Profile"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  bfd_policy: "BFD_POL"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  interfaces:  # List | optional
+                    - description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                      node_id: 401  # Integer | min: 1 , max: 4000 | optional
+                      pod_id: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+                      module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+                      port: 10  # Integer | min: 1 , max: 127 | optional
+                      channel: "CHANNEL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      ip: "172.16.3.1/24"  # IP | optional
+                      vlan: 1  # Integer | min: 1 , max: 4096 | optional
+                      mac: "00:22:BD:F8:19:FF"  # MAC | default: 00:22:BD:F8:19:FF | optional
+                      mtu: 9000  # Any | Choice[ inherit ] or Integer[min: 576 , max: 9216 ] | default: inherit | optional
+                      bgp_peers:  # List | optional
+                        - ip: "172.16.3.10"  # IP | required
+                          remote_as: 65123  # Integer | min: 0 , max: 4294967295 | required
+                          description: "peer1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                          password: "Cisco@123"  # String | optional
+                          bfd: true  # Boolean | default: false | optional
+                          admin_state: true  # Boolean | default: true | optional
+                          peer_prefix_policy: "PEER_POL"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                          as_propagate: "no-prepend"  # Choice | none , no-prepend , replace-as , dual-as | default: none | optional
+                          local_as: 123  # Integer | min: 0 , max: 4294967295 | optional

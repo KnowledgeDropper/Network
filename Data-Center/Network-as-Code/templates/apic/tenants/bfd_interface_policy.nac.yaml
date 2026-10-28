@@ -1,0 +1,19 @@
+# Network-as-Code template: BFD Interface Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/bfd_interface_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        bfd_interface_policies:  # List | optional
+          - name: "BFD1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "descr"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            subinterface_optimization: true  # Boolean | default: false | optional
+            detection_multiplier: 5  # Integer | min: 1 , max: 50 | default: 3 | optional
+            echo_admin_state: false  # Boolean | default: true | optional
+            echo_rx_interval: 100  # Integer | min: 50 , max: 999 | default: 50 | optional
+            min_rx_interval: 100  # Integer | min: 50 , max: 999 | default: 50 | optional
+            min_tx_interval: 100  # Integer | min: 50 , max: 999 | default: 50 | optional

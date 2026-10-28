@@ -1,0 +1,35 @@
+# Network-as-Code template: SAN Connectivity Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/san_connectivity/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          san_connectivity:  # List | optional
+            - name: "web-san"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "SAN connectivity for web servers"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              target_platform: "FIAttached"  # Choice | FIAttached , Standalone , UnifiedEdgeServer | default: FIAttached | optional
+              vhba_placement_mode: "custom"  # Choice | auto , custom | default: custom | optional
+              wwnn_pool: "web-wwnn"  # String | optional
+              vhbas:  # List | optional
+                - name: "vhba0"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  order: 2  # Integer | min: 0 , max: 255 | default: 0 | optional
+                  fabric: "A"  # Choice | A , B , None | default: A | optional
+                  slot: "MLOM"  # String | optional
+                  pci_link: 0  # Integer | min: 0 , max: 1 | optional
+                  uplink: 1  # Integer | min: 0 | optional
+                  auto_pci_link: false  # Boolean | optional
+                  auto_slot_id: false  # Boolean | optional
+                  persistent_lun_bindings: false  # Boolean | optional
+                  vhba_type: "fc-initiator"  # Choice | fc-initiator , fc-nvme-initiator , fc-nvme-target , fc-target | default: fc-initiator | optional
+                  wwpn_pool: "web-wwpn-a"  # String | optional
+                  fibre_channel_adapter_policy: "web-fc-adapter"  # String | optional
+                  fibre_channel_network_policy: "web-fc-network"  # String | optional
+                  fibre_channel_qos_policy: "web-fc-qos"  # String | optional

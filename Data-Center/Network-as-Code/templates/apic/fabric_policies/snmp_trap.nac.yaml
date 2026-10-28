@@ -1,0 +1,19 @@
+# Network-as-Code template: SNMP Trap
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/snmp_trap/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    monitoring:  # Class | optional
+      snmp_traps:  # List | optional
+        - name: "TRAP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "desc1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          destinations:  # List | optional
+            - hostname_ip: "2.2.2.2"  # Any | String[Regex: ^[a-zA-Z0-9:][a-zA-Z0-9.:-]{0,254}$ ] or IP | required
+              port: 1062  # Integer | min: 1 , max: 65535 | default: 162 | optional
+              version: "v3"  # Choice | v1 , v2c , v3 | default: v2c | optional
+              community: "testcommunity"  # String | min: 1 , max: 32 | required
+              security: "priv"  # Choice | noauth , auth , priv | default: priv | optional
+              mgmt_epg: "inb"  # Choice | inb , oob | default: inb | optional

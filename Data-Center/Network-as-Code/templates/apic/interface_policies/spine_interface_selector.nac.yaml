@@ -1,0 +1,20 @@
+# Network-as-Code template: Access Spine Interface Selector
+# Source: https://netascode.cisco.com/docs/data_models/apic/interface_policies/spine_interface_selector/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    spine_interface_selector_name: "ETH\\g<mod>-\\g<port>"  # String | min: 1 , max: 64 | default: ETH\g<mod>-\g<port> | optional
+  interface_policies:  # Class | optional
+    nodes:  # List | optional
+      - interfaces:  # List | optional
+          - port: 60  # Integer | min: 1 , max: 127 | required
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+            policy_group: "IPN"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            shutdown: false  # Boolean | default: false | optional
+        id: 1001  # Integer | min: 1 , max: 4000 | required
+  auto_generate_switch_pod_profiles: false  # Boolean | default: false | optional
+  auto_generate_access_spine_switch_interface_profiles: true  # Boolean | default: false | optional

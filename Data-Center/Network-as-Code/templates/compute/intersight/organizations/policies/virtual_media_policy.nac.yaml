@@ -1,0 +1,29 @@
+# Network-as-Code template: Virtual Media Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/virtual_media_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 1); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          virtual_media:  # List | optional
+            - name: "os-install-media"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Mount RHEL 9 ISO from NFS"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              enabled: true  # Boolean | default: true | optional
+              encryption: true  # Boolean | default: true | optional
+              low_power_usb: true  # Boolean | default: true | optional
+              mappings:  # List | optional
+                - volume_name: "rhel9-iso"  # String | required
+                  device_type: "cdd"  # Choice | cdd , hdd | default: cdd | optional
+                  mount_protocol: "nfs"  # Choice | nfs , cifs , http , https | default: nfs | optional
+                  file_location: "nfs://10.0.0.10/exports/iso/rhel-9.4-x86_64-dvd.iso"  # String | optional
+                  mount_options: "MOUNT_OPTIONS_1"  # String | optional
+                  username: "USERNAME_1"  # String | optional
+                  password: "PASSWORD_1"  # String | optional
+                  authentication_protocol: "none"  # Choice | none , ntlm , ntlmi , ntlmv2 , ntlmv2i , ntlmssp , ntlmsspi | default: none | optional

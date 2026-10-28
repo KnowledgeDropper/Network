@@ -1,0 +1,32 @@
+# Network-as-Code template: Node
+# Source: https://netascode.cisco.com/docs/data_models/hyperfabric/fabric/node/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+hyperfabric:
+  fabrics:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      nodes:  # List | optional
+        - name: "Leaf01"  # String | required
+          model: "HF6100-32D"  # Choice | HF6100-32D , HF6100-60L4D | required
+          roles: ["LEAF"]  # List | Choice[ LEAF , SPINE ] | required
+          description: "Leaf Switch 01"  # String | optional
+          serial_number: "SERIAL_NUMBER_1"  # String | optional
+          location: "sj01-1-101-AAA01"  # String | optional
+          labels: ["LABELS_1"]  # List | String | optional
+          annotations: {}  # Map | optional
+          management_port:  # Class | optional
+            name: "NAME_1"  # String | optional
+            description: "Example description"  # String | optional
+            cloud_urls: ["CLOUD_URLS_1"]  # List | String | optional
+            ipv4_address: "10.1.1.1"  # IP | optional
+            ipv4_gateway: "10.1.1.1"  # IP | optional
+            ipv6_address: "10.1.1.1"  # IP | optional
+            ipv6_gateway: "10.1.1.1"  # IP | optional
+            dns_addresses: ["10.1.1.1"]  # List | IP | optional
+            ntp_addresses: ["10.1.1.1"]  # List | IP | optional
+            no_proxy: ["NO_PROXY_1"]  # List | String | optional
+            proxy_address: "PROXY_ADDRESS_1"  # String | optional
+            proxy_username: "PROXY_USERNAME_1"  # String | optional
+            proxy_password: "PROXY_PASSWORD_1"  # String | optional

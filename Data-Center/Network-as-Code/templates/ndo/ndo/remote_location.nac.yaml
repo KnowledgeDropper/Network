@@ -1,0 +1,19 @@
+# Network-as-Code template: Remote Location
+# Source: https://netascode.cisco.com/docs/data_models/ndo/ndo/remote_location/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 1); example values used as placeholders where available.
+---
+ndo:
+  remote_locations:  # List | optional
+    - name: "APIC1"  # String | required
+      description: "APIC1 SCP"  # String | optional
+      hostname_ip: "10.10.10.10"  # String | required
+      port: 22  # Integer | min: 0 , max: 65535 | default: 22 | optional
+      protocol: "scp"  # Choice | scp , sftp | default: sftp | optional
+      path: "/"  # String | default: / | optional
+      authentication: "password"  # Choice | password , sshKey | default: password | optional
+      username: "admin"  # String | optional
+      password: "PASSWORD_1"  # Any | String or Null | optional
+      ssh_key: "-----BEGIN RSA PRIVATE KEY-----\nProc-Type: 4,ENCRYPTED\nDEK-Info: AES-128-CBC,234BAAD9A19386249918BB2C07874AD1\n\nCUqdVbGGnu9XRtHfdVzZ0SvLGaEgkDTvBk5kNnkkSHXjlJTdpjzccD7K8sWKfSR+\n ***[ OMITTED OUTPUT ]*** \nQvCyfRIP8jW8EDic5m7VXWEE9vVxyLhTtH0BOgZNTfzCYhdhHeLXKehS9qqhmoy2\n-----END RSA PRIVATE KEY-----\n"  # Any | String or Null | optional
+      passphrase: "passphrase"  # Any | String or Null | optional

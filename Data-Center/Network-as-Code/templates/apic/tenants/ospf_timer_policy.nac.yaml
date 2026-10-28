@@ -1,0 +1,33 @@
+# Network-as-Code template: OSPF Timer Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/ospf_timer_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        ospf_timer_policies:  # List | optional
+          - name: "OSPF_TIMER"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            reference_bandwidth: 40001  # Integer | min: 1 , max: 4000000 | default: 40000 | optional
+            distance: 111  # Integer | min: 1 , max: 255 | default: 110 | optional
+            max_ecmp: 9  # Integer | min: 1 , max: 64 | default: 8 | optional
+            spf_init_interval: 201  # Integer | min: 1 , max: 600000 | default: 200 | optional
+            spf_hold_interval: 1001  # Integer | min: 1 , max: 600000 | default: 1000 | optional
+            spf_max_interval: 5001  # Integer | min: 1 , max: 600000 | default: 5000 | optional
+            max_lsa_reset_interval: 10  # Integer | min: 1 , max: 1440 | default: 10 | optional
+            max_lsa_sleep_count: 5  # Integer | min: 1 , max: 4294967295 | default: 5 | optional
+            max_lsa_sleep_interval: 5  # Integer | min: 1 , max: 1440 | default: 5 | optional
+            lsa_arrival_interval: 1001  # Integer | min: 10 , max: 600000 | default: 1000 | optional
+            lsa_group_pacing_interval: 11  # Integer | min: 1 , max: 1800 | default: 10 | optional
+            lsa_hold_interval: 5001  # Integer | min: 50 , max: 30000 | default: 5000 | optional
+            lsa_start_interval: 1  # Integer | min: 0 , max: 5000 | default: 0 | optional
+            lsa_max_interval: 5002  # Integer | min: 50 , max: 30000 | default: 5000 | optional
+            max_lsa_num: 20001  # Integer | default: 20000 | optional
+            max_lsa_threshold: 76  # Integer | min: 1 , max: 100 | default: 75 | optional
+            max_lsa_action: "log"  # Choice | reject , log | default: reject | optional
+            graceful_restart: false  # Boolean | default: false | optional
+            router_id_lookup: true  # Boolean | default: false | optional
+            prefix_suppression: true  # Boolean | default: false | optional

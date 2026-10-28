@@ -1,0 +1,64 @@
+# Network-as-Code template: IP Prefix List
+# Source: https://netascode.cisco.com/docs/data_models/nxos/routing_policy/ip_prefix_list/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 6 (parsed 6); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        ip_prefix_lists:  # List | optional
+          - name: "PL-LOOPBACKS"  # String | required
+            description: "Match all fabric loopback /32 addresses"  # String | optional
+            entries:  # List | optional
+              - seq: 10  # Integer | required
+                action: "permit"  # Choice | permit , deny | optional
+                prefix: "10.1.100.0/24"  # IP | optional
+                mask: "10.1.1.1"  # IP | optional
+                ge: 32  # Integer | min: 0 , max: 32 | optional
+                le: 32  # Integer | min: 0 , max: 32 | optional
+                criteria: "inexact"  # Choice | exact , inexact | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        ip_prefix_lists:  # List | optional [shared class: structure documented on this page as ip_prefix_lists(nxos.devices.configuration)]
+          - name: "NAME_1"  # String | required
+            description: "Example description"  # String | optional
+            entries:  # List | optional [shared class: structure documented on this page as entries(nxos.devices.configuration.ip_prefix_lists)]
+              - seq: 1  # Integer | required
+                action: "permit"  # Choice | permit , deny | optional
+                prefix: "10.1.1.1"  # IP | optional
+                mask: "10.1.1.1"  # IP | optional
+                ge: 1  # Integer | min: 0 , max: 32 | optional
+                le: 1  # Integer | min: 0 , max: 32 | optional
+                criteria: "exact"  # Choice | exact , inexact | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      ip_prefix_lists:  # List | optional [shared class: structure documented on this page as ip_prefix_lists(nxos.devices.configuration)]
+        - name: "NAME_1"  # String | required
+          description: "Example description"  # String | optional
+          entries:  # List | optional [shared class: structure documented on this page as entries(nxos.devices.configuration.ip_prefix_lists)]
+            - seq: 1  # Integer | required
+              action: "permit"  # Choice | permit , deny | optional
+              prefix: "10.1.1.1"  # IP | optional
+              mask: "10.1.1.1"  # IP | optional
+              ge: 1  # Integer | min: 0 , max: 32 | optional
+              le: 1  # Integer | min: 0 , max: 32 | optional
+              criteria: "exact"  # Choice | exact , inexact | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        ip_prefix_lists:  # List | optional [shared class: structure documented on this page as ip_prefix_lists(nxos.devices.configuration)]
+          - name: "NAME_1"  # String | required
+            description: "Example description"  # String | optional
+            entries:  # List | optional [shared class: structure documented on this page as entries(nxos.devices.configuration.ip_prefix_lists)]
+              - seq: 1  # Integer | required
+                action: "permit"  # Choice | permit , deny | optional
+                prefix: "10.1.1.1"  # IP | optional
+                mask: "10.1.1.1"  # IP | optional
+                ge: 1  # Integer | min: 0 , max: 32 | optional
+                le: 1  # Integer | min: 0 , max: 32 | optional
+                criteria: "exact"  # Choice | exact , inexact | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

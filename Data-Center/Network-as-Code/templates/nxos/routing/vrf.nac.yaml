@@ -1,0 +1,112 @@
+# Network-as-Code template: VRF
+# Source: https://netascode.cisco.com/docs/data_models/nxos/routing/vrf/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 7 (parsed 7); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        vrfs:  # List | optional
+          - name: "BLUE"  # String | required
+            description: "Blue Tenant VRF"  # String | optional
+            vni: 11010  # Integer | min: 1 , max: 16777215 | optional
+            l3vni: false  # Boolean | optional
+            route_distinguisher: "65000:1010"  # String | optional
+            oui: "OUI_1"  # String | optional
+            vpn_id: "VPN_ID_1"  # String | optional
+            auto_discard: false  # Boolean | optional
+            icmp_errors_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+            icmp_errors_source_interface_id: "ICMP_ERRORS_SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+            address_families:  # List | optional
+              - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv6-unicast | required
+                route_target_both_auto: true  # Boolean | optional
+                route_target_both_auto_evpn: true  # Boolean | optional
+                route_target_imports: ["65000:11010"]  # List | String | optional
+                route_target_exports: ["65000:11010"]  # List | String | optional
+                route_target_imports_evpn: ["65000:11010"]  # List | String | optional
+                route_target_exports_evpn: ["65000:11010"]  # List | String | optional
+                import_map: "RM_IMPORT"  # String | optional
+                export_map: "RM_EXPORT"  # String | optional
+            security_enforce_tag: 1  # Integer | min: 0 , max: 65535 | optional
+            security_enforce_default: "deny"  # Choice | deny , permit | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        vrfs:  # List | optional [shared class: structure documented on this page as vrfs(nxos.devices.configuration)]
+          - name: "NAME_1"  # String | required
+            description: "Example description"  # String | optional
+            vni: 1  # Integer | min: 1 , max: 16777215 | optional
+            l3vni: false  # Boolean | optional
+            route_distinguisher: "ROUTE_DISTINGUISHER_1"  # String | optional
+            oui: "OUI_1"  # String | optional
+            vpn_id: "VPN_ID_1"  # String | optional
+            auto_discard: false  # Boolean | optional
+            icmp_errors_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+            icmp_errors_source_interface_id: "ICMP_ERRORS_SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+            address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.vrfs)]
+              - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv6-unicast | required
+                route_target_both_auto: false  # Boolean | optional
+                route_target_both_auto_evpn: false  # Boolean | optional
+                route_target_imports: ["ROUTE_TARGET_IMPORTS_1"]  # List | String | optional
+                route_target_exports: ["ROUTE_TARGET_EXPORTS_1"]  # List | String | optional
+                route_target_imports_evpn: ["ROUTE_TARGET_IMPORTS_EVPN_1"]  # List | String | optional
+                route_target_exports_evpn: ["ROUTE_TARGET_EXPORTS_EVPN_1"]  # List | String | optional
+                import_map: "IMPORT_MAP_1"  # String | optional
+                export_map: "EXPORT_MAP_1"  # String | optional
+            security_enforce_tag: 1  # Integer | min: 0 , max: 65535 | optional
+            security_enforce_default: "deny"  # Choice | deny , permit | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      vrfs:  # List | optional [shared class: structure documented on this page as vrfs(nxos.devices.configuration)]
+        - name: "NAME_1"  # String | required
+          description: "Example description"  # String | optional
+          vni: 1  # Integer | min: 1 , max: 16777215 | optional
+          l3vni: false  # Boolean | optional
+          route_distinguisher: "ROUTE_DISTINGUISHER_1"  # String | optional
+          oui: "OUI_1"  # String | optional
+          vpn_id: "VPN_ID_1"  # String | optional
+          auto_discard: false  # Boolean | optional
+          icmp_errors_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          icmp_errors_source_interface_id: "ICMP_ERRORS_SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+          address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.vrfs)]
+            - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv6-unicast | required
+              route_target_both_auto: false  # Boolean | optional
+              route_target_both_auto_evpn: false  # Boolean | optional
+              route_target_imports: ["ROUTE_TARGET_IMPORTS_1"]  # List | String | optional
+              route_target_exports: ["ROUTE_TARGET_EXPORTS_1"]  # List | String | optional
+              route_target_imports_evpn: ["ROUTE_TARGET_IMPORTS_EVPN_1"]  # List | String | optional
+              route_target_exports_evpn: ["ROUTE_TARGET_EXPORTS_EVPN_1"]  # List | String | optional
+              import_map: "IMPORT_MAP_1"  # String | optional
+              export_map: "EXPORT_MAP_1"  # String | optional
+          security_enforce_tag: 1  # Integer | min: 0 , max: 65535 | optional
+          security_enforce_default: "deny"  # Choice | deny , permit | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        vrfs:  # List | optional [shared class: structure documented on this page as vrfs(nxos.devices.configuration)]
+          - name: "NAME_1"  # String | required
+            description: "Example description"  # String | optional
+            vni: 1  # Integer | min: 1 , max: 16777215 | optional
+            l3vni: false  # Boolean | optional
+            route_distinguisher: "ROUTE_DISTINGUISHER_1"  # String | optional
+            oui: "OUI_1"  # String | optional
+            vpn_id: "VPN_ID_1"  # String | optional
+            auto_discard: false  # Boolean | optional
+            icmp_errors_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+            icmp_errors_source_interface_id: "ICMP_ERRORS_SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+            address_families:  # List | optional [shared class: structure documented on this page as address_families(nxos.devices.configuration.vrfs)]
+              - address_family: "ipv4-unicast"  # Choice | ipv4-unicast , ipv6-unicast | required
+                route_target_both_auto: false  # Boolean | optional
+                route_target_both_auto_evpn: false  # Boolean | optional
+                route_target_imports: ["ROUTE_TARGET_IMPORTS_1"]  # List | String | optional
+                route_target_exports: ["ROUTE_TARGET_EXPORTS_1"]  # List | String | optional
+                route_target_imports_evpn: ["ROUTE_TARGET_IMPORTS_EVPN_1"]  # List | String | optional
+                route_target_exports_evpn: ["ROUTE_TARGET_EXPORTS_EVPN_1"]  # List | String | optional
+                import_map: "IMPORT_MAP_1"  # String | optional
+                export_map: "EXPORT_MAP_1"  # String | optional
+            security_enforce_tag: 1  # Integer | min: 0 , max: 65535 | optional
+            security_enforce_default: "deny"  # Choice | deny , permit | optional

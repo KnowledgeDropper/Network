@@ -1,0 +1,14 @@
+# Network-as-Code template: Imported L4L7 Device
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/imported_l4l7_device/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      services:  # Class | optional
+        imported_l4l7_devices:  # List | optional
+          - name: "FW"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            tenant: "PBR_ServGraph"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional

@@ -1,0 +1,44 @@
+# Network-as-Code template: CDP
+# Source: https://netascode.cisco.com/docs/data_models/nxos/layer2/cdp/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        cdp:  # Class | optional
+          timer: 30  # Integer | min: 5 , max: 254 | optional
+          holdtime: 120  # Integer | min: 10 , max: 255 | optional
+          advertise: "v2"  # Choice | v1 , v2 | optional
+          format_device_id: "serial-number"  # Choice | none , mac , serial-number , system-name | optional
+          pnp_startup_vlan: 100  # Integer | min: 1 , max: 4094 | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        cdp:  # Class | optional [shared class: structure documented on this page as cdp(nxos.devices.configuration)]
+          timer: 5  # Integer | min: 5 , max: 254 | optional
+          holdtime: 10  # Integer | min: 10 , max: 255 | optional
+          advertise: "v1"  # Choice | v1 , v2 | optional
+          format_device_id: "none"  # Choice | none , mac , serial-number , system-name | optional
+          pnp_startup_vlan: 1  # Integer | min: 1 , max: 4094 | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      cdp:  # Class | optional [shared class: structure documented on this page as cdp(nxos.devices.configuration)]
+        timer: 5  # Integer | min: 5 , max: 254 | optional
+        holdtime: 10  # Integer | min: 10 , max: 255 | optional
+        advertise: "v1"  # Choice | v1 , v2 | optional
+        format_device_id: "none"  # Choice | none , mac , serial-number , system-name | optional
+        pnp_startup_vlan: 1  # Integer | min: 1 , max: 4094 | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        cdp:  # Class | optional [shared class: structure documented on this page as cdp(nxos.devices.configuration)]
+          timer: 5  # Integer | min: 5 , max: 254 | optional
+          holdtime: 10  # Integer | min: 10 , max: 255 | optional
+          advertise: "v1"  # Choice | v1 , v2 | optional
+          format_device_id: "none"  # Choice | none , mac , serial-number , system-name | optional
+          pnp_startup_vlan: 1  # Integer | min: 1 , max: 4094 | optional

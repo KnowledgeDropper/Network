@@ -1,0 +1,19 @@
+# Network-as-Code template: MST Switch Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/mst_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    switch_policies:  # Class | optional
+      mst_policies:  # List | optional
+        - name: "REGION1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          region: "region1"  # String | min: 0 , max: 32 | required
+          revision: 1  # Integer | min: 0 , max: 65535 | required
+          instances:  # List | optional
+            - name: "INST-1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              id: 1  # Integer | min: 1 , max: 4096 | required
+              vlan_ranges:  # List | optional
+                - from: 5  # Integer | min: 1 , max: 4096 | required
+                  to: 6  # Integer | min: 1 , max: 4096 | optional

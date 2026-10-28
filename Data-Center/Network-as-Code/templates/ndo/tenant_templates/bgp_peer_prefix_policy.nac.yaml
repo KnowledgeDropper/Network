@@ -1,0 +1,18 @@
+# Network-as-Code template: BGP Peer Prefix Policy
+# Source: https://netascode.cisco.com/docs/data_models/ndo/tenant_templates/bgp_peer_prefix_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+ndo:
+  tenant_templates:  # Class | optional
+    tenant_policies:  # List | optional
+      - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        tenant: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        bgp_peer_prefix_policies:  # List | optional
+          - name: "PPP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "BGP Peer Prefix Policy 1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            action: "restart"  # Choice | log , reject , restart , shutdown | default: reject | optional
+            max_prefixes: 5000  # Integer | min: 1 , max: 300000 | default: 20000 | optional
+            threshold: 75  # Integer | min: 1 , max: 100 | default: 75 | optional
+            restart_time: 300  # Integer | min: 1 , max: 65535 | default: 65534 | optional

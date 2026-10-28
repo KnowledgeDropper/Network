@@ -1,0 +1,12 @@
+# Network-as-Code template: L2 MTU
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/l2_mtu/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    l2_port_mtu: 9216  # Integer | min: 576 , max: 9216 | default: 9000 | optional
+    l2_mtu_policies:  # List | optional
+      - name: "L2_8950"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        port_mtu_size: 8950  # Integer | min: 0 , max: 9216 | default: 9000 | optional

@@ -1,0 +1,16 @@
+# Network-as-Code template: MAC Lists
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/overlay_extensions/route_control/mac_lists/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  overlay_extensions:  # Class | optional
+    route_control:  # Class | optional
+      mac_list:  # List | optional
+        - name: "NAME_1"  # String | Regex: ^[A-Za-z0-9-_]{1,63}$ | required
+          entries:  # List | required
+            - seq_number: 1  # Integer | min: 1 , max: 4294967294 | required
+              operation: "permit"  # Choice | permit , deny | required
+              mac: "00:11:22:33:44:55"  # Any | String[Regex: ^[a-f0-9]{1}\.[a-f0-9]{1}\.[a-f0-9]{1}$ ] or String[Regex: ^[a-f0-9]{4}\.[a-f0-9]{4}\.[a-f0-9]{4}$ ] or String[Regex: ^[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}$ ] or String[Regex: ^[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}$ ] | required
+              mac_mask: "00:11:22:33:44:55"  # Any | String[Regex: ^[a-f0-9]{1}\.[a-f0-9]{1}\.[a-f0-9]{1}$ ] or String[Regex: ^[a-f0-9]{4}\.[a-f0-9]{4}\.[a-f0-9]{4}$ ] or String[Regex: ^[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}$ ] or String[Regex: ^[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}$ ] | optional

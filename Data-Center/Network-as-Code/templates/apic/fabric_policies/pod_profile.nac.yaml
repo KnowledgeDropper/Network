@@ -1,0 +1,26 @@
+# Network-as-Code template: Fabric Pod Profile
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/pod_profile/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    pod_profile_name: "POD\\g<id>"  # String | min: 1 , max: 64 | default: POD\g<id> | optional
+    pod_profile_pod_selector_name: "POD\\g<id>"  # String | min: 1 , max: 64 | default: POD\g<id> | optional
+    pod_profiles:  # List | optional
+      - name: "PodProfile1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        selectors:  # List | optional
+          - name: "Selector1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            policy: "Policy1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            type: "range"  # Choice | all , range | default: range | optional
+            pod_blocks:  # List | optional
+              - name: "1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                from: 1  # Integer | min: 1 , max: 255 | required
+                to: 1  # Integer | min: 1 , max: 255 | optional
+  pod_policies:  # Class | optional
+    pods:  # List | optional
+      - id: 1  # Integer | min: 1 , max: 255 | required
+        policy: "POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+  auto_generate_switch_pod_profiles: false  # Boolean | default: false | optional
+  auto_generate_pod_profiles: false  # Boolean | default: false | optional

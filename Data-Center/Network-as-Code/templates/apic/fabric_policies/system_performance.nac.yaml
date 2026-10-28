@@ -1,0 +1,13 @@
+# Network-as-Code template: System Performance
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/system_performance/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    system_performance:  # Class | optional
+      admin_state: true  # Boolean | default: false | optional
+      response_threshold: 8500  # Integer | min: 40 , max: 85000 | default: 85000 | optional
+      top_slowest_requests: 5  # Integer | min: 1 , max: 10 | default: 5 | optional
+      calculation_window: 300  # Integer | min: 30 , max: 300 | default: 300 | optional

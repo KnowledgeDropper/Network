@@ -1,0 +1,2122 @@
+# Network-as-Code template: System
+# Source: https://netascode.cisco.com/docs/data_models/nxos/system/system/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 31 (parsed 31); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        system:  # Class | optional
+          hostname: "LEAF1"  # String | optional
+          mtu: 9216  # Integer | min: 576 , max: 9216 | optional
+          nv_overlay_vxlan_udp_port: 1024  # Integer | min: 1024 , max: 65535 | optional
+          nv_overlay_vxlan_udp_source_port_mode: "low"  # Choice | low , high , rfc | optional
+          nve_ipmc_index_size: 4096  # Integer | min: 0 , max: 7000 | optional
+          nve_overlay_vlans:  # Class | optional
+            ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+            ranges:  # List | optional
+              - from: 2  # Integer | min: 1 , max: 4094 | required
+                to: 10  # Integer | min: 1 , max: 4094 | required
+          nve_infra_vlans:  # List | optional
+            - vlans:  # Class | required
+                ids: [2]  # List | Integer[min: 1 , max: 4096 ] | optional
+                ranges:  # List | optional
+                  - from: 1  # Integer | min: 1 , max: 4096 | required
+                    to: 1  # Integer | min: 1 , max: 4096 | required
+              force: true  # Boolean | optional
+          interface_vlan_autostate: false  # Boolean | optional
+          ip_routing: true  # Boolean | optional
+          ip_access_list_match_local_traffic: true  # Boolean | optional
+          logging_level_ip: "warning"  # Choice | emergency , alert , critical , error , warning , notification , informational , debug | optional
+          ip_redirect_syslog: true  # Boolean | optional
+          ip_redirect_syslog_interval: 300  # Integer | min: 30 , max: 1800 | optional
+          ip_source_route: false  # Boolean | optional
+          hardware_ecmp_hash_offset_concatenation: true  # Boolean | optional
+          hardware_ecmp_hash_offset_value: 32  # Integer | min: 0 , max: 63 | optional
+          hardware_ecmp_hash_polynomial: "crc32hi"  # Choice | crc16 , crc32hi | optional
+          ipv6_routing: true  # Boolean | optional
+          ipv6_access_list_match_local_traffic: true  # Boolean | optional
+          ipv6_adjacency_stale_timer: 500  # Integer | min: 30 , max: 65535 | optional
+          ipv6_adjacency_stale_timer_icmp: true  # Boolean | optional
+          ipv6_redirect_syslog: true  # Boolean | optional
+          ipv6_redirect_syslog_interval: 120  # Integer | min: 30 , max: 1800 | optional
+          boot:  # Class | optional
+            auto_copy: true  # Boolean | optional
+            dhcp: 1  # Integer | min: 0 , max: 2147483647 | optional
+            exclude_configuration: false  # Boolean | optional
+            mode: "none"  # Choice | none , lxc | optional
+            order: "bootflash"  # Choice | bootflash , pxe , pxe2bootflash , bootflash2pxe | optional
+            poap: false  # Boolean | optional
+            image_verify: true  # Boolean | optional
+            nxos_sup_1: "NXOS_SUP_1_1"  # String | optional
+            nxos_sup_2: "NXOS_SUP_2_1"  # String | optional
+            aci: "ACI_1"  # String | optional
+            nxos_image_sup_1: "bootflash:nxos64-cs.10.4.3.F.bin"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            nxos_image_sup_2: "NXOS_IMAGE_SUP_2_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          interface_breakout_modules:  # List | optional
+            - id: 1  # Integer | min: 1 , max: 32 | required
+              ports:  # List | optional
+                - id: 49  # Integer | min: 1 , max: 108 | required
+                  map: "10g-4x"  # Choice | no-breakout , 10g-4x , 50g-2x , 25g-4x , 10g-2x , 100g-4x , 50g-4x , 200g-1x , 100g-2x , 200g-2x , 40g-1x , 400g-2x , 100g-8x , 800g-1x , 100g-2x-pam4 | optional
+          cfs_distribute: true  # Boolean | optional
+          cfs_eth_distribute: true  # Boolean | optional
+          cfs_ipv4_distribute: false  # Boolean | optional
+          cfs_ipv4_mcast_address: "10.1.1.1"  # IP | optional
+          cfs_ipv6_distribute: false  # Boolean | optional
+          cfs_ipv6_mcast_address: "10.1.1.1"  # IP | optional
+          cli_aliases:  # List | optional
+            - name: "wr"  # String | required
+              command: "copy running-config startup-config"  # String | required
+          copp_profile: "strict"  # Choice | strict , moderate , lenient , dense | optional
+          copp_rate_limit: false  # Boolean | optional
+          ethernet:  # Class | optional
+            default_switchport_shutdown: false  # Boolean | optional
+            service_unsupported_transceiver: true  # Boolean | optional
+            default_switchport: "layer2"  # Choice | layer2 , layer3 | optional
+            logging_event_port: "link-status-enable"  # Choice | link-status-default , link-status-enable , none , trunk-status-default , trunk-status-enable | optional
+            default_interface_shutdown: "down"  # Choice | down , down-exclude-fabric , up | optional
+            link_failure_laser_on: false  # Boolean | optional
+            storm_control_multicast: false  # Boolean | optional
+            dot1q_tag_native: true  # Boolean | optional
+            admin_link_down_syslog_level: 4  # Integer | min: 0 , max: 7 | optional
+            admin_link_up_syslog_level: 4  # Integer | min: 0 , max: 7 | optional
+            interface_syslog_info: "info-1"  # Choice | default , info-1 | optional
+          icam_monitor_interval: 1  # Integer | min: 1 , max: 24 | optional
+          icam_monitor_history: 168  # Integer | min: 168 , max: 1344 | optional
+          icam_monitor_scale: true  # Boolean | optional
+          icam_monitor_scale_threshold_critical: 90  # Integer | min: 1 , max: 100 | optional
+          icam_monitor_scale_threshold_info: 50  # Integer | min: 1 , max: 100 | optional
+          icam_monitor_scale_threshold_warning: 75  # Integer | min: 1 , max: 100 | optional
+          system: {}  # Class | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) (recursive, see above)
+          smart_licensing_transport: "cslu"  # Choice | callhome , cslu , off , smart | optional
+          smart_licensing_url_cslu: "https://cslu.example.com"  # String | optional
+          line_console_exec_timeout: 0  # Integer | min: 0 , max: 525600 | optional
+          line_vty_access_class_in: "VTY-ACL-IN"  # String | optional
+          line_vty_access_class_out: "VTY-ACL-OUT"  # String | optional
+          line_vty_exec_timeout: 30  # Integer | min: 0 , max: 525600 | optional
+          line_vty_session_limit: 10  # Integer | min: 1 , max: 64 | optional
+          vdcs:  # List | optional
+            - id: 2  # Integer | min: 0 , max: 65535 | required
+              resource_limits:  # Class | optional
+                port_channel_maximum: 256  # Integer | min: 0 , max: 766 | optional
+                port_channel_minimum: 0  # Integer | min: 0 , max: 766 | optional
+                vlan_maximum: 2048  # Integer | min: 16 , max: 4094 | optional
+                vlan_minimum: 16  # Integer | min: 16 , max: 4094 | optional
+                vrf_maximum: 512  # Integer | min: 2 , max: 4097 | optional
+                vrf_minimum: 2  # Integer | min: 2 , max: 4097 | optional
+                multicast_ipv4_route_memory_maximum: 3  # Integer | min: 3 , max: 150 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                multicast_ipv4_route_memory_minimum: 3  # Integer | min: 3 , max: 150 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                multicast_ipv6_route_memory_maximum: 3  # Integer | min: 3 , max: 20 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                multicast_ipv6_route_memory_minimum: 3  # Integer | min: 3 , max: 20 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                unicast_ipv4_route_memory_maximum: 384  # Integer | min: 1 , max: 768 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                unicast_ipv4_route_memory_minimum: 1  # Integer | min: 1 , max: 768 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                unicast_ipv6_route_memory_maximum: 1  # Integer | min: 1 , max: 512 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                unicast_ipv6_route_memory_minimum: 1  # Integer | min: 1 , max: 512 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          ttag_marker_interval: 120  # Integer | min: 1 , max: 25200 | optional
+          icam_monitor_intervals: 168  # Integer | min: 168 , max: 1344 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          icam_monitor_threshold_critical: 90  # Integer | min: 1 , max: 100 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          icam_monitor_threshold_info: 50  # Integer | min: 1 , max: 100 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          icam_monitor_threshold_warning: 75  # Integer | min: 1 , max: 100 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          platform:  # Class | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            hostname: "HOSTNAME_1"  # String | optional
+            mtu: 576  # Integer | min: 576 , max: 9216 | optional
+            nxapi:  # Class | optional
+              http_port: 1  # Integer | min: -1 , max: 65535 | optional
+              https_port: 1  # Integer | min: -1 , max: 65535 | optional
+              vrf: "VRF1"  # String | optional
+              idle_timeout: 1  # Integer | min: 1 , max: 1440 | optional
+              certificate_enable: false  # Boolean | optional
+              certificate_httpscrt: "CERTIFICATE_HTTPSCRT_1"  # String | optional
+              certificate_httpskey: "CERTIFICATE_HTTPSKEY_1"  # String | optional
+              certificate_httpskey_passphrase: "CERTIFICATE_HTTPSKEY_PASSPHRASE_1"  # String | optional
+              certificate_trustpoint: "CERTIFICATE_TRUSTPOINT_1"  # String | optional
+              ssl_protocols: "SSL_PROTOCOLS_1"  # String | optional
+              ssl_ciphers_weak: false  # Boolean | optional
+              client_cert_auth: "off"  # Choice | off , optional , strict , two-step | optional
+              sudi: false  # Boolean | optional
+            nv_overlay_vxlan_udp_port: 1024  # Integer | min: 1024 , max: 65535 | optional
+            nv_overlay_vxlan_udp_source_port_mode: "low"  # Choice | low , high , rfc | optional
+            nve_ipmc_index_size: 1  # Integer | min: 0 , max: 7000 | optional
+            nve_overlay_vlans:  # Class | optional [shared class: structure assumed from nve_overlay_vlans(nxos.devices.configuration.system)]
+              ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+              ranges:  # List | optional [shared class: structure assumed from ranges(nxos.devices.configuration.system.nve_overlay_vlans)]
+                - from: 1  # Integer | min: 1 , max: 4094 | required
+                  to: 1  # Integer | min: 1 , max: 4094 | required
+            nve_infra_vlans:  # List | optional [shared class: structure assumed from nve_infra_vlans(nxos.devices.configuration.system)]
+              - vlans:  # Class | required [shared class: structure assumed from vlans(nxos.devices.configuration.system.nve_infra_vlans)]
+                  ids: [1]  # List | Integer[min: 1 , max: 4096 ] | optional
+                  ranges:  # List | optional [shared class: structure assumed from ranges(nxos.devices.configuration.system.nve_overlay_vlans)]
+                    - from: 1  # Integer | min: 1 , max: 4094 | required
+                      to: 1  # Integer | min: 1 , max: 4094 | required
+                force: false  # Boolean | optional
+            interface_vlan_autostate: false  # Boolean | optional
+            hsrp_bfd: false  # Boolean | optional
+            hsrp_timers_extended_hold: 10  # Integer | min: 10 , max: 255 | optional
+            hypershield:  # Class | optional
+              source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+              source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+              https_proxy: "HTTPS_PROXY_1"  # String | optional
+              https_proxy_port: 1  # Integer | min: 1 , max: 65535 | optional
+              firewall_in_service: false  # Boolean | optional
+              firewall_vrfs:  # List | optional
+                - name: "NAME_1"  # String | required
+            ip_routing: false  # Boolean | optional
+            ip_access_list_match_local_traffic: false  # Boolean | optional
+            logging_level_ip: "emergency"  # Choice | emergency , alert , critical , error , warning , notification , informational , debug | optional
+            ip_redirect_syslog: false  # Boolean | optional
+            ip_redirect_syslog_interval: 30  # Integer | min: 30 , max: 1800 | optional
+            ip_source_route: false  # Boolean | optional
+            hardware_access_list_tcam_region:  # Class | optional
+              arp_acl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              copp_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_hw_telemetry_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_ifacl_all_per_port_stats: false  # Boolean | optional
+              e_ifacl_all_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_ipv6_racl_per_port_stats: false  # Boolean | optional
+              e_racl_per_port_stats: false  # Boolean | optional
+              egr_copp_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_flow_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_l2_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_l3_vlan_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_ipv6_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_ipv6_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_mac_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_qos_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egress_vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              fcoe_egress_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              fcoe_ingress_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              fhs_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              hw_telemetry_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ifacl_all_per_port_stats: false  # Boolean | optional
+              ifacl_all_profile: 1  # Integer | min: 0 , max: 15 | optional
+              ifacl_all_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ifacl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ifacl_per_port_stats: false  # Boolean | optional
+              ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ifacl_udf_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_dacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_flow_redirect_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_flow_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_ifacl_wide_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_ipv6_ifacl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_l2_l3_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_l2_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_l2_span_filter_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_l3_span_filter_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_pacl_sb_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_rbacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_redirect_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_storm_control_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_vacl_nh_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_vlan_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipsg_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_ifacl_per_port_stats: false  # Boolean | optional
+              ipv6_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_l3_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_pbr_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_racl_per_port_stats: false  # Boolean | optional
+              ipv6_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_span_l2_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_span_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_vqos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              l3qos_intra_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mac_ifacl_per_port_stats: false  # Boolean | optional
+              mac_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mac_l3_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mac_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mac_vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mac_vqos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mcast_bidir_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mcast_nat_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mcast_nbm_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mpls_double_wide: false  # Boolean | optional
+              mpls_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mvpn_size: 1  # Integer | min: 0 , max: 10 | optional
+              arp_ether_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              nat_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              openflow_double_wide: false  # Boolean | optional
+              openflow_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              openflow_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              pbr_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              qos_intra_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              racl_all_per_port_stats: false  # Boolean | optional
+              racl_all_profile: 1  # Integer | min: 0 , max: 15 | optional
+              racl_all_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              racl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              racl_per_port_stats: false  # Boolean | optional
+              racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              racl_udf_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              redirect_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              span_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              svi_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              tcp_nat_size: 1  # Integer | min: 0 , max: 100 | optional
+              vacl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              vpc_convergence_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              vqos_intra_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              vqos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              vxlan_p2p_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            hardware_ecmp_hash_offset_concatenation: false  # Boolean | optional
+            hardware_ecmp_hash_offset_value: 1  # Integer | min: 0 , max: 63 | optional
+            hardware_ecmp_hash_polynomial: "crc16"  # Choice | crc16 , crc32hi | optional
+            ipv6_routing: false  # Boolean | optional
+            ipv6_access_list_match_local_traffic: false  # Boolean | optional
+            ipv6_adjacency_stale_timer: 30  # Integer | min: 30 , max: 65535 | optional
+            ipv6_adjacency_stale_timer_icmp: false  # Boolean | optional
+            ipv6_redirect_syslog: false  # Boolean | optional
+            ipv6_redirect_syslog_interval: 30  # Integer | min: 30 , max: 1800 | optional
+            boot:  # Class | optional [shared class: structure assumed from boot(nxos.devices.configuration.system)]
+              auto_copy: false  # Boolean | optional
+              dhcp: 1  # Integer | min: 0 , max: 2147483647 | optional
+              exclude_configuration: false  # Boolean | optional
+              mode: "none"  # Choice | none , lxc | optional
+              order: "bootflash"  # Choice | bootflash , pxe , pxe2bootflash , bootflash2pxe | optional
+              poap: false  # Boolean | optional
+              image_verify: false  # Boolean | optional
+              nxos_sup_1: "NXOS_SUP_1_1"  # String | optional
+              nxos_sup_2: "NXOS_SUP_2_1"  # String | optional
+              aci: "ACI_1"  # String | optional
+              nxos_image_sup_1: "NXOS_IMAGE_SUP_1_1"  # String | optional
+              nxos_image_sup_2: "NXOS_IMAGE_SUP_2_1"  # String | optional
+            interface_breakout_modules:  # List | optional [shared class: structure assumed from interface_breakout_modules(nxos.devices.configuration.system)]
+              - id: 1  # Integer | min: 1 , max: 32 | required
+                ports:  # List | optional [shared class: structure assumed from ports(nxos.devices.configuration.system.interface_breakout_modules)]
+                  - id: 1  # Integer | min: 1 , max: 108 | required
+                    map: "no-breakout"  # Choice | no-breakout , 10g-4x , 50g-2x , 25g-4x , 10g-2x , 100g-4x , 50g-4x , 200g-1x , 100g-2x , 200g-2x , 40g-1x , 400g-2x , 100g-8x , 800g-1x , 100g-2x-pam4 | optional
+            cfs_distribute: false  # Boolean | optional
+            cfs_eth_distribute: false  # Boolean | optional
+            cfs_ipv4_distribute: false  # Boolean | optional
+            cfs_ipv4_mcast_address: "10.1.1.1"  # IP | optional
+            cfs_ipv6_distribute: false  # Boolean | optional
+            cfs_ipv6_mcast_address: "10.1.1.1"  # IP | optional
+            cli_aliases:  # List | optional [shared class: structure assumed from cli_aliases(nxos.devices.configuration.system)]
+              - name: "NAME_1"  # String | required
+                command: "COMMAND_1"  # String | required
+            copp_profile: "strict"  # Choice | strict , moderate , lenient , dense | optional
+            copp_rate_limit: false  # Boolean | optional
+            ethernet:  # Class | optional [shared class: structure assumed from ethernet(nxos.devices.configuration.system)]
+              default_switchport_shutdown: false  # Boolean | optional
+              service_unsupported_transceiver: false  # Boolean | optional
+              default_switchport: "layer2"  # Choice | layer2 , layer3 | optional
+              logging_event_port: "link-status-default"  # Choice | link-status-default , link-status-enable , none , trunk-status-default , trunk-status-enable | optional
+              default_interface_shutdown: "down"  # Choice | down , down-exclude-fabric , up | optional
+              link_failure_laser_on: false  # Boolean | optional
+              storm_control_multicast: false  # Boolean | optional
+              dot1q_tag_native: false  # Boolean | optional
+              admin_link_down_syslog_level: 1  # Integer | min: 0 , max: 7 | optional
+              admin_link_up_syslog_level: 1  # Integer | min: 0 , max: 7 | optional
+              interface_syslog_info: "default"  # Choice | default , info-1 | optional
+            erspan_origin_ip_address: "10.1.1.1"  # IP | optional
+            erspan_origin_ipv6_address: "10.1.1.1"  # IP | optional
+            clock:  # Class | optional
+              format: "24hours"  # Choice | 24hours , 12hours | optional
+              format_show_timezone_debug: false  # Boolean | optional
+              format_show_timezone_syslog: false  # Boolean | optional
+              protocol: "unspecified"  # Choice | unspecified , ptp , ntp , none , gnss | optional
+              timezone_name: "TIMEZONE_NAME_1"  # String | optional
+              timezone_hours: 1  # Integer | min: -12 , max: 14 | optional
+              timezone_minutes: 1  # Integer | min: 0 , max: 59 | optional
+              summer_time:  # Class | optional
+                name: "NAME_1"  # String | required
+                offset_minutes: 1  # Integer | min: 1 , max: 1440 | optional
+                start_week: 1  # Integer | min: 1 , max: 5 | optional
+                start_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+                start_month: "Jan"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+                start_time: "START_TIME_1"  # String | optional
+                end_week: 1  # Integer | min: 1 , max: 5 | optional
+                end_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+                end_month: "Jan"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+                end_time: "END_TIME_1"  # String | optional
+            icam_monitor_interval: 1  # Integer | min: 1 , max: 24 | optional
+            icam_monitor_history: 168  # Integer | min: 168 , max: 1344 | optional
+            icam_monitor_scale: false  # Boolean | optional
+            icam_monitor_scale_threshold_critical: 1  # Integer | min: 1 , max: 100 | optional
+            icam_monitor_scale_threshold_info: 1  # Integer | min: 1 , max: 100 | optional
+            icam_monitor_scale_threshold_warning: 1  # Integer | min: 1 , max: 100 | optional
+            hardware:  # Class | optional
+              acl_redirect_share_disable: false  # Boolean | optional
+              counter_feature_bfd: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_bfd_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_ecn: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_ecn_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_egr_acl: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_egr_acl_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_ingr_acl: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_ingr_acl_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_l2vni: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_l2vni_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_l3vni: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_l3vni_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_si: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_si_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_svi: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_svi_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_tunnel: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_tunnel_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_vlan: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_vlan_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_voq: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_voq_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              dme_load_interval: 1  # Integer | min: 0 , max: 4294967295 | optional
+              egr_l2_qos_ifacl_label_size: false  # Boolean | optional
+              gpe_5_timer_enable: false  # Boolean | optional
+              ing_ifacl_label_size: false  # Boolean | optional
+              vrf_nat_label_width: 1  # Integer | min: 0 , max: 6 | optional
+              mpls_qos_pipe_mode: false  # Boolean | optional
+              multicast_nlb_port_channel: false  # Boolean | optional
+              multicast_priority: 1  # Integer | min: 0 , max: 15 | optional
+              multicast_stats_disable: false  # Boolean | optional
+              pbr_ecmp_paths: 1  # Integer | min: 1 , max: 64 | optional
+              pbr_next_hop_fast_convergence: false  # Boolean | optional
+              pbr_match_default_route: false  # Boolean | optional
+              access_list_tcam_per_entry_stats_template: "l3qos"  # Choice | l3qos , racl , span-acl , pbr | optional
+              storm_control_priority: "default"  # Choice | default , drop-l3 , drop-l2 , drop-all | optional
+              sub_interface_flex_stats: "disable"  # Choice | disable , l3 , l2 | optional
+              access_list_update_atomic: false  # Boolean | optional
+              access_list_update_atomic_strict: false  # Boolean | optional
+              access_list_update_default_result: false  # Boolean | optional
+              vrf_aware_nat_enable: false  # Boolean | optional
+            hardware_profile:  # Class | optional
+              access_list_match_inner_header: false  # Boolean | optional
+              acl_tap_aggregation: false  # Boolean | optional
+              disable_parse_error: false  # Boolean | optional
+              flow_redirect_forward_pdu: false  # Boolean | optional
+              front_portmode: "sfp-plus"  # Choice | sfp-plus , qsfp | optional
+              forwarding_mode: "FORWARDING_MODE_1"  # String | optional
+              global_tx_span: false  # Boolean | optional
+              high_multicast_priority: false  # Boolean | optional
+              hardware_lou_resource_threshold: 1  # Integer | min: 1 , max: 50 | optional
+              ingress_bd_ifacl_label_optimization: false  # Boolean | optional
+              ingress_racl_size: false  # Boolean | optional
+              ingress_replication_round_robin: false  # Boolean | optional
+              ip_statistics: false  # Boolean | optional
+              ipv6_alpm_carve_value: 1  # Integer | min: 0 , max: 4096 | optional
+              ipv6_lpm_max_entries: 1  # Integer | min: 0 , max: 6144 | optional
+              lpm_max_limit: 1  # Integer | min: 0 , max: 4096 | optional
+              multicast_dcs_check: false  # Boolean | optional
+              multicast_flex_stats: false  # Boolean | optional
+              multicast_lpm_max_entries: 1  # Integer | min: 0 , max: 4096 | optional
+              multicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+              multicast_nlb: false  # Boolean | optional
+              multicast_racl_bridge: false  # Boolean | optional
+              multicast_rpf_check_optimization: false  # Boolean | optional
+              multicast_service_reflect_port: 1  # Integer | min: 0 , max: 48 | optional
+              multicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+              mld_snooping: false  # Boolean | optional
+              mpls_adjacency_stats_mode: "packets"  # Choice | packets , bytes | optional
+              mpls_ecmp: false  # Boolean | optional
+              mrouting_disable_l2_update: false  # Boolean | optional
+              mrouting_disable_second_route_update: false  # Boolean | optional
+              mrouting_performance_mode: false  # Boolean | optional
+              pbr_skip_self_ip: false  # Boolean | optional
+              pic_core: false  # Boolean | optional
+              portmode_tuple: false  # Boolean | optional
+              pstat: false  # Boolean | optional
+              qos_min_buffer: "all"  # Choice | all , none , default | optional
+              service_template_name: "SERVICE_TEMPLATE_NAME_1"  # String | optional
+              svi_and_si_flex_stats_enable: false  # Boolean | optional
+              svi_flex_stats: false  # Boolean | optional
+              tcam_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+              unicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+              unicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+              unicast_trace: false  # Boolean | optional
+              unknown_unicast_flood: false  # Boolean | optional
+              urpf: false  # Boolean | optional
+              wrr_unicast_bandwidth: 1  # Integer | min: 0 , max: 100 | optional
+            port_channel:  # Class | optional
+              fast_convergence: false  # Boolean | optional
+              load_balance: "dlb"  # Choice | dlb , rtag7 , rtag7-murmur , rtag7-local-crc , dynamic-pin | optional
+              load_balance2_resilient: false  # Boolean | optional
+              load_balance_mpls_label_ip: false  # Boolean | optional
+              load_balance_mpls_label_only: false  # Boolean | optional
+              scale_fanout: false  # Boolean | optional
+            switch_mode: "default"  # Choice | default , n3k , n9k | optional
+            fabric_mode: "full-rate"  # Choice | full-rate , default | optional
+            routing: "non-hierarchical-routing"  # Choice | non-hierarchical-routing , non-hierarchical-routing-max-l3-mode , max-mode-host , max-mode-tor-l3 , mode-hierarchical-64b-alpm , non-hierarchical-max-mode-l3-nh-64b-alpm-nh , hierarchical-def-max-mode-l3-64b-alpm , max-mode-tor-l2 , max-mode-tor-l2-l3 , template-overlay-host-scale , template-lpm-heavy , template-lpm-scale-v6-64 , template-dual-stack-host-scale , template-service-provider , template-multicast-heavy , template-vxlan-scale , template-mpls-heavy , template-internet-peering , template-multicast-ext-heavy , template-l3-heavy , template-dual-stack-mcast , template-l2-heavy , template-l2-scale , template-security-groups | optional
+            ssh:  # Class | optional
+              ciphers_all: false  # Boolean | optional
+              ciphers_weak: false  # Boolean | optional
+              kexalgos_all: false  # Boolean | optional
+              keytypes_all: false  # Boolean | optional
+              login_attempts: 1  # Integer | min: 1 , max: 10 | optional
+              login_gracetime: 1  # Integer | min: 0 , max: 3600 | optional
+              macs_all: false  # Boolean | optional
+              port: 22  # Integer | min: 22 , max: 65535 | optional
+              keys:  # List | optional
+                - type: "rsa"  # Choice | rsa , dsa , ecdsa | required
+                  key_length: 1  # Integer | min: 0 , max: 4096 | optional
+            smart_licensing_transport: "callhome"  # Choice | callhome , cslu , off , smart | optional
+            smart_licensing_url_cslu: "SMART_LICENSING_URL_CSLU_1"  # String | optional
+            line_console_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional
+            line_vty_access_class_in: "LINE_VTY_ACCESS_CLASS_IN_1"  # String | optional
+            line_vty_access_class_out: "LINE_VTY_ACCESS_CLASS_OUT_1"  # String | optional
+            line_vty_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional
+            line_vty_session_limit: 1  # Integer | min: 1 , max: 64 | optional
+            vdcs:  # List | optional [shared class: structure assumed from vdcs(nxos.devices.configuration.system)]
+              - id: 1  # Integer | min: 0 , max: 65535 | required
+                resource_limits:  # Class | optional [shared class: structure assumed from resource_limits(nxos.devices.configuration.system.vdcs)]
+                  port_channel_maximum: 1  # Integer | min: 0 , max: 766 | optional
+                  port_channel_minimum: 1  # Integer | min: 0 , max: 766 | optional
+                  vlan_maximum: 16  # Integer | min: 16 , max: 4094 | optional
+                  vlan_minimum: 16  # Integer | min: 16 , max: 4094 | optional
+                  vrf_maximum: 2  # Integer | min: 2 , max: 4097 | optional
+                  vrf_minimum: 2  # Integer | min: 2 , max: 4097 | optional
+                  multicast_ipv4_route_memory_maximum: 3  # Integer | min: 3 , max: 150 | optional
+                  multicast_ipv4_route_memory_minimum: 3  # Integer | min: 3 , max: 150 | optional
+                  multicast_ipv6_route_memory_maximum: 3  # Integer | min: 3 , max: 20 | optional
+                  multicast_ipv6_route_memory_minimum: 3  # Integer | min: 3 , max: 20 | optional
+                  unicast_ipv4_route_memory_maximum: 1  # Integer | min: 1 , max: 768 | optional
+                  unicast_ipv4_route_memory_minimum: 1  # Integer | min: 1 , max: 768 | optional
+                  unicast_ipv6_route_memory_maximum: 1  # Integer | min: 1 , max: 512 | optional
+                  unicast_ipv6_route_memory_minimum: 1  # Integer | min: 1 , max: 512 | optional
+            ttag_marker_interval: 1  # Integer | min: 1 , max: 25200 | optional
+            access_list_match_inner_header: false  # Boolean | optional
+            acl_tap_aggregation: false  # Boolean | optional
+            disable_parse_error: false  # Boolean | optional
+            global_tx_span: false  # Boolean | optional
+            high_multicast_priority: false  # Boolean | optional
+            hardware_lou_resource_threshold: 1  # Integer | min: 1 , max: 50 | optional
+            ingress_bd_ifacl_label_optimization: false  # Boolean | optional
+            ingress_racl_size: false  # Boolean | optional
+            ingress_replication_round_robin: true  # Boolean | optional
+            ip_statistics: false  # Boolean | optional
+            ipv6_alpm_carve_value: 1  # Integer | min: 0 , max: 4096 | optional
+            ipv6_lpm_max_entries: 1  # Integer | min: 0 , max: 6144 | optional
+            lpm_max_limit: 1  # Integer | min: 0 , max: 4096 | optional
+            multicast_dcs_check: false  # Boolean | optional
+            multicast_flex_stats: false  # Boolean | optional
+            multicast_lpm_max_entries: 1  # Integer | min: 0 , max: 4096 | optional
+            multicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+            multicast_nlb: false  # Boolean | optional
+            multicast_racl_bridge: false  # Boolean | optional
+            multicast_rpf_check_optimization: true  # Boolean | optional
+            multicast_service_reflect_port: 1  # Integer | min: 0 , max: 48 | optional
+            multicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+            mld_snooping: false  # Boolean | optional
+            mpls_adjacency_stats_mode: "PACKETS"  # Choice | PACKETS , BYTES | optional
+            mpls_ecmp: false  # Boolean | optional
+            mrouting_disable_l2_update: false  # Boolean | optional
+            mrouting_disable_second_route_update: false  # Boolean | optional
+            mrouting_performance_mode: false  # Boolean | optional
+            openflow_forward_pdu: false  # Boolean | optional
+            pbr_skip_self_ip: false  # Boolean | optional
+            pic_core: false  # Boolean | optional
+            port_channel_fast_convergence: false  # Boolean | optional
+            port_channel_load_balance: "rtag7"  # Choice | dlb , rtag7 , rtag7-murmur , rtag7-local-crc , dynamic-pin | optional
+            port_channel_load_balance_resilient: true  # Boolean | optional
+            port_channel_mpls_load_balance_label_ip: false  # Boolean | optional
+            port_channel_mpls_load_balance_label_only: false  # Boolean | optional
+            port_channel_scale_fanout: false  # Boolean | optional
+            profile_front_portmode: "sfp-plus"  # Choice | sfp-plus , qsfp | optional
+            profile_mode: "PROFILE_MODE_1"  # String | optional
+            profile_tuple: false  # Boolean | optional
+            pstat: false  # Boolean | optional
+            qos_min_buffer: "all"  # Choice | all , none , default | optional
+            routing_mode: "ROUTING_MODE_1"  # String | optional
+            service_template_name: "SERVICE_TEMPLATE_NAME_1"  # String | optional
+            svi_and_si_flex_stats: false  # Boolean | optional
+            svi_flex_stats: false  # Boolean | optional
+            switching_fabric_speed: "default"  # Choice | default , fabric-speed-40g | optional
+            switching_mode: "store-forward"  # Choice | store-forward , cut-through | optional
+            system_fabric_mode: "full-rate"  # Choice | full-rate , default | optional
+            tcam_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+            unicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+            unicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+            unicast_trace: false  # Boolean | optional
+            unknown_unicast_flood: false  # Boolean | optional
+            urpf: true  # Boolean | optional
+            wrr_unicast_bandwidth: 1  # Integer | min: 0 , max: 100 | optional
+          terminal_console_exec_timeout: 0  # Integer | min: 0 , max: 525600 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          hsrp_bfd: false  # Boolean | optional
+          hsrp_timers_extended_hold: 10  # Integer | min: 10 , max: 255 | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+          hostname: "HOSTNAME_1"  # String | optional
+          mtu: 576  # Integer | min: 576 , max: 9216 | optional
+          nv_overlay_vxlan_udp_port: 1024  # Integer | min: 1024 , max: 65535 | optional
+          nv_overlay_vxlan_udp_source_port_mode: "low"  # Choice | low , high , rfc | optional
+          nve_ipmc_index_size: 1  # Integer | min: 0 , max: 7000 | optional
+          nve_overlay_vlans:  # Class | optional [shared class: structure documented on this page as nve_overlay_vlans(nxos.devices.configuration.system)]
+            ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+            ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.system.nve_overlay_vlans)]
+              - from: 1  # Integer | min: 1 , max: 4094 | required
+                to: 1  # Integer | min: 1 , max: 4094 | required
+          nve_infra_vlans:  # List | optional [shared class: structure documented on this page as nve_infra_vlans(nxos.devices.configuration.system)]
+            - vlans:  # Class | required [shared class: structure documented on this page as vlans(nxos.devices.configuration.system.nve_infra_vlans)]
+                ids: [1]  # List | Integer[min: 1 , max: 4096 ] | optional
+                ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.system.nve_overlay_vlans)]
+                  - from: 1  # Integer | min: 1 , max: 4094 | required
+                    to: 1  # Integer | min: 1 , max: 4094 | required
+              force: false  # Boolean | optional
+          interface_vlan_autostate: false  # Boolean | optional
+          ip_routing: false  # Boolean | optional
+          ip_access_list_match_local_traffic: false  # Boolean | optional
+          logging_level_ip: "emergency"  # Choice | emergency , alert , critical , error , warning , notification , informational , debug | optional
+          ip_redirect_syslog: false  # Boolean | optional
+          ip_redirect_syslog_interval: 30  # Integer | min: 30 , max: 1800 | optional
+          ip_source_route: false  # Boolean | optional
+          hardware_ecmp_hash_offset_concatenation: false  # Boolean | optional
+          hardware_ecmp_hash_offset_value: 1  # Integer | min: 0 , max: 63 | optional
+          hardware_ecmp_hash_polynomial: "crc16"  # Choice | crc16 , crc32hi | optional
+          ipv6_routing: false  # Boolean | optional
+          ipv6_access_list_match_local_traffic: false  # Boolean | optional
+          ipv6_adjacency_stale_timer: 30  # Integer | min: 30 , max: 65535 | optional
+          ipv6_adjacency_stale_timer_icmp: false  # Boolean | optional
+          ipv6_redirect_syslog: false  # Boolean | optional
+          ipv6_redirect_syslog_interval: 30  # Integer | min: 30 , max: 1800 | optional
+          boot:  # Class | optional [shared class: structure documented on this page as boot(nxos.devices.configuration.system)]
+            auto_copy: false  # Boolean | optional
+            dhcp: 1  # Integer | min: 0 , max: 2147483647 | optional
+            exclude_configuration: false  # Boolean | optional
+            mode: "none"  # Choice | none , lxc | optional
+            order: "bootflash"  # Choice | bootflash , pxe , pxe2bootflash , bootflash2pxe | optional
+            poap: false  # Boolean | optional
+            image_verify: false  # Boolean | optional
+            nxos_sup_1: "NXOS_SUP_1_1"  # String | optional
+            nxos_sup_2: "NXOS_SUP_2_1"  # String | optional
+            aci: "ACI_1"  # String | optional
+            nxos_image_sup_1: "NXOS_IMAGE_SUP_1_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            nxos_image_sup_2: "NXOS_IMAGE_SUP_2_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          interface_breakout_modules:  # List | optional [shared class: structure documented on this page as interface_breakout_modules(nxos.devices.configuration.system)]
+            - id: 1  # Integer | min: 1 , max: 32 | required
+              ports:  # List | optional [shared class: structure documented on this page as ports(nxos.devices.configuration.system.interface_breakout_modules)]
+                - id: 1  # Integer | min: 1 , max: 108 | required
+                  map: "no-breakout"  # Choice | no-breakout , 10g-4x , 50g-2x , 25g-4x , 10g-2x , 100g-4x , 50g-4x , 200g-1x , 100g-2x , 200g-2x , 40g-1x , 400g-2x , 100g-8x , 800g-1x , 100g-2x-pam4 | optional
+          cfs_distribute: false  # Boolean | optional
+          cfs_eth_distribute: false  # Boolean | optional
+          cfs_ipv4_distribute: false  # Boolean | optional
+          cfs_ipv4_mcast_address: "10.1.1.1"  # IP | optional
+          cfs_ipv6_distribute: false  # Boolean | optional
+          cfs_ipv6_mcast_address: "10.1.1.1"  # IP | optional
+          cli_aliases:  # List | optional [shared class: structure documented on this page as cli_aliases(nxos.devices.configuration.system)]
+            - name: "NAME_1"  # String | required
+              command: "COMMAND_1"  # String | required
+          copp_profile: "strict"  # Choice | strict , moderate , lenient , dense | optional
+          copp_rate_limit: false  # Boolean | optional
+          ethernet:  # Class | optional [shared class: structure documented on this page as ethernet(nxos.devices.configuration.system)]
+            default_switchport_shutdown: false  # Boolean | optional
+            service_unsupported_transceiver: false  # Boolean | optional
+            default_switchport: "layer2"  # Choice | layer2 , layer3 | optional
+            logging_event_port: "link-status-default"  # Choice | link-status-default , link-status-enable , none , trunk-status-default , trunk-status-enable | optional
+            default_interface_shutdown: "down"  # Choice | down , down-exclude-fabric , up | optional
+            link_failure_laser_on: false  # Boolean | optional
+            storm_control_multicast: false  # Boolean | optional
+            dot1q_tag_native: false  # Boolean | optional
+            admin_link_down_syslog_level: 1  # Integer | min: 0 , max: 7 | optional
+            admin_link_up_syslog_level: 1  # Integer | min: 0 , max: 7 | optional
+            interface_syslog_info: "default"  # Choice | default , info-1 | optional
+          icam_monitor_interval: 1  # Integer | min: 1 , max: 24 | optional
+          icam_monitor_history: 168  # Integer | min: 168 , max: 1344 | optional
+          icam_monitor_scale: false  # Boolean | optional
+          icam_monitor_scale_threshold_critical: 1  # Integer | min: 1 , max: 100 | optional
+          icam_monitor_scale_threshold_info: 1  # Integer | min: 1 , max: 100 | optional
+          icam_monitor_scale_threshold_warning: 1  # Integer | min: 1 , max: 100 | optional
+          system: {}  # Class | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) (recursive, see above)
+          smart_licensing_transport: "callhome"  # Choice | callhome , cslu , off , smart | optional
+          smart_licensing_url_cslu: "SMART_LICENSING_URL_CSLU_1"  # String | optional
+          line_console_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional
+          line_vty_access_class_in: "LINE_VTY_ACCESS_CLASS_IN_1"  # String | optional
+          line_vty_access_class_out: "LINE_VTY_ACCESS_CLASS_OUT_1"  # String | optional
+          line_vty_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional
+          line_vty_session_limit: 1  # Integer | min: 1 , max: 64 | optional
+          vdcs:  # List | optional [shared class: structure documented on this page as vdcs(nxos.devices.configuration.system)]
+            - id: 1  # Integer | min: 0 , max: 65535 | required
+              resource_limits: {}  # Class | optional [nested class not documented separately on this page]
+          ttag_marker_interval: 1  # Integer | min: 1 , max: 25200 | optional
+          icam_monitor_intervals: 168  # Integer | min: 168 , max: 1344 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          icam_monitor_threshold_critical: 1  # Integer | min: 1 , max: 100 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          icam_monitor_threshold_info: 1  # Integer | min: 1 , max: 100 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          icam_monitor_threshold_warning: 1  # Integer | min: 1 , max: 100 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          platform:  # Class | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) [shared class: structure assumed from platform(nxos.devices.configuration.system)]
+            hostname: "HOSTNAME_1"  # String | optional
+            mtu: 576  # Integer | min: 576 , max: 9216 | optional
+            nxapi:  # Class | optional [shared class: structure assumed from nxapi(nxos.devices.configuration.system.platform)]
+              http_port: 1  # Integer | min: -1 , max: 65535 | optional
+              https_port: 1  # Integer | min: -1 , max: 65535 | optional
+              vrf: "VRF1"  # String | optional
+              idle_timeout: 1  # Integer | min: 1 , max: 1440 | optional
+              certificate_enable: false  # Boolean | optional
+              certificate_httpscrt: "CERTIFICATE_HTTPSCRT_1"  # String | optional
+              certificate_httpskey: "CERTIFICATE_HTTPSKEY_1"  # String | optional
+              certificate_httpskey_passphrase: "CERTIFICATE_HTTPSKEY_PASSPHRASE_1"  # String | optional
+              certificate_trustpoint: "CERTIFICATE_TRUSTPOINT_1"  # String | optional
+              ssl_protocols: "SSL_PROTOCOLS_1"  # String | optional
+              ssl_ciphers_weak: false  # Boolean | optional
+              client_cert_auth: "off"  # Choice | off , optional , strict , two-step | optional
+              sudi: false  # Boolean | optional
+            nv_overlay_vxlan_udp_port: 1024  # Integer | min: 1024 , max: 65535 | optional
+            nv_overlay_vxlan_udp_source_port_mode: "low"  # Choice | low , high , rfc | optional
+            nve_ipmc_index_size: 1  # Integer | min: 0 , max: 7000 | optional
+            nve_overlay_vlans:  # Class | optional [shared class: structure assumed from nve_overlay_vlans(nxos.devices.configuration.system)]
+              ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+              ranges:  # List | optional [shared class: structure assumed from ranges(nxos.devices.configuration.system.nve_overlay_vlans)]
+                - from: 1  # Integer | min: 1 , max: 4094 | required
+                  to: 1  # Integer | min: 1 , max: 4094 | required
+            nve_infra_vlans:  # List | optional [shared class: structure assumed from nve_infra_vlans(nxos.devices.configuration.system)]
+              - vlans:  # Class | required [shared class: structure assumed from vlans(nxos.devices.configuration.system.nve_infra_vlans)]
+                  ids: [1]  # List | Integer[min: 1 , max: 4096 ] | optional
+                  ranges:  # List | optional [shared class: structure assumed from ranges(nxos.devices.configuration.system.nve_overlay_vlans)]
+                    - from: 1  # Integer | min: 1 , max: 4094 | required
+                      to: 1  # Integer | min: 1 , max: 4094 | required
+                force: false  # Boolean | optional
+            interface_vlan_autostate: false  # Boolean | optional
+            hsrp_bfd: false  # Boolean | optional
+            hsrp_timers_extended_hold: 10  # Integer | min: 10 , max: 255 | optional
+            hypershield:  # Class | optional [shared class: structure assumed from hypershield(nxos.devices.configuration.system.platform)]
+              source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+              source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+              https_proxy: "HTTPS_PROXY_1"  # String | optional
+              https_proxy_port: 1  # Integer | min: 1 , max: 65535 | optional
+              firewall_in_service: false  # Boolean | optional
+              firewall_vrfs:  # List | optional [shared class: structure assumed from firewall_vrfs(nxos.devices.configuration.system.platform.hypershield)]
+                - name: "NAME_1"  # String | required
+            ip_routing: false  # Boolean | optional
+            ip_access_list_match_local_traffic: false  # Boolean | optional
+            logging_level_ip: "emergency"  # Choice | emergency , alert , critical , error , warning , notification , informational , debug | optional
+            ip_redirect_syslog: false  # Boolean | optional
+            ip_redirect_syslog_interval: 30  # Integer | min: 30 , max: 1800 | optional
+            ip_source_route: false  # Boolean | optional
+            hardware_access_list_tcam_region:  # Class | optional [shared class: structure assumed from hardware_access_list_tcam_region(nxos.devices.configuration.system.platform)]
+              arp_acl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              copp_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_hw_telemetry_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_ifacl_all_per_port_stats: false  # Boolean | optional
+              e_ifacl_all_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_ipv6_racl_per_port_stats: false  # Boolean | optional
+              e_racl_per_port_stats: false  # Boolean | optional
+              egr_copp_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_flow_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_l2_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_l3_vlan_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_ipv6_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_ipv6_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_mac_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_qos_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egress_vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              fcoe_egress_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              fcoe_ingress_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              fhs_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              hw_telemetry_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ifacl_all_per_port_stats: false  # Boolean | optional
+              ifacl_all_profile: 1  # Integer | min: 0 , max: 15 | optional
+              ifacl_all_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ifacl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ifacl_per_port_stats: false  # Boolean | optional
+              ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ifacl_udf_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_dacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_flow_redirect_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_flow_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_ifacl_wide_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_ipv6_ifacl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_l2_l3_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_l2_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_l2_span_filter_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_l3_span_filter_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_pacl_sb_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_rbacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_redirect_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_storm_control_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_vacl_nh_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_vlan_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipsg_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_ifacl_per_port_stats: false  # Boolean | optional
+              ipv6_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_l3_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_pbr_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_racl_per_port_stats: false  # Boolean | optional
+              ipv6_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_span_l2_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_span_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_vqos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              l3qos_intra_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mac_ifacl_per_port_stats: false  # Boolean | optional
+              mac_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mac_l3_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mac_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mac_vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mac_vqos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mcast_bidir_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mcast_nat_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mcast_nbm_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mpls_double_wide: false  # Boolean | optional
+              mpls_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mvpn_size: 1  # Integer | min: 0 , max: 10 | optional
+              arp_ether_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              nat_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              openflow_double_wide: false  # Boolean | optional
+              openflow_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              openflow_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              pbr_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              qos_intra_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              racl_all_per_port_stats: false  # Boolean | optional
+              racl_all_profile: 1  # Integer | min: 0 , max: 15 | optional
+              racl_all_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              racl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              racl_per_port_stats: false  # Boolean | optional
+              racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              racl_udf_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              redirect_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              span_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              svi_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              tcp_nat_size: 1  # Integer | min: 0 , max: 100 | optional
+              vacl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              vpc_convergence_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              vqos_intra_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              vqos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              vxlan_p2p_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            hardware_ecmp_hash_offset_concatenation: false  # Boolean | optional
+            hardware_ecmp_hash_offset_value: 1  # Integer | min: 0 , max: 63 | optional
+            hardware_ecmp_hash_polynomial: "crc16"  # Choice | crc16 , crc32hi | optional
+            ipv6_routing: false  # Boolean | optional
+            ipv6_access_list_match_local_traffic: false  # Boolean | optional
+            ipv6_adjacency_stale_timer: 30  # Integer | min: 30 , max: 65535 | optional
+            ipv6_adjacency_stale_timer_icmp: false  # Boolean | optional
+            ipv6_redirect_syslog: false  # Boolean | optional
+            ipv6_redirect_syslog_interval: 30  # Integer | min: 30 , max: 1800 | optional
+            boot:  # Class | optional [shared class: structure assumed from boot(nxos.devices.configuration.system)]
+              auto_copy: false  # Boolean | optional
+              dhcp: 1  # Integer | min: 0 , max: 2147483647 | optional
+              exclude_configuration: false  # Boolean | optional
+              mode: "none"  # Choice | none , lxc | optional
+              order: "bootflash"  # Choice | bootflash , pxe , pxe2bootflash , bootflash2pxe | optional
+              poap: false  # Boolean | optional
+              image_verify: false  # Boolean | optional
+              nxos_sup_1: "NXOS_SUP_1_1"  # String | optional
+              nxos_sup_2: "NXOS_SUP_2_1"  # String | optional
+              aci: "ACI_1"  # String | optional
+              nxos_image_sup_1: "NXOS_IMAGE_SUP_1_1"  # String | optional
+              nxos_image_sup_2: "NXOS_IMAGE_SUP_2_1"  # String | optional
+            interface_breakout_modules:  # List | optional [shared class: structure assumed from interface_breakout_modules(nxos.devices.configuration.system)]
+              - id: 1  # Integer | min: 1 , max: 32 | required
+                ports:  # List | optional [shared class: structure assumed from ports(nxos.devices.configuration.system.interface_breakout_modules)]
+                  - id: 1  # Integer | min: 1 , max: 108 | required
+                    map: "no-breakout"  # Choice | no-breakout , 10g-4x , 50g-2x , 25g-4x , 10g-2x , 100g-4x , 50g-4x , 200g-1x , 100g-2x , 200g-2x , 40g-1x , 400g-2x , 100g-8x , 800g-1x , 100g-2x-pam4 | optional
+            cfs_distribute: false  # Boolean | optional
+            cfs_eth_distribute: false  # Boolean | optional
+            cfs_ipv4_distribute: false  # Boolean | optional
+            cfs_ipv4_mcast_address: "10.1.1.1"  # IP | optional
+            cfs_ipv6_distribute: false  # Boolean | optional
+            cfs_ipv6_mcast_address: "10.1.1.1"  # IP | optional
+            cli_aliases:  # List | optional [shared class: structure assumed from cli_aliases(nxos.devices.configuration.system)]
+              - name: "NAME_1"  # String | required
+                command: "COMMAND_1"  # String | required
+            copp_profile: "strict"  # Choice | strict , moderate , lenient , dense | optional
+            copp_rate_limit: false  # Boolean | optional
+            ethernet:  # Class | optional [shared class: structure assumed from ethernet(nxos.devices.configuration.system)]
+              default_switchport_shutdown: false  # Boolean | optional
+              service_unsupported_transceiver: false  # Boolean | optional
+              default_switchport: "layer2"  # Choice | layer2 , layer3 | optional
+              logging_event_port: "link-status-default"  # Choice | link-status-default , link-status-enable , none , trunk-status-default , trunk-status-enable | optional
+              default_interface_shutdown: "down"  # Choice | down , down-exclude-fabric , up | optional
+              link_failure_laser_on: false  # Boolean | optional
+              storm_control_multicast: false  # Boolean | optional
+              dot1q_tag_native: false  # Boolean | optional
+              admin_link_down_syslog_level: 1  # Integer | min: 0 , max: 7 | optional
+              admin_link_up_syslog_level: 1  # Integer | min: 0 , max: 7 | optional
+              interface_syslog_info: "default"  # Choice | default , info-1 | optional
+            erspan_origin_ip_address: "10.1.1.1"  # IP | optional
+            erspan_origin_ipv6_address: "10.1.1.1"  # IP | optional
+            clock:  # Class | optional [shared class: structure assumed from clock(nxos.devices.configuration.system.platform)]
+              format: "24hours"  # Choice | 24hours , 12hours | optional
+              format_show_timezone_debug: false  # Boolean | optional
+              format_show_timezone_syslog: false  # Boolean | optional
+              protocol: "unspecified"  # Choice | unspecified , ptp , ntp , none , gnss | optional
+              timezone_name: "TIMEZONE_NAME_1"  # String | optional
+              timezone_hours: 1  # Integer | min: -12 , max: 14 | optional
+              timezone_minutes: 1  # Integer | min: 0 , max: 59 | optional
+              summer_time:  # Class | optional [shared class: structure assumed from summer_time(nxos.devices.configuration.system.platform.clock)]
+                name: "NAME_1"  # String | required
+                offset_minutes: 1  # Integer | min: 1 , max: 1440 | optional
+                start_week: 1  # Integer | min: 1 , max: 5 | optional
+                start_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+                start_month: "Jan"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+                start_time: "START_TIME_1"  # String | optional
+                end_week: 1  # Integer | min: 1 , max: 5 | optional
+                end_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+                end_month: "Jan"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+                end_time: "END_TIME_1"  # String | optional
+            icam_monitor_interval: 1  # Integer | min: 1 , max: 24 | optional
+            icam_monitor_history: 168  # Integer | min: 168 , max: 1344 | optional
+            icam_monitor_scale: false  # Boolean | optional
+            icam_monitor_scale_threshold_critical: 1  # Integer | min: 1 , max: 100 | optional
+            icam_monitor_scale_threshold_info: 1  # Integer | min: 1 , max: 100 | optional
+            icam_monitor_scale_threshold_warning: 1  # Integer | min: 1 , max: 100 | optional
+            hardware:  # Class | optional [shared class: structure assumed from hardware(nxos.devices.configuration.system.platform)]
+              acl_redirect_share_disable: false  # Boolean | optional
+              counter_feature_bfd: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_bfd_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_ecn: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_ecn_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_egr_acl: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_egr_acl_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_ingr_acl: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_ingr_acl_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_l2vni: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_l2vni_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_l3vni: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_l3vni_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_si: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_si_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_svi: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_svi_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_tunnel: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_tunnel_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_vlan: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_vlan_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_voq: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_voq_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              dme_load_interval: 1  # Integer | min: 0 , max: 4294967295 | optional
+              egr_l2_qos_ifacl_label_size: false  # Boolean | optional
+              gpe_5_timer_enable: false  # Boolean | optional
+              ing_ifacl_label_size: false  # Boolean | optional
+              vrf_nat_label_width: 1  # Integer | min: 0 , max: 6 | optional
+              mpls_qos_pipe_mode: false  # Boolean | optional
+              multicast_nlb_port_channel: false  # Boolean | optional
+              multicast_priority: 1  # Integer | min: 0 , max: 15 | optional
+              multicast_stats_disable: false  # Boolean | optional
+              pbr_ecmp_paths: 1  # Integer | min: 1 , max: 64 | optional
+              pbr_next_hop_fast_convergence: false  # Boolean | optional
+              pbr_match_default_route: false  # Boolean | optional
+              access_list_tcam_per_entry_stats_template: "l3qos"  # Choice | l3qos , racl , span-acl , pbr | optional
+              storm_control_priority: "default"  # Choice | default , drop-l3 , drop-l2 , drop-all | optional
+              sub_interface_flex_stats: "disable"  # Choice | disable , l3 , l2 | optional
+              access_list_update_atomic: false  # Boolean | optional
+              access_list_update_atomic_strict: false  # Boolean | optional
+              access_list_update_default_result: false  # Boolean | optional
+              vrf_aware_nat_enable: false  # Boolean | optional
+            hardware_profile:  # Class | optional [shared class: structure assumed from hardware_profile(nxos.devices.configuration.system.platform)]
+              access_list_match_inner_header: false  # Boolean | optional
+              acl_tap_aggregation: false  # Boolean | optional
+              disable_parse_error: false  # Boolean | optional
+              flow_redirect_forward_pdu: false  # Boolean | optional
+              front_portmode: "sfp-plus"  # Choice | sfp-plus , qsfp | optional
+              forwarding_mode: "FORWARDING_MODE_1"  # String | optional
+              global_tx_span: false  # Boolean | optional
+              high_multicast_priority: false  # Boolean | optional
+              hardware_lou_resource_threshold: 1  # Integer | min: 1 , max: 50 | optional
+              ingress_bd_ifacl_label_optimization: false  # Boolean | optional
+              ingress_racl_size: false  # Boolean | optional
+              ingress_replication_round_robin: false  # Boolean | optional
+              ip_statistics: false  # Boolean | optional
+              ipv6_alpm_carve_value: 1  # Integer | min: 0 , max: 4096 | optional
+              ipv6_lpm_max_entries: 1  # Integer | min: 0 , max: 6144 | optional
+              lpm_max_limit: 1  # Integer | min: 0 , max: 4096 | optional
+              multicast_dcs_check: false  # Boolean | optional
+              multicast_flex_stats: false  # Boolean | optional
+              multicast_lpm_max_entries: 1  # Integer | min: 0 , max: 4096 | optional
+              multicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+              multicast_nlb: false  # Boolean | optional
+              multicast_racl_bridge: false  # Boolean | optional
+              multicast_rpf_check_optimization: false  # Boolean | optional
+              multicast_service_reflect_port: 1  # Integer | min: 0 , max: 48 | optional
+              multicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+              mld_snooping: false  # Boolean | optional
+              mpls_adjacency_stats_mode: "packets"  # Choice | packets , bytes | optional
+              mpls_ecmp: false  # Boolean | optional
+              mrouting_disable_l2_update: false  # Boolean | optional
+              mrouting_disable_second_route_update: false  # Boolean | optional
+              mrouting_performance_mode: false  # Boolean | optional
+              pbr_skip_self_ip: false  # Boolean | optional
+              pic_core: false  # Boolean | optional
+              portmode_tuple: false  # Boolean | optional
+              pstat: false  # Boolean | optional
+              qos_min_buffer: "all"  # Choice | all , none , default | optional
+              service_template_name: "SERVICE_TEMPLATE_NAME_1"  # String | optional
+              svi_and_si_flex_stats_enable: false  # Boolean | optional
+              svi_flex_stats: false  # Boolean | optional
+              tcam_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+              unicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+              unicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+              unicast_trace: false  # Boolean | optional
+              unknown_unicast_flood: false  # Boolean | optional
+              urpf: false  # Boolean | optional
+              wrr_unicast_bandwidth: 1  # Integer | min: 0 , max: 100 | optional
+            port_channel:  # Class | optional [shared class: structure assumed from port_channel(nxos.devices.configuration.system.platform)]
+              fast_convergence: false  # Boolean | optional
+              load_balance: "dlb"  # Choice | dlb , rtag7 , rtag7-murmur , rtag7-local-crc , dynamic-pin | optional
+              load_balance2_resilient: false  # Boolean | optional
+              load_balance_mpls_label_ip: false  # Boolean | optional
+              load_balance_mpls_label_only: false  # Boolean | optional
+              scale_fanout: false  # Boolean | optional
+            switch_mode: "default"  # Choice | default , n3k , n9k | optional
+            fabric_mode: "full-rate"  # Choice | full-rate , default | optional
+            routing: "non-hierarchical-routing"  # Choice | non-hierarchical-routing , non-hierarchical-routing-max-l3-mode , max-mode-host , max-mode-tor-l3 , mode-hierarchical-64b-alpm , non-hierarchical-max-mode-l3-nh-64b-alpm-nh , hierarchical-def-max-mode-l3-64b-alpm , max-mode-tor-l2 , max-mode-tor-l2-l3 , template-overlay-host-scale , template-lpm-heavy , template-lpm-scale-v6-64 , template-dual-stack-host-scale , template-service-provider , template-multicast-heavy , template-vxlan-scale , template-mpls-heavy , template-internet-peering , template-multicast-ext-heavy , template-l3-heavy , template-dual-stack-mcast , template-l2-heavy , template-l2-scale , template-security-groups | optional
+            ssh:  # Class | optional [shared class: structure assumed from ssh(nxos.devices.configuration.system.platform)]
+              ciphers_all: false  # Boolean | optional
+              ciphers_weak: false  # Boolean | optional
+              kexalgos_all: false  # Boolean | optional
+              keytypes_all: false  # Boolean | optional
+              login_attempts: 1  # Integer | min: 1 , max: 10 | optional
+              login_gracetime: 1  # Integer | min: 0 , max: 3600 | optional
+              macs_all: false  # Boolean | optional
+              port: 22  # Integer | min: 22 , max: 65535 | optional
+              keys:  # List | optional [shared class: structure assumed from keys(nxos.devices.configuration.system.platform.ssh)]
+                - type: "rsa"  # Choice | rsa , dsa , ecdsa | required
+                  key_length: 1  # Integer | min: 0 , max: 4096 | optional
+            smart_licensing_transport: "callhome"  # Choice | callhome , cslu , off , smart | optional
+            smart_licensing_url_cslu: "SMART_LICENSING_URL_CSLU_1"  # String | optional
+            line_console_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional
+            line_vty_access_class_in: "LINE_VTY_ACCESS_CLASS_IN_1"  # String | optional
+            line_vty_access_class_out: "LINE_VTY_ACCESS_CLASS_OUT_1"  # String | optional
+            line_vty_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional
+            line_vty_session_limit: 1  # Integer | min: 1 , max: 64 | optional
+            vdcs:  # List | optional [shared class: structure assumed from vdcs(nxos.devices.configuration.system)]
+              - id: 1  # Integer | min: 0 , max: 65535 | required
+                resource_limits:  # Class | optional [shared class: structure assumed from resource_limits(nxos.devices.configuration.system.vdcs)]
+                  port_channel_maximum: 1  # Integer | min: 0 , max: 766 | optional
+                  port_channel_minimum: 1  # Integer | min: 0 , max: 766 | optional
+                  vlan_maximum: 16  # Integer | min: 16 , max: 4094 | optional
+                  vlan_minimum: 16  # Integer | min: 16 , max: 4094 | optional
+                  vrf_maximum: 2  # Integer | min: 2 , max: 4097 | optional
+                  vrf_minimum: 2  # Integer | min: 2 , max: 4097 | optional
+                  multicast_ipv4_route_memory_maximum: 3  # Integer | min: 3 , max: 150 | optional
+                  multicast_ipv4_route_memory_minimum: 3  # Integer | min: 3 , max: 150 | optional
+                  multicast_ipv6_route_memory_maximum: 3  # Integer | min: 3 , max: 20 | optional
+                  multicast_ipv6_route_memory_minimum: 3  # Integer | min: 3 , max: 20 | optional
+                  unicast_ipv4_route_memory_maximum: 1  # Integer | min: 1 , max: 768 | optional
+                  unicast_ipv4_route_memory_minimum: 1  # Integer | min: 1 , max: 768 | optional
+                  unicast_ipv6_route_memory_maximum: 1  # Integer | min: 1 , max: 512 | optional
+                  unicast_ipv6_route_memory_minimum: 1  # Integer | min: 1 , max: 512 | optional
+            ttag_marker_interval: 1  # Integer | min: 1 , max: 25200 | optional
+            access_list_match_inner_header: false  # Boolean | optional
+            acl_tap_aggregation: false  # Boolean | optional
+            disable_parse_error: false  # Boolean | optional
+            global_tx_span: false  # Boolean | optional
+            high_multicast_priority: false  # Boolean | optional
+            hardware_lou_resource_threshold: 1  # Integer | min: 1 , max: 50 | optional
+            ingress_bd_ifacl_label_optimization: false  # Boolean | optional
+            ingress_racl_size: false  # Boolean | optional
+            ingress_replication_round_robin: false  # Boolean | optional
+            ip_statistics: false  # Boolean | optional
+            ipv6_alpm_carve_value: 1  # Integer | min: 0 , max: 4096 | optional
+            ipv6_lpm_max_entries: 1  # Integer | min: 0 , max: 6144 | optional
+            lpm_max_limit: 1  # Integer | min: 0 , max: 4096 | optional
+            multicast_dcs_check: false  # Boolean | optional
+            multicast_flex_stats: false  # Boolean | optional
+            multicast_lpm_max_entries: 1  # Integer | min: 0 , max: 4096 | optional
+            multicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+            multicast_nlb: false  # Boolean | optional
+            multicast_racl_bridge: false  # Boolean | optional
+            multicast_rpf_check_optimization: false  # Boolean | optional
+            multicast_service_reflect_port: 1  # Integer | min: 0 , max: 48 | optional
+            multicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+            mld_snooping: false  # Boolean | optional
+            mpls_adjacency_stats_mode: "PACKETS"  # Choice | PACKETS , BYTES | optional
+            mpls_ecmp: false  # Boolean | optional
+            mrouting_disable_l2_update: false  # Boolean | optional
+            mrouting_disable_second_route_update: false  # Boolean | optional
+            mrouting_performance_mode: false  # Boolean | optional
+            openflow_forward_pdu: false  # Boolean | optional
+            pbr_skip_self_ip: false  # Boolean | optional
+            pic_core: false  # Boolean | optional
+            port_channel_fast_convergence: false  # Boolean | optional
+            port_channel_load_balance: "dlb"  # Choice | dlb , rtag7 , rtag7-murmur , rtag7-local-crc , dynamic-pin | optional
+            port_channel_load_balance_resilient: false  # Boolean | optional
+            port_channel_mpls_load_balance_label_ip: false  # Boolean | optional
+            port_channel_mpls_load_balance_label_only: false  # Boolean | optional
+            port_channel_scale_fanout: false  # Boolean | optional
+            profile_front_portmode: "sfp-plus"  # Choice | sfp-plus , qsfp | optional
+            profile_mode: "PROFILE_MODE_1"  # String | optional
+            profile_tuple: false  # Boolean | optional
+            pstat: false  # Boolean | optional
+            qos_min_buffer: "all"  # Choice | all , none , default | optional
+            routing_mode: "ROUTING_MODE_1"  # String | optional
+            service_template_name: "SERVICE_TEMPLATE_NAME_1"  # String | optional
+            svi_and_si_flex_stats: false  # Boolean | optional
+            svi_flex_stats: false  # Boolean | optional
+            switching_fabric_speed: "default"  # Choice | default , fabric-speed-40g | optional
+            switching_mode: "store-forward"  # Choice | store-forward , cut-through | optional
+            system_fabric_mode: "full-rate"  # Choice | full-rate , default | optional
+            tcam_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+            unicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+            unicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+            unicast_trace: false  # Boolean | optional
+            unknown_unicast_flood: false  # Boolean | optional
+            urpf: false  # Boolean | optional
+            wrr_unicast_bandwidth: 1  # Integer | min: 0 , max: 100 | optional
+          terminal_console_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          hsrp_bfd: false  # Boolean | optional
+          hsrp_timers_extended_hold: 10  # Integer | min: 10 , max: 255 | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+        hostname: "HOSTNAME_1"  # String | optional
+        mtu: 576  # Integer | min: 576 , max: 9216 | optional
+        nv_overlay_vxlan_udp_port: 1024  # Integer | min: 1024 , max: 65535 | optional
+        nv_overlay_vxlan_udp_source_port_mode: "low"  # Choice | low , high , rfc | optional
+        nve_ipmc_index_size: 1  # Integer | min: 0 , max: 7000 | optional
+        nve_overlay_vlans:  # Class | optional [shared class: structure documented on this page as nve_overlay_vlans(nxos.devices.configuration.system)]
+          ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+          ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.system.nve_overlay_vlans)]
+            - from: 1  # Integer | min: 1 , max: 4094 | required
+              to: 1  # Integer | min: 1 , max: 4094 | required
+        nve_infra_vlans:  # List | optional [shared class: structure documented on this page as nve_infra_vlans(nxos.devices.configuration.system)]
+          - vlans:  # Class | required [shared class: structure documented on this page as vlans(nxos.devices.configuration.system.nve_infra_vlans)]
+              ids: [1]  # List | Integer[min: 1 , max: 4096 ] | optional
+              ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.system.nve_overlay_vlans)]
+                - from: 1  # Integer | min: 1 , max: 4094 | required
+                  to: 1  # Integer | min: 1 , max: 4094 | required
+            force: false  # Boolean | optional
+        interface_vlan_autostate: false  # Boolean | optional
+        ip_routing: false  # Boolean | optional
+        ip_access_list_match_local_traffic: false  # Boolean | optional
+        logging_level_ip: "emergency"  # Choice | emergency , alert , critical , error , warning , notification , informational , debug | optional
+        ip_redirect_syslog: false  # Boolean | optional
+        ip_redirect_syslog_interval: 30  # Integer | min: 30 , max: 1800 | optional
+        ip_source_route: false  # Boolean | optional
+        hardware_ecmp_hash_offset_concatenation: false  # Boolean | optional
+        hardware_ecmp_hash_offset_value: 1  # Integer | min: 0 , max: 63 | optional
+        hardware_ecmp_hash_polynomial: "crc16"  # Choice | crc16 , crc32hi | optional
+        ipv6_routing: false  # Boolean | optional
+        ipv6_access_list_match_local_traffic: false  # Boolean | optional
+        ipv6_adjacency_stale_timer: 30  # Integer | min: 30 , max: 65535 | optional
+        ipv6_adjacency_stale_timer_icmp: false  # Boolean | optional
+        ipv6_redirect_syslog: false  # Boolean | optional
+        ipv6_redirect_syslog_interval: 30  # Integer | min: 30 , max: 1800 | optional
+        boot:  # Class | optional [shared class: structure documented on this page as boot(nxos.devices.configuration.system)]
+          auto_copy: false  # Boolean | optional
+          dhcp: 1  # Integer | min: 0 , max: 2147483647 | optional
+          exclude_configuration: false  # Boolean | optional
+          mode: "none"  # Choice | none , lxc | optional
+          order: "bootflash"  # Choice | bootflash , pxe , pxe2bootflash , bootflash2pxe | optional
+          poap: false  # Boolean | optional
+          image_verify: false  # Boolean | optional
+          nxos_sup_1: "NXOS_SUP_1_1"  # String | optional
+          nxos_sup_2: "NXOS_SUP_2_1"  # String | optional
+          aci: "ACI_1"  # String | optional
+          nxos_image_sup_1: "NXOS_IMAGE_SUP_1_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          nxos_image_sup_2: "NXOS_IMAGE_SUP_2_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        interface_breakout_modules:  # List | optional [shared class: structure documented on this page as interface_breakout_modules(nxos.devices.configuration.system)]
+          - id: 1  # Integer | min: 1 , max: 32 | required
+            ports:  # List | optional [shared class: structure documented on this page as ports(nxos.devices.configuration.system.interface_breakout_modules)]
+              - id: 1  # Integer | min: 1 , max: 108 | required
+                map: "no-breakout"  # Choice | no-breakout , 10g-4x , 50g-2x , 25g-4x , 10g-2x , 100g-4x , 50g-4x , 200g-1x , 100g-2x , 200g-2x , 40g-1x , 400g-2x , 100g-8x , 800g-1x , 100g-2x-pam4 | optional
+        cfs_distribute: false  # Boolean | optional
+        cfs_eth_distribute: false  # Boolean | optional
+        cfs_ipv4_distribute: false  # Boolean | optional
+        cfs_ipv4_mcast_address: "10.1.1.1"  # IP | optional
+        cfs_ipv6_distribute: false  # Boolean | optional
+        cfs_ipv6_mcast_address: "10.1.1.1"  # IP | optional
+        cli_aliases:  # List | optional [shared class: structure documented on this page as cli_aliases(nxos.devices.configuration.system)]
+          - name: "NAME_1"  # String | required
+            command: "COMMAND_1"  # String | required
+        copp_profile: "strict"  # Choice | strict , moderate , lenient , dense | optional
+        copp_rate_limit: false  # Boolean | optional
+        ethernet:  # Class | optional [shared class: structure documented on this page as ethernet(nxos.devices.configuration.system)]
+          default_switchport_shutdown: false  # Boolean | optional
+          service_unsupported_transceiver: false  # Boolean | optional
+          default_switchport: "layer2"  # Choice | layer2 , layer3 | optional
+          logging_event_port: "link-status-default"  # Choice | link-status-default , link-status-enable , none , trunk-status-default , trunk-status-enable | optional
+          default_interface_shutdown: "down"  # Choice | down , down-exclude-fabric , up | optional
+          link_failure_laser_on: false  # Boolean | optional
+          storm_control_multicast: false  # Boolean | optional
+          dot1q_tag_native: false  # Boolean | optional
+          admin_link_down_syslog_level: 1  # Integer | min: 0 , max: 7 | optional
+          admin_link_up_syslog_level: 1  # Integer | min: 0 , max: 7 | optional
+          interface_syslog_info: "default"  # Choice | default , info-1 | optional
+        icam_monitor_interval: 1  # Integer | min: 1 , max: 24 | optional
+        icam_monitor_history: 168  # Integer | min: 168 , max: 1344 | optional
+        icam_monitor_scale: false  # Boolean | optional
+        icam_monitor_scale_threshold_critical: 1  # Integer | min: 1 , max: 100 | optional
+        icam_monitor_scale_threshold_info: 1  # Integer | min: 1 , max: 100 | optional
+        icam_monitor_scale_threshold_warning: 1  # Integer | min: 1 , max: 100 | optional
+        system: {}  # Class | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) (recursive, see above)
+        smart_licensing_transport: "callhome"  # Choice | callhome , cslu , off , smart | optional
+        smart_licensing_url_cslu: "SMART_LICENSING_URL_CSLU_1"  # String | optional
+        line_console_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional
+        line_vty_access_class_in: "LINE_VTY_ACCESS_CLASS_IN_1"  # String | optional
+        line_vty_access_class_out: "LINE_VTY_ACCESS_CLASS_OUT_1"  # String | optional
+        line_vty_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional
+        line_vty_session_limit: 1  # Integer | min: 1 , max: 64 | optional
+        vdcs:  # List | optional [shared class: structure documented on this page as vdcs(nxos.devices.configuration.system)]
+          - id: 1  # Integer | min: 0 , max: 65535 | required
+            resource_limits: {}  # Class | optional [nested class not documented separately on this page]
+        ttag_marker_interval: 1  # Integer | min: 1 , max: 25200 | optional
+        icam_monitor_intervals: 168  # Integer | min: 168 , max: 1344 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        icam_monitor_threshold_critical: 1  # Integer | min: 1 , max: 100 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        icam_monitor_threshold_info: 1  # Integer | min: 1 , max: 100 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        icam_monitor_threshold_warning: 1  # Integer | min: 1 , max: 100 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        platform:  # Class | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) [shared class: structure assumed from platform(nxos.devices.configuration.system)]
+          hostname: "HOSTNAME_1"  # String | optional
+          mtu: 576  # Integer | min: 576 , max: 9216 | optional
+          nxapi:  # Class | optional [shared class: structure assumed from nxapi(nxos.devices.configuration.system.platform)]
+            http_port: 1  # Integer | min: -1 , max: 65535 | optional
+            https_port: 1  # Integer | min: -1 , max: 65535 | optional
+            vrf: "VRF1"  # String | optional
+            idle_timeout: 1  # Integer | min: 1 , max: 1440 | optional
+            certificate_enable: false  # Boolean | optional
+            certificate_httpscrt: "CERTIFICATE_HTTPSCRT_1"  # String | optional
+            certificate_httpskey: "CERTIFICATE_HTTPSKEY_1"  # String | optional
+            certificate_httpskey_passphrase: "CERTIFICATE_HTTPSKEY_PASSPHRASE_1"  # String | optional
+            certificate_trustpoint: "CERTIFICATE_TRUSTPOINT_1"  # String | optional
+            ssl_protocols: "SSL_PROTOCOLS_1"  # String | optional
+            ssl_ciphers_weak: false  # Boolean | optional
+            client_cert_auth: "off"  # Choice | off , optional , strict , two-step | optional
+            sudi: false  # Boolean | optional
+          nv_overlay_vxlan_udp_port: 1024  # Integer | min: 1024 , max: 65535 | optional
+          nv_overlay_vxlan_udp_source_port_mode: "low"  # Choice | low , high , rfc | optional
+          nve_ipmc_index_size: 1  # Integer | min: 0 , max: 7000 | optional
+          nve_overlay_vlans:  # Class | optional [shared class: structure assumed from nve_overlay_vlans(nxos.devices.configuration.system)]
+            ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+            ranges:  # List | optional [shared class: structure assumed from ranges(nxos.devices.configuration.system.nve_overlay_vlans)]
+              - from: 1  # Integer | min: 1 , max: 4094 | required
+                to: 1  # Integer | min: 1 , max: 4094 | required
+          nve_infra_vlans:  # List | optional [shared class: structure assumed from nve_infra_vlans(nxos.devices.configuration.system)]
+            - vlans:  # Class | required [shared class: structure assumed from vlans(nxos.devices.configuration.system.nve_infra_vlans)]
+                ids: [1]  # List | Integer[min: 1 , max: 4096 ] | optional
+                ranges:  # List | optional [shared class: structure assumed from ranges(nxos.devices.configuration.system.nve_overlay_vlans)]
+                  - from: 1  # Integer | min: 1 , max: 4094 | required
+                    to: 1  # Integer | min: 1 , max: 4094 | required
+              force: false  # Boolean | optional
+          interface_vlan_autostate: false  # Boolean | optional
+          hsrp_bfd: false  # Boolean | optional
+          hsrp_timers_extended_hold: 10  # Integer | min: 10 , max: 255 | optional
+          hypershield:  # Class | optional [shared class: structure assumed from hypershield(nxos.devices.configuration.system.platform)]
+            source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+            source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+            https_proxy: "HTTPS_PROXY_1"  # String | optional
+            https_proxy_port: 1  # Integer | min: 1 , max: 65535 | optional
+            firewall_in_service: false  # Boolean | optional
+            firewall_vrfs:  # List | optional [shared class: structure assumed from firewall_vrfs(nxos.devices.configuration.system.platform.hypershield)]
+              - name: "NAME_1"  # String | required
+          ip_routing: false  # Boolean | optional
+          ip_access_list_match_local_traffic: false  # Boolean | optional
+          logging_level_ip: "emergency"  # Choice | emergency , alert , critical , error , warning , notification , informational , debug | optional
+          ip_redirect_syslog: false  # Boolean | optional
+          ip_redirect_syslog_interval: 30  # Integer | min: 30 , max: 1800 | optional
+          ip_source_route: false  # Boolean | optional
+          hardware_access_list_tcam_region:  # Class | optional [shared class: structure assumed from hardware_access_list_tcam_region(nxos.devices.configuration.system.platform)]
+            arp_acl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            copp_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            e_hw_telemetry_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            e_ifacl_all_per_port_stats: false  # Boolean | optional
+            e_ifacl_all_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            e_ipv6_racl_per_port_stats: false  # Boolean | optional
+            e_racl_per_port_stats: false  # Boolean | optional
+            egr_copp_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            egr_flow_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            egr_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            egr_l2_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            egr_l3_vlan_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            egr_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            egr_sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            e_ipv6_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            e_ipv6_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            e_mac_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            e_qos_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            e_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            e_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            egress_vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            fcoe_egress_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            fcoe_ingress_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            fhs_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            hw_telemetry_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ifacl_all_per_port_stats: false  # Boolean | optional
+            ifacl_all_profile: 1  # Integer | min: 0 , max: 15 | optional
+            ifacl_all_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ifacl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ifacl_per_port_stats: false  # Boolean | optional
+            ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ifacl_udf_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_dacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_flow_redirect_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_flow_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_ifacl_wide_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_ipv6_ifacl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_l2_l3_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_l2_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_l2_span_filter_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_l3_span_filter_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_pacl_sb_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_rbacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_redirect_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_storm_control_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_vacl_nh_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ing_vlan_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ipsg_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ipv6_ifacl_per_port_stats: false  # Boolean | optional
+            ipv6_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ipv6_l3_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ipv6_pbr_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ipv6_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ipv6_racl_per_port_stats: false  # Boolean | optional
+            ipv6_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ipv6_span_l2_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ipv6_span_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ipv6_sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ipv6_vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            ipv6_vqos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            l3qos_intra_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            mac_ifacl_per_port_stats: false  # Boolean | optional
+            mac_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            mac_l3_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            mac_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            mac_vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            mac_vqos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            mcast_bidir_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            mcast_nat_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            mcast_nbm_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            mpls_double_wide: false  # Boolean | optional
+            mpls_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            mvpn_size: 1  # Integer | min: 0 , max: 10 | optional
+            arp_ether_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            nat_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            openflow_double_wide: false  # Boolean | optional
+            openflow_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            openflow_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            pbr_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            qos_intra_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            racl_all_per_port_stats: false  # Boolean | optional
+            racl_all_profile: 1  # Integer | min: 0 , max: 15 | optional
+            racl_all_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            racl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            racl_per_port_stats: false  # Boolean | optional
+            racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            racl_udf_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            redirect_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            span_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            svi_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            tcp_nat_size: 1  # Integer | min: 0 , max: 100 | optional
+            vacl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            vpc_convergence_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            vqos_intra_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            vqos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            vxlan_p2p_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+          hardware_ecmp_hash_offset_concatenation: false  # Boolean | optional
+          hardware_ecmp_hash_offset_value: 1  # Integer | min: 0 , max: 63 | optional
+          hardware_ecmp_hash_polynomial: "crc16"  # Choice | crc16 , crc32hi | optional
+          ipv6_routing: false  # Boolean | optional
+          ipv6_access_list_match_local_traffic: false  # Boolean | optional
+          ipv6_adjacency_stale_timer: 30  # Integer | min: 30 , max: 65535 | optional
+          ipv6_adjacency_stale_timer_icmp: false  # Boolean | optional
+          ipv6_redirect_syslog: false  # Boolean | optional
+          ipv6_redirect_syslog_interval: 30  # Integer | min: 30 , max: 1800 | optional
+          boot:  # Class | optional [shared class: structure assumed from boot(nxos.devices.configuration.system)]
+            auto_copy: false  # Boolean | optional
+            dhcp: 1  # Integer | min: 0 , max: 2147483647 | optional
+            exclude_configuration: false  # Boolean | optional
+            mode: "none"  # Choice | none , lxc | optional
+            order: "bootflash"  # Choice | bootflash , pxe , pxe2bootflash , bootflash2pxe | optional
+            poap: false  # Boolean | optional
+            image_verify: false  # Boolean | optional
+            nxos_sup_1: "NXOS_SUP_1_1"  # String | optional
+            nxos_sup_2: "NXOS_SUP_2_1"  # String | optional
+            aci: "ACI_1"  # String | optional
+            nxos_image_sup_1: "NXOS_IMAGE_SUP_1_1"  # String | optional
+            nxos_image_sup_2: "NXOS_IMAGE_SUP_2_1"  # String | optional
+          interface_breakout_modules:  # List | optional [shared class: structure assumed from interface_breakout_modules(nxos.devices.configuration.system)]
+            - id: 1  # Integer | min: 1 , max: 32 | required
+              ports:  # List | optional [shared class: structure assumed from ports(nxos.devices.configuration.system.interface_breakout_modules)]
+                - id: 1  # Integer | min: 1 , max: 108 | required
+                  map: "no-breakout"  # Choice | no-breakout , 10g-4x , 50g-2x , 25g-4x , 10g-2x , 100g-4x , 50g-4x , 200g-1x , 100g-2x , 200g-2x , 40g-1x , 400g-2x , 100g-8x , 800g-1x , 100g-2x-pam4 | optional
+          cfs_distribute: false  # Boolean | optional
+          cfs_eth_distribute: false  # Boolean | optional
+          cfs_ipv4_distribute: false  # Boolean | optional
+          cfs_ipv4_mcast_address: "10.1.1.1"  # IP | optional
+          cfs_ipv6_distribute: false  # Boolean | optional
+          cfs_ipv6_mcast_address: "10.1.1.1"  # IP | optional
+          cli_aliases:  # List | optional [shared class: structure assumed from cli_aliases(nxos.devices.configuration.system)]
+            - name: "NAME_1"  # String | required
+              command: "COMMAND_1"  # String | required
+          copp_profile: "strict"  # Choice | strict , moderate , lenient , dense | optional
+          copp_rate_limit: false  # Boolean | optional
+          ethernet:  # Class | optional [shared class: structure assumed from ethernet(nxos.devices.configuration.system)]
+            default_switchport_shutdown: false  # Boolean | optional
+            service_unsupported_transceiver: false  # Boolean | optional
+            default_switchport: "layer2"  # Choice | layer2 , layer3 | optional
+            logging_event_port: "link-status-default"  # Choice | link-status-default , link-status-enable , none , trunk-status-default , trunk-status-enable | optional
+            default_interface_shutdown: "down"  # Choice | down , down-exclude-fabric , up | optional
+            link_failure_laser_on: false  # Boolean | optional
+            storm_control_multicast: false  # Boolean | optional
+            dot1q_tag_native: false  # Boolean | optional
+            admin_link_down_syslog_level: 1  # Integer | min: 0 , max: 7 | optional
+            admin_link_up_syslog_level: 1  # Integer | min: 0 , max: 7 | optional
+            interface_syslog_info: "default"  # Choice | default , info-1 | optional
+          erspan_origin_ip_address: "10.1.1.1"  # IP | optional
+          erspan_origin_ipv6_address: "10.1.1.1"  # IP | optional
+          clock:  # Class | optional [shared class: structure assumed from clock(nxos.devices.configuration.system.platform)]
+            format: "24hours"  # Choice | 24hours , 12hours | optional
+            format_show_timezone_debug: false  # Boolean | optional
+            format_show_timezone_syslog: false  # Boolean | optional
+            protocol: "unspecified"  # Choice | unspecified , ptp , ntp , none , gnss | optional
+            timezone_name: "TIMEZONE_NAME_1"  # String | optional
+            timezone_hours: 1  # Integer | min: -12 , max: 14 | optional
+            timezone_minutes: 1  # Integer | min: 0 , max: 59 | optional
+            summer_time:  # Class | optional [shared class: structure assumed from summer_time(nxos.devices.configuration.system.platform.clock)]
+              name: "NAME_1"  # String | required
+              offset_minutes: 1  # Integer | min: 1 , max: 1440 | optional
+              start_week: 1  # Integer | min: 1 , max: 5 | optional
+              start_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+              start_month: "Jan"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+              start_time: "START_TIME_1"  # String | optional
+              end_week: 1  # Integer | min: 1 , max: 5 | optional
+              end_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+              end_month: "Jan"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+              end_time: "END_TIME_1"  # String | optional
+          icam_monitor_interval: 1  # Integer | min: 1 , max: 24 | optional
+          icam_monitor_history: 168  # Integer | min: 168 , max: 1344 | optional
+          icam_monitor_scale: false  # Boolean | optional
+          icam_monitor_scale_threshold_critical: 1  # Integer | min: 1 , max: 100 | optional
+          icam_monitor_scale_threshold_info: 1  # Integer | min: 1 , max: 100 | optional
+          icam_monitor_scale_threshold_warning: 1  # Integer | min: 1 , max: 100 | optional
+          hardware:  # Class | optional [shared class: structure assumed from hardware(nxos.devices.configuration.system.platform)]
+            acl_redirect_share_disable: false  # Boolean | optional
+            counter_feature_bfd: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_bfd_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_feature_ecn: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_ecn_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_feature_egr_acl: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_egr_acl_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_feature_ingr_acl: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_ingr_acl_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_feature_l2vni: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_l2vni_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_feature_l3vni: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_l3vni_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_feature_si: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_si_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_feature_svi: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_svi_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_feature_tunnel: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_tunnel_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_feature_vlan: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_vlan_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_feature_voq: 1  # Integer | min: 0 , max: 4294967295 | optional
+            counter_voq_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+            dme_load_interval: 1  # Integer | min: 0 , max: 4294967295 | optional
+            egr_l2_qos_ifacl_label_size: false  # Boolean | optional
+            gpe_5_timer_enable: false  # Boolean | optional
+            ing_ifacl_label_size: false  # Boolean | optional
+            vrf_nat_label_width: 1  # Integer | min: 0 , max: 6 | optional
+            mpls_qos_pipe_mode: false  # Boolean | optional
+            multicast_nlb_port_channel: false  # Boolean | optional
+            multicast_priority: 1  # Integer | min: 0 , max: 15 | optional
+            multicast_stats_disable: false  # Boolean | optional
+            pbr_ecmp_paths: 1  # Integer | min: 1 , max: 64 | optional
+            pbr_next_hop_fast_convergence: false  # Boolean | optional
+            pbr_match_default_route: false  # Boolean | optional
+            access_list_tcam_per_entry_stats_template: "l3qos"  # Choice | l3qos , racl , span-acl , pbr | optional
+            storm_control_priority: "default"  # Choice | default , drop-l3 , drop-l2 , drop-all | optional
+            sub_interface_flex_stats: "disable"  # Choice | disable , l3 , l2 | optional
+            access_list_update_atomic: false  # Boolean | optional
+            access_list_update_atomic_strict: false  # Boolean | optional
+            access_list_update_default_result: false  # Boolean | optional
+            vrf_aware_nat_enable: false  # Boolean | optional
+          hardware_profile:  # Class | optional [shared class: structure assumed from hardware_profile(nxos.devices.configuration.system.platform)]
+            access_list_match_inner_header: false  # Boolean | optional
+            acl_tap_aggregation: false  # Boolean | optional
+            disable_parse_error: false  # Boolean | optional
+            flow_redirect_forward_pdu: false  # Boolean | optional
+            front_portmode: "sfp-plus"  # Choice | sfp-plus , qsfp | optional
+            forwarding_mode: "FORWARDING_MODE_1"  # String | optional
+            global_tx_span: false  # Boolean | optional
+            high_multicast_priority: false  # Boolean | optional
+            hardware_lou_resource_threshold: 1  # Integer | min: 1 , max: 50 | optional
+            ingress_bd_ifacl_label_optimization: false  # Boolean | optional
+            ingress_racl_size: false  # Boolean | optional
+            ingress_replication_round_robin: false  # Boolean | optional
+            ip_statistics: false  # Boolean | optional
+            ipv6_alpm_carve_value: 1  # Integer | min: 0 , max: 4096 | optional
+            ipv6_lpm_max_entries: 1  # Integer | min: 0 , max: 6144 | optional
+            lpm_max_limit: 1  # Integer | min: 0 , max: 4096 | optional
+            multicast_dcs_check: false  # Boolean | optional
+            multicast_flex_stats: false  # Boolean | optional
+            multicast_lpm_max_entries: 1  # Integer | min: 0 , max: 4096 | optional
+            multicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+            multicast_nlb: false  # Boolean | optional
+            multicast_racl_bridge: false  # Boolean | optional
+            multicast_rpf_check_optimization: false  # Boolean | optional
+            multicast_service_reflect_port: 1  # Integer | min: 0 , max: 48 | optional
+            multicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+            mld_snooping: false  # Boolean | optional
+            mpls_adjacency_stats_mode: "packets"  # Choice | packets , bytes | optional
+            mpls_ecmp: false  # Boolean | optional
+            mrouting_disable_l2_update: false  # Boolean | optional
+            mrouting_disable_second_route_update: false  # Boolean | optional
+            mrouting_performance_mode: false  # Boolean | optional
+            pbr_skip_self_ip: false  # Boolean | optional
+            pic_core: false  # Boolean | optional
+            portmode_tuple: false  # Boolean | optional
+            pstat: false  # Boolean | optional
+            qos_min_buffer: "all"  # Choice | all , none , default | optional
+            service_template_name: "SERVICE_TEMPLATE_NAME_1"  # String | optional
+            svi_and_si_flex_stats_enable: false  # Boolean | optional
+            svi_flex_stats: false  # Boolean | optional
+            tcam_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+            unicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+            unicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+            unicast_trace: false  # Boolean | optional
+            unknown_unicast_flood: false  # Boolean | optional
+            urpf: false  # Boolean | optional
+            wrr_unicast_bandwidth: 1  # Integer | min: 0 , max: 100 | optional
+          port_channel:  # Class | optional [shared class: structure assumed from port_channel(nxos.devices.configuration.system.platform)]
+            fast_convergence: false  # Boolean | optional
+            load_balance: "dlb"  # Choice | dlb , rtag7 , rtag7-murmur , rtag7-local-crc , dynamic-pin | optional
+            load_balance2_resilient: false  # Boolean | optional
+            load_balance_mpls_label_ip: false  # Boolean | optional
+            load_balance_mpls_label_only: false  # Boolean | optional
+            scale_fanout: false  # Boolean | optional
+          switch_mode: "default"  # Choice | default , n3k , n9k | optional
+          fabric_mode: "full-rate"  # Choice | full-rate , default | optional
+          routing: "non-hierarchical-routing"  # Choice | non-hierarchical-routing , non-hierarchical-routing-max-l3-mode , max-mode-host , max-mode-tor-l3 , mode-hierarchical-64b-alpm , non-hierarchical-max-mode-l3-nh-64b-alpm-nh , hierarchical-def-max-mode-l3-64b-alpm , max-mode-tor-l2 , max-mode-tor-l2-l3 , template-overlay-host-scale , template-lpm-heavy , template-lpm-scale-v6-64 , template-dual-stack-host-scale , template-service-provider , template-multicast-heavy , template-vxlan-scale , template-mpls-heavy , template-internet-peering , template-multicast-ext-heavy , template-l3-heavy , template-dual-stack-mcast , template-l2-heavy , template-l2-scale , template-security-groups | optional
+          ssh:  # Class | optional [shared class: structure assumed from ssh(nxos.devices.configuration.system.platform)]
+            ciphers_all: false  # Boolean | optional
+            ciphers_weak: false  # Boolean | optional
+            kexalgos_all: false  # Boolean | optional
+            keytypes_all: false  # Boolean | optional
+            login_attempts: 1  # Integer | min: 1 , max: 10 | optional
+            login_gracetime: 1  # Integer | min: 0 , max: 3600 | optional
+            macs_all: false  # Boolean | optional
+            port: 22  # Integer | min: 22 , max: 65535 | optional
+            keys:  # List | optional [shared class: structure assumed from keys(nxos.devices.configuration.system.platform.ssh)]
+              - type: "rsa"  # Choice | rsa , dsa , ecdsa | required
+                key_length: 1  # Integer | min: 0 , max: 4096 | optional
+          smart_licensing_transport: "callhome"  # Choice | callhome , cslu , off , smart | optional
+          smart_licensing_url_cslu: "SMART_LICENSING_URL_CSLU_1"  # String | optional
+          line_console_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional
+          line_vty_access_class_in: "LINE_VTY_ACCESS_CLASS_IN_1"  # String | optional
+          line_vty_access_class_out: "LINE_VTY_ACCESS_CLASS_OUT_1"  # String | optional
+          line_vty_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional
+          line_vty_session_limit: 1  # Integer | min: 1 , max: 64 | optional
+          vdcs:  # List | optional [shared class: structure assumed from vdcs(nxos.devices.configuration.system)]
+            - id: 1  # Integer | min: 0 , max: 65535 | required
+              resource_limits:  # Class | optional [shared class: structure assumed from resource_limits(nxos.devices.configuration.system.vdcs)]
+                port_channel_maximum: 1  # Integer | min: 0 , max: 766 | optional
+                port_channel_minimum: 1  # Integer | min: 0 , max: 766 | optional
+                vlan_maximum: 16  # Integer | min: 16 , max: 4094 | optional
+                vlan_minimum: 16  # Integer | min: 16 , max: 4094 | optional
+                vrf_maximum: 2  # Integer | min: 2 , max: 4097 | optional
+                vrf_minimum: 2  # Integer | min: 2 , max: 4097 | optional
+                multicast_ipv4_route_memory_maximum: 3  # Integer | min: 3 , max: 150 | optional
+                multicast_ipv4_route_memory_minimum: 3  # Integer | min: 3 , max: 150 | optional
+                multicast_ipv6_route_memory_maximum: 3  # Integer | min: 3 , max: 20 | optional
+                multicast_ipv6_route_memory_minimum: 3  # Integer | min: 3 , max: 20 | optional
+                unicast_ipv4_route_memory_maximum: 1  # Integer | min: 1 , max: 768 | optional
+                unicast_ipv4_route_memory_minimum: 1  # Integer | min: 1 , max: 768 | optional
+                unicast_ipv6_route_memory_maximum: 1  # Integer | min: 1 , max: 512 | optional
+                unicast_ipv6_route_memory_minimum: 1  # Integer | min: 1 , max: 512 | optional
+          ttag_marker_interval: 1  # Integer | min: 1 , max: 25200 | optional
+          access_list_match_inner_header: false  # Boolean | optional
+          acl_tap_aggregation: false  # Boolean | optional
+          disable_parse_error: false  # Boolean | optional
+          global_tx_span: false  # Boolean | optional
+          high_multicast_priority: false  # Boolean | optional
+          hardware_lou_resource_threshold: 1  # Integer | min: 1 , max: 50 | optional
+          ingress_bd_ifacl_label_optimization: false  # Boolean | optional
+          ingress_racl_size: false  # Boolean | optional
+          ingress_replication_round_robin: false  # Boolean | optional
+          ip_statistics: false  # Boolean | optional
+          ipv6_alpm_carve_value: 1  # Integer | min: 0 , max: 4096 | optional
+          ipv6_lpm_max_entries: 1  # Integer | min: 0 , max: 6144 | optional
+          lpm_max_limit: 1  # Integer | min: 0 , max: 4096 | optional
+          multicast_dcs_check: false  # Boolean | optional
+          multicast_flex_stats: false  # Boolean | optional
+          multicast_lpm_max_entries: 1  # Integer | min: 0 , max: 4096 | optional
+          multicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+          multicast_nlb: false  # Boolean | optional
+          multicast_racl_bridge: false  # Boolean | optional
+          multicast_rpf_check_optimization: false  # Boolean | optional
+          multicast_service_reflect_port: 1  # Integer | min: 0 , max: 48 | optional
+          multicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+          mld_snooping: false  # Boolean | optional
+          mpls_adjacency_stats_mode: "PACKETS"  # Choice | PACKETS , BYTES | optional
+          mpls_ecmp: false  # Boolean | optional
+          mrouting_disable_l2_update: false  # Boolean | optional
+          mrouting_disable_second_route_update: false  # Boolean | optional
+          mrouting_performance_mode: false  # Boolean | optional
+          openflow_forward_pdu: false  # Boolean | optional
+          pbr_skip_self_ip: false  # Boolean | optional
+          pic_core: false  # Boolean | optional
+          port_channel_fast_convergence: false  # Boolean | optional
+          port_channel_load_balance: "dlb"  # Choice | dlb , rtag7 , rtag7-murmur , rtag7-local-crc , dynamic-pin | optional
+          port_channel_load_balance_resilient: false  # Boolean | optional
+          port_channel_mpls_load_balance_label_ip: false  # Boolean | optional
+          port_channel_mpls_load_balance_label_only: false  # Boolean | optional
+          port_channel_scale_fanout: false  # Boolean | optional
+          profile_front_portmode: "sfp-plus"  # Choice | sfp-plus , qsfp | optional
+          profile_mode: "PROFILE_MODE_1"  # String | optional
+          profile_tuple: false  # Boolean | optional
+          pstat: false  # Boolean | optional
+          qos_min_buffer: "all"  # Choice | all , none , default | optional
+          routing_mode: "ROUTING_MODE_1"  # String | optional
+          service_template_name: "SERVICE_TEMPLATE_NAME_1"  # String | optional
+          svi_and_si_flex_stats: false  # Boolean | optional
+          svi_flex_stats: false  # Boolean | optional
+          switching_fabric_speed: "default"  # Choice | default , fabric-speed-40g | optional
+          switching_mode: "store-forward"  # Choice | store-forward , cut-through | optional
+          system_fabric_mode: "full-rate"  # Choice | full-rate , default | optional
+          tcam_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+          unicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+          unicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+          unicast_trace: false  # Boolean | optional
+          unknown_unicast_flood: false  # Boolean | optional
+          urpf: false  # Boolean | optional
+          wrr_unicast_bandwidth: 1  # Integer | min: 0 , max: 100 | optional
+        terminal_console_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        hsrp_bfd: false  # Boolean | optional
+        hsrp_timers_extended_hold: 10  # Integer | min: 10 , max: 255 | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+          hostname: "HOSTNAME_1"  # String | optional
+          mtu: 576  # Integer | min: 576 , max: 9216 | optional
+          nv_overlay_vxlan_udp_port: 1024  # Integer | min: 1024 , max: 65535 | optional
+          nv_overlay_vxlan_udp_source_port_mode: "low"  # Choice | low , high , rfc | optional
+          nve_ipmc_index_size: 1  # Integer | min: 0 , max: 7000 | optional
+          nve_overlay_vlans:  # Class | optional [shared class: structure documented on this page as nve_overlay_vlans(nxos.devices.configuration.system)]
+            ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+            ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.system.nve_overlay_vlans)]
+              - from: 1  # Integer | min: 1 , max: 4094 | required
+                to: 1  # Integer | min: 1 , max: 4094 | required
+          nve_infra_vlans:  # List | optional [shared class: structure documented on this page as nve_infra_vlans(nxos.devices.configuration.system)]
+            - vlans:  # Class | required [shared class: structure documented on this page as vlans(nxos.devices.configuration.system.nve_infra_vlans)]
+                ids: [1]  # List | Integer[min: 1 , max: 4096 ] | optional
+                ranges:  # List | optional [shared class: structure documented on this page as ranges(nxos.devices.configuration.system.nve_overlay_vlans)]
+                  - from: 1  # Integer | min: 1 , max: 4094 | required
+                    to: 1  # Integer | min: 1 , max: 4094 | required
+              force: false  # Boolean | optional
+          interface_vlan_autostate: false  # Boolean | optional
+          ip_routing: false  # Boolean | optional
+          ip_access_list_match_local_traffic: false  # Boolean | optional
+          logging_level_ip: "emergency"  # Choice | emergency , alert , critical , error , warning , notification , informational , debug | optional
+          ip_redirect_syslog: false  # Boolean | optional
+          ip_redirect_syslog_interval: 30  # Integer | min: 30 , max: 1800 | optional
+          ip_source_route: false  # Boolean | optional
+          hardware_ecmp_hash_offset_concatenation: false  # Boolean | optional
+          hardware_ecmp_hash_offset_value: 1  # Integer | min: 0 , max: 63 | optional
+          hardware_ecmp_hash_polynomial: "crc16"  # Choice | crc16 , crc32hi | optional
+          ipv6_routing: false  # Boolean | optional
+          ipv6_access_list_match_local_traffic: false  # Boolean | optional
+          ipv6_adjacency_stale_timer: 30  # Integer | min: 30 , max: 65535 | optional
+          ipv6_adjacency_stale_timer_icmp: false  # Boolean | optional
+          ipv6_redirect_syslog: false  # Boolean | optional
+          ipv6_redirect_syslog_interval: 30  # Integer | min: 30 , max: 1800 | optional
+          boot:  # Class | optional [shared class: structure documented on this page as boot(nxos.devices.configuration.system)]
+            auto_copy: false  # Boolean | optional
+            dhcp: 1  # Integer | min: 0 , max: 2147483647 | optional
+            exclude_configuration: false  # Boolean | optional
+            mode: "none"  # Choice | none , lxc | optional
+            order: "bootflash"  # Choice | bootflash , pxe , pxe2bootflash , bootflash2pxe | optional
+            poap: false  # Boolean | optional
+            image_verify: false  # Boolean | optional
+            nxos_sup_1: "NXOS_SUP_1_1"  # String | optional
+            nxos_sup_2: "NXOS_SUP_2_1"  # String | optional
+            aci: "ACI_1"  # String | optional
+            nxos_image_sup_1: "NXOS_IMAGE_SUP_1_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            nxos_image_sup_2: "NXOS_IMAGE_SUP_2_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          interface_breakout_modules:  # List | optional [shared class: structure documented on this page as interface_breakout_modules(nxos.devices.configuration.system)]
+            - id: 1  # Integer | min: 1 , max: 32 | required
+              ports:  # List | optional [shared class: structure documented on this page as ports(nxos.devices.configuration.system.interface_breakout_modules)]
+                - id: 1  # Integer | min: 1 , max: 108 | required
+                  map: "no-breakout"  # Choice | no-breakout , 10g-4x , 50g-2x , 25g-4x , 10g-2x , 100g-4x , 50g-4x , 200g-1x , 100g-2x , 200g-2x , 40g-1x , 400g-2x , 100g-8x , 800g-1x , 100g-2x-pam4 | optional
+          cfs_distribute: false  # Boolean | optional
+          cfs_eth_distribute: false  # Boolean | optional
+          cfs_ipv4_distribute: false  # Boolean | optional
+          cfs_ipv4_mcast_address: "10.1.1.1"  # IP | optional
+          cfs_ipv6_distribute: false  # Boolean | optional
+          cfs_ipv6_mcast_address: "10.1.1.1"  # IP | optional
+          cli_aliases:  # List | optional [shared class: structure documented on this page as cli_aliases(nxos.devices.configuration.system)]
+            - name: "NAME_1"  # String | required
+              command: "COMMAND_1"  # String | required
+          copp_profile: "strict"  # Choice | strict , moderate , lenient , dense | optional
+          copp_rate_limit: false  # Boolean | optional
+          ethernet:  # Class | optional [shared class: structure documented on this page as ethernet(nxos.devices.configuration.system)]
+            default_switchport_shutdown: false  # Boolean | optional
+            service_unsupported_transceiver: false  # Boolean | optional
+            default_switchport: "layer2"  # Choice | layer2 , layer3 | optional
+            logging_event_port: "link-status-default"  # Choice | link-status-default , link-status-enable , none , trunk-status-default , trunk-status-enable | optional
+            default_interface_shutdown: "down"  # Choice | down , down-exclude-fabric , up | optional
+            link_failure_laser_on: false  # Boolean | optional
+            storm_control_multicast: false  # Boolean | optional
+            dot1q_tag_native: false  # Boolean | optional
+            admin_link_down_syslog_level: 1  # Integer | min: 0 , max: 7 | optional
+            admin_link_up_syslog_level: 1  # Integer | min: 0 , max: 7 | optional
+            interface_syslog_info: "default"  # Choice | default , info-1 | optional
+          icam_monitor_interval: 1  # Integer | min: 1 , max: 24 | optional
+          icam_monitor_history: 168  # Integer | min: 168 , max: 1344 | optional
+          icam_monitor_scale: false  # Boolean | optional
+          icam_monitor_scale_threshold_critical: 1  # Integer | min: 1 , max: 100 | optional
+          icam_monitor_scale_threshold_info: 1  # Integer | min: 1 , max: 100 | optional
+          icam_monitor_scale_threshold_warning: 1  # Integer | min: 1 , max: 100 | optional
+          system: {}  # Class | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) (recursive, see above)
+          smart_licensing_transport: "callhome"  # Choice | callhome , cslu , off , smart | optional
+          smart_licensing_url_cslu: "SMART_LICENSING_URL_CSLU_1"  # String | optional
+          line_console_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional
+          line_vty_access_class_in: "LINE_VTY_ACCESS_CLASS_IN_1"  # String | optional
+          line_vty_access_class_out: "LINE_VTY_ACCESS_CLASS_OUT_1"  # String | optional
+          line_vty_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional
+          line_vty_session_limit: 1  # Integer | min: 1 , max: 64 | optional
+          vdcs:  # List | optional [shared class: structure documented on this page as vdcs(nxos.devices.configuration.system)]
+            - id: 1  # Integer | min: 0 , max: 65535 | required
+              resource_limits: {}  # Class | optional [nested class not documented separately on this page]
+          ttag_marker_interval: 1  # Integer | min: 1 , max: 25200 | optional
+          icam_monitor_intervals: 168  # Integer | min: 168 , max: 1344 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          icam_monitor_threshold_critical: 1  # Integer | min: 1 , max: 100 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          icam_monitor_threshold_info: 1  # Integer | min: 1 , max: 100 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          icam_monitor_threshold_warning: 1  # Integer | min: 1 , max: 100 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          platform:  # Class | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) [shared class: structure assumed from platform(nxos.devices.configuration.system)]
+            hostname: "HOSTNAME_1"  # String | optional
+            mtu: 576  # Integer | min: 576 , max: 9216 | optional
+            nxapi:  # Class | optional [shared class: structure assumed from nxapi(nxos.devices.configuration.system.platform)]
+              http_port: 1  # Integer | min: -1 , max: 65535 | optional
+              https_port: 1  # Integer | min: -1 , max: 65535 | optional
+              vrf: "VRF1"  # String | optional
+              idle_timeout: 1  # Integer | min: 1 , max: 1440 | optional
+              certificate_enable: false  # Boolean | optional
+              certificate_httpscrt: "CERTIFICATE_HTTPSCRT_1"  # String | optional
+              certificate_httpskey: "CERTIFICATE_HTTPSKEY_1"  # String | optional
+              certificate_httpskey_passphrase: "CERTIFICATE_HTTPSKEY_PASSPHRASE_1"  # String | optional
+              certificate_trustpoint: "CERTIFICATE_TRUSTPOINT_1"  # String | optional
+              ssl_protocols: "SSL_PROTOCOLS_1"  # String | optional
+              ssl_ciphers_weak: false  # Boolean | optional
+              client_cert_auth: "off"  # Choice | off , optional , strict , two-step | optional
+              sudi: false  # Boolean | optional
+            nv_overlay_vxlan_udp_port: 1024  # Integer | min: 1024 , max: 65535 | optional
+            nv_overlay_vxlan_udp_source_port_mode: "low"  # Choice | low , high , rfc | optional
+            nve_ipmc_index_size: 1  # Integer | min: 0 , max: 7000 | optional
+            nve_overlay_vlans:  # Class | optional [shared class: structure assumed from nve_overlay_vlans(nxos.devices.configuration.system)]
+              ids: [1]  # List | Integer[min: 1 , max: 4094 ] | optional
+              ranges:  # List | optional [shared class: structure assumed from ranges(nxos.devices.configuration.system.nve_overlay_vlans)]
+                - from: 1  # Integer | min: 1 , max: 4094 | required
+                  to: 1  # Integer | min: 1 , max: 4094 | required
+            nve_infra_vlans:  # List | optional [shared class: structure assumed from nve_infra_vlans(nxos.devices.configuration.system)]
+              - vlans:  # Class | required [shared class: structure assumed from vlans(nxos.devices.configuration.system.nve_infra_vlans)]
+                  ids: [1]  # List | Integer[min: 1 , max: 4096 ] | optional
+                  ranges:  # List | optional [shared class: structure assumed from ranges(nxos.devices.configuration.system.nve_overlay_vlans)]
+                    - from: 1  # Integer | min: 1 , max: 4094 | required
+                      to: 1  # Integer | min: 1 , max: 4094 | required
+                force: false  # Boolean | optional
+            interface_vlan_autostate: false  # Boolean | optional
+            hsrp_bfd: false  # Boolean | optional
+            hsrp_timers_extended_hold: 10  # Integer | min: 10 , max: 255 | optional
+            hypershield:  # Class | optional [shared class: structure assumed from hypershield(nxos.devices.configuration.system.platform)]
+              source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+              source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+              https_proxy: "HTTPS_PROXY_1"  # String | optional
+              https_proxy_port: 1  # Integer | min: 1 , max: 65535 | optional
+              firewall_in_service: false  # Boolean | optional
+              firewall_vrfs:  # List | optional [shared class: structure assumed from firewall_vrfs(nxos.devices.configuration.system.platform.hypershield)]
+                - name: "NAME_1"  # String | required
+            ip_routing: false  # Boolean | optional
+            ip_access_list_match_local_traffic: false  # Boolean | optional
+            logging_level_ip: "emergency"  # Choice | emergency , alert , critical , error , warning , notification , informational , debug | optional
+            ip_redirect_syslog: false  # Boolean | optional
+            ip_redirect_syslog_interval: 30  # Integer | min: 30 , max: 1800 | optional
+            ip_source_route: false  # Boolean | optional
+            hardware_access_list_tcam_region:  # Class | optional [shared class: structure assumed from hardware_access_list_tcam_region(nxos.devices.configuration.system.platform)]
+              arp_acl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              copp_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_hw_telemetry_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_ifacl_all_per_port_stats: false  # Boolean | optional
+              e_ifacl_all_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_ipv6_racl_per_port_stats: false  # Boolean | optional
+              e_racl_per_port_stats: false  # Boolean | optional
+              egr_copp_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_flow_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_l2_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_l3_vlan_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egr_sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_ipv6_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_ipv6_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_mac_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_qos_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              e_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              egress_vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              fcoe_egress_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              fcoe_ingress_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              fhs_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              hw_telemetry_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ifacl_all_per_port_stats: false  # Boolean | optional
+              ifacl_all_profile: 1  # Integer | min: 0 , max: 15 | optional
+              ifacl_all_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ifacl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ifacl_per_port_stats: false  # Boolean | optional
+              ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ifacl_udf_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_dacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_flow_redirect_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_flow_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_ifacl_wide_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_ipv6_ifacl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_l2_l3_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_l2_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_l2_span_filter_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_l3_span_filter_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_pacl_sb_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_rbacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_redirect_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_storm_control_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_vacl_nh_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ing_vlan_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipsg_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_ifacl_per_port_stats: false  # Boolean | optional
+              ipv6_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_l3_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_pbr_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_racl_per_port_stats: false  # Boolean | optional
+              ipv6_racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_span_l2_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_span_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              ipv6_vqos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              l3qos_intra_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mac_ifacl_per_port_stats: false  # Boolean | optional
+              mac_ifacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mac_l3_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mac_qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mac_vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mac_vqos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mcast_bidir_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mcast_nat_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mcast_nbm_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mpls_double_wide: false  # Boolean | optional
+              mpls_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              mvpn_size: 1  # Integer | min: 0 , max: 10 | optional
+              arp_ether_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              nat_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              openflow_double_wide: false  # Boolean | optional
+              openflow_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              openflow_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              pbr_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              qos_intra_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              qos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              racl_all_per_port_stats: false  # Boolean | optional
+              racl_all_profile: 1  # Integer | min: 0 , max: 15 | optional
+              racl_all_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              racl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              racl_per_port_stats: false  # Boolean | optional
+              racl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              racl_udf_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              redirect_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              span_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              sup_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              svi_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              tcp_nat_size: 1  # Integer | min: 0 , max: 100 | optional
+              vacl_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              vacl_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              vpc_convergence_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              vqos_intra_lite_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              vqos_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+              vxlan_p2p_size: 1  # Integer | min: 0 , max: 2147483647 | optional
+            hardware_ecmp_hash_offset_concatenation: false  # Boolean | optional
+            hardware_ecmp_hash_offset_value: 1  # Integer | min: 0 , max: 63 | optional
+            hardware_ecmp_hash_polynomial: "crc16"  # Choice | crc16 , crc32hi | optional
+            ipv6_routing: false  # Boolean | optional
+            ipv6_access_list_match_local_traffic: false  # Boolean | optional
+            ipv6_adjacency_stale_timer: 30  # Integer | min: 30 , max: 65535 | optional
+            ipv6_adjacency_stale_timer_icmp: false  # Boolean | optional
+            ipv6_redirect_syslog: false  # Boolean | optional
+            ipv6_redirect_syslog_interval: 30  # Integer | min: 30 , max: 1800 | optional
+            boot:  # Class | optional [shared class: structure assumed from boot(nxos.devices.configuration.system)]
+              auto_copy: false  # Boolean | optional
+              dhcp: 1  # Integer | min: 0 , max: 2147483647 | optional
+              exclude_configuration: false  # Boolean | optional
+              mode: "none"  # Choice | none , lxc | optional
+              order: "bootflash"  # Choice | bootflash , pxe , pxe2bootflash , bootflash2pxe | optional
+              poap: false  # Boolean | optional
+              image_verify: false  # Boolean | optional
+              nxos_sup_1: "NXOS_SUP_1_1"  # String | optional
+              nxos_sup_2: "NXOS_SUP_2_1"  # String | optional
+              aci: "ACI_1"  # String | optional
+              nxos_image_sup_1: "NXOS_IMAGE_SUP_1_1"  # String | optional
+              nxos_image_sup_2: "NXOS_IMAGE_SUP_2_1"  # String | optional
+            interface_breakout_modules:  # List | optional [shared class: structure assumed from interface_breakout_modules(nxos.devices.configuration.system)]
+              - id: 1  # Integer | min: 1 , max: 32 | required
+                ports:  # List | optional [shared class: structure assumed from ports(nxos.devices.configuration.system.interface_breakout_modules)]
+                  - id: 1  # Integer | min: 1 , max: 108 | required
+                    map: "no-breakout"  # Choice | no-breakout , 10g-4x , 50g-2x , 25g-4x , 10g-2x , 100g-4x , 50g-4x , 200g-1x , 100g-2x , 200g-2x , 40g-1x , 400g-2x , 100g-8x , 800g-1x , 100g-2x-pam4 | optional
+            cfs_distribute: false  # Boolean | optional
+            cfs_eth_distribute: false  # Boolean | optional
+            cfs_ipv4_distribute: false  # Boolean | optional
+            cfs_ipv4_mcast_address: "10.1.1.1"  # IP | optional
+            cfs_ipv6_distribute: false  # Boolean | optional
+            cfs_ipv6_mcast_address: "10.1.1.1"  # IP | optional
+            cli_aliases:  # List | optional [shared class: structure assumed from cli_aliases(nxos.devices.configuration.system)]
+              - name: "NAME_1"  # String | required
+                command: "COMMAND_1"  # String | required
+            copp_profile: "strict"  # Choice | strict , moderate , lenient , dense | optional
+            copp_rate_limit: false  # Boolean | optional
+            ethernet:  # Class | optional [shared class: structure assumed from ethernet(nxos.devices.configuration.system)]
+              default_switchport_shutdown: false  # Boolean | optional
+              service_unsupported_transceiver: false  # Boolean | optional
+              default_switchport: "layer2"  # Choice | layer2 , layer3 | optional
+              logging_event_port: "link-status-default"  # Choice | link-status-default , link-status-enable , none , trunk-status-default , trunk-status-enable | optional
+              default_interface_shutdown: "down"  # Choice | down , down-exclude-fabric , up | optional
+              link_failure_laser_on: false  # Boolean | optional
+              storm_control_multicast: false  # Boolean | optional
+              dot1q_tag_native: false  # Boolean | optional
+              admin_link_down_syslog_level: 1  # Integer | min: 0 , max: 7 | optional
+              admin_link_up_syslog_level: 1  # Integer | min: 0 , max: 7 | optional
+              interface_syslog_info: "default"  # Choice | default , info-1 | optional
+            erspan_origin_ip_address: "10.1.1.1"  # IP | optional
+            erspan_origin_ipv6_address: "10.1.1.1"  # IP | optional
+            clock:  # Class | optional [shared class: structure assumed from clock(nxos.devices.configuration.system.platform)]
+              format: "24hours"  # Choice | 24hours , 12hours | optional
+              format_show_timezone_debug: false  # Boolean | optional
+              format_show_timezone_syslog: false  # Boolean | optional
+              protocol: "unspecified"  # Choice | unspecified , ptp , ntp , none , gnss | optional
+              timezone_name: "TIMEZONE_NAME_1"  # String | optional
+              timezone_hours: 1  # Integer | min: -12 , max: 14 | optional
+              timezone_minutes: 1  # Integer | min: 0 , max: 59 | optional
+              summer_time:  # Class | optional [shared class: structure assumed from summer_time(nxos.devices.configuration.system.platform.clock)]
+                name: "NAME_1"  # String | required
+                offset_minutes: 1  # Integer | min: 1 , max: 1440 | optional
+                start_week: 1  # Integer | min: 1 , max: 5 | optional
+                start_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+                start_month: "Jan"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+                start_time: "START_TIME_1"  # String | optional
+                end_week: 1  # Integer | min: 1 , max: 5 | optional
+                end_day: "Sun"  # Choice | Sun , Mon , Tue , Wed , Thu , Fri , Sat | optional
+                end_month: "Jan"  # Choice | Jan , Feb , Mar , Apr , May , Jun , Jul , Aug , Sep , Oct , Nov , Dec | optional
+                end_time: "END_TIME_1"  # String | optional
+            icam_monitor_interval: 1  # Integer | min: 1 , max: 24 | optional
+            icam_monitor_history: 168  # Integer | min: 168 , max: 1344 | optional
+            icam_monitor_scale: false  # Boolean | optional
+            icam_monitor_scale_threshold_critical: 1  # Integer | min: 1 , max: 100 | optional
+            icam_monitor_scale_threshold_info: 1  # Integer | min: 1 , max: 100 | optional
+            icam_monitor_scale_threshold_warning: 1  # Integer | min: 1 , max: 100 | optional
+            hardware:  # Class | optional [shared class: structure assumed from hardware(nxos.devices.configuration.system.platform)]
+              acl_redirect_share_disable: false  # Boolean | optional
+              counter_feature_bfd: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_bfd_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_ecn: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_ecn_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_egr_acl: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_egr_acl_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_ingr_acl: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_ingr_acl_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_l2vni: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_l2vni_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_l3vni: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_l3vni_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_si: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_si_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_svi: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_svi_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_tunnel: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_tunnel_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_vlan: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_vlan_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_feature_voq: 1  # Integer | min: 0 , max: 4294967295 | optional
+              counter_voq_feature_scale: 1  # Integer | min: 0 , max: 4294967295 | optional
+              dme_load_interval: 1  # Integer | min: 0 , max: 4294967295 | optional
+              egr_l2_qos_ifacl_label_size: false  # Boolean | optional
+              gpe_5_timer_enable: false  # Boolean | optional
+              ing_ifacl_label_size: false  # Boolean | optional
+              vrf_nat_label_width: 1  # Integer | min: 0 , max: 6 | optional
+              mpls_qos_pipe_mode: false  # Boolean | optional
+              multicast_nlb_port_channel: false  # Boolean | optional
+              multicast_priority: 1  # Integer | min: 0 , max: 15 | optional
+              multicast_stats_disable: false  # Boolean | optional
+              pbr_ecmp_paths: 1  # Integer | min: 1 , max: 64 | optional
+              pbr_next_hop_fast_convergence: false  # Boolean | optional
+              pbr_match_default_route: false  # Boolean | optional
+              access_list_tcam_per_entry_stats_template: "l3qos"  # Choice | l3qos , racl , span-acl , pbr | optional
+              storm_control_priority: "default"  # Choice | default , drop-l3 , drop-l2 , drop-all | optional
+              sub_interface_flex_stats: "disable"  # Choice | disable , l3 , l2 | optional
+              access_list_update_atomic: false  # Boolean | optional
+              access_list_update_atomic_strict: false  # Boolean | optional
+              access_list_update_default_result: false  # Boolean | optional
+              vrf_aware_nat_enable: false  # Boolean | optional
+            hardware_profile:  # Class | optional [shared class: structure assumed from hardware_profile(nxos.devices.configuration.system.platform)]
+              access_list_match_inner_header: false  # Boolean | optional
+              acl_tap_aggregation: false  # Boolean | optional
+              disable_parse_error: false  # Boolean | optional
+              flow_redirect_forward_pdu: false  # Boolean | optional
+              front_portmode: "sfp-plus"  # Choice | sfp-plus , qsfp | optional
+              forwarding_mode: "FORWARDING_MODE_1"  # String | optional
+              global_tx_span: false  # Boolean | optional
+              high_multicast_priority: false  # Boolean | optional
+              hardware_lou_resource_threshold: 1  # Integer | min: 1 , max: 50 | optional
+              ingress_bd_ifacl_label_optimization: false  # Boolean | optional
+              ingress_racl_size: false  # Boolean | optional
+              ingress_replication_round_robin: false  # Boolean | optional
+              ip_statistics: false  # Boolean | optional
+              ipv6_alpm_carve_value: 1  # Integer | min: 0 , max: 4096 | optional
+              ipv6_lpm_max_entries: 1  # Integer | min: 0 , max: 6144 | optional
+              lpm_max_limit: 1  # Integer | min: 0 , max: 4096 | optional
+              multicast_dcs_check: false  # Boolean | optional
+              multicast_flex_stats: false  # Boolean | optional
+              multicast_lpm_max_entries: 1  # Integer | min: 0 , max: 4096 | optional
+              multicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+              multicast_nlb: false  # Boolean | optional
+              multicast_racl_bridge: false  # Boolean | optional
+              multicast_rpf_check_optimization: false  # Boolean | optional
+              multicast_service_reflect_port: 1  # Integer | min: 0 , max: 48 | optional
+              multicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+              mld_snooping: false  # Boolean | optional
+              mpls_adjacency_stats_mode: "packets"  # Choice | packets , bytes | optional
+              mpls_ecmp: false  # Boolean | optional
+              mrouting_disable_l2_update: false  # Boolean | optional
+              mrouting_disable_second_route_update: false  # Boolean | optional
+              mrouting_performance_mode: false  # Boolean | optional
+              pbr_skip_self_ip: false  # Boolean | optional
+              pic_core: false  # Boolean | optional
+              portmode_tuple: false  # Boolean | optional
+              pstat: false  # Boolean | optional
+              qos_min_buffer: "all"  # Choice | all , none , default | optional
+              service_template_name: "SERVICE_TEMPLATE_NAME_1"  # String | optional
+              svi_and_si_flex_stats_enable: false  # Boolean | optional
+              svi_flex_stats: false  # Boolean | optional
+              tcam_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+              unicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+              unicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+              unicast_trace: false  # Boolean | optional
+              unknown_unicast_flood: false  # Boolean | optional
+              urpf: false  # Boolean | optional
+              wrr_unicast_bandwidth: 1  # Integer | min: 0 , max: 100 | optional
+            port_channel:  # Class | optional [shared class: structure assumed from port_channel(nxos.devices.configuration.system.platform)]
+              fast_convergence: false  # Boolean | optional
+              load_balance: "dlb"  # Choice | dlb , rtag7 , rtag7-murmur , rtag7-local-crc , dynamic-pin | optional
+              load_balance2_resilient: false  # Boolean | optional
+              load_balance_mpls_label_ip: false  # Boolean | optional
+              load_balance_mpls_label_only: false  # Boolean | optional
+              scale_fanout: false  # Boolean | optional
+            switch_mode: "default"  # Choice | default , n3k , n9k | optional
+            fabric_mode: "full-rate"  # Choice | full-rate , default | optional
+            routing: "non-hierarchical-routing"  # Choice | non-hierarchical-routing , non-hierarchical-routing-max-l3-mode , max-mode-host , max-mode-tor-l3 , mode-hierarchical-64b-alpm , non-hierarchical-max-mode-l3-nh-64b-alpm-nh , hierarchical-def-max-mode-l3-64b-alpm , max-mode-tor-l2 , max-mode-tor-l2-l3 , template-overlay-host-scale , template-lpm-heavy , template-lpm-scale-v6-64 , template-dual-stack-host-scale , template-service-provider , template-multicast-heavy , template-vxlan-scale , template-mpls-heavy , template-internet-peering , template-multicast-ext-heavy , template-l3-heavy , template-dual-stack-mcast , template-l2-heavy , template-l2-scale , template-security-groups | optional
+            ssh:  # Class | optional [shared class: structure assumed from ssh(nxos.devices.configuration.system.platform)]
+              ciphers_all: false  # Boolean | optional
+              ciphers_weak: false  # Boolean | optional
+              kexalgos_all: false  # Boolean | optional
+              keytypes_all: false  # Boolean | optional
+              login_attempts: 1  # Integer | min: 1 , max: 10 | optional
+              login_gracetime: 1  # Integer | min: 0 , max: 3600 | optional
+              macs_all: false  # Boolean | optional
+              port: 22  # Integer | min: 22 , max: 65535 | optional
+              keys:  # List | optional [shared class: structure assumed from keys(nxos.devices.configuration.system.platform.ssh)]
+                - type: "rsa"  # Choice | rsa , dsa , ecdsa | required
+                  key_length: 1  # Integer | min: 0 , max: 4096 | optional
+            smart_licensing_transport: "callhome"  # Choice | callhome , cslu , off , smart | optional
+            smart_licensing_url_cslu: "SMART_LICENSING_URL_CSLU_1"  # String | optional
+            line_console_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional
+            line_vty_access_class_in: "LINE_VTY_ACCESS_CLASS_IN_1"  # String | optional
+            line_vty_access_class_out: "LINE_VTY_ACCESS_CLASS_OUT_1"  # String | optional
+            line_vty_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional
+            line_vty_session_limit: 1  # Integer | min: 1 , max: 64 | optional
+            vdcs:  # List | optional [shared class: structure assumed from vdcs(nxos.devices.configuration.system)]
+              - id: 1  # Integer | min: 0 , max: 65535 | required
+                resource_limits:  # Class | optional [shared class: structure assumed from resource_limits(nxos.devices.configuration.system.vdcs)]
+                  port_channel_maximum: 1  # Integer | min: 0 , max: 766 | optional
+                  port_channel_minimum: 1  # Integer | min: 0 , max: 766 | optional
+                  vlan_maximum: 16  # Integer | min: 16 , max: 4094 | optional
+                  vlan_minimum: 16  # Integer | min: 16 , max: 4094 | optional
+                  vrf_maximum: 2  # Integer | min: 2 , max: 4097 | optional
+                  vrf_minimum: 2  # Integer | min: 2 , max: 4097 | optional
+                  multicast_ipv4_route_memory_maximum: 3  # Integer | min: 3 , max: 150 | optional
+                  multicast_ipv4_route_memory_minimum: 3  # Integer | min: 3 , max: 150 | optional
+                  multicast_ipv6_route_memory_maximum: 3  # Integer | min: 3 , max: 20 | optional
+                  multicast_ipv6_route_memory_minimum: 3  # Integer | min: 3 , max: 20 | optional
+                  unicast_ipv4_route_memory_maximum: 1  # Integer | min: 1 , max: 768 | optional
+                  unicast_ipv4_route_memory_minimum: 1  # Integer | min: 1 , max: 768 | optional
+                  unicast_ipv6_route_memory_maximum: 1  # Integer | min: 1 , max: 512 | optional
+                  unicast_ipv6_route_memory_minimum: 1  # Integer | min: 1 , max: 512 | optional
+            ttag_marker_interval: 1  # Integer | min: 1 , max: 25200 | optional
+            access_list_match_inner_header: false  # Boolean | optional
+            acl_tap_aggregation: false  # Boolean | optional
+            disable_parse_error: false  # Boolean | optional
+            global_tx_span: false  # Boolean | optional
+            high_multicast_priority: false  # Boolean | optional
+            hardware_lou_resource_threshold: 1  # Integer | min: 1 , max: 50 | optional
+            ingress_bd_ifacl_label_optimization: false  # Boolean | optional
+            ingress_racl_size: false  # Boolean | optional
+            ingress_replication_round_robin: false  # Boolean | optional
+            ip_statistics: false  # Boolean | optional
+            ipv6_alpm_carve_value: 1  # Integer | min: 0 , max: 4096 | optional
+            ipv6_lpm_max_entries: 1  # Integer | min: 0 , max: 6144 | optional
+            lpm_max_limit: 1  # Integer | min: 0 , max: 4096 | optional
+            multicast_dcs_check: false  # Boolean | optional
+            multicast_flex_stats: false  # Boolean | optional
+            multicast_lpm_max_entries: 1  # Integer | min: 0 , max: 4096 | optional
+            multicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+            multicast_nlb: false  # Boolean | optional
+            multicast_racl_bridge: false  # Boolean | optional
+            multicast_rpf_check_optimization: false  # Boolean | optional
+            multicast_service_reflect_port: 1  # Integer | min: 0 , max: 48 | optional
+            multicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+            mld_snooping: false  # Boolean | optional
+            mpls_adjacency_stats_mode: "PACKETS"  # Choice | PACKETS , BYTES | optional
+            mpls_ecmp: false  # Boolean | optional
+            mrouting_disable_l2_update: false  # Boolean | optional
+            mrouting_disable_second_route_update: false  # Boolean | optional
+            mrouting_performance_mode: false  # Boolean | optional
+            openflow_forward_pdu: false  # Boolean | optional
+            pbr_skip_self_ip: false  # Boolean | optional
+            pic_core: false  # Boolean | optional
+            port_channel_fast_convergence: false  # Boolean | optional
+            port_channel_load_balance: "dlb"  # Choice | dlb , rtag7 , rtag7-murmur , rtag7-local-crc , dynamic-pin | optional
+            port_channel_load_balance_resilient: false  # Boolean | optional
+            port_channel_mpls_load_balance_label_ip: false  # Boolean | optional
+            port_channel_mpls_load_balance_label_only: false  # Boolean | optional
+            port_channel_scale_fanout: false  # Boolean | optional
+            profile_front_portmode: "sfp-plus"  # Choice | sfp-plus , qsfp | optional
+            profile_mode: "PROFILE_MODE_1"  # String | optional
+            profile_tuple: false  # Boolean | optional
+            pstat: false  # Boolean | optional
+            qos_min_buffer: "all"  # Choice | all , none , default | optional
+            routing_mode: "ROUTING_MODE_1"  # String | optional
+            service_template_name: "SERVICE_TEMPLATE_NAME_1"  # String | optional
+            svi_and_si_flex_stats: false  # Boolean | optional
+            svi_flex_stats: false  # Boolean | optional
+            switching_fabric_speed: "default"  # Choice | default , fabric-speed-40g | optional
+            switching_mode: "store-forward"  # Choice | store-forward , cut-through | optional
+            system_fabric_mode: "full-rate"  # Choice | full-rate , default | optional
+            tcam_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+            unicast_max_limit: 1  # Integer | min: 0 , max: 8000 | optional
+            unicast_syslog_threshold: 1  # Integer | min: 1 , max: 100 | optional
+            unicast_trace: false  # Boolean | optional
+            unknown_unicast_flood: false  # Boolean | optional
+            urpf: false  # Boolean | optional
+            wrr_unicast_bandwidth: 1  # Integer | min: 0 , max: 100 | optional
+          terminal_console_exec_timeout: 1  # Integer | min: 0 , max: 525600 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          hsrp_bfd: false  # Boolean | optional
+          hsrp_timers_extended_hold: 10  # Integer | min: 10 , max: 255 | optional

@@ -1,0 +1,21 @@
+# Network-as-Code template: Radius Provider
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/radius/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    aaa:  # Class | optional
+      radius_providers:  # List | optional
+        - hostname_ip: "10.10.10.1"  # Any | String[Regex: ^[a-zA-Z0-9:][a-zA-Z0-9.:-]{0,254}$ ] or IP | required
+          description: "Radius Server 1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          port: 1812  # Integer | min: 0 , max: 65535 | default: 1812 | optional
+          protocol: "chap"  # Choice | pap , chap , mschap | default: pap | optional
+          key: "myKey"  # String | optional
+          timeout: 5  # Integer | min: 0 , max: 60 | default: 5 | optional
+          retries: 1  # Integer | min: 0 , max: 5 | optional
+          mgmt_epg: "oob"  # Choice | inb , oob | default: inb | optional
+          monitoring: true  # Boolean | default: false | optional
+          monitoring_username: "user1"  # String | Regex: ^[a-zA-Z0-9][a-zA-Z0-9_.@-]{0,31}$ | optional
+          monitoring_password: "pass1"  # String | optional

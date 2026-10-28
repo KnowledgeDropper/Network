@@ -1,0 +1,39 @@
+# Network-as-Code template: AAA Settings
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/aaa/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 6 (parsed 6); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    aaa:  # Class | optional
+      remote_user_login_policy: "no-login"  # Choice | assign-default-role , no-login | default: no-login | optional
+      default_fallback_check: true  # Boolean | default: false | optional
+      default_realm: "radius"  # Choice | local , tacacs , ldap , radius | default: local | optional
+      default_login_domain: "yourDomainRadius"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+      console_realm: "radius"  # Choice | local , tacacs , ldap , radius | default: local | optional
+      console_login_domain: "yourDomainRadius"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+      management_settings:  # Class | optional
+        password_strength_check: true  # Boolean | default: false | optional
+        password_strength_profile:  # Class | optional
+          password_mininum_length: 8  # Integer | min: 8 , max: 64 | default: 8 | optional
+          password_maximum_length: 64  # Integer | min: 8 , max: 64 | default: 64 | optional
+          password_strength_test_type: "custom"  # Choice | default , custom | default: default | optional
+          password_class_flags: ["lowercase", "uppercase"]  # List | Choice[ digits , lowercase , specialchars , uppercase ] | optional
+        password_change_during_interval: true  # Boolean | default: true | optional
+        password_change_count: 2  # Integer | min: 0 , max: 10 | default: 2 | optional
+        password_change_interval: 48  # Integer | min: 0 , max: 745 | default: 48 | optional
+        password_no_change_interval: 24  # Integer | min: 0 , max: 745 | default: 24 | optional
+        password_history_count: 5  # Integer | min: 0 , max: 15 | default: 5 | optional
+        web_token_timeout: 600  # Integer | min: 300 , max: 9600 | default: 600 | optional
+        web_token_max_validity: 24  # Integer | min: 4 , max: 24 | default: 24 | optional
+        web_session_idle_timeout: 1200  # Integer | min: 60 , max: 65525 | default: 1200 | optional
+        include_refresh_session_records: true  # Boolean | default: true | optional
+        enable_login_block: false  # Boolean | default: false | optional
+        login_block_duration: 60  # Integer | min: 1 , max: 1440 | default: 60 | optional
+        login_max_failed_attempts: 5  # Integer | min: 1 , max: 15 | default: 5 | optional
+        login_max_failed_attempts_window: 5  # Integer | min: 1 , max: 720 | default: 5 | optional
+      security_domains:  # List | optional
+        - name: "secDomain1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          restricted_rbac_domain: true  # Boolean | default: false | optional

@@ -1,0 +1,32 @@
+# Network-as-Code template: UDLD
+# Source: https://netascode.cisco.com/docs/data_models/nxos/layer2/udld/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        udld:  # Class | optional
+          aggressive: false  # Boolean | optional
+          message_time: 15  # Integer | min: 7 , max: 90 | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        udld:  # Class | optional [shared class: structure documented on this page as udld(nxos.devices.configuration)]
+          aggressive: false  # Boolean | optional
+          message_time: 7  # Integer | min: 7 , max: 90 | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      udld:  # Class | optional [shared class: structure documented on this page as udld(nxos.devices.configuration)]
+        aggressive: false  # Boolean | optional
+        message_time: 7  # Integer | min: 7 , max: 90 | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        udld:  # Class | optional [shared class: structure documented on this page as udld(nxos.devices.configuration)]
+          aggressive: false  # Boolean | optional
+          message_time: 7  # Integer | min: 7 , max: 90 | optional

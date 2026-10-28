@@ -1,0 +1,453 @@
+# Network-as-Code template: L3out
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/l3out/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 40 (parsed 36); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      l3outs:  # List | optional
+        - name: "L3OUT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          ndo_managed: false  # Boolean | default: false | optional
+          alias: "ALIAS_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          description: "Interface for APP1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          target_dscp: "unspecified"  # Any | Choice[ CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 , unspecified ] or Integer[min: 0 , max: 63 ] | default: unspecified | optional
+          vrf: "VRF1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          domain: "ROUTED1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          bgp:  # Class | optional
+            name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            timer_policy: "TIMER_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            as_path_policy: "AS_PATH_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          ospf:  # Class | optional
+            ospf_interface_profile_name: "OSPF_INTERFACE_PROFILE_NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            area: 1  # Any | Integer[min: 0 , max: 4294967295 ] or Choice[ backbone ] or IP | required
+            area_type: "regular"  # Choice | regular , stub , nssa | default: regular | optional
+            area_cost: 1  # Integer | min: 1 , max: 16777215 | default: 1 | optional
+            area_control_redistribute: true  # Boolean | default: true | optional
+            area_control_summary: true  # Boolean | default: true | optional
+            area_control_suppress_fa: false  # Boolean | default: false | optional
+            auth_type: "none"  # Choice | none , simple , md5 | default: none | optional
+            auth_key: "AUTH_KEY_1"  # String | optional
+            auth_key_id: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+            policy: "POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          eigrp:  # Class | optional
+            interface_profile_name: "INTERFACE_PROFILE_NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            asn: 1  # Integer | min: 1 , max: 65535 | required
+            interface_policy: "INTERFACE_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          bfd_policy: "BFD_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          bgp_peers:  # List | optional
+            - ip: "10.1.1.1"  # IP | required
+              remote_as: 1  # Integer | min: 0 , max: 4294967295 | required
+              description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              allow_self_as: false  # Boolean | default: false | optional
+              as_override: false  # Boolean | default: false | optional
+              disable_peer_as_check: false  # Boolean | default: false | optional
+              next_hop_self: false  # Boolean | default: false | optional
+              send_community: false  # Boolean | default: false | optional
+              send_ext_community: false  # Boolean | default: false | optional
+              password: "PASSWORD_1"  # String | optional
+              allowed_self_as_count: 3  # Integer | min: 1 , max: 10 | default: 3 | optional
+              bfd: false  # Boolean | default: false | optional
+              disable_connected_check: false  # Boolean | default: false | optional
+              ttl: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+              weight: 0  # Integer | min: 0 , max: 65535 | default: 0 | optional
+              remove_all_private_as: false  # Boolean | default: false | optional
+              remove_private_as: false  # Boolean | default: false | optional
+              replace_private_as_with_local_as: false  # Boolean | default: false | optional
+              unicast_address_family: true  # Boolean | default: true | optional
+              multicast_address_family: true  # Boolean | default: true | optional
+              admin_state: true  # Boolean | default: true | optional
+              local_as: 1  # Integer | min: 0 , max: 4294967295 | optional
+              as_propagate: "none"  # Choice | none , no-prepend , replace-as , dual-as | default: none | optional
+              peer_prefix_policy: "PEER_PREFIX_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              export_route_control: "EXPORT_ROUTE_CONTROL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              import_route_control: "IMPORT_ROUTE_CONTROL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          bgp_infra_peers:  # List | optional
+            - ip: "10.1.1.1"  # IP | required
+              description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              remote_as: 1  # Integer | min: 0 , max: 4294967295 | required
+              allow_self_as: false  # Boolean | default: false | optional
+              disable_peer_as_check: false  # Boolean | default: false | optional
+              as_override: false  # Boolean | default: false | optional
+              next_hop_self: false  # Boolean | default: false | optional
+              send_community: false  # Boolean | default: false | optional
+              send_ext_community: false  # Boolean | default: false | optional
+              ttl: 2  # Integer | min: 1 , max: 255 | default: 2 | optional
+              bfd: false  # Boolean | default: false | optional
+              password: "PASSWORD_1"  # String | optional
+              peer_prefix_policy: "PEER_PREFIX_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              peer_type: "wan"  # Choice | wan , mdp-wan | default: wan | optional
+              admin_state: true  # Boolean | default: true | optional
+              local_as: 1  # Integer | min: 0 , max: 4294967295 | optional
+              as_propagate: "none"  # Choice | none , no-prepend , replace-as , dual-as | default: none | optional
+              source_interface_type: "l3out-loopback"  # Choice | l3out-loopback , routable-loopback | default: l3out-loopback | optional
+              data_plane_address: "10.1.1.1"  # IP | optional
+          nodes:  # List | optional
+            - node_id: 101  # Integer | min: 1 , max: 4000 | required
+              pod_id: 1  # Integer | min: 1 , max: 255 | optional
+              router_id: "5.5.5.5"  # IP | required
+              router_id_as_loopback: false  # Boolean | default: true | optional
+              loopbacks: ["10.1.1.1"]  # List | IP | optional
+              static_routes:  # List | optional
+                - description: "My Desc"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  prefix: "2.2.2.0/24"  # IP | required
+                  preference: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+                  bfd: false  # Boolean | default: false | optional
+                  next_hops:  # List | optional
+                    - ip: "6.6.6.6"  # IP | required
+                      description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                      preference: 1  # Integer | min: 0 , max: 255 | default: 1 | optional
+                      type: "prefix"  # Choice | prefix , none | default: prefix | optional
+                      ip_sla_policy: "IP_SLA_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      track_list: "TRACK_LIST_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  track_list: "TRACK_POL"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              interfaces:  # List | optional
+                - description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  node_id: 101  # Integer | min: 1 , max: 4000 | optional
+                  node2_id: 1  # Integer | min: 1 , max: 4000 | optional
+                  port: 10  # Integer | min: 1 , max: 127 | optional
+                  sub_port: 1  # Integer | min: 1 , max: 16 | optional
+                  module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+                  channel: "CHANNEL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  ip: "14.14.14.1/24"  # IP | default: 0.0.0.0 | optional
+                  svi: false  # Boolean | default: false | optional
+                  multipod_direct: false  # Boolean | default: false | optional
+                  autostate: false  # Boolean | default: false | optional
+                  ipv6_dad: true  # Boolean | default: true | optional
+                  floating_svi: true  # Boolean | default: false | optional
+                  vlan: 301  # Integer | min: 1 , max: 4096 | optional
+                  mac: "00:22:BD:F8:19:FF"  # MAC | default: 00:22:BD:F8:19:FF | optional
+                  mtu: "inherit"  # Any | Choice[ inherit ] or Integer[min: 576 , max: 9216 ] | default: inherit | optional
+                  ip_a: "10.1.1.1"  # IP | optional
+                  ip_b: "10.1.1.1"  # IP | optional
+                  ip_shared: "10.1.1.1"  # IP | optional
+                  ip_shared_dhcp_relay: false  # Boolean | default: false | optional
+                  link_local_address: "10.1.1.1"  # IP | optional
+                  bgp_peers:  # List | optional
+                    - ip: "14.14.14.14"  # IP | required
+                      remote_as: 65010  # Integer | min: 0 , max: 4294967295 | required
+                      description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                      allow_self_as: false  # Boolean | default: false | optional
+                      as_override: false  # Boolean | default: false | optional
+                      disable_peer_as_check: false  # Boolean | default: false | optional
+                      next_hop_self: false  # Boolean | default: false | optional
+                      send_community: false  # Boolean | default: false | optional
+                      send_ext_community: false  # Boolean | default: false | optional
+                      password: "PASSWORD_1"  # String | optional
+                      allowed_self_as_count: 3  # Integer | min: 1 , max: 10 | default: 3 | optional
+                      bfd: false  # Boolean | default: false | optional
+                      disable_connected_check: false  # Boolean | default: false | optional
+                      ttl: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+                      weight: 0  # Integer | min: 0 , max: 65535 | default: 0 | optional
+                      remove_all_private_as: false  # Boolean | default: false | optional
+                      remove_private_as: false  # Boolean | default: false | optional
+                      replace_private_as_with_local_as: false  # Boolean | default: false | optional
+                      unicast_address_family: true  # Boolean | default: true | optional
+                      multicast_address_family: true  # Boolean | default: true | optional
+                      admin_state: true  # Boolean | default: true | optional
+                      local_as: 1  # Integer | min: 0 , max: 4294967295 | optional
+                      as_propagate: "none"  # Choice | none , no-prepend , replace-as , dual-as | default: none | optional
+                      peer_prefix_policy: "PEER_PREFIX_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      export_route_control: "EXPORT_ROUTE_CONTROL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      import_route_control: "IMPORT_ROUTE_CONTROL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  paths:  # List | optional
+                    - physical_domain: "PHYSICAL_DOMAIN_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      vmware_vmm_domain: "VMM1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      elag: "ELAGDefault"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      floating_ip: "1.1.1.1/24"  # IP | required
+                      forged_transmit: true  # Boolean | optional
+                      mac_change: true  # Boolean | optional
+                      promiscous_mode: true  # Boolean | optional
+                      vlan: 1  # Integer | min: 1 , max: 4096 | optional
+                  mode: "regular"  # Choice | regular , native , untagged | default: regular | optional
+                  state: "local"  # Choice | local , vrf | optional
+                  micro_bfd:  # Class | optional
+                    destination_ip: "10.1.1.1"  # IP | required
+                    start_timer: 0  # Any | Integer[min: 60 , max: 3600 ] or Integer[min: 0 , max: 0 ] | default: 0 | optional
+          node_profiles:  # List | optional
+            - name: "NODE_101"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Node Profile 101"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              bgp:  # Class | optional
+                name: "BGP_PROT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,16}$ | optional
+                timer_policy: "BGP_TIMER1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                as_path_policy: "BGP_AS_PATH1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              bgp_peers:  # List | optional
+                - ip: "10.1.1.1"  # IP | required
+                  remote_as: 1  # Integer | min: 0 , max: 4294967295 | required
+                  description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  allow_self_as: false  # Boolean | default: false | optional
+                  as_override: false  # Boolean | default: false | optional
+                  disable_peer_as_check: false  # Boolean | default: false | optional
+                  next_hop_self: false  # Boolean | default: false | optional
+                  send_community: false  # Boolean | default: false | optional
+                  send_ext_community: false  # Boolean | default: false | optional
+                  password: "PASSWORD_1"  # String | optional
+                  allowed_self_as_count: 3  # Integer | min: 1 , max: 10 | default: 3 | optional
+                  bfd: false  # Boolean | default: false | optional
+                  disable_connected_check: false  # Boolean | default: false | optional
+                  ttl: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+                  weight: 0  # Integer | min: 0 , max: 65535 | default: 0 | optional
+                  remove_all_private_as: false  # Boolean | default: false | optional
+                  remove_private_as: false  # Boolean | default: false | optional
+                  replace_private_as_with_local_as: false  # Boolean | default: false | optional
+                  unicast_address_family: true  # Boolean | default: true | optional
+                  multicast_address_family: true  # Boolean | default: true | optional
+                  admin_state: true  # Boolean | default: true | optional
+                  local_as: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  as_propagate: "none"  # Choice | none , no-prepend , replace-as , dual-as | default: none | optional
+                  peer_prefix_policy: "PEER_PREFIX_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  export_route_control: "EXPORT_ROUTE_CONTROL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  import_route_control: "IMPORT_ROUTE_CONTROL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              bgp_infra_peers:  # List | optional
+                - ip: "10.10.10.10"  # IP | required
+                  description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  remote_as: 61111  # Integer | min: 0 , max: 4294967295 | required
+                  allow_self_as: true  # Boolean | default: false | optional
+                  disable_peer_as_check: true  # Boolean | default: false | optional
+                  as_override: false  # Boolean | default: false | optional
+                  next_hop_self: false  # Boolean | default: false | optional
+                  send_community: false  # Boolean | default: false | optional
+                  send_ext_community: false  # Boolean | default: false | optional
+                  ttl: 10  # Integer | min: 1 , max: 255 | default: 2 | optional
+                  bfd: true  # Boolean | default: false | optional
+                  password: "admin"  # String | optional
+                  peer_prefix_policy: "BGP_PP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  peer_type: "wan"  # Choice | wan , mdp-wan | default: wan | optional
+                  admin_state: true  # Boolean | default: true | optional
+                  local_as: 31200  # Integer | min: 0 , max: 4294967295 | optional
+                  as_propagate: "none"  # Choice | none , no-prepend , replace-as , dual-as | default: none | optional
+                  source_interface_type: "l3out-loopback"  # Choice | l3out-loopback , routable-loopback | default: l3out-loopback | optional
+                  data_plane_address: "10.1.1.1"  # IP | optional
+              nodes:  # List | optional
+                - node_id: 101  # Integer | min: 1 , max: 4000 | required
+                  pod_id: 1  # Integer | min: 1 , max: 255 | optional
+                  router_id: "5.5.5.5"  # IP | required
+                  router_id_as_loopback: false  # Boolean | default: true | optional
+                  loopbacks: ["10.1.1.1"]  # List | IP | optional
+                  static_routes:  # List | optional
+                    - description: "My Desc"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                      prefix: "2.2.2.0/24"  # IP | required
+                      preference: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+                      bfd: false  # Boolean | default: false | optional
+                      next_hops:  # List | optional
+                        - ip: "6.6.6.6"  # IP | required
+                          description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                          preference: 1  # Integer | min: 0 , max: 255 | default: 1 | optional
+                          type: "prefix"  # Choice | prefix , none | default: prefix | optional
+                          ip_sla_policy: "IP_SLA_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                          track_list: "TRACK_POL"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      track_list: "TRACK_LIST_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              interface_profiles:  # List | optional
+                - name: "NODE_101"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  description: "NODE_101 Description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  bfd_policy: "BFD-Policy"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  ospf:  # Class | optional
+                    ospf_interface_profile_name: "OSPF_INTERFACE_PROFILE_NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                    auth_type: "none"  # Choice | none , simple , md5 | default: none | optional
+                    auth_key: "AUTH_KEY_1"  # String | optional
+                    auth_key_id: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+                    policy: "POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  eigrp:  # Class | optional
+                    interface_profile_name: "INTERFACE_PROFILE_NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                    interface_policy: "INTERFACE_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                    keychain_policy: "KEYCHAIN_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  pim_policy: "PIM_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  pimv6_policy: "PIMV6_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  igmp_interface_policy: "IGMP_INTERFACE_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  qos_class: "unspecified"  # Choice | level1 , level2 , level3 , level4 , level5 , level6 , unspecified | default: unspecified | optional
+                  custom_qos_policy: "CUSTOM_QOS_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  nd_interface_policy: "ND_INTERFACE_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  ingress_data_plane_policing_policy: "DPP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  egress_data_plane_policing_policy: "DPP2"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  interfaces:  # List | optional
+                    - description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                      node_id: 101  # Integer | min: 1 , max: 4000 | optional
+                      node2_id: 1  # Integer | min: 1 , max: 4000 | optional
+                      pod_id: 1  # Integer | min: 1 , max: 255 | optional
+                      module: 1  # Integer | min: 1 , max: 9 | default: 1 | optional
+                      port: 10  # Integer | min: 1 , max: 127 | optional
+                      sub_port: 1  # Integer | min: 1 , max: 16 | optional
+                      channel: "CHANNEL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      ip: "14.14.14.1/24"  # IP | default: 0.0.0.0 | optional
+                      multipod_direct: false  # Boolean | default: false | optional
+                      svi: true  # Boolean | default: false | optional
+                      autostate: false  # Boolean | default: false | optional
+                      ipv6_dad: true  # Boolean | default: true | optional
+                      floating_svi: true  # Boolean | default: false | optional
+                      forged_transmit: false  # Boolean | default: false | optional
+                      mac_change: false  # Boolean | default: false | optional
+                      promiscous_mode: false  # Boolean | default: false | optional
+                      vlan: 301  # Integer | min: 1 , max: 4096 | optional
+                      mac: "00:22:BD:F8:19:FF"  # MAC | default: 00:22:BD:F8:19:FF | optional
+                      mtu: "inherit"  # Any | Choice[ inherit ] or Integer[min: 576 , max: 9216 ] | default: inherit | optional
+                      ip_a: "10.1.1.1"  # IP | optional
+                      ip_b: "10.1.1.1"  # IP | optional
+                      ip_shared: "2001:db8:1234:2000::3/64"  # IP | optional
+                      ip_shared_dhcp_relay: false  # Boolean | default: false | optional
+                      link_local_address: "10.1.1.1"  # IP | optional
+                      bgp_peers:  # List | optional
+                        - ip: "14.14.14.14"  # IP | required
+                          remote_as: 65010  # Integer | min: 0 , max: 4294967295 | required
+                          description: "BGP Peer for APP1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                          allow_self_as: false  # Boolean | default: false | optional
+                          as_override: false  # Boolean | default: false | optional
+                          disable_peer_as_check: false  # Boolean | default: false | optional
+                          next_hop_self: false  # Boolean | default: false | optional
+                          send_community: false  # Boolean | default: false | optional
+                          send_ext_community: false  # Boolean | default: false | optional
+                          password: "PASSWORD_1"  # String | optional
+                          allowed_self_as_count: 3  # Integer | min: 1 , max: 10 | default: 3 | optional
+                          bfd: true  # Boolean | default: false | optional
+                          disable_connected_check: false  # Boolean | default: false | optional
+                          ttl: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+                          weight: 0  # Integer | min: 0 , max: 65535 | default: 0 | optional
+                          remove_all_private_as: false  # Boolean | default: false | optional
+                          remove_private_as: false  # Boolean | default: false | optional
+                          replace_private_as_with_local_as: false  # Boolean | default: false | optional
+                          unicast_address_family: true  # Boolean | default: true | optional
+                          multicast_address_family: false  # Boolean | default: true | optional
+                          admin_state: true  # Boolean | default: true | optional
+                          local_as: 1  # Integer | min: 0 , max: 4294967295 | optional
+                          as_propagate: "none"  # Choice | none , no-prepend , replace-as , dual-as | default: none | optional
+                          peer_prefix_policy: "PEER_PREFIX_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                          export_route_control: "EXPORT_ROUTE_CONTROL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                          import_route_control: "IMPORT_ROUTE_CONTROL_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      paths:  # List | optional
+                        - physical_domain: "PHYSICAL_DOMAIN_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                          vmware_vmm_domain: "VMM1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                          elag: "ELAGDefault"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                          floating_ip: "4.1.1.1/24"  # IP | required
+                          forged_transmit: true  # Boolean | optional
+                          mac_change: true  # Boolean | optional
+                          promiscous_mode: true  # Boolean | optional
+                          vlan: 1  # Integer | min: 1 , max: 4096 | optional
+                      mode: "regular"  # Choice | regular , native , untagged | default: regular | optional
+                      scope: "local"  # Choice | local , vrf | default: local | optional
+                      micro_bfd:  # Class | optional
+                        destination_ip: "10.1.1.1"  # IP | required
+                        start_timer: 0  # Integer | min: 0 , max: 255 | default: 0 | optional
+                  dhcp_labels:  # List | optional [shared class: structure documented on this page as dhcp_labels(apic.tenants.l3outs)]
+                    - dhcp_relay_policy: "DHCP-RELAY1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                      dhcp_option_policy: "DHCP-OPTION1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      scope: "tenant"  # Choice | infra , tenant | default: infra | optional
+                  netflow_monitor_policies:  # List | optional [shared class: structure documented on this page as netflow_monitor_policies(apic.tenants.l3outs)]
+                    - name: "MONITOR1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                      ip_filter_type: "ipv4"  # Choice | ipv4 , ipv6 , ce , unspecified | default: ipv4 | optional
+              bfd_multihop_node_policy: "BFD_MULTIHOP_NODE_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              bfd_multihop_auth:  # Class | optional [shared class: structure documented on this page as bfd_multihop_auth(apic.tenants.l3outs)]
+                type: "none"  # Choice | none , sha1 | default: none | optional
+                key_id: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+                key: "KEY_1"  # String | optional
+          external_endpoint_groups:  # List | optional
+            - name: "EXT-EPG1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              ndo_managed: false  # Boolean | default: false | optional
+              alias: "ALIAS_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              preferred_group: false  # Boolean | default: false | optional
+              qos_class: "unspecified"  # Choice | level1 , level2 , level3 , level4 , level5 , level6 , unspecified | default: unspecified | optional
+              target_dscp: "unspecified"  # Any | Choice[ CS0 , CS1 , AF11 , AF12 , AF13 , CS2 , AF21 , AF22 , AF23 , CS3 , AF31 , AF32 , AF33 , CS4 , AF41 , AF42 , AF43 , CS5 , VA , EF , CS6 , CS7 , unspecified ] or Integer[min: 0 , max: 63 ] | default: unspecified | optional
+              tag_annotations:  # List | optional
+                - key: "env"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  value: "production"  # String | min: 1 , max: 2048 | required
+              subnets:  # List | optional
+                - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  ndo_managed: false  # Boolean | default: false | optional
+                  description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  prefix: "0.0.0.0/0"  # IP | required
+                  import_route_control: false  # Boolean | default: false | optional
+                  export_route_control: true  # Boolean | default: false | optional
+                  shared_route_control: false  # Boolean | default: false | optional
+                  import_security: false  # Boolean | default: true | optional
+                  shared_security: false  # Boolean | default: false | optional
+                  aggregate_import_route_control: false  # Boolean | default: false | optional
+                  aggregate_export_route_control: false  # Boolean | default: false | optional
+                  aggregate_shared_route_control: false  # Boolean | default: false | optional
+                  bgp_route_summarization: false  # Boolean | default: false | optional
+                  bgp_route_summarization_policy: "BGP_ROUTE_SUMMARIZATION_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  ospf_route_summarization: false  # Boolean | default: false | optional
+                  ospf_route_summarization_policy: "OSPF_ROUTE_SUMMARIZATION_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                  eigrp_route_summarization: false  # Boolean | default: false | optional
+                  route_control_profiles:  # List | optional
+                    - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                      direction: "import"  # Choice | import , export | default: import | optional
+              contracts:  # Class | optional
+                consumers: ["CON1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                providers: ["PROVIDERS_1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                imported_consumers: ["IMPORTED_CONSUMERS_1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                masters:  # List | optional
+                  - l3out: "L3OUT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+                    external_endpoint_group: "EXT-EPG1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              route_control_profiles:  # List | optional
+                - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  direction: "import"  # Choice | import , export | default: import | optional
+          import_route_map:  # Class | optional
+            name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            type: "global"  # Choice | combinable , global | default: global | optional
+            contexts:  # List | optional
+              - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                action: "permit"  # Choice | permit , deny | default: permit | optional
+                order: 0  # Integer | min: 0 , max: 9 | default: 0 | optional
+                match_rules: ["MATCH_RULES_1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                set_rule: "SET_RULE_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          export_route_map:  # Class | optional
+            name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            type: "global"  # Choice | combinable , global | default: global | optional
+            contexts:  # List | optional
+              - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                action: "permit"  # Choice | permit , deny | default: permit | optional
+                order: 0  # Integer | min: 0 , max: 9 | default: 0 | optional
+                match_rules: ["MATCH_RULES_1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                set_rule: "SET_RULE_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          interleak_route_map: "INTERLEAK_ROUTE_MAP_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          default_route_leak_policy:  # Class | optional
+            always: false  # Boolean | default: false | optional
+            criteria: "only"  # Choice | only , in-addition | default: only | optional
+            context_scope: false  # Boolean | default: false | optional
+            outside_scope: true  # Boolean | default: true | optional
+          dampening_ipv4_route_map: "DAMPENING_IPV4_ROUTE_MAP_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          dampening_ipv6_route_map: "DAMPENING_IPV6_ROUTE_MAP_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          redistribution_route_maps:  # List | optional
+            - source: "static"  # Choice | direct , attached-host , static | default: static | optional
+              route_map: "ROUTE_MAP_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          l3_multicast_ipv4: false  # Boolean | default: false | optional
+          l3_multicast_ipv6: false  # Boolean | default: false | optional
+          pim_policy: "PIM_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          pimv6_policy: "PIMV6_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          igmp_interface_policy: "IGMP_INTERFACE_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          qos_class: "unspecified"  # Choice | level1 , level2 , level3 , level4 , level5 , level6 , unspecified | default: unspecified | optional
+          custom_qos_policy: "CUSTOM_QOS_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          nd_interface_policy: "ND_INTERFACE_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          ingress_data_plane_policing_policy: "INGRESS_DATA_PLANE_POLICING_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          egress_data_plane_policing_policy: "EGRESS_DATA_PLANE_POLICING_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          multipod: true  # Boolean | default: true | optional
+          remote_leaf: false  # Boolean | default: false | optional
+          import_route_control_enforcement: false  # Boolean | default: false | optional
+          export_route_control_enforcement: true  # Boolean | default: true | optional
+          dhcp_labels:  # List | optional
+            - dhcp_relay_policy: "DHCP_RELAY_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              dhcp_option_policy: "DHCP_OPTION_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              scope: "infra"  # Choice | infra , tenant | default: infra | optional
+          route_maps:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              type: "combinable"  # Choice | combinable , global | default: combinable | optional
+              contexts:  # List | optional
+                - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+                  action: "permit"  # Choice | permit , deny | default: permit | optional
+                  order: 0  # Integer | min: 0 , max: 9 | default: 0 | optional
+                  match_rules: ["MATCH_RULES_1"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                  set_rule: "SET_RULE_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          bfd_multihop_node_policy: "BFD_MULTIHOP_NODE_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+          bfd_multihop_auth:  # Class | optional
+            type: "none"  # Choice | none , sha1 | default: none | optional
+            key_id: 1  # Integer | min: 1 , max: 255 | default: 1 | optional
+            key: "KEY_1"  # String | optional
+          netflow_monitor_policies:  # List | optional
+            - name: "NAME_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              ip_filter_type: "ipv4"  # Choice | ipv4 , ipv6 , ce , unspecified | default: ipv4 | optional

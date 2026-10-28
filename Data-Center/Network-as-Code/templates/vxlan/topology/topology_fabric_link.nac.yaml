@@ -1,0 +1,24 @@
+# Network-as-Code template: Fabric Link
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/topology/topology_fabric_link/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  topology:  # Class | optional
+    fabric_links:  # List | optional
+      - source_device: "SOURCE_DEVICE_1"  # String | required
+        source_interface: "Ethernet1/1"  # String | Regex: (?i)^(?:e|eth(?:ernet)?)\d(?:\/\d+){1,2}|vlan(?:[1-9]|[1-9]\d{1,2}|[1-3]\d{3}|40[0-8]|409[0-4]:?)$ | required
+        source_description: "Example description"  # String | optional
+        dest_device: "DEST_DEVICE_1"  # String | required
+        dest_interface: "Ethernet1/1"  # String | Regex: (?i)^(?:e|eth(?:ernet)?)\d(?:\/\d+){1,2}|vlan(?:[1-9]|[1-9]\d{1,2}|[1-3]\d{3}|40[0-8]|409[0-4]:?)$ | required
+        destination_description: "Example description"  # String | optional
+        template: "TEMPLATE_1"  # String | optional
+        admin_state: true  # Boolean | default: true | optional
+        mtu: 9216  # Integer | min: 1500 , max: 9216 | default: 9216 | optional
+        ipv4:  # Class | optional
+          subnet: "10.1.1.1"  # IP | required
+          source_ipv4: "10.1.1.1"  # IP | required
+          dest_ipv4: "10.1.1.1"  # IP | required
+        peer1_freeform: "PEER1_FREEFORM_1"  # String | optional
+        peer2_freeform: "PEER2_FREEFORM_1"  # String | optional

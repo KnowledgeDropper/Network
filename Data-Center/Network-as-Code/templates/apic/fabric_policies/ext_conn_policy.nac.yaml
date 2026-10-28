@@ -1,0 +1,23 @@
+# Network-as-Code template: External Connectivity Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/ext_conn_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    external_connectivity_policy:  # Class | optional
+      name: "IPN"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+      fabric_id: 1  # Integer | min: 0 , max: 1000 | default: 1 | optional
+      site_id: 1  # Integer | min: 0 , max: 1000 | default: 1 | optional
+      peering_type: "route_reflector"  # Choice | full_mesh , route_reflector | default: full_mesh | optional
+      bgp_password: "cisco"  # String | optional
+      route_target: "extended:as2-nn4:5:16"  # String | default: extended:as2-nn4:5:16 | optional
+      routing_profiles:  # List | optional
+        - name: "IPN1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          subnets: ["11.1.0.0/16"]  # List | IP | optional
+  pod_policies:  # Class | optional
+    pods:  # List | optional
+      - id: 1  # Integer | min: 1 , max: 255 | required
+        data_plane_tep: "1.2.3.4"  # IP | optional

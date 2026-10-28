@@ -1,0 +1,49 @@
+# Network-as-Code template: Boot Order Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/boot_order/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          boot_order:  # List | optional
+            - name: "pxe-then-local"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              boot_mode: "Uefi"  # Choice | Uefi , Legacy | default: Uefi | optional
+              secure_boot: true  # Boolean | default: true | optional
+              boot_devices:  # List | optional
+                - name: "pxe-primary"  # String | Regex: ^[a-zA-Z0-9_-]{1,30}$ | required
+                  device_type: "pxe_boot"  # Choice | flex_mmc , http_boot , iscsi_boot , local_cdd , local_disk , nvme , pch_storage , pxe_boot , san_boot , sd_card , uefi_shell , usb , virtual_media | required
+                  enabled: true  # Boolean | default: true | optional
+                  slot: "MSTOR-RAID"  # String | optional
+                  lun: 0  # Integer | min: 0 , max: 255 | optional
+                  subtype: "None"  # Choice | None , flex-util , flex-flash , SDCARD , cimc-mapped-dvd , cimc-mapped-hdd , kvm-mapped-dvd , kvm-mapped-hdd , kvm-mapped-fdd , usb-cd , usb-fdd , usb-hdd , flexmmc-mapped-dvd , flexmmc-mapped-hdd | optional
+                  interface_name: "eth0"  # String | optional
+                  interface_source: "name"  # Choice | name , mac , port | optional
+                  ip_type: "IPv4"  # Choice | None , IPv4 , IPv6 | optional
+                  ip_config_type: "DHCP"  # Choice | DHCP , Static | optional
+                  mac_address: "MAC_ADDRESS_1"  # String | optional
+                  port: 1  # Integer | min: -1 , max: 255 | optional
+                  protocol: "HTTP"  # Choice | HTTP , HTTPS | optional
+                  target_wwpn: "20:00:00:25:b5:00:00:01"  # String | optional
+                  uri: "URI_1"  # String | optional
+                  ipv4_config:  # Class | optional
+                    ip: "10.1.1.1"  # IP | required
+                    network_mask: "NETWORK_MASK_1"  # String | required
+                    gateway_ip: "10.1.1.1"  # IP | required
+                    dns_ip: "10.1.1.1"  # IP | optional
+                  ipv6_config:  # Class | optional
+                    ip: "10.1.1.1"  # IP | required
+                    prefix_length: 1  # Integer | min: 1 , max: 128 | required
+                    gateway_ip: "10.1.1.1"  # IP | required
+                    dns_ip: "10.1.1.1"  # IP | optional
+                  bootloader:  # Class | optional
+                    name: "bootx64.efi"  # String | required
+                    path: "\\EFI\\BOOT\\"  # String | required
+                    description: "Example description"  # String | optional

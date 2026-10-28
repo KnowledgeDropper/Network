@@ -1,0 +1,34 @@
+# Network-as-Code template: Port
+# Source: https://netascode.cisco.com/docs/data_models/hyperfabric/fabric/port/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+hyperfabric:
+  fabrics:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      nodes:  # List | optional
+        - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          model: "HF6100-32D"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          roles: ["LEAF"]  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          ports:  # List | optional
+            - name: "Ethernet1_3"  # String | required
+              roles: ["UNUSED_PORT"]  # List | Choice[ UNUSED_PORT , FABRIC_PORT , HOST_PORT , ROUTED_PORT ] | required
+              description: "Connected to server01 e0"  # String | optional
+              enabled: true  # Boolean | default: true | optional
+              ipv4_addresses: ["10.1.1.1"]  # List | IP | optional
+              ipv6_addresses: ["10.1.1.1"]  # List | IP | optional
+              prevent_forwarding: false  # Boolean | optional
+              vrf: "VRF1"  # String | optional
+              labels: ["LABELS_1"]  # List | String | optional
+              annotations: {}  # Map | optional
+              sub_interfaces:  # List | optional
+                - id: 1  # Integer | required
+                  description: "Example description"  # String | optional
+                  enabled: true  # Boolean | default: true | optional
+                  ipv4_addresses: ["10.1.1.1"]  # List | IP | optional
+                  ipv6_addresses: ["10.1.1.1"]  # List | IP | optional
+                  vlan_id: 1  # Integer | min: 1 , max: 4094 | optional
+                  vrf: "VRF1"  # String | optional
+                  labels: ["LABELS_1"]  # List | String | optional
+                  annotations: {}  # Map | optional

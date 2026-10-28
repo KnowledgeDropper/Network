@@ -1,0 +1,736 @@
+# Network-as-Code template: HSRP
+# Source: https://netascode.cisco.com/docs/data_models/nxos/routing/hsrp/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 4 (parsed 4); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        system:  # Class | optional
+          hsrp_bfd: true  # Boolean | optional
+          hsrp_timers_extended_hold: 30  # Integer | min: 10 , max: 255 | optional
+        interfaces:  # Class | optional
+          vlans:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              hsrp:  # Class | optional
+                version: 2  # Integer | min: 1 , max: 2 | optional
+                bfd: false  # Boolean | optional
+                use_bia: false  # Boolean | optional
+                use_bia_scope: "global"  # Choice | global , local | optional
+                delay_minimum: 5  # Integer | min: 0 , max: 10000 | optional
+                delay_reload: 10  # Integer | min: 0 , max: 10000 | optional
+                mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                groups:  # List | optional
+                  - id: 10  # Integer | min: 0 , max: 4095 | required
+                    address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                    authentication_md5_compatibility: false  # Boolean | optional
+                    authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                    authentication_md5_key_string: "HSRP-BLUE"  # String | optional
+                    authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                    authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                    authentication_md5_type: "key-string"  # Choice | key-chain , key-string | optional
+                    authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                    authentication_type: "md5"  # Choice | simple , md5 | optional
+                    follow: "FOLLOW_1"  # String | optional
+                    forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                    timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                    ip: "192.168.1.1"  # IP | optional
+                    mac_address: "00:11:22:33:44:55"  # MAC | optional
+                    name: "NAME_1"  # String | optional
+                    preempt: true  # Boolean | optional
+                    preempt_delay_minimum: 30  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                    priority: 110  # Integer | min: 0 , max: 255 | optional
+                    timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          ethernets:  # List | optional
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              subinterfaces:  # List | optional
+                - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+                  hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                    version: 2  # Integer | min: 1 , max: 2 | optional
+                    bfd: false  # Boolean | optional
+                    use_bia: false  # Boolean | optional
+                    use_bia_scope: "global"  # Choice | global , local | optional
+                    delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                    delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                    mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                    groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                      - id: 1  # Integer | min: 0 , max: 4095 | required
+                        address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                        authentication_md5_compatibility: false  # Boolean | optional
+                        authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                        authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                        authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                        authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                        authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                        authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                        authentication_type: "simple"  # Choice | simple , md5 | optional
+                        follow: "FOLLOW_1"  # String | optional
+                        forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                        timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                        timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                        ip: "192.168.1.1"  # IP | optional
+                        mac_address: "00:11:22:33:44:55"  # MAC | optional
+                        name: "NAME_1"  # String | optional
+                        preempt: true  # Boolean | optional
+                        preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                        preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                        preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                        priority: 110  # Integer | min: 0 , max: 255 | optional
+                        timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                        timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                version: 1  # Integer | min: 1 , max: 2 | optional
+                bfd: false  # Boolean | optional
+                use_bia: false  # Boolean | optional
+                use_bia_scope: "global"  # Choice | global , local | optional
+                delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                  - id: 1  # Integer | min: 0 , max: 4095 | required
+                    address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                    authentication_md5_compatibility: false  # Boolean | optional
+                    authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                    authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                    authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                    authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                    authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                    authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                    authentication_type: "simple"  # Choice | simple , md5 | optional
+                    follow: "FOLLOW_1"  # String | optional
+                    forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                    timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                    ip: "10.1.1.1"  # IP | optional
+                    mac_address: "00:11:22:33:44:55"  # MAC | optional
+                    name: "NAME_1"  # String | optional
+                    preempt: false  # Boolean | optional
+                    preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                    priority: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          port_channels:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              subinterfaces:  # List | optional [shared class: structure documented on this page as subinterfaces(nxos.devices.configuration.interfaces.ethernets)]
+                - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+                  hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                    version: 1  # Integer | min: 1 , max: 2 | optional
+                    bfd: false  # Boolean | optional
+                    use_bia: false  # Boolean | optional
+                    use_bia_scope: "global"  # Choice | global , local | optional
+                    delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                    delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                    mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                    groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                      - id: 1  # Integer | min: 0 , max: 4095 | required
+                        address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                        authentication_md5_compatibility: false  # Boolean | optional
+                        authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                        authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                        authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                        authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                        authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                        authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                        authentication_type: "simple"  # Choice | simple , md5 | optional
+                        follow: "FOLLOW_1"  # String | optional
+                        forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                        timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                        timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                        ip: "10.1.1.1"  # IP | optional
+                        mac_address: "00:11:22:33:44:55"  # MAC | optional
+                        name: "NAME_1"  # String | optional
+                        preempt: false  # Boolean | optional
+                        preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                        preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                        preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                        priority: 1  # Integer | min: 0 , max: 255 | optional
+                        timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                        timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                version: 1  # Integer | min: 1 , max: 2 | optional
+                bfd: false  # Boolean | optional
+                use_bia: false  # Boolean | optional
+                use_bia_scope: "global"  # Choice | global , local | optional
+                delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                  - id: 1  # Integer | min: 0 , max: 4095 | required
+                    address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                    authentication_md5_compatibility: false  # Boolean | optional
+                    authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                    authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                    authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                    authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                    authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                    authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                    authentication_type: "simple"  # Choice | simple , md5 | optional
+                    follow: "FOLLOW_1"  # String | optional
+                    forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                    timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                    ip: "10.1.1.1"  # IP | optional
+                    mac_address: "00:11:22:33:44:55"  # MAC | optional
+                    name: "NAME_1"  # String | optional
+                    preempt: false  # Boolean | optional
+                    preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                    priority: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+          hsrp_bfd: false  # Boolean | optional
+          hsrp_timers_extended_hold: 10  # Integer | min: 10 , max: 255 | optional
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                version: 1  # Integer | min: 1 , max: 2 | optional
+                bfd: false  # Boolean | optional
+                use_bia: false  # Boolean | optional
+                use_bia_scope: "global"  # Choice | global , local | optional
+                delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                  - id: 1  # Integer | min: 0 , max: 4095 | required
+                    address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                    authentication_md5_compatibility: false  # Boolean | optional
+                    authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                    authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                    authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                    authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                    authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                    authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                    authentication_type: "simple"  # Choice | simple , md5 | optional
+                    follow: "FOLLOW_1"  # String | optional
+                    forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                    timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                    ip: "10.1.1.1"  # IP | optional
+                    mac_address: "00:11:22:33:44:55"  # MAC | optional
+                    name: "NAME_1"  # String | optional
+                    preempt: false  # Boolean | optional
+                    preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                    priority: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              subinterfaces:  # List | optional [shared class: structure documented on this page as subinterfaces(nxos.devices.configuration.interfaces.ethernets)]
+                - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+                  hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                    version: 1  # Integer | min: 1 , max: 2 | optional
+                    bfd: false  # Boolean | optional
+                    use_bia: false  # Boolean | optional
+                    use_bia_scope: "global"  # Choice | global , local | optional
+                    delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                    delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                    mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                    groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                      - id: 1  # Integer | min: 0 , max: 4095 | required
+                        address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                        authentication_md5_compatibility: false  # Boolean | optional
+                        authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                        authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                        authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                        authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                        authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                        authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                        authentication_type: "simple"  # Choice | simple , md5 | optional
+                        follow: "FOLLOW_1"  # String | optional
+                        forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                        timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                        timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                        ip: "10.1.1.1"  # IP | optional
+                        mac_address: "00:11:22:33:44:55"  # MAC | optional
+                        name: "NAME_1"  # String | optional
+                        preempt: false  # Boolean | optional
+                        preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                        preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                        preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                        priority: 1  # Integer | min: 0 , max: 255 | optional
+                        timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                        timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                version: 1  # Integer | min: 1 , max: 2 | optional
+                bfd: false  # Boolean | optional
+                use_bia: false  # Boolean | optional
+                use_bia_scope: "global"  # Choice | global , local | optional
+                delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                  - id: 1  # Integer | min: 0 , max: 4095 | required
+                    address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                    authentication_md5_compatibility: false  # Boolean | optional
+                    authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                    authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                    authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                    authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                    authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                    authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                    authentication_type: "simple"  # Choice | simple , md5 | optional
+                    follow: "FOLLOW_1"  # String | optional
+                    forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                    timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                    ip: "10.1.1.1"  # IP | optional
+                    mac_address: "00:11:22:33:44:55"  # MAC | optional
+                    name: "NAME_1"  # String | optional
+                    preempt: false  # Boolean | optional
+                    preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                    priority: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              subinterfaces:  # List | optional [shared class: structure documented on this page as subinterfaces(nxos.devices.configuration.interfaces.ethernets)]
+                - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+                  hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                    version: 1  # Integer | min: 1 , max: 2 | optional
+                    bfd: false  # Boolean | optional
+                    use_bia: false  # Boolean | optional
+                    use_bia_scope: "global"  # Choice | global , local | optional
+                    delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                    delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                    mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                    groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                      - id: 1  # Integer | min: 0 , max: 4095 | required
+                        address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                        authentication_md5_compatibility: false  # Boolean | optional
+                        authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                        authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                        authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                        authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                        authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                        authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                        authentication_type: "simple"  # Choice | simple , md5 | optional
+                        follow: "FOLLOW_1"  # String | optional
+                        forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                        timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                        timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                        ip: "10.1.1.1"  # IP | optional
+                        mac_address: "00:11:22:33:44:55"  # MAC | optional
+                        name: "NAME_1"  # String | optional
+                        preempt: false  # Boolean | optional
+                        preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                        preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                        preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                        priority: 1  # Integer | min: 0 , max: 255 | optional
+                        timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                        timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                version: 1  # Integer | min: 1 , max: 2 | optional
+                bfd: false  # Boolean | optional
+                use_bia: false  # Boolean | optional
+                use_bia_scope: "global"  # Choice | global , local | optional
+                delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                  - id: 1  # Integer | min: 0 , max: 4095 | required
+                    address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                    authentication_md5_compatibility: false  # Boolean | optional
+                    authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                    authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                    authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                    authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                    authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                    authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                    authentication_type: "simple"  # Choice | simple , md5 | optional
+                    follow: "FOLLOW_1"  # String | optional
+                    forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                    timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                    ip: "10.1.1.1"  # IP | optional
+                    mac_address: "00:11:22:33:44:55"  # MAC | optional
+                    name: "NAME_1"  # String | optional
+                    preempt: false  # Boolean | optional
+                    preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                    priority: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+        hsrp_bfd: false  # Boolean | optional
+        hsrp_timers_extended_hold: 10  # Integer | min: 10 , max: 255 | optional
+      interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+        vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+              version: 1  # Integer | min: 1 , max: 2 | optional
+              bfd: false  # Boolean | optional
+              use_bia: false  # Boolean | optional
+              use_bia_scope: "global"  # Choice | global , local | optional
+              delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+              delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+              mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+              groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                - id: 1  # Integer | min: 0 , max: 4095 | required
+                  address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                  authentication_md5_compatibility: false  # Boolean | optional
+                  authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                  authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                  authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                  authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                  authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                  authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                  authentication_type: "simple"  # Choice | simple , md5 | optional
+                  follow: "FOLLOW_1"  # String | optional
+                  forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                  timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                  timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                  ip: "10.1.1.1"  # IP | optional
+                  mac_address: "00:11:22:33:44:55"  # MAC | optional
+                  name: "NAME_1"  # String | optional
+                  preempt: false  # Boolean | optional
+                  preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                  preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                  preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                  priority: 1  # Integer | min: 0 , max: 255 | optional
+                  timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                  timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+          - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            subinterfaces:  # List | optional [shared class: structure documented on this page as subinterfaces(nxos.devices.configuration.interfaces.ethernets)]
+              - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+                hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                  version: 1  # Integer | min: 1 , max: 2 | optional
+                  bfd: false  # Boolean | optional
+                  use_bia: false  # Boolean | optional
+                  use_bia_scope: "global"  # Choice | global , local | optional
+                  delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                  delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                  mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                  groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                    - id: 1  # Integer | min: 0 , max: 4095 | required
+                      address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                      authentication_md5_compatibility: false  # Boolean | optional
+                      authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                      authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                      authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                      authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                      authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                      authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                      authentication_type: "simple"  # Choice | simple , md5 | optional
+                      follow: "FOLLOW_1"  # String | optional
+                      forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                      timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                      timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                      ip: "10.1.1.1"  # IP | optional
+                      mac_address: "00:11:22:33:44:55"  # MAC | optional
+                      name: "NAME_1"  # String | optional
+                      preempt: false  # Boolean | optional
+                      preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                      preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                      preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                      priority: 1  # Integer | min: 0 , max: 255 | optional
+                      timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                      timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+              version: 1  # Integer | min: 1 , max: 2 | optional
+              bfd: false  # Boolean | optional
+              use_bia: false  # Boolean | optional
+              use_bia_scope: "global"  # Choice | global , local | optional
+              delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+              delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+              mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+              groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                - id: 1  # Integer | min: 0 , max: 4095 | required
+                  address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                  authentication_md5_compatibility: false  # Boolean | optional
+                  authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                  authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                  authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                  authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                  authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                  authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                  authentication_type: "simple"  # Choice | simple , md5 | optional
+                  follow: "FOLLOW_1"  # String | optional
+                  forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                  timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                  timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                  ip: "10.1.1.1"  # IP | optional
+                  mac_address: "00:11:22:33:44:55"  # MAC | optional
+                  name: "NAME_1"  # String | optional
+                  preempt: false  # Boolean | optional
+                  preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                  preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                  preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                  priority: 1  # Integer | min: 0 , max: 255 | optional
+                  timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                  timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            subinterfaces:  # List | optional [shared class: structure documented on this page as subinterfaces(nxos.devices.configuration.interfaces.ethernets)]
+              - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+                hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                  version: 1  # Integer | min: 1 , max: 2 | optional
+                  bfd: false  # Boolean | optional
+                  use_bia: false  # Boolean | optional
+                  use_bia_scope: "global"  # Choice | global , local | optional
+                  delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                  delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                  mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                  groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                    - id: 1  # Integer | min: 0 , max: 4095 | required
+                      address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                      authentication_md5_compatibility: false  # Boolean | optional
+                      authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                      authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                      authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                      authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                      authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                      authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                      authentication_type: "simple"  # Choice | simple , md5 | optional
+                      follow: "FOLLOW_1"  # String | optional
+                      forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                      timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                      timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                      ip: "10.1.1.1"  # IP | optional
+                      mac_address: "00:11:22:33:44:55"  # MAC | optional
+                      name: "NAME_1"  # String | optional
+                      preempt: false  # Boolean | optional
+                      preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                      preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                      preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                      priority: 1  # Integer | min: 0 , max: 255 | optional
+                      timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                      timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+              version: 1  # Integer | min: 1 , max: 2 | optional
+              bfd: false  # Boolean | optional
+              use_bia: false  # Boolean | optional
+              use_bia_scope: "global"  # Choice | global , local | optional
+              delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+              delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+              mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+              groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                - id: 1  # Integer | min: 0 , max: 4095 | required
+                  address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                  authentication_md5_compatibility: false  # Boolean | optional
+                  authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                  authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                  authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                  authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                  authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                  authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                  authentication_type: "simple"  # Choice | simple , md5 | optional
+                  follow: "FOLLOW_1"  # String | optional
+                  forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                  timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                  timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                  ip: "10.1.1.1"  # IP | optional
+                  mac_address: "00:11:22:33:44:55"  # MAC | optional
+                  name: "NAME_1"  # String | optional
+                  preempt: false  # Boolean | optional
+                  preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                  preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                  preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                  priority: 1  # Integer | min: 0 , max: 255 | optional
+                  timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                  timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        system:  # Class | optional [shared class: structure documented on this page as system(nxos.devices.configuration)]
+          hsrp_bfd: false  # Boolean | optional
+          hsrp_timers_extended_hold: 10  # Integer | min: 10 , max: 255 | optional
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                version: 1  # Integer | min: 1 , max: 2 | optional
+                bfd: false  # Boolean | optional
+                use_bia: false  # Boolean | optional
+                use_bia_scope: "global"  # Choice | global , local | optional
+                delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                  - id: 1  # Integer | min: 0 , max: 4095 | required
+                    address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                    authentication_md5_compatibility: false  # Boolean | optional
+                    authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                    authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                    authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                    authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                    authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                    authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                    authentication_type: "simple"  # Choice | simple , md5 | optional
+                    follow: "FOLLOW_1"  # String | optional
+                    forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                    timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                    ip: "10.1.1.1"  # IP | optional
+                    mac_address: "00:11:22:33:44:55"  # MAC | optional
+                    name: "NAME_1"  # String | optional
+                    preempt: false  # Boolean | optional
+                    preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                    priority: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              subinterfaces:  # List | optional [shared class: structure documented on this page as subinterfaces(nxos.devices.configuration.interfaces.ethernets)]
+                - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+                  hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                    version: 1  # Integer | min: 1 , max: 2 | optional
+                    bfd: false  # Boolean | optional
+                    use_bia: false  # Boolean | optional
+                    use_bia_scope: "global"  # Choice | global , local | optional
+                    delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                    delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                    mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                    groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                      - id: 1  # Integer | min: 0 , max: 4095 | required
+                        address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                        authentication_md5_compatibility: false  # Boolean | optional
+                        authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                        authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                        authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                        authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                        authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                        authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                        authentication_type: "simple"  # Choice | simple , md5 | optional
+                        follow: "FOLLOW_1"  # String | optional
+                        forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                        timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                        timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                        ip: "10.1.1.1"  # IP | optional
+                        mac_address: "00:11:22:33:44:55"  # MAC | optional
+                        name: "NAME_1"  # String | optional
+                        preempt: false  # Boolean | optional
+                        preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                        preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                        preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                        priority: 1  # Integer | min: 0 , max: 255 | optional
+                        timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                        timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                version: 1  # Integer | min: 1 , max: 2 | optional
+                bfd: false  # Boolean | optional
+                use_bia: false  # Boolean | optional
+                use_bia_scope: "global"  # Choice | global , local | optional
+                delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                  - id: 1  # Integer | min: 0 , max: 4095 | required
+                    address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                    authentication_md5_compatibility: false  # Boolean | optional
+                    authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                    authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                    authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                    authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                    authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                    authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                    authentication_type: "simple"  # Choice | simple , md5 | optional
+                    follow: "FOLLOW_1"  # String | optional
+                    forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                    timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                    ip: "10.1.1.1"  # IP | optional
+                    mac_address: "00:11:22:33:44:55"  # MAC | optional
+                    name: "NAME_1"  # String | optional
+                    preempt: false  # Boolean | optional
+                    preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                    priority: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              subinterfaces:  # List | optional [shared class: structure documented on this page as subinterfaces(nxos.devices.configuration.interfaces.ethernets)]
+                - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+                  hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                    version: 1  # Integer | min: 1 , max: 2 | optional
+                    bfd: false  # Boolean | optional
+                    use_bia: false  # Boolean | optional
+                    use_bia_scope: "global"  # Choice | global , local | optional
+                    delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                    delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                    mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                    groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                      - id: 1  # Integer | min: 0 , max: 4095 | required
+                        address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                        authentication_md5_compatibility: false  # Boolean | optional
+                        authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                        authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                        authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                        authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                        authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                        authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                        authentication_type: "simple"  # Choice | simple , md5 | optional
+                        follow: "FOLLOW_1"  # String | optional
+                        forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                        timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                        timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                        ip: "10.1.1.1"  # IP | optional
+                        mac_address: "00:11:22:33:44:55"  # MAC | optional
+                        name: "NAME_1"  # String | optional
+                        preempt: false  # Boolean | optional
+                        preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                        preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                        preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                        priority: 1  # Integer | min: 0 , max: 255 | optional
+                        timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                        timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              hsrp:  # Class | optional [shared class: structure documented on this page as hsrp(nxos.devices.configuration.interfaces.vlans)]
+                version: 1  # Integer | min: 1 , max: 2 | optional
+                bfd: false  # Boolean | optional
+                use_bia: false  # Boolean | optional
+                use_bia_scope: "global"  # Choice | global , local | optional
+                delay_minimum: 1  # Integer | min: 0 , max: 10000 | optional
+                delay_reload: 1  # Integer | min: 0 , max: 10000 | optional
+                mac_refresh: 1  # Integer | min: 0 , max: 10000 | optional
+                groups:  # List | optional [shared class: structure documented on this page as groups(nxos.devices.configuration.interfaces.vlans.hsrp)]
+                  - id: 1  # Integer | min: 0 , max: 4095 | required
+                    address_family: "ipv4"  # Choice | ipv4 , ipv6 | required
+                    authentication_md5_compatibility: false  # Boolean | optional
+                    authentication_md5_key_chain: "AUTHENTICATION_MD5_KEY_CHAIN_1"  # String | optional
+                    authentication_md5_key_string: "AUTHENTICATION_MD5_KEY_STRING_1"  # String | optional
+                    authentication_md5_key_string_type: "unencrypted"  # Choice | unencrypted , hidden | optional
+                    authentication_md5_timeout: 1  # Integer | min: 0 , max: 32767 | optional
+                    authentication_md5_type: "key-chain"  # Choice | key-chain , key-string | optional
+                    authentication_text: "AUTHENTICATION_TEXT_1"  # String | optional
+                    authentication_type: "simple"  # Choice | simple , md5 | optional
+                    follow: "FOLLOW_1"  # String | optional
+                    forwarding_threshold_lower: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello: 250  # Integer | min: 250 , max: 254000 | optional
+                    timers_hold: 750  # Integer | min: 750 , max: 255000 | optional
+                    ip: "10.1.1.1"  # IP | optional
+                    mac_address: "00:11:22:33:44:55"  # MAC | optional
+                    name: "NAME_1"  # String | optional
+                    preempt: false  # Boolean | optional
+                    preempt_delay_minimum: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_reload: 1  # Integer | min: 0 , max: 3600 | optional
+                    preempt_delay_sync: 1  # Integer | min: 0 , max: 3600 | optional
+                    priority: 1  # Integer | min: 0 , max: 255 | optional
+                    timers_hello_interval: 250  # Integer | min: 250 , max: 254000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                    timers_hold_interval: 750  # Integer | min: 750 , max: 255000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

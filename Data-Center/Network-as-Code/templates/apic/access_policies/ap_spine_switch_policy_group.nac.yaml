@@ -1,0 +1,14 @@
+# Network-as-Code template: Access Spine Switch Policy Group
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/ap_spine_switch_policy_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    spine_switch_policy_groups:  # List | optional
+      - name: "ALL_SPINES"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        lldp_policy: "LLDP-ENABLED"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        cdp_policy: "CDP-ENABLED"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        bfd_ipv4_policy: "BFD-IPV4-POLICY"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        bfd_ipv6_policy: "BFD-IPV6-POLICY"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional

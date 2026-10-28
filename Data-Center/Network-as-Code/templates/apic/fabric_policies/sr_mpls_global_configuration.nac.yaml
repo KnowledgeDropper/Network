@@ -1,0 +1,11 @@
+# Network-as-Code template: SR MPLS Global Configuration
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/sr_mpls_global_configuration/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    sr_mpls_global_configuration:  # Class | optional
+      sr_global_block_minimum: 16000  # Integer | min: 16000 , max: 471804 | default: 16000 | optional
+      sr_global_block_maximum: 275999  # Integer | min: 16000 , max: 471804 | default: 23999 | optional

@@ -1,0 +1,23 @@
+# Network-as-Code template: Ethernet QoS Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/ethernet_qos/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          ethernet_qos:  # List | optional
+            - name: "best-effort"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Default best-effort QoS"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              burst: 102400  # Integer | min: 1 , max: 1000000 | default: 10240 | optional
+              cos: 0  # Integer | min: 0 , max: 6 | default: 0 | optional
+              mtu: 1500  # Integer | min: 1500 , max: 9000 | default: 1500 | optional
+              priority: "Best Effort"  # Choice | Best Effort , FC , Platinum , Gold , Silver , Bronze | default: Best Effort | optional
+              rate_limit: 10000  # Integer | min: 0 , max: 100000 | default: 0 | optional
+              trust_host_cos: false  # Boolean | default: false | optional

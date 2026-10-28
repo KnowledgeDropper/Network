@@ -1,0 +1,128 @@
+# Network-as-Code template: Telemetry
+# Source: https://netascode.cisco.com/docs/data_models/nxos/monitoring/telemetry/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        telemetry:  # Class | optional
+          batch_dme_events: false  # Boolean | optional
+          merge_subscriptions: true  # Boolean | optional
+          destination_profile_use_vrf: "management"  # String | optional
+          destination_groups:  # List | optional
+            - id: 1  # Any | Integer or String or String[Regex: ^.*[\$\%]\{.*$ ] | required
+              destinations:  # List | optional
+                - ip_address: "10.0.0.100"  # IP | required
+                  port: 50051  # Integer | min: 0 , max: 65535 | required
+                  protocol: "gRPC"  # Choice | UDP , gRPC , HTTP | optional
+                  encoding: "GPB"  # Choice | GPB , JSON , GPB-compact , Form-data | optional
+                  node_id: "spine1"  # String | optional
+          sensor_groups:  # List | optional
+            - id: 1  # Any | Integer or String or String[Regex: ^.*[\$\%]\{.*$ ] | required
+              data_source: "DME"  # Choice | DME , NX-API , YANG , NATIVE , DEFAULT | optional
+              sensor_paths:  # List | optional
+                - path: "sys/intf"  # String | required
+                  alias: "interfaces"  # String | optional
+                  depth: 0  # Integer | min: 0 , max: 4294967295 | optional
+                  filter_condition: "gt(operBitrate,0)"  # String | optional
+                  query_condition: "QUERY_CONDITION_1"  # String | optional
+          subscriptions:  # List | optional
+            - id: 1  # Integer | min: 1 , max: 4095 | required
+              sensor_groups:  # List | optional
+                - id: 1  # Any | Integer or String or String[Regex: ^.*[\$\%]\{.*$ ] | required
+                  sample_interval: 30000  # Integer | min: 0 , max: 604800000 | optional
+              destination_groups: [1]  # List | Any[Integer or String] | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        telemetry:  # Class | optional [shared class: structure documented on this page as telemetry(nxos.devices.configuration)]
+          batch_dme_events: false  # Boolean | optional
+          merge_subscriptions: false  # Boolean | optional
+          destination_profile_use_vrf: "VRF1"  # String | optional
+          destination_groups:  # List | optional [shared class: structure documented on this page as destination_groups(nxos.devices.configuration.telemetry)]
+            - id: 1  # Any | Integer or String or String[Regex: ^.*[\$\%]\{.*$ ] | required
+              destinations:  # List | optional [shared class: structure documented on this page as destinations(nxos.devices.configuration.telemetry.destination_groups)]
+                - ip_address: "10.1.1.1"  # IP | required
+                  port: 1  # Integer | min: 0 , max: 65535 | required
+                  protocol: "UDP"  # Choice | UDP , gRPC , HTTP | optional
+                  encoding: "GPB"  # Choice | GPB , JSON , GPB-compact , Form-data | optional
+                  node_id: "NODE_ID_1"  # String | optional
+          sensor_groups:  # List | optional [shared class: structure documented on this page as sensor_groups(nxos.devices.configuration.telemetry)]
+            - id: 1  # Any | Integer or String or String[Regex: ^.*[\$\%]\{.*$ ] | required
+              data_source: "DME"  # Choice | DME , NX-API , YANG , NATIVE , DEFAULT | optional
+              sensor_paths:  # List | optional [shared class: structure documented on this page as sensor_paths(nxos.devices.configuration.telemetry.sensor_groups)]
+                - path: "PATH_1"  # String | required
+                  alias: "ALIAS_1"  # String | optional
+                  depth: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  filter_condition: "FILTER_CONDITION_1"  # String | optional
+                  query_condition: "QUERY_CONDITION_1"  # String | optional
+          subscriptions:  # List | optional [shared class: structure documented on this page as subscriptions(nxos.devices.configuration.telemetry)]
+            - id: 1  # Integer | min: 1 , max: 4095 | required
+              sensor_groups:  # List | optional [shared class: structure documented on this page as sensor_groups(nxos.devices.configuration.telemetry.subscriptions)]
+                - id: 1  # Any | Integer or String or String[Regex: ^.*[\$\%]\{.*$ ] | required
+                  sample_interval: 1  # Integer | min: 0 , max: 604800000 | optional
+              destination_groups: [1]  # List | Any[Integer or String] | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      telemetry:  # Class | optional [shared class: structure documented on this page as telemetry(nxos.devices.configuration)]
+        batch_dme_events: false  # Boolean | optional
+        merge_subscriptions: false  # Boolean | optional
+        destination_profile_use_vrf: "VRF1"  # String | optional
+        destination_groups:  # List | optional [shared class: structure documented on this page as destination_groups(nxos.devices.configuration.telemetry)]
+          - id: 1  # Any | Integer or String or String[Regex: ^.*[\$\%]\{.*$ ] | required
+            destinations:  # List | optional [shared class: structure documented on this page as destinations(nxos.devices.configuration.telemetry.destination_groups)]
+              - ip_address: "10.1.1.1"  # IP | required
+                port: 1  # Integer | min: 0 , max: 65535 | required
+                protocol: "UDP"  # Choice | UDP , gRPC , HTTP | optional
+                encoding: "GPB"  # Choice | GPB , JSON , GPB-compact , Form-data | optional
+                node_id: "NODE_ID_1"  # String | optional
+        sensor_groups:  # List | optional [shared class: structure documented on this page as sensor_groups(nxos.devices.configuration.telemetry)]
+          - id: 1  # Any | Integer or String or String[Regex: ^.*[\$\%]\{.*$ ] | required
+            data_source: "DME"  # Choice | DME , NX-API , YANG , NATIVE , DEFAULT | optional
+            sensor_paths:  # List | optional [shared class: structure documented on this page as sensor_paths(nxos.devices.configuration.telemetry.sensor_groups)]
+              - path: "PATH_1"  # String | required
+                alias: "ALIAS_1"  # String | optional
+                depth: 1  # Integer | min: 0 , max: 4294967295 | optional
+                filter_condition: "FILTER_CONDITION_1"  # String | optional
+                query_condition: "QUERY_CONDITION_1"  # String | optional
+        subscriptions:  # List | optional [shared class: structure documented on this page as subscriptions(nxos.devices.configuration.telemetry)]
+          - id: 1  # Integer | min: 1 , max: 4095 | required
+            sensor_groups:  # List | optional [shared class: structure documented on this page as sensor_groups(nxos.devices.configuration.telemetry.subscriptions)]
+              - id: 1  # Any | Integer or String or String[Regex: ^.*[\$\%]\{.*$ ] | required
+                sample_interval: 1  # Integer | min: 0 , max: 604800000 | optional
+            destination_groups: [1]  # List | Any[Integer or String] | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        telemetry:  # Class | optional [shared class: structure documented on this page as telemetry(nxos.devices.configuration)]
+          batch_dme_events: false  # Boolean | optional
+          merge_subscriptions: false  # Boolean | optional
+          destination_profile_use_vrf: "VRF1"  # String | optional
+          destination_groups:  # List | optional [shared class: structure documented on this page as destination_groups(nxos.devices.configuration.telemetry)]
+            - id: 1  # Any | Integer or String or String[Regex: ^.*[\$\%]\{.*$ ] | required
+              destinations:  # List | optional [shared class: structure documented on this page as destinations(nxos.devices.configuration.telemetry.destination_groups)]
+                - ip_address: "10.1.1.1"  # IP | required
+                  port: 1  # Integer | min: 0 , max: 65535 | required
+                  protocol: "UDP"  # Choice | UDP , gRPC , HTTP | optional
+                  encoding: "GPB"  # Choice | GPB , JSON , GPB-compact , Form-data | optional
+                  node_id: "NODE_ID_1"  # String | optional
+          sensor_groups:  # List | optional [shared class: structure documented on this page as sensor_groups(nxos.devices.configuration.telemetry)]
+            - id: 1  # Any | Integer or String or String[Regex: ^.*[\$\%]\{.*$ ] | required
+              data_source: "DME"  # Choice | DME , NX-API , YANG , NATIVE , DEFAULT | optional
+              sensor_paths:  # List | optional [shared class: structure documented on this page as sensor_paths(nxos.devices.configuration.telemetry.sensor_groups)]
+                - path: "PATH_1"  # String | required
+                  alias: "ALIAS_1"  # String | optional
+                  depth: 1  # Integer | min: 0 , max: 4294967295 | optional
+                  filter_condition: "FILTER_CONDITION_1"  # String | optional
+                  query_condition: "QUERY_CONDITION_1"  # String | optional
+          subscriptions:  # List | optional [shared class: structure documented on this page as subscriptions(nxos.devices.configuration.telemetry)]
+            - id: 1  # Integer | min: 1 , max: 4095 | required
+              sensor_groups:  # List | optional [shared class: structure documented on this page as sensor_groups(nxos.devices.configuration.telemetry.subscriptions)]
+                - id: 1  # Any | Integer or String or String[Regex: ^.*[\$\%]\{.*$ ] | required
+                  sample_interval: 1  # Integer | min: 0 , max: 604800000 | optional
+              destination_groups: [1]  # List | Any[Integer or String] | optional

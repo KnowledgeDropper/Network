@@ -1,0 +1,18 @@
+# Network-as-Code template: MACsec Parameters Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/macsec_parameters_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    interface_policies:  # Class | optional
+      macsec_parameters_policies:  # List | optional
+        - name: "MACSEC_PARAM1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "MACSEC parameters policy 1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          cipher_suite: "gcm-aes-256"  # Choice | gcm-aes-128 , gcm-aes-256 , gcm-aes-xpn-128 , gcm-aes-xpn-256 | default: gcm-aes-xpn-256 | optional
+          confidentiality_offset: "offset-30"  # Choice | offset-0 , offset-30 , offset-50 | default: offset-0 | optional
+          key_server_priority: 128  # Integer | min: 0 , max: 255 | default: 16 | optional
+          window_size: 120  # Integer | min: 0 , max: 4294967295 | default: 64 | optional
+          key_expiry_time: "disabled"  # Any | Choice[ disabled ] or Integer or Integer[min: 60 , max: 2592000 ] | default: disabled | optional
+          security_policy: "must-secure"  # Choice | should-secure , must-secure | default: should-secure | optional

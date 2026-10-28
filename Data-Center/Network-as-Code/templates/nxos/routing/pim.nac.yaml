@@ -1,0 +1,504 @@
+# Network-as-Code template: PIM
+# Source: https://netascode.cisco.com/docs/data_models/nxos/routing/pim/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 6 (parsed 6); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        routing:  # Class | optional
+          pim:  # Class | optional
+            evpn_border_leaf: false  # Boolean | optional
+            extranet: false  # Boolean | optional
+            bfd: true  # Boolean | optional
+            auto_enable: false  # Boolean | optional
+            flush_routes: false  # Boolean | optional
+            log_neighbor_changes: true  # Boolean | optional
+            mtu: 1500  # Integer | min: 1500 , max: 65536 | optional
+            register_rate_limit: 1  # Integer | min: 0 , max: 65535 | optional
+            strict_rfc_compliant: false  # Boolean | optional
+            spt_switch_graceful: false  # Boolean | optional
+            ssm:  # Class | optional
+              range_1: "232.0.0.0/8"  # String | optional
+              range_2: "RANGE_2_1"  # String | optional
+              range_3: "RANGE_3_1"  # String | optional
+              range_4: "RANGE_4_1"  # String | optional
+              prefix_list: "PREFIX_LIST_1"  # String | optional
+              none: false  # Boolean | optional
+              route_map: "ROUTE_MAP_1"  # String | optional
+            rps:  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              - address: "10.1.101.1"  # IP | required
+                group_list: "10.1.1.1"  # IP | optional
+                bidir: false  # Boolean | optional
+                override: false  # Boolean | optional
+            anycast_rps:  # List | optional
+              - address: "10.1.101.1"  # IP | required
+                set_address: "10.1.100.1"  # IP | required
+            vrfs:  # List | optional
+              - vrf: "BLUE"  # String | required
+                bfd: false  # Boolean | optional
+                auto_enable: false  # Boolean | optional
+                flush_routes: false  # Boolean | optional
+                log_neighbor_changes: false  # Boolean | optional
+                mtu: 1500  # Integer | min: 1500 , max: 65536 | optional
+                register_rate_limit: 1  # Integer | min: 0 , max: 65535 | optional
+                strict_rfc_compliant: false  # Boolean | optional
+                spt_switch_graceful: false  # Boolean | optional
+                ssm:  # Class | optional [shared class: structure documented on this page as ssm(nxos.devices.configuration.routing.pim)]
+                  range_1: "RANGE_1_1"  # String | optional
+                  range_2: "RANGE_2_1"  # String | optional
+                  range_3: "RANGE_3_1"  # String | optional
+                  range_4: "RANGE_4_1"  # String | optional
+                  prefix_list: "PREFIX_LIST_1"  # String | optional
+                  none: false  # Boolean | optional
+                  route_map: "ROUTE_MAP_1"  # String | optional
+                rps:  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) [shared class: structure assumed from rps(nxos.devices.configuration.routing.pim)]
+                  - address: "192.168.1.1"  # IP | required
+                    group_list: "239.0.0.0/8"  # IP | optional
+                    bidir: false  # Boolean | optional
+                    override: false  # Boolean | optional
+                anycast_rps:  # List | optional [shared class: structure documented on this page as anycast_rps(nxos.devices.configuration.routing.pim)]
+                  - address: "10.1.1.1"  # IP | required
+                    set_address: "10.1.1.1"  # IP | required
+                jp_delay: 1  # Integer | min: 1 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                anycast_rp_local_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                anycast_rp_local_interface_id: "ANYCAST_RP_LOCAL_INTERFACE_ID_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                anycast_rp_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                anycast_rp_source_interface_id: "ANYCAST_RP_SOURCE_INTERFACE_ID_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            jp_delay: 1  # Integer | min: 1 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            anycast_rp_local_interface_type: "loopback"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            anycast_rp_local_interface_id: "0"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            anycast_rp_source_interface_type: "loopback"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            anycast_rp_source_interface_id: "0"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        interfaces:  # Class | optional
+          loopbacks:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              pim:  # Class | optional
+                bfd_instance: false  # Boolean | optional
+                dr_priority: 1  # Integer | min: 1 , max: 4294967295 | optional
+                passive: false  # Boolean | optional
+                sparse_mode: true  # Boolean | optional
+                border: false  # Boolean | optional
+                dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+                jp_policy: "JP_POLICY_1"  # String | optional
+                neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+                neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+                strict_rfc_compliant: false  # Boolean | optional
+                neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          vlans:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.interfaces.loopbacks)]
+                bfd_instance: false  # Boolean | optional
+                dr_priority: 1  # Integer | min: 1 , max: 4294967295 | optional
+                passive: false  # Boolean | optional
+                sparse_mode: false  # Boolean | optional
+                border: false  # Boolean | optional
+                dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+                jp_policy: "JP_POLICY_1"  # String | optional
+                neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+                neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+                strict_rfc_compliant: false  # Boolean | optional
+                neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          ethernets:  # List | optional
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.interfaces.loopbacks)]
+                bfd_instance: false  # Boolean | optional
+                dr_priority: 200  # Integer | min: 1 , max: 4294967295 | optional
+                passive: false  # Boolean | optional
+                sparse_mode: true  # Boolean | optional
+                border: true  # Boolean | optional
+                dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+                jp_policy: "JP_POLICY_1"  # String | optional
+                neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+                neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+                strict_rfc_compliant: false  # Boolean | optional
+                neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          port_channels:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.interfaces.loopbacks)]
+                bfd_instance: false  # Boolean | optional
+                dr_priority: 1  # Integer | min: 1 , max: 4294967295 | optional
+                passive: false  # Boolean | optional
+                sparse_mode: false  # Boolean | optional
+                border: false  # Boolean | optional
+                dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+                jp_policy: "JP_POLICY_1"  # String | optional
+                neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+                neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+                strict_rfc_compliant: false  # Boolean | optional
+                neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        routing:  # Class | optional [shared class: structure documented on this page as routing(nxos.devices.configuration)]
+          pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.routing)]
+            evpn_border_leaf: false  # Boolean | optional
+            extranet: false  # Boolean | optional
+            bfd: false  # Boolean | optional
+            auto_enable: false  # Boolean | optional
+            flush_routes: false  # Boolean | optional
+            log_neighbor_changes: false  # Boolean | optional
+            mtu: 1500  # Integer | min: 1500 , max: 65536 | optional
+            register_rate_limit: 1  # Integer | min: 0 , max: 65535 | optional
+            strict_rfc_compliant: false  # Boolean | optional
+            spt_switch_graceful: false  # Boolean | optional
+            ssm:  # Class | optional [shared class: structure documented on this page as ssm(nxos.devices.configuration.routing.pim)]
+              range_1: "RANGE_1_1"  # String | optional
+              range_2: "RANGE_2_1"  # String | optional
+              range_3: "RANGE_3_1"  # String | optional
+              range_4: "RANGE_4_1"  # String | optional
+              prefix_list: "PREFIX_LIST_1"  # String | optional
+              none: false  # Boolean | optional
+              route_map: "ROUTE_MAP_1"  # String | optional
+            rps:  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) [shared class: structure assumed from rps(nxos.devices.configuration.routing.pim)]
+              - address: "10.1.1.1"  # IP | required
+                group_list: "10.1.1.1"  # IP | optional
+                bidir: false  # Boolean | optional
+                override: false  # Boolean | optional
+            anycast_rps:  # List | optional [shared class: structure documented on this page as anycast_rps(nxos.devices.configuration.routing.pim)]
+              - address: "10.1.1.1"  # IP | required
+                set_address: "10.1.1.1"  # IP | required
+            vrfs:  # List | optional [shared class: structure documented on this page as vrfs(nxos.devices.configuration.routing.pim)]
+              - vrf: "VRF1"  # String | required
+                bfd: false  # Boolean | optional
+                auto_enable: false  # Boolean | optional
+                flush_routes: false  # Boolean | optional
+                log_neighbor_changes: false  # Boolean | optional
+                mtu: 1500  # Integer | min: 1500 , max: 65536 | optional
+                register_rate_limit: 1  # Integer | min: 0 , max: 65535 | optional
+                strict_rfc_compliant: false  # Boolean | optional
+                spt_switch_graceful: false  # Boolean | optional
+                ssm:  # Class | optional [shared class: structure documented on this page as ssm(nxos.devices.configuration.routing.pim)]
+                  range_1: "RANGE_1_1"  # String | optional
+                  range_2: "RANGE_2_1"  # String | optional
+                  range_3: "RANGE_3_1"  # String | optional
+                  range_4: "RANGE_4_1"  # String | optional
+                  prefix_list: "PREFIX_LIST_1"  # String | optional
+                  none: false  # Boolean | optional
+                  route_map: "ROUTE_MAP_1"  # String | optional
+                rps:  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) [shared class: structure assumed from rps(nxos.devices.configuration.routing.pim)]
+                  - address: "10.1.1.1"  # IP | required
+                    group_list: "10.1.1.1"  # IP | optional
+                    bidir: false  # Boolean | optional
+                    override: false  # Boolean | optional
+                anycast_rps:  # List | optional [shared class: structure documented on this page as anycast_rps(nxos.devices.configuration.routing.pim)]
+                  - address: "10.1.1.1"  # IP | required
+                    set_address: "10.1.1.1"  # IP | required
+                jp_delay: 1  # Integer | min: 1 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                anycast_rp_local_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                anycast_rp_local_interface_id: "ANYCAST_RP_LOCAL_INTERFACE_ID_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                anycast_rp_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                anycast_rp_source_interface_id: "ANYCAST_RP_SOURCE_INTERFACE_ID_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            jp_delay: 1  # Integer | min: 1 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            anycast_rp_local_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            anycast_rp_local_interface_id: "ANYCAST_RP_LOCAL_INTERFACE_ID_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            anycast_rp_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            anycast_rp_source_interface_id: "ANYCAST_RP_SOURCE_INTERFACE_ID_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          loopbacks:  # List | optional [shared class: structure documented on this page as loopbacks(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.interfaces.loopbacks)]
+                bfd_instance: false  # Boolean | optional
+                dr_priority: 1  # Integer | min: 1 , max: 4294967295 | optional
+                passive: false  # Boolean | optional
+                sparse_mode: false  # Boolean | optional
+                border: false  # Boolean | optional
+                dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+                jp_policy: "JP_POLICY_1"  # String | optional
+                neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+                neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+                strict_rfc_compliant: false  # Boolean | optional
+                neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.interfaces.loopbacks)]
+                bfd_instance: false  # Boolean | optional
+                dr_priority: 1  # Integer | min: 1 , max: 4294967295 | optional
+                passive: false  # Boolean | optional
+                sparse_mode: false  # Boolean | optional
+                border: false  # Boolean | optional
+                dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+                jp_policy: "JP_POLICY_1"  # String | optional
+                neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+                neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+                strict_rfc_compliant: false  # Boolean | optional
+                neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.interfaces.loopbacks)]
+                bfd_instance: false  # Boolean | optional
+                dr_priority: 1  # Integer | min: 1 , max: 4294967295 | optional
+                passive: false  # Boolean | optional
+                sparse_mode: false  # Boolean | optional
+                border: false  # Boolean | optional
+                dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+                jp_policy: "JP_POLICY_1"  # String | optional
+                neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+                neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+                strict_rfc_compliant: false  # Boolean | optional
+                neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.interfaces.loopbacks)]
+                bfd_instance: false  # Boolean | optional
+                dr_priority: 1  # Integer | min: 1 , max: 4294967295 | optional
+                passive: false  # Boolean | optional
+                sparse_mode: false  # Boolean | optional
+                border: false  # Boolean | optional
+                dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+                jp_policy: "JP_POLICY_1"  # String | optional
+                neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+                neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+                strict_rfc_compliant: false  # Boolean | optional
+                neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      routing:  # Class | optional [shared class: structure documented on this page as routing(nxos.devices.configuration)]
+        pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.routing)]
+          evpn_border_leaf: false  # Boolean | optional
+          extranet: false  # Boolean | optional
+          bfd: false  # Boolean | optional
+          auto_enable: false  # Boolean | optional
+          flush_routes: false  # Boolean | optional
+          log_neighbor_changes: false  # Boolean | optional
+          mtu: 1500  # Integer | min: 1500 , max: 65536 | optional
+          register_rate_limit: 1  # Integer | min: 0 , max: 65535 | optional
+          strict_rfc_compliant: false  # Boolean | optional
+          spt_switch_graceful: false  # Boolean | optional
+          ssm:  # Class | optional [shared class: structure documented on this page as ssm(nxos.devices.configuration.routing.pim)]
+            range_1: "RANGE_1_1"  # String | optional
+            range_2: "RANGE_2_1"  # String | optional
+            range_3: "RANGE_3_1"  # String | optional
+            range_4: "RANGE_4_1"  # String | optional
+            prefix_list: "PREFIX_LIST_1"  # String | optional
+            none: false  # Boolean | optional
+            route_map: "ROUTE_MAP_1"  # String | optional
+          rps:  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) [shared class: structure assumed from rps(nxos.devices.configuration.routing.pim)]
+            - address: "10.1.1.1"  # IP | required
+              group_list: "10.1.1.1"  # IP | optional
+              bidir: false  # Boolean | optional
+              override: false  # Boolean | optional
+          anycast_rps:  # List | optional [shared class: structure documented on this page as anycast_rps(nxos.devices.configuration.routing.pim)]
+            - address: "10.1.1.1"  # IP | required
+              set_address: "10.1.1.1"  # IP | required
+          vrfs:  # List | optional [shared class: structure documented on this page as vrfs(nxos.devices.configuration.routing.pim)]
+            - vrf: "VRF1"  # String | required
+              bfd: false  # Boolean | optional
+              auto_enable: false  # Boolean | optional
+              flush_routes: false  # Boolean | optional
+              log_neighbor_changes: false  # Boolean | optional
+              mtu: 1500  # Integer | min: 1500 , max: 65536 | optional
+              register_rate_limit: 1  # Integer | min: 0 , max: 65535 | optional
+              strict_rfc_compliant: false  # Boolean | optional
+              spt_switch_graceful: false  # Boolean | optional
+              ssm:  # Class | optional [shared class: structure documented on this page as ssm(nxos.devices.configuration.routing.pim)]
+                range_1: "RANGE_1_1"  # String | optional
+                range_2: "RANGE_2_1"  # String | optional
+                range_3: "RANGE_3_1"  # String | optional
+                range_4: "RANGE_4_1"  # String | optional
+                prefix_list: "PREFIX_LIST_1"  # String | optional
+                none: false  # Boolean | optional
+                route_map: "ROUTE_MAP_1"  # String | optional
+              rps:  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) [shared class: structure assumed from rps(nxos.devices.configuration.routing.pim)]
+                - address: "10.1.1.1"  # IP | required
+                  group_list: "10.1.1.1"  # IP | optional
+                  bidir: false  # Boolean | optional
+                  override: false  # Boolean | optional
+              anycast_rps:  # List | optional [shared class: structure documented on this page as anycast_rps(nxos.devices.configuration.routing.pim)]
+                - address: "10.1.1.1"  # IP | required
+                  set_address: "10.1.1.1"  # IP | required
+              jp_delay: 1  # Integer | min: 1 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              anycast_rp_local_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              anycast_rp_local_interface_id: "ANYCAST_RP_LOCAL_INTERFACE_ID_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              anycast_rp_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              anycast_rp_source_interface_id: "ANYCAST_RP_SOURCE_INTERFACE_ID_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          jp_delay: 1  # Integer | min: 1 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          anycast_rp_local_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          anycast_rp_local_interface_id: "ANYCAST_RP_LOCAL_INTERFACE_ID_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          anycast_rp_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          anycast_rp_source_interface_id: "ANYCAST_RP_SOURCE_INTERFACE_ID_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+      interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+        loopbacks:  # List | optional [shared class: structure documented on this page as loopbacks(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.interfaces.loopbacks)]
+              bfd_instance: false  # Boolean | optional
+              dr_priority: 1  # Integer | min: 1 , max: 4294967295 | optional
+              passive: false  # Boolean | optional
+              sparse_mode: false  # Boolean | optional
+              border: false  # Boolean | optional
+              dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+              jp_policy: "JP_POLICY_1"  # String | optional
+              neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+              neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+              strict_rfc_compliant: false  # Boolean | optional
+              neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.interfaces.loopbacks)]
+              bfd_instance: false  # Boolean | optional
+              dr_priority: 1  # Integer | min: 1 , max: 4294967295 | optional
+              passive: false  # Boolean | optional
+              sparse_mode: false  # Boolean | optional
+              border: false  # Boolean | optional
+              dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+              jp_policy: "JP_POLICY_1"  # String | optional
+              neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+              neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+              strict_rfc_compliant: false  # Boolean | optional
+              neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+          - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.interfaces.loopbacks)]
+              bfd_instance: false  # Boolean | optional
+              dr_priority: 1  # Integer | min: 1 , max: 4294967295 | optional
+              passive: false  # Boolean | optional
+              sparse_mode: false  # Boolean | optional
+              border: false  # Boolean | optional
+              dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+              jp_policy: "JP_POLICY_1"  # String | optional
+              neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+              neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+              strict_rfc_compliant: false  # Boolean | optional
+              neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.interfaces.loopbacks)]
+              bfd_instance: false  # Boolean | optional
+              dr_priority: 1  # Integer | min: 1 , max: 4294967295 | optional
+              passive: false  # Boolean | optional
+              sparse_mode: false  # Boolean | optional
+              border: false  # Boolean | optional
+              dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+              jp_policy: "JP_POLICY_1"  # String | optional
+              neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+              neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+              strict_rfc_compliant: false  # Boolean | optional
+              neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        routing:  # Class | optional [shared class: structure documented on this page as routing(nxos.devices.configuration)]
+          pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.routing)]
+            evpn_border_leaf: false  # Boolean | optional
+            extranet: false  # Boolean | optional
+            bfd: false  # Boolean | optional
+            auto_enable: false  # Boolean | optional
+            flush_routes: false  # Boolean | optional
+            log_neighbor_changes: false  # Boolean | optional
+            mtu: 1500  # Integer | min: 1500 , max: 65536 | optional
+            register_rate_limit: 1  # Integer | min: 0 , max: 65535 | optional
+            strict_rfc_compliant: false  # Boolean | optional
+            spt_switch_graceful: false  # Boolean | optional
+            ssm:  # Class | optional [shared class: structure documented on this page as ssm(nxos.devices.configuration.routing.pim)]
+              range_1: "RANGE_1_1"  # String | optional
+              range_2: "RANGE_2_1"  # String | optional
+              range_3: "RANGE_3_1"  # String | optional
+              range_4: "RANGE_4_1"  # String | optional
+              prefix_list: "PREFIX_LIST_1"  # String | optional
+              none: false  # Boolean | optional
+              route_map: "ROUTE_MAP_1"  # String | optional
+            rps:  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) [shared class: structure assumed from rps(nxos.devices.configuration.routing.pim)]
+              - address: "10.1.1.1"  # IP | required
+                group_list: "10.1.1.1"  # IP | optional
+                bidir: false  # Boolean | optional
+                override: false  # Boolean | optional
+            anycast_rps:  # List | optional [shared class: structure documented on this page as anycast_rps(nxos.devices.configuration.routing.pim)]
+              - address: "10.1.1.1"  # IP | required
+                set_address: "10.1.1.1"  # IP | required
+            vrfs:  # List | optional [shared class: structure documented on this page as vrfs(nxos.devices.configuration.routing.pim)]
+              - vrf: "VRF1"  # String | required
+                bfd: false  # Boolean | optional
+                auto_enable: false  # Boolean | optional
+                flush_routes: false  # Boolean | optional
+                log_neighbor_changes: false  # Boolean | optional
+                mtu: 1500  # Integer | min: 1500 , max: 65536 | optional
+                register_rate_limit: 1  # Integer | min: 0 , max: 65535 | optional
+                strict_rfc_compliant: false  # Boolean | optional
+                spt_switch_graceful: false  # Boolean | optional
+                ssm:  # Class | optional [shared class: structure documented on this page as ssm(nxos.devices.configuration.routing.pim)]
+                  range_1: "RANGE_1_1"  # String | optional
+                  range_2: "RANGE_2_1"  # String | optional
+                  range_3: "RANGE_3_1"  # String | optional
+                  range_4: "RANGE_4_1"  # String | optional
+                  prefix_list: "PREFIX_LIST_1"  # String | optional
+                  none: false  # Boolean | optional
+                  route_map: "ROUTE_MAP_1"  # String | optional
+                rps:  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) [shared class: structure assumed from rps(nxos.devices.configuration.routing.pim)]
+                  - address: "10.1.1.1"  # IP | required
+                    group_list: "10.1.1.1"  # IP | optional
+                    bidir: false  # Boolean | optional
+                    override: false  # Boolean | optional
+                anycast_rps:  # List | optional [shared class: structure documented on this page as anycast_rps(nxos.devices.configuration.routing.pim)]
+                  - address: "10.1.1.1"  # IP | required
+                    set_address: "10.1.1.1"  # IP | required
+                jp_delay: 1  # Integer | min: 1 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                anycast_rp_local_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                anycast_rp_local_interface_id: "ANYCAST_RP_LOCAL_INTERFACE_ID_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                anycast_rp_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                anycast_rp_source_interface_id: "ANYCAST_RP_SOURCE_INTERFACE_ID_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            jp_delay: 1  # Integer | min: 1 , max: 4294967295 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            anycast_rp_local_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            anycast_rp_local_interface_id: "ANYCAST_RP_LOCAL_INTERFACE_ID_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            anycast_rp_source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            anycast_rp_source_interface_id: "ANYCAST_RP_SOURCE_INTERFACE_ID_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          loopbacks:  # List | optional [shared class: structure documented on this page as loopbacks(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.interfaces.loopbacks)]
+                bfd_instance: false  # Boolean | optional
+                dr_priority: 1  # Integer | min: 1 , max: 4294967295 | optional
+                passive: false  # Boolean | optional
+                sparse_mode: false  # Boolean | optional
+                border: false  # Boolean | optional
+                dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+                jp_policy: "JP_POLICY_1"  # String | optional
+                neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+                neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+                strict_rfc_compliant: false  # Boolean | optional
+                neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          vlans:  # List | optional [shared class: structure documented on this page as vlans(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.interfaces.loopbacks)]
+                bfd_instance: false  # Boolean | optional
+                dr_priority: 1  # Integer | min: 1 , max: 4294967295 | optional
+                passive: false  # Boolean | optional
+                sparse_mode: false  # Boolean | optional
+                border: false  # Boolean | optional
+                dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+                jp_policy: "JP_POLICY_1"  # String | optional
+                neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+                neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+                strict_rfc_compliant: false  # Boolean | optional
+                neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.interfaces.loopbacks)]
+                bfd_instance: false  # Boolean | optional
+                dr_priority: 1  # Integer | min: 1 , max: 4294967295 | optional
+                passive: false  # Boolean | optional
+                sparse_mode: false  # Boolean | optional
+                border: false  # Boolean | optional
+                dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+                jp_policy: "JP_POLICY_1"  # String | optional
+                neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+                neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+                strict_rfc_compliant: false  # Boolean | optional
+                neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              pim:  # Class | optional [shared class: structure documented on this page as pim(nxos.devices.configuration.interfaces.loopbacks)]
+                bfd_instance: false  # Boolean | optional
+                dr_priority: 1  # Integer | min: 1 , max: 4294967295 | optional
+                passive: false  # Boolean | optional
+                sparse_mode: false  # Boolean | optional
+                border: false  # Boolean | optional
+                dr_delay: 1  # Integer | min: 1 , max: 65535 | optional
+                jp_policy: "JP_POLICY_1"  # String | optional
+                neighbor_policy: "NEIGHBOR_POLICY_1"  # String | optional
+                neighbor_policy_prefix_list: "NEIGHBOR_POLICY_PREFIX_LIST_1"  # String | optional
+                strict_rfc_compliant: false  # Boolean | optional
+                neighbor_policy_route_map: "NEIGHBOR_POLICY_ROUTE_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

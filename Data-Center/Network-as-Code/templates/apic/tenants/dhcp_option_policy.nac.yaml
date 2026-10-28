@@ -1,0 +1,17 @@
+# Network-as-Code template: DHCP Option Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/dhcp_option_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        dhcp_option_policies:  # List | optional
+          - name: "DHCP-OPTIONS42-43"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "My Description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            options:  # List | optional
+              - name: "NTP"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                id: 42  # Integer | min: 1 , max: 255 | optional
+                data: "192.168.1.10"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,64}$ | optional

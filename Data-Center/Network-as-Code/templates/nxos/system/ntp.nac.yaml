@@ -1,0 +1,168 @@
+# Network-as-Code template: NTP
+# Source: https://netascode.cisco.com/docs/data_models/nxos/system/ntp/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 11 (parsed 11); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        ntp:  # Class | optional
+          authenticate: true  # Boolean | optional
+          logging: true  # Boolean | optional
+          logging_level: "emergency"  # Choice | emergency , alert , critical , error , warning , notif , inform , debug | optional
+          master: true  # Boolean | optional
+          master_stratum: 8  # Integer | min: 1 , max: 15 | optional
+          passive: false  # Boolean | optional
+          allow_control: false  # Boolean | optional
+          allow_private: false  # Boolean | optional
+          allow_control_rate_limit: 1  # Integer | min: 1 , max: 65535 | optional
+          source_interface_type: "loopback"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          source_interface_id: "0"  # Any | String or Integer[min: 0 ] | optional
+          access_group_match_all: true  # Boolean | optional
+          access_group_peer: "NTP-PEER-ACL"  # String | optional
+          access_group_query_only: "ACCESS_GROUP_QUERY_ONLY_1"  # String | optional
+          access_group_serve: "NTP-SERVE-ACL"  # String | optional
+          access_group_serve_only: "ACCESS_GROUP_SERVE_ONLY_1"  # String | optional
+          servers:  # List | optional
+            - ip: "10.50.100.1"  # IP | required
+              use_vrf: "management"  # String | optional
+              key: 1  # Integer | min: 1 , max: 65535 | optional
+              prefer: true  # Boolean | optional
+              minpoll: 6  # Integer | min: 4 , max: 16 | optional
+              maxpoll: 10  # Integer | min: 4 , max: 16 | optional
+              vrf: "management"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              min_poll: 6  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              max_poll: 10  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          peers:  # List | optional
+            - ip: "10.1.1.1"  # IP | required
+              use_vrf: "VRF1"  # String | optional
+              key: 1  # Integer | min: 1 , max: 65535 | optional
+              prefer: false  # Boolean | optional
+              minpoll: 4  # Integer | min: 4 , max: 16 | optional
+              maxpoll: 4  # Integer | min: 4 , max: 16 | optional
+              vrf: "VRF1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              min_poll: 4  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              max_poll: 4  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        ntp:  # Class | optional [shared class: structure documented on this page as ntp(nxos.devices.configuration)]
+          authenticate: false  # Boolean | optional
+          logging: false  # Boolean | optional
+          logging_level: "emergency"  # Choice | emergency , alert , critical , error , warning , notif , inform , debug | optional
+          master: false  # Boolean | optional
+          master_stratum: 1  # Integer | min: 1 , max: 15 | optional
+          passive: false  # Boolean | optional
+          allow_control: false  # Boolean | optional
+          allow_private: false  # Boolean | optional
+          allow_control_rate_limit: 1  # Integer | min: 1 , max: 65535 | optional
+          source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+          access_group_match_all: false  # Boolean | optional
+          access_group_peer: "ACCESS_GROUP_PEER_1"  # String | optional
+          access_group_query_only: "ACCESS_GROUP_QUERY_ONLY_1"  # String | optional
+          access_group_serve: "ACCESS_GROUP_SERVE_1"  # String | optional
+          access_group_serve_only: "ACCESS_GROUP_SERVE_ONLY_1"  # String | optional
+          servers:  # List | optional [shared class: structure documented on this page as servers(nxos.devices.configuration.ntp)]
+            - ip: "10.1.1.1"  # IP | required
+              use_vrf: "VRF1"  # String | optional
+              key: 1  # Integer | min: 1 , max: 65535 | optional
+              prefer: false  # Boolean | optional
+              minpoll: 4  # Integer | min: 4 , max: 16 | optional
+              maxpoll: 4  # Integer | min: 4 , max: 16 | optional
+              vrf: "VRF1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              min_poll: 4  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              max_poll: 4  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          peers:  # List | optional [shared class: structure documented on this page as peers(nxos.devices.configuration.ntp)]
+            - ip: "10.1.1.1"  # IP | required
+              use_vrf: "VRF1"  # String | optional
+              key: 1  # Integer | min: 1 , max: 65535 | optional
+              prefer: false  # Boolean | optional
+              minpoll: 4  # Integer | min: 4 , max: 16 | optional
+              maxpoll: 4  # Integer | min: 4 , max: 16 | optional
+              vrf: "VRF1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              min_poll: 4  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              max_poll: 4  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      ntp:  # Class | optional [shared class: structure documented on this page as ntp(nxos.devices.configuration)]
+        authenticate: false  # Boolean | optional
+        logging: false  # Boolean | optional
+        logging_level: "emergency"  # Choice | emergency , alert , critical , error , warning , notif , inform , debug | optional
+        master: false  # Boolean | optional
+        master_stratum: 1  # Integer | min: 1 , max: 15 | optional
+        passive: false  # Boolean | optional
+        allow_control: false  # Boolean | optional
+        allow_private: false  # Boolean | optional
+        allow_control_rate_limit: 1  # Integer | min: 1 , max: 65535 | optional
+        source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+        source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+        access_group_match_all: false  # Boolean | optional
+        access_group_peer: "ACCESS_GROUP_PEER_1"  # String | optional
+        access_group_query_only: "ACCESS_GROUP_QUERY_ONLY_1"  # String | optional
+        access_group_serve: "ACCESS_GROUP_SERVE_1"  # String | optional
+        access_group_serve_only: "ACCESS_GROUP_SERVE_ONLY_1"  # String | optional
+        servers:  # List | optional [shared class: structure documented on this page as servers(nxos.devices.configuration.ntp)]
+          - ip: "10.1.1.1"  # IP | required
+            use_vrf: "VRF1"  # String | optional
+            key: 1  # Integer | min: 1 , max: 65535 | optional
+            prefer: false  # Boolean | optional
+            minpoll: 4  # Integer | min: 4 , max: 16 | optional
+            maxpoll: 4  # Integer | min: 4 , max: 16 | optional
+            vrf: "VRF1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            min_poll: 4  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            max_poll: 4  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        peers:  # List | optional [shared class: structure documented on this page as peers(nxos.devices.configuration.ntp)]
+          - ip: "10.1.1.1"  # IP | required
+            use_vrf: "VRF1"  # String | optional
+            key: 1  # Integer | min: 1 , max: 65535 | optional
+            prefer: false  # Boolean | optional
+            minpoll: 4  # Integer | min: 4 , max: 16 | optional
+            maxpoll: 4  # Integer | min: 4 , max: 16 | optional
+            vrf: "VRF1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            min_poll: 4  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            max_poll: 4  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        ntp:  # Class | optional [shared class: structure documented on this page as ntp(nxos.devices.configuration)]
+          authenticate: false  # Boolean | optional
+          logging: false  # Boolean | optional
+          logging_level: "emergency"  # Choice | emergency , alert , critical , error , warning , notif , inform , debug | optional
+          master: false  # Boolean | optional
+          master_stratum: 1  # Integer | min: 1 , max: 15 | optional
+          passive: false  # Boolean | optional
+          allow_control: false  # Boolean | optional
+          allow_private: false  # Boolean | optional
+          allow_control_rate_limit: 1  # Integer | min: 1 , max: 65535 | optional
+          source_interface_type: "ethernet"  # Choice | ethernet , loopback , mgmt , port-channel , vlan , vni | optional
+          source_interface_id: "SOURCE_INTERFACE_ID_1"  # Any | String or Integer[min: 0 ] | optional
+          access_group_match_all: false  # Boolean | optional
+          access_group_peer: "ACCESS_GROUP_PEER_1"  # String | optional
+          access_group_query_only: "ACCESS_GROUP_QUERY_ONLY_1"  # String | optional
+          access_group_serve: "ACCESS_GROUP_SERVE_1"  # String | optional
+          access_group_serve_only: "ACCESS_GROUP_SERVE_ONLY_1"  # String | optional
+          servers:  # List | optional [shared class: structure documented on this page as servers(nxos.devices.configuration.ntp)]
+            - ip: "10.1.1.1"  # IP | required
+              use_vrf: "VRF1"  # String | optional
+              key: 1  # Integer | min: 1 , max: 65535 | optional
+              prefer: false  # Boolean | optional
+              minpoll: 4  # Integer | min: 4 , max: 16 | optional
+              maxpoll: 4  # Integer | min: 4 , max: 16 | optional
+              vrf: "VRF1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              min_poll: 4  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              max_poll: 4  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          peers:  # List | optional [shared class: structure documented on this page as peers(nxos.devices.configuration.ntp)]
+            - ip: "10.1.1.1"  # IP | required
+              use_vrf: "VRF1"  # String | optional
+              key: 1  # Integer | min: 1 , max: 65535 | optional
+              prefer: false  # Boolean | optional
+              minpoll: 4  # Integer | min: 4 , max: 16 | optional
+              maxpoll: 4  # Integer | min: 4 , max: 16 | optional
+              vrf: "VRF1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              min_poll: 4  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              max_poll: 4  # Integer | min: 4 , max: 16 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

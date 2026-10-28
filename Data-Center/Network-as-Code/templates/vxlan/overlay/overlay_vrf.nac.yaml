@@ -1,0 +1,54 @@
+# Network-as-Code template: VRF
+# Source: https://netascode.cisco.com/docs/data_models/vxlan/overlay/overlay_vrf/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 0 (parsed 0); example values used as placeholders where available.
+---
+vxlan:
+  overlay:  # Class | optional
+    vrfs:  # List | optional
+      - name: "NAME_1"  # String | required
+        vrf_id: 1  # Integer | min: 1 , max: 16777214 | optional
+        vlan_id: 1  # Integer | min: 1 , max: 4094 | optional
+        vrf_vlan_name: "VRF_VLAN_NAME_1"  # String | optional
+        vrf_intf_desc: "Configured by Ansible NetAsCode"  # String | default: Configured by Ansible NetAsCode | optional
+        vrf_description: "Configured by Ansible NetAsCode"  # String | default: Configured by Ansible NetAsCode | optional
+        vrf_int_mtu: 9216  # Integer | min: 1500 , max: 9216 | default: 9216 | optional
+        loopback_route_tag: 12345  # Integer | min: 0 , max: 4294967295 | default: 12345 | optional
+        max_bgp_paths: 1  # Integer | min: 1 , max: 128 | default: 1 | optional
+        max_ibgp_paths: 2  # Integer | min: 1 , max: 128 | default: 2 | optional
+        ipv6_linklocal_enable: true  # Boolean | default: true | optional
+        adv_host_routes: false  # Boolean | default: false | optional
+        adv_default_routes: true  # Boolean | default: true | optional
+        static_default_route: true  # Boolean | default: true | optional
+        bgp_password: "BGP_PASSWORD_1"  # String | optional
+        bgp_password_encryption_type: 3  # Choice | 3 , 7 | optional
+        disable_rt_auto: false  # Boolean | default: false | optional
+        export_evpn_rt: "EXPORT_EVPN_RT_1"  # String | optional
+        export_mvpn_rt: "EXPORT_MVPN_RT_1"  # String | optional
+        export_vpn_rt: "EXPORT_VPN_RT_1"  # String | optional
+        import_evpn_rt: "IMPORT_EVPN_RT_1"  # String | optional
+        import_mvpn_rt: "IMPORT_MVPN_RT_1"  # String | optional
+        import_vpn_rt: "IMPORT_VPN_RT_1"  # String | optional
+        netflow_enable: false  # Boolean | default: false | optional
+        netflow_monitor: "NETFLOW_MONITOR_1"  # String | optional
+        no_rp: false  # Boolean | default: false | optional
+        overlay_multicast_group: "OVERLAY_MULTICAST_GROUP_1"  # String | optional
+        redist_direct_routemap: "FABRIC-RMAP-REDIST-SUBNET"  # String | default: FABRIC-RMAP-REDIST-SUBNET | optional
+        ipv6_redist_direct_routemap: "FABRIC-RMAP-REDIST-SUBNET"  # String | default: FABRIC-RMAP-REDIST-SUBNET | optional
+        rp_address: "10.1.1.1"  # IP | optional
+        rp_external: false  # Boolean | default: false | optional
+        rp_loopback_id: 1  # Integer | min: 0 , max: 1023 | optional
+        trm_enable: false  # Boolean | default: false | optional
+        trm_bgw_msite: false  # Boolean | default: false | optional
+        enable_l3_vni_no_vlan: false  # Boolean | optional
+        underlay_mcast_ip: "10.1.1.1"  # IP | optional
+        vrf_attach_group: "VRF_ATTACH_GROUP_1"  # String | optional
+    vrf_attach_groups:  # List | optional
+      - name: "NAME_1"  # String | required
+        switches:  # List | optional
+          - hostname: "HOSTNAME_1"  # String | required
+            loopback_id: 1  # Integer | min: 0 , max: 1023 | optional
+            loopback_ipv4: "10.1.1.1"  # IP | optional
+            loopback_ipv6: "10.1.1.1"  # IP | optional
+            freeform_config: "FREEFORM_CONFIG_1"  # String | optional

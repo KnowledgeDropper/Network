@@ -1,0 +1,16 @@
+# Network-as-Code template: DHCP Option Policy
+# Source: https://netascode.cisco.com/docs/data_models/ndo/ndo/dhcp_option/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+ndo:
+  policies:  # Class | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+    dhcp_options:  # List | optional
+      - name: "OPT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        description: "Description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+        tenant: "MSO1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        options:  # List | optional
+          - name: "OPT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            id: 1  # Integer | min: 1 | default: 1 | required
+            data: "DATA1"  # String | required

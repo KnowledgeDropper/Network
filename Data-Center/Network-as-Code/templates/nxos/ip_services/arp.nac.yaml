@@ -1,0 +1,136 @@
+# Network-as-Code template: ARP
+# Source: https://netascode.cisco.com/docs/data_models/nxos/ip_services/arp/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 12 (parsed 12); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        arp:  # Class | optional
+          inspection:  # Class | optional
+            log_buffer_entries: 64  # Integer | min: 1 , max: 1024 | optional
+            validate_dst_mac: true  # Boolean | optional
+            validate_ip: true  # Boolean | optional
+            validate_src_mac: true  # Boolean | optional
+            validate_destination: true  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            validate_source: true  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          timeout: 1500  # Integer | min: 0 , max: 28800 | optional
+          cache_limit: 131072  # Integer | min: 1 , max: 614400 | optional
+          cache_syslog_rate: 100  # Integer | min: 1 , max: 1000 | optional
+          cache_intf_limit: 32000  # Integer | min: 0 , max: 128000 | optional
+          adjacency_route_distance: 200  # Integer | min: 2 , max: 250 | optional
+          cos: 6  # Integer | min: 0 , max: 7 | optional
+          off_list_timeout: 600  # Integer | min: 180 , max: 1800 | optional
+          evpn_timeout: 10000  # Integer | min: 2000 , max: 30000 | optional
+          suppression_timeout: 300  # Integer | min: 0 , max: 28800 | optional
+          allow_static_arp_outside_subnet: true  # Boolean | optional
+          unnum_svi_sw_replication: false  # Boolean | optional
+          rarp_fabric_forwarding: true  # Boolean | optional
+          rarp_fabric_forwarding_rate_limit: 300  # Integer | min: 200 , max: 400 | optional
+          outside_subnet: true  # Boolean | optional
+          cache_interface_limit: 32000  # Integer | min: 0 , max: 128000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          unnumbered_svi_software_replication: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          rarp_fabric_forwarding_rate: 300  # Integer | min: 200 , max: 400 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          resolve_outside_subnet: true  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          vpc_domains:  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            - domain_id: 1  # Integer | min: 1 , max: 1000 | required
+              arp_synchronize: true  # Boolean | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        arp:  # Class | optional [shared class: structure documented on this page as arp(nxos.devices.configuration)]
+          inspection:  # Class | optional [shared class: structure documented on this page as inspection(nxos.devices.configuration.arp)]
+            log_buffer_entries: 1  # Integer | min: 1 , max: 1024 | optional
+            validate_dst_mac: false  # Boolean | optional
+            validate_ip: false  # Boolean | optional
+            validate_src_mac: false  # Boolean | optional
+            validate_destination: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            validate_source: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          timeout: 1  # Integer | min: 0 , max: 28800 | optional
+          cache_limit: 1  # Integer | min: 1 , max: 614400 | optional
+          cache_syslog_rate: 1  # Integer | min: 1 , max: 1000 | optional
+          cache_intf_limit: 1  # Integer | min: 0 , max: 128000 | optional
+          adjacency_route_distance: 2  # Integer | min: 2 , max: 250 | optional
+          cos: 1  # Integer | min: 0 , max: 7 | optional
+          off_list_timeout: 180  # Integer | min: 180 , max: 1800 | optional
+          evpn_timeout: 2000  # Integer | min: 2000 , max: 30000 | optional
+          suppression_timeout: 1  # Integer | min: 0 , max: 28800 | optional
+          allow_static_arp_outside_subnet: false  # Boolean | optional
+          unnum_svi_sw_replication: false  # Boolean | optional
+          rarp_fabric_forwarding: false  # Boolean | optional
+          rarp_fabric_forwarding_rate_limit: 200  # Integer | min: 200 , max: 400 | optional
+          outside_subnet: false  # Boolean | optional
+          cache_interface_limit: 1  # Integer | min: 0 , max: 128000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          unnumbered_svi_software_replication: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          rarp_fabric_forwarding_rate: 200  # Integer | min: 200 , max: 400 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          resolve_outside_subnet: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          vpc_domains:  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) [shared class: structure assumed from vpc_domains(nxos.devices.configuration.arp)]
+            - domain_id: 1  # Integer | min: 1 , max: 1000 | required
+              arp_synchronize: false  # Boolean | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      arp:  # Class | optional [shared class: structure documented on this page as arp(nxos.devices.configuration)]
+        inspection:  # Class | optional [shared class: structure documented on this page as inspection(nxos.devices.configuration.arp)]
+          log_buffer_entries: 1  # Integer | min: 1 , max: 1024 | optional
+          validate_dst_mac: false  # Boolean | optional
+          validate_ip: false  # Boolean | optional
+          validate_src_mac: false  # Boolean | optional
+          validate_destination: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          validate_source: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        timeout: 1  # Integer | min: 0 , max: 28800 | optional
+        cache_limit: 1  # Integer | min: 1 , max: 614400 | optional
+        cache_syslog_rate: 1  # Integer | min: 1 , max: 1000 | optional
+        cache_intf_limit: 1  # Integer | min: 0 , max: 128000 | optional
+        adjacency_route_distance: 2  # Integer | min: 2 , max: 250 | optional
+        cos: 1  # Integer | min: 0 , max: 7 | optional
+        off_list_timeout: 180  # Integer | min: 180 , max: 1800 | optional
+        evpn_timeout: 2000  # Integer | min: 2000 , max: 30000 | optional
+        suppression_timeout: 1  # Integer | min: 0 , max: 28800 | optional
+        allow_static_arp_outside_subnet: false  # Boolean | optional
+        unnum_svi_sw_replication: false  # Boolean | optional
+        rarp_fabric_forwarding: false  # Boolean | optional
+        rarp_fabric_forwarding_rate_limit: 200  # Integer | min: 200 , max: 400 | optional
+        outside_subnet: false  # Boolean | optional
+        cache_interface_limit: 1  # Integer | min: 0 , max: 128000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        unnumbered_svi_software_replication: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        rarp_fabric_forwarding_rate: 200  # Integer | min: 200 , max: 400 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        resolve_outside_subnet: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        vpc_domains:  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) [shared class: structure assumed from vpc_domains(nxos.devices.configuration.arp)]
+          - domain_id: 1  # Integer | min: 1 , max: 1000 | required
+            arp_synchronize: false  # Boolean | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        arp:  # Class | optional [shared class: structure documented on this page as arp(nxos.devices.configuration)]
+          inspection:  # Class | optional [shared class: structure documented on this page as inspection(nxos.devices.configuration.arp)]
+            log_buffer_entries: 1  # Integer | min: 1 , max: 1024 | optional
+            validate_dst_mac: false  # Boolean | optional
+            validate_ip: false  # Boolean | optional
+            validate_src_mac: false  # Boolean | optional
+            validate_destination: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+            validate_source: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          timeout: 1  # Integer | min: 0 , max: 28800 | optional
+          cache_limit: 1  # Integer | min: 1 , max: 614400 | optional
+          cache_syslog_rate: 1  # Integer | min: 1 , max: 1000 | optional
+          cache_intf_limit: 1  # Integer | min: 0 , max: 128000 | optional
+          adjacency_route_distance: 2  # Integer | min: 2 , max: 250 | optional
+          cos: 1  # Integer | min: 0 , max: 7 | optional
+          off_list_timeout: 180  # Integer | min: 180 , max: 1800 | optional
+          evpn_timeout: 2000  # Integer | min: 2000 , max: 30000 | optional
+          suppression_timeout: 1  # Integer | min: 0 , max: 28800 | optional
+          allow_static_arp_outside_subnet: false  # Boolean | optional
+          unnum_svi_sw_replication: false  # Boolean | optional
+          rarp_fabric_forwarding: false  # Boolean | optional
+          rarp_fabric_forwarding_rate_limit: 200  # Integer | min: 200 , max: 400 | optional
+          outside_subnet: false  # Boolean | optional
+          cache_interface_limit: 1  # Integer | min: 0 , max: 128000 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          unnumbered_svi_software_replication: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          rarp_fabric_forwarding_rate: 200  # Integer | min: 200 , max: 400 | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          resolve_outside_subnet: false  # Boolean | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          vpc_domains:  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34) [shared class: structure assumed from vpc_domains(nxos.devices.configuration.arp)]
+            - domain_id: 1  # Integer | min: 1 , max: 1000 | required
+              arp_synchronize: false  # Boolean | optional

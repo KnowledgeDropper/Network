@@ -1,0 +1,33 @@
+# Network-as-Code template: LAN Connectivity Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/lan_connectivity/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          lan_connectivity:  # List | optional
+            - name: "web-lan"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "LAN connectivity for web servers"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              target_platform: "FIAttached"  # Choice | FIAttached , Standalone , UnifiedEdgeServer | default: FIAttached | optional
+              vnic_placement_mode: "custom"  # Choice | auto , custom | default: custom | optional
+              iqn_allocation_type: "None"  # Choice | None , Static , Pool | default: None | optional
+              vnics:  # List | optional
+                - name: "eth0"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  order: 0  # Integer | min: 0 , max: 255 | default: 0 | optional
+                  fabric: "A"  # Choice | A , B , None | default: A | optional
+                  slot: "MLOM"  # String | optional
+                  pci_link: 0  # Integer | min: 0 , max: 1 | optional
+                  failover: false  # Boolean | default: false | optional
+                  mac_pool: "web-mac-a"  # String | optional
+                  ethernet_adapter_policy: "web-eth-adapter"  # String | optional
+                  ethernet_network_control_policy: "ETHERNET_NETWORK_CONTROL_POLICY_1"  # String | optional
+                  ethernet_network_policy: "access-vlan100"  # String | optional
+                  ethernet_network_group_policy: "web-vlan-group"  # String | optional
+                  ethernet_qos_policy: "web-qos"  # String | optional

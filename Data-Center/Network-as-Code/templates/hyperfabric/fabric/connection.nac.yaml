@@ -1,0 +1,16 @@
+# Network-as-Code template: Connection
+# Source: https://netascode.cisco.com/docs/data_models/hyperfabric/fabric/connection/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+hyperfabric:
+  fabrics:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      connections:  # List | optional
+        - local_node: "Leaf01"  # String | required
+          local_port: "Ethernet1_1"  # String | required
+          remote_node: "Spine01"  # String | required
+          remote_port: "Ethernet1_1"  # String | required
+          description: "Leaf01 to Spine01"  # String | optional
+          pluggable: "QDD-400-AOC7M"  # String | optional

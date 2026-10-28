@@ -1,0 +1,55 @@
+# Network-as-Code template: Bridge Domain
+# Source: https://netascode.cisco.com/docs/data_models/ndo/schema/bridge_domain/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+ndo:
+  schemas:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      templates:  # List | optional
+        - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          tenant: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          bridge_domains:  # List | optional
+            - name: "Layer2_BD"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+              l2_unknown_unicast: "flood"  # Choice | proxy , flood | default: proxy | optional
+              intersite_bum_traffic: false  # Boolean | default: false | optional
+              optimize_wan_bandwidth: false  # Boolean | default: false | optional
+              l2_stretch: false  # Boolean | default: true | optional
+              unicast_routing: false  # Boolean | default: true | optional
+              arp_flooding: true  # Boolean | default: false | optional
+              l3_multicast: false  # Boolean | default: false | optional
+              virtual_mac: "00:22:BD:F8:19:AA"  # MAC | optional
+              multi_destination_flooding: "bd-flood"  # Choice | bd-flood , encap-flood , drop | default: bd-flood | optional
+              unknown_ipv4_multicast: "flood"  # Choice | flood , opt-flood | default: flood | optional
+              unknown_ipv6_multicast: "flood"  # Choice | flood , opt-flood | default: flood | optional
+              ep_move_detection_mode: "garp"  # Choice | garp , none | default: none | optional
+              vrf:  # Class | required
+                name: "PROD"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                schema: "Azure"  # String | optional
+                template: "Site_AB"  # String | optional
+              subnets:  # List | optional
+                - ip: "1.1.1.1/24"  # IP | required
+                  scope: "private"  # Choice | private , public | default: private | optional
+                  shared: false  # Boolean | default: false | optional
+                  no_default_gateway: false  # Boolean | default: false | optional
+                  querier: false  # Boolean | default: false | optional
+                  primary: false  # Boolean | default: false | optional
+              sites:  # List | optional
+                - name: "Site_A"  # String | required
+                  advertise_host_routes: true  # Boolean | default: false | optional
+                  subnets:  # List | optional [shared class: structure documented on this page as subnets(ndo.schemas.templates.bridge_domains)]
+                    - ip: "1.1.1.1/24"  # IP | required
+                      scope: "public"  # Choice | private , public | default: private | optional
+                      shared: false  # Boolean | default: false | optional
+                      no_default_gateway: false  # Boolean | default: false | optional
+                      querier: false  # Boolean | default: false | optional
+                      primary: false  # Boolean | default: false | optional
+                  l3outs: ["Prod_L3OUT"]  # List | String[Regex: ^[a-zA-Z0-9_.:-]{1,64}$ ] | optional
+                  mac: "00:22:BD:F8:19:FF"  # MAC | default: 00:22:BD:F8:19:FF | optional
+              dhcp_policies:  # List | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                - dhcp_relay_policy: "DHCP_RELAY_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                  dhcp_option_policy: "DHCP_OPTION_POLICY_1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+              dhcp_relay_policy: "REL1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+              dhcp_option_policy: "OPT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)

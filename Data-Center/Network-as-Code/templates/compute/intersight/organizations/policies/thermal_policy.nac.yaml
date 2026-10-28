@@ -1,0 +1,18 @@
+# Network-as-Code template: Thermal Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/thermal_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          thermal:  # List | optional
+            - name: "default-thermal"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Aggressive cooling for high-density compute"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              fan_control_mode: "Balanced"  # Choice | Balanced , LowPower , HighPower , MaximumPower , Acoustic , MaximumCooling | default: Balanced | optional

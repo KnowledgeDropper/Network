@@ -1,0 +1,11 @@
+# Network-as-Code template: Fabric Policy
+# Source: https://netascode.cisco.com/docs/data_models/ndo/fabric_templates/fabric_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+ndo:
+  fabric_templates:  # Class | optional
+    fabric_policies:  # List | optional
+      - name: "FP1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        sites: ["APIC1", "APIC2"]  # List | String | optional

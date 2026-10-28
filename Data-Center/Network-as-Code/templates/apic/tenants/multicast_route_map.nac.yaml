@@ -1,0 +1,19 @@
+# Network-as-Code template: Multicast Route Map
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/multicast_route_map/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        multicast_route_maps:  # List | optional
+          - name: "MRM1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            entries:  # List | optional
+              - order: 1  # Integer | min: 0 , max: 9999 | required
+                source_ip: "1.2.3.4/32"  # IP | default: 0.0.0.0 | optional
+                group_ip: "224.0.0.0/8"  # IP | default: 0.0.0.0 | optional
+                rp_ip: "3.4.5.6"  # IP | default: 0.0.0.0 | optional
+                action: "permit"  # Choice | permit , deny | default: permit | optional

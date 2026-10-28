@@ -1,0 +1,9 @@
+# Network-as-Code template: IP Aging
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/ip_aging/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    ip_aging: true  # Boolean | default: true | optional

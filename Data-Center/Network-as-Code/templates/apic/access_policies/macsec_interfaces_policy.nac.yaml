@@ -1,0 +1,15 @@
+# Network-as-Code template: MACsec Interfaces Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/access_policies/macsec_interfaces_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  access_policies:  # Class | optional
+    interface_policies:  # Class | optional
+      macsec_interfaces_policies:  # List | optional
+        - name: "MACSEC_INT1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          description: "MACSEC Interfaces Policy 1"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+          admin_state: true  # Boolean | default: true | optional
+          macsec_parameters_policy: "MACSEC_PARAM1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          macsec_keychain_policy: "MACSEC_KEYCHAIN1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required

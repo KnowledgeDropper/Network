@@ -1,0 +1,60 @@
+# Network-as-Code template: IPv6 Prefix List
+# Source: https://netascode.cisco.com/docs/data_models/nxos/routing_policy/ipv6_prefix_list/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        ipv6_prefix_lists:  # List | optional
+          - name: "PLV6-LOOPBACKS"  # String | required
+            description: "Match all fabric IPv6 loopback /128 addresses"  # String | optional
+            entries:  # List | optional
+              - seq: 10  # Integer | required
+                action: "permit"  # Choice | permit , deny | optional
+                prefix: "2001:db8:1::/48"  # IP | optional
+                mask: 1  # Integer | min: 0 , max: 128 | optional
+                ge: 128  # Integer | min: 0 , max: 128 | optional
+                le: 128  # Integer | min: 0 , max: 128 | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        ipv6_prefix_lists:  # List | optional [shared class: structure documented on this page as ipv6_prefix_lists(nxos.devices.configuration)]
+          - name: "NAME_1"  # String | required
+            description: "Example description"  # String | optional
+            entries:  # List | optional [shared class: structure documented on this page as entries(nxos.devices.configuration.ipv6_prefix_lists)]
+              - seq: 1  # Integer | required
+                action: "permit"  # Choice | permit , deny | optional
+                prefix: "10.1.1.1"  # IP | optional
+                mask: 1  # Integer | min: 0 , max: 128 | optional
+                ge: 1  # Integer | min: 0 , max: 128 | optional
+                le: 1  # Integer | min: 0 , max: 128 | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      ipv6_prefix_lists:  # List | optional [shared class: structure documented on this page as ipv6_prefix_lists(nxos.devices.configuration)]
+        - name: "NAME_1"  # String | required
+          description: "Example description"  # String | optional
+          entries:  # List | optional [shared class: structure documented on this page as entries(nxos.devices.configuration.ipv6_prefix_lists)]
+            - seq: 1  # Integer | required
+              action: "permit"  # Choice | permit , deny | optional
+              prefix: "10.1.1.1"  # IP | optional
+              mask: 1  # Integer | min: 0 , max: 128 | optional
+              ge: 1  # Integer | min: 0 , max: 128 | optional
+              le: 1  # Integer | min: 0 , max: 128 | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        ipv6_prefix_lists:  # List | optional [shared class: structure documented on this page as ipv6_prefix_lists(nxos.devices.configuration)]
+          - name: "NAME_1"  # String | required
+            description: "Example description"  # String | optional
+            entries:  # List | optional [shared class: structure documented on this page as entries(nxos.devices.configuration.ipv6_prefix_lists)]
+              - seq: 1  # Integer | required
+                action: "permit"  # Choice | permit , deny | optional
+                prefix: "10.1.1.1"  # IP | optional
+                mask: 1  # Integer | min: 0 , max: 128 | optional
+                ge: 1  # Integer | min: 0 , max: 128 | optional
+                le: 1  # Integer | min: 0 , max: 128 | optional

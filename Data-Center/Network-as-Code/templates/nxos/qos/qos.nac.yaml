@@ -1,0 +1,288 @@
+# Network-as-Code template: QoS
+# Source: https://netascode.cisco.com/docs/data_models/nxos/qos/qos/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 7 (parsed 7); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        qos:  # Class | optional
+          class_maps:  # List | optional
+            - name: "CM-VOICE"  # String | required
+              match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+              match_dscp_values: [46]  # List | Integer[min: 0 , max: 63 ] | optional
+          policy_maps:  # List | optional
+            - name: "PM-FABRIC-INGRESS"  # String | required
+              match_type: "match-first"  # Choice | match-any , match-all , match-first | optional
+              classes:  # List | optional
+                - name: "CM-VOICE"  # String | required
+                  set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+                  police:  # Class | optional
+                    cir_rate: 500  # Integer | min: 0 , max: 100000000000 | required
+                    cir_unit: "mbps"  # Choice | bps , kbps , mbps , gbps , pps , percent | optional
+                    bc_rate: 250  # Integer | min: 0 , max: 536870912 | optional
+                    bc_unit: "kbytes"  # Choice | bytes , kbytes , mbytes , ms , us , packets | optional
+                    pir_rate: 2  # Integer | min: 0 , max: 100000000000 | optional
+                    pir_unit: "gbps"  # Choice | bps , kbps , mbps , gbps , pps , percent | optional
+                    be_rate: 1  # Integer | min: 0 , max: 536870912 | optional
+                    be_unit: "bytes"  # Choice | bytes , kbytes , mbytes , ms , us , packets | optional
+                    conform_action: "transmit"  # Choice | transmit , drop , set-cos-transmit , set-dscp-transmit , set-prec-transmit , set-qos-transmit | optional
+                    conform_set_cos: 1  # Integer | min: 0 , max: 7 | optional
+                    conform_set_dscp: 1  # Integer | min: 0 , max: 63 | optional
+                    conform_set_precedence: "routine"  # Choice | routine , priority , immediate , flash , flash-override , critical , internet , network | optional
+                    conform_set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+                    exceed_action: "set-dscp-transmit"  # Choice | transmit , drop , set-cos-transmit , set-dscp-transmit , set-prec-transmit , set-qos-transmit | optional
+                    exceed_set_cos: 1  # Integer | min: 0 , max: 7 | optional
+                    exceed_set_dscp: 0  # Integer | min: 0 , max: 63 | optional
+                    exceed_set_precedence: "routine"  # Choice | routine , priority , immediate , flash , flash-override , critical , internet , network | optional
+                    exceed_set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+                    violate_action: "drop"  # Choice | transmit , drop , set-cos-transmit , set-dscp-transmit , set-prec-transmit , set-qos-transmit | optional
+                    violate_set_cos: 1  # Integer | min: 0 , max: 7 | optional
+                    violate_set_dscp: 1  # Integer | min: 0 , max: 63 | optional
+                    violate_set_precedence: "routine"  # Choice | routine , priority , immediate , flash , flash-override , critical , internet , network | optional
+                    violate_set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+          queuing_policy_maps:  # List | optional
+            - name: "QM-FABRIC-EGRESS"  # String | required
+              match_type: "match-first"  # Choice | match-any , match-all , match-first | optional
+              classes:  # List | optional
+                - name: "c-out-q1"  # String | required
+                  priority_level: 1  # Integer | min: 1 , max: 8 | optional
+                  bandwidth_remaining_percent: 30  # Integer | min: 0 , max: 100 | optional
+                  next_class_map: "NEXT_CLASS_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                  previous_class_map: "PREVIOUS_CLASS_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          system_service_policy_queuing_output: "QM-FABRIC-EGRESS"  # String | optional
+          system_service_policy_queuing_output_statistics: true  # Boolean | optional
+          network_class_maps:  # List | optional
+            - name: "c-nq-voice"  # String | required
+              match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+              match_cos_values: [4, 5]  # List | Integer[min: 0 , max: 7 ] | optional
+          network_policy_maps:  # List | optional
+            - name: "p-nq-fabric"  # String | required
+              match_type: "match-first"  # Choice | match-any , match-all , match-first | optional
+              classes:  # List | optional
+                - name: "c-nq-voice"  # String | required
+                  mtu: 1500  # Integer | min: 576 , max: 9216 | optional
+                  no_drop: true  # Boolean | optional
+                  pause_pfc_cos: [3]  # List | Integer[min: 0 , max: 7 ] | optional
+                  pause_receive: false  # Boolean | optional
+                  pause_buffer_size: 5000  # Integer | min: 5000 , max: 268435456 | optional
+                  pause_headroom: 1  # Integer | min: 0 , max: 268435456 | optional
+                  pause_dynamic: 1  # Integer | min: 0 , max: 255 | optional
+                  pause_threshold: 1  # Integer | min: 0 , max: 268435456 | optional
+                  pause_resume_threshold: 1  # Integer | min: 0 , max: 268435456 | optional
+                  pause_resume_offset: 1  # Integer | min: 0 , max: 268435456 | optional
+          system_service_policy_network: "p-nq-fabric"  # String | optional
+          system_service_policy_network_statistics: true  # Boolean | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        qos:  # Class | optional [shared class: structure documented on this page as qos(nxos.devices.configuration)]
+          class_maps:  # List | optional [shared class: structure documented on this page as class_maps(nxos.devices.configuration.qos)]
+            - name: "NAME_1"  # String | required
+              match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+              match_dscp_values: [1]  # List | Integer[min: 0 , max: 63 ] | optional
+          policy_maps:  # List | optional [shared class: structure documented on this page as policy_maps(nxos.devices.configuration.qos)]
+            - name: "NAME_1"  # String | required
+              match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+              classes:  # List | optional [shared class: structure documented on this page as classes(nxos.devices.configuration.qos.policy_maps)]
+                - name: "NAME_1"  # String | required
+                  set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+                  police:  # Class | optional [shared class: structure documented on this page as police(nxos.devices.configuration.qos.policy_maps.classes)]
+                    cir_rate: 1  # Integer | min: 0 , max: 100000000000 | required
+                    cir_unit: "bps"  # Choice | bps , kbps , mbps , gbps , pps , percent | optional
+                    bc_rate: 1  # Integer | min: 0 , max: 536870912 | optional
+                    bc_unit: "bytes"  # Choice | bytes , kbytes , mbytes , ms , us , packets | optional
+                    pir_rate: 1  # Integer | min: 0 , max: 100000000000 | optional
+                    pir_unit: "bps"  # Choice | bps , kbps , mbps , gbps , pps , percent | optional
+                    be_rate: 1  # Integer | min: 0 , max: 536870912 | optional
+                    be_unit: "bytes"  # Choice | bytes , kbytes , mbytes , ms , us , packets | optional
+                    conform_action: "transmit"  # Choice | transmit , drop , set-cos-transmit , set-dscp-transmit , set-prec-transmit , set-qos-transmit | optional
+                    conform_set_cos: 1  # Integer | min: 0 , max: 7 | optional
+                    conform_set_dscp: 1  # Integer | min: 0 , max: 63 | optional
+                    conform_set_precedence: "routine"  # Choice | routine , priority , immediate , flash , flash-override , critical , internet , network | optional
+                    conform_set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+                    exceed_action: "transmit"  # Choice | transmit , drop , set-cos-transmit , set-dscp-transmit , set-prec-transmit , set-qos-transmit | optional
+                    exceed_set_cos: 1  # Integer | min: 0 , max: 7 | optional
+                    exceed_set_dscp: 1  # Integer | min: 0 , max: 63 | optional
+                    exceed_set_precedence: "routine"  # Choice | routine , priority , immediate , flash , flash-override , critical , internet , network | optional
+                    exceed_set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+                    violate_action: "transmit"  # Choice | transmit , drop , set-cos-transmit , set-dscp-transmit , set-prec-transmit , set-qos-transmit | optional
+                    violate_set_cos: 1  # Integer | min: 0 , max: 7 | optional
+                    violate_set_dscp: 1  # Integer | min: 0 , max: 63 | optional
+                    violate_set_precedence: "routine"  # Choice | routine , priority , immediate , flash , flash-override , critical , internet , network | optional
+                    violate_set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+          queuing_policy_maps:  # List | optional [shared class: structure documented on this page as queuing_policy_maps(nxos.devices.configuration.qos)]
+            - name: "NAME_1"  # String | required
+              match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+              classes:  # List | optional [shared class: structure documented on this page as classes(nxos.devices.configuration.qos.queuing_policy_maps)]
+                - name: "NAME_1"  # String | required
+                  priority_level: 1  # Integer | min: 1 , max: 8 | optional
+                  bandwidth_remaining_percent: 1  # Integer | min: 0 , max: 100 | optional
+                  next_class_map: "NEXT_CLASS_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                  previous_class_map: "PREVIOUS_CLASS_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          system_service_policy_queuing_output: "SYSTEM_SERVICE_POLICY_QUEUING_OUTPUT_1"  # String | optional
+          system_service_policy_queuing_output_statistics: false  # Boolean | optional
+          network_class_maps:  # List | optional [shared class: structure documented on this page as network_class_maps(nxos.devices.configuration.qos)]
+            - name: "NAME_1"  # String | required
+              match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+              match_cos_values: [1]  # List | Integer[min: 0 , max: 7 ] | optional
+          network_policy_maps:  # List | optional [shared class: structure documented on this page as network_policy_maps(nxos.devices.configuration.qos)]
+            - name: "NAME_1"  # String | required
+              match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+              classes:  # List | optional [shared class: structure documented on this page as classes(nxos.devices.configuration.qos.network_policy_maps)]
+                - name: "NAME_1"  # String | required
+                  mtu: 576  # Integer | min: 576 , max: 9216 | optional
+                  no_drop: false  # Boolean | optional
+                  pause_pfc_cos: [1]  # List | Integer[min: 0 , max: 7 ] | optional
+                  pause_receive: false  # Boolean | optional
+                  pause_buffer_size: 5000  # Integer | min: 5000 , max: 268435456 | optional
+                  pause_headroom: 1  # Integer | min: 0 , max: 268435456 | optional
+                  pause_dynamic: 1  # Integer | min: 0 , max: 255 | optional
+                  pause_threshold: 1  # Integer | min: 0 , max: 268435456 | optional
+                  pause_resume_threshold: 1  # Integer | min: 0 , max: 268435456 | optional
+                  pause_resume_offset: 1  # Integer | min: 0 , max: 268435456 | optional
+          system_service_policy_network: "SYSTEM_SERVICE_POLICY_NETWORK_1"  # String | optional
+          system_service_policy_network_statistics: false  # Boolean | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      qos:  # Class | optional [shared class: structure documented on this page as qos(nxos.devices.configuration)]
+        class_maps:  # List | optional [shared class: structure documented on this page as class_maps(nxos.devices.configuration.qos)]
+          - name: "NAME_1"  # String | required
+            match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+            match_dscp_values: [1]  # List | Integer[min: 0 , max: 63 ] | optional
+        policy_maps:  # List | optional [shared class: structure documented on this page as policy_maps(nxos.devices.configuration.qos)]
+          - name: "NAME_1"  # String | required
+            match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+            classes:  # List | optional [shared class: structure documented on this page as classes(nxos.devices.configuration.qos.policy_maps)]
+              - name: "NAME_1"  # String | required
+                set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+                police:  # Class | optional [shared class: structure documented on this page as police(nxos.devices.configuration.qos.policy_maps.classes)]
+                  cir_rate: 1  # Integer | min: 0 , max: 100000000000 | required
+                  cir_unit: "bps"  # Choice | bps , kbps , mbps , gbps , pps , percent | optional
+                  bc_rate: 1  # Integer | min: 0 , max: 536870912 | optional
+                  bc_unit: "bytes"  # Choice | bytes , kbytes , mbytes , ms , us , packets | optional
+                  pir_rate: 1  # Integer | min: 0 , max: 100000000000 | optional
+                  pir_unit: "bps"  # Choice | bps , kbps , mbps , gbps , pps , percent | optional
+                  be_rate: 1  # Integer | min: 0 , max: 536870912 | optional
+                  be_unit: "bytes"  # Choice | bytes , kbytes , mbytes , ms , us , packets | optional
+                  conform_action: "transmit"  # Choice | transmit , drop , set-cos-transmit , set-dscp-transmit , set-prec-transmit , set-qos-transmit | optional
+                  conform_set_cos: 1  # Integer | min: 0 , max: 7 | optional
+                  conform_set_dscp: 1  # Integer | min: 0 , max: 63 | optional
+                  conform_set_precedence: "routine"  # Choice | routine , priority , immediate , flash , flash-override , critical , internet , network | optional
+                  conform_set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+                  exceed_action: "transmit"  # Choice | transmit , drop , set-cos-transmit , set-dscp-transmit , set-prec-transmit , set-qos-transmit | optional
+                  exceed_set_cos: 1  # Integer | min: 0 , max: 7 | optional
+                  exceed_set_dscp: 1  # Integer | min: 0 , max: 63 | optional
+                  exceed_set_precedence: "routine"  # Choice | routine , priority , immediate , flash , flash-override , critical , internet , network | optional
+                  exceed_set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+                  violate_action: "transmit"  # Choice | transmit , drop , set-cos-transmit , set-dscp-transmit , set-prec-transmit , set-qos-transmit | optional
+                  violate_set_cos: 1  # Integer | min: 0 , max: 7 | optional
+                  violate_set_dscp: 1  # Integer | min: 0 , max: 63 | optional
+                  violate_set_precedence: "routine"  # Choice | routine , priority , immediate , flash , flash-override , critical , internet , network | optional
+                  violate_set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+        queuing_policy_maps:  # List | optional [shared class: structure documented on this page as queuing_policy_maps(nxos.devices.configuration.qos)]
+          - name: "NAME_1"  # String | required
+            match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+            classes:  # List | optional [shared class: structure documented on this page as classes(nxos.devices.configuration.qos.queuing_policy_maps)]
+              - name: "NAME_1"  # String | required
+                priority_level: 1  # Integer | min: 1 , max: 8 | optional
+                bandwidth_remaining_percent: 1  # Integer | min: 0 , max: 100 | optional
+                next_class_map: "NEXT_CLASS_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                previous_class_map: "PREVIOUS_CLASS_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+        system_service_policy_queuing_output: "SYSTEM_SERVICE_POLICY_QUEUING_OUTPUT_1"  # String | optional
+        system_service_policy_queuing_output_statistics: false  # Boolean | optional
+        network_class_maps:  # List | optional [shared class: structure documented on this page as network_class_maps(nxos.devices.configuration.qos)]
+          - name: "NAME_1"  # String | required
+            match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+            match_cos_values: [1]  # List | Integer[min: 0 , max: 7 ] | optional
+        network_policy_maps:  # List | optional [shared class: structure documented on this page as network_policy_maps(nxos.devices.configuration.qos)]
+          - name: "NAME_1"  # String | required
+            match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+            classes:  # List | optional [shared class: structure documented on this page as classes(nxos.devices.configuration.qos.network_policy_maps)]
+              - name: "NAME_1"  # String | required
+                mtu: 576  # Integer | min: 576 , max: 9216 | optional
+                no_drop: false  # Boolean | optional
+                pause_pfc_cos: [1]  # List | Integer[min: 0 , max: 7 ] | optional
+                pause_receive: false  # Boolean | optional
+                pause_buffer_size: 5000  # Integer | min: 5000 , max: 268435456 | optional
+                pause_headroom: 1  # Integer | min: 0 , max: 268435456 | optional
+                pause_dynamic: 1  # Integer | min: 0 , max: 255 | optional
+                pause_threshold: 1  # Integer | min: 0 , max: 268435456 | optional
+                pause_resume_threshold: 1  # Integer | min: 0 , max: 268435456 | optional
+                pause_resume_offset: 1  # Integer | min: 0 , max: 268435456 | optional
+        system_service_policy_network: "SYSTEM_SERVICE_POLICY_NETWORK_1"  # String | optional
+        system_service_policy_network_statistics: false  # Boolean | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        qos:  # Class | optional [shared class: structure documented on this page as qos(nxos.devices.configuration)]
+          class_maps:  # List | optional [shared class: structure documented on this page as class_maps(nxos.devices.configuration.qos)]
+            - name: "NAME_1"  # String | required
+              match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+              match_dscp_values: [1]  # List | Integer[min: 0 , max: 63 ] | optional
+          policy_maps:  # List | optional [shared class: structure documented on this page as policy_maps(nxos.devices.configuration.qos)]
+            - name: "NAME_1"  # String | required
+              match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+              classes:  # List | optional [shared class: structure documented on this page as classes(nxos.devices.configuration.qos.policy_maps)]
+                - name: "NAME_1"  # String | required
+                  set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+                  police:  # Class | optional [shared class: structure documented on this page as police(nxos.devices.configuration.qos.policy_maps.classes)]
+                    cir_rate: 1  # Integer | min: 0 , max: 100000000000 | required
+                    cir_unit: "bps"  # Choice | bps , kbps , mbps , gbps , pps , percent | optional
+                    bc_rate: 1  # Integer | min: 0 , max: 536870912 | optional
+                    bc_unit: "bytes"  # Choice | bytes , kbytes , mbytes , ms , us , packets | optional
+                    pir_rate: 1  # Integer | min: 0 , max: 100000000000 | optional
+                    pir_unit: "bps"  # Choice | bps , kbps , mbps , gbps , pps , percent | optional
+                    be_rate: 1  # Integer | min: 0 , max: 536870912 | optional
+                    be_unit: "bytes"  # Choice | bytes , kbytes , mbytes , ms , us , packets | optional
+                    conform_action: "transmit"  # Choice | transmit , drop , set-cos-transmit , set-dscp-transmit , set-prec-transmit , set-qos-transmit | optional
+                    conform_set_cos: 1  # Integer | min: 0 , max: 7 | optional
+                    conform_set_dscp: 1  # Integer | min: 0 , max: 63 | optional
+                    conform_set_precedence: "routine"  # Choice | routine , priority , immediate , flash , flash-override , critical , internet , network | optional
+                    conform_set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+                    exceed_action: "transmit"  # Choice | transmit , drop , set-cos-transmit , set-dscp-transmit , set-prec-transmit , set-qos-transmit | optional
+                    exceed_set_cos: 1  # Integer | min: 0 , max: 7 | optional
+                    exceed_set_dscp: 1  # Integer | min: 0 , max: 63 | optional
+                    exceed_set_precedence: "routine"  # Choice | routine , priority , immediate , flash , flash-override , critical , internet , network | optional
+                    exceed_set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+                    violate_action: "transmit"  # Choice | transmit , drop , set-cos-transmit , set-dscp-transmit , set-prec-transmit , set-qos-transmit | optional
+                    violate_set_cos: 1  # Integer | min: 0 , max: 7 | optional
+                    violate_set_dscp: 1  # Integer | min: 0 , max: 63 | optional
+                    violate_set_precedence: "routine"  # Choice | routine , priority , immediate , flash , flash-override , critical , internet , network | optional
+                    violate_set_qos_group: 1  # Integer | min: 0 , max: 7 | optional
+          queuing_policy_maps:  # List | optional [shared class: structure documented on this page as queuing_policy_maps(nxos.devices.configuration.qos)]
+            - name: "NAME_1"  # String | required
+              match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+              classes:  # List | optional [shared class: structure documented on this page as classes(nxos.devices.configuration.qos.queuing_policy_maps)]
+                - name: "NAME_1"  # String | required
+                  priority_level: 1  # Integer | min: 1 , max: 8 | optional
+                  bandwidth_remaining_percent: 1  # Integer | min: 0 , max: 100 | optional
+                  next_class_map: "NEXT_CLASS_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+                  previous_class_map: "PREVIOUS_CLASS_MAP_1"  # String | optional | NOTE: documented on page but not in published NaC JSON schema (netascode/schema@7334e34)
+          system_service_policy_queuing_output: "SYSTEM_SERVICE_POLICY_QUEUING_OUTPUT_1"  # String | optional
+          system_service_policy_queuing_output_statistics: false  # Boolean | optional
+          network_class_maps:  # List | optional [shared class: structure documented on this page as network_class_maps(nxos.devices.configuration.qos)]
+            - name: "NAME_1"  # String | required
+              match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+              match_cos_values: [1]  # List | Integer[min: 0 , max: 7 ] | optional
+          network_policy_maps:  # List | optional [shared class: structure documented on this page as network_policy_maps(nxos.devices.configuration.qos)]
+            - name: "NAME_1"  # String | required
+              match_type: "match-any"  # Choice | match-any , match-all , match-first | optional
+              classes:  # List | optional [shared class: structure documented on this page as classes(nxos.devices.configuration.qos.network_policy_maps)]
+                - name: "NAME_1"  # String | required
+                  mtu: 576  # Integer | min: 576 , max: 9216 | optional
+                  no_drop: false  # Boolean | optional
+                  pause_pfc_cos: [1]  # List | Integer[min: 0 , max: 7 ] | optional
+                  pause_receive: false  # Boolean | optional
+                  pause_buffer_size: 5000  # Integer | min: 5000 , max: 268435456 | optional
+                  pause_headroom: 1  # Integer | min: 0 , max: 268435456 | optional
+                  pause_dynamic: 1  # Integer | min: 0 , max: 255 | optional
+                  pause_threshold: 1  # Integer | min: 0 , max: 268435456 | optional
+                  pause_resume_threshold: 1  # Integer | min: 0 , max: 268435456 | optional
+                  pause_resume_offset: 1  # Integer | min: 0 , max: 268435456 | optional
+          system_service_policy_network: "SYSTEM_SERVICE_POLICY_NETWORK_1"  # String | optional
+          system_service_policy_network_statistics: false  # Boolean | optional

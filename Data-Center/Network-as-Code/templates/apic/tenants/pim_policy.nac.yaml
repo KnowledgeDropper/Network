@@ -1,0 +1,24 @@
+# Network-as-Code template: PIM Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/pim_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        pim_policies:  # List | optional
+          - name: "PIM1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            auth_key: "C1sco123"  # Any | String[min: 1 , max: 130 ] | optional
+            auth_type: "ah-md5"  # Choice | none , ah-md5 | default: none | optional
+            designated_router_delay: 100  # Integer | min: 1 , max: 65535 | default: 3 | optional
+            designated_router_priority: 100  # Integer | min: 1 , max: 4294967295 | default: 1 | optional
+            hello_interval: 100  # Integer | min: 1 , max: 18724286 | default: 30000 | optional
+            join_prune_interval: 60  # Integer | min: 60 , max: 65520 | default: 60 | optional
+            mcast_dom_boundary: false  # Boolean | default: false | optional
+            passive: true  # Boolean | default: false | optional
+            strict_rfc: false  # Boolean | default: false | optional
+            join_prune_filter_policy_in: "MRM2"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            join_prune_filter_policy_out: "MRM1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+            neighbor_filter_policy: "MRM1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional

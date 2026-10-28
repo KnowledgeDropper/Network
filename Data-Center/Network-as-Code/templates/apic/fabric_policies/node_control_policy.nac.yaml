@@ -1,0 +1,13 @@
+# Network-as-Code template: Node Control Switch Policy
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/node_control_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 2 (parsed 2); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    switch_policies:  # Class | optional
+      node_control_policies:  # List | optional
+        - name: "NODE_CTRL_POL"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+          dom: true  # Boolean | default: true | optional
+          telemetry: "telemetry"  # Choice | netflow , telemetry , analytics | default: telemetry | optional

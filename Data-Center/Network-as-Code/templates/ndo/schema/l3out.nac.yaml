@@ -1,0 +1,18 @@
+# Network-as-Code template: L3out
+# Source: https://netascode.cisco.com/docs/data_models/ndo/schema/l3out/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 5 (parsed 5); example values used as placeholders where available.
+---
+ndo:
+  schemas:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      templates:  # List | optional
+        - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          tenant: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+          l3outs:  # List | optional
+            - name: "site1_l3out"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              vrf:  # Class | required
+                name: "site1_vrf"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+                schema: "example_schema"  # String | optional
+                template: "site1_app_template"  # String | optional

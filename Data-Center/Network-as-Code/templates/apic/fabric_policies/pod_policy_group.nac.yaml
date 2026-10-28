@@ -1,0 +1,15 @@
+# Network-as-Code template: Pod Policy Group
+# Source: https://netascode.cisco.com/docs/data_models/apic/fabric_policies/pod_policy_group/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+apic:
+  fabric_policies:  # Class | optional
+    pod_policy_groups:  # List | optional
+      - name: "POD1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+        description: "POD1 Description"  # String | Regex: ^[a-zA-Z0-9\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+        snmp_policy: "POD1_SNMP"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        date_time_policy: "POD1_NTP"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        management_access_policy: "POD1_MGMT"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | optional
+        bgp_route_reflector_policy: "default"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | default: default | optional

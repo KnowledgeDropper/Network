@@ -1,0 +1,16 @@
+# Network-as-Code template: Site
+# Source: https://netascode.cisco.com/docs/data_models/ndo/ndo/site/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+ndo:
+  sites:  # List | optional
+    - name: "APIC1"  # String | required
+      apic_urls: ["https://10.10.10.10"]  # List | String | required
+      username: "admin"  # String | optional
+      password: "Cisco123456"  # Any | String or Null | optional
+      id: 1  # Integer | min: 1 | optional
+      location:  # Class | optional
+        long: "50"  # String | default: 0 | required
+        lat: "50"  # String | default: 0 | required

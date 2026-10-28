@@ -1,0 +1,14 @@
+# Network-as-Code template: Physical Domain
+# Source: https://netascode.cisco.com/docs/data_models/ndo/fabric_templates/physical_domain/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 1 (parsed 1); example values used as placeholders where available.
+---
+ndo:
+  fabric_templates:  # Class | optional
+    fabric_policies:  # List | optional
+      - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+        physical_domains:  # List | optional
+          - name: "PHY_DOM1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Physical domain for bare-metal servers"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            vlan_pool: "VLAN_POOL1"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required

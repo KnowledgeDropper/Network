@@ -1,0 +1,26 @@
+# Network-as-Code template: Network Connectivity Policy
+# Source: https://netascode.cisco.com/docs/data_models/compute/intersight/organizations/policies/network_connectivity_policy/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+compute:
+  intersight:  # Class | optional
+    organizations:  # List | optional
+      - policies:  # Class | optional
+          network_connectivity:  # List | optional
+            - name: "MyNetworkConnPolicy"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+              description: "Example description"  # String | optional
+              managed: true  # Boolean | default: true | optional
+              tags:  # List | optional
+                - key: "env"  # String | required
+                  value: "prod"  # String | required
+              preferred_ipv4_dns: "8.8.8.8"  # String | optional
+              alternate_ipv4_dns: "8.8.4.4"  # String | optional
+              ipv4_dns_from_dhcp: true  # Boolean | default: false | optional
+              ipv6: true  # Boolean | default: false | optional
+              preferred_ipv6_dns: "2001:db8::53"  # String | optional
+              alternate_ipv6_dns: "2001:db8::54"  # String | optional
+              ipv6_dns_from_dhcp: false  # Boolean | default: false | optional
+              dynamic_dns: true  # Boolean | default: false | optional
+              dynamic_dns_domain: "mgmt.example.com"  # String | optional

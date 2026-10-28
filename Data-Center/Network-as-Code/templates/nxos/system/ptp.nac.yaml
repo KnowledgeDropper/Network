@@ -1,0 +1,500 @@
+# Network-as-Code template: PTP
+# Source: https://netascode.cisco.com/docs/data_models/nxos/system/ptp/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+nxos:
+  devices:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      url: "https://10.1.1.1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional
+        interfaces:  # Class | optional
+          ethernets:  # List | optional
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ptp:  # Class | optional
+                admin_state: true  # Boolean | optional
+                announce_interval: 2  # Integer | min: -3 , max: 4 | optional
+                announce_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                announce_timeout: 2  # Integer | min: 2 , max: 10 | optional
+                announce_timeout_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                sync_interval: -1  # Integer | min: -7 , max: 1 | optional
+                sync_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                delay_request_minimum_interval: 0  # Integer | min: -4 , max: 6 | optional
+                delay_request_minimum_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                transmission: "multicast"  # Choice | multicast , unicast | optional
+                transport: "ipv4"  # Choice | ipv4 , ipv6 , ethernet | optional
+                role: "dynamic"  # Choice | master , slave , dynamic | optional
+                cost: 1  # Integer | min: 0 , max: 255 | optional
+                vlan: 1  # Integer | min: 1 , max: 4094 | optional
+                domain: 1  # Integer | min: 0 , max: 127 | optional
+                profile_override: false  # Boolean | optional
+                destination_mac: "forwardable"  # Choice | forwardable , non-forwardable | optional
+                receive_no_match: "accept"  # Choice | accept , drop , follow-rx | optional
+                transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+                neighbor_propagation_delay_threshold: 5  # Integer | min: 5 , max: 2000000 | optional
+                asymmetric_delay_value: 1  # Integer | min: 0 , max: 512000000 | optional
+                asymmetric_delay_direction: "none"  # Choice | none , forward-path , reverse-path | optional
+                ucast_source: "10.1.1.1"  # IP | optional
+                ucast_source_ipv6: "10.1.1.1"  # IP | optional
+                ucast_source_vrf: "VRF1"  # String | optional
+                ucast_source_vrf_ipv6: "UCAST_SOURCE_VRF_IPV6_1"  # String | optional
+                ipv6_multicast_scope_tx: 1  # Integer | min: 0 , max: 65535 | optional
+                ipv6_multicast_scope_rx: 1  # Integer | min: 0 , max: 65535 | optional
+                ucast_peers:  # List | optional
+                  - ip: "10.1.1.2"  # IP | required
+                    transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+          port_channels:  # List | optional
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ptp:  # Class | optional [shared class: structure documented on this page as ptp(nxos.devices.configuration.interfaces.ethernets)]
+                admin_state: true  # Boolean | optional
+                announce_interval: 1  # Integer | min: -3 , max: 4 | optional
+                announce_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                announce_timeout: 2  # Integer | min: 2 , max: 10 | optional
+                announce_timeout_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                sync_interval: 1  # Integer | min: -7 , max: 1 | optional
+                sync_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                delay_request_minimum_interval: 1  # Integer | min: -4 , max: 6 | optional
+                delay_request_minimum_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                transmission: "multicast"  # Choice | multicast , unicast | optional
+                transport: "ipv4"  # Choice | ipv4 , ipv6 , ethernet | optional
+                role: "master"  # Choice | master , slave , dynamic | optional
+                cost: 1  # Integer | min: 0 , max: 255 | optional
+                vlan: 1  # Integer | min: 1 , max: 4094 | optional
+                domain: 1  # Integer | min: 0 , max: 127 | optional
+                profile_override: false  # Boolean | optional
+                destination_mac: "forwardable"  # Choice | forwardable , non-forwardable | optional
+                receive_no_match: "accept"  # Choice | accept , drop , follow-rx | optional
+                transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+                neighbor_propagation_delay_threshold: 5  # Integer | min: 5 , max: 2000000 | optional
+                asymmetric_delay_value: 1  # Integer | min: 0 , max: 512000000 | optional
+                asymmetric_delay_direction: "none"  # Choice | none , forward-path , reverse-path | optional
+                ucast_source: "10.1.1.1"  # IP | optional
+                ucast_source_ipv6: "10.1.1.1"  # IP | optional
+                ucast_source_vrf: "VRF1"  # String | optional
+                ucast_source_vrf_ipv6: "UCAST_SOURCE_VRF_IPV6_1"  # String | optional
+                ipv6_multicast_scope_tx: 1  # Integer | min: 0 , max: 65535 | optional
+                ipv6_multicast_scope_rx: 1  # Integer | min: 0 , max: 65535 | optional
+                ucast_peers:  # List | optional [shared class: structure documented on this page as ucast_peers(nxos.devices.configuration.interfaces.ethernets.ptp)]
+                  - ip: "10.1.1.1"  # IP | required
+                    transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+        ptp:  # Class | optional
+          domain: 0  # Integer | min: 0 , max: 127 | optional
+          priority1: 128  # Integer | min: 0 , max: 255 | optional
+          priority2: 128  # Integer | min: 0 , max: 255 | optional
+          device_type: "boundary-clock"  # Choice | boundary-clock , generalized-ptp , ordinary-clock-grandmaster | optional
+          source: "10.0.0.1"  # IP | optional
+          source_ipv6: "10.1.1.1"  # IP | optional
+          vrf: "VRF1"  # String | optional
+          vrf_ipv6: "VRF_IPV6_1"  # String | optional
+          offload: true  # Boolean | optional
+          clock_operation_one_step: false  # Boolean | optional
+          clock_identity: "CLOCK_IDENTITY_1"  # String | optional
+          clock_periodic_update: false  # Boolean | optional
+          clock_periodic_update_interval: 1  # Integer | min: 0 , max: 3600 | optional
+          clock_sync_auto: false  # Boolean | optional
+          using_system_clock: false  # Boolean | optional
+          management: false  # Boolean | optional
+          forward_version1: false  # Boolean | optional
+          scale_on_1g: false  # Boolean | optional
+          convergence_time: 60  # Integer | min: 3 , max: 2600 | optional
+          correction_range: 200000  # Integer | min: 10 , max: 1000000000 | optional
+          correction_range_logging: true  # Boolean | optional
+          mean_path_delay: 500000000  # Integer | min: 10 , max: 1000000000 | optional
+          delay_tolerance_mean_path: false  # Boolean | optional
+          delay_tolerance_mean_path_value: 1  # Integer | min: 0 | optional
+          delay_tolerance_reverse_path: false  # Boolean | optional
+          delay_tolerance_reverse_path_value: 1  # Integer | min: 0 | optional
+          pdelay_req_interval: 1  # Integer | min: 0 , max: 5 | optional
+          grandmaster_capable: true  # Boolean | optional
+          grandmaster_capable_convergence_time: 3  # Integer | min: 3 , max: 2600 | optional
+          multi_domain: true  # Boolean | optional
+          multi_domain_transition_attributes_priority1: 128  # Integer | min: 0 , max: 255 | optional
+          multi_domain_transition_attributes_priority2: 128  # Integer | min: 0 , max: 255 | optional
+          enhanced_client_scale: false  # Boolean | optional
+          acl_redirect: false  # Boolean | optional
+          ipv6_multicast_scope_tx: 1  # Integer | min: 0 , max: 65535 | optional
+          ipv6_multicast_scope_rx: 1  # Integer | min: 0 , max: 65535 | optional
+          notification_gm_change: true  # Boolean | optional
+          notification_parent_change: true  # Boolean | optional
+          notification_high_correction: true  # Boolean | optional
+          notification_high_correction_interval: 10  # Integer | min: 0 , max: 300 | optional
+          notification_high_correction_periodic_notification: false  # Boolean | optional
+          notification_port_state_change: true  # Boolean | optional
+          notification_port_state_change_category: "all"  # Choice | master-slave-only , all | optional
+          notification_port_state_change_interval: 1  # Integer | min: 0 , max: 300 | optional
+          notification_port_state_change_periodic_notification: false  # Boolean | optional
+          domains:  # List | optional
+            - domain: 0  # Integer | min: 0 , max: 127 | required
+              clock_accuracy_threshold: 200  # Integer | min: 0 , max: 255 | optional
+              clock_class_threshold: 200  # Integer | min: 0 , max: 255 | optional
+              priority: 128  # Integer | min: 0 , max: 255 | optional
+  device_groups:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ptp:  # Class | optional [shared class: structure documented on this page as ptp(nxos.devices.configuration.interfaces.ethernets)]
+                admin_state: false  # Boolean | optional
+                announce_interval: 1  # Integer | min: -3 , max: 4 | optional
+                announce_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                announce_timeout: 2  # Integer | min: 2 , max: 10 | optional
+                announce_timeout_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                sync_interval: 1  # Integer | min: -7 , max: 1 | optional
+                sync_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                delay_request_minimum_interval: 1  # Integer | min: -4 , max: 6 | optional
+                delay_request_minimum_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                transmission: "multicast"  # Choice | multicast , unicast | optional
+                transport: "ipv4"  # Choice | ipv4 , ipv6 , ethernet | optional
+                role: "master"  # Choice | master , slave , dynamic | optional
+                cost: 1  # Integer | min: 0 , max: 255 | optional
+                vlan: 1  # Integer | min: 1 , max: 4094 | optional
+                domain: 1  # Integer | min: 0 , max: 127 | optional
+                profile_override: false  # Boolean | optional
+                destination_mac: "forwardable"  # Choice | forwardable , non-forwardable | optional
+                receive_no_match: "accept"  # Choice | accept , drop , follow-rx | optional
+                transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+                neighbor_propagation_delay_threshold: 5  # Integer | min: 5 , max: 2000000 | optional
+                asymmetric_delay_value: 1  # Integer | min: 0 , max: 512000000 | optional
+                asymmetric_delay_direction: "none"  # Choice | none , forward-path , reverse-path | optional
+                ucast_source: "10.1.1.1"  # IP | optional
+                ucast_source_ipv6: "10.1.1.1"  # IP | optional
+                ucast_source_vrf: "VRF1"  # String | optional
+                ucast_source_vrf_ipv6: "UCAST_SOURCE_VRF_IPV6_1"  # String | optional
+                ipv6_multicast_scope_tx: 1  # Integer | min: 0 , max: 65535 | optional
+                ipv6_multicast_scope_rx: 1  # Integer | min: 0 , max: 65535 | optional
+                ucast_peers:  # List | optional [shared class: structure documented on this page as ucast_peers(nxos.devices.configuration.interfaces.ethernets.ptp)]
+                  - ip: "10.1.1.1"  # IP | required
+                    transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+          port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ptp:  # Class | optional [shared class: structure documented on this page as ptp(nxos.devices.configuration.interfaces.ethernets)]
+                admin_state: false  # Boolean | optional
+                announce_interval: 1  # Integer | min: -3 , max: 4 | optional
+                announce_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                announce_timeout: 2  # Integer | min: 2 , max: 10 | optional
+                announce_timeout_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                sync_interval: 1  # Integer | min: -7 , max: 1 | optional
+                sync_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                delay_request_minimum_interval: 1  # Integer | min: -4 , max: 6 | optional
+                delay_request_minimum_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                transmission: "multicast"  # Choice | multicast , unicast | optional
+                transport: "ipv4"  # Choice | ipv4 , ipv6 , ethernet | optional
+                role: "master"  # Choice | master , slave , dynamic | optional
+                cost: 1  # Integer | min: 0 , max: 255 | optional
+                vlan: 1  # Integer | min: 1 , max: 4094 | optional
+                domain: 1  # Integer | min: 0 , max: 127 | optional
+                profile_override: false  # Boolean | optional
+                destination_mac: "forwardable"  # Choice | forwardable , non-forwardable | optional
+                receive_no_match: "accept"  # Choice | accept , drop , follow-rx | optional
+                transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+                neighbor_propagation_delay_threshold: 5  # Integer | min: 5 , max: 2000000 | optional
+                asymmetric_delay_value: 1  # Integer | min: 0 , max: 512000000 | optional
+                asymmetric_delay_direction: "none"  # Choice | none , forward-path , reverse-path | optional
+                ucast_source: "10.1.1.1"  # IP | optional
+                ucast_source_ipv6: "10.1.1.1"  # IP | optional
+                ucast_source_vrf: "VRF1"  # String | optional
+                ucast_source_vrf_ipv6: "UCAST_SOURCE_VRF_IPV6_1"  # String | optional
+                ipv6_multicast_scope_tx: 1  # Integer | min: 0 , max: 65535 | optional
+                ipv6_multicast_scope_rx: 1  # Integer | min: 0 , max: 65535 | optional
+                ucast_peers:  # List | optional [shared class: structure documented on this page as ucast_peers(nxos.devices.configuration.interfaces.ethernets.ptp)]
+                  - ip: "10.1.1.1"  # IP | required
+                    transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+        ptp:  # Class | optional [shared class: structure documented on this page as ptp(nxos.devices.configuration)]
+          domain: 1  # Integer | min: 0 , max: 127 | optional
+          priority1: 1  # Integer | min: 0 , max: 255 | optional
+          priority2: 1  # Integer | min: 0 , max: 255 | optional
+          device_type: "boundary-clock"  # Choice | boundary-clock , generalized-ptp , ordinary-clock-grandmaster | optional
+          source: "10.1.1.1"  # IP | optional
+          source_ipv6: "10.1.1.1"  # IP | optional
+          vrf: "VRF1"  # String | optional
+          vrf_ipv6: "VRF_IPV6_1"  # String | optional
+          offload: false  # Boolean | optional
+          clock_operation_one_step: false  # Boolean | optional
+          clock_identity: "CLOCK_IDENTITY_1"  # String | optional
+          clock_periodic_update: false  # Boolean | optional
+          clock_periodic_update_interval: 1  # Integer | min: 0 , max: 3600 | optional
+          clock_sync_auto: false  # Boolean | optional
+          using_system_clock: false  # Boolean | optional
+          management: false  # Boolean | optional
+          forward_version1: false  # Boolean | optional
+          scale_on_1g: false  # Boolean | optional
+          convergence_time: 3  # Integer | min: 3 , max: 2600 | optional
+          correction_range: 10  # Integer | min: 10 , max: 1000000000 | optional
+          correction_range_logging: false  # Boolean | optional
+          mean_path_delay: 10  # Integer | min: 10 , max: 1000000000 | optional
+          delay_tolerance_mean_path: false  # Boolean | optional
+          delay_tolerance_mean_path_value: 1  # Integer | min: 0 | optional
+          delay_tolerance_reverse_path: false  # Boolean | optional
+          delay_tolerance_reverse_path_value: 1  # Integer | min: 0 | optional
+          pdelay_req_interval: 1  # Integer | min: 0 , max: 5 | optional
+          grandmaster_capable: false  # Boolean | optional
+          grandmaster_capable_convergence_time: 3  # Integer | min: 3 , max: 2600 | optional
+          multi_domain: false  # Boolean | optional
+          multi_domain_transition_attributes_priority1: 1  # Integer | min: 0 , max: 255 | optional
+          multi_domain_transition_attributes_priority2: 1  # Integer | min: 0 , max: 255 | optional
+          enhanced_client_scale: false  # Boolean | optional
+          acl_redirect: false  # Boolean | optional
+          ipv6_multicast_scope_tx: 1  # Integer | min: 0 , max: 65535 | optional
+          ipv6_multicast_scope_rx: 1  # Integer | min: 0 , max: 65535 | optional
+          notification_gm_change: false  # Boolean | optional
+          notification_parent_change: false  # Boolean | optional
+          notification_high_correction: false  # Boolean | optional
+          notification_high_correction_interval: 1  # Integer | min: 0 , max: 300 | optional
+          notification_high_correction_periodic_notification: false  # Boolean | optional
+          notification_port_state_change: false  # Boolean | optional
+          notification_port_state_change_category: "master-slave-only"  # Choice | master-slave-only , all | optional
+          notification_port_state_change_interval: 1  # Integer | min: 0 , max: 300 | optional
+          notification_port_state_change_periodic_notification: false  # Boolean | optional
+          domains:  # List | optional [shared class: structure documented on this page as domains(nxos.devices.configuration.ptp)]
+            - domain: 1  # Integer | min: 0 , max: 127 | required
+              clock_accuracy_threshold: 1  # Integer | min: 0 , max: 255 | optional
+              clock_class_threshold: 1  # Integer | min: 0 , max: 255 | optional
+              priority: 1  # Integer | min: 0 , max: 255 | optional
+  global:  # Class | optional
+    configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+      interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+        ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+          - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            ptp:  # Class | optional [shared class: structure documented on this page as ptp(nxos.devices.configuration.interfaces.ethernets)]
+              admin_state: false  # Boolean | optional
+              announce_interval: 1  # Integer | min: -3 , max: 4 | optional
+              announce_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+              announce_timeout: 2  # Integer | min: 2 , max: 10 | optional
+              announce_timeout_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+              sync_interval: 1  # Integer | min: -7 , max: 1 | optional
+              sync_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+              delay_request_minimum_interval: 1  # Integer | min: -4 , max: 6 | optional
+              delay_request_minimum_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+              transmission: "multicast"  # Choice | multicast , unicast | optional
+              transport: "ipv4"  # Choice | ipv4 , ipv6 , ethernet | optional
+              role: "master"  # Choice | master , slave , dynamic | optional
+              cost: 1  # Integer | min: 0 , max: 255 | optional
+              vlan: 1  # Integer | min: 1 , max: 4094 | optional
+              domain: 1  # Integer | min: 0 , max: 127 | optional
+              profile_override: false  # Boolean | optional
+              destination_mac: "forwardable"  # Choice | forwardable , non-forwardable | optional
+              receive_no_match: "accept"  # Choice | accept , drop , follow-rx | optional
+              transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+              neighbor_propagation_delay_threshold: 5  # Integer | min: 5 , max: 2000000 | optional
+              asymmetric_delay_value: 1  # Integer | min: 0 , max: 512000000 | optional
+              asymmetric_delay_direction: "none"  # Choice | none , forward-path , reverse-path | optional
+              ucast_source: "10.1.1.1"  # IP | optional
+              ucast_source_ipv6: "10.1.1.1"  # IP | optional
+              ucast_source_vrf: "VRF1"  # String | optional
+              ucast_source_vrf_ipv6: "UCAST_SOURCE_VRF_IPV6_1"  # String | optional
+              ipv6_multicast_scope_tx: 1  # Integer | min: 0 , max: 65535 | optional
+              ipv6_multicast_scope_rx: 1  # Integer | min: 0 , max: 65535 | optional
+              ucast_peers:  # List | optional [shared class: structure documented on this page as ucast_peers(nxos.devices.configuration.interfaces.ethernets.ptp)]
+                - ip: "10.1.1.1"  # IP | required
+                  transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+        port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+          - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+            ptp:  # Class | optional [shared class: structure documented on this page as ptp(nxos.devices.configuration.interfaces.ethernets)]
+              admin_state: false  # Boolean | optional
+              announce_interval: 1  # Integer | min: -3 , max: 4 | optional
+              announce_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+              announce_timeout: 2  # Integer | min: 2 , max: 10 | optional
+              announce_timeout_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+              sync_interval: 1  # Integer | min: -7 , max: 1 | optional
+              sync_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+              delay_request_minimum_interval: 1  # Integer | min: -4 , max: 6 | optional
+              delay_request_minimum_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+              transmission: "multicast"  # Choice | multicast , unicast | optional
+              transport: "ipv4"  # Choice | ipv4 , ipv6 , ethernet | optional
+              role: "master"  # Choice | master , slave , dynamic | optional
+              cost: 1  # Integer | min: 0 , max: 255 | optional
+              vlan: 1  # Integer | min: 1 , max: 4094 | optional
+              domain: 1  # Integer | min: 0 , max: 127 | optional
+              profile_override: false  # Boolean | optional
+              destination_mac: "forwardable"  # Choice | forwardable , non-forwardable | optional
+              receive_no_match: "accept"  # Choice | accept , drop , follow-rx | optional
+              transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+              neighbor_propagation_delay_threshold: 5  # Integer | min: 5 , max: 2000000 | optional
+              asymmetric_delay_value: 1  # Integer | min: 0 , max: 512000000 | optional
+              asymmetric_delay_direction: "none"  # Choice | none , forward-path , reverse-path | optional
+              ucast_source: "10.1.1.1"  # IP | optional
+              ucast_source_ipv6: "10.1.1.1"  # IP | optional
+              ucast_source_vrf: "VRF1"  # String | optional
+              ucast_source_vrf_ipv6: "UCAST_SOURCE_VRF_IPV6_1"  # String | optional
+              ipv6_multicast_scope_tx: 1  # Integer | min: 0 , max: 65535 | optional
+              ipv6_multicast_scope_rx: 1  # Integer | min: 0 , max: 65535 | optional
+              ucast_peers:  # List | optional [shared class: structure documented on this page as ucast_peers(nxos.devices.configuration.interfaces.ethernets.ptp)]
+                - ip: "10.1.1.1"  # IP | required
+                  transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+      ptp:  # Class | optional [shared class: structure documented on this page as ptp(nxos.devices.configuration)]
+        domain: 1  # Integer | min: 0 , max: 127 | optional
+        priority1: 1  # Integer | min: 0 , max: 255 | optional
+        priority2: 1  # Integer | min: 0 , max: 255 | optional
+        device_type: "boundary-clock"  # Choice | boundary-clock , generalized-ptp , ordinary-clock-grandmaster | optional
+        source: "10.1.1.1"  # IP | optional
+        source_ipv6: "10.1.1.1"  # IP | optional
+        vrf: "VRF1"  # String | optional
+        vrf_ipv6: "VRF_IPV6_1"  # String | optional
+        offload: false  # Boolean | optional
+        clock_operation_one_step: false  # Boolean | optional
+        clock_identity: "CLOCK_IDENTITY_1"  # String | optional
+        clock_periodic_update: false  # Boolean | optional
+        clock_periodic_update_interval: 1  # Integer | min: 0 , max: 3600 | optional
+        clock_sync_auto: false  # Boolean | optional
+        using_system_clock: false  # Boolean | optional
+        management: false  # Boolean | optional
+        forward_version1: false  # Boolean | optional
+        scale_on_1g: false  # Boolean | optional
+        convergence_time: 3  # Integer | min: 3 , max: 2600 | optional
+        correction_range: 10  # Integer | min: 10 , max: 1000000000 | optional
+        correction_range_logging: false  # Boolean | optional
+        mean_path_delay: 10  # Integer | min: 10 , max: 1000000000 | optional
+        delay_tolerance_mean_path: false  # Boolean | optional
+        delay_tolerance_mean_path_value: 1  # Integer | min: 0 | optional
+        delay_tolerance_reverse_path: false  # Boolean | optional
+        delay_tolerance_reverse_path_value: 1  # Integer | min: 0 | optional
+        pdelay_req_interval: 1  # Integer | min: 0 , max: 5 | optional
+        grandmaster_capable: false  # Boolean | optional
+        grandmaster_capable_convergence_time: 3  # Integer | min: 3 , max: 2600 | optional
+        multi_domain: false  # Boolean | optional
+        multi_domain_transition_attributes_priority1: 1  # Integer | min: 0 , max: 255 | optional
+        multi_domain_transition_attributes_priority2: 1  # Integer | min: 0 , max: 255 | optional
+        enhanced_client_scale: false  # Boolean | optional
+        acl_redirect: false  # Boolean | optional
+        ipv6_multicast_scope_tx: 1  # Integer | min: 0 , max: 65535 | optional
+        ipv6_multicast_scope_rx: 1  # Integer | min: 0 , max: 65535 | optional
+        notification_gm_change: false  # Boolean | optional
+        notification_parent_change: false  # Boolean | optional
+        notification_high_correction: false  # Boolean | optional
+        notification_high_correction_interval: 1  # Integer | min: 0 , max: 300 | optional
+        notification_high_correction_periodic_notification: false  # Boolean | optional
+        notification_port_state_change: false  # Boolean | optional
+        notification_port_state_change_category: "master-slave-only"  # Choice | master-slave-only , all | optional
+        notification_port_state_change_interval: 1  # Integer | min: 0 , max: 300 | optional
+        notification_port_state_change_periodic_notification: false  # Boolean | optional
+        domains:  # List | optional [shared class: structure documented on this page as domains(nxos.devices.configuration.ptp)]
+          - domain: 1  # Integer | min: 0 , max: 127 | required
+            clock_accuracy_threshold: 1  # Integer | min: 0 , max: 255 | optional
+            clock_class_threshold: 1  # Integer | min: 0 , max: 255 | optional
+            priority: 1  # Integer | min: 0 , max: 255 | optional
+  templates:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      type: "model"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      configuration:  # Class | optional [shared class: structure documented on this page as configuration(nxos.devices)]
+        interfaces:  # Class | optional [shared class: structure documented on this page as interfaces(nxos.devices.configuration)]
+          ethernets:  # List | optional [shared class: structure documented on this page as ethernets(nxos.devices.configuration.interfaces)]
+            - id: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ptp:  # Class | optional [shared class: structure documented on this page as ptp(nxos.devices.configuration.interfaces.ethernets)]
+                admin_state: false  # Boolean | optional
+                announce_interval: 1  # Integer | min: -3 , max: 4 | optional
+                announce_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                announce_timeout: 2  # Integer | min: 2 , max: 10 | optional
+                announce_timeout_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                sync_interval: 1  # Integer | min: -7 , max: 1 | optional
+                sync_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                delay_request_minimum_interval: 1  # Integer | min: -4 , max: 6 | optional
+                delay_request_minimum_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                transmission: "multicast"  # Choice | multicast , unicast | optional
+                transport: "ipv4"  # Choice | ipv4 , ipv6 , ethernet | optional
+                role: "master"  # Choice | master , slave , dynamic | optional
+                cost: 1  # Integer | min: 0 , max: 255 | optional
+                vlan: 1  # Integer | min: 1 , max: 4094 | optional
+                domain: 1  # Integer | min: 0 , max: 127 | optional
+                profile_override: false  # Boolean | optional
+                destination_mac: "forwardable"  # Choice | forwardable , non-forwardable | optional
+                receive_no_match: "accept"  # Choice | accept , drop , follow-rx | optional
+                transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+                neighbor_propagation_delay_threshold: 5  # Integer | min: 5 , max: 2000000 | optional
+                asymmetric_delay_value: 1  # Integer | min: 0 , max: 512000000 | optional
+                asymmetric_delay_direction: "none"  # Choice | none , forward-path , reverse-path | optional
+                ucast_source: "10.1.1.1"  # IP | optional
+                ucast_source_ipv6: "10.1.1.1"  # IP | optional
+                ucast_source_vrf: "VRF1"  # String | optional
+                ucast_source_vrf_ipv6: "UCAST_SOURCE_VRF_IPV6_1"  # String | optional
+                ipv6_multicast_scope_tx: 1  # Integer | min: 0 , max: 65535 | optional
+                ipv6_multicast_scope_rx: 1  # Integer | min: 0 , max: 65535 | optional
+                ucast_peers:  # List | optional [shared class: structure documented on this page as ucast_peers(nxos.devices.configuration.interfaces.ethernets.ptp)]
+                  - ip: "10.1.1.1"  # IP | required
+                    transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+          port_channels:  # List | optional [shared class: structure documented on this page as port_channels(nxos.devices.configuration.interfaces)]
+            - id: 1  # required by official NaC JSON schema (netascode/schema); not listed on this page
+              ptp:  # Class | optional [shared class: structure documented on this page as ptp(nxos.devices.configuration.interfaces.ethernets)]
+                admin_state: false  # Boolean | optional
+                announce_interval: 1  # Integer | min: -3 , max: 4 | optional
+                announce_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                announce_timeout: 2  # Integer | min: 2 , max: 10 | optional
+                announce_timeout_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                sync_interval: 1  # Integer | min: -7 , max: 1 | optional
+                sync_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                delay_request_minimum_interval: 1  # Integer | min: -4 , max: 6 | optional
+                delay_request_minimum_interval_profile: "none"  # Choice | none , aes67 , smpte-2059-2 | optional
+                transmission: "multicast"  # Choice | multicast , unicast | optional
+                transport: "ipv4"  # Choice | ipv4 , ipv6 , ethernet | optional
+                role: "master"  # Choice | master , slave , dynamic | optional
+                cost: 1  # Integer | min: 0 , max: 255 | optional
+                vlan: 1  # Integer | min: 1 , max: 4094 | optional
+                domain: 1  # Integer | min: 0 , max: 127 | optional
+                profile_override: false  # Boolean | optional
+                destination_mac: "forwardable"  # Choice | forwardable , non-forwardable | optional
+                receive_no_match: "accept"  # Choice | accept , drop , follow-rx | optional
+                transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+                neighbor_propagation_delay_threshold: 5  # Integer | min: 5 , max: 2000000 | optional
+                asymmetric_delay_value: 1  # Integer | min: 0 , max: 512000000 | optional
+                asymmetric_delay_direction: "none"  # Choice | none , forward-path , reverse-path | optional
+                ucast_source: "10.1.1.1"  # IP | optional
+                ucast_source_ipv6: "10.1.1.1"  # IP | optional
+                ucast_source_vrf: "VRF1"  # String | optional
+                ucast_source_vrf_ipv6: "UCAST_SOURCE_VRF_IPV6_1"  # String | optional
+                ipv6_multicast_scope_tx: 1  # Integer | min: 0 , max: 65535 | optional
+                ipv6_multicast_scope_rx: 1  # Integer | min: 0 , max: 65535 | optional
+                ucast_peers:  # List | optional [shared class: structure documented on this page as ucast_peers(nxos.devices.configuration.interfaces.ethernets.ptp)]
+                  - ip: "10.1.1.1"  # IP | required
+                    transmission_unicast_negotiation_schema: "TRANSMISSION_UNICAST_NEGOTIATION_SCHEMA_1"  # String | optional
+        ptp:  # Class | optional [shared class: structure documented on this page as ptp(nxos.devices.configuration)]
+          domain: 1  # Integer | min: 0 , max: 127 | optional
+          priority1: 1  # Integer | min: 0 , max: 255 | optional
+          priority2: 1  # Integer | min: 0 , max: 255 | optional
+          device_type: "boundary-clock"  # Choice | boundary-clock , generalized-ptp , ordinary-clock-grandmaster | optional
+          source: "10.1.1.1"  # IP | optional
+          source_ipv6: "10.1.1.1"  # IP | optional
+          vrf: "VRF1"  # String | optional
+          vrf_ipv6: "VRF_IPV6_1"  # String | optional
+          offload: false  # Boolean | optional
+          clock_operation_one_step: false  # Boolean | optional
+          clock_identity: "CLOCK_IDENTITY_1"  # String | optional
+          clock_periodic_update: false  # Boolean | optional
+          clock_periodic_update_interval: 1  # Integer | min: 0 , max: 3600 | optional
+          clock_sync_auto: false  # Boolean | optional
+          using_system_clock: false  # Boolean | optional
+          management: false  # Boolean | optional
+          forward_version1: false  # Boolean | optional
+          scale_on_1g: false  # Boolean | optional
+          convergence_time: 3  # Integer | min: 3 , max: 2600 | optional
+          correction_range: 10  # Integer | min: 10 , max: 1000000000 | optional
+          correction_range_logging: false  # Boolean | optional
+          mean_path_delay: 10  # Integer | min: 10 , max: 1000000000 | optional
+          delay_tolerance_mean_path: false  # Boolean | optional
+          delay_tolerance_mean_path_value: 1  # Integer | min: 0 | optional
+          delay_tolerance_reverse_path: false  # Boolean | optional
+          delay_tolerance_reverse_path_value: 1  # Integer | min: 0 | optional
+          pdelay_req_interval: 1  # Integer | min: 0 , max: 5 | optional
+          grandmaster_capable: false  # Boolean | optional
+          grandmaster_capable_convergence_time: 3  # Integer | min: 3 , max: 2600 | optional
+          multi_domain: false  # Boolean | optional
+          multi_domain_transition_attributes_priority1: 1  # Integer | min: 0 , max: 255 | optional
+          multi_domain_transition_attributes_priority2: 1  # Integer | min: 0 , max: 255 | optional
+          enhanced_client_scale: false  # Boolean | optional
+          acl_redirect: false  # Boolean | optional
+          ipv6_multicast_scope_tx: 1  # Integer | min: 0 , max: 65535 | optional
+          ipv6_multicast_scope_rx: 1  # Integer | min: 0 , max: 65535 | optional
+          notification_gm_change: false  # Boolean | optional
+          notification_parent_change: false  # Boolean | optional
+          notification_high_correction: false  # Boolean | optional
+          notification_high_correction_interval: 1  # Integer | min: 0 , max: 300 | optional
+          notification_high_correction_periodic_notification: false  # Boolean | optional
+          notification_port_state_change: false  # Boolean | optional
+          notification_port_state_change_category: "master-slave-only"  # Choice | master-slave-only , all | optional
+          notification_port_state_change_interval: 1  # Integer | min: 0 , max: 300 | optional
+          notification_port_state_change_periodic_notification: false  # Boolean | optional
+          domains:  # List | optional [shared class: structure documented on this page as domains(nxos.devices.configuration.ptp)]
+            - domain: 1  # Integer | min: 0 , max: 127 | required
+              clock_accuracy_threshold: 1  # Integer | min: 0 , max: 255 | optional
+              clock_class_threshold: 1  # Integer | min: 0 , max: 255 | optional
+              priority: 1  # Integer | min: 0 , max: 255 | optional

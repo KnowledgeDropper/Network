@@ -1,0 +1,17 @@
+# Network-as-Code template: Track Member
+# Source: https://netascode.cisco.com/docs/data_models/apic/tenants/track_member/
+# Generated from the published data model tables; values are placeholders/documented defaults.
+# Inline comments: <type> | <constraint/allowed values> | default | required/optional
+# Page examples: 3 (parsed 3); example values used as placeholders where available.
+---
+apic:
+  tenants:  # List | optional
+    - name: "EXAMPLE1"  # required by official NaC JSON schema (netascode/schema); not listed on this page
+      policies:  # Class | optional
+        track_members:  # List | optional
+          - name: "FW_1_Track_Mem"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
+            description: "Example description"  # String | Regex: ^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{1,128}$ | optional
+            destination_ip: "10.0.0.1"  # IP | required
+            scope_type: "l3out"  # Choice | l3out , bd | required
+            scope: "Firewall_L3"  # String | required
+            ip_sla_policy: "L2PingEach30sec"  # String | Regex: ^[a-zA-Z0-9_.:-]{1,64}$ | required
