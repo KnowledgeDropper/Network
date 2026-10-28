@@ -1,0 +1,56 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.gre_interface_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/gre_interface/
+sdwan:
+  edge_feature_templates:
+    gre_interface_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - ASR-1001-HX
+        interface_name: gre
+        interface_name_variable: 0/0.1
+        interface_description: <DESCRIPTION>
+        interface_description_variable: <DESCRIPTION>
+        shutdown: true
+        shutdown_variable: <HOSTNAME>
+        tunnel_source_interface: 0/0.1
+        tunnel_source_interface_variable: 0/0.1
+        tunnel_source_ip: 10.0.0.1
+        tunnel_source_ip_variable: 10.0.0.1
+        tunnel_destination: <HOSTNAME>
+        tunnel_destination_variable: <HOSTNAME>
+        ip_address: 10.0.0.1
+        ip_address_variable: 10.0.0.1
+# range 64-18000
+        ip_mtu: 64
+        ip_mtu_variable: 10.0.0.1
+# range 500-1460
+        tcp_mss: 500
+        tcp_mss_variable: <HOSTNAME>
+        clear_dont_fragment: true
+        clear_dont_fragment_variable: <HOSTNAME>
+        rewrite_rule: <HOSTNAME>
+        rewrite_rule_variable: <HOSTNAME>
+        ipv4_egress_access_list: <HOSTNAME>
+        ipv4_egress_access_list_variable: <HOSTNAME>
+        ipv4_ingress_access_list: <HOSTNAME>
+        ipv4_ingress_access_list_variable: <HOSTNAME>
+        tracker: <HOSTNAME>
+        tracker_variable: <HOSTNAME>
+# allowed: none, sig
+        application: none
+        application_variable: <HOSTNAME>

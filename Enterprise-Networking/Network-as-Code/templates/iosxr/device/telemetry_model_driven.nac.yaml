@@ -1,0 +1,101 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.telemetry_model_driven
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/telemetry_model_driven/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        telemetry_model_driven:
+          destination_groups:
+            -
+# mandatory; also accepts a string
+              name: Da.t'M9iCobd%{DhCoDo4;Nlq(fR;yf
+              destinations:
+                -
+# mandatory; also accepts a string
+                  address: (3thHIO3I\%{k
+# mandatory; range 1-65535; also accepts a string
+                  port: 1
+# allowed: ipv4, ipv6; also accepts a string
+                  address_family: ipv4
+# allowed: json, self-describing-gpb, gpb; also accepts a string
+                  encoding: json
+                  grpc_gzip: true
+                  grpc_no_tls: true
+# also accepts a string
+                  grpc_tls_hostname: w7dML0!g#r)${C["B(Gqc
+# allowed: grpc, tcp, udp; also accepts a string
+                  protocol: grpc
+# range 484-65507; also accepts a string
+                  udp_packetsize: 484
+# also accepts a string
+              vrf: '*:Z${0\J*xfS,A[gaX7t.'
+          gnmi:
+            bundling: true
+# range 1-65535; also accepts a string
+            bundling_size: 1
+            heartbeat_always: true
+# range 1-20; also accepts a string
+            target_defined_cadence_factor: 1
+# range 1-65535; also accepts a string
+            target_defined_minimum_cadence: 1
+          include_empty_values: true
+          include_select_leaves_on_events: true
+# maximum 1024; also accepts a string
+          max_containers_per_path: 1
+# maximum 4000; also accepts a string
+          max_sensor_paths: 1
+          sensor_groups:
+            -
+# mandatory; also accepts a string
+              name: 3.U Ci@-_POs4KGb:(%{^q-%I6G
+              sensor_paths:
+                -
+# mandatory; also accepts a string
+                  name: BEU1Io\clRb${_uU
+          strict_timer: true
+          subscriptions:
+            -
+# mandatory; also accepts a string
+              name: 7LaYL,$Lhw6LyW%{gVnr^O<65
+              destination_ids:
+                -
+# mandatory; also accepts a string
+                  name: escR+'pMO+lcB$\${Vtb)/Q1Q:`\>
+# maximum 4294967295; also accepts a string
+              send_retry: 1
+# maximum 4294967295; also accepts a string
+              send_retry_duration: 1
+              sensor_group_ids:
+                -
+# mandatory; also accepts a string
+                  name: fIu<^'_dvd`${TaV)1^!Dm
+                  heartbeat_always: true
+# range 1-4294967295; also accepts a string
+                  heartbeat_interval: 1
+# allowed: target-defined; also accepts a string
+                  mode: target-defined
+# maximum 4294967295; also accepts a string
+                  sample_interval: 1
+                  strict_timer: true
+# also accepts a string
+              source_interface: N2hKN${E!-4^)
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts a string
+              source_qos_marking: af11
+# maximum 30; also accepts a string
+          tcp_send_timeout: 1

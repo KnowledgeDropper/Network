@@ -1,0 +1,72 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.device_tracking
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/device_tracking/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        device_tracking:
+          logging_theft: true
+# also accepts a string
+          tracking_auto_source_fallback_ipv4: '%W8XR;+cy3E&aaHNyN:${8/*_4Lp:b &yr`kGr_j'
+# also accepts a string
+          tracking_auto_source_fallback_mask: m%{yP1JNMO3FU@Aa
+          tracking_auto_source_fallback_override: true
+# range 1-3600; also accepts a string
+          tracking_retry_interval: 1
+# range 1-86400; also accepts a string
+          binding_reachable_lifetime: 1
+          policies:
+            -
+# mandatory
+              name: <NAME>
+              trusted_port: true
+# allowed: node, switch, router; also accepts a string
+              device_role: node
+              device_role_node_legacy: true
+              device_role_switch_legacy: true
+              device_role_router_legacy: true
+              data_glean_log_only: true
+              data_glean_recovery_dhcp: true
+              data_glean_recovery_ndp: true
+              prefix_glean: true
+              prefix_glean_only: true
+              destination_glean_log_only: true
+              destination_glean_recovery_dhcp: true
+              protocol_arp: true
+# also accepts a string
+              protocol_arp_prefix_list: .QM${fc#4l:#(NZ b
+              protocol_dhcp4: true
+# also accepts a string
+              protocol_dhcp4_prefix_list: <e%{W5CP(].ew1H
+              protocol_dhcp6: true
+# also accepts a string
+              protocol_dhcp6_prefix_list: 8)PS''${oP
+              protocol_ndp: true
+# also accepts a string
+              protocol_ndp_prefix_list: 5_@G?@.${`B
+              tracking_enable: true
+# range 1-86400; also accepts a string
+              tracking_enable_reachable_lifetime_seconds: 1
+              tracking_enable_reachable_lifetime_infinite: true
+              tracking_disable: true
+# also accepts a string
+              tracking_disable_stale_lifetime: '"U6\K=UYcLY[5r%{9p94qrShtc@'
+# range 1-32000; also accepts a string
+              limit_address_count: 1
+              security_level_glean: true
+              security_level_guard: true
+              security_level_inspect: true
+              medium_type_wireless: true

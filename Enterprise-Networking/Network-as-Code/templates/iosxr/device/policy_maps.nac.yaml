@@ -1,0 +1,186 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.policy_maps
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/policy_map_qos/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        policy_maps:
+          -
+# mandatory; also accepts a string
+            name: Rf7 6T?w!`WPv%{EK<M0\]'6R<z%VtLEM
+# mandatory; allowed: qos, pbr; also accepts a string
+            type: qos
+            classes:
+              -
+# mandatory; also accepts a string
+                name: '%+DR3@)55o4E!nfl$_<${`Y'
+# mandatory; allowed: qos, traffic; also accepts a string
+                type: qos
+# allowed: percent, ratio; also accepts a string
+                bandwidth_remaining_unit: percent
+# range 1-4294967295; also accepts a string
+                bandwidth_remaining_value: 1
+# allowed: bps, cellsps, gbps, kbps, mbps, per-million, per-thousand, percent; also accepts a
+# string
+                bandwidth_unit: bps
+# range 1-4294967295; also accepts a string
+                bandwidth_value: 1
+                decapsulate_gre: true
+                drop: true
+# allowed: bytes, gbytes, kbytes, mbytes, ms, packets, us; also accepts a string
+                police_burst_unit: bytes
+# range 1-4294967295; also accepts a string
+                police_burst_value: 1
+                police_conform_action_drop: true
+# maximum 7; also accepts a string
+                police_conform_action_set_cos: 1
+# maximum 7; also accepts a string
+                police_conform_action_set_discard_class: 1
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+                police_conform_action_set_dscp: af11
+# maximum 7; also accepts a string
+                police_conform_action_set_mpls_experimental_imposition: 1
+# maximum 7; also accepts a string
+                police_conform_action_set_mpls_experimental_topmost: 1
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+                police_conform_action_set_precedence: critical
+# maximum 512; also accepts a string
+                police_conform_action_set_qos_group: 1
+                police_conform_action_transmit: true
+                police_exceed_action_drop: true
+# maximum 7; also accepts a string
+                police_exceed_action_set_cos: 1
+# maximum 7; also accepts a string
+                police_exceed_action_set_discard_class: 1
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+                police_exceed_action_set_dscp: af11
+# maximum 7; also accepts a string
+                police_exceed_action_set_mpls_experimental_imposition: 1
+# maximum 7; also accepts a string
+                police_exceed_action_set_mpls_experimental_topmost: 1
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+                police_exceed_action_set_precedence: critical
+# maximum 512; also accepts a string
+                police_exceed_action_set_qos_group: 1
+                police_exceed_action_transmit: true
+# allowed: bytes, gbytes, kbytes, mbytes, ms, packets, us; also accepts a string
+                police_peak_burst_unit: bytes
+# range 1-4294967295; also accepts a string
+                police_peak_burst_value: 1
+# allowed: bps, cellsps, gbps, kbps, mbps, percent, pps; also accepts a string
+                police_peak_rate_unit: bps
+# maximum 4294967295; also accepts a string
+                police_peak_rate_value: 1
+# allowed: bps, cellsps, gbps, kbps, mbps, per-million, per-thousand, percent, pps; also accepts a
+# string
+                police_rate_unit: bps
+# maximum 4294967295; also accepts a string
+                police_rate_value: 1
+                police_violate_action_drop: true
+# maximum 7; also accepts a string
+                police_violate_action_set_cos: 1
+# maximum 7; also accepts a string
+                police_violate_action_set_discard_class: 1
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+                police_violate_action_set_dscp: af11
+# maximum 7; also accepts a string
+                police_violate_action_set_mpls_experimental_imposition: 1
+# maximum 7; also accepts a string
+                police_violate_action_set_mpls_experimental_topmost: 1
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+                police_violate_action_set_precedence: critical
+# maximum 512; also accepts a string
+                police_violate_action_set_qos_group: 1
+                police_violate_action_transmit: true
+# range 1-7; also accepts a string
+                priority_level: 1
+                queue_limits:
+                  -
+# mandatory; allowed: bytes, kbytes, mbytes, ms, packets, percent, us; also accepts a string
+                    unit: bytes
+# mandatory; range 1-4294967295; also accepts a string
+                    value: 1
+                random_detect:
+                  -
+# mandatory; allowed: bytes, gbytes, kbytes, mbytes, ms, packets, us; also accepts a string
+                    maximum_threshold_unit: bytes
+# mandatory; maximum 1073741823; also accepts a string
+                    maximum_threshold_value: 1
+# mandatory; allowed: bytes, gbytes, kbytes, mbytes, ms, packets, us; also accepts a string
+                    minimum_threshold_unit: bytes
+# mandatory; maximum 1073741823; also accepts a string
+                    minimum_threshold_value: 1
+                random_detect_default: true
+                redirect_ipv4:
+                  default_route: true
+                  nexthops:
+                    -
+# mandatory; also accepts a string
+                      address: '\^${n:0wy! '
+# also accepts a string
+                      vrf: x[A$q[w.V$pG#rs^G${f5S(#*CMKI;oZ
+                redirect_ipv6:
+                  default_route: true
+                  nexthops:
+                    -
+# mandatory; also accepts a string
+                      address: lRmGs'wH"O9!%{
+# also accepts a string
+                      vrf: WBS6EfU#n%{_#w-s<II_A3`
+                redirect_nexthop:
+# also accepts a string
+                  route_target: e@xvZ$$PJSCbXo^%{;
+# also accepts a string
+                service_policy_name: Lzt8ieW${Ohj^us,m1a
+# maximum 7; also accepts a string
+                set_cos: 1
+# maximum 7; also accepts a string
+                set_discard_class: 1
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+                set_dscp: af11
+# maximum 7; also accepts a string
+                set_forward_class: 1
+# maximum 7; also accepts a string
+                set_mpls_experimental_imposition: 1
+# maximum 7; also accepts a string
+                set_mpls_experimental_topmost: 1
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+                set_precedence: critical
+# maximum 512; also accepts a string
+                set_qos_group: 1
+# maximum 8; also accepts a string
+                set_traffic_class: 1
+# range 1-4294967295; also accepts a string
+                shape_average_excess_burst_size: 1
+# allowed: bytes, cells, gbytes, kbytes, mbytes, ms, packets, us; also accepts a string
+                shape_average_excess_burst_unit: bytes
+# allowed: bps, cellsps, gbps, kbps, mbps, per-million, per-thousand, percent; also accepts a
+# string
+                shape_average_rate_unit: bps
+# range 1-4294967295; also accepts a string
+                shape_average_rate_value: 1
+# also accepts a string
+            description: '%8fhv!H2jb5${6e%j(6<'

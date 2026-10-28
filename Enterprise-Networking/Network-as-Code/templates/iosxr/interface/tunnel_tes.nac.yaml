@@ -1,0 +1,210 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.interfaces.tunnel_tes
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/interface/tunnel_te/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        interfaces:
+          tunnel_tes:
+            -
+# mandatory; also accepts an integer; also accepts a string
+              id: '10'
+# also accepts a string
+              interface_groups:
+                - 0/0.1
+# also accepts a string
+              affinity_mask: xR_Sq${
+# also accepts a string
+              affinity_value: MN<"liZ3TU2Pb=J%{[Pb
+              auto_bw:
+# also accepts an integer
+                adjustment_threshold_min: vjRCig;nNjCb${Xo)E1C]]?L1vyszWs
+# also accepts an integer
+                adjustment_threshold_percent: o3*]yKwT-y${#nS5&
+                collect_only: true
+# also accepts an integer
+                limit_max: CnRdHW=XD${C2-K''sIg
+# also accepts an integer
+                limit_min: '/1e7v1X${t<g]<N5\Xt.r18(j\ '
+# also accepts an integer
+                overflow_limit: 6CC`Qk<${hak32](1IqfVuf6z
+# also accepts an integer
+                overflow_min: 5Lv_YCm1uR#Bnd1g${1p^RZ`4J0^7]<t\
+# also accepts an integer
+                overflow_threshold: '*He?${Oe0V'
+# also accepts an integer
+                resignal_last_bandwidth_timeout: eDcCSsQU${^)0f
+# also accepts an integer
+                underflow_limit: gVm2PB7[%{aR
+# also accepts an integer
+                underflow_min: N<sid2Q;YK<],5%{5MH5gWsNUW
+# also accepts an integer
+                underflow_threshold: (nqd${7.G#Oc evcm
+              autoroute_announce: true
+              autoroute_announce_exclude_traffic_segment_routing: true
+              autoroute_announce_include_ipv6: true
+# also accepts an integer
+              autoroute_announce_metric: OW)IY'dfE${&E$
+# also accepts an integer
+              autoroute_announce_metric_absolute: +xbh%{K)3zI5E6,P(m
+# also accepts an integer
+              autoroute_announce_metric_relative: '> P<5DXgzp9^7Oi_%{.&gKBzQ'
+              autoroute_destinations:
+                -
+# mandatory; also accepts a string
+                  address: Sh(OQ]P4PL`l${x
+# allowed: any; also accepts an integer; also accepts a string
+              backup_bw_class_type: any
+# also accepts a string
+              backup_bw_pool_type: c*!WaNV${G#&z23\
+              backup_bw_unlimited: true
+# also accepts an integer
+              backup_bw_value: KhDuMyND:'SttHZ@\<%{RA]yQAv,u
+# maximum 9223372036854775807; also accepts a string
+              bandwidth: 1
+# range 10-3600; also accepts a string
+              bfd_bringup_timeout: 10
+# range 1-518400000; also accepts a string
+              bfd_dampening_initial_wait: 1
+# range 1-518400000; also accepts a string
+              bfd_dampening_maximum_wait: 1
+# range 1-518400000; also accepts a string
+              bfd_dampening_secondary_wait: 1
+              bfd_encap_gal: true
+              bfd_fast_detect: true
+# allowed: disable; also accepts an integer; also accepts a string
+              bfd_lsp_ping: disable
+# range 3-30000; also accepts a string
+              bfd_minimum_interval: 3
+# range 3-10; also accepts a string
+              bfd_multiplier: 3
+              bfd_sbfd: true
+              bidirectional:
+# also accepts an integer
+                association_id: ?#Ji*;g<5oUCr:erJ${6l8m
+                corouted_fault_oam: true
+                corouted_signaling_protection_object_disable: true
+                corouted_wrap_protection: true
+# also accepts an integer
+                global_id: G${e&ugu<!Sb
+# also accepts a string
+                source_address: BD/II VE77VxI${ND,+VVv
+# allowed: corouted; also accepts a string
+                type: corouted
+# also accepts an integer
+              binding_sid_mpls_label: ewXn6qq=${j0I9$5ziz/:0
+# also accepts a string
+              description: hGtfnNgW%{Xq8H%kZSwqS1C\G1V
+# also accepts a string
+              destination: :Bt.=Dh2u\RO[,H0%{"_(z6t+B[
+              fast_reroute: true
+              fast_reroute_protect_bandwidth: true
+              fast_reroute_protect_node: true
+# also accepts an integer
+              forward_class: "'vi6Ph%{zcZ(;CkP"
+              forwarding_adjacency: true
+# also accepts an integer
+              forwarding_adjacency_holdtime: vc2t-L;@Q?Rimp<@k${+S$Y)-H>iK Q
+              forwarding_adjacency_include_ipv6: true
+              ipv4:
+# also accepts a string
+                address: oZCXCZ"md\2y&v%{xm,QO+CoT
+                forwarding_enable: true
+# also accepts a string
+                mask: q,u2?'y-CE${`3rj@
+                ttl_propagate_disable: true
+# also accepts a string
+                unnumbered: D!e1]MDQV1r%{ekD"I
+              ipv6:
+                enable: true
+                ttl_propagate_disable: true
+# range 30-600; also accepts a string
+              load_interval: 30
+# also accepts an integer
+              load_share: 9Lf(]%{*t$"-g'Ly`q+jki
+              logging_events_all: true
+              logging_events_bfd_status: true
+              logging_events_link_status: true
+              logging_events_lsp_bw_change: true
+              logging_events_lsp_insufficient_bw: true
+              logging_events_lsp_record_route: true
+              logging_events_lsp_reoptimize: true
+              logging_events_lsp_reoptimize_attempts: true
+              logging_events_lsp_reroute: true
+              logging_events_lsp_state: true
+              logging_events_lsp_switchover: true
+              logging_events_pcalc_failure: true
+# range 68-65535; also accepts a string
+              mpls_mtu: 68
+              path_options:
+                -
+# mandatory; also accepts an integer
+                  preference: )Ki${8t<I&Mz"%;PMF
+# also accepts a string
+                  attribute_set: ZQ3-jcZ>Erw${l#nL
+                  dynamic: true
+# also accepts an integer
+                  explicit_path_id: yvCROM9Hj *${CP=dnC/DL:x38VZt
+# also accepts a string
+                  explicit_path_name: u^1%{>zG:AL^
+                  explicit_path_verbatim: true
+# also accepts an integer
+                  isis_level: ^f>Z9>Y<( OFqG$N%{gvB>-
+# also accepts a string
+                  isis_process: "'=9Xn$OtljLdqT${^J#h4rTwPd>"
+                  lockdown: true
+                  lockdown_sticky: true
+# also accepts an integer; also accepts a string
+                  ospf_area: ME0nLu@nEyjjrJ&?${BO?hda_X"]Z j;^xzP
+# also accepts a string
+                  ospf_process: t#EI${6syN#XcE%m'.Jzvp
+# also accepts an integer
+                  protected_by_index: '!7"x\ sUXs%{vG'
+# also accepts an integer
+                  protected_by_index_secondary: =+J?,cWej&2h${H
+              path_protection: true
+              path_protection_non_revertive: true
+              path_protection_srlg_diverse: true
+              path_selection:
+# also accepts an integer
+                cost_limit: anrU;.:R(A)liPWh%{EI%-(w
+# also accepts an integer
+                delay_limit: 4*x tNHY\(97bTe%{Bn
+# also accepts an integer
+                hop_limit: oV9/6"Tqf^7p/%{H%:R2R
+# allowed: te, igp, delay; also accepts a string
+                metric: te
+# allowed: min-fill, max-fill, random; also accepts a string
+                tiebreaker: min-fill
+# also accepts a string
+              policy_classes:
+                - default
+# also accepts an integer
+              priority_hold: g\DfuY`+${z6mBn
+# also accepts an integer
+              priority_setup: imecp%{BUb6MY\n*2ALFjYVo8
+              record_route: true
+              shutdown: true
+# also accepts an integer
+              signalled_bandwidth: jesl$XF7j]aB%{
+# also accepts an integer
+              signalled_bandwidth_class_type: j/)Uk^OAYuEo&%{K`7xKB0:( 1`T
+              signalled_bandwidth_sub_pool: true
+# also accepts a string
+              signalled_name: hXGwA,e${]>(@9j+#Q
+              soft_preemption: true

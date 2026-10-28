@@ -1,0 +1,37 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.transport_profiles[].cellular_controllers
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_transport/transport_cellular_controller/
+sdwan:
+  feature_profiles:
+    transport_profiles:
+      -
+# mandatory
+        name: example-name
+        cellular_controllers:
+          -
+# mandatory
+            name: example-name
+            description: <DESCRIPTION>
+            cellular_id: 0/0.1
+            cellular_id_variable: example-host
+            firmware_auto_sim: true
+            firmware_auto_sim_variable: example-host
+# maximum 1
+            primary_sim_slot: 1
+            primary_sim_slot_variable: example-host
+# maximum 65535
+            sim_failover_retries: 1
+            sim_failover_retries_variable: example-host
+# range 3-7
+            sim_failover_timeout: 3
+            sim_failover_timeout_variable: example-host

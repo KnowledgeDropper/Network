@@ -1,0 +1,107 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.line
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/line/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        line:
+          consoles:
+            -
+# mandatory; maximum 17; also accepts a string
+              number: 1
+# maximum 35791; also accepts a string
+              exec_timeout_minutes: 1
+# maximum 2147483; also accepts a string
+              exec_timeout_seconds: 1
+              login_local: true
+              login_authentication: <HOSTNAME>
+# maximum 15; also accepts a string
+              privilege_level: 1
+# allowed: 1, 1.5, 2; also accepts a string
+              stopbits: '1'
+# maximum 255; also accepts a string
+              password_level: 1
+# allowed: 0, 6, 7; also accepts a string
+              password_type: '0'
+              password: <SECRET>
+# maximum 2147483647; also accepts a string
+              session_timeout: 1
+              monitor: true
+              escape_character: <HOSTNAME>
+              logging_synchronous: true
+# also accepts a string
+              transport_output:
+                - all
+          vtys:
+            -
+# mandatory; maximum 1869; also accepts a string
+              number_from: 1
+# range 1-1869; also accepts a string
+              number_to: 1
+              access_classes:
+                -
+# mandatory; allowed: in, out; also accepts a string
+                  direction: in
+                  access_list: <HOSTNAME>
+                  vrf_also: true
+# maximum 35791; also accepts a string
+              exec_timeout_minutes: 1
+# maximum 2147483; also accepts a string
+              exec_timeout_seconds: 1
+# maximum 255; also accepts a string
+              password_level: 1
+# allowed: 0, 6, 7; also accepts a string
+              password_type: '0'
+              password: <SECRET>
+              login_authentication: <HOSTNAME>
+# allowed: acercon, lat, mop, nasi, none, pad, rlogin, ssh, telnet, udptn; also accepts a string
+              transport_preferred_protocol: acercon
+              authorization_exec: <HOSTNAME>
+              authorization_exec_default: true
+              transport_input_all: true
+              transport_input_none: true
+# also accepts a string
+              transport_input:
+                - <HOSTNAME>
+# maximum 2147483647; also accepts a string
+              session_timeout: 1
+              monitor: true
+              escape_character: <HOSTNAME>
+              logging_synchronous: true
+# also accepts a string
+              transport_output:
+                - all
+          auxes:
+            -
+# mandatory; maximum 17; also accepts a string
+              number: 1
+# maximum 35791; also accepts a string
+              exec_timeout_minutes: 1
+# maximum 2147483; also accepts a string
+              exec_timeout_seconds: 1
+              monitor: true
+# allowed: 1, 1.5, 2; also accepts a string
+              stopbits: '1'
+# maximum 255; also accepts a string
+              password_level: 1
+# allowed: 0, 6, 7; also accepts a string
+              password_type: '0'
+              password: <SECRET>
+              escape_character: <HOSTNAME>
+              logging_synchronous: true
+# also accepts a string
+              transport_output:
+                - none

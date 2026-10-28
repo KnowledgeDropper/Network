@@ -1,0 +1,32 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.routing_sets
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/routing_set/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        routing_sets:
+          -
+# mandatory; also accepts a string
+            name: ?QiwdLk8es)g#JL7+[X%{Oh/BQJ,g%S8
+# mandatory; allowed: as_path, community, esi, etag, extcommunity_bandwidth, extcommunity_cost,
+# extcommunity_evpn_link_bandwidth, extcommunity_opaque, extcommunity_rt, extcommunity_seg_nh,
+# extcommunity_soo, large_community, mac, ospf_area, policy_global, prefix, rd, tag; also accepts
+# a string
+            type: as_path
+# mandatory; also accepts a string
+            rpl: nD-^3@${>Z'Ca

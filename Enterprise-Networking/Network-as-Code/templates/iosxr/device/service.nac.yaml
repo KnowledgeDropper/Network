@@ -1,0 +1,35 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.service
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/service/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        service:
+          timestamps:
+            debug_datetime_localtime: true
+            debug_datetime_msec: true
+            debug_datetime_show_timezone: true
+            debug_datetime_year: true
+            debug_disable: true
+            debug_uptime: true
+            log_datetime_localtime: true
+            log_datetime_msec: true
+            log_datetime_show_timezone: true
+            log_datetime_year: true
+            log_disable: true
+            log_uptime: true

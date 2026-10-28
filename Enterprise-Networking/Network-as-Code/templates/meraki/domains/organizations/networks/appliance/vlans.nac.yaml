@@ -1,0 +1,88 @@
+# Cisco Network as Code template for Meraki.
+# Data model: meraki
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: meraki.domains[].organizations[].networks[].appliance.vlans
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_appliance/vlans/
+meraki:
+  domains:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      administrator: {}
+# mandatory
+      organizations:
+        - networks:
+            -
+# mandatory
+              name: <NAME>
+              appliance:
+                vlans:
+                  - name: <NAME>
+                    subnet: 10.0.0.0/24
+                    appliance_ip: 10.0.0.1
+# allowed: same, unique
+                    template_vlan_type: same
+                    cidr: 10.0.0.1
+# maximum 32
+                    mask: 1
+                    ipv6:
+                      enabled: true
+                      prefix_assignments:
+                        - autonomous: true
+# mandatory
+                          disabled: true
+                          static_prefix: 10.0.0.1
+                          static_appliance_ip6: <HOSTNAME>
+                          origin:
+# mandatory; allowed: independent, internet
+                            type: independent
+                            interfaces:
+                              - 0/0.1
+# allowed: Do not respond to DHCP requests, Relay DHCP to another server, Run a DHCP server
+                    dhcp_handling: Do not respond to DHCP requests
+# allowed: 1 day, 1 hour, 1 week, 12 hours, 30 minutes, 4 hours
+                    dhcp_lease_time: 1 day
+                    mandatory_dhcp: true
+                    dhcp_options:
+                      -
+# mandatory
+                        code: '10'
+# mandatory; allowed: hex, integer, ip, text
+                        type: hex
+# mandatory
+                        value: <HOSTNAME>
+                    dhcp_boot_options: true
+                    group_policy_name: <NAME>
+# range 1-4094; also accepts a string
+                    vlan_id: 1
+                    vpn_nat_subnet: 10.0.0.0/24
+                    dhcp_relay_server_ips:
+                      - 10.0.0.1
+                    dhcp_boot_next_server: 10.0.0.1
+                    dhcp_boot_filename: <NAME>
+                    fixed_ip_assignments:
+                      -
+# mandatory
+                        name: <NAME>
+# mandatory
+                        mac: 00:11:22:33:44:55
+# mandatory
+                        ip: 10.0.0.1
+                    reserved_ip_ranges:
+                      -
+# mandatory
+                        start: <HOSTNAME>
+# mandatory
+                        end: <HOSTNAME>
+# mandatory
+                        comment: <HOSTNAME>
+                    dns_nameservers: opendns

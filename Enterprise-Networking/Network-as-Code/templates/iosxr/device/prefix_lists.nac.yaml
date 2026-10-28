@@ -1,0 +1,68 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.prefix_lists
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/prefix_list/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        prefix_lists:
+          ipv4:
+            -
+# mandatory; also accepts a string
+              name: E] NM=twOJ[${'r(df-/[oE
+              entries:
+                -
+# mandatory; range 1-2147483646; also accepts a string
+                  sequence: 1
+# allowed: deny, permit; also accepts a string
+                  action: deny
+# maximum 32; also accepts a string
+                  exact_length: 1
+# maximum 32; also accepts a string
+                  length: 1
+# maximum 32; also accepts a string
+                  max_length: 1
+# maximum 32; also accepts a string
+                  min_length: 1
+# also accepts a string
+                  prefix: '!=Fs,Z.%lm%{'
+# also accepts a string
+                  remark: ^N.aw/z&#@o4)U_PX${Px(WsJ8hz[Gi@w
+          ipv6:
+            -
+# mandatory; also accepts a string
+              name: H,aGWn%{@JpFyn8yJ]#!mnTm
+              entries:
+                -
+# mandatory; range 1-2147483646; also accepts a string
+                  sequence: 1
+# allowed: deny, permit; also accepts a string
+                  action: deny
+# maximum 128; also accepts a string
+                  exact_length: 1
+# maximum 128; also accepts a string
+                  length: 1
+# maximum 128; also accepts a string
+                  max_length: 1
+# maximum 128; also accepts a string
+                  min_length: 1
+# also accepts a string
+                  prefix: e(^9H%{"q?Ca:1<YRK#%
+# also accepts a string
+                  remark: uFDxUCMy%{DX6nO rm
+# maximum 4294967295; also accepts a string
+                  zone: 1

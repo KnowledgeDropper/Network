@@ -1,0 +1,389 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.object_groups_service
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/object_group_service/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        object_groups_service:
+          -
+# mandatory
+            name: <NAME>
+            description: <DESCRIPTION>
+# also accepts a string
+            group_objects:
+              - <HOSTNAME>
+# also accepts a string
+            protocol_numbers:
+              - 1
+            ahp: true
+            eigrp: true
+            esp: true
+            gre: true
+            icmp: true
+            igmp: true
+            ip: true
+            ipinip: true
+            nos: true
+            ospf: true
+            pcp: true
+            pim: true
+            tcp_protocol: true
+            udp_protocol: true
+# maximum 255; also accepts a string
+            icmp_port_number: 1
+            icmp_alternate_address: true
+            icmp_conversion_error: true
+            icmp_echo: true
+            icmp_echo_reply: true
+            icmp_information_reply: true
+            icmp_information_request: true
+            icmp_mask_reply: true
+            icmp_mask_request: true
+            icmp_mobile_redirect: true
+            icmp_parameter_problem: true
+            icmp_redirect: true
+            icmp_router_advertisement: true
+            icmp_router_solicitation: true
+            icmp_source_quench: true
+            icmp_time_exceeded: true
+            icmp_timestamp_reply: true
+            icmp_timestamp_request: true
+            icmp_traceroute: true
+            icmp_unreachable: true
+            tcp_dst_ports:
+              -
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                port: 3Y3Xr>_rV${!f(#./T%#=*m?4+@
+# also accepts a string
+            tcp_dst_port_list:
+              - <HOSTNAME>
+            tcp_dst_port_ranges:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                min_port: '#Z:BN;gB:5$8jW!8${!'
+# mandatory; also accepts a string; also accepts an integer
+                max_port: ']4,${K00GLv(ghSes'
+            tcp_src_ports:
+              -
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                port: B:#%{.
+# also accepts a string
+            tcp_src_port_list:
+              - <HOSTNAME>
+            tcp_src_port_ranges:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                min_port: ${55'269i,Mi
+# mandatory; also accepts a string; also accepts an integer
+                max_port: 8&5SPo/`:yQs%{)9`/aM
+            tcp_src_dst_ports_op:
+              -
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                src_operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                src_port: 7cn'%>k8${
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                dst_operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: 6F6d0CAX4U9ZP%{f%h+OQA%l!KF
+            tcp_src_dst_port_list:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_port: J<2wK\uiZc,ayX#-${
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: Q#${g =acbNhk$?xR
+            tcp_src_dst_ports_src_op:
+              -
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                src_operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                src_port: Im[L<#V"B%{Idrl<IQ;_q
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: dCJx%]%{o
+            tcp_src_dst_ports_dst_op:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_port: '&_[pVKZF${:@YtfDGQ r, 45H_'
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                dst_operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: '%{PBzCjNOF4#i+mcn&zK/'
+            tcp_src_range_dst_ports_op:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_min_port: AV A${eW#
+# mandatory; also accepts a string; also accepts an integer
+                src_max_port: '%{D@san1:zT'
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: '!Dl!o${+'
+            tcp_src_range_dst_port_list:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_min_port: '"*gtWV${./(;`<]Z3Z]:'
+# mandatory; also accepts a string; also accepts an integer
+                src_max_port: k${@?B=(T
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: U+=\y&z<v,Iwqx_kBY%{5P`lNp97JG%
+            tcp_src_dst_range_ports_op:
+              -
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                src_port: 8,uE/dZ%kn[tWs${Ci=($%x:#u:J'
+# mandatory; also accepts a string; also accepts an integer
+                dst_min_port: .;SB[c%{
+# mandatory; also accepts a string; also accepts an integer
+                dst_max_port: p`h4[BLX:2[jOAV6M${gfgh=0S3m^I*lKoAw
+            tcp_src_dst_range_port_list:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_port: mVr->s.O9${hca5JKme9G
+# mandatory; also accepts a string; also accepts an integer
+                dst_min_port: ',DtjO7;s&A=*G+*Kcu,${rZZ4sq?t<hJb\G*`'
+# mandatory; also accepts a string; also accepts an integer
+                dst_max_port: /l9'v${\<7,
+            tcp_src_range_dst_range_port_list:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_min_port: nC/DL[%{,o<-0KKpq \
+# mandatory; also accepts a string; also accepts an integer
+                src_max_port: _E%{@R5+@JZ2C
+# mandatory; also accepts a string; also accepts an integer
+                dst_min_port: bv?<:%jiZL&/I^E,bJ${:-s5f-Vs(ms<v
+# mandatory; also accepts a string; also accepts an integer
+                dst_max_port: (Fr%{$l>zh]Z
+            udp_dst_ports:
+              -
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                port: r,1q$6Wzo 7$\${zx7F5kal<AkPR
+# also accepts a string
+            udp_dst_port_list:
+              - <HOSTNAME>
+            udp_dst_port_ranges:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                min_port: /XXHBk>.2c4D9zcy${q y
+# mandatory; also accepts a string; also accepts an integer
+                max_port: ' C[7x7%%{\@X]GIb\"+KQN>`/-,'
+            udp_src_ports:
+              -
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                port: '$?"K-Ka=SNdq;${EP\2sL '
+# also accepts a string
+            udp_src_port_list:
+              - <HOSTNAME>
+            udp_src_port_ranges:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                min_port: 30>c%{w>k;VUs7a<0P
+# mandatory; also accepts a string; also accepts an integer
+                max_port: /!n_Ad]z7=<6Irnw${R7v
+            udp_src_dst_ports_op:
+              -
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                src_operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                src_port: '`q.u3TTd;D${'
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                dst_operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: VEj;c+ZUzoPW0y\N5${
+            udp_src_dst_port_list:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_port: 'jJU%{^6u^t2!W\ '
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: W^%{_QhXxIj-dTo
+            udp_src_dst_ports_src_op:
+              -
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                src_operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                src_port: <f8HWt1lq>We${vPt2tbc9m==!-`
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: /R;>*N${2a.llJ2z,GY)1u ;
+            udp_src_dst_ports_dst_op:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_port: -NjUh>${AaDjaV
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                dst_operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: \jfJzQh&$m MbMo${h
+            udp_src_range_dst_ports_op:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_min_port: G)sa${CbY=j
+# mandatory; also accepts a string; also accepts an integer
+                src_max_port: <=,MD_hs\'.QD@yP%{
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: QCCOm$_jol${Z%#,*+Cz=/gEw#h
+            udp_src_range_dst_port_list:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_min_port: B4pC=+r(ZU&5${UxBRl:w
+# mandatory; also accepts a string; also accepts an integer
+                src_max_port: c!VB)AjT%k]SY[${*&#K8r8)M&#RAxH
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: '!?sb2 Xk-J*3MLf%{pq37aBS@qg6'
+            udp_src_dst_range_ports_op:
+              -
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                src_port: a74bc/7obb$4UmAi${S[j:HVg'VVJGm!
+# mandatory; also accepts a string; also accepts an integer
+                dst_min_port: ?t_z/TYt/O4_${%LnLFX'
+# mandatory; also accepts a string; also accepts an integer
+                dst_max_port: <@B55zF/w=A)%{<)0
+            udp_src_dst_range_port_list:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_port: w=_)0%{
+# mandatory; also accepts a string; also accepts an integer
+                dst_min_port: .%%{&<"
+# mandatory; also accepts a string; also accepts an integer
+                dst_max_port: PwR%e/!1FI${uu%SEQV(;fi\WL#v>E
+            udp_src_range_dst_range_port_list:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_min_port: NR82&.EC%{BK.mGKWq)Y(
+# mandatory; also accepts a string; also accepts an integer
+                src_max_port: cql;"(a>hZ%{z/K.y!TzJM
+# mandatory; also accepts a string; also accepts an integer
+                dst_min_port: :GZ>i]vM%{H
+# mandatory; also accepts a string; also accepts an integer
+                dst_max_port: N'+YD6JC(0%{sa[MZ,Je"
+            tcp_udp_dst_ports:
+              -
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                port: uqzz&`D+_>${\uINAA?Y
+# also accepts a string
+            tcp_udp_dst_port_list:
+              - <HOSTNAME>
+            tcp_udp_dst_port_ranges:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                min_port: t"gM%{kG?`;bYYF-jC0
+# mandatory; also accepts a string; also accepts an integer
+                max_port: -t/9l(fwmB?Io%{pLa:QuUA?;G)E
+            tcp_udp_src_ports:
+              -
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                port: nX:.o=OajR4Q${0*8v2&k?EagfNH+`1
+# also accepts a string
+            tcp_udp_src_port_list:
+              - <HOSTNAME>
+            tcp_udp_src_port_ranges:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                min_port: D?baEf1]${F<>w
+# mandatory; also accepts a string; also accepts an integer
+                max_port: I%-Eq&`E0${+UVf41`bs`tY>v*
+            tcp_udp_src_dst_ports_op:
+              -
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                src_operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                src_port: 'pIuV5%{;W?\@A`,z:'
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                dst_operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: lR${3(`7B[0:9o]oS +j1Dq
+            tcp_udp_src_dst_port_list:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_port: EC8 \${Bg_*kVm0."B\_AU
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: zA5GoVoCRXjY6&v%{M'iou>WM-@
+            tcp_udp_src_dst_ports_src_op:
+              -
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                src_operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                src_port: D(ICw42\'c15I(0${c6Y\<`1[bLoV-7lf1n
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: xL_tM`dl\7/V,-$%{Xe>q8dC,/E+m'_U
+            tcp_udp_src_dst_ports_dst_op:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_port: opv5w-hekFD)C%{nCQ6wn#k.>l_]3FAI>
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                dst_operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: <Vn`aF#J3C%{<F$C,X*SSos.3U
+            tcp_udp_src_range_dst_ports_op:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_min_port: kF)gns%{
+# mandatory; also accepts a string; also accepts an integer
+                src_max_port: 7u,NyJFK%{5[tU"3z(d
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: Jw9gRO${tz]D#;]r2G?rV
+            tcp_udp_src_range_dst_port_list:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_min_port: EcPp[wH?6${X33
+# mandatory; also accepts a string; also accepts an integer
+                src_max_port: M1ZDmt9PFV*6`DIg${<zH
+# mandatory; also accepts a string; also accepts an integer
+                dst_port: av\PeRWE*iLX/wz>[e${/^\"UF:q*`=lSUFz>
+            tcp_udp_src_dst_range_ports_op:
+              -
+# mandatory; allowed: eq, gt, lt; also accepts a string
+                operator: eq
+# mandatory; also accepts a string; also accepts an integer
+                src_port: W7KLUC=J)5${<Rp dn5[4(>R
+# mandatory; also accepts a string; also accepts an integer
+                dst_min_port: '&u7g&6zt#f*o1/%{s2,$Uo)&r8'
+# mandatory; also accepts a string; also accepts an integer
+                dst_max_port: Y/ U8(hB+Axba<F]<%{1R(k7Bj1FN`PIkw"*R=
+            tcp_udp_src_dst_range_port_list:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_port: 7:sI.%{S
+# mandatory; also accepts a string; also accepts an integer
+                dst_min_port: E#'q Kd_a!%{-^K2]6SEsU1
+# mandatory; also accepts a string; also accepts an integer
+                dst_max_port: \!HF;+IRqPW2bnR;XP%{x'`Ax$
+            tcp_udp_src_range_dst_range_port_list:
+              -
+# mandatory; also accepts a string; also accepts an integer
+                src_min_port: '!8KbW5T78g=T%{vi<HDfhN6n(gq<^*7/'
+# mandatory; also accepts a string; also accepts an integer
+                src_max_port: cv-JbeQJftT${(goUNOcm'M(a
+# mandatory; also accepts a string; also accepts an integer
+                dst_min_port: F)IlP'%{ @&> Grjfb%Mn
+# mandatory; also accepts a string; also accepts an integer
+                dst_max_port: "'aX\\.%{"

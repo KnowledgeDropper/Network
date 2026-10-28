@@ -1,0 +1,60 @@
+# Cisco Network as Code template for Meraki.
+# Data model: meraki
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: meraki.domains[].organizations[].networks[].firmware.upgrade
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/meraki/networks/firmware/
+meraki:
+  domains:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      administrator: {}
+# mandatory
+      organizations:
+        - networks:
+            -
+# mandatory
+              name: <NAME>
+              firmware:
+                upgrade:
+                  products:
+                    switch:
+                      participate_in_next_beta_release: true
+                      next_upgrade:
+                        local_time: 304283017362816024-11-04T20:17:31
+# mandatory
+                        to_version: <HOSTNAME>
+                    switch_catalyst:
+                      participate_in_next_beta_release: true
+                      next_upgrade:
+                        local_time: 19645-11-31T12:07:27
+# mandatory
+                        to_version: <HOSTNAME>
+                    wireless:
+                      participate_in_next_beta_release: true
+                      next_upgrade:
+                        local_time: 61649548854371673866633-11-22T18:40:23
+# mandatory
+                        to_version: <HOSTNAME>
+                        pre_download: true
+                    appliance:
+                      participate_in_next_beta_release: true
+                      next_upgrade:
+                        local_time: 950896479966-08-30T21:31:53
+# mandatory
+                        to_version: <HOSTNAME>
+                    cellular_gateway:
+                      participate_in_next_beta_release: true
+                      next_upgrade:
+                        local_time: 484001218834461659-12-31T04:37:31
+# mandatory
+                        to_version: <HOSTNAME>

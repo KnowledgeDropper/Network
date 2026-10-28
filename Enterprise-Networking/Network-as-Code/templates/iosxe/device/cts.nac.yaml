@@ -1,0 +1,67 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.cts
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/cts/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        cts:
+          authorization_list: <HOSTNAME>
+          role_based_enforcement: true
+# range 5-86400; also accepts a string
+          role_based_enforcement_logging_interval: 5
+          role_based_enforcement_vlans:
+# also accepts a string
+            ids:
+              - 1
+            ranges:
+              -
+# mandatory; range 1-4094; also accepts a string
+                from: 1
+# mandatory; range 1-4094; also accepts a string
+                to: 1
+# also accepts an array
+          role_based_permissions_default_acl_name: +-aC6${dlSVy=B
+# range 2-65519; also accepts a string
+          sgt: 2
+          sxp_connection_peers_ipv4:
+            -
+# mandatory; also accepts a string
+              ip: w$LD&,l_@>e!p/=mM!M${A#hN:ON=ru!w
+              vrf: <HOSTNAME>
+# allowed: local, peer; also accepts a string
+              connection_mode: local
+# maximum 65535; also accepts a string
+              hold_time: 1
+# maximum 65535; also accepts a string
+              max_time: 1
+# allowed: both, listener, speaker; also accepts a string
+              option: both
+# allowed: default, key-chain, none; also accepts a string
+              password: default
+# also accepts a string
+              source_ip: "'TZ_4Hq;)+\\M${sV[i:CR?]4gZ?"
+          sxp_default_password: <SECRET>
+# allowed: 0, 6, 7; also accepts a string
+          sxp_default_password_type: '0'
+          sxp: true
+# range 1-65534; also accepts a string
+          sxp_listener_hold_max_time: 1
+# range 1-65534; also accepts a string
+          sxp_listener_hold_min_time: 1
+# maximum 64000; also accepts a string
+          sxp_retry_period: 1
+# range 1-65534; also accepts a string
+          sxp_speaker_hold_time: 1

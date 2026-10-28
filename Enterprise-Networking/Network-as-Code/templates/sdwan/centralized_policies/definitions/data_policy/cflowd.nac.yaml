@@ -1,0 +1,50 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.centralized_policies.definitions.data_policy.cflowd
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/centralized_policies/cflowd/
+#   https://netascode.cisco.com/docs/data_models/sdwan/network_hierarchy/network_hierarchy_cflowd/
+sdwan:
+  centralized_policies:
+    definitions:
+      data_policy:
+        cflowd:
+          -
+# mandatory
+            name: example-name
+# mandatory
+            description: <DESCRIPTION>
+# range 30-3600
+            active_flow_timeout: 30
+# range 1-3600
+            inactive_flow_timeout: 1
+# range 1-65536
+            sampling_interval: 1
+# range 60-86400
+            flow_refresh: 60
+# allowed: ipv4, ipv6, both
+            protocol: ipv4
+            tos: true
+            remarked_dscp: true
+            collectors:
+              -
+# mandatory; maximum 65527; also accepts a string
+                vpn: 1
+# mandatory
+                ip_address: 10.0.0.1
+# mandatory; range 1024-65535
+                port: 1024
+# mandatory; allowed: transport_tcp, transport_udp
+                transport: transport_tcp
+# mandatory
+                source_interface: 0/0.1
+# allowed: enable, disable
+                export_spreading: enable

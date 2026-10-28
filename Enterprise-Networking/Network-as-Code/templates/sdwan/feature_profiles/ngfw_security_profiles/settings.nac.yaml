@@ -1,0 +1,46 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.ngfw_security_profiles[].settings
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs: schema section without a dedicated page in the docs nav.
+sdwan:
+  feature_profiles:
+    ngfw_security_profiles:
+      -
+# mandatory
+        name: example-name
+        settings:
+          advanced_inspection_profile: example-host
+          app_hosting:
+            download_url_database_on_device: true
+            download_url_database_on_device_variable: example-host
+            nat: true
+            nat_variable: example-host
+# allowed: low, medium, high
+            resource_profile: low
+            resource_profile_variable: example-host
+# allowed: on
+          audit_trail: on
+# allowed: open, close
+          failure_mode: open
+# allowed: on
+          icmp_unreachable_allow: on
+# range 1-4294967295
+          max_incomplete_icmp_limit: 1
+# range 1-4294967295
+          max_incomplete_tcp_limit: 1
+# range 1-4294967295
+          max_incomplete_udp_limit: 1
+# allowed: on
+          session_reclassify_allow: on
+# range 1-4294967295
+          tcp_syn_flood_limit: 1
+# allowed: on
+          unified_logging: on

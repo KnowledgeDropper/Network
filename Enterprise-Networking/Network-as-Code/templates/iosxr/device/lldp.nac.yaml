@@ -1,0 +1,48 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.lldp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/lldp/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        lldp:
+# also accepts a string
+          chassis_id: zh%Wo%FhOcNMpIz${0!hOMpyti
+# allowed: chassis_component, interface_alias, interface_name, local, mac_address,
+# network_address, port_component; also accepts a string
+          chassis_id_type: chassis_component
+          extended_show_width_enable: true
+# maximum 65535; also accepts a string
+          holdtime: 1
+          management_enable: true
+          priorityaddr_enable: true
+# range 2-5; also accepts a string
+          reinit: 2
+          subinterfaces_enable: true
+          subinterfaces_tagged: true
+# also accepts a string
+          system_description: ",iX(#l\".'Ui)` H%{ C`jmlOd"
+# also accepts a string
+          system_name: R"b-zX`+n.Pg !MQMY${o".R&H]&en"^AL"@
+# range 5-65534; also accepts a string
+          timer: 5
+          tlv_select:
+            management_address_disable: true
+            port_description_disable: true
+            system_capabilities_disable: true
+            system_description_disable: true
+            system_name_disable: true

@@ -1,0 +1,32 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.settings
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/settings/cloud_provider_settings/
+sdwan:
+  settings:
+    cloud_provider_settings:
+      cisco_sse_auth_key: <HOSTNAME>
+      cisco_sse_auth_secret: <SECRET>
+      cisco_sse_context_sharing: true
+      cisco_sse_org_id: '10'
+      umbrella_auth_key_v2: <HOSTNAME>
+      umbrella_auth_secret_v2: <SECRET>
+      umbrella_dns_auth_key: <HOSTNAME>
+      umbrella_dns_auth_secret: <SECRET>
+      umbrella_org_id: '10'
+      umbrella_sig_auth_key: <HOSTNAME>
+      umbrella_sig_auth_secret: <SECRET>
+      zscaler_organization: <HOSTNAME>
+      zscaler_partner_base_uri: https://example.com
+      zscaler_partner_key: <HOSTNAME>
+      zscaler_password: <SECRET>
+      zscaler_username: <NAME>

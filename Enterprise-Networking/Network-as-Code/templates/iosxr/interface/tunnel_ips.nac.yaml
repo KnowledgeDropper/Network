@@ -1,0 +1,117 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.interfaces.tunnel_ips
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/interface/tunnel_ip/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        interfaces:
+          tunnel_ips:
+            -
+# mandatory; also accepts an integer; also accepts a string
+              id: '10'
+# also accepts a string
+              interface_groups:
+                - 0/0.1
+# maximum 9223372036854775807; also accepts a string
+              bandwidth: 1
+# also accepts a string
+              description: QO"Wf.g${$\
+              ipv4:
+                access_group_egress:
+# also accepts a string
+                  acl: /En4x%{)/+Jw%PB*QN@4d
+                  hardware_count: true
+                  interface_statistics: true
+                access_group_ingress:
+# also accepts a string
+                  acl: D1Wl]N&=F<w${pg\p"pkUqz3?4:wp*
+                  hardware_count: true
+                  interface_statistics: true
+# also accepts a string
+                address: \OYlrS${[
+                forwarding_enable: true
+# also accepts a string
+                mask: gAXDb(%{,K_o4m"Y$DZ
+                ttl_propagate_disable: true
+# also accepts a string
+                unnumbered: '"q%{v2'
+              ipv6:
+                access_group_egress:
+# also accepts a string
+                  acl: :DRYdGhhHOI6@g)%{-d7ypD/4=Y
+                  interface_statistics: true
+                access_group_ingress:
+# also accepts a string
+                  acl: bhz>G`e?i-xfXC&,`${x
+                  interface_statistics: true
+                addresses:
+                  -
+# mandatory; also accepts a string
+                    address: ^N${.n"@ YhzL>rj
+# mandatory; maximum 128; also accepts a string
+                    length: 1
+# also accepts a string
+                    zone: 6!Tz%%@ %{'
+                autoconfig: true
+                enable: true
+# also accepts a string
+                link_local_address: ',0m^+SHbyQGMfJWBQ%{SdoU'
+# also accepts a string
+                link_local_zone: '";\_SF${FVt4@'
+                ttl_propagate_disable: true
+# range 1-32767; also accepts a string
+              keepalive: 1
+# range 30-600; also accepts a string
+              load_interval: 30
+              logging_events_link_status: true
+# range 64-65535; also accepts a string
+              mtu: 64
+              shutdown: true
+# also accepts a string
+              tunnel_bfd_destination: qb[%{f%`!(\[oppxF4xW,:k%
+# range 150-30000; also accepts a string
+              tunnel_bfd_minimum_interval: 150
+# range 3-50; also accepts a string
+              tunnel_bfd_multiplier: 3
+# range 1-32767; also accepts a string
+              tunnel_bfd_period: 1
+# range 1-255; also accepts a string
+              tunnel_bfd_retry: 1
+# also accepts a string
+              tunnel_destination: aaLpB3hRbiH?Q/%{ F8W3E9g$Shk+2q=B2b
+# also accepts a string
+              tunnel_destination_prefix_list: \ft6hc6)g?cc/U%{?r'3dQkf#<G)$PJ?e
+              tunnel_df_disable: true
+# maximum 4294967295; also accepts a string
+              tunnel_key: 1
+# allowed: ipv4, ipv6; also accepts a string
+              tunnel_mode: ipv4
+# allowed: ipv4, ipv6; also accepts a string
+              tunnel_mode_gre: ipv4
+# also accepts a string
+              tunnel_source: ${i^i$F3r^oh LmZnGN
+# also accepts a string
+              tunnel_source_interface: ${9F2CH%]PA&
+# maximum 255; also accepts a string
+              tunnel_tos: 1
+# allowed: disable; also accepts an integer; also accepts a string
+              tunnel_ttl: disable
+# also accepts a string
+              tunnel_vrf: 9@4,5?CB[^6G%{%U:ngL3+\"mK9Ac
+# also accepts a string
+              vrf: f K"_g%*4KE:],W:%{1Lgq=Cz<leX0+ Mv]

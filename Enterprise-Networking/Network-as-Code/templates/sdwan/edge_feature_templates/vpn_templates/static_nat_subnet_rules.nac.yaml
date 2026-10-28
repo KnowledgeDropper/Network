@@ -1,0 +1,38 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.vpn_templates[].static_nat_subnet_rules
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs: schema section without a dedicated page in the docs nav.
+sdwan:
+  edge_feature_templates:
+    vpn_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+# mandatory; maximum 65527
+        vpn_id: 1
+        static_nat_subnet_rules:
+          -
+# allowed: inside, outside
+            direction: inside
+            direction_variable: <HOSTNAME>
+            optional: true
+# range 1-32
+            prefix_length: 1
+            prefix_length_variable: 10.0.0.1
+            source_ip_subnet: 10.0.0.1
+            source_ip_subnet_variable: 10.0.0.1
+# range 1-1000
+            tracker_id: 1
+            tracker_id_variable: <HOSTNAME>
+            translate_ip_subnet: 10.0.0.1
+            translate_ip_subnet_variable: 10.0.0.1

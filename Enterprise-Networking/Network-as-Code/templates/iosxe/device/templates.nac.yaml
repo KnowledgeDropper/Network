@@ -1,0 +1,191 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/template/
+#   https://netascode.cisco.com/docs/data_models/iosxe/entity/template/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        templates:
+          -
+# mandatory
+            name: <NAME>
+            service_policy_type_control_subscriber: <HOSTNAME>
+            service_policy_input: <HOSTNAME>
+            service_policy_output: <HOSTNAME>
+            source_template: <HOSTNAME>
+            switchport:
+              enable: true
+# allowed: access, trunk; also accepts a string
+              mode: access
+              nonegotiate: true
+              block_unicast: true
+              port_security: true
+              port_security_aging_static: true
+# range 1-1440; also accepts a string
+              port_security_aging_time: 1
+# allowed: absolute, inactivity; also accepts a string
+              port_security_aging_type: absolute
+              port_security_maximum_ranges:
+                -
+# mandatory; range 1-3072; also accepts a string
+                  range: 1
+                  vlan: true
+                  vlan_access: true
+              port_security_violation_protect: true
+              port_security_violation_restrict: true
+              port_security_violation_shutdown: true
+# range 1-4094; also accepts a string
+              access_vlan: 1
+# range 1-4094; also accepts a string
+              voice_vlan: 1
+# range 2-1001; also accepts an integer; also accepts a string
+              private_vlan_host_association_primary_range: 2
+# range 2-1001; also accepts an integer; also accepts a string
+              private_vlan_host_association_secondary_range: 2
+              trunk_allowed_vlans:
+                all: true
+                none: true
+                vlans:
+# also accepts a string
+                  ids:
+                    - 1
+                  ranges:
+                    -
+# mandatory; range 1-4094; also accepts a string
+                      from: 1
+# mandatory; range 1-4094; also accepts a string
+                      to: 1
+                add:
+# also accepts a string
+                  ids:
+                    - 1
+                  ranges:
+                    -
+# mandatory; range 1-4094; also accepts a string
+                      from: 1
+# mandatory; range 1-4094; also accepts a string
+                      to: 1
+                except:
+# also accepts a string
+                  ids:
+                    - 1
+                  ranges:
+                    -
+# mandatory; range 1-4094; also accepts a string
+                      from: 1
+# mandatory; range 1-4094; also accepts a string
+                      to: 1
+                remove:
+# also accepts a string
+                  ids:
+                    - 1
+                  ranges:
+                    -
+# mandatory; range 1-4094; also accepts a string
+                      from: 1
+# mandatory; range 1-4094; also accepts a string
+                      to: 1
+              trunk_allowed_vlans_legacy:
+# also accepts a string
+                ids:
+                  - 1
+                ranges:
+                  -
+# mandatory; range 1-4094; also accepts a string
+                    from: 1
+# mandatory; range 1-4094; also accepts a string
+                    to: 1
+              trunk_native_vlan_tag: true
+# also accepts an integer
+              trunk_native_vlan_id: '"mr^FLRH.D${\eF(nrXguBi^C'
+            spanning_tree:
+              bpduguard: true
+              service_policy: true
+              portfast: true
+              portfast_disable: true
+              portfast_edge: true
+              portfast_network: true
+            storm_control:
+              broadcast_level_pps_threshold: <HOSTNAME>
+# maximum 100000000000.0; also accepts a string
+              broadcast_level_bps_threshold: 1.0
+# maximum 10000; also accepts a string
+              broadcast_level_threshold: 1.0
+              multicast_level_pps_threshold: <HOSTNAME>
+# maximum 100000000000.0; also accepts a string
+              multicast_level_bps_threshold: 1.0
+# maximum 10000; also accepts a string
+              multicast_level_threshold: 1.0
+              action_shutdown: true
+              action_trap: true
+# range 30-600; also accepts a string
+            load_interval: 30
+            ipv4:
+# range 1-2048; also accepts a string
+              dhcp_snooping_limit_rate: 1
+              dhcp_snooping_trust: true
+              access_group_in: <HOSTNAME>
+              access_group_out: <HOSTNAME>
+# range 1-65535; also accepts a string
+            subscriber_aging_inactivity_timer_value: 1
+            subscriber_aging_inactivity_timer_probe: true
+            subscriber_aging_probe: true
+            device_tracking: true
+            device_tracking_attached_policies:
+              - name: <NAME>
+# mandatory
+                vlan_range: '10'
+            device_tracking_vlan_range: '10'
+            network_access_control:
+# allowed: authenticator, both, supplicant; also accepts a string
+              dot1x_pae: authenticator
+# range 1-10; also accepts a string
+              dot1x_max_reauth_req: 1
+# range 1-10; also accepts a string
+              dot1x_max_req: 1
+# range 1-65535; also accepts a string
+              dot1x_timeout_tx_period: 1
+# range 1-65535; also accepts a string
+              dot1x_timeout_quiet_period: 1
+# range 1-65535; also accepts a string
+              dot1x_timeout_supp_timeout: 1
+# range 1-65535; also accepts a string
+              dot1x_timeout_ratelimit_period: 1
+# range 1-65535; also accepts a string
+              dot1x_timeout_server_timeout: 1
+              mab: true
+              mab_eap: true
+              access_session_closed: true
+              access_session_monitor: true
+# allowed: auto, force-authorized, force-unauthorized; also accepts a string
+              access_session_port_control: auto
+# allowed: both, in; also accepts a string
+              access_session_control_direction: both
+# allowed: multi-auth, multi-domain, multi-host, single-host; also accepts a string
+              access_session_host_mode: multi-auth
+              access_session_interface_template_sticky: true
+# range 1-65535; also accepts a string
+              access_session_interface_template_sticky_timer: 1
+              authentication_periodic: true
+              authentication_timer_reauthenticate_server: true
+# range 1-65535; also accepts a string
+              authentication_timer_reauthenticate_range: 1
+              cts_manual: true
+# range 2-65519; also accepts a string
+              cts_manual_policy_static_sgt: 2
+              cts_manual_policy_static_trusted: true
+              cts_manual_propagate_sgt: true
+              cts_role_based_enforcement: true

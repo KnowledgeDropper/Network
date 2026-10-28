@@ -1,0 +1,288 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.aaa
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/aaa/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        aaa:
+          new_model: true
+# allowed: common, unique; also accepts a string
+          session_id: common
+# also accepts a string
+          local_authentication_type: =z=hFRovq;LD5Aa"Zc_${\?6lAWvl/:>s
+# also accepts a string
+          local_authorization: '"y2pCg(%{lI8['
+# range 1-65535; also accepts a string
+          local_authentication_max_fail_attempts: 1
+          radius_dynamic_author: true
+          radius_dynamic_author_clients:
+            -
+# mandatory; also accepts a string
+              ip: N%c!oS%6s5<)${7@@;XD6 leeR&lO
+# allowed: 0, 6, 7; also accepts a string
+              key_type: '0'
+              key: <HOSTNAME>
+          radius_groups:
+            -
+# mandatory
+              name: <NAME>
+# maximum 1440; also accepts a string
+              deadtime: 1
+# also accepts an array
+              server_names: 3A[TLMU9"K'rXE${oPw#
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet; also accepts a string
+              source_interface_type: Loopback
+# also accepts an integer
+              source_interface_id: 0/0.1
+          tacacs_groups:
+            -
+# mandatory
+              name: <NAME>
+# also accepts a string
+              vrf: "`kf-nRWd.5PaW${ 6OR&U,<L:9Gu\\<*'0"
+# also accepts an array
+              server_names: uiGUJwE(H?elkq<bRBX%{3=2Z>w"3_c6gS@oEC"
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet; also accepts a string
+              source_interface_type: Loopback
+# also accepts an integer
+              source_interface_id: 0/0.1
+          accounting:
+# also accepts an integer
+            update_newinfo_periodic: _${1;N2rj2>saaK0
+            system_guarantee_first: true
+            identities:
+              -
+# mandatory
+                name: <NAME>
+                start_stop_broadcast: true
+                start_stop_group_broadcast: true
+                start_stop_group_logger: true
+# also accepts a string
+                start_stop_groups:
+                  - <HOSTNAME>
+# also accepts a string
+                identity_default_start_stop_groups:
+                  - <HOSTNAME>
+# also accepts a string
+            identity_default_start_stop_groups:
+              - <HOSTNAME>
+            commands:
+              -
+# mandatory; maximum 15; also accepts a string
+                level: 1
+# mandatory
+                list_name: <NAME>
+# allowed: start-stop, stop-only; also accepts a string
+                action_type: start-stop
+                group_broadcast: true
+                group_logger: true
+# also accepts a string
+                groups:
+                  - <HOSTNAME>
+            connections:
+              -
+# mandatory
+                name: <NAME>
+                none: true
+                start_stop_broadcast: true
+                start_stop_group_logger: true
+# also accepts a string
+                start_stop_groups:
+                  - <HOSTNAME>
+                stop_only_broadcast: true
+                stop_only_group_logger: true
+# also accepts a string
+                stop_only_groups:
+                  - <HOSTNAME>
+            execs:
+              -
+# mandatory
+                name: <NAME>
+                none: true
+                start_stop_broadcast: true
+                start_stop_group_logger: true
+# also accepts a string
+                start_stop_groups:
+                  - <HOSTNAME>
+                stop_only_broadcast: true
+                stop_only_group_logger: true
+# also accepts a string
+                stop_only_groups:
+                  - <HOSTNAME>
+            networks:
+              -
+# mandatory
+                name: <NAME>
+# also accepts a string
+                start_stop_groups:
+                  - <HOSTNAME>
+            dot1x:
+              -
+# mandatory
+                name: <NAME>
+# also accepts a string
+                start_stop_groups:
+                  - <HOSTNAME>
+                start_stop_broadcast: true
+                start_stop_group_broadcast: true
+                start_stop_group_logger: true
+            dot1x_defaults:
+              - <HOSTNAME>
+            dot1x_default_start_stop_broadcast: true
+            dot1x_default_start_stop_group_broadcast: true
+            dot1x_default_start_stop_group_logger: true
+          authentication:
+            logins:
+              -
+# mandatory
+                name: <NAME>
+                methods:
+                  - none
+            dot1xs:
+              -
+# mandatory
+                name: <NAME>
+                methods:
+                  - local
+            dot1x_defaults:
+              - local
+# allowed: enable, line, none; also accepts a string
+            enable_defaults_legacy: enable
+            enable_defaults:
+              -
+# allowed: enable, line, none; also accepts a string
+                method: enable
+                cache: true
+          authorization:
+            commands:
+              -
+# mandatory; maximum 15; also accepts a string
+                level: 1
+# mandatory
+                list_name: <NAME>
+                methods:
+                  - local
+            config_commands: true
+            config_lists:
+              -
+# mandatory
+                name: <NAME>
+                groups:
+                  - cache: true
+# allowed: radius, tacacs; also accepts a string
+                    method: radius
+            console: true
+            execs:
+              -
+# mandatory
+                name: <NAME>
+                methods:
+                  - local
+            networks:
+              -
+# mandatory
+                name: <NAME>
+                methods:
+                  - local
+          radius:
+            attributes:
+              -
+# mandatory; also accepts an integer
+                number: y6ND6K*1D;6PkqS5${[C536R
+                attribute_31_parameters:
+                  -
+# allowed: mac, send; also accepts a string
+                    calling_station_id: mac
+# allowed: ietf; also accepts a string
+                    id_mac_format: ietf
+# allowed: lower-case, upper-case; also accepts a string
+                    id_mac_lu_case: lower-case
+                    id_send_nas_port_detail: true
+                    id_send_mac_only: true
+                send_attributes:
+                  - <HOSTNAME>
+# range 1-120; also accepts a string
+            dead_criteria_time: 1
+# range 1-100; also accepts a string
+            dead_criteria_tries: 1
+# range 1-1440; also accepts a string
+            deadtime: 1
+            servers:
+              -
+# mandatory
+                name: <NAME>
+# mandatory; also accepts a string
+                ip: _jrxrd3\+BWXiw*3%{a+WB8 m
+# maximum 65534; also accepts a string
+                authentication_port: 1
+# maximum 65534; also accepts a string
+                accounting_port: 1
+# range 1-1000; also accepts a string
+                timeout: 1
+# maximum 100; also accepts a string
+                retransmit: 1
+                key: <HOSTNAME>
+# allowed: 0, 6, 7
+                encryption: 0
+                automate_tester_username: <NAME>
+                automate_tester_ignore_acct_port: true
+                automate_tester_probe_on_config: true
+                automate_tester_ignore_auth_port: true
+# range 1-35791; also accepts a string
+                automate_tester_idle_time: 1
+                pac_key: <HOSTNAME>
+# allowed: 0, 6, 7
+                pac_key_encryption: 0
+          tacacs:
+# range 1-1000; also accepts a string
+            timeout: 1
+            directed_request: true
+            directed_request_restricted: true
+            directed_request_no_truncate: true
+            key: <HOSTNAME>
+# allowed: 0, 6, 7
+            encryption: 0
+            attribute_allow_unknown: true
+            servers:
+              -
+# mandatory
+                name: <NAME>
+# mandatory; also accepts a string
+                ip: ${Q>EWwDvsAfe-z#:yD=r
+# range 1-1000; also accepts a string
+                timeout: 1
+# range 1-65535; also accepts a string
+                port: 1
+                key: <HOSTNAME>
+# allowed: 0, 6, 7
+                encryption: 0
+          usernames:
+            -
+# mandatory
+              name: <NAME>
+# maximum 15; also accepts a string
+              privilege: 1
+              description: <DESCRIPTION>
+# allowed: 0, 6, 7; also accepts a string
+              password_encryption: '0'
+              password: <SECRET>
+# allowed: 0, 5, 8, 9; also accepts a string
+              secret_encryption: '0'
+              secret: <SECRET>

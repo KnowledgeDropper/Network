@@ -1,0 +1,53 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.tacacs_server
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/tacacs_server/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        tacacs_server:
+# maximum 1200; also accepts a string
+          holddown_time: 1
+          hosts:
+            -
+# mandatory; also accepts a string
+              address: x6>Ym${_nTX:q+ANp
+# maximum 1200; also accepts a string
+              holddown_time: 1
+# also accepts a string
+              key: '#83_?Os.J<kt6>wKAe${cl7tdA?o'
+# allowed: 6, 7; also accepts a string
+              key_type: 6
+# mandatory; range 1-65535; also accepts a string
+              port: 1
+              single_connection: true
+# range 500-7200; also accepts a string
+              single_connection_idle_timeout: 500
+# range 1-1000; also accepts a string
+              timeout: 1
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+          ipv4_dscp: af11
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+          ipv6_dscp: af11
+# also accepts a string
+          key: p9np${uq1mqzs'
+# allowed: 6, 7; also accepts a string
+          key_type: 6
+# range 1-1000; also accepts a string
+          timeout: 1

@@ -1,0 +1,41 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.wireless.security_settings
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/wireless/pre_auth_acl/
+catalyst_center:
+  wireless:
+    security_settings:
+      pre_auth_acls:
+        -
+# mandatory
+          name: <NAME>
+          acl_name: <NAME>
+          ipv6_enabled: true
+          include_auto_generated_rules: true
+          walled_garden_urls:
+            - <HOSTNAME>
+# mandatory
+          rules:
+            -
+# mandatory; allowed: ANY, AHP, ESP, GRE, ICMP, IGMP, IP, IPINIP, NOS, OSPF, PCP, PIM, TCP, UDP,
+# ICMPV6, IPV6, SCTP
+              protocol: ANY
+# mandatory
+              source_address: 10.0.0.1
+# maximum 128
+              source_prefix: 1
+# mandatory
+              destination_address: 10.0.0.1
+# maximum 128
+              destination_prefix: 1
+              source_ports: <HOSTNAME>
+              destination_ports: <HOSTNAME>

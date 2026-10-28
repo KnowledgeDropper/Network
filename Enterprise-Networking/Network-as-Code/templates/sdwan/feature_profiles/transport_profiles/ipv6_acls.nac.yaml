@@ -1,0 +1,68 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.transport_profiles[].ipv6_acls
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_transport/transport_ipv6_acl/
+sdwan:
+  feature_profiles:
+    transport_profiles:
+      -
+# mandatory
+        name: example-name
+        ipv6_acls:
+          -
+# mandatory
+            name: example-name
+            description: <DESCRIPTION>
+# allowed: accept, drop
+            default_action: accept
+            sequences:
+              -
+# mandatory; range 1-65536
+                id: 1
+                name: <NAME>
+# mandatory; allowed: accept, drop
+                base_action: accept
+                match_entries:
+                  destination_data_prefix: 10.0.0.1
+                  destination_data_prefix_list: 10.0.0.1
+                  destination_ports:
+                    - 1
+                  traffic_classes:
+                    - 1
+                  icmp6_messages:
+                    - beyond-scope
+# maximum 255
+                  next_header: 1
+# maximum 65535; also accepts a string
+                  packet_length: 1
+                  source_data_prefix: 10.0.0.1
+                  source_data_prefix_list: 10.0.0.1
+                  source_ports:
+                    - 1
+# allowed: syn
+                  tcp_state: syn
+                actions:
+                  counter_name: example-name
+# maximum 63
+                  traffic_class: 1
+                  ipv6_next_hop: 2001:db8::1
+                  log: true
+                  mirror: example-host
+                  policer: example-host
+                  service_chain_fallback: true
+                  service_chain_fallback_variable: example-host
+# allowed: SC1, SC2, SC3, SC4, SC5, SC6, SC7, SC8, SC9, SC10, SC11, SC12, SC13, SC14, SC15, SC16
+                  service_chain_name: SC1
+                  service_chain_name_variable: example-host
+# range 1-511; also accepts an integer
+                  service_chain_vpn: 1
+                  service_chain_vpn_variable: example-host

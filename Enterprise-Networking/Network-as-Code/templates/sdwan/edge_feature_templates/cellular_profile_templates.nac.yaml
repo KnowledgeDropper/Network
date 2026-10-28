@@ -1,0 +1,40 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.cellular_profile_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/cellular_profile/
+sdwan:
+  edge_feature_templates:
+    cellular_profile_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - C1101-4PLTEP
+# range 1-16
+        profile_id: 1
+        profile_id_variable: <HOSTNAME>
+        access_point_name: <NAME>
+        access_point_name_variable: <HOSTNAME>
+# allowed: ipv4, ipv6, ipv4v6
+        packet_data_network_type: ipv4
+        packet_data_network_type_variable: <HOSTNAME>
+# allowed: none, pap, chap, pap_chap
+        authentication_type: none
+        authentication_type_variable: <HOSTNAME>
+        profile_username: <NAME>
+        profile_username_variable: <HOSTNAME>
+        profile_password: <SECRET>
+        profile_password_variable: <SECRET>
+        no_overwrite: true
+        no_overwrite_variable: <HOSTNAME>

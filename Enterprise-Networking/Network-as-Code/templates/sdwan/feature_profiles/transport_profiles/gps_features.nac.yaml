@@ -1,0 +1,37 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.transport_profiles[].gps_features
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_transport/transport_gps/
+sdwan:
+  feature_profiles:
+    transport_profiles:
+      -
+# mandatory
+        name: example-name
+        gps_features:
+          -
+# mandatory
+            name: example-name
+            description: <DESCRIPTION>
+            gps_enable: true
+            gps_enable_variable: example-host
+# allowed: ms-based, standalone
+            gps_mode: ms-based
+            gps_mode_variable: example-host
+            nmea_enable: true
+            nmea_source_address: 10.0.0.1
+            nmea_source_address_variable: 10.0.0.1
+            nmea_destination_address: 10.0.0.1
+            nmea_destination_address_variable: 10.0.0.1
+# range 1-65535
+            nmea_destination_port: 1
+            nmea_destination_port_variable: example-host

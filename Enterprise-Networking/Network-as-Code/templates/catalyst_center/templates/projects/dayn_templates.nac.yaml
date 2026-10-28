@@ -1,0 +1,62 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.templates.projects[].dayn_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/templates/template/
+catalyst_center:
+  templates:
+    projects:
+      -
+# mandatory
+        name: <NAME>
+        dayn_templates:
+          -
+# mandatory
+            name: <NAME>
+            description: <DESCRIPTION>
+# allowed: JINJA, VELOCITY
+            language: JINJA
+            device_types:
+              -
+# mandatory
+                product_family: <HOSTNAME>
+                product_series: <HOSTNAME>
+                product_type: <HOSTNAME>
+            software_type: <HOSTNAME>
+            software_version: <HOSTNAME>
+            variables:
+              -
+# mandatory
+                name: <NAME>
+                field_name: <NAME>
+                required: true
+# mandatory; allowed: STRING, INTEGER, IPADDRESS, MACADDRESS, SECTIONDIVIDER
+                data_type: STRING
+                hint_text: <DESCRIPTION>
+                default_value: <HOSTNAME>
+                additional_info: <HOSTNAME>
+                binding: <HOSTNAME>
+                not_param: true
+                param_array: true
+# allowed: SINGLE_SELECT, MULTI_SELECT
+                selection_type: SINGLE_SELECT
+# map of arbitrary keys
+                data_values:
+                  example_key: <VALUE>
+            tags:
+              - <HOSTNAME>
+            containing_templates:
+              - <HOSTNAME>
+            composite: true
+# allowed: ALWAYS, NEVER, ON_CHANGE
+            redeploy_template: ALWAYS
+# range 10-86400
+            deployment_timeout: 10

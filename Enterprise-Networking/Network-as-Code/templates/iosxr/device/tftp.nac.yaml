@@ -1,0 +1,59 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.tftp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/tftp/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        tftp:
+          client:
+            vrfs:
+              -
+# mandatory; also accepts a string
+                name: '!J%{gM51bLa-8;K'
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+                dscp: af11
+# maximum 256; also accepts a string
+                retries: 1
+# also accepts a string
+                source_interface: '*/=%{:EW#'
+# maximum 256; also accepts a string
+                timeout: 1
+          server:
+            vrfs:
+              -
+# mandatory; also accepts a string
+                name: 8FPY Q*="4F,0%{8&&+#[%1m7
+# also accepts a string
+                ipv4_access_list: ge6Tq%{6Z^$4
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+                ipv4_dscp: af11
+# also accepts a string
+                ipv4_homedir: oD@"8_%%{ukw %rx['64g5%R=P
+# allowed: no-limit; also accepts an integer; also accepts a string
+                ipv4_max_servers: no-limit
+# also accepts a string
+                ipv6_access_list: Mh&${Y+'@Wa!+.Rq?<R
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+                ipv6_dscp: af11
+# also accepts a string
+                ipv6_homedir: '!DSFL?v<KfOX${k6$F#BV].@s'
+# allowed: no-limit; also accepts an integer; also accepts a string
+                ipv6_max_servers: no-limit

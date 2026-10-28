@@ -1,0 +1,76 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.service_profiles[].route_policies
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_service/service_route_policy/
+sdwan:
+  feature_profiles:
+    service_profiles:
+      -
+# mandatory
+        name: example-name
+        route_policies:
+          - name: example-name
+            description: <DESCRIPTION>
+# mandatory; allowed: accept, reject
+            default_action: accept
+            sequences:
+              -
+# mandatory; range 1-65536
+                id: 1
+                name: <NAME>
+# mandatory; allowed: accept, reject
+                base_action: accept
+# allowed: ipv4, ipv6, both
+                protocol: ipv4
+                match_entries:
+                  as_path_list: example-host
+# maximum 4294967295
+                  bgp_local_preference: 1
+                  expanded_community_list: 65000:1
+                  extended_community_list: 65000:1
+                  ipv4_address_prefix_list: 10.0.0.1
+                  ipv4_next_hop_prefix_list: 10.0.0.1
+                  ipv6_address_prefix_list: 2001:db8::1
+                  ipv6_next_hop_prefix_list: 2001:db8::1
+# maximum 4294967295
+                  metric: 1
+# maximum 4294967295
+                  omp_tag: 1
+# maximum 4294967295
+                  ospf_tag: 1
+                  standard_community_lists:
+                    - 65000:1
+# allowed: or, and, exact
+                  standard_community_lists_criteria: or
+                actions:
+# maximum 4294967295
+                  bgp_local_preference: 1
+                  communities:
+                    - internet
+                  communities_variable: example-host
+                  communities_additive: true
+                  ipv4_next_hop: <HOSTNAME>
+                  ipv6_next_hop: 2001:db8::1
+# maximum 4294967295
+                  metric: 1
+# allowed: type1, type2
+                  metric_type: type1
+# maximum 4294967295
+                  omp_tag: 1
+# allowed: igp, egp, incomplete
+                  origin: igp
+# maximum 4294967295
+                  ospf_tag: 1
+                  prepend_as_paths:
+                    - 1
+# maximum 65535
+                  weight: 1

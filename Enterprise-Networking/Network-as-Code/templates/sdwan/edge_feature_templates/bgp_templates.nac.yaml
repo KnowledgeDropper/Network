@@ -1,0 +1,266 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.bgp_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/bgp/
+sdwan:
+  edge_feature_templates:
+    bgp_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - ASR-1001-HX
+        always_compare_med: true
+        always_compare_med_variable: <HOSTNAME>
+# range 1-4294967295
+        as_number: 1
+        as_number_variable: '65000'
+        compare_router_id: true
+        compare_router_id_variable: <HOSTNAME>
+        deterministic_med: true
+        deterministic_med_variable: <HOSTNAME>
+# range 1-255
+        distance_external: 1
+        distance_external_variable: <HOSTNAME>
+# range 1-255
+        distance_internal: 1
+        distance_internal_variable: <HOSTNAME>
+# range 1-255
+        distance_local: 1
+        distance_local_variable: <HOSTNAME>
+# maximum 65535
+        holdtime: 1
+        holdtime_variable: <HOSTNAME>
+        ipv4_address_family:
+          default_information_originate: true
+          default_information_originate_variable: <HOSTNAME>
+# range 1-32
+          maximum_paths: 1
+          maximum_paths_variable: <HOSTNAME>
+          aggregate_addresses:
+            - prefix: 10.0.0.1
+              prefix_variable: 10.0.0.1
+              as_set_path: true
+              as_set_path_variable: <HOSTNAME>
+              summary_only: true
+              summary_only_variable: <HOSTNAME>
+              optional: true
+          neighbors:
+            - address: 10.0.0.1
+              address_variable: 10.0.0.1
+              address_families:
+                -
+# mandatory; allowed: ipv4-unicast, vpnv4-unicast, vpnv6-unicast
+                  family_type: ipv4-unicast
+# range 1-4294967295
+                  maximum_prefixes: 1
+                  maximum_prefixes_variable: <HOSTNAME>
+# range 1-65535
+                  maximum_prefixes_restart: 1
+                  maximum_prefixes_restart_variable: <HOSTNAME>
+# maximum 100
+                  maximum_prefixes_threshold: 1
+                  maximum_prefixes_threshold_variable: <HOSTNAME>
+                  maximum_prefixes_warning_only: true
+                  maximum_prefixes_warning_only_variable: <HOSTNAME>
+                  route_policy_in: <HOSTNAME>
+                  route_policy_in_variable: <HOSTNAME>
+                  route_policy_out: <HOSTNAME>
+                  route_policy_out_variable: <HOSTNAME>
+                  shutdown: true
+                  shutdown_variable: <HOSTNAME>
+                  optional: true
+# range 1-10
+              allow_as_in: 1
+              allow_as_in_variable: <HOSTNAME>
+              as_override: true
+              as_override_variable: <HOSTNAME>
+              description: <DESCRIPTION>
+              description_variable: <DESCRIPTION>
+# range 1-255
+              ebgp_multihop: 1
+              ebgp_multihop_variable: <HOSTNAME>
+              next_hop_self: true
+              next_hop_self_variable: <HOSTNAME>
+              password: <SECRET>
+              password_variable: <SECRET>
+# range 1-4294967295
+              remote_as: 1
+              remote_as_variable: <HOSTNAME>
+              send_community: true
+              send_community_variable: rt 65000:1
+              send_extended_community: true
+              send_extended_community_variable: rt 65000:1
+              send_label: true
+              send_label_variable: <HOSTNAME>
+              send_label_explicit_null: true
+              send_label_explicit_null_variable: <HOSTNAME>
+              shutdown: true
+              shutdown_variable: <HOSTNAME>
+              source_interface: 0/0.1
+              source_interface_variable: 0/0.1
+# maximum 65535
+              keepalive: 1
+              keepalive_variable: <HOSTNAME>
+# maximum 65535
+              holdtime: 1
+              holdtime_variable: <HOSTNAME>
+              optional: true
+          networks:
+            - prefix: 10.0.0.1
+              prefix_variable: 10.0.0.1
+              optional: true
+          redistributes:
+            -
+# allowed: connected, eigrp, nat, omp, ospf, ospfv3, static
+              protocol: connected
+              protocol_variable: <HOSTNAME>
+              route_policy: <HOSTNAME>
+              route_policy_variable: <HOSTNAME>
+              optional: true
+          route_targets:
+            - imports:
+                - asn_ip: 65000:1
+                  asn_ip_variable: 10.0.0.1
+              exports:
+                - asn_ip: 65000:1
+                  asn_ip_variable: 10.0.0.1
+              optional: true
+# range 1-65527
+              vpn_id: 1
+              vpn_id_variable: <HOSTNAME>
+          table_map_policy: <HOSTNAME>
+          table_map_policy_variable: <HOSTNAME>
+          table_map_filter: true
+          table_map_filter_variable: <HOSTNAME>
+        ipv6_address_family:
+          default_information_originate: true
+          default_information_originate_variable: <HOSTNAME>
+# range 1-32
+          maximum_paths: 1
+          maximum_paths_variable: <HOSTNAME>
+          aggregate_addresses:
+            - prefix: 10.0.0.1
+              prefix_variable: 10.0.0.1
+              as_set_path: true
+              as_set_path_variable: <HOSTNAME>
+              summary_only: true
+              summary_only_variable: <HOSTNAME>
+              optional: true
+          neighbors:
+            - address: 10.0.0.1
+              address_variable: 10.0.0.1
+              address_families:
+                -
+# mandatory; allowed: ipv6-unicast
+                  family_type: ipv6-unicast
+# range 1-4294967295
+                  maximum_prefixes: 1
+                  maximum_prefixes_variable: <HOSTNAME>
+# range 1-65535
+                  maximum_prefixes_restart: 1
+                  maximum_prefixes_restart_variable: <HOSTNAME>
+# maximum 100
+                  maximum_prefixes_threshold: 1
+                  maximum_prefixes_threshold_variable: <HOSTNAME>
+                  maximum_prefixes_warning_only: true
+                  maximum_prefixes_warning_only_variable: <HOSTNAME>
+                  route_policy_in: <HOSTNAME>
+                  route_policy_in_variable: <HOSTNAME>
+                  route_policy_out: <HOSTNAME>
+                  route_policy_out_variable: <HOSTNAME>
+                  shutdown: true
+                  shutdown_variable: <HOSTNAME>
+                  optional: true
+# range 1-10
+              allow_as_in: 1
+              allow_as_in_variable: <HOSTNAME>
+              as_override: true
+              as_override_variable: <HOSTNAME>
+              description: <DESCRIPTION>
+              description_variable: <DESCRIPTION>
+# range 1-255
+              ebgp_multihop: 1
+              ebgp_multihop_variable: <HOSTNAME>
+              next_hop_self: true
+              next_hop_self_variable: <HOSTNAME>
+              password: <SECRET>
+              password_variable: <SECRET>
+# range 1-4294967295
+              remote_as: 1
+              remote_as_variable: <HOSTNAME>
+              send_community: true
+              send_community_variable: rt 65000:1
+              send_extended_community: true
+              send_extended_community_variable: rt 65000:1
+              send_label: true
+              send_label_variable: <HOSTNAME>
+              send_label_explicit_null: true
+              send_label_explicit_null_variable: <HOSTNAME>
+              shutdown: true
+              shutdown_variable: <HOSTNAME>
+              source_interface: 0/0.1
+              source_interface_variable: 0/0.1
+# maximum 65535
+              keepalive: 1
+              keepalive_variable: <HOSTNAME>
+# maximum 65535
+              holdtime: 1
+              holdtime_variable: <HOSTNAME>
+              optional: true
+          networks:
+            - prefix: 10.0.0.1
+              prefix_variable: 10.0.0.1
+              optional: true
+          redistributes:
+            -
+# allowed: connected, eigrp, nat, omp, ospf, ospfv3, static
+              protocol: connected
+              protocol_variable: <HOSTNAME>
+              route_policy: <HOSTNAME>
+              route_policy_variable: <HOSTNAME>
+              optional: true
+          route_targets:
+            - imports:
+                - asn_ip: 65000:1
+                  asn_ip_variable: 10.0.0.1
+              exports:
+                - asn_ip: 65000:1
+                  asn_ip_variable: 10.0.0.1
+              optional: true
+# range 1-65527
+              vpn_id: 1
+              vpn_id_variable: <HOSTNAME>
+          table_map_policy: <HOSTNAME>
+          table_map_policy_variable: <HOSTNAME>
+          table_map_filter: true
+          table_map_filter_variable: <HOSTNAME>
+# maximum 65535
+        keepalive: 1
+        keepalive_variable: <HOSTNAME>
+        missing_med_as_worst: true
+        missing_med_as_worst_variable: <HOSTNAME>
+        mpls_interfaces:
+          - interface_name: 0/0.1
+            interface_name_variable: 0/0.1
+        multipath_relax: true
+        multipath_relax_variable: <HOSTNAME>
+        propagate_as_path: true
+        propagate_as_path_variable: <HOSTNAME>
+        propagate_community: true
+        propagate_community_variable: rt 65000:1
+        router_id: 0/0.1
+        router_id_variable: <HOSTNAME>
+        shutdown: true
+        shutdown_variable: <HOSTNAME>

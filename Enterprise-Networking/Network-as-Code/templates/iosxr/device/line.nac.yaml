@@ -1,0 +1,212 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.line
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/line/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        line:
+          console:
+# maximum 10000; also accepts a string
+            absolute_timeout: 1
+# also accepts a string
+            access_class_egress: H%{4
+# also accepts a string
+            access_class_ingress: rS$)ErTL<5kLsT>\5 `%{Uk*3bcS/6vSVl
+# also accepts a string
+            accounting_commands: 'Y${&[:'
+# also accepts a string
+            accounting_exec: R;7LSj5XGvgt2*.${),D%x2t_]=<.ru
+# also accepts a string
+            authorization_commands: '@C#DDb%{WvWo8vuuI118+Bv5'
+# also accepts a string
+            authorization_eventmanager: La9t"j `N=.q%{93VU:-")%5lU?pQ%?
+# also accepts a string
+            authorization_exec: Oc<"J1u&a"GHt:b,I#${g>YbQ7<+`OJ8Wls+
+            cli_whitespace_completion: true
+# also accepts a string
+            disconnect_character: j*h47`[wCAh(++l%{50+kF
+# also accepts a string
+            escape_character: X<FQLGW7Y?-c3G%{d&*Cg=;/t2F0u[hv
+# maximum 35791; also accepts a string
+            exec_timeout_minutes: 1
+# maximum 2147483; also accepts a string
+            exec_timeout_seconds: 1
+# maximum 512; also accepts a string
+            length: 1
+# also accepts a string
+            login_authentication: kg:fTGuic5()M=HE%{"k`9uZ#/y9R<
+# allowed: less, more, none; also accepts a string
+            pager: less
+# also accepts a string
+            password: wO1>9%{`"B=w\_yvoF6b.&R6
+# allowed: 0, 7; also accepts a string
+            password_type: 0
+# also accepts a string
+            secret: -))]>%{
+# allowed: 0, 5; also accepts a string
+            secret_type: 0
+# maximum 20; also accepts a string
+            session_limit: 1
+# maximum 35791; also accepts a string
+            session_timeout: 1
+            session_timeout_output: true
+            telnet_transparent: true
+# maximum 300; also accepts a string
+            timeout_login_response: 1
+            timestamp_disable: true
+            transport_input:
+              - all
+            transport_output:
+              - all
+# allowed: none, ssh, telnet; also accepts a string
+            transport_preferred: none
+            user_groups:
+              -
+# mandatory; also accepts a string
+                name: p'ttJk6E%{qk%o?tgL&&jZ%RCJ
+# maximum 512; also accepts a string
+            width: 1
+          default:
+# maximum 10000; also accepts a string
+            absolute_timeout: 1
+# also accepts a string
+            access_class_egress: +(y8'0;Q]_73%${E?;,65O@($
+# also accepts a string
+            access_class_ingress: v%{3K
+# also accepts a string
+            accounting_commands: '%4&${gRLAQbwzw5n^w'
+# also accepts a string
+            accounting_exec: J8m^MYh*f@'PsXT%{RgzeV1V
+# also accepts a string
+            authorization_commands: "%zpRJs${c=XA5'Ab6"
+# also accepts a string
+            authorization_eventmanager: eG=jB0F<fXH%{C$z5$2CeTKP
+# also accepts a string
+            authorization_exec: )n'qI=kG4c${utC[3>
+# also accepts a string
+            autocommand: =fZdP-0/%{R;2uXMJiJQW
+            cli_whitespace_completion: true
+# also accepts a string
+            disconnect_character: O_;[xHh)u${ch_p3d`fz
+# also accepts a string
+            escape_character: oIs<H]H%#^X]l2O:aIJ${C;/-("(
+# maximum 35791; also accepts a string
+            exec_timeout_minutes: 1
+# maximum 2147483; also accepts a string
+            exec_timeout_seconds: 1
+# maximum 512; also accepts a string
+            length: 1
+# also accepts a string
+            login_authentication: a=&*!11/:B\?P2`K${1vJ!ld2
+# allowed: less, more, none; also accepts a string
+            pager: less
+# also accepts a string
+            password: l*>y]M?e>[`Z)v${V=<9
+# allowed: 0, 7; also accepts a string
+            password_type: 0
+# also accepts a string
+            secret: vCWoZp(Cw8%{UXQR:tX
+# allowed: 0, 5; also accepts a string
+            secret_type: 0
+# maximum 20; also accepts a string
+            session_limit: 1
+# maximum 35791; also accepts a string
+            session_timeout: 1
+            session_timeout_output: true
+            telnet_transparent: true
+# maximum 300; also accepts a string
+            timeout_login_response: 1
+            timestamp_disable: true
+            transport_input:
+              - all
+            transport_output:
+              - all
+# allowed: none, ssh, telnet; also accepts a string
+            transport_preferred: none
+            user_groups:
+              -
+# mandatory; also accepts a string
+                name: _R[1i${2[x]?lBe2TWINt1*
+# maximum 512; also accepts a string
+            width: 1
+          templates:
+            -
+# mandatory; also accepts a string
+              name: ^j6tSdF.XfY9I`4=H:s${9G`0dPXF@
+# maximum 10000; also accepts a string
+              absolute_timeout: 1
+# also accepts a string
+              access_class_egress: X:fhqGAz[goG]#${u52
+# also accepts a string
+              access_class_ingress: '*Uax${pyJv,z2'
+# also accepts a string
+              accounting_commands: 5.><!o"ZTIw"${eBb <x'r0;wX
+# also accepts a string
+              accounting_exec: O8SuF9CY%{Amd:!P?4p2%c"*
+# also accepts a string
+              authorization_commands: "'${X"
+# also accepts a string
+              authorization_eventmanager: y,tk0<btTVv%{?
+# also accepts a string
+              authorization_exec: (z?Df0"l#3%{Jds3
+# also accepts a string
+              autocommand: ',f2NZ_#za@$${bKl5peQ1'
+              cli_whitespace_completion: true
+# also accepts a string
+              disconnect_character: "^B\\,8\\JE8cnSmWK]AHp%{ry #YN'B'L0x"
+# also accepts a string
+              escape_character: ']\tt!`$A)uvAX%{)[,e*h);r^1">F0Xc _'
+# maximum 35791; also accepts a string
+              exec_timeout_minutes: 1
+# maximum 2147483; also accepts a string
+              exec_timeout_seconds: 1
+# maximum 512; also accepts a string
+              length: 1
+# also accepts a string
+              login_authentication: ${Ch!WnmKh%
+# allowed: less, more, none; also accepts a string
+              pager: less
+# also accepts a string
+              password: $jN8zPz%{n9IxC0[eR
+# allowed: 0, 7; also accepts a string
+              password_type: 0
+# also accepts a string
+              secret: u_/${N
+# allowed: 0, 5; also accepts a string
+              secret_type: 0
+# maximum 20; also accepts a string
+              session_limit: 1
+# maximum 35791; also accepts a string
+              session_timeout: 1
+              session_timeout_output: true
+              telnet_transparent: true
+# maximum 300; also accepts a string
+              timeout_login_response: 1
+              timestamp_disable: true
+              transport_input:
+                - all
+              transport_output:
+                - all
+# allowed: none, ssh, telnet; also accepts a string
+              transport_preferred: none
+              user_groups:
+                -
+# mandatory; also accepts a string
+                  name: n>z"HYM6;K${AN?J$O
+# maximum 512; also accepts a string
+              width: 1

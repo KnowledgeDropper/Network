@@ -1,0 +1,153 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.inventory.devices
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/fabric/port_assignment/
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/fabric/port_channel/
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/inventory/access_point/
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/inventory/assign_device_to_site/
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/inventory/device/
+catalyst_center:
+  inventory:
+    devices:
+      -
+# mandatory
+        name: <NAME>
+        fqdn_name: <NAME>
+# allowed: AccessPoint, WirelessController
+        type: AccessPoint
+        rf_profile: <HOSTNAME>
+        device_ip: 10.0.0.1
+# also accepts null
+        pid: <HOSTNAME>
+# also accepts null
+        serial_number: <HOSTNAME>
+# mandatory; allowed: INIT, PNP, PROVISION, REPROVISION, ASSIGN
+        state: INIT
+# mandatory; allowed: ACCESS, CORE, DISTRIBUTION, BORDER ROUTER
+        device_role: ACCESS
+# mandatory
+        site: <HOSTNAME>
+        fabric_site: <HOSTNAME>
+        fabric_zone: <HOSTNAME>
+        fabric_roles:
+          - BORDER_NODE
+        enable_wireless: true
+        clean_up_config: true
+        enable_rolling_ap_upgrade: true
+        image_name: <NAME>
+        image_id: 0/0.1
+        image_skip: true
+        stack:
+# mandatory
+          top_of_stack_serial_number: <HOSTNAME>
+# mandatory; allowed: 1A, 1B
+          cabling_scheme: 1A
+# allowed: 5, 15, 25
+        ap_reboot_percentage: 5
+        onboarding_template:
+# mandatory
+          name: <NAME>
+          variables:
+            -
+# mandatory
+              name: <NAME>
+# mandatory; also accepts a string; also accepts an integer
+              value:
+                - <HOSTNAME>
+        dayn_templates:
+          regular:
+            -
+# mandatory
+              name: <NAME>
+              variables:
+                -
+# mandatory
+                  name: <NAME>
+# mandatory; also accepts a string; also accepts an integer
+                  value:
+                    - <HOSTNAME>
+# allowed: ALWAYS, NEVER, ON_CHANGE
+              redeploy_template: ALWAYS
+              copying_config: true
+              force_push_template: true
+          composite:
+            -
+# mandatory
+              name: <NAME>
+              variables:
+                -
+# mandatory
+                  name: <NAME>
+# mandatory; also accepts a string; also accepts an integer
+                  value:
+                    - <HOSTNAME>
+# mandatory
+                  template_name: <NAME>
+# allowed: ALWAYS, NEVER, ON_CHANGE
+              redeploy_template: ALWAYS
+              copying_config: true
+              force_push_template: true
+# allowed: ALWAYS, NEVER, ON_CHANGE
+          redeploy_template: ALWAYS
+        primary_managed_ap_locations:
+          - <HOSTNAME>
+        secondary_managed_ap_locations:
+          - <HOSTNAME>
+        anchor_managed_ap_locations:
+          - <HOSTNAME>
+        port_assignments:
+          - interface_name: 0/0.1
+            interfaces_range: GigabitEthernet1/0/1-2/0/3
+            interface_description: <DESCRIPTION>
+# mandatory; allowed: USER_DEVICE, ACCESS_POINT, TRUNKING_DEVICE, AUTHENTICATOR_SWITCH,
+# SUPPLICANT_BASED_EXTENDED_NODE
+            connected_device_type: USER_DEVICE
+            data_vlan_name: '10'
+            voice_vlan_name: '10'
+            security_group_name: <NAME>
+# allowed: No Authentication, Open Authentication, Closed Authentication, Low Impact
+            authenticate_template_name: No Authentication
+        port_channels:
+          -
+# mandatory
+            id: 1
+# mandatory; allowed: TRUNK, EXTENDED_NODE
+            connected_device_type: TRUNK
+# allowed: ON, LACP, PAGP
+            protocol: ON
+            description: <DESCRIPTION>
+# mandatory
+            interface_names:
+              - 0/0.1
+# range 1-4094
+            native_vlan_id: 1
+            allowed_vlan_ranges: '10'
+        tags:
+          - <HOSTNAME>
+        access_point:
+          configuration: <HOSTNAME>
+          manage_hostname: true
+        wireless_management:
+# mandatory
+          ip_address: 10.0.0.1
+# mandatory
+          subnet_mask: 10.0.0.1
+# mandatory
+          gateway: 10.0.0.1
+# range 1-4094
+          vlan_id: 1
+# mandatory
+          interface_name: 0/0.1
+        rma:
+# mandatory; allowed: MARK_FOR_REPLACEMENT, REPLACE
+          action: MARK_FOR_REPLACEMENT
+          replacement_serial_number: <HOSTNAME>

@@ -1,0 +1,347 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.access_lists
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/access_list/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        access_lists:
+          options:
+            ipv4_icmp_off: true
+            ipv4_log_update_disable: true
+# range 1-1000; also accepts a string
+            ipv4_log_update_rate: 1
+# range 1-2147483647; also accepts a string
+            ipv4_log_update_threshold: 1
+            ipv6_icmp_off: true
+            ipv6_log_update_disable: true
+# range 1-1000; also accepts a string
+            ipv6_log_update_rate: 1
+# range 1-2147483647; also accepts a string
+            ipv6_log_update_threshold: 1
+          ipv4:
+            -
+# mandatory; also accepts a string
+              name: S@1KY-CKU6?5xZ+${p9"St" +%>+fAJ
+              entries:
+                -
+# mandatory; range 1-2147483646; also accepts a string
+                  sequence: 1
+# also accepts a string
+                  remark: c${pj
+# allowed: permit, deny; also accepts a string
+                  action: permit
+# allowed: ahp, eigrp, esp, gre, icmp, icmpv6, igmp, igrp, ipinip, ipv4, nos, ospf, pcp, pim,
+# sctp, tcp, udp, rsvp, vrrp; also accepts an integer; also accepts a string
+                  protocol: ahp
+                  source:
+# also accepts a string
+                    address: $zM<Z)j%{?9*p
+# also accepts a string
+                    wildcard_mask: k${Ki5@!l[
+# maximum 32; also accepts a string
+                    prefix_length: 1
+                    any: true
+# also accepts a string
+                    host: Ei63;6%t${(NOV5,
+# also accepts a string
+                    net_group: eY`3X[M\skmb%{Mh 3X?('`
+# also accepts a string
+                    port_group: '%{ ^xgXu!gE<)qq&HV'
+# allowed: equal, greater-than, less-than, not-equal, range; also accepts a string
+                    port_type: equal
+# allowed: bgp, chargen, cmd, daytime, discard, domain, echo, exec, finger, ftp, ftp-data, gopher,
+# hostname, https, ident, irc, klogin, kshell, ldp, login, lpd, nntp, pim-auto-rp, pop2, pop3,
+# radius, radius-acct, smtp, snmp, ssh, sunrpc, tacacs, talk, telnet, time, uucp, whois, www, bfd,
+# bootpc, bootps, dnsix, isakmp, mobile-ip, nameserver, netbios-dgm, netbios-ns, netbios-ss, ntp,
+# rip, snmptrap, tftp, xdmcp; also accepts an integer; also accepts a string
+                    port: bgp
+# allowed: bgp, chargen, cmd, daytime, discard, domain, echo, exec, finger, ftp, ftp-data, gopher,
+# hostname, https, ident, irc, klogin, kshell, ldp, login, lpd, nntp, pim-auto-rp, pop2, pop3,
+# radius, radius-acct, smtp, snmp, ssh, sunrpc, tacacs, talk, telnet, time, uucp, whois, www, bfd,
+# bootpc, bootps, dnsix, isakmp, mobile-ip, nameserver, netbios-dgm, netbios-ns, netbios-ss, ntp,
+# rip, snmptrap, tftp, xdmcp; also accepts an integer; also accepts a string
+                    port_range_from: bgp
+# allowed: bgp, chargen, cmd, daytime, discard, domain, echo, exec, finger, ftp, ftp-data, gopher,
+# hostname, https, ident, irc, klogin, kshell, ldp, login, lpd, nntp, pim-auto-rp, pop2, pop3,
+# radius, radius-acct, smtp, snmp, ssh, sunrpc, tacacs, talk, telnet, time, uucp, whois, www, bfd,
+# bootpc, bootps, dnsix, isakmp, mobile-ip, nameserver, netbios-dgm, netbios-ns, netbios-ss, ntp,
+# rip, snmptrap, tftp, xdmcp; also accepts an integer; also accepts a string
+                    port_range_to: bgp
+                  destination:
+# also accepts a string
+                    address: Ce;)[%{*/meU"M=hzwJcN4x_k?
+# also accepts a string
+                    wildcard_mask: ']xY=v6UITsE%{Rjc:-aJyH]L'
+# maximum 32; also accepts a string
+                    prefix_length: 1
+                    any: true
+# also accepts a string
+                    host: '[syH2=5Xj[?${dH*=]yd"'
+# also accepts a string
+                    net_group: ' Ft*hWanbc!q-.%{k8PR0P5OV'
+# also accepts a string
+                    port_group: ibCRE2.6*@`yiO-zq8?${;T.U
+# allowed: equal, greater-than, less-than, not-equal, range; also accepts a string
+                    port_type: equal
+# allowed: bgp, chargen, cmd, daytime, discard, domain, echo, exec, finger, ftp, ftp-data, gopher,
+# hostname, https, ident, irc, klogin, kshell, ldp, login, lpd, nntp, pim-auto-rp, pop2, pop3,
+# radius, radius-acct, smtp, snmp, ssh, sunrpc, tacacs, talk, telnet, time, uucp, whois, www, bfd,
+# bootpc, bootps, dnsix, isakmp, mobile-ip, nameserver, netbios-dgm, netbios-ns, netbios-ss, ntp,
+# rip, snmptrap, tftp, xdmcp; also accepts an integer; also accepts a string
+                    port: bgp
+# allowed: bgp, chargen, cmd, daytime, discard, domain, echo, exec, finger, ftp, ftp-data, gopher,
+# hostname, https, ident, irc, klogin, kshell, ldp, login, lpd, nntp, pim-auto-rp, pop2, pop3,
+# radius, radius-acct, smtp, snmp, ssh, sunrpc, tacacs, talk, telnet, time, uucp, whois, www, bfd,
+# bootpc, bootps, dnsix, isakmp, mobile-ip, nameserver, netbios-dgm, netbios-ns, netbios-ss, ntp,
+# rip, snmptrap, tftp, xdmcp; also accepts an integer; also accepts a string
+                    port_range_from: bgp
+# allowed: bgp, chargen, cmd, daytime, discard, domain, echo, exec, finger, ftp, ftp-data, gopher,
+# hostname, https, ident, irc, klogin, kshell, ldp, login, lpd, nntp, pim-auto-rp, pop2, pop3,
+# radius, radius-acct, smtp, snmp, ssh, sunrpc, tacacs, talk, telnet, time, uucp, whois, www, bfd,
+# bootpc, bootps, dnsix, isakmp, mobile-ip, nameserver, netbios-dgm, netbios-ns, netbios-ss, ntp,
+# rip, snmptrap, tftp, xdmcp; also accepts an integer; also accepts a string
+                    port_range_to: bgp
+# maximum 255; also accepts a string
+                  icmp_message_type: 1
+# maximum 255; also accepts a string
+                  icmp_message_code: 1
+# allowed: AdministrativelyProhibited, AlternateAddress, ConversionError, DODHostProhibited,
+# DODNetProhibited, Echo, EchoReply, GeneralParameterProblem, HostIsolated,
+# HostPrecedenceUnreachable, HostRedirect, HostTOSRedirect, HostTOSUnreachable, HostUnknown,
+# HostUnreachable, InformationReply, InformationRequest, MaskReply, MaskRequest, MobileRedirect,
+# NetTOSRedirect, NetTOSUnreachable, NetworkRedirect, NetworkUnknown, NetworkUnreachable,
+# NoRoomForOption, OptionMissing, PacketTooBig, ParameterProblem, PortUnreachable,
+# PrecedenceUnreachable, ProtocolUnreachable, ReassemblyTimeout, Redirect, RouterAdvertisement,
+# RouterSolicitation, SourceQuench, SourceRouteFailed, TTLExceeded, TimeExceeded, TimestampReply,
+# TimestampRequest, Traceroute, Unreachable; also accepts a string
+                  icmp_message_name: AdministrativelyProhibited
+                  tcp_flags:
+                    - fin
+# allowed: host-query, host-report, dvmrp, pim, trace, v2-report, v2-leave, mtrace-response,
+# mtrace, v3-report; also accepts an integer; also accepts a string
+                  igmp_type: host-query
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+                  dscp: af11
+# allowed: equal, greater-than, less-than, not-equal, range; also accepts a string
+                  dscp_type: equal
+# also accepts an integer; also accepts a string
+                  dscp_range_from: l8IDY,CXtEc:$FDWr-%{)6TM,q
+# also accepts an integer; also accepts a string
+                  dscp_range_to: EBz!.F %{b'YDr,'XOM
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+                  precedence: critical
+# allowed: dont-fragment, first-fragment, is-fragment, last-fragment, dont-fragment-is-fragment,
+# dont-fragment-first-fragment, dont-fragment-last-fragment; also accepts a string
+                  fragment_type: dont-fragment
+                  fragments: true
+# maximum 255; also accepts a string
+                  ttl: 1
+# allowed: equal, greater-than, less-than, not-equal, range; also accepts a string
+                  ttl_type: equal
+# maximum 255; also accepts a string
+                  ttl_range_from: 1
+# maximum 255; also accepts a string
+                  ttl_range_to: 1
+# maximum 65535; also accepts a string
+                  packet_length: 1
+# allowed: equal, greater-than, less-than, not-equal, range; also accepts a string
+                  packet_length_type: equal
+# maximum 65535; also accepts a string
+                  packet_length_range_from: 1
+# maximum 65535; also accepts a string
+                  packet_length_range_to: 1
+# also accepts an integer
+                  fragment_offset: zirs2%{wca1
+# allowed: equal, greater-than, less-than, not-equal, range; also accepts a string
+                  fragment_offset_type: equal
+# also accepts an integer
+                  fragment_offset_range_from: N_c%{X%E0gquw^"
+# also accepts an integer
+                  fragment_offset_range_to: 2b%{ >7Ap_`5b-EasZ;%%
+# also accepts a string
+                  nexthop1_ipv4: Q1g%(%{wk?
+# also accepts an integer; also accepts a string
+                  nexthop1_track: ATvcc&vTHS]h;GzV`%{,L.PMJ1:?
+# also accepts an integer; also accepts a string
+                  nexthop1_vrf: ?Q*M(a0Xf<'")Oxi'h%{<]v?p
+# also accepts a string
+                  nexthop2_ipv4: '4dZsb%{"kTZzoZmxi3:'
+# also accepts an integer; also accepts a string
+                  nexthop2_track: ' R#03J${;Iq)5dRI6B"a'
+# also accepts an integer; also accepts a string
+                  nexthop2_vrf: eABMmvBa<XLc[r${:JQj
+# also accepts a string
+                  nexthop3_ipv4: '#${jRS+^&=sK/'
+# also accepts an integer; also accepts a string
+                  nexthop3_track: NNao!(uoH=xno%{B$irLM0
+# also accepts an integer; also accepts a string
+                  nexthop3_vrf: )NuWcMkjmCZrRmI;%F=%{XQ@R`d>5
+                  nexthop_default: true
+                  log: true
+                  log_input: true
+# also accepts a string
+                  counter: -86_xS1PZ)3>&-zO%{qtY(!,;)!>B9P
+                  capture: true
+                  icmp_off: true
+          ipv6:
+            -
+# mandatory; also accepts a string
+              name: '`5]RA${6(!$S4[lpd!2N7j'
+              entries:
+                -
+# mandatory; range 1-2147483646; also accepts a string
+                  sequence: 1
+# also accepts a string
+                  remark: d%{+,5@["`vE-w1EN3,`nq
+# allowed: permit, deny; also accepts a string
+                  action: permit
+# allowed: ahp, eigrp, esp, gre, icmpv6, igrp, ipv6, ospf, pcp, pim, sctp, tcp, udp, rsvp, vrrp;
+# also accepts an integer; also accepts a string
+                  protocol: ahp
+                  source:
+# also accepts a string
+                    address: 24${5=PW1@ `L
+# maximum 128; also accepts a string
+                    prefix_length: 1
+                    any: true
+# also accepts a string
+                    host: ub=xgt%.>rvM?28GU%{`FfW+"-q]Ph?06mF
+# also accepts a string
+                    net_group: L%{2_TeO>K=
+# also accepts a string
+                    port_group: S%{W4Q;`&J]7z,JaIAO1
+# allowed: equal, greater-than, less-than, not-equal, range; also accepts a string
+                    port_type: equal
+# allowed: bgp, chargen, cmd, daytime, discard, domain, echo, exec, finger, ftp, ftp-data, gopher,
+# hostname, https, ident, irc, klogin, kshell, ldp, login, lpd, nntp, pim-auto-rp, pop2, pop3,
+# radius, radius-acct, smtp, snmp, ssh, sunrpc, tacacs, talk, telnet, time, uucp, whois, www, bfd,
+# bootpc, bootps, dnsix, isakmp, mobile-ip, nameserver, netbios-dgm, netbios-ns, netbios-ss, ntp,
+# rip, snmptrap, tftp, xdmcp; also accepts an integer; also accepts a string
+                    port: bgp
+# allowed: bgp, chargen, cmd, daytime, discard, domain, echo, exec, finger, ftp, ftp-data, gopher,
+# hostname, https, ident, irc, klogin, kshell, ldp, login, lpd, nntp, pim-auto-rp, pop2, pop3,
+# radius, radius-acct, smtp, snmp, ssh, sunrpc, tacacs, talk, telnet, time, uucp, whois, www, bfd,
+# bootpc, bootps, dnsix, isakmp, mobile-ip, nameserver, netbios-dgm, netbios-ns, netbios-ss, ntp,
+# rip, snmptrap, tftp, xdmcp; also accepts an integer; also accepts a string
+                    port_range_from: bgp
+# allowed: bgp, chargen, cmd, daytime, discard, domain, echo, exec, finger, ftp, ftp-data, gopher,
+# hostname, https, ident, irc, klogin, kshell, ldp, login, lpd, nntp, pim-auto-rp, pop2, pop3,
+# radius, radius-acct, smtp, snmp, ssh, sunrpc, tacacs, talk, telnet, time, uucp, whois, www, bfd,
+# bootpc, bootps, dnsix, isakmp, mobile-ip, nameserver, netbios-dgm, netbios-ns, netbios-ss, ntp,
+# rip, snmptrap, tftp, xdmcp; also accepts an integer; also accepts a string
+                    port_range_to: bgp
+                  destination:
+# also accepts a string
+                    address: +.%{7^o"7w.,n17Gm!)
+# maximum 128; also accepts a string
+                    prefix_length: 1
+                    any: true
+# also accepts a string
+                    host: vl02%{k6`TH
+# also accepts a string
+                    net_group: 4+-@?FllTqZ0Xw#_${iiFucx-e`xoT;
+# also accepts a string
+                    port_group: F<bGhafC)@${>-#BzXnwcN/=V@5;
+# allowed: equal, greater-than, less-than, not-equal, range; also accepts a string
+                    port_type: equal
+# allowed: bgp, chargen, cmd, daytime, discard, domain, echo, exec, finger, ftp, ftp-data, gopher,
+# hostname, https, ident, irc, klogin, kshell, ldp, login, lpd, nntp, pim-auto-rp, pop2, pop3,
+# radius, radius-acct, smtp, snmp, ssh, sunrpc, tacacs, talk, telnet, time, uucp, whois, www, bfd,
+# bootpc, bootps, dnsix, isakmp, mobile-ip, nameserver, netbios-dgm, netbios-ns, netbios-ss, ntp,
+# rip, snmptrap, tftp, xdmcp; also accepts an integer; also accepts a string
+                    port: bgp
+# allowed: bgp, chargen, cmd, daytime, discard, domain, echo, exec, finger, ftp, ftp-data, gopher,
+# hostname, https, ident, irc, klogin, kshell, ldp, login, lpd, nntp, pim-auto-rp, pop2, pop3,
+# radius, radius-acct, smtp, snmp, ssh, sunrpc, tacacs, talk, telnet, time, uucp, whois, www, bfd,
+# bootpc, bootps, dnsix, isakmp, mobile-ip, nameserver, netbios-dgm, netbios-ns, netbios-ss, ntp,
+# rip, snmptrap, tftp, xdmcp; also accepts an integer; also accepts a string
+                    port_range_from: bgp
+# allowed: bgp, chargen, cmd, daytime, discard, domain, echo, exec, finger, ftp, ftp-data, gopher,
+# hostname, https, ident, irc, klogin, kshell, ldp, login, lpd, nntp, pim-auto-rp, pop2, pop3,
+# radius, radius-acct, smtp, snmp, ssh, sunrpc, tacacs, talk, telnet, time, uucp, whois, www, bfd,
+# bootpc, bootps, dnsix, isakmp, mobile-ip, nameserver, netbios-dgm, netbios-ns, netbios-ss, ntp,
+# rip, snmptrap, tftp, xdmcp; also accepts an integer; also accepts a string
+                    port_range_to: bgp
+# maximum 255; also accepts a string
+                  icmp_message_type: 1
+# maximum 255; also accepts a string
+                  icmp_message_code: 1
+# allowed: AdministrativelyProhibited, AddressUnreachable, BeyondScopeOfSourceAddress,
+# DestinationUnreachable, Echo, EchoReply, ErroneousHeaderField, GroupMembershipQuery,
+# GroupMembershipReduction, GroupMembershipReport, NeighborAdvertisement, NeighborRedirect,
+# NeighborSolicitation, NoRouteToDestination, NodeInformationRequestIsRefused,
+# NodeInformationSuccessfulReply, PacketTooBig, ParameterProblem, PortUnreachable,
+# QuerySubjectIsDomainName, QuerySubjectIsIPv4Address, QuerySubjectIsIPv6Address, RRCommand,
+# RRResult, RRSeqnumReset, ReassemblyOption, RouterAdvertisement, RouterRenumbering,
+# RouterSolicitation, TTLExceeded, TimeExceeded, UnknownQueryType, UnrecognizedNextHeader,
+# UnrecognizedOption, WhoAreYouReply, WhoAreYouRequest; also accepts a string
+                  icmp_message_name: AdministrativelyProhibited
+                  tcp_flags:
+                    - fin
+                  headers:
+                    - routing
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+                  dscp: af11
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+                  precedence: critical
+# allowed: first-fragment, is-fragment; also accepts a string
+                  fragment_type: first-fragment
+# maximum 255; also accepts a string
+                  ttl: 1
+# allowed: equal, greater-than, less-than, not-equal, range; also accepts a string
+                  ttl_type: equal
+# maximum 255; also accepts a string
+                  ttl_range_from: 1
+# maximum 255; also accepts a string
+                  ttl_range_to: 1
+# maximum 65535; also accepts a string
+                  packet_length: 1
+# allowed: equal, greater-than, less-than, not-equal, range; also accepts a string
+                  packet_length_type: equal
+# maximum 65535; also accepts a string
+                  packet_length_range_from: 1
+# maximum 65535; also accepts a string
+                  packet_length_range_to: 1
+# also accepts a string
+                  nexthop1_ipv6: hy--4q#Y-.,/3s${AE(^
+# also accepts an integer; also accepts a string
+                  nexthop1_track: 7vSd5${iU
+# also accepts an integer; also accepts a string
+                  nexthop1_vrf: 4yXzou2Qn<J_I+)uPn${mDw"d2ue
+# also accepts a string
+                  nexthop2_ipv6: zP!,PTgyMi8";K[`#%{UyIm<daR
+# also accepts an integer; also accepts a string
+                  nexthop2_track: G>:SWU%F`WIMB1YUz-y${E-
+# also accepts an integer; also accepts a string
+                  nexthop2_vrf: TQk3o 3n%{S)H9%yvZ!F!F-/z/5co
+# also accepts a string
+                  nexthop3_ipv6: 1A%{W$_Oo8($ws8X;r
+# also accepts an integer; also accepts a string
+                  nexthop3_track: -<9\K+BOlc&+!%{&v7
+# also accepts an integer; also accepts a string
+                  nexthop3_vrf: 'l$#G${y reSZ"T5>7zL$f[3M:'
+                  log: true
+                  log_input: true
+# also accepts a string
+                  counter: Sg^6oDdQz](mT[1Ib?%{0t#bp-%Zusj
+                  capture: true
+                  icmp_off: true

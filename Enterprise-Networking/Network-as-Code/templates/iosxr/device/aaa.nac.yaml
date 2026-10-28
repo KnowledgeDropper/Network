@@ -1,0 +1,206 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.aaa
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs: schema section without a dedicated page in the docs nav.
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        aaa:
+          accounting:
+            commands:
+              -
+# mandatory; also accepts a string
+                name: s%{=v/
+                groups:
+                  - "&5b#k[${A8t_ksJgnz-'FXq^%"
+# allowed: start-stop, stop-only; also accepts a string
+                records: start-stop
+            exec:
+              -
+# mandatory; also accepts a string
+                name: =/HB)hXbSJ"a9sNfhy,%{P>eA!*w""
+                groups:
+                  - O8<l$W=>AS${uMa%]yQp[2H[Dic
+# allowed: start-stop, stop-only; also accepts a string
+                records: start-stop
+            network:
+              -
+# mandatory; also accepts a string
+                name: 9&z<#[^ep<8AD0B`l!%{&Tr
+                groups:
+                  - "%@z,%I$'H4EF%{t6@X6Qf=sF#H)j*"
+# allowed: start-stop, stop-only; also accepts a string
+                records: start-stop
+            system:
+              -
+# mandatory; also accepts a string
+                name: 8Q"J;0='<o]pq8,d%{WisWwqwCfn311Ipc
+                broadcast: true
+                groups:
+                  - '%{K"fu^o,,+)'
+# allowed: start-stop; also accepts a string
+                records: start-stop
+            update_newinfo: true
+# range 1-35791394; also accepts a string
+            update_periodic: 1
+          authentication:
+            login:
+              -
+# mandatory; also accepts a string
+                name: +14e*re,Vi${51BQo$y,&]P?_&YkR
+                groups:
+                  - '@d[rYc:J3${Nsn8S9j '
+          authorization:
+            commands:
+              -
+# mandatory; also accepts a string
+                name: 26VV@LQ$0`WSg `[lrx${n""?Xl5yD^L
+                groups:
+                  - '!%{rl&N.anZ'
+            eventmanager:
+              -
+# mandatory; also accepts a string
+                name: '#${'
+                groups:
+                  - ^<2Pj^n`&${;B1,[7\L
+            exec:
+              -
+# mandatory; also accepts a string
+                name: 7#L[%{w:==EI:r<
+                groups:
+                  - '`<<5[k;kS${)3qk^+\)xQ?Mq'
+            network:
+              -
+# mandatory; also accepts a string
+                name: RX"Z?%{BMJ:DyVURR$45Vl
+                groups:
+                  - "@FKo2hS-d!y';${T'C0]M$?R&5T"
+# also accepts a string
+          banner_login: '[lR ==o2DxLd%%{VHTE'
+# also accepts a string
+          default_taskgroup: JhG4el%oAI*HJpA;$g%{kUG8=e*\.cF-V
+          group_servers:
+            radius:
+              -
+# mandatory; also accepts a string
+                name: )%{
+# also accepts a string
+                accounting_reply_accept_list: '"isL*sHK-q;f${*L;/../3M-'
+# also accepts a string
+                accounting_reply_reject_list: '`6D(5mI_${Ks10x&6=$qY2-Hl[Tp?'
+# also accepts a string
+                accounting_request_accept_list: o+${1q/]CKL\
+# also accepts a string
+                accounting_request_reject_list: 9!3.%{/s]XXRNI
+# also accepts a string
+                authorization_reply_accept_list: hF<'8S#U?(ezYlo8:p${o
+# also accepts a string
+                authorization_reply_reject_list: R+>9UQvqwi${3GY4hyE
+# also accepts a string
+                authorization_request_accept_list: dbCX]R5+A1${,g
+# also accepts a string
+                authorization_request_reject_list: U^%{@rK>VZ3zK=
+# maximum 1440; also accepts a string
+                deadtime: 1
+                load_balance_method_least_outstanding: true
+# also accepts an integer
+                load_balance_method_least_outstanding_batch_size: Ed${2XJBjYRnk:mC#gS
+                load_balance_method_least_outstanding_ignore_preferred_server: true
+                server_privates:
+                  -
+# mandatory; also accepts a string
+                    address: .[KGP@&1wD5%{DZQOp
+# also accepts an integer
+                    acct_port: ']MH${C[?J?3.A'
+# also accepts an integer
+                    auth_port: 9j_5#k0p%{E4+KW%
+# also accepts an integer
+                    idle_time: Do${;q<#Tqhu2;@D:'
+                    ignore_acct_port: true
+                    ignore_auth_port: true
+                    key: <HOSTNAME>
+# allowed: 6, 7; also accepts a string
+                    key_type: 6
+# also accepts an integer
+                    retransmit: "'k>mfo]g[[/a*Nd%{)fh%q96RDGjGzD^>"
+# also accepts a string
+                    test_username: oO=[M%{qo=
+# also accepts an integer
+                    timeout: "NlDa%Xic'b^XAX?D${5s #f1gMWp]dwT_5a"
+                servers:
+                  -
+# mandatory; also accepts a string
+                    address: bEDJ.)9;+agc3&q ^%{x4?+
+# also accepts an integer
+                    acct_port: 9T%L8(dHx%{
+# also accepts an integer
+                    auth_port: lyw3=Qt%49%{E4$6#S)+,
+# also accepts a string
+                source_interface: D${L>`_R
+                throttle:
+# also accepts an integer
+                  access: 'fy/Z]0DV$/851iH${0Qp"ff):9M1h '
+# also accepts an integer
+                  access_timeout: '`Qs8h7O!6]N""@${UiykO;B,['
+# also accepts an integer
+                  accounting: F\Mw!EvLzp%{G5"^;'4J`J!dd
+# also accepts a string
+                vrf: ySm`<]1Zo<H!Y_<&+.${+/
+            tacacs:
+              -
+# mandatory; also accepts a string
+                name: DFg>w&vp\t%{=
+# also accepts an integer
+                holddown_time: ;iSWx_afk93"tG6${0Xt.S$I$:*^4Z^pFY4
+                server_privates:
+                  -
+# mandatory; also accepts a string
+                    address: 2eZkIukG\P${(y;D]ncP@PN %!(RGZ
+# also accepts an integer
+                    holddown_time: S+${()[0gf+P
+                    key: <HOSTNAME>
+# allowed: 6, 7; also accepts a string
+                    key_type: 6
+# also accepts an integer
+                    port: BiyXbmiT^%{7=
+                    single_connection: true
+# also accepts an integer
+                    single_connection_idle_timeout: dS<m^e"1OM5Jf,%{fZE4!$OC.A)
+# also accepts an integer
+                    timeout: p%{fl@<[q:*Ih8T3;_:@*T
+                servers:
+                  -
+# mandatory; also accepts a string
+                    address: 3Wr9,\jfo,,OyaN2%{3M.65"=IV;`\ww%c
+# also accepts a string
+                vrf: eM6.#_9${.:$y!-7e@x1r?X
+          server:
+            radius_dynamic_author:
+              clients:
+                -
+# mandatory; also accepts a string
+                  address: '#vq&x`[5V#g${9VHLDQna2v'
+                  key: <HOSTNAME>
+# allowed: 6, 7; also accepts a string
+                  key_type: 6
+# also accepts a string
+                  vrf: fT%m&ovpeojK%{Thyr=*
+              ignore_server_key: true
+              key: <HOSTNAME>
+# allowed: 6, 7; also accepts a string
+              key_type: 6
+# range 1000-65535; also accepts a string
+              port: 1000

@@ -1,0 +1,166 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.access_lists
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/access_list/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        access_lists:
+          standard:
+            -
+# mandatory
+              name: <NAME>
+              entries:
+                -
+# mandatory; also accepts an integer
+                  sequence: s&%I'?@3Wao%{m
+                  remark: <DESCRIPTION>
+# allowed: deny, permit; also accepts a string
+                  action: deny
+# also accepts a string
+                  prefix: xWV ["X%{xT2\
+# also accepts a string
+                  prefix_mask: 5Ms2w].%{3r3hU+
+                  any: true
+# also accepts a string
+                  host: '_!H14JUS=*[wR_\,${2)p+C0C '
+                  log: true
+          extended:
+            -
+# mandatory
+              name: <NAME>
+              entries:
+                -
+# mandatory; also accepts an integer
+                  sequence: +.Ct^HP${
+                  remark: <DESCRIPTION>
+# allowed: deny, permit; also accepts a string
+                  action: deny
+# allowed: ahp, eigrp, esp, gre, icmp, igmp, ip, ipinip, nos, object-group, ospf, pcp, pim, tcp,
+# udp; also accepts an integer; also accepts a string
+                  protocol: ahp
+                  service_object_group: <HOSTNAME>
+                  source:
+# also accepts a string
+                    prefix: n%{_$[/u!tG#b=`I8uM+8
+# also accepts a string
+                    prefix_mask: HATg40Ky%{&n\Z0
+                    any: true
+# also accepts a string
+                    host: K);y1T$B&EuJVkb"%{
+                    object_group: <HOSTNAME>
+                    fqdn_group: <HOSTNAME>
+# allowed: equal, greater_than, lesser_than, range; also accepts a string
+                    port_type: equal
+# also accepts an integer; also accepts a string
+                    port: X 2(9w${Th6X;7^m@Bvm
+# also accepts a string
+                    additional_equal_ports:
+                      - 1
+# also accepts an integer
+                    port_range_from: FC'#Lc5'lz_z.gL%{Lt/<aQ![+meKYn
+# also accepts an integer
+                    port_range_to: a"?.Z7pk58ubIR%{.mD2gX>eVh*
+                  destination:
+# also accepts a string
+                    prefix: RL<Z\``n${tAwjxZjludohf9Z^Q
+# also accepts a string
+                    prefix_mask: ^'YeVb!<o IDHDNLFbA${
+                    any: true
+# also accepts a string
+                    host: or_/oKV9eYI4skD%{t0WIrNH
+                    object_group: <HOSTNAME>
+                    fqdn_group: <HOSTNAME>
+# allowed: equal, greater_than, lesser_than, range; also accepts a string
+                    port_type: equal
+# also accepts an integer; also accepts a string
+                    port: -B@${y:x(7NA+(pb2
+# also accepts a string
+                    additional_equal_ports:
+                      - 1
+# also accepts an integer
+                    port_range_from: c @hO${/7]C=)\
+# also accepts an integer
+                    port_range_to: '@.,$d8NQCJ>%{Q+cga3ryyBDhJbla>'
+                  tcp_flags:
+                    - ack
+                  established: true
+                  fragments: true
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, dscp, ef, precedence; also accepts an integer; also accepts a
+# string
+                  dscp: af11
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+                  precedence: critical
+# allowed: max-reliability, max-throughput, min-delay, min-monetary-cost, normal; also accepts an
+# integer; also accepts a string
+                  tos: max-reliability
+# maximum 255; also accepts a string
+                  icmp_message_type: 1
+# maximum 255; also accepts a string
+                  icmp_message_code: 1
+                  log: true
+                  log_input: true
+          role_based:
+            -
+# mandatory
+              name: <NAME>
+              entries:
+                -
+# mandatory; range 1-2147483647; also accepts a string
+                  sequence: 1
+                  remark: <DESCRIPTION>
+# allowed: deny, permit; also accepts a string
+                  action: deny
+# allowed: ahp, eigrp, esp, gre, icmp, igmp, ip, ipinip, nos, object-group, ospf, pcp, pim, tcp,
+# udp; also accepts an integer; also accepts a string
+                  protocol: ahp
+                  tcp_flags:
+                    - ack
+                  established: true
+                  fragments: true
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, dscp, ef, precedence; also accepts an integer; also accepts a
+# string
+                  dscp: af11
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+                  precedence: critical
+# allowed: max-reliability, max-throughput, min-delay, min-monetary-cost, normal; also accepts an
+# integer; also accepts a string
+                  tos: max-reliability
+# allowed: add-ext, any-options, com-security, dps, encode, eool, ext-ip, ext-security, finn,
+# imitd, lsr, mtup, mtur, no-op, nsapa, record-route, router-alert, sdb, security, ssr, stream-id,
+# timestamp, traceroute, ump, visa, zsu; also accepts an integer; also accepts a string
+                  option: add-ext
+# also accepts a string
+                  time_range: '"-E%{#wB97-J?a'
+                  log: true
+                  log_input: true
+                  match_all:
+                    - +ack
+                  match_any:
+                    - +ack
+          as_path:
+            -
+# mandatory; range 1-500; also accepts a string
+              number: 1
+              entries:
+                -
+# mandatory; allowed: permit, deny; also accepts a string
+                  action: permit
+# mandatory
+                  regex: <HOSTNAME>

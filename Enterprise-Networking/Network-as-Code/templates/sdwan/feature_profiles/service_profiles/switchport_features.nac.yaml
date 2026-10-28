@@ -1,0 +1,93 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.service_profiles[].switchport_features
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_service/service_switchport/
+sdwan:
+  feature_profiles:
+    service_profiles:
+      -
+# mandatory
+        name: example-name
+        switchport_features:
+          -
+# mandatory
+            name: example-name
+            description: <DESCRIPTION>
+# maximum 1000000
+            age_out_time: 1
+            age_out_time_variable: example-host
+            interfaces:
+              - name: GigabitEthernet0/0
+                name_variable: example-host
+# range 1-4094
+                access_vlan: 1
+                access_vlan_variable: '10'
+# allowed: both, in
+                control_direction: both
+                control_direction_variable: example-host
+# range 1-4094
+                critical_vlan: 1
+                critical_vlan_variable: '10'
+# allowed: full, half
+                duplex: full
+                duplex_variable: example-host
+                enable_dot1x: true
+                enable_periodic_reauth: true
+                enable_periodic_reauth_variable: example-host
+                enable_voice: true
+                enable_voice_variable: example-host
+# range 1-4094
+                guest_vlan: 1
+                guest_vlan_variable: '10'
+# allowed: single-host, multi-auth, multi-host, multi-domain
+                host_mode: single-host
+                host_mode_variable: 10.0.0.1
+# range 1-65535
+                inactivity: 1
+                inactivity_variable: example-host
+                mac_authentication_bypass: true
+                mac_authentication_bypass_variable: 00-11-22-33-44-55
+# mandatory; allowed: access, trunk
+                mode: access
+                pae_enable: true
+                pae_enable_variable: example-host
+# allowed: auto, force-authorized, force-unauthorized
+                port_control: auto
+                port_control_variable: example-host
+# range 1-1073741823
+                reauthentication: 1
+                reauthentication_variable: example-host
+# range 1-4094
+                restricted_vlan: 1
+                restricted_vlan_variable: '10'
+                shutdown: true
+                shutdown_variable: example-host
+# allowed: 10, 100, 1000, 2500, 5000, 10000, 25000
+                speed: 10
+                speed_variable: example-host
+                trunk_allowed_vlans:
+                  - 1
+                trunk_allowed_vlans_variable: '10'
+# range 1-4094
+                trunk_native_vlan: 1
+                trunk_native_vlan_variable: '10'
+# range 1-4094
+                voice_vlan: 1
+                voice_vlan_variable: '10'
+            static_mac_addresses:
+              - interface_name: GigabitEthernet0/0
+                interface_name_variable: 0/0.1
+                mac_address: 0011.2233.4455
+                mac_address_variable: 00-11-22-33-44-55
+# range 1-4094
+                vlan_id: 1
+                vlan_id_variable: '10'

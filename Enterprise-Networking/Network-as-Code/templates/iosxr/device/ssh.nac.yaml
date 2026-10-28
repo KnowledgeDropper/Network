@@ -1,0 +1,114 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.ssh
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/ssh/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        ssh:
+          client:
+            algorithms:
+# also accepts a string
+              ciphers:
+                - aes128-ctr
+# also accepts a string
+              key_exchanges:
+                - ecdh-sha2-nistp521
+# also accepts a string
+            disable_hmacs:
+              - sha1
+# maximum 63; also accepts a string
+            dscp: 1
+# also accepts a string
+            enable_ciphers:
+              - aes_cbc
+# also accepts an integer
+            rekey_time: yk]iSn^%{iJ4.
+# also accepts an integer
+            rekey_volume: YlIr${dWMq7m4cR'3
+# also accepts a string
+            source_interface: 33${C4K-dpKez>6-xcK7m_
+# also accepts an integer
+            tcp_window_scale: ${Oub'R
+            v1: true
+            v2: true
+# also accepts a string
+            vrf: 7[uw%Y2a%{r0Fp
+          server:
+            algorithms:
+# also accepts a string
+              ciphers:
+                - aes128-ctr
+# also accepts a string
+              host_keys:
+                - dsa
+# also accepts a string
+              key_exchanges:
+                - ecdh-sha2-nistp521
+# also accepts a string
+            disable_hmacs:
+              - sha1
+# maximum 63; also accepts a string
+            dscp: 1
+# also accepts a string
+            enable_ciphers:
+              - aes_cbc
+            logging: true
+# also accepts an integer
+            max_auth_limit: Ue]g.-"by%{^Q,5Gd9a:ZI2q
+# also accepts an integer
+            netconf_port: gf"%{2Gk=h1/_H@#Vo"[U;/k
+            netconf_vrfs:
+              -
+# mandatory; also accepts a string
+                name: '=QY.6wktFtfzz8RA#Gt%{2()l("l=vRG>>"j`:'
+# also accepts a string
+                ipv4_access_list: Q?_/s"Z@]zG%{?!RNxYEU
+# also accepts a string
+                ipv6_access_list: 3y93${<
+            netconf_xml: true
+# also accepts an integer
+            port: c@${"5 m5&H5&dLQE
+            port_forwarding_local: true
+# range 1-600; also accepts a string
+            rate_limit: 1
+# also accepts an integer
+            rekey_time: jEuHln6@A@FAt1R9R*o%{(dxj4^)'"I)+_RL8$X
+# also accepts an integer
+            rekey_volume: '&${tzXS'
+# range 1-1024; also accepts a string
+            session_limit: 1
+# also accepts an integer
+            tcp_window_scale: fLb'lh"T)^$s'rC9Y16${J
+            usernames:
+              -
+# mandatory; also accepts a string
+                name: O${
+# also accepts a string
+                keystring: Z^r,h/)MGJju${YZ.OS<
+            v1: true
+            v2: true
+            vrfs:
+              -
+# mandatory; also accepts a string
+                name: u.eC^&o.d)PghNl${
+# also accepts a string
+                ipv4_access_list: ^$dei]3&XU`XD${^yD`DQA)Rkhfe_M*i
+# also accepts a string
+                ipv6_access_list: '&atbB,gd<p?Jtg%{t2'
+# also accepts an integer
+          timeout: gLU9[]Z+q#=cbD${yy

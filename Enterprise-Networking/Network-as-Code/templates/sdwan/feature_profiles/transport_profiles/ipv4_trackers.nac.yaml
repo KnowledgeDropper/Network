@@ -1,0 +1,45 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.transport_profiles[].ipv4_trackers
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_transport/transport_ipv4_tracker/
+sdwan:
+  feature_profiles:
+    transport_profiles:
+      -
+# mandatory
+        name: example-name
+        ipv4_trackers:
+          -
+# mandatory
+            name: example-name
+            description: <DESCRIPTION>
+            endpoint_api_url: https://example.com
+            endpoint_api_url_variable: example-host
+            endpoint_dns_name: <NAME>
+            endpoint_dns_name_variable: example-host
+            endpoint_ip: 10.0.0.1
+            endpoint_ip_variable: 10.0.0.1
+# allowed: http, icmp
+            endpoint_tracker_type: http
+# range 2-1000
+            interval: 2
+            interval_variable: example-host
+# range 1-10
+            multiplier: 1
+            multiplier_variable: example-host
+# range 100-1000
+            threshold: 100
+            threshold_variable: example-host
+            tracker_name: example-name
+            tracker_name_variable: example-host
+# allowed: endpoint
+            tracker_type: endpoint

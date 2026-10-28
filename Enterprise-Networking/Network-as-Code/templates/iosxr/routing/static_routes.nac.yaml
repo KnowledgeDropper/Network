@@ -1,0 +1,693 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.routing.static_routes
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/router_static/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        routing:
+          static_routes:
+            address_family:
+              ipv4_unicast:
+                prefixes:
+                  -
+# mandatory; also accepts a string
+                    address: Vla${BM`8jV1zi:Y
+# mandatory; maximum 128; also accepts a string
+                    length: 1
+                    next_hops:
+                      -
+# also accepts a string
+                        interface: U%{ARavU8Ziw!21pIf'^
+# also accepts a string
+                        ip: X2v)53%eW!,wS${4;Xx;DljC
+# range 1-30000; also accepts a string
+                        bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                        bfd_fast_detect_multiplier: 1
+# also accepts a string
+                        description: /pdu>4%{9/Ez)sk_
+# range 1-254; also accepts a string
+                        distance: 1
+# range 1-16777214; also accepts a string
+                        metric: 1
+                        permanent: true
+# range 1-4294967295; also accepts a string
+                        tag: 1
+# also accepts a string
+                        track: '"keG96${]Sx@rb[/SVtO\=d'
+                    sr_policies:
+                      -
+# mandatory; also accepts a string
+                        name: '@%{C'
+# also accepts a string
+                        description: Tw<%M0LtBY7^Hf9${+b8gIG:8*T=
+# range 1-4294967295; also accepts a string
+                        tag: 1
+# range 1-254; also accepts a string
+                        distance: 1
+                        permanent: true
+# also accepts a string
+                        track: r/?/#@rh:E%{e
+# range 1-16777214; also accepts a string
+                        metric: 1
+                    vrfs:
+                      -
+# mandatory; also accepts a string
+                        name: v%{1LGMn
+                        next_hops:
+                          -
+# also accepts a string
+                            interface: \l;Bx%{
+# also accepts a string
+                            ip: 5^/^k_D8rPBuU/v%{,i$p
+# range 1-30000; also accepts a string
+                            bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                            bfd_fast_detect_multiplier: 1
+# also accepts a string
+                            description: =<@vmr3ZK\^fn%{iJhL74
+# range 1-254; also accepts a string
+                            distance: 1
+# range 1-16777214; also accepts a string
+                            metric: 1
+                            permanent: true
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# also accepts a string
+                            track: ;[eKHStBh.H#yI${W4aa*Pm<JR,v,xOR
+                        sr_policies:
+                          -
+# mandatory; also accepts a string
+                            name: pLhlCw1fQ<)V${-bcV
+# also accepts a string
+                            description: v6=V:*%{
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# range 1-254; also accepts a string
+                            distance: 1
+                            permanent: true
+# also accepts a string
+                            track: =Sl]n!QVZi;;1^P+m>%{wmtj
+# range 1-16777214; also accepts a string
+                            metric: 1
+              ipv6_unicast:
+                prefixes:
+                  -
+# mandatory; also accepts a string
+                    address: 0XyU.y[:%{K*&1aqpd"waK<E
+# mandatory; maximum 128; also accepts a string
+                    length: 1
+                    next_hops:
+                      -
+# also accepts a string
+                        interface: c;.1T%0OG${!QlG"A'
+# also accepts a string
+                        ip: ^P#T:]O%{^dhaMk>KSWvx"jMsM
+# range 1-30000; also accepts a string
+                        bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                        bfd_fast_detect_multiplier: 1
+# also accepts a string
+                        description: b`l\ +${K
+# range 1-254; also accepts a string
+                        distance: 1
+# range 1-16777214; also accepts a string
+                        metric: 1
+                        permanent: true
+# range 1-4294967295; also accepts a string
+                        tag: 1
+# also accepts a string
+                        track: ']%{'
+                    sr_policies:
+                      -
+# mandatory; also accepts a string
+                        name: 1xsztyk)toptT${bz3+
+# also accepts a string
+                        description: "#X*,p<'^T%{Ydh5sH"
+# range 1-4294967295; also accepts a string
+                        tag: 1
+# range 1-254; also accepts a string
+                        distance: 1
+                        permanent: true
+# also accepts a string
+                        track: sm$Umb${7?BGjV
+# range 1-16777214; also accepts a string
+                        metric: 1
+                    vrfs:
+                      -
+# mandatory; also accepts a string
+                        name: /q0z!j`s'u%{Ns0P F+!aSdXc9
+                        next_hops:
+                          -
+# also accepts a string
+                            interface: eJ?]!Tx7._,${YIuaHH/;A
+# also accepts a string
+                            ip: w%{HASdQns?NR
+# range 1-30000; also accepts a string
+                            bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                            bfd_fast_detect_multiplier: 1
+# also accepts a string
+                            description: ^gtxC/z-21\3V0CaEZ${B>Me-);:.DrrW4
+# range 1-254; also accepts a string
+                            distance: 1
+# range 1-16777214; also accepts a string
+                            metric: 1
+                            permanent: true
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# also accepts a string
+                            track: 2A(3j#${GF"C9k=ik;*NUWca]6
+                        sr_policies:
+                          -
+# mandatory; also accepts a string
+                            name: k5v&2N%{G3Ye4A
+# also accepts a string
+                            description: ER@nL/DXI+^eESHK${;_p`
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# range 1-254; also accepts a string
+                            distance: 1
+                            permanent: true
+# also accepts a string
+                            track: ']]gWpjY${=EGn2v-2nOUoEiGwVg$'
+# range 1-16777214; also accepts a string
+                            metric: 1
+              ipv4_multicast:
+                prefixes:
+                  -
+# mandatory; also accepts a string
+                    address: Nmi1]=${/s
+# mandatory; maximum 128; also accepts a string
+                    length: 1
+                    next_hops:
+                      -
+# also accepts a string
+                        interface: nTZr9Po+X${9P%=lK*#yA?6sN(LZa2
+# also accepts a string
+                        ip: Z#C/:<w"8H)L${5f8sb2@q-D:YT]
+# range 1-30000; also accepts a string
+                        bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                        bfd_fast_detect_multiplier: 1
+# also accepts a string
+                        description: dB=6(Lsx%{\4]F
+# range 1-254; also accepts a string
+                        distance: 1
+# range 1-16777214; also accepts a string
+                        metric: 1
+                        permanent: true
+# range 1-4294967295; also accepts a string
+                        tag: 1
+# also accepts a string
+                        track: '*${s"'
+                    sr_policies:
+                      -
+# mandatory; also accepts a string
+                        name: E${SM7d"E6
+# also accepts a string
+                        description: o7^Dv%{&V7ym :jUA#N
+# range 1-4294967295; also accepts a string
+                        tag: 1
+# range 1-254; also accepts a string
+                        distance: 1
+                        permanent: true
+# also accepts a string
+                        track: ']%6:FC${*dE'
+# range 1-16777214; also accepts a string
+                        metric: 1
+                    vrfs:
+                      -
+# mandatory; also accepts a string
+                        name: nf!Q^re-%/L!JS?0RIS${d/ZU`$kP<gXwf
+                        next_hops:
+                          -
+# also accepts a string
+                            interface: ?su^NJ${1)_/&Z5$D`
+# also accepts a string
+                            ip: vy^&IX%G%{HPw
+# range 1-30000; also accepts a string
+                            bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                            bfd_fast_detect_multiplier: 1
+# also accepts a string
+                            description: bfnfOl`_g${hN"7GsM]Ml\
+# range 1-254; also accepts a string
+                            distance: 1
+# range 1-16777214; also accepts a string
+                            metric: 1
+                            permanent: true
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# also accepts a string
+                            track: AYA"lLh${ddoE[_ 1t,n@^93O
+                        sr_policies:
+                          -
+# mandatory; also accepts a string
+                            name: r"JL[SdLv1%{l_=>yOccPP
+# also accepts a string
+                            description: H.[i4k/7>4Iw8J=k>PY${H,
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# range 1-254; also accepts a string
+                            distance: 1
+                            permanent: true
+# also accepts a string
+                            track: '[b?%{ZZA['
+# range 1-16777214; also accepts a string
+                            metric: 1
+              ipv6_multicast:
+                prefixes:
+                  -
+# mandatory; also accepts a string
+                    address: e${H"\Tv)p"StMn
+# mandatory; maximum 128; also accepts a string
+                    length: 1
+                    next_hops:
+                      -
+# also accepts a string
+                        interface: Wv,Lr:;wf${Ly9)$,QLCgZBQ;yyjEj
+# also accepts a string
+                        ip: '6hVQfEX=8v2Z&SDJh${!4jY^f#I.d6Z ND '
+# range 1-30000; also accepts a string
+                        bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                        bfd_fast_detect_multiplier: 1
+# also accepts a string
+                        description: '>e4g!nRT%{K)7x\=A"1f'
+# range 1-254; also accepts a string
+                        distance: 1
+# range 1-16777214; also accepts a string
+                        metric: 1
+                        permanent: true
+# range 1-4294967295; also accepts a string
+                        tag: 1
+# also accepts a string
+                        track: '[tI]iH(+t3g${^.XI\ID'
+                    sr_policies:
+                      -
+# mandatory; also accepts a string
+                        name: n%{Rac3v#=$;h(4zY2TAy
+# also accepts a string
+                        description: rDFf$-C4sb'tg&${:;`Dz[7gqA:):=
+# range 1-4294967295; also accepts a string
+                        tag: 1
+# range 1-254; also accepts a string
+                        distance: 1
+                        permanent: true
+# also accepts a string
+                        track: )5Q]'${y>$
+# range 1-16777214; also accepts a string
+                        metric: 1
+                    vrfs:
+                      -
+# mandatory; also accepts a string
+                        name: HZ6=S${'l>h3arBg"SOqqM%Ev^
+                        next_hops:
+                          -
+# also accepts a string
+                            interface: Xxm<&,E*Vbb$hp7U1s${rQn0cUC6omIa808*
+# also accepts a string
+                            ip: z.w(akkpv2u`bZZRI${Ldhr^YN
+# range 1-30000; also accepts a string
+                            bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                            bfd_fast_detect_multiplier: 1
+# also accepts a string
+                            description: '[B#.,_HI.%{RL,m74A<veLv+l- x1i'
+# range 1-254; also accepts a string
+                            distance: 1
+# range 1-16777214; also accepts a string
+                            metric: 1
+                            permanent: true
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# also accepts a string
+                            track: g:%{DHl\T
+                        sr_policies:
+                          -
+# mandatory; also accepts a string
+                            name: RbeRQvQE%{:BC1IhOX\)3$]Jw#
+# also accepts a string
+                            description: Rjmnz/+br!V/qKY%{o7G9+(X
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# range 1-254; also accepts a string
+                            distance: 1
+                            permanent: true
+# also accepts a string
+                            track: "%{\\T2hK\")'?6[]=rX"
+# range 1-16777214; also accepts a string
+                            metric: 1
+            vrfs:
+              -
+# mandatory; also accepts a string
+                name: ALi.VkAQH${1vmffgFN@"o:>3D@By
+                address_family:
+                  ipv4_unicast:
+                    prefixes:
+                      -
+# mandatory; also accepts a string
+                        address: y 8(jn<%{
+# mandatory; maximum 128; also accepts a string
+                        length: 1
+                        next_hops:
+                          -
+# also accepts a string
+                            interface: '%{&D2eQ`,;^W2OB'
+# also accepts a string
+                            ip: b+ M5^EQf${C7gq06jriI
+# range 1-30000; also accepts a string
+                            bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                            bfd_fast_detect_multiplier: 1
+# also accepts a string
+                            description: \"%{1Fp
+# range 1-254; also accepts a string
+                            distance: 1
+# range 1-16777214; also accepts a string
+                            metric: 1
+                            permanent: true
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# also accepts a string
+                            track: "`yl'@'cC%{uPKE]4[D!(BDiure"
+                        sr_policies:
+                          -
+# mandatory; also accepts a string
+                            name: U568ht$5<,%{M2$l.;$;L")x+[*@[>(
+# also accepts a string
+                            description: 3OQ&w${S,4
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# range 1-254; also accepts a string
+                            distance: 1
+                            permanent: true
+# also accepts a string
+                            track: p%{up.@-E z%soQGieSo
+# range 1-16777214; also accepts a string
+                            metric: 1
+                        vrfs:
+                          -
+# mandatory; also accepts a string
+                            name: ImM${[#<Fp0$mt
+                            next_hops:
+                              -
+# also accepts a string
+                                interface: "*=KSqi'\\$K${y>NX!o"
+# also accepts a string
+                                ip: aS\Ft>781)*6E5hz^0%{Z':?3":*"
+# range 1-30000; also accepts a string
+                                bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                                bfd_fast_detect_multiplier: 1
+# also accepts a string
+                                description: \Bn"^xC%{MTAJZ ne
+# range 1-254; also accepts a string
+                                distance: 1
+# range 1-16777214; also accepts a string
+                                metric: 1
+                                permanent: true
+# range 1-4294967295; also accepts a string
+                                tag: 1
+# also accepts a string
+                                track: '*^X%{=aLh'
+                            sr_policies:
+                              -
+# mandatory; also accepts a string
+                                name: aAEMu?$!@cp%{
+# also accepts a string
+                                description: KDOk$'MhkUF^fx7[c%{Vn_`KmbA*IZ
+# range 1-4294967295; also accepts a string
+                                tag: 1
+# range 1-254; also accepts a string
+                                distance: 1
+                                permanent: true
+# also accepts a string
+                                track: GPPh2fI9n8_r 'eZ%{O<:^uEVLaI Pn
+# range 1-16777214; also accepts a string
+                                metric: 1
+                  ipv6_unicast:
+                    prefixes:
+                      -
+# mandatory; also accepts a string
+                        address: ISD].wAG${d=<$z!P^
+# mandatory; maximum 128; also accepts a string
+                        length: 1
+                        next_hops:
+                          -
+# also accepts a string
+                            interface: -%{"5-C7D7RN7K*4jFe/
+# also accepts a string
+                            ip: DdMLZ%4]CWtMFP;"z${+i+_ed%&
+# range 1-30000; also accepts a string
+                            bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                            bfd_fast_detect_multiplier: 1
+# also accepts a string
+                            description: d1W3/A\J1.,O%g%{NNZ,8/U+:8Ls=Uh-&V
+# range 1-254; also accepts a string
+                            distance: 1
+# range 1-16777214; also accepts a string
+                            metric: 1
+                            permanent: true
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# also accepts a string
+                            track: a%lB@E[#T0vhEh#^%{fg4!
+                        sr_policies:
+                          -
+# mandatory; also accepts a string
+                            name: SQF'hKhNHh${X_K4`t$m"D
+# also accepts a string
+                            description: '#9Fj@r%{"958'
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# range 1-254; also accepts a string
+                            distance: 1
+                            permanent: true
+# also accepts a string
+                            track: 'a.SWE/#wcaG6fg:D${Z,TDBiRA8;ut:'
+# range 1-16777214; also accepts a string
+                            metric: 1
+                        vrfs:
+                          -
+# mandatory; also accepts a string
+                            name: ((2B>%{(!CSAv10H"wou+hv
+                            next_hops:
+                              -
+# also accepts a string
+                                interface: /Q^/]9ANtN${
+# also accepts a string
+                                ip: qdKZ?BC98N++H8lL7${"
+# range 1-30000; also accepts a string
+                                bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                                bfd_fast_detect_multiplier: 1
+# also accepts a string
+                                description: '`g#z%{,%=WFW'
+# range 1-254; also accepts a string
+                                distance: 1
+# range 1-16777214; also accepts a string
+                                metric: 1
+                                permanent: true
+# range 1-4294967295; also accepts a string
+                                tag: 1
+# also accepts a string
+                                track: 2%{Ndx1z5SSZ1S
+                            sr_policies:
+                              -
+# mandatory; also accepts a string
+                                name: Dg%d`hx3>_&${Uvh
+# also accepts a string
+                                description: eUcM&xY${Q
+# range 1-4294967295; also accepts a string
+                                tag: 1
+# range 1-254; also accepts a string
+                                distance: 1
+                                permanent: true
+# also accepts a string
+                                track: m"48gm644%{
+# range 1-16777214; also accepts a string
+                                metric: 1
+                  ipv4_multicast:
+                    prefixes:
+                      -
+# mandatory; also accepts a string
+                        address: '%{@q0b)qu:w,p-'
+# mandatory; maximum 128; also accepts a string
+                        length: 1
+                        next_hops:
+                          -
+# also accepts a string
+                            interface: z4oBFjJNBxU${&vAy,"wgXY(NT"me
+# also accepts a string
+                            ip: 1NWg${j@Xk>g)?_Sb5xK*JAl]
+# range 1-30000; also accepts a string
+                            bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                            bfd_fast_detect_multiplier: 1
+# also accepts a string
+                            description: Q(uQxl%{[<A_z#[a@69(F^5T
+# range 1-254; also accepts a string
+                            distance: 1
+# range 1-16777214; also accepts a string
+                            metric: 1
+                            permanent: true
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# also accepts a string
+                            track: jG:x,]f%{a[%K:8+3e:gf'
+                        sr_policies:
+                          -
+# mandatory; also accepts a string
+                            name: N0>U/F508iMRvV${IH@c >G%6sJf
+# also accepts a string
+                            description: im+j^p3jXGD>k)%{aTYyRc>sqWx#
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# range 1-254; also accepts a string
+                            distance: 1
+                            permanent: true
+# also accepts a string
+                            track: r1A0HC*mZaP^s7Q%{
+# range 1-16777214; also accepts a string
+                            metric: 1
+                        vrfs:
+                          -
+# mandatory; also accepts a string
+                            name: y%2 `dNQ`4zvC%fqjK%{II$B(sbB(
+                            next_hops:
+                              -
+# also accepts a string
+                                interface: ?w8)Y<v${Jy.MC_U>T
+# also accepts a string
+                                ip: 3${q?Ui4-dZ
+# range 1-30000; also accepts a string
+                                bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                                bfd_fast_detect_multiplier: 1
+# also accepts a string
+                                description: 8bxZXiD<9 L;bg${<@DS"
+# range 1-254; also accepts a string
+                                distance: 1
+# range 1-16777214; also accepts a string
+                                metric: 1
+                                permanent: true
+# range 1-4294967295; also accepts a string
+                                tag: 1
+# also accepts a string
+                                track: M._2G3wC@xcTX-/1Lu${!:y.sw>;lRc[J<XD8hu
+                            sr_policies:
+                              -
+# mandatory; also accepts a string
+                                name: gsc^Xa*v%{Md]7]Z=My-#g
+# also accepts a string
+                                description: .s7QHy@&0I?23>huGCX%{(ZUh][#
+# range 1-4294967295; also accepts a string
+                                tag: 1
+# range 1-254; also accepts a string
+                                distance: 1
+                                permanent: true
+# also accepts a string
+                                track: "'1>2J%%{D78,-"
+# range 1-16777214; also accepts a string
+                                metric: 1
+                  ipv6_multicast:
+                    prefixes:
+                      -
+# mandatory; also accepts a string
+                        address: '#DsDNNqtaQ${XzO_o'
+# mandatory; maximum 128; also accepts a string
+                        length: 1
+                        next_hops:
+                          -
+# also accepts a string
+                            interface: XQ'LJR0_zSYBkIn1z^]${`r0j>+Ue8x"+FK
+# also accepts a string
+                            ip: 6-qo%{Z/=*=d-
+# range 1-30000; also accepts a string
+                            bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                            bfd_fast_detect_multiplier: 1
+# also accepts a string
+                            description: '&%]%{'
+# range 1-254; also accepts a string
+                            distance: 1
+# range 1-16777214; also accepts a string
+                            metric: 1
+                            permanent: true
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# also accepts a string
+                            track: BbBdz,zNOO'&${*NML+i/!!%+
+                        sr_policies:
+                          -
+# mandatory; also accepts a string
+                            name: GYES:bcK,* 1#mO%K${?0%'DZ6Vyq
+# also accepts a string
+                            description: YLc9(<Jz*i2M^6BeR*${H8E/<,7U)/xMLv*w
+# range 1-4294967295; also accepts a string
+                            tag: 1
+# range 1-254; also accepts a string
+                            distance: 1
+                            permanent: true
+# also accepts a string
+                            track: C86S6v_`MHwHqJr${*Cv3RgJ/\
+# range 1-16777214; also accepts a string
+                            metric: 1
+                        vrfs:
+                          -
+# mandatory; also accepts a string
+                            name: ">=${FL,&@kl'y]"
+                            next_hops:
+                              -
+# also accepts a string
+                                interface: kdnaX${!jsCDF
+# also accepts a string
+                                ip: '>@988;${9aL+HY7/5 s'
+# range 1-30000; also accepts a string
+                                bfd_fast_detect_minimum_interval: 1
+# range 1-10; also accepts a string
+                                bfd_fast_detect_multiplier: 1
+# also accepts a string
+                                description: iX9?QnzH=>zox,$':Y${1fOQ 8ELBeqA 7vP^
+# range 1-254; also accepts a string
+                                distance: 1
+# range 1-16777214; also accepts a string
+                                metric: 1
+                                permanent: true
+# range 1-4294967295; also accepts a string
+                                tag: 1
+# also accepts a string
+                                track: m2(GxFq9s;>.${XDCb
+                            sr_policies:
+                              -
+# mandatory; also accepts a string
+                                name: 9${qH .fc+(
+# also accepts a string
+                                description: s;${cIKl.iCw[RKKIUeC#o
+# range 1-4294967295; also accepts a string
+                                tag: 1
+# range 1-254; also accepts a string
+                                distance: 1
+                                permanent: true
+# also accepts a string
+                                track: V<Ggos${*P,tl@r5Bnte ;WL-5
+# range 1-16777214; also accepts a string
+                                metric: 1

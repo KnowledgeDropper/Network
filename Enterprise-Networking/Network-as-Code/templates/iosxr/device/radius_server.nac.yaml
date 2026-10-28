@@ -1,0 +1,101 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.radius_server
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs: schema section without a dedicated page in the docs nav.
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        radius_server:
+          hosts:
+            -
+# mandatory; also accepts a string
+              address: '"7n:lPNZyB${2uKL6s'
+# mandatory; maximum 65535; also accepts a string
+              auth_port: 1
+# mandatory; maximum 65535; also accepts a string
+              acct_port: 1
+# range 1-1000; also accepts a string
+              timeout: 1
+# range 1-100; also accepts a string
+              retransmit: 1
+# also accepts a string
+              key: ' Fa[zs[%{-'
+# allowed: 6, 7; also accepts a string
+              key_type: 6
+# also accepts a string
+              test_username: '>f]2`oSig=$?*R;${0KFz:u;FPRA!n_KG'
+# range 1-60; also accepts a string
+              idle_time: 1
+              ignore_auth_port: true
+              ignore_acct_port: true
+# also accepts a string
+              dtls_server_trustpoint: '&Yx<mH:M&TL234${!?-`+bTf'
+# also accepts a string
+              radsec_server_trustpoint: '&z68pSvC1s>5%{LN?"KWJL/]iLe@U'
+# also accepts a string
+          key: KoY^?JJrV:z'Z<En$@B${lnW
+# allowed: 6, 7; also accepts a string
+          key_type: 6
+# range 1-1000; also accepts a string
+          timeout: 1
+# range 1-100; also accepts a string
+          retransmit_retries: 1
+          retransmit_disable: true
+# range 1-1500; also accepts a string
+          load_balance_method_least_outstanding_batch_size: 1
+          load_balance_method_least_outstanding_ignore_preferred_server: true
+          throttle:
+# maximum 65535; also accepts a string
+            access: 1
+# range 1-10; also accepts a string
+            access_timeout: 1
+# maximum 65535; also accepts a string
+            accounting: 1
+# range 1-1440; also accepts a string
+          deadtime: 1
+          dead_criteria:
+# range 1-120; also accepts a string
+            time: 1
+# range 1-100; also accepts a string
+            tries: 1
+          source_port_extended: true
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+          ipv4_dscp: af11
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+          ipv6_dscp: af11
+          vsa_attribute_ignore_unknown: true
+          disallow_null_username: true
+          attribute:
+            acct_session_id_prepend_nas_port_id: true
+            acct_multi_session_id_include_parent_session_id: true
+# allowed: inbound, outbound; also accepts a string
+            filter_id_11_default_direction: inbound
+            lists:
+              -
+# mandatory; also accepts a string
+                name: S0g[8MspA${nThe:Jc) 9C',t"h]zd
+# also accepts a string
+                attributes: 4$LpRxmwU${bKqT/9%KoZhW4
+                attribute_vendor_ids:
+                  -
+# mandatory; also accepts an integer
+                    id: ${5:iLZ]afb
+                    vendor_types:
+                      -
+# mandatory; also accepts an integer
+                        id: Ue\m\(${w`Xi/#Nm4d4D?

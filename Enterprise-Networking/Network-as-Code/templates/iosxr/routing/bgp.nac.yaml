@@ -1,0 +1,2994 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.routing.bgp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/router_bgp/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        routing:
+          bgp:
+            -
+# mandatory; range 1-4294967295; also accepts a string
+              as_number: 1
+# range 1-4294967295; also accepts a string
+              default_metric: 1
+              mvpn: true
+              segment_routing_srv6:
+# also accepts a string
+                locator: " 9Gr7-5)-.'vt%{UFO3)@UU"
+                usid_allocation_wide_local_id_block: true
+              neighbors:
+                -
+# mandatory; also accepts a string
+                  address: BBj[uiSE><6U/JYz%{z@ _9F
+# range 1-4294967295; also accepts a string
+                  remote_as: 1
+# range 1-4095; also accepts a string
+                  maximum_peers: 1
+# also accepts a string
+                  remote_as_list: "`M,Ofo%%VJH7wV${ ;u2'MZ"
+# allowed: disable, enable; also accepts a string
+                  as_path_loopcheck_out: disable
+# also accepts a string
+                  use_neighbor_group: y%{Z6*5K
+# also accepts a string
+                  use_session_group: TVl^u%jkz2@`3N)3z${dU;lyZWb-8c0?&I[uF
+# maximum 600; also accepts a string
+                  advertisement_interval_seconds: 1
+# maximum 999; also accepts a string
+                  advertisement_interval_milliseconds: 1
+# also accepts a string
+                  description: '>VT,po@XtM`!??_KSf[%{1niZb%2[4yL^a'
+                  ignore_connected_check: true
+                  ignore_connected_check_inheritance_disable: true
+# range 1-255; also accepts a string
+                  ebgp_multihop_maximum_hop_count: 1
+                  ebgp_multihop_mpls: true
+# range 68-10000; also accepts a string
+                  tcp_mss: 68
+                  tcp_mss_inheritance_disable: true
+                  tcp_mtu_discovery: true
+                  tcp_mtu_discovery_inheritance_disable: true
+                  tcp_ip_only_preferred: true
+                  tcp_ip_only_preferred_inheritance_disable: true
+                  bmp_activate_servers:
+                    -
+# mandatory; range 1-8; also accepts a string
+                      number: 1
+# range 3-30000; also accepts a string
+                  bfd_minimum_interval: 3
+# range 2-16; also accepts a string
+                  bfd_multiplier: 2
+# allowed: enable, strict-mode, disable, strict-mode-negotiate, strict-mode-negotiate-override;
+# also accepts a string
+                  bfd_fast_detect: enable
+# also accepts a string
+                  keychain: (2G9rj#%{js:G;pNkP)@0wt
+                  keychain_inheritance_disable: true
+                  local_as_inheritance_disable: true
+# range 1-4294967295; also accepts a string
+                  local_as: 1
+# allowed: no-prepend, no-prepend-replace-as, no-prepend-replace-as-dual-as; also accepts a string
+                  local_as_mode: no-prepend
+# allowed: 7; also accepts a string
+                  password_type: 7
+# also accepts a string
+                  password: 14L(3dm_!VKT%{$yt>0'$ROdY3QP_UE/
+                  password_inheritance_disable: true
+# range 512-131072; also accepts a string
+                  receive_buffer_size: 512
+# range 512-131072; also accepts a string
+                  receive_buffer_read_size: 512
+# range 4096-131072; also accepts a string
+                  send_buffer_size: 4096
+# range 4096-131072; also accepts a string
+                  send_buffer_write_size: 4096
+                  fast_fallover: true
+                  fast_fallover_inheritance_disable: true
+                  shutdown: true
+# maximum 65535; also accepts a string
+                  timers_keepalive_interval: 1
+                  timers_holddown_zero: true
+                  timers_holddown_zero_minimum_acceptable_zero: true
+# range 3-65535; also accepts a string
+                  timers_holddown_zero_minimum_acceptable_holdtime: 3
+# range 3-65535; also accepts a string
+                  timers_holdtime: 3
+# range 3-65535; also accepts a string
+                  timers_holdtime_minimum_acceptable_holdtime: 3
+# also accepts a string
+                  local_address: P@au${K
+                  local_address_inheritance_disable: true
+# allowed: detail, disable, inheritance-disable; also accepts a string
+                  log_neighbor_changes: detail
+# range 1-500; also accepts a string
+                  log_message_in: 1
+                  log_message_in_disable: true
+                  log_message_in_inheritance_disable: true
+# range 1-500; also accepts a string
+                  log_message_out: 1
+                  log_message_out_disable: true
+                  log_message_out_inheritance_disable: true
+# also accepts a string
+                  update_source: '>>\%{;j'
+# also accepts a string
+                  local_address_subnet_prefix: ']%{<?tp'
+# maximum 128; also accepts a string
+                  local_address_subnet_length: 1
+                  dmz_link_bandwidth: true
+                  dmz_link_bandwidth_inheritance_disable: true
+                  ebgp_recv_extcommunity_dmz: true
+                  ebgp_recv_extcommunity_dmz_inheritance_disable: true
+                  ebgp_send_extcommunity_dmz: true
+                  ebgp_send_extcommunity_dmz_cumulative: true
+                  ebgp_send_extcommunity_dmz_inheritance_disable: true
+                  ttl_security: true
+                  ttl_security_inheritance_disable: true
+# allowed: active-only, passive-only, both; also accepts a string
+                  session_open_mode: active-only
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+                  dscp: af11
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+                  precedence: critical
+                  capability_additional_paths_send: true
+                  capability_additional_paths_send_disable: true
+                  capability_additional_paths_receive: true
+                  capability_additional_paths_receive_disable: true
+                  capability_suppress_all: true
+                  capability_suppress_all_inheritance_disable: true
+                  capability_suppress_extended_nexthop_encoding: true
+                  capability_suppress_extended_nexthop_encoding_inheritance_disable: true
+                  capability_suppress_four_byte_as: true
+                  capability_suppress_four_byte_as_inheritance_disable: true
+# allowed: enable, disable; also accepts a string
+                  graceful_restart: enable
+                  graceful_restart_helper_only: true
+                  graceful_restart_helper_only_inheritance_disable: true
+# range 1-4095; also accepts a string
+                  graceful_restart_restart_time: 1
+# maximum 4095; also accepts a string
+                  graceful_restart_stalepath_time: 1
+# allowed: enable, disable; also accepts a string
+                  enforce_first_as: enable
+# also accepts an integer; also accepts a string
+                  cluster_id: "@WJ`WF]4'c_nbi$Y${jr,aZMj#IDe,3h_&"
+# range 30-1800; also accepts a string
+                  idle_watch_time: 30
+# range 1-10; also accepts a string
+                  allowas_in: 1
+                  egress_engineering: true
+                  egress_engineering_inheritance_disable: true
+                  evpn_link_bandwidth: true
+# range 1-65535; also accepts a string
+                  evpn_link_bandwidth_per_path_number: 1
+                  evpn_link_bandwidth_inheritance_disable: true
+                  peer_sets:
+                    -
+# mandatory; also accepts an integer
+                      id: 3/P]*hs%{_OxnZ5.&>R$
+# maximum 1033575; also accepts a string
+                  peer_node_sid_index: 1
+# also accepts a string
+                  ao_key_chain: '#?di9l${5?0vT'
+# allowed: disable, enable; also accepts a string
+                  ao_key_chain_include_tcp_options: disable
+                  ao_key_chain_accept_mismatch: true
+                  ao_inheritance_disable: true
+# allowed: enable, disable; also accepts a string
+                  dampening: enable
+# allowed: enable, disable; also accepts a string
+                  as_override: enable
+# allowed: accept, reject; also accepts a string
+                  default_policy_action_in: accept
+# allowed: accept, reject; also accepts a string
+                  default_policy_action_out: accept
+                  origin_as_validation_disable: true
+                  send_extended_community_ebgp: true
+                  send_extended_community_ebgp_inheritance_disable: true
+                  bestpath_origin_as_allow_invalid: true
+# maximum 25; also accepts a string
+                  update_in_filtering_message_buffers: 1
+# allowed: buffers-number-enable, non-circular; also accepts a string
+                  update_in_filtering_message_buffers_type: buffers-number-enable
+                  update_in_filtering_logging_disable: true
+# also accepts a string
+                  update_in_filtering_attribute_filter_group: j>BWKr=?KL03l%{v^x#
+                  update_in_labeled_unicast_equivalent: true
+                  update_in_labeled_unicast_equivalent_inheritance_disable: true
+# allowed: disable, enable; also accepts a string
+                  update_in_error_handling_avoid_reset: disable
+# allowed: disable, enable; also accepts a string
+                  update_in_error_handling_treat_as_withdraw: disable
+                  graceful_maintenance:
+                    activate: true
+                    activate_inheritance_disable: true
+# maximum 4294967295; also accepts a string
+                    local_preference: 1
+                    local_preference_inheritance_disable: true
+# maximum 6; also accepts a string
+                    as_prepends: 1
+                    as_prepends_inheritance_disable: true
+# range 1-100; also accepts a string
+                    bandwidth_aware_percentage_threshold: 1
+# range 1-100; also accepts a string
+                    bandwidth_aware_percentage_threshold_high: 1
+# range 1-4294967295; also accepts a string
+                    bandwidth_aware_bandwidth_threshold: 1
+# range 1-4294967295; also accepts a string
+                    bandwidth_aware_bandwidth_threshold_high: 1
+                    bandwidth_aware_inheritance_disable: true
+                  address_family:
+                    -
+# mandatory; allowed: ipv4-unicast, ipv4-labeled-unicast, ipv4-multicast, ipv4-mdt, ipv4-mvpn,
+# ipv4-flowspec, ipv4-rt-filter, ipv4-sr-policy, ipv4-tunnel, ipv6-unicast, ipv6-labeled-unicast,
+# ipv6-multicast, ipv6-mvpn, ipv6-flowspec, ipv6-sr-policy, vpnv4-flowspec, vpnv4-multicast,
+# vpnv4-unicast, vpnv6-flowspec, vpnv6-multicast, vpnv6-unicast, l2vpn-evpn, l2vpn-mspw,
+# l2vpn-vpls-vpws, link-state-link-state; also accepts a string
+                      name: ipv4-unicast
+# allowed: srv6, vxlan; also accepts a string
+                      encapsulation_type: srv6
+# maximum 65535; also accepts a string
+                      weight: 1
+                      multipath: true
+# also accepts a string
+                      use_af_group: /;tZ';-l${[LM^Qzd6b4l(=%BzG4
+# allowed: both, none, receive, send; also accepts a string
+                      capability_orf_prefix: both
+                      additional_paths_send: true
+                      additional_paths_send_disable: true
+                      additional_paths_receive: true
+                      additional_paths_receive_disable: true
+                      default_originate: true
+# also accepts a string
+                      default_originate_route_policy: R;(MH7`o3`!B Y;;43^%{W"rg/
+                      default_originate_inheritance_disable: true
+# range 1-4294967295; also accepts a string
+                      maximum_prefix_limit: 1
+# range 1-100; also accepts a string
+                      maximum_prefix_threshold: 1
+# range 1-65535; also accepts a string
+                      maximum_prefix_restart: 1
+                      maximum_prefix_discard_extra_paths: true
+                      maximum_prefix_warning_only: true
+                      next_hop_self: true
+                      next_hop_self_inheritance_disable: true
+                      next_hop_unchanged: true
+                      next_hop_unchanged_multipath: true
+                      next_hop_unchanged_inheritance_disable: true
+# also accepts a string
+                      route_policy_in: +hxs?o0OpTlNvkrD'%%{dzR:Zg!-@
+# also accepts a string
+                      route_policy_out: m4;E%{r.5lCJw
+# also accepts a string
+                      orf_route_policy: W$ml^uY${8=0'c#9"Z(r
+                      cluster_id_allow_equal: true
+                      cluster_id_allow_equal_disable: true
+                      replace_private_as: true
+                      replace_private_as_internal: true
+                      remove_private_as_inbound: true
+                      remove_private_as_inbound_entire_aspath: true
+                      remove_private_as_inbound_inheritance_disable: true
+                      remove_private_as: true
+                      remove_private_as_entire_aspath: true
+                      remove_private_as_internal: true
+                      route_reflector_client: true
+                      route_reflector_client_inheritance_disable: true
+                      send_community_ebgp: true
+                      send_community_ebgp_inheritance_disable: true
+                      send_community_gshut_ebgp: true
+                      send_community_gshut_ebgp_inheritance_disable: true
+                      send_extended_community_ebgp: true
+                      send_extended_community_ebgp_inheritance_disable: true
+                      soft_reconfiguration_inbound: true
+                      soft_reconfiguration_inbound_always: true
+                      update_out_originator_loopcheck: true
+                      update_out_originator_loopcheck_disable: true
+                      advertise_vpnv4_unicast: true
+                      advertise_vpnv4_unicast_re_originated: true
+                      advertise_vpnv4_unicast_re_originated_stitching_rt: true
+                      advertise_vpnv6_unicast: true
+                      advertise_vpnv6_unicast_re_originated: true
+                      advertise_vpnv6_unicast_re_originated_stitching_rt: true
+                      advertise_l2vpn_evpn_re_originated: true
+                      advertise_l2vpn_evpn_re_originated_stitching_rt: true
+                      segment_routing_srv6_prefix_sid_type4: true
+                      import_stitching_rt: true
+                      import_stitching_rt_re_originate: true
+                      import_stitching_rt_re_originate_stitching_rt: true
+                      import_re_originate: true
+# range 1-10; also accepts a string
+                      allowas_in: 1
+# also accepts a string
+                      site_of_origin: ROWyD!4+N*?^%{)r,?#WSr8[#N
+                      as_override: true
+                      as_override_inheritance_disable: true
+                      aigp: true
+                      aigp_disable: true
+                      aigp_send_med: true
+                      aigp_send_med_disable: true
+                      aigp_send_cost_community_disable: true
+# also accepts an integer
+                      aigp_send_cost_community_id: 3Ryji%{5yzlky6n2
+                      aigp_send_cost_community_id_poi_igp_cost: true
+                      aigp_send_cost_community_id_poi_igp_cost_transitive: true
+                      aigp_send_cost_community_id_poi_pre_bestpath: true
+                      aigp_send_cost_community_id_poi_pre_bestpath_transitive: true
+                      send_multicast_attributes: true
+                      send_multicast_attributes_disable: true
+                      accept_own: true
+                      accept_own_inheritance_disable: true
+                      slow_peer_dynamic: true
+# range 120-3600; also accepts a string
+                      slow_peer_dynamic_threshold: 120
+                      slow_peer_dynamic_disable: true
+                      slow_peer_static: true
+                      origin_as_validation_disable: true
+                      bestpath_origin_as_allow_invalid: true
+              graceful_maintenance_activate:
+                all_neighbors: true
+                retain_routes: true
+                interfaces:
+                  -
+# mandatory; also accepts a string
+                    name: b6So9YNg(j%{!VHu^m5[OhLu.,teo,C
+                locations:
+                  -
+# mandatory; also accepts a string
+                    name: N0?${
+              mpls_activate_interfaces:
+                -
+# mandatory; also accepts a string
+                  name: ' d${TZ]I/?/P>^\bbSTyB'
+              as_league_peers:
+                -
+# mandatory; range 1-4294967295; also accepts a string
+                  as_number: 1
+              attribute_filter_groups:
+                -
+# mandatory; also accepts a string
+                  name: T$"dim $p]${kxN/itCL2Sp
+                  code_ranges:
+                    -
+# mandatory; range 4-255; also accepts a string
+                      from: 4
+# mandatory; range 5-255; also accepts a string
+                      to: 5
+                      discard: true
+                      treat_as_withdraw: true
+              as_lists:
+                -
+# mandatory; also accepts a string
+                  name: b/Hcrfe)!L8\I${"yB`eA[3S2Gt
+                  asns:
+                    -
+# mandatory; range 1-4294967295; also accepts a string
+                      as_number: 1
+              default_information_originate: true
+# range 512-131072; also accepts a string
+              socket_receive_buffer_size: 512
+# range 512-131072; also accepts a string
+              socket_receive_buffer_read_size: 512
+# range 4096-131072; also accepts a string
+              socket_send_buffer_size: 4096
+# range 4096-131072; also accepts a string
+              socket_send_buffer_write_size: 4096
+              nexthop_mpls_forwarding_ibgp: true
+# allowed: sr-policy, disable; also accepts a string
+              nexthop_validation_color_extcomm: sr-policy
+              nexthop_resolution_allow_default: true
+              nexthop_srte_metric_disable: true
+              slow_peer_dynamic: true
+# range 120-3600; also accepts a string
+              slow_peer_dynamic_threshold: 120
+              slow_peer_detection_disable: true
+              bgp_redistribute_internal: true
+# also accepts a string
+              bgp_router_id: g;%{RrplsG6YP/T
+              bgp_unsafe_ebgp_policy: true
+# range 5-3600; also accepts a string
+              bgp_scan_time: 5
+              bgp_read_only: true
+              bgp_lpts_secure_binding: true
+              bgp_as_path_loopcheck: true
+              bgp_auto_policy_soft_reset_disable: true
+              bgp_bestpath_cost_community_ignore: true
+              bgp_bestpath_compare_routerid: true
+              bgp_bestpath_aigp_ignore: true
+              bgp_bestpath_igp_metric_ignore: true
+              bgp_bestpath_igp_metric_sr_policy: true
+              bgp_bestpath_med_missing_as_worst: true
+              bgp_bestpath_med_always: true
+              bgp_bestpath_as_path_ignore: true
+              bgp_bestpath_as_path_multipath_relax: true
+              bgp_bestpath_origin_as_use_validity: true
+              bgp_bestpath_origin_as_allow_invalid: true
+# allowed: prefer, force; also accepts a string
+              bgp_bestpath_sr_policy: prefer
+# also accepts an integer; also accepts a string
+              bgp_cluster_id: s)SWpWMF/T%{9D+1Yoa:01wc
+# maximum 4294967295; also accepts a string
+              bgp_default_local_preference: 1
+              bgp_enforce_first_as_disable: true
+              bgp_fast_external_fallover_disable: true
+# allowed: detail, disable; also accepts a string
+              bgp_log_neighbor_changes: detail
+              bgp_log_message_disable: true
+# range 1-100; also accepts a string
+              bgp_log_memory_threshold_warning: 1
+# range 1-100; also accepts a string
+              bgp_log_memory_threshold_critical: 1
+# range 1-2147483647; also accepts a string
+              bgp_log_total_paths: 1
+# range 1-100; also accepts a string
+              bgp_log_total_paths_warn_threshold: 1
+              bgp_multipath_use_cluster_list_length: true
+              bgp_multipath_as_path_ignore_onwards: true
+# range 1-4294967295; also accepts a string
+              bgp_confederation_identifier: 1
+              bgp_confederation_peers:
+                -
+# mandatory; range 1-4294967295; also accepts a string
+                  as_number: 1
+              bgp_graceful_restart_enable: true
+# maximum 6000; also accepts a string
+              bgp_graceful_restart_purge_time: 1
+# range 1-4095; also accepts a string
+              bgp_graceful_restart_restart_time: 1
+# range 1-4095; also accepts a string
+              bgp_graceful_restart_stalepath_time: 1
+              bgp_graceful_restart_graceful_reset: true
+              bgp_graceful_restart_retain_nbr_routes_disable: true
+              bgp_install_diversion: true
+# maximum 3600; also accepts a string
+              bgp_update_delay: 1
+              bgp_update_delay_always: true
+# range 1-15000; also accepts a string
+              bgp_maximum_neighbor: 1
+              bgp_origin_as_validation_signal_ibgp: true
+# allowed: off; also accepts an integer; also accepts a string
+              bgp_origin_as_validation_time: off
+# maximum 65535; also accepts a string
+              timers_bgp_keepalive_interval: 1
+              timers_bgp_holddown_zero: true
+              timers_bgp_holddown_zero_minimum_acceptable_zero: true
+# range 3-65535; also accepts a string
+              timers_bgp_holddown_zero_minimum_acceptable_holdtime: 3
+# range 3-65535; also accepts a string
+              timers_bgp_holdtime: 3
+# range 3-65535; also accepts a string
+              timers_bgp_holdtime_minimum_acceptable_holdtime: 3
+# allowed: enable, disable; also accepts a string
+              nsr: enable
+              ibgp_policy_out_enforce_modifications: true
+              openconfig_rib_telemetry: true
+# range 16-2048; also accepts a string
+              update_limit: 16
+              update_in_error_handling_basic_ebgp_disable: true
+              update_in_error_handling_basic_ibgp_disable: true
+              update_in_error_handling_extended_ebgp: true
+              update_in_error_handling_extended_ibgp: true
+              update_out_logging: true
+# range 2-16; also accepts a string
+              bfd_multiplier: 2
+# range 3-30000; also accepts a string
+              bfd_minimum_interval: 3
+              rpki_routes:
+                -
+# mandatory; also accepts a string
+                  prefix: w8jgsya:%{s-x@"
+# mandatory; range 1-128; also accepts a string
+                  length: 1
+# mandatory; range 1-128; also accepts a string
+                  max_length: 1
+# mandatory; range 1-4294967295; also accepts a string
+                  origin_as: 1
+              rpki_servers:
+                -
+# mandatory; also accepts a string
+                  address: U5EX2m$lX;7${5NB3r)Vp&J3`!y-
+# range 15-3600; also accepts a string
+                  refresh_time: 15
+                  refresh_time_off: true
+# range 15-3600; also accepts a string
+                  response_time: 15
+                  response_time_off: true
+# range 30-65535; also accepts a string
+                  purge_time: 30
+# also accepts a string
+                  username: hA${f()xxzJtYV:_R&"+(#E
+# allowed: 7; also accepts a string
+                  password_type: 7
+# also accepts a string
+                  password: RnJkQJnrnL%{z\]cM80M c+,6g
+# range 1-65535; also accepts a string
+                  transport_tcp_port: 1
+# range 1-65535; also accepts a string
+                  transport_ssh_port: 1
+# also accepts a string
+                  bind_source_interface: _+]pBBJJ0FI6a]L0j%{Z\$XEN6bj.
+                  shutdown: true
+              address_family:
+                ipv4_rt_filter:
+                  enable: true
+                  as_path_loopcheck_out_disable: true
+                  bgp_client_to_client_reflection:
+                    disable: true
+                    cluster_ids:
+                      -
+# mandatory; also accepts a string; also accepts an integer
+                        id: MK[qBjs$%%,A${'&"Vg`.IUz=]Z_n:Cq_}0,Ms.u?5
+# mandatory
+                        disable: true
+# range 1-255; also accepts a string
+                  bgp_dampening_decay_half_life: 1
+# maximum 4294967295; also accepts a string
+                  bgp_dampening_max_suppress_time: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_reuse_threshold: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_suppress_threshold: 1
+# maximum 999; also accepts a string
+                  bgp_label_delay_milliseconds: 1
+# maximum 10; also accepts a string
+                  bgp_label_delay_seconds: 1
+# range 5-3600; also accepts a string
+                  bgp_scan_time: 5
+# also accepts a string
+                  event_prefix_route_policy: o%{3s2=c?`E,0RJ#uPr`mz
+# maximum 32; also accepts a string
+                  nexthop_resolution_prefix_length_minimum_ipv4: 1
+# also accepts a string
+                  nexthop_route_policy: (fkHqHDrp&vcRT${G??aJ5CF
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_critical: 1
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_non_critical: 1
+# range 4-2048; also accepts a string
+                  update_limit_address_family: 4
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ebgp: 1
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ibgp: 1
+                ipv4_unicast:
+                  enable: true
+# range 1-20000; also accepts a string
+                  distance_bgp_external_route: 1
+# range 1-20000; also accepts a string
+                  distance_bgp_internal_route: 1
+# range 1-20000; also accepts a string
+                  distance_bgp_local_route: 1
+                  import_from_bridge_domain: true
+                  additional_paths_send: true
+                  additional_paths_receive: true
+# range 1-20000; also accepts a string
+                  additional_paths_advertise_limit: 1
+# also accepts a string
+                  additional_paths_selection_route_policy: '*i%7yl!m3FZ${rrX'
+                  additional_paths_selection_disable: true
+# also accepts a string
+                  permanent_network_route_policy: Mze$$T87>!${y$XO!6.*YAp%Bz4
+                  advertise_best_external: true
+                  advertise_best_external_labeled_unicast: true
+                  advertise_best_external_disable: true
+# allowed: disable, enable; also accepts a string
+                  advertise_local_labeled_route_safi_unicast: disable
+                  advertise_epe_bgp_labeled_unicast: true
+                  allocate_label_all: true
+                  allocate_label_all_unlabeled_path: true
+# also accepts a string
+                  allocate_label_route_policy: l2${yh2ELN;e
+                  allocate_label_route_policy_unlabeled_path: true
+# range 2-1024; also accepts a string
+                  maximum_paths_ebgp_multipath: 2
+                  maximum_paths_ebgp_selective: true
+# also accepts a string
+                  maximum_paths_ebgp_route_policy: n;SQ+1>RR%z.Yr%{J3n2
+# range 2-1024; also accepts a string
+                  maximum_paths_ibgp_multipath: 2
+                  maximum_paths_ibgp_unequal_cost: true
+                  maximum_paths_ibgp_unequal_cost_deterministic: true
+                  maximum_paths_ibgp_selective: true
+# also accepts a string
+                  maximum_paths_ibgp_route_policy: eWX.'59vl<S;`%{
+# range 2-1024; also accepts a string
+                  maximum_paths_eibgp_multipath: 2
+                  maximum_paths_eibgp_equal_cost: true
+                  maximum_paths_eibgp_selective: true
+# also accepts a string
+                  maximum_paths_eibgp_route_policy: (dVdeH6I`81z%{0ytF( R/j0v9F@0b3
+                  maximum_paths_unique_nexthop_check_disable: true
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_critical: 1
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_non_critical: 1
+# allowed: per-prefix, per-ce, per-vrf, per-vrf-46; also accepts a string
+                  label_mode: per-prefix
+# also accepts a string
+                  label_mode_route_policy: ']qKEwE ${^cd'
+                  redistribute_connected: true
+# maximum 4294967295; also accepts a string
+                  redistribute_connected_metric: 1
+                  redistribute_connected_multipath: true
+# also accepts a string
+                  redistribute_connected_route_policy: _#Uc7i#T'rm F[b${8v/ZQQDesW>EYp=4xW*
+                  redistribute_static: true
+# maximum 4294967295; also accepts a string
+                  redistribute_static_metric: 1
+                  redistribute_static_multipath: true
+# also accepts a string
+                  redistribute_static_route_policy: nzI\?-^-bpKYMKtk)%{[k
+                  redistribute_rip: true
+# maximum 4294967295; also accepts a string
+                  redistribute_rip_metric: 1
+                  redistribute_rip_multipath: true
+# also accepts a string
+                  redistribute_rip_route_policy: ',uSv4.yufS%{0?KM*Xv&_@hORF\ ]'
+                  redistribute_ospf:
+                    -
+# mandatory; also accepts a string
+                      process: '"c&k!Xe%{s0'
+# allowed: match-external, match-external-1, match-external-1-nssa-external,
+# match-external-1-nssa-external-1, match-external-1-nssa-external-2, match-external-2,
+# match-external-2-nssa-external, match-external-2-nssa-external-1,
+# match-external-2-nssa-external-2, match-external-nssa-external, match-external-nssa-external-1,
+# match-external-nssa-external-2, match-internal, match-internal-external,
+# match-internal-external-1, match-internal-external-1-nssa-external,
+# match-internal-external-1-nssa-external-1, match-internal-external-1-nssa-external-2,
+# match-internal-external-2, match-internal-external-2-nssa-external,
+# match-internal-external-2-nssa-external-1, match-internal-external-2-nssa-external-2,
+# match-internal-external-nssa-external, match-internal-external-nssa-external-1,
+# match-internal-external-nssa-external-2, match-internal-nssa-external,
+# match-internal-nssa-external-1, match-internal-nssa-external-2, match-nssa-external,
+# match-nssa-external-1, match-nssa-external-2; also accepts a string
+                      match: match-external
+# maximum 4294967295; also accepts a string
+                      metric: 1
+                      multipath: true
+# also accepts a string
+                      route_policy: be(Gl@h${Yl7Dhmnlbr9OL+B)8
+                  redistribute_eigrp:
+                    -
+# mandatory; also accepts a string
+                      process: '&=kA${Q6XD\ftXN.k/s_SJ@W'
+# allowed: match-internal, match-internal-external, match-external; also accepts a string
+                      match: match-internal
+# maximum 4294967295; also accepts a string
+                      metric: 1
+                      multipath: true
+# also accepts a string
+                      route_policy: '&sxxb!tsG#t"${Lx+9^ZrP+5e'
+                  redistribute_isis:
+                    -
+# mandatory; also accepts a string
+                      process: v-s2;>>6p%{Z
+# allowed: level-1, level-1-inter-area, level-1-level-1-inter-area, level-1-level-2,
+# level-1-level-2-level-1-inter-area, level-2, level-2-level-1-inter-area; also accepts a string
+                      level: level-1
+# maximum 4294967295; also accepts a string
+                      metric: 1
+                      multipath: true
+# also accepts a string
+                      route_policy: .-$%U\Ze-^)"u%{42/na]i?Q
+# also accepts a string
+                  table_policy: _wbP%{fo-y'xiasL\
+# range 3-60; also accepts a string
+                  retain_local_label: 3
+                  rnh_install_extcomm: true
+                  rnh_install_extcomm_only: true
+# range 10-60000; also accepts a string
+                  prefix_ecmp_delay: 10
+# range 10-90; also accepts a string
+                  prefix_ecmp_delay_oor_threshold: 10
+                  bgp_origin_as_validation_enable: true
+                  bgp_origin_as_validation_signal_ibgp: true
+                  bgp_bestpath_origin_as_use_validity: true
+                  bgp_bestpath_origin_as_allow_invalid: true
+# range 5-3600; also accepts a string
+                  bgp_scan_time: 5
+                  bgp_attribute_download: true
+# maximum 10; also accepts a string
+                  bgp_import_delay_seconds: 1
+# maximum 999; also accepts a string
+                  bgp_import_delay_milliseconds: 1
+# maximum 10; also accepts a string
+                  bgp_label_delay_seconds: 1
+# maximum 999; also accepts a string
+                  bgp_label_delay_milliseconds: 1
+                  bgp_client_to_client_reflection:
+                    disable: true
+                    cluster_ids:
+                      -
+# mandatory; also accepts a string; also accepts an integer
+                        id: /+*f ${ qQXcm9"AF%a0#Gf}RA%OSy/
+# mandatory
+                        disable: true
+# range 1-255; also accepts a string
+                  bgp_dampening_decay_half_life: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_reuse_threshold: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_suppress_threshold: 1
+# maximum 4294967295; also accepts a string
+                  bgp_dampening_max_suppress_time: 1
+# also accepts a string
+                  bgp_dampening_route_policy: cCQ0%{7]hhA311:'HhKz2
+# also accepts a string
+                  event_prefix_route_policy: $XwZut,)=A/1/o1%{OXhr
+# maximum 10; also accepts a string
+                  dynamic_med_interval: 1
+                  weight_reset_on_import: true
+# also accepts a string
+                  nexthop_route_policy: k[x`^8&-5&%{$A<-+
+# maximum 32; also accepts a string
+                  nexthop_resolution_prefix_length_minimum_ipv4: 1
+# maximum 128; also accepts a string
+                  nexthop_resolution_prefix_length_minimum_ipv6: 1
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ebgp: 1
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ibgp: 1
+# range 4-2048; also accepts a string
+                  update_limit_address_family: 4
+                  update_wait_install: true
+# range 1-600; also accepts a string
+                  update_wait_install_delay_startup: 1
+                  as_path_loopcheck_out_disable: true
+                  epe_backup_enable: true
+                  default_martian_check_disable: true
+                  export_to_vrf_allow_backup: true
+                  export_to_vrf_allow_best_external: true
+                  segment_routing_prefix_sid_map: true
+                  segment_routing_srv6:
+# also accepts a string
+                    locator: $!JnJM>z${QU7pyR763
+                    usid_allocation_wide_local_id_block: true
+# allowed: per-ce, per-vrf, per-vrf-46; also accepts a string
+                    alloc_mode: per-ce
+# also accepts a string
+                    alloc_mode_route_policy: '%{jqHNsU7kG^yL3]W2pCw'
+                  aggregate_addresses:
+                    -
+# mandatory; also accepts a string
+                      address: GTxjkX#sm#!<!7%{a@2IA%c)xm5HAT
+# mandatory; maximum 128; also accepts a string
+                      length: 1
+                      as_confed_set: true
+                      as_set: true
+# also accepts a string
+                      description: iFfPC/`2U%{v
+# also accepts a string
+                      route_policy: '@>Ez1bDMM8CLxNy${!7*H>@lt1u'
+# maximum 4294967295; also accepts a string
+                      set_tag: 1
+                      summary_only: true
+                  networks:
+                    -
+# mandatory; also accepts a string
+                      address: $%{UvM
+# mandatory; maximum 128; also accepts a string
+                      length: 1
+                      backdoor: true
+                      multipath: true
+# also accepts a string
+                      route_policy: XcM"T`"bdXPx` ${A,'-F0gIxtbLA Dt
+                  peer_set_ids:
+                    -
+# mandatory; also accepts an integer
+                      peer_id: -2H${ZAckj^E04Zzro?n&L
+# maximum 1033575; also accepts a string
+                      peer_sid_index: 1
+                ipv6_unicast:
+                  enable: true
+# range 1-20000; also accepts a string
+                  distance_bgp_external_route: 1
+# range 1-20000; also accepts a string
+                  distance_bgp_internal_route: 1
+# range 1-20000; also accepts a string
+                  distance_bgp_local_route: 1
+                  import_from_bridge_domain: true
+                  additional_paths_send: true
+                  additional_paths_receive: true
+# range 1-20000; also accepts a string
+                  additional_paths_advertise_limit: 1
+# also accepts a string
+                  additional_paths_selection_route_policy: R<%{]?U0ZrO>9!7&xbR4
+                  additional_paths_selection_disable: true
+# also accepts a string
+                  permanent_network_route_policy: MW%{^29+-L we`q&B7j$;?c
+                  advertise_best_external: true
+                  advertise_best_external_labeled_unicast: true
+                  advertise_best_external_disable: true
+# allowed: disable, enable; also accepts a string
+                  advertise_local_labeled_route_safi_unicast: disable
+                  advertise_epe_bgp_labeled_unicast: true
+                  allocate_label_all: true
+                  allocate_label_all_unlabeled_path: true
+# also accepts a string
+                  allocate_label_route_policy: gA3_=%{*u_oa)+>;jy*G!F]*F
+                  allocate_label_route_policy_unlabeled_path: true
+# range 2-1024; also accepts a string
+                  maximum_paths_ebgp_multipath: 2
+                  maximum_paths_ebgp_selective: true
+# also accepts a string
+                  maximum_paths_ebgp_route_policy: RR$DaomyWv14$krG%{<6Siu%"-);JsP"
+# range 2-1024; also accepts a string
+                  maximum_paths_ibgp_multipath: 2
+                  maximum_paths_ibgp_unequal_cost: true
+                  maximum_paths_ibgp_unequal_cost_deterministic: true
+                  maximum_paths_ibgp_selective: true
+# also accepts a string
+                  maximum_paths_ibgp_route_policy: HVk$:y%{,
+# range 2-1024; also accepts a string
+                  maximum_paths_eibgp_multipath: 2
+                  maximum_paths_eibgp_equal_cost: true
+                  maximum_paths_eibgp_selective: true
+# also accepts a string
+                  maximum_paths_eibgp_route_policy: Jd%{g
+                  maximum_paths_unique_nexthop_check_disable: true
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_critical: 1
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_non_critical: 1
+# allowed: per-prefix, per-ce, per-vrf, per-vrf-46; also accepts a string
+                  label_mode: per-prefix
+# also accepts a string
+                  label_mode_route_policy: -\./'Ky2%{7%7J+.]M+
+                  redistribute_connected: true
+# maximum 4294967295; also accepts a string
+                  redistribute_connected_metric: 1
+                  redistribute_connected_multipath: true
+# also accepts a string
+                  redistribute_connected_route_policy: 97*P_fOrg<\bIj${^qvN6)7,w5cFv
+                  redistribute_static: true
+# maximum 4294967295; also accepts a string
+                  redistribute_static_metric: 1
+                  redistribute_static_multipath: true
+# also accepts a string
+                  redistribute_static_route_policy: g&xc]rUXZ8-<t!#@${
+                  redistribute_rip: true
+# maximum 4294967295; also accepts a string
+                  redistribute_rip_metric: 1
+                  redistribute_rip_multipath: true
+# also accepts a string
+                  redistribute_rip_route_policy: OtL2+,${"?$NweZc8
+                  redistribute_ospfv3:
+                    -
+# mandatory; also accepts a string
+                      process: y".)NAi<)z\n%{3e^elmP
+# allowed: match-external, match-external-1, match-external-1-nssa-external,
+# match-external-1-nssa-external-1, match-external-1-nssa-external-2, match-external-2,
+# match-external-2-nssa-external, match-external-2-nssa-external-1,
+# match-external-2-nssa-external-2, match-external-nssa-external, match-external-nssa-external-1,
+# match-external-nssa-external-2, match-internal, match-internal-external,
+# match-internal-external-1, match-internal-external-1-nssa-external,
+# match-internal-external-1-nssa-external-1, match-internal-external-1-nssa-external-2,
+# match-internal-external-2, match-internal-external-2-nssa-external,
+# match-internal-external-2-nssa-external-1, match-internal-external-2-nssa-external-2,
+# match-internal-external-nssa-external, match-internal-external-nssa-external-1,
+# match-internal-external-nssa-external-2, match-internal-nssa-external,
+# match-internal-nssa-external-1, match-internal-nssa-external-2, match-nssa-external,
+# match-nssa-external-1, match-nssa-external-2; also accepts a string
+                      match: match-external
+# maximum 4294967295; also accepts a string
+                      metric: 1
+                      multipath: true
+# also accepts a string
+                      route_policy: m#=@/6L%%`@By%{9nqF7mSl<qEZ/_
+                  redistribute_eigrp:
+                    -
+# mandatory; also accepts a string
+                      process: 7K&B${<d^B88].3iz% * *#*
+# allowed: match-internal, match-internal-external, match-external; also accepts a string
+                      match: match-internal
+# maximum 4294967295; also accepts a string
+                      metric: 1
+                      multipath: true
+# also accepts a string
+                      route_policy: 5NWbPxP8%{%3hjOBH.8l
+                  redistribute_isis:
+                    -
+# mandatory; also accepts a string
+                      process: sRc<J;iE=[FA(<8Iu${,Zp+2hI&#h`CYR-27
+# allowed: level-1, level-1-inter-area, level-1-level-1-inter-area, level-1-level-2,
+# level-1-level-2-level-1-inter-area, level-2, level-2-level-1-inter-area; also accepts a string
+                      level: level-1
+# maximum 4294967295; also accepts a string
+                      metric: 1
+                      multipath: true
+# also accepts a string
+                      route_policy: -sinT%{pX:Gnvi-M
+# also accepts a string
+                  table_policy: )QWnoLknfPu'@+.-E\?${N<QL.g:a?
+# range 3-60; also accepts a string
+                  retain_local_label: 3
+                  retain_route_target_all: true
+# also accepts a string
+                  retain_route_target_route_policy: 0e=O4g*&6ClK1MY4XG${]66>KLHO&
+                  rnh_install_extcomm: true
+                  rnh_install_extcomm_only: true
+# range 10-60000; also accepts a string
+                  prefix_ecmp_delay: 10
+# range 10-90; also accepts a string
+                  prefix_ecmp_delay_oor_threshold: 10
+                  bgp_origin_as_validation_enable: true
+                  bgp_origin_as_validation_signal_ibgp: true
+                  bgp_bestpath_origin_as_use_validity: true
+                  bgp_bestpath_origin_as_allow_invalid: true
+# range 5-3600; also accepts a string
+                  bgp_scan_time: 5
+                  bgp_attribute_download: true
+# maximum 10; also accepts a string
+                  bgp_import_delay_seconds: 1
+# maximum 999; also accepts a string
+                  bgp_import_delay_milliseconds: 1
+# maximum 10; also accepts a string
+                  bgp_label_delay_seconds: 1
+# maximum 999; also accepts a string
+                  bgp_label_delay_milliseconds: 1
+                  bgp_client_to_client_reflection:
+                    disable: true
+                    cluster_ids:
+                      -
+# mandatory; also accepts a string; also accepts an integer
+                        id: h $z0HgMz@wgxd6Hi3%{%Okg_}o^><uvl6&)F'x
+# mandatory
+                        disable: true
+# range 1-255; also accepts a string
+                  bgp_dampening_decay_half_life: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_reuse_threshold: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_suppress_threshold: 1
+# maximum 4294967295; also accepts a string
+                  bgp_dampening_max_suppress_time: 1
+# also accepts a string
+                  bgp_dampening_route_policy: 58&o0[mcPiC${,?F_GFzz$
+# also accepts a string
+                  event_prefix_route_policy: '[8(8ob;4eg(T${q0OeG(HRcy<Cj'
+# maximum 10; also accepts a string
+                  dynamic_med_interval: 1
+                  weight_reset_on_import: true
+# also accepts a string
+                  nexthop_route_policy: '7IE(${_ #GzpS]@;]0W'
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ebgp: 1
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ibgp: 1
+# range 4-2048; also accepts a string
+                  update_limit_address_family: 4
+                  update_wait_install: true
+# range 1-600; also accepts a string
+                  update_wait_install_delay_startup: 1
+                  as_path_loopcheck_out_disable: true
+                  epe_backup_enable: true
+                  default_martian_check_disable: true
+                  export_to_vrf_allow_backup: true
+                  export_to_vrf_allow_best_external: true
+                  segment_routing_srv6:
+# also accepts a string
+                    locator: lP[:;rM>.moq w.%{[W
+                    usid_allocation_wide_local_id_block: true
+# allowed: per-ce, per-vrf, per-vrf-46; also accepts a string
+                    alloc_mode: per-ce
+# also accepts a string
+                    alloc_mode_route_policy: dy#g.F,G3'>wgU${K[-/5-DVlg!b`0#.
+                  aggregate_addresses:
+                    -
+# mandatory; also accepts a string
+                      address: GNWj^%d${5y
+# mandatory; maximum 128; also accepts a string
+                      length: 1
+                      as_confed_set: true
+                      as_set: true
+# also accepts a string
+                      description: '>o9"%Yg3%{bLYTui6_WmpEp,'
+# also accepts a string
+                      route_policy: '@:Xe5<!;;/${'
+# maximum 4294967295; also accepts a string
+                      set_tag: 1
+                      summary_only: true
+                  networks:
+                    -
+# mandatory; also accepts a string
+                      address: _4O${`E5!_PEL5
+# mandatory; maximum 128; also accepts a string
+                      length: 1
+                      backdoor: true
+                      multipath: true
+# also accepts a string
+                      route_policy: ${L1>VW`:I= I2!G@hg
+                  peer_set_ids:
+                    -
+# mandatory; also accepts an integer
+                      peer_id: 3rC/&(;%{R%IQYWfn!d
+# maximum 1033575; also accepts a string
+                      peer_sid_index: 1
+                vpnv4_unicast:
+                  enable: true
+                  vrf_all:
+                    segment_routing_srv6:
+# also accepts a string
+                      locator: 'rZ&Qr: IrEay<8ZOQ7${>:V7zpXIk'
+                      usid_allocation_wide_local_id_block: true
+# allowed: per-ce, per-vrf, per-vrf-46; also accepts a string
+                      alloc_mode: per-ce
+                    source_rt_import_policy: true
+# allowed: per-ce, per-vrf, per-vrf-46; also accepts a string
+                    label_mode: per-ce
+# also accepts a string
+                    label_mode_route_policy: '!*W!gl\8L9&r />%{&'
+                    rnh_install_extcomm: true
+                    rnh_install_extcomm_only: true
+# also accepts a string
+                    table_policy: UzDXP#"X'!yL%{;!oS![;do
+                  additional_paths_send: true
+                  additional_paths_receive: true
+# range 1-20000; also accepts a string
+                  additional_paths_advertise_limit: 1
+# also accepts a string
+                  additional_paths_selection_route_policy: VV/b_D!::zo%{`5)f3Mmb:W>@4DL8
+                  advertise_best_external: true
+                  advertise_best_external_disable: true
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_critical: 1
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_non_critical: 1
+                  label_mode_per_nexthop_received_label: true
+                  label_mode_per_nexthop_received_label_allocate_secondary_label: true
+# range 3-60; also accepts a string
+                  retain_local_label: 3
+                  retain_route_target_all: true
+# also accepts a string
+                  retain_route_target_route_policy: WkW6EN%utg%{U]SU
+# range 5-3600; also accepts a string
+                  bgp_scan_time: 5
+# maximum 10; also accepts a string
+                  bgp_import_delay_seconds: 1
+# maximum 999; also accepts a string
+                  bgp_import_delay_milliseconds: 1
+# maximum 10; also accepts a string
+                  bgp_label_delay_seconds: 1
+# maximum 999; also accepts a string
+                  bgp_label_delay_milliseconds: 1
+                  bgp_client_to_client_reflection:
+                    disable: true
+                    cluster_ids:
+                      -
+# mandatory; also accepts a string; also accepts an integer
+                        id: 'Qmp_2%z,QS #9WA5g0+${ Kl5)yqCfI}'
+# mandatory
+                        disable: true
+# range 1-255; also accepts a string
+                  bgp_dampening_decay_half_life: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_reuse_threshold: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_suppress_threshold: 1
+# maximum 4294967295; also accepts a string
+                  bgp_dampening_max_suppress_time: 1
+# also accepts a string
+                  bgp_dampening_route_policy: ${%P/[Q
+# also accepts a string
+                  event_prefix_route_policy: f\%KH4iQ_ r#qx%{`RA4j2xRb
+# maximum 10; also accepts a string
+                  dynamic_med_interval: 1
+                  weight_reset_on_import: true
+# also accepts a string
+                  nexthop_route_policy: IyF3?o.F(J*/.^wWL<S${6ds-A`Wt@TUy@t
+# maximum 32; also accepts a string
+                  nexthop_resolution_prefix_length_minimum_ipv4: 1
+# maximum 128; also accepts a string
+                  nexthop_resolution_prefix_length_minimum_ipv6: 1
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ebgp: 1
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ibgp: 1
+# range 4-2048; also accepts a string
+                  update_limit_address_family: 4
+                  update_wait_install: true
+# range 1-600; also accepts a string
+                  update_wait_install_delay_startup: 1
+                  as_path_loopcheck_out_disable: true
+                  default_martian_check_disable: true
+                  export_to_vrf_allow_backup: true
+                  export_to_vrf_allow_best_external: true
+                  segment_routing_srv6:
+# also accepts a string
+                    locator: '&anTIrUic${zsM rGd`Cb\#(6kpUNg'
+                    usid_allocation_wide_local_id_block: true
+                vpnv6_unicast:
+                  enable: true
+                  vrf_all:
+                    segment_routing_srv6:
+# also accepts a string
+                      locator: ^jC1LDQ^%7D%{kJI@/4&
+                      usid_allocation_wide_local_id_block: true
+# allowed: per-ce, per-vrf, per-vrf-46; also accepts a string
+                      alloc_mode: per-ce
+                    source_rt_import_policy: true
+# allowed: per-ce, per-vrf, per-vrf-46; also accepts a string
+                    label_mode: per-ce
+# also accepts a string
+                    label_mode_route_policy: 8uQ,3_p^drz7_>]aG>%{@%^]EGGQFeZQ
+                    rnh_install_extcomm: true
+                    rnh_install_extcomm_only: true
+# also accepts a string
+                    table_policy: Sp=cIQ8"T${
+                  additional_paths_send: true
+                  additional_paths_receive: true
+# range 1-20000; also accepts a string
+                  additional_paths_advertise_limit: 1
+# also accepts a string
+                  additional_paths_selection_route_policy: Kcs3s<0h&5 @%{_*9R1"$!\Os4(kS
+                  advertise_best_external: true
+                  advertise_best_external_disable: true
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_critical: 1
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_non_critical: 1
+                  label_mode_per_nexthop_received_label: true
+                  label_mode_per_nexthop_received_label_allocate_secondary_label: true
+# range 3-60; also accepts a string
+                  retain_local_label: 3
+                  retain_route_target_all: true
+# also accepts a string
+                  retain_route_target_route_policy: 'R#,Swop\\SHbu]Ma%{QkW1]0KM2 '
+# range 5-3600; also accepts a string
+                  bgp_scan_time: 5
+# maximum 10; also accepts a string
+                  bgp_import_delay_seconds: 1
+# maximum 999; also accepts a string
+                  bgp_import_delay_milliseconds: 1
+# maximum 10; also accepts a string
+                  bgp_label_delay_seconds: 1
+# maximum 999; also accepts a string
+                  bgp_label_delay_milliseconds: 1
+                  bgp_client_to_client_reflection:
+                    disable: true
+                    cluster_ids:
+                      -
+# mandatory; also accepts a string; also accepts an integer
+                        id: <h*1)XlRC/#GxbXn%{}K*^\d6JcS t$n/
+# mandatory
+                        disable: true
+# range 1-255; also accepts a string
+                  bgp_dampening_decay_half_life: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_reuse_threshold: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_suppress_threshold: 1
+# maximum 4294967295; also accepts a string
+                  bgp_dampening_max_suppress_time: 1
+# also accepts a string
+                  bgp_dampening_route_policy: 2Z7//${J?LC[__v[Z
+# also accepts a string
+                  event_prefix_route_policy: fgl;v${)'
+# maximum 10; also accepts a string
+                  dynamic_med_interval: 1
+                  weight_reset_on_import: true
+# also accepts a string
+                  nexthop_route_policy: -=\%${-vF1$3.-
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ebgp: 1
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ibgp: 1
+# range 4-2048; also accepts a string
+                  update_limit_address_family: 4
+                  update_wait_install: true
+# range 1-600; also accepts a string
+                  update_wait_install_delay_startup: 1
+                  as_path_loopcheck_out_disable: true
+                  default_martian_check_disable: true
+                  export_to_vrf_allow_backup: true
+                  export_to_vrf_allow_best_external: true
+                  segment_routing_srv6:
+# also accepts a string
+                    locator: lMrcd@6$S$r+-h0IA${%
+                    usid_allocation_wide_local_id_block: true
+                vpnv4_multicast:
+                  enable: true
+                  additional_paths_send: true
+                  additional_paths_receive: true
+# range 1-20000; also accepts a string
+                  additional_paths_advertise_limit: 1
+# also accepts a string
+                  additional_paths_selection_route_policy: PM0"MbKx${I^whiwe&s%l$-7Z]
+                  advertise_best_external: true
+                  advertise_best_external_disable: true
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_critical: 1
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_non_critical: 1
+# range 3-60; also accepts a string
+                  retain_local_label: 3
+                  retain_route_target_all: true
+# also accepts a string
+                  retain_route_target_route_policy: cJr.slJ${*a$S(*.Zt;N*h;DB.
+# range 5-3600; also accepts a string
+                  bgp_scan_time: 5
+# maximum 10; also accepts a string
+                  bgp_label_delay_seconds: 1
+# maximum 999; also accepts a string
+                  bgp_label_delay_milliseconds: 1
+                  bgp_client_to_client_reflection:
+                    disable: true
+                    cluster_ids:
+                      -
+# mandatory; also accepts a string; also accepts an integer
+                        id: :dz${Ov=;iU!G"acPv6}/MJ\]h:l%,q gdWR(
+# mandatory
+                        disable: true
+# range 1-255; also accepts a string
+                  bgp_dampening_decay_half_life: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_reuse_threshold: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_suppress_threshold: 1
+# maximum 4294967295; also accepts a string
+                  bgp_dampening_max_suppress_time: 1
+# also accepts a string
+                  bgp_dampening_route_policy: Zz5ti>_=%{lNX_Nl[GyDrD
+# also accepts a string
+                  event_prefix_route_policy: .MitP9axsA${3iCM3
+# also accepts a string
+                  nexthop_route_policy: hg6-K%{=f^&+X?6,yb0NF=+H=
+# maximum 32; also accepts a string
+                  nexthop_resolution_prefix_length_minimum_ipv4: 1
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ebgp: 1
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ibgp: 1
+# range 4-2048; also accepts a string
+                  update_limit_address_family: 4
+                  as_path_loopcheck_out_disable: true
+                  default_martian_check_disable: true
+                vpnv6_multicast:
+                  enable: true
+                  additional_paths_send: true
+                  additional_paths_receive: true
+# range 1-20000; also accepts a string
+                  additional_paths_advertise_limit: 1
+# also accepts a string
+                  additional_paths_selection_route_policy: B%S+[%{q=;`R,f0BoJJR8])@e9
+                  advertise_best_external: true
+                  advertise_best_external_disable: true
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_critical: 1
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_non_critical: 1
+# range 3-60; also accepts a string
+                  retain_local_label: 3
+                  retain_route_target_all: true
+# also accepts a string
+                  retain_route_target_route_policy: yuJ)BK%{3M/j
+# range 5-3600; also accepts a string
+                  bgp_scan_time: 5
+# maximum 10; also accepts a string
+                  bgp_label_delay_seconds: 1
+# maximum 999; also accepts a string
+                  bgp_label_delay_milliseconds: 1
+                  bgp_client_to_client_reflection:
+                    disable: true
+                    cluster_ids:
+                      -
+# mandatory; also accepts a string; also accepts an integer
+                        id: 'P%!@^k${`E:fB(/k}- '
+# mandatory
+                        disable: true
+# range 1-255; also accepts a string
+                  bgp_dampening_decay_half_life: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_reuse_threshold: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_suppress_threshold: 1
+# maximum 4294967295; also accepts a string
+                  bgp_dampening_max_suppress_time: 1
+# also accepts a string
+                  bgp_dampening_route_policy: /fVG*q&v)_^z'`${X9P
+# also accepts a string
+                  event_prefix_route_policy: 1sz0nfA)jW[D>${
+# also accepts a string
+                  nexthop_route_policy: a]?${0"qznck
+# maximum 32; also accepts a string
+                  nexthop_resolution_prefix_length_minimum_ipv4: 1
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ebgp: 1
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ibgp: 1
+# range 4-2048; also accepts a string
+                  update_limit_address_family: 4
+                  as_path_loopcheck_out_disable: true
+                  default_martian_check_disable: true
+                l2vpn_evpn:
+                  enable: true
+                  additional_paths_send: true
+                  additional_paths_receive: true
+# range 1-20000; also accepts a string
+                  additional_paths_advertise_limit: 1
+# also accepts a string
+                  additional_paths_selection_route_policy: '%{Q@ok<'
+                  advertise_best_external: true
+                  advertise_best_external_disable: true
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_critical: 1
+# maximum 4294967295; also accepts a string
+                  nexthop_trigger_delay_non_critical: 1
+# range 3-60; also accepts a string
+                  retain_local_label: 3
+                  retain_route_target_all: true
+# also accepts a string
+                  retain_route_target_route_policy: '"+Zor#Lg(=v${%kRJ+LMb3U'
+# range 5-3600; also accepts a string
+                  bgp_scan_time: 5
+# maximum 10; also accepts a string
+                  bgp_import_delay_seconds: 1
+# maximum 999; also accepts a string
+                  bgp_import_delay_milliseconds: 1
+# maximum 10; also accepts a string
+                  bgp_label_delay_seconds: 1
+# maximum 999; also accepts a string
+                  bgp_label_delay_milliseconds: 1
+                  bgp_client_to_client_reflection:
+                    disable: true
+                    cluster_ids:
+                      -
+# mandatory; also accepts a string; also accepts an integer
+                        id: Na*${L@RT%@!`S2TQjTaV)}KNW!5B:Gz8C`RF
+# mandatory
+                        disable: true
+# range 1-255; also accepts a string
+                  bgp_dampening_decay_half_life: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_reuse_threshold: 1
+# range 1-255; also accepts a string
+                  bgp_dampening_suppress_threshold: 1
+# maximum 4294967295; also accepts a string
+                  bgp_dampening_max_suppress_time: 1
+# also accepts a string
+                  bgp_dampening_route_policy: '[.^%rgE/`#@0KWozw6_${ YH '
+# also accepts a string
+                  event_prefix_route_policy: B3&O`#enA${gXU-CgD17FnVzr"HG=;
+# also accepts a string
+                  nexthop_route_policy: 92#h9EyQ6'#0A)_%{o-L`ZV9CT
+# maximum 32; also accepts a string
+                  nexthop_resolution_prefix_length_minimum_ipv4: 1
+# maximum 128; also accepts a string
+                  nexthop_resolution_prefix_length_minimum_ipv6: 1
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ebgp: 1
+# range 1-512; also accepts a string
+                  update_limit_sub_group_ibgp: 1
+# range 4-2048; also accepts a string
+                  update_limit_address_family: 4
+                  as_path_loopcheck_out_disable: true
+                  default_martian_check_disable: true
+              neighbor_groups:
+                -
+# mandatory; also accepts a string
+                  name: ep2F.\;Vs%9!;BaR1b%{2`/Q6bj'L, e-
+# range 1-4294967295; also accepts a string
+                  remote_as: 1
+# also accepts a string
+                  remote_as_list: y%)Nv0D)Wh@Tw[%{C3mGU@q3taS
+# range 1-4095; also accepts a string
+                  maximum_peers: 1
+# allowed: disable, enable; also accepts a string
+                  as_path_loopcheck_out: disable
+# also accepts a string
+                  use_neighbor_group: i${Bc,#<vo5>.O>fsP
+# also accepts a string
+                  use_session_group: aCQ:);Oj1# a^JL%{T4kIu@wF7
+# maximum 600; also accepts a string
+                  advertisement_interval_seconds: 1
+# maximum 999; also accepts a string
+                  advertisement_interval_milliseconds: 1
+# also accepts a string
+                  description: CoP^w${hLlk
+                  ignore_connected_check: true
+                  ignore_connected_check_inheritance_disable: true
+# range 1-255; also accepts a string
+                  ebgp_multihop_maximum_hop_count: 1
+                  ebgp_multihop_mpls: true
+# range 68-10000; also accepts a string
+                  tcp_mss: 68
+                  tcp_mss_inheritance_disable: true
+                  tcp_mtu_discovery: true
+                  tcp_mtu_discovery_inheritance_disable: true
+                  tcp_ip_only_preferred: true
+                  tcp_ip_only_preferred_inheritance_disable: true
+                  fast_fallover: true
+                  fast_fallover_inheritance_disable: true
+                  internal_vpn_client: true
+                  bmp_activate_servers:
+                    -
+# mandatory; range 1-8; also accepts a string
+                      number: 1
+# range 3-30000; also accepts a string
+                  bfd_minimum_interval: 3
+# range 2-16; also accepts a string
+                  bfd_multiplier: 2
+# allowed: enable, strict-mode, disable, strict-mode-negotiate, strict-mode-negotiate-override;
+# also accepts a string
+                  bfd_fast_detect: enable
+# also accepts a string
+                  keychain: HfM=%{Y&x%;mxt"
+                  keychain_inheritance_disable: true
+                  local_as_inheritance_disable: true
+# range 1-4294967295; also accepts a string
+                  local_as: 1
+# allowed: no-prepend, no-prepend-replace-as, no-prepend-replace-as-dual-as; also accepts a string
+                  local_as_mode: no-prepend
+# allowed: 7; also accepts a string
+                  password_type: 7
+# also accepts a string
+                  password: '%V"%{kRR"Pn=\ZVbu$h'
+                  password_inheritance_disable: true
+# range 512-131072; also accepts a string
+                  receive_buffer_size: 512
+# range 512-131072; also accepts a string
+                  receive_buffer_read_size: 512
+# range 4096-131072; also accepts a string
+                  send_buffer_size: 4096
+# range 4096-131072; also accepts a string
+                  send_buffer_write_size: 4096
+# allowed: enable, disable; also accepts a string
+                  dampening: enable
+# allowed: enable, disable; also accepts a string
+                  as_override: enable
+                  shutdown: true
+# maximum 65535; also accepts a string
+                  timers_keepalive_interval: 1
+                  timers_holddown_zero: true
+                  timers_holddown_zero_minimum_acceptable_zero: true
+# range 3-65535; also accepts a string
+                  timers_holddown_zero_minimum_acceptable_holdtime: 3
+# range 3-65535; also accepts a string
+                  timers_holdtime: 3
+# range 3-65535; also accepts a string
+                  timers_holdtime_minimum_acceptable_holdtime: 3
+# also accepts a string
+                  local_address: ^G4Yd[ZFu)vF-%{TOL?@0m]
+                  local_address_inheritance_disable: true
+# allowed: detail, disable, inheritance-disable; also accepts a string
+                  log_neighbor_changes: detail
+# range 1-500; also accepts a string
+                  log_message_in: 1
+                  log_message_in_disable: true
+                  log_message_in_inheritance_disable: true
+# range 1-500; also accepts a string
+                  log_message_out: 1
+                  log_message_out_disable: true
+                  log_message_out_inheritance_disable: true
+# also accepts a string
+                  update_source: m_YjxY1Nt+${4kXR
+# also accepts a string
+                  local_address_subnet_prefix: xx@IIk${0c:f&Ew>r,;At?W%!
+# maximum 128; also accepts a string
+                  local_address_subnet_length: 1
+                  dmz_link_bandwidth: true
+                  dmz_link_bandwidth_inheritance_disable: true
+                  ebgp_recv_extcommunity_dmz: true
+                  ebgp_recv_extcommunity_dmz_inheritance_disable: true
+                  ebgp_send_extcommunity_dmz: true
+                  ebgp_send_extcommunity_dmz_cumulative: true
+                  ebgp_send_extcommunity_dmz_inheritance_disable: true
+                  ttl_security: true
+                  ttl_security_inheritance_disable: true
+# allowed: active-only, passive-only, both; also accepts a string
+                  session_open_mode: active-only
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+                  dscp: af11
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+                  precedence: critical
+                  capability_additional_paths_send: true
+                  capability_additional_paths_send_disable: true
+                  capability_additional_paths_receive: true
+                  capability_additional_paths_receive_disable: true
+                  capability_suppress_all: true
+                  capability_suppress_all_inheritance_disable: true
+                  capability_suppress_extended_nexthop_encoding: true
+                  capability_suppress_extended_nexthop_encoding_inheritance_disable: true
+                  capability_suppress_four_byte_as: true
+                  capability_suppress_four_byte_as_inheritance_disable: true
+# allowed: enable, disable; also accepts a string
+                  graceful_restart: enable
+                  graceful_restart_helper_only: true
+                  graceful_restart_helper_only_inheritance_disable: true
+# range 1-4095; also accepts a string
+                  graceful_restart_restart_time: 1
+# maximum 4095; also accepts a string
+                  graceful_restart_stalepath_time: 1
+# allowed: enable, disable; also accepts a string
+                  enforce_first_as: enable
+# also accepts an integer; also accepts a string
+                  cluster_id: S:)3g-.%{Qt\N[JRY1=ai3RHB\u
+# range 30-1800; also accepts a string
+                  idle_watch_time: 30
+# range 1-10; also accepts a string
+                  allowas_in: 1
+                  egress_engineering: true
+                  egress_engineering_inheritance_disable: true
+                  peer_sets:
+                    -
+# mandatory; also accepts an integer
+                      id: qiD C&jNG'OU(uC<r${iRdz/pc%RZv5X'Wz
+# also accepts a string
+                  ao_key_chain: '%,RG2?0k)${T[fiGZ?!$z'
+# allowed: disable, enable; also accepts a string
+                  ao_key_chain_include_tcp_options: disable
+                  ao_key_chain_accept_mismatch: true
+                  ao_inheritance_disable: true
+# allowed: accept, reject; also accepts a string
+                  default_policy_action_in: accept
+# allowed: accept, reject; also accepts a string
+                  default_policy_action_out: accept
+# maximum 25; also accepts a string
+                  update_in_filtering_message_buffers: 1
+# allowed: buffers-number-enable, non-circular; also accepts a string
+                  update_in_filtering_message_buffers_type: buffers-number-enable
+                  update_in_filtering_logging_disable: true
+# also accepts a string
+                  update_in_filtering_attribute_filter_group: JpRr5&(Q:B${P(q7ima\w:Vm
+                  update_in_labeled_unicast_equivalent: true
+                  update_in_labeled_unicast_equivalent_inheritance_disable: true
+# allowed: disable, enable; also accepts a string
+                  update_in_error_handling_avoid_reset: disable
+# allowed: disable, enable; also accepts a string
+                  update_in_error_handling_treat_as_withdraw: disable
+                  graceful_maintenance:
+                    activate: true
+                    activate_inheritance_disable: true
+# maximum 4294967295; also accepts a string
+                    local_preference: 1
+                    local_preference_inheritance_disable: true
+# maximum 6; also accepts a string
+                    as_prepends: 1
+                    as_prepends_inheritance_disable: true
+# range 1-100; also accepts a string
+                    bandwidth_aware_percentage_threshold: 1
+# range 1-100; also accepts a string
+                    bandwidth_aware_percentage_threshold_high: 1
+# range 1-4294967295; also accepts a string
+                    bandwidth_aware_bandwidth_threshold: 1
+# range 1-4294967295; also accepts a string
+                    bandwidth_aware_bandwidth_threshold_high: 1
+                    bandwidth_aware_inheritance_disable: true
+                  address_family:
+                    -
+# mandatory; allowed: ipv4-unicast, ipv4-labeled-unicast, ipv4-multicast, ipv4-mdt, ipv4-mvpn,
+# ipv4-flowspec, ipv4-rt-filter, ipv4-sr-policy, ipv4-tunnel, ipv6-unicast, ipv6-labeled-unicast,
+# ipv6-multicast, ipv6-mvpn, ipv6-flowspec, ipv6-sr-policy, vpnv4-flowspec, vpnv4-multicast,
+# vpnv4-unicast, vpnv6-flowspec, vpnv6-multicast, vpnv6-unicast, l2vpn-evpn, l2vpn-mspw,
+# l2vpn-vpls-vpws, link-state-link-state; also accepts a string
+                      name: ipv4-unicast
+# allowed: srv6, vxlan; also accepts a string
+                      encapsulation_type: srv6
+# maximum 65535; also accepts a string
+                      weight: 1
+                      multipath: true
+# also accepts a string
+                      use_af_group: H4;iz`j.%{Hg!AfDJdg=w,A%)
+# allowed: both, none, receive, send; also accepts a string
+                      capability_orf_prefix: both
+                      additional_paths_send: true
+                      additional_paths_send_disable: true
+                      additional_paths_receive: true
+                      additional_paths_receive_disable: true
+                      default_originate: true
+# also accepts a string
+                      default_originate_route_policy: ${!
+                      default_originate_inheritance_disable: true
+# range 1-4294967295; also accepts a string
+                      maximum_prefix_limit: 1
+# range 1-100; also accepts a string
+                      maximum_prefix_threshold: 1
+# range 1-65535; also accepts a string
+                      maximum_prefix_restart: 1
+                      maximum_prefix_discard_extra_paths: true
+                      maximum_prefix_warning_only: true
+                      next_hop_self: true
+                      next_hop_self_inheritance_disable: true
+                      next_hop_unchanged: true
+                      next_hop_unchanged_multipath: true
+                      next_hop_unchanged_inheritance_disable: true
+# also accepts a string
+                      route_policy_in: .0TnEHoI?%\7dv.%%{Ft
+# also accepts a string
+                      route_policy_out: P)RC+oE%CDb^XW${l[/O]BgWp)
+# also accepts a string
+                      orf_route_policy: 9+${Jj*US?C3TT<3p /L
+                      cluster_id_allow_equal: true
+                      cluster_id_allow_equal_disable: true
+                      replace_private_as: true
+                      replace_private_as_internal: true
+                      remove_private_as_inbound: true
+                      remove_private_as_inbound_entire_aspath: true
+                      remove_private_as_inbound_inheritance_disable: true
+                      remove_private_as: true
+                      remove_private_as_entire_aspath: true
+                      remove_private_as_internal: true
+                      route_reflector_client: true
+                      route_reflector_client_inheritance_disable: true
+                      send_community_ebgp: true
+                      send_community_ebgp_inheritance_disable: true
+                      send_community_gshut_ebgp: true
+                      send_community_gshut_ebgp_inheritance_disable: true
+                      send_extended_community_ebgp: true
+                      send_extended_community_ebgp_inheritance_disable: true
+                      soft_reconfiguration_inbound: true
+                      soft_reconfiguration_inbound_always: true
+                      update_out_originator_loopcheck: true
+                      update_out_originator_loopcheck_disable: true
+                      advertise_vpnv4_unicast: true
+                      advertise_vpnv4_unicast_re_originated: true
+                      advertise_vpnv4_unicast_re_originated_stitching_rt: true
+                      advertise_vpnv6_unicast: true
+                      advertise_vpnv6_unicast_re_originated: true
+                      advertise_vpnv6_unicast_re_originated_stitching_rt: true
+                      advertise_l2vpn_evpn_re_originated: true
+                      advertise_l2vpn_evpn_re_originated_stitching_rt: true
+                      segment_routing_srv6_prefix_sid_type4: true
+                      import_stitching_rt: true
+                      import_stitching_rt_re_originate: true
+                      import_stitching_rt_re_originate_stitching_rt: true
+                      import_re_originate: true
+# range 1-10; also accepts a string
+                      allowas_in: 1
+# also accepts a string
+                      site_of_origin: EsfiCD,=*]3-nA`S.BC%{f`yQQm_l$<rk&8b
+                      as_override: true
+                      as_override_inheritance_disable: true
+                      aigp: true
+                      aigp_disable: true
+                      aigp_send_med: true
+                      aigp_send_med_disable: true
+                      aigp_send_cost_community_disable: true
+# also accepts an integer
+                      aigp_send_cost_community_id: T\?eaA9bg2S03${]i_Xb xL
+                      aigp_send_cost_community_id_poi_igp_cost: true
+                      aigp_send_cost_community_id_poi_igp_cost_transitive: true
+                      aigp_send_cost_community_id_poi_pre_bestpath: true
+                      aigp_send_cost_community_id_poi_pre_bestpath_transitive: true
+                      send_multicast_attributes: true
+                      send_multicast_attributes_disable: true
+                      accept_own: true
+                      accept_own_inheritance_disable: true
+                      slow_peer_dynamic: true
+# range 120-3600; also accepts a string
+                      slow_peer_dynamic_threshold: 120
+                      slow_peer_dynamic_disable: true
+                      slow_peer_static: true
+                      origin_as_validation_disable: true
+                      bestpath_origin_as_allow_invalid: true
+              session_groups:
+                -
+# mandatory; also accepts a string
+                  name: '>]DWICvg1`?A`*x!9`A%{U6akQzl@4Yh1utC*'
+# range 1-4294967295; also accepts a string
+                  remote_as: 1
+# also accepts a string
+                  remote_as_list: FE(.Q*zMGW${n<\
+# range 1-4095; also accepts a string
+                  maximum_peers: 1
+                  send_community_ebgp: true
+                  send_community_ebgp_inheritance_disable: true
+                  send_extended_community_ebgp: true
+                  send_extended_community_ebgp_inheritance_disable: true
+# allowed: disable, enable; also accepts a string
+                  as_path_loopcheck_out: disable
+# allowed: disable, enable; also accepts a string
+                  dampening: disable
+# allowed: disable, enable; also accepts a string
+                  as_override: disable
+# also accepts a string
+                  use_session_group: /H9`$oHt`k4Q,[goReA${qZKG
+# maximum 600; also accepts a string
+                  advertisement_interval_seconds: 1
+# maximum 999; also accepts a string
+                  advertisement_interval_milliseconds: 1
+# also accepts a string
+                  description: J&Dv=%{dIRD
+                  ignore_connected_check: true
+                  ignore_connected_check_inheritance_disable: true
+                  internal_vpn_client: true
+# range 1-255; also accepts a string
+                  ebgp_multihop_maximum_hop_count: 1
+                  ebgp_multihop_mpls: true
+# range 68-10000; also accepts a string
+                  tcp_mss: 68
+                  tcp_mss_inheritance_disable: true
+                  tcp_mtu_discovery: true
+                  tcp_mtu_discovery_inheritance_disable: true
+                  tcp_ip_only_preferred: true
+                  tcp_ip_only_preferred_inheritance_disable: true
+                  bmp_activate_servers:
+                    -
+# mandatory; range 1-8; also accepts a string
+                      number: 1
+# range 3-30000; also accepts a string
+                  bfd_minimum_interval: 3
+# range 2-16; also accepts a string
+                  bfd_multiplier: 2
+# allowed: enable, strict-mode, disable, strict-mode-negotiate, strict-mode-negotiate-override;
+# also accepts a string
+                  bfd_fast_detect: enable
+# also accepts a string
+                  keychain: YjxORcwT\>Wapnth7${!v-5O
+                  keychain_inheritance_disable: true
+                  local_as_inheritance_disable: true
+# range 1-4294967295; also accepts a string
+                  local_as: 1
+# allowed: no-prepend, no-prepend-replace-as, no-prepend-replace-as-dual-as; also accepts a string
+                  local_as_mode: no-prepend
+# allowed: 7; also accepts a string
+                  password_type: 7
+# also accepts a string
+                  password: C2'YiD${92m5_&dU<
+                  password_inheritance_disable: true
+# range 512-131072; also accepts a string
+                  receive_buffer_size: 512
+# range 512-131072; also accepts a string
+                  receive_buffer_read_size: 512
+# range 4096-131072; also accepts a string
+                  send_buffer_size: 4096
+# range 4096-131072; also accepts a string
+                  send_buffer_write_size: 4096
+                  shutdown: true
+# maximum 65535; also accepts a string
+                  timers_keepalive_interval: 1
+                  timers_holddown_zero: true
+                  timers_holddown_zero_minimum_acceptable_zero: true
+# range 3-65535; also accepts a string
+                  timers_holddown_zero_minimum_acceptable_holdtime: 3
+# range 3-65535; also accepts a string
+                  timers_holdtime: 3
+# range 3-65535; also accepts a string
+                  timers_holdtime_minimum_acceptable_holdtime: 3
+# also accepts a string
+                  local_address: ON?mA3OQtLrWZyXPg-9${s_5dc$!g*
+                  local_address_inheritance_disable: true
+# allowed: detail, disable, inheritance-disable; also accepts a string
+                  log_neighbor_changes: detail
+# range 1-500; also accepts a string
+                  log_message_in: 1
+                  log_message_in_disable: true
+                  log_message_in_inheritance_disable: true
+# range 1-500; also accepts a string
+                  log_message_out: 1
+                  log_message_out_disable: true
+                  log_message_out_inheritance_disable: true
+# also accepts a string
+                  update_source: tou%{ Rf0Mhw6k`0)(
+# also accepts a string
+                  local_address_subnet_prefix: 7!7Y%{@L%L,AlCW
+# maximum 128; also accepts a string
+                  local_address_subnet_length: 1
+                  dmz_link_bandwidth: true
+                  dmz_link_bandwidth_inheritance_disable: true
+                  ebgp_recv_extcommunity_dmz: true
+                  ebgp_recv_extcommunity_dmz_inheritance_disable: true
+                  ebgp_send_extcommunity_dmz: true
+                  ebgp_send_extcommunity_dmz_cumulative: true
+                  ebgp_send_extcommunity_dmz_inheritance_disable: true
+                  ttl_security: true
+                  ttl_security_inheritance_disable: true
+# allowed: active-only, passive-only, both; also accepts a string
+                  session_open_mode: active-only
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+                  dscp: af11
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+                  precedence: critical
+                  capability_additional_paths_send: true
+                  capability_additional_paths_send_disable: true
+                  capability_additional_paths_receive: true
+                  capability_additional_paths_receive_disable: true
+                  capability_suppress_all: true
+                  capability_suppress_all_inheritance_disable: true
+                  capability_suppress_extended_nexthop_encoding: true
+                  capability_suppress_extended_nexthop_encoding_inheritance_disable: true
+                  capability_suppress_four_byte_as: true
+                  capability_suppress_four_byte_as_inheritance_disable: true
+# allowed: enable, disable; also accepts a string
+                  graceful_restart: enable
+                  graceful_restart_helper_only: true
+                  graceful_restart_helper_only_inheritance_disable: true
+# range 1-4095; also accepts a string
+                  graceful_restart_restart_time: 1
+# maximum 4095; also accepts a string
+                  graceful_restart_stalepath_time: 1
+# allowed: disable, enable; also accepts a string
+                  enforce_first_as: disable
+# also accepts an integer; also accepts a string
+                  cluster_id: zb6MDD\%{Dk
+# range 30-1800; also accepts a string
+                  idle_watch_time: 30
+# range 1-10; also accepts a string
+                  allowas_in: 1
+                  egress_engineering: true
+                  egress_engineering_inheritance_disable: true
+                  peer_sets:
+                    -
+# mandatory; also accepts an integer
+                      id: 0Ht,B8RR!%{H_=$MnXd29q@^^7ygt
+# also accepts a string
+                  ao_key_chain: 01bm${4oIjM9WYUqe]Gl T
+# allowed: disable, enable; also accepts a string
+                  ao_key_chain_include_tcp_options: disable
+                  ao_key_chain_accept_mismatch: true
+                  ao_inheritance_disable: true
+# allowed: accept, reject; also accepts a string
+                  default_policy_action_in: accept
+# allowed: accept, reject; also accepts a string
+                  default_policy_action_out: accept
+                  fast_fallover: true
+                  fast_fallover_inheritance_disable: true
+                  update_in_labeled_unicast_equivalent: true
+                  update_in_labeled_unicast_equivalent_inheritance_disable: true
+# allowed: disable, enable; also accepts a string
+                  update_in_error_handling_avoid_reset: disable
+# allowed: disable, enable; also accepts a string
+                  update_in_error_handling_treat_as_withdraw: disable
+              af_groups:
+                -
+# mandatory; also accepts a string
+                  name: '!5q;gn${]&WVv-6'
+                  address_family:
+                    -
+# mandatory; allowed: ipv4-unicast, ipv4-labeled-unicast, ipv4-multicast, ipv4-mdt, ipv4-mvpn,
+# ipv4-flowspec, ipv4-rt-filter, ipv4-sr-policy, ipv4-tunnel, ipv6-unicast, ipv6-labeled-unicast,
+# ipv6-multicast, ipv6-mvpn, ipv6-flowspec, ipv6-sr-policy, vpnv4-flowspec, vpnv4-multicast,
+# vpnv4-unicast, vpnv6-flowspec, vpnv6-multicast, vpnv6-unicast, l2vpn-evpn, l2vpn-mspw,
+# l2vpn-vpls-vpws, link-state-link-state; also accepts a string
+                      name: ipv4-unicast
+# allowed: srv6, vxlan; also accepts a string
+                      encapsulation_type: srv6
+# maximum 65535; also accepts a string
+                      weight: 1
+                      multipath: true
+# also accepts a string
+                      use_af_group: ${DX>_1k@\,
+# allowed: both, none, receive, send; also accepts a string
+                      capability_orf_prefix: both
+                      additional_paths_send: true
+                      additional_paths_send_disable: true
+                      additional_paths_receive: true
+                      additional_paths_receive_disable: true
+                      default_originate: true
+# also accepts a string
+                      default_originate_route_policy: N^twz1Pv1'Crds?*Z%{itG-o
+                      default_originate_inheritance_disable: true
+# range 1-4294967295; also accepts a string
+                      maximum_prefix_limit: 1
+# range 1-100; also accepts a string
+                      maximum_prefix_threshold: 1
+# range 1-65535; also accepts a string
+                      maximum_prefix_restart: 1
+                      maximum_prefix_discard_extra_paths: true
+                      maximum_prefix_warning_only: true
+                      next_hop_self: true
+                      next_hop_self_inheritance_disable: true
+                      next_hop_unchanged: true
+                      next_hop_unchanged_multipath: true
+                      next_hop_unchanged_inheritance_disable: true
+# also accepts a string
+                      route_policy_in: 0t?1<hG7${Lm5!u7bvFnb
+# also accepts a string
+                      route_policy_out: \g3?0`psLLSdI%{pt
+# also accepts a string
+                      orf_route_policy: '%{rO%4q`MkORk9xPzh<'
+                      cluster_id_allow_equal: true
+                      cluster_id_allow_equal_disable: true
+                      replace_private_as: true
+                      replace_private_as_internal: true
+                      remove_private_as_inbound: true
+                      remove_private_as_inbound_entire_aspath: true
+                      remove_private_as_inbound_inheritance_disable: true
+                      remove_private_as: true
+                      remove_private_as_entire_aspath: true
+                      remove_private_as_internal: true
+                      route_reflector_client: true
+                      route_reflector_client_inheritance_disable: true
+                      send_community_ebgp: true
+                      send_community_ebgp_inheritance_disable: true
+                      send_community_gshut_ebgp: true
+                      send_community_gshut_ebgp_inheritance_disable: true
+                      send_extended_community_ebgp: true
+                      send_extended_community_ebgp_inheritance_disable: true
+                      soft_reconfiguration_inbound: true
+                      soft_reconfiguration_inbound_always: true
+                      update_out_originator_loopcheck: true
+                      update_out_originator_loopcheck_disable: true
+                      advertise_vpnv4_unicast: true
+                      advertise_vpnv4_unicast_re_originated: true
+                      advertise_vpnv4_unicast_re_originated_stitching_rt: true
+                      advertise_vpnv6_unicast: true
+                      advertise_vpnv6_unicast_re_originated: true
+                      advertise_vpnv6_unicast_re_originated_stitching_rt: true
+                      advertise_l2vpn_evpn_re_originated: true
+                      advertise_l2vpn_evpn_re_originated_stitching_rt: true
+                      segment_routing_srv6_prefix_sid_type4: true
+                      import_stitching_rt: true
+                      import_stitching_rt_re_originate: true
+                      import_stitching_rt_re_originate_stitching_rt: true
+                      import_re_originate: true
+# range 1-10; also accepts a string
+                      allowas_in: 1
+# also accepts a string
+                      site_of_origin: eV#66a7zN7GpE%7D[@^%{+(kjKwlE
+                      as_override: true
+                      as_override_inheritance_disable: true
+                      aigp: true
+                      aigp_disable: true
+                      aigp_send_med: true
+                      aigp_send_med_disable: true
+                      aigp_send_cost_community_disable: true
+# also accepts an integer
+                      aigp_send_cost_community_id: pGds1%aY_>/Z!_nhQ${C-(2yGCl\K$ul
+                      aigp_send_cost_community_id_poi_igp_cost: true
+                      aigp_send_cost_community_id_poi_igp_cost_transitive: true
+                      aigp_send_cost_community_id_poi_pre_bestpath: true
+                      aigp_send_cost_community_id_poi_pre_bestpath_transitive: true
+                      send_multicast_attributes: true
+                      send_multicast_attributes_disable: true
+                      accept_own: true
+                      accept_own_inheritance_disable: true
+                      slow_peer_dynamic: true
+# range 120-3600; also accepts a string
+                      slow_peer_dynamic_threshold: 120
+                      slow_peer_dynamic_disable: true
+                      slow_peer_static: true
+                      origin_as_validation_disable: true
+                      bestpath_origin_as_allow_invalid: true
+              vrfs:
+                -
+# mandatory; also accepts a string
+                  name: ']5-0PBmWzKAM%{5xS/$'
+                  mpls_activate_interfaces:
+                    -
+# mandatory; also accepts a string
+                      name: Vu>=9s%{^Z6^Q#qcnp21
+                  default_information_originate: true
+# range 1-4294967295; also accepts a string
+                  default_metric: 1
+# range 512-131072; also accepts a string
+                  socket_receive_buffer_size: 512
+# range 512-131072; also accepts a string
+                  socket_receive_buffer_read_size: 512
+# range 4096-131072; also accepts a string
+                  socket_send_buffer_size: 4096
+# range 4096-131072; also accepts a string
+                  socket_send_buffer_write_size: 4096
+                  nexthop_mpls_forwarding_ibgp: true
+                  nexthop_resolution_allow_default: true
+# maximum 65535; also accepts a string
+                  timers_bgp_keepalive_interval: 1
+                  timers_bgp_holddown_zero: true
+                  timers_bgp_holddown_zero_minimum_acceptable_zero: true
+# range 3-65535; also accepts a string
+                  timers_bgp_holddown_zero_minimum_acceptable_holdtime: 3
+# range 3-65535; also accepts a string
+                  timers_bgp_holdtime: 3
+# range 3-65535; also accepts a string
+                  timers_bgp_holdtime_minimum_acceptable_holdtime: 3
+                  bgp_redistribute_internal: true
+# also accepts a string
+                  bgp_router_id: '%q9[zZ"6R^]M%{)%1X,aQRX'
+                  bgp_unsafe_ebgp_policy: true
+                  bgp_auto_policy_soft_reset_disable: true
+                  bgp_bestpath_cost_community_ignore: true
+                  bgp_bestpath_compare_routerid: true
+                  bgp_bestpath_aigp_ignore: true
+                  bgp_bestpath_igp_metric_ignore: true
+                  bgp_bestpath_med_missing_as_worst: true
+                  bgp_bestpath_med_always: true
+                  bgp_bestpath_as_path_ignore: true
+                  bgp_bestpath_as_path_multipath_relax: true
+                  bgp_bestpath_origin_as_use_validity: true
+                  bgp_bestpath_origin_as_allow_invalid: true
+# allowed: prefer, force; also accepts a string
+                  bgp_bestpath_sr_policy: prefer
+# maximum 4294967295; also accepts a string
+                  bgp_default_local_preference: 1
+                  bgp_enforce_first_as_disable: true
+                  bgp_fast_external_fallover_disable: true
+# allowed: disable; also accepts a string
+                  bgp_log_neighbor_changes: disable
+                  bgp_log_message_disable: true
+                  bgp_multipath_use_cluster_list_length: true
+                  bgp_origin_as_validation_signal_ibgp: true
+# allowed: off; also accepts an integer; also accepts a string
+                  bgp_origin_as_validation_time: off
+# range 3-30000; also accepts a string
+                  bfd_minimum_interval: 3
+# range 2-16; also accepts a string
+                  bfd_multiplier: 2
+# mandatory; also accepts a string
+                  rd: iT)e$-tWrzPl${jZ`e<]=U6GV8G
+                  neighbors:
+                    -
+# mandatory; also accepts a string
+                      address: 4!/L\zG*zWhS``d$%{xa@4l3Sy WZh?C3d0w
+# range 1-4294967295; also accepts a string
+                      remote_as: 1
+# range 1-4095; also accepts a string
+                      maximum_peers: 1
+# also accepts a string
+                      remote_as_list: Utg/\dgXcy${0%'I
+# allowed: disable, enable; also accepts a string
+                      as_path_loopcheck_out: disable
+# also accepts a string
+                      use_neighbor_group: k<2c/fIXt`2.)!l%{:)Uv^-X"NKjS5P4Qf<z
+# also accepts a string
+                      use_session_group: XDhe6%{dNjlv
+# maximum 600; also accepts a string
+                      advertisement_interval_seconds: 1
+# maximum 999; also accepts a string
+                      advertisement_interval_milliseconds: 1
+# also accepts a string
+                      description: OrFOxhwsqa"sW%{6xS
+                      ignore_connected_check: true
+                      ignore_connected_check_inheritance_disable: true
+# range 1-255; also accepts a string
+                      ebgp_multihop_maximum_hop_count: 1
+                      ebgp_multihop_mpls: true
+# range 68-10000; also accepts a string
+                      tcp_mss: 68
+                      tcp_mss_inheritance_disable: true
+                      tcp_mtu_discovery: true
+                      tcp_mtu_discovery_inheritance_disable: true
+                      tcp_ip_only_preferred: true
+                      tcp_ip_only_preferred_inheritance_disable: true
+                      bmp_activate_servers:
+                        -
+# mandatory; range 1-8; also accepts a string
+                          number: 1
+# range 3-30000; also accepts a string
+                      bfd_minimum_interval: 3
+# range 2-16; also accepts a string
+                      bfd_multiplier: 2
+# allowed: enable, strict-mode, disable, strict-mode-negotiate, strict-mode-negotiate-override;
+# also accepts a string
+                      bfd_fast_detect: enable
+# also accepts a string
+                      keychain: ${:CdXn
+                      keychain_inheritance_disable: true
+                      local_as_inheritance_disable: true
+# range 1-4294967295; also accepts a string
+                      local_as: 1
+# allowed: no-prepend, no-prepend-replace-as, no-prepend-replace-as-dual-as; also accepts a string
+                      local_as_mode: no-prepend
+# allowed: 7; also accepts a string
+                      password_type: 7
+# also accepts a string
+                      password: Qq+hwKnuLum7bB0[#a%{ucrp<A
+                      password_inheritance_disable: true
+# range 512-131072; also accepts a string
+                      receive_buffer_size: 512
+# range 512-131072; also accepts a string
+                      receive_buffer_read_size: 512
+# range 4096-131072; also accepts a string
+                      send_buffer_size: 4096
+# range 4096-131072; also accepts a string
+                      send_buffer_write_size: 4096
+                      fast_fallover: true
+                      fast_fallover_inheritance_disable: true
+                      shutdown: true
+# maximum 65535; also accepts a string
+                      timers_keepalive_interval: 1
+                      timers_holddown_zero: true
+                      timers_holddown_zero_minimum_acceptable_zero: true
+# range 3-65535; also accepts a string
+                      timers_holddown_zero_minimum_acceptable_holdtime: 3
+# range 3-65535; also accepts a string
+                      timers_holdtime: 3
+# range 3-65535; also accepts a string
+                      timers_holdtime_minimum_acceptable_holdtime: 3
+# also accepts a string
+                      local_address: Z D#r We d${3uu/
+                      local_address_inheritance_disable: true
+# allowed: detail, disable, inheritance-disable; also accepts a string
+                      log_neighbor_changes: detail
+# range 1-500; also accepts a string
+                      log_message_in: 1
+                      log_message_in_disable: true
+                      log_message_in_inheritance_disable: true
+# range 1-500; also accepts a string
+                      log_message_out: 1
+                      log_message_out_disable: true
+                      log_message_out_inheritance_disable: true
+# also accepts a string
+                      update_source: 21<uu+FH)L1Iol%{
+# also accepts a string
+                      local_address_subnet_prefix: '#XaV0y${+dGNf;'
+# maximum 128; also accepts a string
+                      local_address_subnet_length: 1
+                      dmz_link_bandwidth: true
+                      dmz_link_bandwidth_inheritance_disable: true
+                      ebgp_recv_extcommunity_dmz: true
+                      ebgp_recv_extcommunity_dmz_inheritance_disable: true
+                      ebgp_send_extcommunity_dmz: true
+                      ebgp_send_extcommunity_dmz_cumulative: true
+                      ebgp_send_extcommunity_dmz_inheritance_disable: true
+                      ttl_security: true
+                      ttl_security_inheritance_disable: true
+# allowed: active-only, passive-only, both; also accepts a string
+                      session_open_mode: active-only
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+                      dscp: af11
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+                      precedence: critical
+                      capability_additional_paths_send: true
+                      capability_additional_paths_send_disable: true
+                      capability_additional_paths_receive: true
+                      capability_additional_paths_receive_disable: true
+                      capability_suppress_all: true
+                      capability_suppress_all_inheritance_disable: true
+                      capability_suppress_extended_nexthop_encoding: true
+                      capability_suppress_extended_nexthop_encoding_inheritance_disable: true
+                      capability_suppress_four_byte_as: true
+                      capability_suppress_four_byte_as_inheritance_disable: true
+# allowed: enable, disable; also accepts a string
+                      graceful_restart: enable
+                      graceful_restart_helper_only: true
+                      graceful_restart_helper_only_inheritance_disable: true
+# range 1-4095; also accepts a string
+                      graceful_restart_restart_time: 1
+# maximum 4095; also accepts a string
+                      graceful_restart_stalepath_time: 1
+# allowed: enable, disable; also accepts a string
+                      enforce_first_as: enable
+# also accepts an integer; also accepts a string
+                      cluster_id: JVc${!JS'w
+# range 30-1800; also accepts a string
+                      idle_watch_time: 30
+# range 1-10; also accepts a string
+                      allowas_in: 1
+                      egress_engineering: true
+                      egress_engineering_inheritance_disable: true
+                      evpn_link_bandwidth: true
+# range 1-65535; also accepts a string
+                      evpn_link_bandwidth_per_path_number: 1
+                      evpn_link_bandwidth_inheritance_disable: true
+                      peer_sets:
+                        -
+# mandatory; also accepts an integer
+                          id: FUjf.qi\jNPJ;7${O6A>@z\=wUvf
+# maximum 1033575; also accepts a string
+                      peer_node_sid_index: 1
+# also accepts a string
+                      ao_key_chain: PVSuHUz-'dbJw%{
+# allowed: disable, enable; also accepts a string
+                      ao_key_chain_include_tcp_options: disable
+                      ao_key_chain_accept_mismatch: true
+                      ao_inheritance_disable: true
+# allowed: enable, disable; also accepts a string
+                      dampening: enable
+# allowed: enable, disable; also accepts a string
+                      as_override: enable
+# allowed: accept, reject; also accepts a string
+                      default_policy_action_in: accept
+# allowed: accept, reject; also accepts a string
+                      default_policy_action_out: accept
+                      origin_as_validation_disable: true
+                      send_extended_community_ebgp: true
+                      send_extended_community_ebgp_inheritance_disable: true
+                      bestpath_origin_as_allow_invalid: true
+# maximum 25; also accepts a string
+                      update_in_filtering_message_buffers: 1
+# allowed: buffers-number-enable, non-circular; also accepts a string
+                      update_in_filtering_message_buffers_type: buffers-number-enable
+                      update_in_filtering_logging_disable: true
+# also accepts a string
+                      update_in_filtering_attribute_filter_group: w9P?$)hs^b%{Z9SUdl!U[h9'mv?*
+                      update_in_labeled_unicast_equivalent: true
+                      update_in_labeled_unicast_equivalent_inheritance_disable: true
+# allowed: disable, enable; also accepts a string
+                      update_in_error_handling_avoid_reset: disable
+# allowed: disable, enable; also accepts a string
+                      update_in_error_handling_treat_as_withdraw: disable
+                      graceful_maintenance:
+                        activate: true
+                        activate_inheritance_disable: true
+# maximum 4294967295; also accepts a string
+                        local_preference: 1
+                        local_preference_inheritance_disable: true
+# maximum 6; also accepts a string
+                        as_prepends: 1
+                        as_prepends_inheritance_disable: true
+# range 1-100; also accepts a string
+                        bandwidth_aware_percentage_threshold: 1
+# range 1-100; also accepts a string
+                        bandwidth_aware_percentage_threshold_high: 1
+# range 1-4294967295; also accepts a string
+                        bandwidth_aware_bandwidth_threshold: 1
+# range 1-4294967295; also accepts a string
+                        bandwidth_aware_bandwidth_threshold_high: 1
+                        bandwidth_aware_inheritance_disable: true
+                      address_family:
+                        -
+# mandatory; allowed: ipv4-unicast, ipv4-labeled-unicast, ipv4-multicast, ipv4-mdt, ipv4-mvpn,
+# ipv4-flowspec, ipv4-rt-filter, ipv4-sr-policy, ipv4-tunnel, ipv6-unicast, ipv6-labeled-unicast,
+# ipv6-multicast, ipv6-mvpn, ipv6-flowspec, ipv6-sr-policy, vpnv4-flowspec, vpnv4-multicast,
+# vpnv4-unicast, vpnv6-flowspec, vpnv6-multicast, vpnv6-unicast, l2vpn-evpn, l2vpn-mspw,
+# l2vpn-vpls-vpws, link-state-link-state; also accepts a string
+                          name: ipv4-unicast
+# allowed: srv6, vxlan; also accepts a string
+                          encapsulation_type: srv6
+# maximum 65535; also accepts a string
+                          weight: 1
+                          multipath: true
+# also accepts a string
+                          use_af_group: ']#pFaJ4?7y%{[fZA=`PU7tXBk_^!'
+# allowed: both, none, receive, send; also accepts a string
+                          capability_orf_prefix: both
+                          additional_paths_send: true
+                          additional_paths_send_disable: true
+                          additional_paths_receive: true
+                          additional_paths_receive_disable: true
+                          default_originate: true
+# also accepts a string
+                          default_originate_route_policy: YtVV*KBSC%{>_izGv(![nCI)P"J^2;
+                          default_originate_inheritance_disable: true
+# range 1-4294967295; also accepts a string
+                          maximum_prefix_limit: 1
+# range 1-100; also accepts a string
+                          maximum_prefix_threshold: 1
+# range 1-65535; also accepts a string
+                          maximum_prefix_restart: 1
+                          maximum_prefix_discard_extra_paths: true
+                          maximum_prefix_warning_only: true
+                          next_hop_self: true
+                          next_hop_self_inheritance_disable: true
+                          next_hop_unchanged: true
+                          next_hop_unchanged_multipath: true
+                          next_hop_unchanged_inheritance_disable: true
+# also accepts a string
+                          route_policy_in: y(6Y${$*4L.rcs(XtvF@X?
+# also accepts a string
+                          route_policy_out: a4 )`4qnr&O"%%=4e%{4r $
+# also accepts a string
+                          orf_route_policy: '>6aofVw`C2:<VdY5fb${e)^\qhJ_KdyY5]SA'
+                          cluster_id_allow_equal: true
+                          cluster_id_allow_equal_disable: true
+                          replace_private_as: true
+                          replace_private_as_internal: true
+                          remove_private_as_inbound: true
+                          remove_private_as_inbound_entire_aspath: true
+                          remove_private_as_inbound_inheritance_disable: true
+                          remove_private_as: true
+                          remove_private_as_entire_aspath: true
+                          remove_private_as_internal: true
+                          route_reflector_client: true
+                          route_reflector_client_inheritance_disable: true
+                          send_community_ebgp: true
+                          send_community_ebgp_inheritance_disable: true
+                          send_community_gshut_ebgp: true
+                          send_community_gshut_ebgp_inheritance_disable: true
+                          send_extended_community_ebgp: true
+                          send_extended_community_ebgp_inheritance_disable: true
+                          soft_reconfiguration_inbound: true
+                          soft_reconfiguration_inbound_always: true
+                          update_out_originator_loopcheck: true
+                          update_out_originator_loopcheck_disable: true
+                          advertise_vpnv4_unicast: true
+                          advertise_vpnv4_unicast_re_originated: true
+                          advertise_vpnv4_unicast_re_originated_stitching_rt: true
+                          advertise_vpnv6_unicast: true
+                          advertise_vpnv6_unicast_re_originated: true
+                          advertise_vpnv6_unicast_re_originated_stitching_rt: true
+                          advertise_l2vpn_evpn_re_originated: true
+                          advertise_l2vpn_evpn_re_originated_stitching_rt: true
+                          segment_routing_srv6_prefix_sid_type4: true
+                          import_stitching_rt: true
+                          import_stitching_rt_re_originate: true
+                          import_stitching_rt_re_originate_stitching_rt: true
+                          import_re_originate: true
+# range 1-10; also accepts a string
+                          allowas_in: 1
+# also accepts a string
+                          site_of_origin: ^+b.^=mv%{-P
+                          as_override: true
+                          as_override_inheritance_disable: true
+                          aigp: true
+                          aigp_disable: true
+                          aigp_send_med: true
+                          aigp_send_med_disable: true
+                          aigp_send_cost_community_disable: true
+# also accepts an integer
+                          aigp_send_cost_community_id: =";VHKZHj[9!$;$@9g%{j
+                          aigp_send_cost_community_id_poi_igp_cost: true
+                          aigp_send_cost_community_id_poi_igp_cost_transitive: true
+                          aigp_send_cost_community_id_poi_pre_bestpath: true
+                          aigp_send_cost_community_id_poi_pre_bestpath_transitive: true
+                          send_multicast_attributes: true
+                          send_multicast_attributes_disable: true
+                          accept_own: true
+                          accept_own_inheritance_disable: true
+                          slow_peer_dynamic: true
+# range 120-3600; also accepts a string
+                          slow_peer_dynamic_threshold: 120
+                          slow_peer_dynamic_disable: true
+                          slow_peer_static: true
+                          origin_as_validation_disable: true
+                          bestpath_origin_as_allow_invalid: true
+                  address_family:
+                    ipv4_unicast:
+                      enable: true
+# range 1-20000; also accepts a string
+                      distance_bgp_external_route: 1
+# range 1-20000; also accepts a string
+                      distance_bgp_internal_route: 1
+# range 1-20000; also accepts a string
+                      distance_bgp_local_route: 1
+                      bgp_attribute_download: true
+                      allow_vpn_default_originate: true
+                      additional_paths_send: true
+                      additional_paths_send_disable: true
+                      additional_paths_receive: true
+                      additional_paths_receive_disable: true
+# range 1-20000; also accepts a string
+                      additional_paths_advertise_limit: 1
+# also accepts a string
+                      additional_paths_selection_route_policy: ;G>yB\[/e.%{
+                      additional_paths_selection_disable: true
+                      advertise_best_external: true
+                      advertise_best_external_disable: true
+# allowed: disable, enable; also accepts a string
+                      advertise_local_labeled_route_safi_unicast: disable
+                      allocate_label_all: true
+                      allocate_label_all_unlabeled_path: true
+# also accepts a string
+                      allocate_label_route_policy_name: ZV_.5sNi>;>1 + %{0v!%r_!';rnq`
+                      allocate_label_route_policy_unlabeled_path: true
+# range 2-128; also accepts a string
+                      maximum_paths_ebgp_multipath: 2
+                      maximum_paths_ebgp_selective: true
+# also accepts a string
+                      maximum_paths_ebgp_route_policy: (.=j6h>@cg${6]H?gU,+9N"POa$*
+# range 2-128; also accepts a string
+                      maximum_paths_ibgp_multipath: 2
+                      maximum_paths_ibgp_unequal_cost: true
+                      maximum_paths_ibgp_unequal_cost_deterministic: true
+                      maximum_paths_ibgp_selective: true
+# also accepts a string
+                      maximum_paths_ibgp_route_policy: C,!v2[Y%j%{,O^))ez
+# range 2-128; also accepts a string
+                      maximum_paths_eibgp_multipath: 2
+                      maximum_paths_eibgp_equal_cost: true
+                      maximum_paths_eibgp_selective: true
+# also accepts a string
+                      maximum_paths_eibgp_route_policy: JNpk+UaoQ${lG$nvOTGD'tJj[2'LNH
+                      maximum_paths_unique_nexthop_check_disable: true
+# allowed: per-prefix, per-ce, per-vrf, per-vrf-46, per-nexthop-received-label,
+# per-nexthop-received-label-allocate-secondary-label; also accepts a string
+                      label_mode: per-prefix
+# also accepts a string
+                      label_mode_route_policy: N%c';. :${l+bZu#%HHO"T
+                      redistribute_connected: true
+# maximum 4294967295; also accepts a string
+                      redistribute_connected_metric: 1
+                      redistribute_connected_multipath: true
+# also accepts a string
+                      redistribute_connected_route_policy: Oe%{)(V
+                      redistribute_static: true
+# maximum 4294967295; also accepts a string
+                      redistribute_static_metric: 1
+                      redistribute_static_multipath: true
+# also accepts a string
+                      redistribute_static_route_policy: '#q5W!2sh%{#@1@'
+                      redistribute_rip: true
+# maximum 4294967295; also accepts a string
+                      redistribute_rip_metric: 1
+                      redistribute_rip_multipath: true
+# also accepts a string
+                      redistribute_rip_route_policy: +aID&W5Gc+\%{B"=V-%L$%n_[?]
+# also accepts a string
+                      table_policy: 0:]#nszP4;A7gJG${[TTVT@d6W
+                      bgp_origin_as_validation_enable: true
+                      bgp_origin_as_validation_signal_ibgp: true
+                      bgp_bestpath_origin_as_use_validity: true
+                      bgp_bestpath_origin_as_allow_invalid: true
+# range 1-255; also accepts a string
+                      bgp_dampening_decay_half_life: 1
+# range 1-255; also accepts a string
+                      bgp_dampening_reuse_threshold: 1
+# range 1-255; also accepts a string
+                      bgp_dampening_suppress_threshold: 1
+# maximum 4294967295; also accepts a string
+                      bgp_dampening_max_suppress_time: 1
+# also accepts a string
+                      bgp_dampening_route_policy: b\&T%{6>eI1'`_J-","
+# maximum 10; also accepts a string
+                      dynamic_med_interval: 1
+                      weight_reset_on_import: true
+# also accepts a string
+                      nexthop_route_policy: '!m<W)(b5eX55${]iL!g=BxH)3M'
+                      as_path_loopcheck_out_disable: true
+# allowed: all, highest-ip-address; also accepts a string
+                      mvpn_single_forwarder_selection: all
+                      segment_routing_srv6:
+# also accepts a string
+                        locator: _ocf5<<%{]zBHC47>xhaL>
+                        usid_allocation_wide_local_id_block: true
+# allowed: per-ce, per-vrf, per-vrf-46; also accepts a string
+                        alloc_mode: per-ce
+# also accepts a string
+                        alloc_mode_route_policy: R,r3/S${+
+                      aggregate_addresses:
+                        -
+# mandatory; also accepts a string
+                          address: lClb0%{s
+# mandatory; maximum 128; also accepts a string
+                          length: 1
+                          as_confed_set: true
+                          as_set: true
+# also accepts a string
+                          description: S>Nc\-_D*${u
+# also accepts a string
+                          route_policy: "%{^%\"/J=:'Fg^_0\"8."
+# maximum 4294967295; also accepts a string
+                          set_tag: 1
+                          summary_only: true
+                      networks:
+                        -
+# mandatory; also accepts a string
+                          address: ' a,93;2Fe /NC&%{$Y'
+# mandatory; maximum 128; also accepts a string
+                          length: 1
+                          backdoor: true
+                          multipath: true
+# also accepts a string
+                          route_policy: a;,bC+UBbdTBd${`WH@
+                      redistribute_ospf:
+                        -
+# mandatory; also accepts a string
+                          process: '&%{oj;Lt0mF*x'
+# allowed: match-external, match-external-1, match-external-1-nssa-external,
+# match-external-1-nssa-external-1, match-external-1-nssa-external-2, match-external-2,
+# match-external-2-nssa-external, match-external-2-nssa-external-1,
+# match-external-2-nssa-external-2, match-external-nssa-external, match-external-nssa-external-1,
+# match-external-nssa-external-2, match-internal, match-internal-external,
+# match-internal-external-1, match-internal-external-1-nssa-external,
+# match-internal-external-1-nssa-external-1, match-internal-external-1-nssa-external-2,
+# match-internal-external-2, match-internal-external-2-nssa-external,
+# match-internal-external-2-nssa-external-1, match-internal-external-2-nssa-external-2,
+# match-internal-external-nssa-external, match-internal-external-nssa-external-1,
+# match-internal-external-nssa-external-2, match-internal-nssa-external,
+# match-internal-nssa-external-1, match-internal-nssa-external-2, match-nssa-external,
+# match-nssa-external-1, match-nssa-external-2; also accepts a string
+                          match: match-external
+# maximum 4294967295; also accepts a string
+                          metric: 1
+                          multipath: true
+# also accepts a string
+                          route_policy: LA 6DCz=M'Se.\Q0%{
+                      redistribute_ospfv3:
+                        -
+# mandatory; also accepts a string
+                          process: P"/g0[UMsqqrZu${XpV,4q5FJ3j7
+# allowed: match-external, match-external-1, match-external-1-nssa-external,
+# match-external-1-nssa-external-1, match-external-1-nssa-external-2, match-external-2,
+# match-external-2-nssa-external, match-external-2-nssa-external-1,
+# match-external-2-nssa-external-2, match-external-nssa-external, match-external-nssa-external-1,
+# match-external-nssa-external-2, match-internal, match-internal-external,
+# match-internal-external-1, match-internal-external-1-nssa-external,
+# match-internal-external-1-nssa-external-1, match-internal-external-1-nssa-external-2,
+# match-internal-external-2, match-internal-external-2-nssa-external,
+# match-internal-external-2-nssa-external-1, match-internal-external-2-nssa-external-2,
+# match-internal-external-nssa-external, match-internal-external-nssa-external-1,
+# match-internal-external-nssa-external-2, match-internal-nssa-external,
+# match-internal-nssa-external-1, match-internal-nssa-external-2, match-nssa-external,
+# match-nssa-external-1, match-nssa-external-2; also accepts a string
+                          match: match-external
+# maximum 4294967295; also accepts a string
+                          metric: 1
+                          multipath: true
+# also accepts a string
+                          route_policy: n"O)Cl;PiY.f1 ${Ue%CB<exC,a
+                      redistribute_eigrp:
+                        -
+# mandatory; also accepts a string
+                          process: dD;F]fw822X${*KzQ"n!bJ
+# allowed: match-internal, match-internal-external, match-external; also accepts a string
+                          match: match-internal
+# maximum 4294967295; also accepts a string
+                          metric: 1
+                          multipath: true
+# also accepts a string
+                          route_policy: wf=c"c@EIwyd]k$lf!${
+                      redistribute_isis:
+                        -
+# mandatory; also accepts a string
+                          process: ${ip<k]*&/PJsm7x
+# allowed: level-1, level-1-inter-area, level-1-level-1-inter-area, level-1-level-2,
+# level-1-level-2-level-1-inter-area, level-2, level-2-level-1-inter-area; also accepts a string
+                          level: level-1
+# maximum 4294967295; also accepts a string
+                          metric: 1
+                          multipath: true
+# also accepts a string
+                          route_policy: dF[[${`/ouV^c`W-JN8^h
+                    ipv6_unicast:
+                      enable: true
+# range 1-20000; also accepts a string
+                      distance_bgp_external_route: 1
+# range 1-20000; also accepts a string
+                      distance_bgp_internal_route: 1
+# range 1-20000; also accepts a string
+                      distance_bgp_local_route: 1
+                      bgp_attribute_download: true
+                      allow_vpn_default_originate: true
+                      additional_paths_send: true
+                      additional_paths_send_disable: true
+                      additional_paths_receive: true
+                      additional_paths_receive_disable: true
+# range 1-20000; also accepts a string
+                      additional_paths_advertise_limit: 1
+# also accepts a string
+                      additional_paths_selection_route_policy: GN Q8B%{EeQ6%lL0\6+Fb'
+                      additional_paths_selection_disable: true
+                      advertise_best_external: true
+                      advertise_best_external_disable: true
+# allowed: disable, enable; also accepts a string
+                      advertise_local_labeled_route_safi_unicast: disable
+                      allocate_label_all: true
+                      allocate_label_all_unlabeled_path: true
+# also accepts a string
+                      allocate_label_route_policy_name: 7?Hc9=`Ky2&f>?t]x=${hQIu@f+dIaV:2iV/7
+                      allocate_label_route_policy_unlabeled_path: true
+# range 2-128; also accepts a string
+                      maximum_paths_ebgp_multipath: 2
+                      maximum_paths_ebgp_selective: true
+# also accepts a string
+                      maximum_paths_ebgp_route_policy: ulLFBu8fMz-?u#ZFPCC%{kVezt
+# range 2-128; also accepts a string
+                      maximum_paths_ibgp_multipath: 2
+                      maximum_paths_ibgp_unequal_cost: true
+                      maximum_paths_ibgp_unequal_cost_deterministic: true
+                      maximum_paths_ibgp_selective: true
+# also accepts a string
+                      maximum_paths_ibgp_route_policy: kQ+xtwFi3nS%{Rmt)^>8"qk
+# range 2-128; also accepts a string
+                      maximum_paths_eibgp_multipath: 2
+                      maximum_paths_eibgp_equal_cost: true
+                      maximum_paths_eibgp_selective: true
+# also accepts a string
+                      maximum_paths_eibgp_route_policy: =^32 kZ+L_lTz,vsFxL%{\s
+                      maximum_paths_unique_nexthop_check_disable: true
+# allowed: per-prefix, per-ce, per-vrf, per-vrf-46, per-nexthop-received-label,
+# per-nexthop-received-label-allocate-secondary-label; also accepts a string
+                      label_mode: per-prefix
+# also accepts a string
+                      label_mode_route_policy: "'3on1vf7`SF)?%{Ax;t*s0RdFWvu:/l=!"
+                      redistribute_connected: true
+# maximum 4294967295; also accepts a string
+                      redistribute_connected_metric: 1
+                      redistribute_connected_multipath: true
+# also accepts a string
+                      redistribute_connected_route_policy: '#JH+JYu<%{<CC6sZ#zmi2"x'
+                      redistribute_static: true
+# maximum 4294967295; also accepts a string
+                      redistribute_static_metric: 1
+                      redistribute_static_multipath: true
+# also accepts a string
+                      redistribute_static_route_policy: iJ${/sc#
+                      redistribute_rip: true
+# maximum 4294967295; also accepts a string
+                      redistribute_rip_metric: 1
+                      redistribute_rip_multipath: true
+# also accepts a string
+                      redistribute_rip_route_policy: ']=4i[iu!X^nkv_B,%{Q:>&<Rx$K'
+# also accepts a string
+                      table_policy: \NX\'>5)pll[nK${`j-KQ%)xpZDF
+                      bgp_origin_as_validation_enable: true
+                      bgp_origin_as_validation_signal_ibgp: true
+                      bgp_bestpath_origin_as_use_validity: true
+                      bgp_bestpath_origin_as_allow_invalid: true
+# range 1-255; also accepts a string
+                      bgp_dampening_decay_half_life: 1
+# range 1-255; also accepts a string
+                      bgp_dampening_reuse_threshold: 1
+# range 1-255; also accepts a string
+                      bgp_dampening_suppress_threshold: 1
+# maximum 4294967295; also accepts a string
+                      bgp_dampening_max_suppress_time: 1
+# also accepts a string
+                      bgp_dampening_route_policy: NV"r-WJwoNZk]Y]O`${R_W4l"<
+# maximum 10; also accepts a string
+                      dynamic_med_interval: 1
+                      weight_reset_on_import: true
+# also accepts a string
+                      nexthop_route_policy: '*Gz,a(%pbiPnr`${Df5zCWf6[PrfV/?'
+                      as_path_loopcheck_out_disable: true
+# allowed: all, highest-ip-address; also accepts a string
+                      mvpn_single_forwarder_selection: all
+                      segment_routing_srv6:
+# also accepts a string
+                        locator: C9XRnOP6^ Xq0^$1P%{clmztUj
+                        usid_allocation_wide_local_id_block: true
+# allowed: per-ce, per-vrf, per-vrf-46; also accepts a string
+                        alloc_mode: per-ce
+# also accepts a string
+                        alloc_mode_route_policy: tQ*V4Z"OrlRXOecc"b1${pCw%qn
+                      aggregate_addresses:
+                        -
+# mandatory; also accepts a string
+                          address: j ?GSs^VGhnD${(!QVkW1$Gvq*0
+# mandatory; maximum 128; also accepts a string
+                          length: 1
+                          as_confed_set: true
+                          as_set: true
+# also accepts a string
+                          description: FP%{[[&06^w<
+# also accepts a string
+                          route_policy: dCEvN!7.g]x`-w)%{o?.2]H,HPhw
+# maximum 4294967295; also accepts a string
+                          set_tag: 1
+                          summary_only: true
+                      networks:
+                        -
+# mandatory; also accepts a string
+                          address: oieii'JmxlrU0`s${>wt`z&Y-'Zxr%b
+# mandatory; maximum 128; also accepts a string
+                          length: 1
+                          backdoor: true
+                          multipath: true
+# also accepts a string
+                          route_policy: UQ[xi^n_bI&<%L'%{Qw&'
+                      redistribute_ospf:
+                        -
+# mandatory; also accepts a string
+                          process: iz&7%{J?/qilD"#M^[LF
+# allowed: match-external, match-external-1, match-external-1-nssa-external,
+# match-external-1-nssa-external-1, match-external-1-nssa-external-2, match-external-2,
+# match-external-2-nssa-external, match-external-2-nssa-external-1,
+# match-external-2-nssa-external-2, match-external-nssa-external, match-external-nssa-external-1,
+# match-external-nssa-external-2, match-internal, match-internal-external,
+# match-internal-external-1, match-internal-external-1-nssa-external,
+# match-internal-external-1-nssa-external-1, match-internal-external-1-nssa-external-2,
+# match-internal-external-2, match-internal-external-2-nssa-external,
+# match-internal-external-2-nssa-external-1, match-internal-external-2-nssa-external-2,
+# match-internal-external-nssa-external, match-internal-external-nssa-external-1,
+# match-internal-external-nssa-external-2, match-internal-nssa-external,
+# match-internal-nssa-external-1, match-internal-nssa-external-2, match-nssa-external,
+# match-nssa-external-1, match-nssa-external-2; also accepts a string
+                          match: match-external
+# maximum 4294967295; also accepts a string
+                          metric: 1
+                          multipath: true
+# also accepts a string
+                          route_policy: Y]uxV;_[Bd\kVW2 %{->kzVy*cjAv#8m_
+                      redistribute_ospfv3:
+                        -
+# mandatory; also accepts a string
+                          process: lk=eu;K+458${R4
+# allowed: match-external, match-external-1, match-external-1-nssa-external,
+# match-external-1-nssa-external-1, match-external-1-nssa-external-2, match-external-2,
+# match-external-2-nssa-external, match-external-2-nssa-external-1,
+# match-external-2-nssa-external-2, match-external-nssa-external, match-external-nssa-external-1,
+# match-external-nssa-external-2, match-internal, match-internal-external,
+# match-internal-external-1, match-internal-external-1-nssa-external,
+# match-internal-external-1-nssa-external-1, match-internal-external-1-nssa-external-2,
+# match-internal-external-2, match-internal-external-2-nssa-external,
+# match-internal-external-2-nssa-external-1, match-internal-external-2-nssa-external-2,
+# match-internal-external-nssa-external, match-internal-external-nssa-external-1,
+# match-internal-external-nssa-external-2, match-internal-nssa-external,
+# match-internal-nssa-external-1, match-internal-nssa-external-2, match-nssa-external,
+# match-nssa-external-1, match-nssa-external-2; also accepts a string
+                          match: match-external
+# maximum 4294967295; also accepts a string
+                          metric: 1
+                          multipath: true
+# also accepts a string
+                          route_policy: 8M.H%{Rd!wAZT
+                      redistribute_eigrp:
+                        -
+# mandatory; also accepts a string
+                          process: Kx4%{pot+sQht?X(
+# allowed: match-internal, match-internal-external, match-external; also accepts a string
+                          match: match-internal
+# maximum 4294967295; also accepts a string
+                          metric: 1
+                          multipath: true
+# also accepts a string
+                          route_policy: '>I fUr-#d${"QFD9VAw-h='
+                      redistribute_isis:
+                        -
+# mandatory; also accepts a string
+                          process: ZD?=Tt4Hx:K`:!)bT%{%vziTpRS!%Y`C#ey
+# allowed: level-1, level-1-inter-area, level-1-level-1-inter-area, level-1-level-2,
+# level-1-level-2-level-1-inter-area, level-2, level-2-level-1-inter-area; also accepts a string
+                          level: level-1
+# maximum 4294967295; also accepts a string
+                          metric: 1
+                          multipath: true
+# also accepts a string
+                          route_policy: xW`pwUpDaKC+M$ &oV9%{x<+lUFu@cs,vjw
+                    ipv4_multicast:
+                      enable: true
+# range 1-20000; also accepts a string
+                      distance_bgp_external_route: 1
+# range 1-20000; also accepts a string
+                      distance_bgp_internal_route: 1
+# range 1-20000; also accepts a string
+                      distance_bgp_local_route: 1
+# range 2-128; also accepts a string
+                      maximum_paths_ebgp_multipath: 2
+                      maximum_paths_ebgp_selective: true
+# also accepts a string
+                      maximum_paths_ebgp_route_policy: 2yqotMB\wH:V^cp3${Ov&HGpy&]6);Ee^
+# range 2-128; also accepts a string
+                      maximum_paths_ibgp_multipath: 2
+                      maximum_paths_ibgp_unequal_cost: true
+                      maximum_paths_ibgp_unequal_cost_deterministic: true
+                      maximum_paths_ibgp_selective: true
+# also accepts a string
+                      maximum_paths_ibgp_route_policy: DVNFLZ+;${e!=gON7H_5
+# range 2-128; also accepts a string
+                      maximum_paths_eibgp_multipath: 2
+                      maximum_paths_eibgp_equal_cost: true
+                      maximum_paths_eibgp_selective: true
+# also accepts a string
+                      maximum_paths_eibgp_route_policy: giGp9r G&oK?${#k
+                      redistribute_connected: true
+# maximum 4294967295; also accepts a string
+                      redistribute_connected_metric: 1
+                      redistribute_connected_multipath: true
+# also accepts a string
+                      redistribute_connected_route_policy: W! C${,I(!W7O4lS,[b
+                      redistribute_static: true
+# maximum 4294967295; also accepts a string
+                      redistribute_static_metric: 1
+                      redistribute_static_multipath: true
+# also accepts a string
+                      redistribute_static_route_policy: '!QF-:X%KTv${ZH,y&If+2s?qtj3'
+                      redistribute_rip: true
+# maximum 4294967295; also accepts a string
+                      redistribute_rip_metric: 1
+                      redistribute_rip_multipath: true
+# also accepts a string
+                      redistribute_rip_route_policy: '%{[a092Mt'
+# also accepts a string
+                      table_policy: I%{mj[<-(:k!b)?!)XB-Vg
+# range 1-255; also accepts a string
+                      bgp_dampening_decay_half_life: 1
+# range 1-255; also accepts a string
+                      bgp_dampening_reuse_threshold: 1
+# range 1-255; also accepts a string
+                      bgp_dampening_suppress_threshold: 1
+# maximum 4294967295; also accepts a string
+                      bgp_dampening_max_suppress_time: 1
+# also accepts a string
+                      bgp_dampening_route_policy: "Y%'v\\;djd\\M;@jd0kU${3G'<$b*c:"
+                      weight_reset_on_import: true
+# also accepts a string
+                      nexthop_route_policy: fD'${+Rvu^*T*ShiWh
+                      as_path_loopcheck_out_disable: true
+# allowed: all, highest-ip-address; also accepts a string
+                      mvpn_single_forwarder_selection: all
+                      aggregate_addresses:
+                        -
+# mandatory; also accepts a string
+                          address: N%{r;PQ$m7Mq*K162>2J>
+# mandatory; maximum 128; also accepts a string
+                          length: 1
+                          as_confed_set: true
+                          as_set: true
+# also accepts a string
+                          description: O>YR9fEy7w'%{c62%`'z
+# also accepts a string
+                          route_policy: ${tec8J'r>&Hu-OS3t=Ew
+# maximum 4294967295; also accepts a string
+                          set_tag: 1
+                          summary_only: true
+                      networks:
+                        -
+# mandatory; also accepts a string
+                          address: 6b0%{?Wo0`K@q^%$q
+# mandatory; maximum 128; also accepts a string
+                          length: 1
+                          backdoor: true
+                          multipath: true
+# also accepts a string
+                          route_policy: JcyG`>EECR;${DicAV*[AM&5U
+                      redistribute_ospf:
+                        -
+# mandatory; also accepts a string
+                          process: GLt$rf8F&X77[zJtr3i${OeRI3S`y?
+# allowed: match-external, match-external-1, match-external-1-nssa-external,
+# match-external-1-nssa-external-1, match-external-1-nssa-external-2, match-external-2,
+# match-external-2-nssa-external, match-external-2-nssa-external-1,
+# match-external-2-nssa-external-2, match-external-nssa-external, match-external-nssa-external-1,
+# match-external-nssa-external-2, match-internal, match-internal-external,
+# match-internal-external-1, match-internal-external-1-nssa-external,
+# match-internal-external-1-nssa-external-1, match-internal-external-1-nssa-external-2,
+# match-internal-external-2, match-internal-external-2-nssa-external,
+# match-internal-external-2-nssa-external-1, match-internal-external-2-nssa-external-2,
+# match-internal-external-nssa-external, match-internal-external-nssa-external-1,
+# match-internal-external-nssa-external-2, match-internal-nssa-external,
+# match-internal-nssa-external-1, match-internal-nssa-external-2, match-nssa-external,
+# match-nssa-external-1, match-nssa-external-2; also accepts a string
+                          match: match-external
+# maximum 4294967295; also accepts a string
+                          metric: 1
+                          multipath: true
+# also accepts a string
+                          route_policy: CEk^r%{M(l;1R:kZ*"BA#
+                      redistribute_eigrp:
+                        -
+# mandatory; also accepts a string
+                          process: i!^r[yu${r
+# allowed: match-internal, match-internal-external, match-external; also accepts a string
+                          match: match-internal
+# maximum 4294967295; also accepts a string
+                          metric: 1
+                          multipath: true
+# also accepts a string
+                          route_policy: DlFb.,'6:*CO,Z${oDoPr
+                      redistribute_isis:
+                        -
+# mandatory; also accepts a string
+                          process: /iRTwqn${gWz_=V;G2nRdKRXY*Y$
+# allowed: level-1, level-1-inter-area, level-1-level-1-inter-area, level-1-level-2,
+# level-1-level-2-level-1-inter-area, level-2, level-2-level-1-inter-area; also accepts a string
+                          level: level-1
+# maximum 4294967295; also accepts a string
+                          metric: 1
+                          multipath: true
+# also accepts a string
+                          route_policy: eOGeM0k(1SFLU\${U
+                    ipv6_multicast:
+                      enable: true
+# range 1-20000; also accepts a string
+                      distance_bgp_external_route: 1
+# range 1-20000; also accepts a string
+                      distance_bgp_internal_route: 1
+# range 1-20000; also accepts a string
+                      distance_bgp_local_route: 1
+# range 2-128; also accepts a string
+                      maximum_paths_ebgp_multipath: 2
+                      maximum_paths_ebgp_selective: true
+# also accepts a string
+                      maximum_paths_ebgp_route_policy: /1Rvf:/^Ea2E>)];@3%{v^N
+# range 2-128; also accepts a string
+                      maximum_paths_ibgp_multipath: 2
+                      maximum_paths_ibgp_unequal_cost: true
+                      maximum_paths_ibgp_unequal_cost_deterministic: true
+                      maximum_paths_ibgp_selective: true
+# also accepts a string
+                      maximum_paths_ibgp_route_policy: RN"J.zTEn\$BIM%{&NlL'bcw^JiJ\
+# range 2-128; also accepts a string
+                      maximum_paths_eibgp_multipath: 2
+                      maximum_paths_eibgp_equal_cost: true
+                      maximum_paths_eibgp_selective: true
+# also accepts a string
+                      maximum_paths_eibgp_route_policy: '#FLcPx_7oL$ryXMvuu%{dbvERluS'
+                      redistribute_connected: true
+# maximum 4294967295; also accepts a string
+                      redistribute_connected_metric: 1
+                      redistribute_connected_multipath: true
+# also accepts a string
+                      redistribute_connected_route_policy: Vf(1"Rs#m%{"PeovWo'7WHMG
+                      redistribute_static: true
+# maximum 4294967295; also accepts a string
+                      redistribute_static_metric: 1
+                      redistribute_static_multipath: true
+# also accepts a string
+                      redistribute_static_route_policy: 8r2d@Fz>yN%{zy
+                      redistribute_rip: true
+# maximum 4294967295; also accepts a string
+                      redistribute_rip_metric: 1
+                      redistribute_rip_multipath: true
+# also accepts a string
+                      redistribute_rip_route_policy: cXTp^N/8(>[Uic3%cLm%{j? MlFeTC'hXz
+# also accepts a string
+                      table_policy: ${-
+# range 1-255; also accepts a string
+                      bgp_dampening_decay_half_life: 1
+# range 1-255; also accepts a string
+                      bgp_dampening_reuse_threshold: 1
+# range 1-255; also accepts a string
+                      bgp_dampening_suppress_threshold: 1
+# maximum 4294967295; also accepts a string
+                      bgp_dampening_max_suppress_time: 1
+# also accepts a string
+                      bgp_dampening_route_policy: rVV?5Who7]#kqN2hH${ljM$6_\kN`]+):FI!Z
+                      weight_reset_on_import: true
+# also accepts a string
+                      nexthop_route_policy: HCK ;"KO]TWyDfKgsx${Qt$4X#
+                      as_path_loopcheck_out_disable: true
+# allowed: all, highest-ip-address; also accepts a string
+                      mvpn_single_forwarder_selection: all
+                      aggregate_addresses:
+                        -
+# mandatory; also accepts a string
+                          address: /d+e%{##GP4e`Ypr.3%n
+# mandatory; maximum 128; also accepts a string
+                          length: 1
+                          as_confed_set: true
+                          as_set: true
+# also accepts a string
+                          description: nyMNuYLf_as:).U<dr${0';[5kaL1jopcu[M
+# also accepts a string
+                          route_policy: j%{Rm*+.Dzt
+# maximum 4294967295; also accepts a string
+                          set_tag: 1
+                          summary_only: true
+                      networks:
+                        -
+# mandatory; also accepts a string
+                          address: ${^\
+# mandatory; maximum 128; also accepts a string
+                          length: 1
+                          backdoor: true
+                          multipath: true
+# also accepts a string
+                          route_policy: v=>A$+Uh"^5TQoA`09]%{qz%g%YHshiL#P
+                      redistribute_ospfv3:
+                        -
+# mandatory; also accepts a string
+                          process: Qz>pS%'Sg^5%{r$ o/
+# allowed: match-external, match-external-1, match-external-1-nssa-external,
+# match-external-1-nssa-external-1, match-external-1-nssa-external-2, match-external-2,
+# match-external-2-nssa-external, match-external-2-nssa-external-1,
+# match-external-2-nssa-external-2, match-external-nssa-external, match-external-nssa-external-1,
+# match-external-nssa-external-2, match-internal, match-internal-external,
+# match-internal-external-1, match-internal-external-1-nssa-external,
+# match-internal-external-1-nssa-external-1, match-internal-external-1-nssa-external-2,
+# match-internal-external-2, match-internal-external-2-nssa-external,
+# match-internal-external-2-nssa-external-1, match-internal-external-2-nssa-external-2,
+# match-internal-external-nssa-external, match-internal-external-nssa-external-1,
+# match-internal-external-nssa-external-2, match-internal-nssa-external,
+# match-internal-nssa-external-1, match-internal-nssa-external-2, match-nssa-external,
+# match-nssa-external-1, match-nssa-external-2; also accepts a string
+                          match: match-external
+# maximum 4294967295; also accepts a string
+                          metric: 1
+                          multipath: true
+# also accepts a string
+                          route_policy: WJjyqv[Y(z`;_5Vl/%{]aYN2ji!!j
+                      redistribute_eigrp:
+                        -
+# mandatory; also accepts a string
+                          process: "'r).NX'l(Y,${)+'60\"o.Fu7b5?mK"
+# allowed: match-internal, match-internal-external, match-external; also accepts a string
+                          match: match-internal
+# maximum 4294967295; also accepts a string
+                          metric: 1
+                          multipath: true
+# also accepts a string
+                          route_policy: G* \<+%{nL c
+                      redistribute_isis:
+                        -
+# mandatory; also accepts a string
+                          process: 6l&Y)C)bxIR1e<${U\Y(?2jh%c4^
+# allowed: level-1, level-1-inter-area, level-1-level-1-inter-area, level-1-level-2,
+# level-1-level-2-level-1-inter-area, level-2, level-2-level-1-inter-area; also accepts a string
+                          level: level-1
+# maximum 4294967295; also accepts a string
+                          metric: 1
+                          multipath: true
+# also accepts a string
+                          route_policy: _d_VC8cOLW:4V6${y.d5;

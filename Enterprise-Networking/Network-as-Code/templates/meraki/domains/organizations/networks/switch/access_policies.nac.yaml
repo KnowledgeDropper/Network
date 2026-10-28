@@ -1,0 +1,76 @@
+# Cisco Network as Code template for Meraki.
+# Data model: meraki
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: meraki.domains[].organizations[].networks[].switch.access_policies
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_switch/access_lists/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_switch/access_policies/
+meraki:
+  domains:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      administrator: {}
+# mandatory
+      organizations:
+        - networks:
+            -
+# mandatory
+              name: <NAME>
+              switch:
+                access_policies:
+                  - name: <NAME>
+                    radius_servers:
+                      - host: 10.0.0.1
+# maximum 65535
+                        port: 1
+                        secret: <SECRET>
+                        organization_radius_server_name: 10.0.0.1
+                    radius:
+                      critical_auth:
+# range 1-4094; also accepts a string
+                        data_vlan_id: 1
+# range 1-4094; also accepts a string
+                        voice_vlan_id: 1
+                        suspend_port_bounce: true
+# range 1-4094; also accepts a string
+                      failed_auth_vlan_id: 1
+# range 1-2147483647
+                      re_authentication_interval: 1
+                      cache:
+                        enabled: true
+# range 1-600
+                        timeout: 1
+                    guest_port_bouncing: true
+                    radius_accounting_servers:
+                      - host: 10.0.0.1
+# maximum 65535
+                        port: 1
+                        secret: <SECRET>
+                        organization_radius_server_name: 10.0.0.1
+# allowed: , 11
+                    radius_group_attribute: ''
+# allowed: Multi-Auth, Multi-Domain, Multi-Host, Single-Host
+                    host_mode: Multi-Auth
+# allowed: 802.1x, Hybrid authentication, MAC authentication bypass
+                    access_policy_type: 802.1x
+                    increase_access_speed: true
+# range 1-4094; also accepts a string
+                    guest_vlan_id: 1
+                    voice_vlan_clients: true
+                    url_redirect_walled_garden_ranges:
+                      - https://example.com
+                    radius_testing: true
+                    radius_coa_support: true
+                    radius_accounting: true
+                    url_redirect_walled_garden: true
+# allowed: both, inbound
+                    dot1x_control_direction: both

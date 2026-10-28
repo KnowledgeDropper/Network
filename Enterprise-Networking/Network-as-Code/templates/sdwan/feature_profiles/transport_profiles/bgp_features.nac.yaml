@@ -1,0 +1,244 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.transport_profiles[].bgp_features
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_transport/transport_bgp/
+sdwan:
+  feature_profiles:
+    transport_profiles:
+      -
+# mandatory
+        name: example-name
+        bgp_features:
+          - name: example-name
+            description: <DESCRIPTION>
+            always_compare_med: true
+            always_compare_med_variable: example-host
+# range 1-4294967295; also accepts a string
+            as_number: 1
+            as_number_variable: '65000'
+            compare_router_id: true
+            compare_router_id_variable: example-host
+            deterministic_med: true
+            deterministic_med_variable: example-host
+# range 1-255
+            external_routes_distance: 1
+            external_routes_distance_variable: example-host
+# maximum 65535
+            hold_time: 1
+            hold_time_variable: example-host
+# range 1-255
+            internal_routes_distance: 1
+            internal_routes_distance_variable: example-host
+            ipv4_aggregate_addresses:
+              - as_set_path: true
+                as_set_path_variable: example-host
+                network_address: 10.0.0.1
+                network_address_variable: 10.0.0.1
+# allowed: 255.255.255.255, 255.255.255.254, 255.255.255.252, 255.255.255.248, 255.255.255.240,
+# 255.255.255.224, 255.255.255.192, 255.255.255.128, 255.255.255.0, 255.255.254.0, 255.255.252.0,
+# 255.255.248.0, 255.255.240.0, 255.255.224.0, 255.255.192.0, 255.255.128.0, 255.255.0.0,
+# 255.254.0.0, 255.252.0.0, 255.240.0.0, 255.224.0.0, 255.192.0.0, 255.128.0.0, 255.0.0.0,
+# 254.0.0.0, 252.0.0.0, 248.0.0.0, 240.0.0.0, 224.0.0.0, 192.0.0.0, 128.0.0.0, 0.0.0.0
+                subnet_mask: 255.255.255.255
+                subnet_mask_variable: 10.0.0.1
+                summary_only: true
+                summary_only_variable: example-host
+            ipv4_default_originate: true
+            ipv4_default_originate_variable: example-host
+# range 1-32
+            ipv4_eibgp_maximum_paths: 1
+            ipv4_eibgp_maximum_paths_variable: example-host
+            ipv4_neighbors:
+              - address: 10.0.0.1
+                address_variable: 10.0.0.1
+                address_families:
+                  -
+# mandatory; allowed: ipv4-unicast, vpnv4-unicast, vpnv6-unicast
+                    family_type: ipv4-unicast
+# allowed: off, restart, warning-only, disable-peer
+                    maximum_prefixes_reach_policy: off
+# range 1-4294967295
+                    maximum_prefixes_number: 1
+                    maximum_prefixes_number_variable: example-host
+# range 1-65535
+                    maximum_prefixes_restart_interval: 1
+                    maximum_prefixes_restart_interval_variable: example-host
+# range 1-100
+                    maximum_prefixes_threshold: 1
+                    maximum_prefixes_threshold_variable: example-host
+                    route_policy_in: example-host
+                    route_policy_out: example-host
+# range 1-10
+                allowas_in_number: 1
+                allowas_in_number_variable: example-host
+                as_override: true
+                as_override_variable: example-host
+                description: <DESCRIPTION>
+                description_variable: example-host
+# range 1-255
+                ebgp_multihop: 1
+                ebgp_multihop_variable: example-host
+# maximum 65535
+                hold_time: 1
+                hold_time_variable: example-host
+# maximum 65535
+                keepalive_time: 1
+                keepalive_time_variable: example-host
+# range 1-4294967295; also accepts a string
+                local_as: 1
+                local_as_variable: example-host
+                next_hop_self: true
+                next_hop_self_variable: example-host
+                password: <SECRET>
+                password_variable: SECRET
+# range 1-4294967295; also accepts a string
+                remote_as: 1
+                remote_as_variable: example-host
+                send_community: true
+                send_community_variable: example-host
+                send_extended_community: true
+                send_extended_community_variable: example-host
+                send_label: true
+                send_label_explicit_null: true
+                send_label_explicit_null_variable: example-host
+                shutdown: true
+                shutdown_variable: example-host
+                source_interface: GigabitEthernet0/0
+                source_interface_variable: 0/0.1
+            ipv4_networks:
+              - network_address: 10.0.0.1
+                network_address_variable: 10.0.0.1
+# allowed: 255.255.255.255, 255.255.255.254, 255.255.255.252, 255.255.255.248, 255.255.255.240,
+# 255.255.255.224, 255.255.255.192, 255.255.255.128, 255.255.255.0, 255.255.254.0, 255.255.252.0,
+# 255.255.248.0, 255.255.240.0, 255.255.224.0, 255.255.192.0, 255.255.128.0, 255.255.0.0,
+# 255.254.0.0, 255.252.0.0, 255.240.0.0, 255.224.0.0, 255.192.0.0, 255.128.0.0, 255.0.0.0,
+# 254.0.0.0, 252.0.0.0, 248.0.0.0, 240.0.0.0, 224.0.0.0, 192.0.0.0, 128.0.0.0, 0.0.0.0
+                subnet_mask: 255.255.255.255
+                subnet_mask_variable: 10.0.0.1
+            ipv4_redistributes:
+              -
+# maximum 4294967295
+                metric: 1
+                metric_variable: example-host
+                ospf_match_route:
+                  - Internal
+                ospf_match_route_variable: example-host
+# allowed: static, connected, ospf, ospfv3, nat
+                protocol: static
+                protocol_variable: example-host
+                route_policy: example-host
+            ipv4_table_map_filter: true
+            ipv4_table_map_filter_variable: example-host
+            ipv4_table_map_route_policy: example-host
+            ipv6_aggregate_addresses:
+              - as_set_path: true
+                as_set_path_variable: example-host
+                prefix: 10.0.0.1
+                prefix_variable: 10.0.0.1
+                summary_only: true
+                summary_only_variable: example-host
+            ipv6_default_originate: true
+            ipv6_default_originate_variable: example-host
+# range 1-32
+            ipv6_eibgp_maximum_paths: 1
+            ipv6_eibgp_maximum_paths_variable: example-host
+            ipv6_neighbors:
+              - address: 10.0.0.1
+                address_variable: 10.0.0.1
+                address_families:
+                  -
+# mandatory; allowed: ipv6-unicast, vpnv6-unicast
+                    family_type: ipv6-unicast
+# allowed: off, restart, warning-only, disable-peer
+                    maximum_prefixes_reach_policy: off
+# range 1-4294967295
+                    maximum_prefixes_number: 1
+                    maximum_prefixes_number_variable: example-host
+# range 1-65535
+                    maximum_prefixes_restart_interval: 1
+                    maximum_prefixes_restart_interval_variable: example-host
+# range 1-100
+                    maximum_prefixes_threshold: 1
+                    maximum_prefixes_threshold_variable: example-host
+                    route_policy_in: example-host
+                    route_policy_out: example-host
+# range 1-10
+                allowas_in_number: 1
+                allowas_in_number_variable: example-host
+                as_override: true
+                as_override_variable: example-host
+                description: <DESCRIPTION>
+                description_variable: example-host
+# range 1-255
+                ebgp_multihop: 1
+                ebgp_multihop_variable: example-host
+# maximum 65535
+                hold_time: 1
+                hold_time_variable: example-host
+# maximum 65535
+                keepalive_time: 1
+                keepalive_time_variable: example-host
+# range 1-4294967295; also accepts a string
+                local_as: 1
+                local_as_variable: example-host
+                next_hop_self: true
+                next_hop_self_variable: example-host
+                password: <SECRET>
+                password_variable: SECRET
+# range 1-4294967295; also accepts a string
+                remote_as: 1
+                remote_as_variable: example-host
+                send_community: true
+                send_community_variable: example-host
+                send_extended_community: true
+                send_extended_community_variable: example-host
+                shutdown: true
+                shutdown_variable: example-host
+                source_interface: GigabitEthernet0/0
+                source_interface_variable: 0/0.1
+            ipv6_networks:
+              - prefix: 10.0.0.1
+                prefix_variable: 10.0.0.1
+            ipv6_redistributes:
+              -
+# maximum 4294967295
+                metric: 1
+                metric_variable: example-host
+                ospf_match_route:
+                  - Internal
+                ospf_match_route_variable: example-host
+# allowed: static, connected, ospf
+                protocol: static
+                protocol_variable: example-host
+                route_policy: example-host
+            ipv6_table_map_filter: true
+            ipv6_table_map_filter_variable: example-host
+            ipv6_table_map_route_policy: 2001:db8::1
+# maximum 65535
+            keepalive_time: 1
+            keepalive_time_variable: example-host
+# range 1-255
+            local_routes_distance: 1
+            local_routes_distance_variable: example-host
+            missing_med_as_worst: true
+            missing_med_as_worst_variable: example-host
+            mpls_interfaces:
+              - name: GigabitEthernet0/0
+                name_variable: example-host
+            multipath_relax: true
+            multipath_relax_variable: example-host
+            propagate_as_path: true
+            propagate_as_path_variable: example-host
+            propagate_community: true
+            propagate_community_variable: example-host
+            router_id: 0/0.1
+            router_id_variable: example-host

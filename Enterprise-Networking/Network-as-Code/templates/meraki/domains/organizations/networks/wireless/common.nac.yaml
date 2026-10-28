@@ -1,0 +1,41 @@
+# Cisco Network as Code template for Meraki.
+# Data model: meraki
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: meraki.domains[].organizations[].networks[].wireless
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_device_type_group_policies/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_dot11r/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_dot11w/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_eap_override/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_hotspot20/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_l3_firewall/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_l7_firewall/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_radius_servers/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_schedules/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_speed_burst/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_splash/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/ssid_settings/ssid_vpn/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_wireless/wireless_radio_settings/
+meraki:
+  domains:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      administrator: {}
+# mandatory
+      organizations:
+        - networks:
+            -
+# mandatory
+              name: <NAME>
+              wireless:
+                name: <NAME>
+                ethernet_ports_profiles_set_default: <HOSTNAME>

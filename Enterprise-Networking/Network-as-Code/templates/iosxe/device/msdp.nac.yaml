@@ -1,0 +1,72 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.msdp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/msdp/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        msdp:
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet; also accepts a string
+          originator_id_interface_type: Loopback
+# also accepts an integer
+          originator_id_interface_id: 0/0.1
+          passwords:
+            -
+# mandatory; also accepts a string
+              host: 'iN+/%{mo '
+# maximum 7; also accepts a string
+              encryption: 1
+# mandatory
+              password: <SECRET>
+          peers:
+            -
+# mandatory; also accepts a string
+              host: $6NZ8U0kt1>J9%,U@%{h>J e_H,e[
+# range 1-65535; also accepts a string
+              remote_as: 1
+# allowed: Loopback; also accepts a string
+              connect_source_interface_type: Loopback
+# also accepts an integer
+              connect_source_interface_id: 0/0.1
+          vrfs:
+            -
+# mandatory
+              vrf: <HOSTNAME>
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet; also accepts a string
+              originator_id_interface_type: Loopback
+# also accepts an integer
+              originator_id_interface_id: 0/0.1
+              passwords:
+                -
+# mandatory; also accepts a string
+                  host: ='%{EPS1tmdo8REnv'<
+# maximum 7; also accepts a string
+                  encryption: 1
+# mandatory
+                  password: <SECRET>
+              peers:
+                -
+# mandatory; also accepts a string
+                  host: W#${5`Fg'V
+# range 1-65535; also accepts a string
+                  remote_as: 1
+# allowed: Loopback; also accepts a string
+                  connect_source_interface_type: Loopback
+# also accepts an integer
+                  connect_source_interface_id: 0/0.1

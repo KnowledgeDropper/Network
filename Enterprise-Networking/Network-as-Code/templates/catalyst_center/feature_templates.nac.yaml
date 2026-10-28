@@ -1,0 +1,59 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.feature_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/feature_templates/clean_air/
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/feature_templates/rrm_fra/
+catalyst_center:
+  feature_templates:
+    wireless:
+      cleanair:
+        -
+# mandatory
+          name: <NAME>
+          description: <DESCRIPTION>
+# mandatory; allowed: 2.4GHz, 5GHz, 6GHz
+          radio_band: 2.4GHz
+          enable: true
+          device_reporting: true
+          persistent_device_propagation: true
+          interferers:
+            ble_beacon: true
+            bluetooth_paging_inquiry: true
+            bluetooth_sco_acl: true
+            continuous_transmitter: true
+            generic_dect: true
+            generic_tdd: true
+            jammer: true
+            microwave_oven: true
+            motorola_canopy: true
+            si_fhss: true
+            spectrum_80211_fh: true
+            spectrum_80211_non_standard_channel: true
+            spectrum_802154: true
+            spectrum_inverted: true
+            super_ag: true
+            video_camera: true
+            wimax_fixed: true
+            wimax_mobile: true
+            xbox: true
+      rrm_fra:
+        -
+# mandatory
+          name: <NAME>
+# mandatory; allowed: 2.4GHz_5GHz, 5GHz_6GHz
+          radio_band: 2.4GHz_5GHz
+          fra_freeze: true
+          fra_status: true
+# range 1-24
+          fra_interval: 1
+# allowed: LOW, MEDIUM, HIGH, HIGHER, EVEN_HIGHER, SUPER_HIGH
+          fra_sensitivity: LOW

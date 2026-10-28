@@ -1,0 +1,74 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.sites
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/sites/site/
+sdwan:
+  sites:
+    -
+# mandatory; range 1-4294967295
+      id: 1
+# mandatory
+      routers:
+        -
+# mandatory
+          chassis_id: 0/0.1
+          management_ip_variable: 10.0.0.1
+          configuration_group: example-host
+          configuration_group_deploy: true
+          policy_group: example-host
+          policy_group_deploy: true
+          tags:
+            - example-host
+          topology_label: <HOSTNAME>
+# allowed: ASR-1001-HX, ASR-1001-X, ASR-1002-HX, ASR-1002-X, ASR-1006-X, C1101-4P, C1101-4PLTEP,
+# C1101-4PLTEPW, C1109-2PLTEGB, C1109-2PLTEUS, C1109-2PLTEVZ, C1109-4PLTE2P, C1109-4PLTE2PW,
+# C1111-4P, C1111-4PLTEEA, C1111-4PLTELA, C1111-4PW, C1111-8P, C1111-8PLTEEA, C1111-8PLTEEAW,
+# C1111-8PLTELA, C1111-8PLTELAW, C1111-8PW, C1111X-8P, C1112-8P, C1112-8PLTEEA, C1112-8PLTEEAWE,
+# C1112-8PWE, C1113-8P, C1113-8PLTEEA, C1113-8PLTEEAW, C1113-8PLTELA, C1113-8PLTELAWZ,
+# C1113-8PLTEW, C1113-8PM, C1113-8PMLTEEA, C1113-8PMWE, C1113-8PW, C1116-4P, C1116-4PLTEEA,
+# C1116-4PLTEEAWE, C1116-4PWE, C1117-4P, C1117-4PLTEEA, C1117-4PLTEEAW, C1117-4PLTELA,
+# C1117-4PLTELAWZ, C1117-4PM, C1117-4PMLTEEA, C1117-4PMLTEEAWE, C1117-4PMWE, C1117-4PW, C1118-8P,
+# C1121-4P, C1121-4PLTEP, C1121-8P, C1121-8PLTEP, C1121-8PLTEPW, C1121X-8P, C1121X-8PLTEP,
+# C1121X-8PLTEPW, C1126-8PLTEP, C1126X-8PLTEP, C1127-8PLTEP, C1127-8PMLTEP, C1127X-8PLTEP,
+# C1127X-8PMLTEP, C1128-8PLTEP, C1131-8PLTEPW, C1131-8PW, C1131X-8PLTEPW, C1131X-8PW, C1161-8P,
+# C1161-8PLTEP, C1161X-8P, C1161X-8PLTEP, C8000V, C8200-1N-4T, C8200L-1N-4T, C8300-1N1S-4T2X,
+# C8300-1N1S-6T, C8300-2N2S-4T2X, C8300-2N2S-6T, C8500-12X, C8500-12X4QC, C8500-20X6C,
+# C8500L-8S4X, IR-1101, IR-1821, IR-1831, IR-1833, IR-1835, IR-8140H, IR-8140H-P, IR-8340,
+# ISR-4221, ISR-4221X, ISR-4321, ISR-4331, ISR-4351, ISR-4431, ISR-4451-X, ISR-4461,
+# ISR1100-4G-XE, ISR1100-4GLTEGB-XE, ISR1100-4GLTENA-XE, ISR1100-6G-XE, ISR1100X-4G-XE,
+# ISR1100X-6G-XE
+          model: ASR-1001-HX
+          device_template: example-host
+# map of arbitrary keys
+          device_variables:
+            example_variable: <VARIABLE>
+# map of arbitrary keys
+          policy_variables:
+            example_variable: <VARIABLE>
+          cor_saas_variables:
+# allowed: dia, gateway, client
+            cor_saas_device_role: dia
+            cor_saas_interface_list:
+              - 0/0.1
+# minimum 1
+            cor_saas_latency: 1
+            cor_saas_lb_enabled: true
+# maximum 100
+            cor_saas_loss: 1
+            cor_saas_sig_enabled: true
+            cor_saas_sig_tunnel_list:
+              - <HOSTNAME>
+            cor_saas_source_ip_based: true
+            cor_saas_tloc_list:
+              - <HOSTNAME>
+# allowed: service-vpn, vpn-0
+            cor_saas_vpn_type: service-vpn

@@ -1,0 +1,38 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.authentication_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs: schema section without a dedicated page in the docs nav.
+catalyst_center:
+  authentication_templates:
+    -
+# mandatory
+      name: <NAME>
+# range 3-120
+      dot1x_to_mab_fallback_timeout: 3
+      wake_on_lan: true
+# allowed: Unlimited, Single
+      number_of_hosts: Unlimited
+      bpdu_guard: true
+# allowed: mac, dot1x
+      authentication_order: mac
+      pre_auth_acl:
+        enabled: true
+# allowed: DENY, PERMIT
+        implicit_action: DENY
+        description: <DESCRIPTION>
+        access_contracts:
+          -
+# mandatory; allowed: PERMIT, DENY
+            action: PERMIT
+# mandatory; allowed: domain, bootpc, bootps
+            port: domain
+# mandatory; allowed: TCP, UDP, TCP_UDP
+            protocol: TCP

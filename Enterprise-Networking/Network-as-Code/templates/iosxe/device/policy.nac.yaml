@@ -1,0 +1,223 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.policy
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/policy/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        policy:
+          class_maps:
+            -
+# mandatory
+              name: <NAME>
+# allowed: control, inspect, subscriber; also accepts a string
+              type: control
+              subscriber: true
+# allowed: match-all, match-any, match-none; also accepts a string
+              prematch: match-all
+              match:
+                authorization_status_authorized: true
+                authorization_status_unauthorized: true
+                result_type_aaa_timeout: true
+                result_type_success: true
+# also accepts a string
+                activated_service_templates:
+                  - <HOSTNAME>
+# also accepts a string
+                authorizing_method_priority_greater_than:
+                  - 1
+                method_dot1x: true
+                result_type_method_dot1x_authoritative: true
+                result_type_method_dot1x_agent_not_found: true
+                result_type_method_dot1x_method_timeout: true
+                method_mab: true
+                result_type_method_mab_authoritative: true
+# also accepts an array; also accepts a string
+                dscp:
+                  - af11
+# also accepts a string
+                access_groups:
+                  - 1
+# also accepts a string
+                access_groups_legacy:
+                  - 1
+# also accepts a string
+                ip_dscp:
+                  - af11
+# also accepts a string
+                ip_precedence:
+                  - critical
+# also accepts a string
+                protocols:
+                  - <HOSTNAME>
+# also accepts a string
+                class_maps:
+                  - <HOSTNAME>
+              description: <DESCRIPTION>
+          policy_maps:
+            -
+# mandatory
+              name: <NAME>
+# allowed: access-control, appnav, control, epbr, inspect, ngsw-qos, packet-service,
+# performance-monitor, queueing, service, service-chain, umbrella; also accepts a string
+              type: access-control
+              subscriber: true
+              description: <DESCRIPTION>
+              classes:
+                -
+# mandatory
+                  name: <NAME>
+# allowed: inspect; also accepts a string
+                  type: inspect
+# allowed: drop, inspect, pass; also accepts a string
+                  action: drop
+                  log: true
+                  parameter_map: <HOSTNAME>
+                  actions:
+                    -
+# allowed: bandwidth, compression, dbl, drop, estimate, fair-queue, forward, netflow-sampler,
+# police, priority, queue-buffers, queue-limit, random-detect, service-policy, set, shape, trust;
+# also accepts a string
+                      type: bandwidth
+# range 1-100000000; also accepts a string
+                      bandwidth_bits: 1
+# range 1-100; also accepts a string
+                      bandwidth_percent: 1
+# allowed: percent, ratio; also accepts a string
+                      bandwidth_remaining_option: percent
+# range 1-100; also accepts a string
+                      bandwidth_remaining_percent: 1
+# range 1-65536; also accepts a string
+                      bandwidth_remaining_ratio: 1
+# range 1-2; also accepts a string
+                      priority_level: 1
+# range 32-2000000; also accepts a string
+                      priority_burst: 32
+# range 1-64000000; also accepts a string
+                      queue_limit: 1
+# allowed: bytes, ms, packets, us
+                      queue_limit_type: bytes
+# range 1000-100000000000; also accepts a string
+                      shape_average_bit_rate: 1000
+# range 32-800000000; also accepts a string
+                      shape_average_bits_per_interval_sustained: 32
+# maximum 154400000; also accepts a string
+                      shape_average_bits_per_interval_excess: 1
+# maximum 100; also accepts a string
+                      shape_average_percent: 1
+# range 10-2000; also accepts a string
+                      shape_average_burst_size_sustained: 10
+                      shape_average_ms: true
+                      police_target_bitrate_conform_transmit: true
+                      police_target_bitrate_exceed_transmit: true
+# range 1-100000000000; also accepts a string
+                      police_target_bitrate: 1
+# range 1-512000000; also accepts a string
+                      police_target_bitrate_conform_burst_byte: 1
+# range 1-512000000; also accepts a string
+                      police_target_bitrate_excess_burst_byte: 1
+                      police_target_bitrate_exceed_drop: true
+# range 8000-100000000000; also accepts a string
+                      police_cir: 8000
+# range 1000-512000000; also accepts a string
+                      police_bc: 1000
+# range 1000-512000000; also accepts a string
+                      police_be: 1000
+# range 8000-64000000000; also accepts a string
+                      police_pir: 8000
+# range 1000-512000000; also accepts a string
+                      police_pir_be: 1000
+                      police_cir_conform_transmit: true
+                      police_cir_exceed_drop: true
+# maximum 100; also accepts a string
+                      police_rate_percent: 1
+# maximum 100; also accepts a string
+                      queue_buffers_ratio: 1
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+                      set_dscp: af11
+# also accepts a string
+                      service_policy: 1aEa%{8G*:o^4gS4K&n
+              events:
+                -
+# mandatory
+                  name: <NAME>
+# allowed: aaa-available, absolute-timeout, agent-found, authentication-failure,
+# authentication-success, authorization-failure, authorization-success, identity-update,
+# inactivity-timeout, remote-authentication-failure, remote-authentication-success, remote-update,
+# session-disconnected, session-started, tag-added, tag-removed, template-activated,
+# template-activation-failed, template-deactivated, template-deactivation-failed, timer-expiry,
+# violation; also accepts a string
+                  event_type: aaa-available
+# allowed: match-all, match-first; also accepts a string
+                  match_type: match-all
+                  classes:
+                    -
+# mandatory; range 1-254; also accepts a string
+                      number: 1
+# mandatory
+                      class: <HOSTNAME>
+# allowed: do-all, do-until-failure, do-until-success; also accepts a string
+                      execution_type: do-all
+                      actions:
+                        -
+# mandatory; range 1-254; also accepts a string
+                          number: 1
+                          pause_reauthentication: true
+                          authorize: true
+# allowed: dot1x, mab, webauth; also accepts a string
+                          terminate_config: dot1x
+                          activate_service_template_config_service_template: <HOSTNAME>
+                          activate_service_template_config_aaa_list: <HOSTNAME>
+# range 1-254; also accepts a string
+                          activate_service_template_config_precedence: 1
+                          activate_service_template_config_replace_all: true
+                          activate_interface_template: 0/0.1
+                          activate_policy_type_control_subscriber: <HOSTNAME>
+                          deactivate_interface_template: 0/0.1
+                          deactivate_service_template: <HOSTNAME>
+                          deactivate_policy_type_control_subscriber: <HOSTNAME>
+# allowed: dot1x, mab, webauth; also accepts a string
+                          authenticate_using_method: dot1x
+# range 1-5; also accepts a string
+                          authenticate_using_retries: 1
+# maximum 65535; also accepts a string
+                          authenticate_using_retry_time: 1
+# range 1-254; also accepts a string
+                          authenticate_using_priority: 1
+                          authenticate_using_aaa_config: true
+                          authenticate_using_authc_list: <HOSTNAME>
+                          authenticate_using_authz_list: <HOSTNAME>
+                          authenticate_using_aaa_authc_list_legacy: <HOSTNAME>
+                          authenticate_using_aaa_authz_list_legacy: <HOSTNAME>
+                          authenticate_using_both: true
+                          authenticate_using_parameter_map: <HOSTNAME>
+                          replace: true
+                          restrict: true
+                          clear_session: true
+                          clear_authenticated_data_hosts_on_port: true
+                          protect: true
+                          err_disable: true
+                          resume_reauthentication: true
+# range 1-65535; also accepts a string
+                          authentication_restart: 1
+# allowed: data, switch, voice; also accepts a string
+                          set_domain: data
+                          unauthorize: true
+                          notify: true
+                          set_timer_name: <NAME>
+# maximum 65535; also accepts a string
+                          set_timer_value: 1
+                          map_attribute_to_service_table: <HOSTNAME>

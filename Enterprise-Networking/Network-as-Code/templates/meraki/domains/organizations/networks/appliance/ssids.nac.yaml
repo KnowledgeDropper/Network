@@ -1,0 +1,51 @@
+# Cisco Network as Code template for Meraki.
+# Data model: meraki
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: meraki.domains[].organizations[].networks[].appliance.ssids
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_appliance/ssids/
+meraki:
+  domains:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      administrator: {}
+# mandatory
+      organizations:
+        - networks:
+            -
+# mandatory
+              name: <NAME>
+              appliance:
+                ssids:
+                  - name: <NAME>
+# allowed: 1, 2, 3, 4
+                    number: '1'
+                    enabled: true
+# range 1-4094; also accepts a string
+                    default_vlan_id: 1
+# allowed: 8021x-meraki, 8021x-radius, open, psk
+                    auth_mode: 8021x-meraki
+                    psk: <HOSTNAME>
+                    radius_servers:
+                      - host: 10.0.0.1
+# maximum 65535
+                        port: 1
+                        secret: <SECRET>
+# allowed: wep, wpa
+                    encryption_mode: wep
+# allowed: WPA1 and WPA2, WPA2 only, WPA3 Transition Mode, WPA3 only
+                    wpa_encryption_mode: WPA1 and WPA2
+                    visible: true
+                    dhcp_enforced_deauthentication: true
+                    dot11w:
+                      enabled: true
+                      required: true

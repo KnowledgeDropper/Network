@@ -1,0 +1,42 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.object_groups_network
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/object_group_network/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        object_groups_network:
+          -
+# mandatory
+            name: <NAME>
+            description: <DESCRIPTION>
+# also accepts a string
+            hosts:
+              - <HOSTNAME>
+            network_addresses:
+              -
+# mandatory; also accepts a string
+                address: 9Jx#GZHJ#"nG${?Ma]W
+# mandatory; also accepts a string
+                mask: ']K%{^al'
+            address_ranges:
+              -
+# mandatory; also accepts a string
+                start: Ar)Kwnf?p/fd@S/56O0${Pyt:s*S(a_3)$1fZ
+# mandatory; also accepts a string
+                end: 5QtG)mK19&wAs&%{qQ'5%A!I7`NGFesw_4
+# also accepts a string
+            group_objects:
+              - <HOSTNAME>

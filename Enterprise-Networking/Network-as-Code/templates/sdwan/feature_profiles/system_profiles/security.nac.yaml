@@ -1,0 +1,78 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.system_profiles[].security
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_system/system_security/
+sdwan:
+  feature_profiles:
+    system_profiles:
+      -
+# mandatory
+        name: example-name
+        security:
+          name: example-name
+          description: <DESCRIPTION>
+# allowed: 64, 128, 256, 512, 1024, 2048, 4096, 8192
+          anti_replay_window: 64
+          anti_replay_window_variable: example-host
+# range 10-2048
+          extended_anti_replay_window: 10
+          extended_anti_replay_window_variable: example-host
+          integrity_types:
+            - esp
+          integrity_types_variable: example-host
+          ipsec_pairwise_keying: true
+          ipsec_pairwise_keying_variable: example-host
+          key_chains:
+            -
+# mandatory; maximum 2147483647
+              key_id: 1
+# mandatory
+              name: <NAME>
+          keys:
+            -
+# mandatory
+              id: 1
+              accept_ao_mismatch: true
+              accept_ao_mismatch_variable: example-host
+# range 1-2147483646
+              accept_life_time_duration: 1
+              accept_life_time_exact: 1
+              accept_life_time_infinite: true
+              accept_life_time_local: true
+              accept_life_time_local_variable: example-host
+# mandatory
+              accept_life_time_start_epoch: 1
+# mandatory; allowed: aes-128-cmac, hmac-sha-1, hmac-sha-256
+              crypto_algorithm: aes-128-cmac
+              include_tcp_options: true
+              include_tcp_options_variable: example-host
+# mandatory
+              key_chain_name: <NAME>
+              key_string: <HOSTNAME>
+              key_string_variable: example-host
+# maximum 255
+              receiver_id: 1
+              receiver_id_variable: example-host
+# maximum 255
+              send_id: 1
+              send_id_variable: example-host
+# range 1-2147483646
+              send_life_time_duration: 1
+              send_life_time_exact: 1
+              send_life_time_infinite: true
+              send_life_time_local: true
+              send_life_time_local_variable: example-host
+# mandatory
+              send_life_time_start_epoch: 1
+# range 10-63113904
+          rekey_time: 10
+          rekey_time_variable: example-host

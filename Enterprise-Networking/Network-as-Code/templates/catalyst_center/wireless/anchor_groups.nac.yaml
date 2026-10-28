@@ -1,0 +1,35 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.wireless.anchor_groups
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/wireless/anchor_group/
+catalyst_center:
+  wireless:
+    anchor_groups:
+      -
+# mandatory
+        name: <NAME>
+# mandatory
+        mobility_anchors:
+          -
+# mandatory
+            device_name: <NAME>
+# mandatory
+            ip_address: 10.0.0.1
+# mandatory; allowed: PRIMARY, SECONDARY, TERTIARY
+            anchor_priority: PRIMARY
+# mandatory
+            managed_anchor_wlc: true
+# allowed: IOS-XE, AIREOS
+            peer_device_type: IOS-XE
+            mac_address: 00:11:22:33:44:55
+            mobility_group_name: <NAME>
+            private_ip: 10.0.0.1

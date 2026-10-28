@@ -1,0 +1,80 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.service_profiles[].eigrp_features
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_service/service_eigrp/
+sdwan:
+  feature_profiles:
+    service_profiles:
+      -
+# mandatory
+        name: example-name
+        eigrp_features:
+          -
+# mandatory
+            name: example-name
+            description: <DESCRIPTION>
+# mandatory; range 1-65535
+            autonomous_system_id: 1
+            autonomous_system_id_variable: '65000'
+# allowed: md5, hmac-sha-256
+            authentication_type: md5
+            authentication_type_variable: example-host
+            filter: true
+            filter_variable: example-host
+# maximum 65535
+            hello_interval: 1
+            hello_interval_variable: example-host
+            hmac_authentication_key: <HOSTNAME>
+            hmac_authentication_key_variable: 00-11-22-33-44-55
+# maximum 65535
+            hold_time: 1
+            hold_time_variable: example-host
+            interfaces:
+              - name: GigabitEthernet0/0
+                name_variable: example-host
+                shutdown: true
+                shutdown_variable: example-host
+                summary_addresses:
+                  - network_address: 10.0.0.1
+                    network_address_variable: 10.0.0.1
+# allowed: 255.255.255.255, 255.255.255.254, 255.255.255.252, 255.255.255.248, 255.255.255.240,
+# 255.255.255.224, 255.255.255.192, 255.255.255.128, 255.255.255.0, 255.255.254.0, 255.255.252.0,
+# 255.255.248.0, 255.255.240.0, 255.255.224.0, 255.255.192.0, 255.255.128.0, 255.255.0.0,
+# 255.254.0.0, 255.252.0.0, 255.248.0.0, 255.240.0.0, 255.224.0.0, 255.192.0.0, 255.128.0.0,
+# 255.0.0.0, 254.0.0.0, 252.0.0.0, 248.0.0.0, 240.0.0.0, 224.0.0.0, 192.0.0.0, 128.0.0.0, 0.0.0.0
+                    subnet_mask: 255.255.255.255
+                    subnet_mask_variable: 10.0.0.1
+            md5_keys:
+              -
+# range 1-255
+                key_id: 1
+                key_id_variable: example-host
+                key_string: <HOSTNAME>
+                key_string_variable: example-host
+# mandatory
+            networks:
+              - network_address: 10.0.0.1
+                network_address_variable: 10.0.0.1
+# allowed: 255.255.255.255, 255.255.255.254, 255.255.255.252, 255.255.255.248, 255.255.255.240,
+# 255.255.255.224, 255.255.255.192, 255.255.255.128, 255.255.255.0, 255.255.254.0, 255.255.252.0,
+# 255.255.248.0, 255.255.240.0, 255.255.224.0, 255.255.192.0, 255.255.128.0, 255.255.0.0,
+# 255.254.0.0, 255.252.0.0, 255.248.0.0, 255.240.0.0, 255.224.0.0, 255.192.0.0, 255.128.0.0,
+# 255.0.0.0, 254.0.0.0, 252.0.0.0, 248.0.0.0, 240.0.0.0, 224.0.0.0, 192.0.0.0, 128.0.0.0, 0.0.0.0
+                subnet_mask: 255.255.255.255
+                subnet_mask_variable: 10.0.0.1
+            redistributes:
+              -
+# allowed: bgp, connected, nat-route, omp, ospf, ospfv3, static
+                protocol: bgp
+                protocol_variable: example-host
+                route_policy: example-host
+            route_policy: example-host

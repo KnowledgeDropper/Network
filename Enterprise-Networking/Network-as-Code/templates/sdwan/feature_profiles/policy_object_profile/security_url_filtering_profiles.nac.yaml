@@ -1,0 +1,37 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.policy_object_profile.security_url_filtering_profiles
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/policy_objects/security_url_filtering_profile/
+sdwan:
+  feature_profiles:
+    policy_object_profile:
+      security_url_filtering_profiles:
+        -
+# mandatory
+          name: example-name
+          alerts:
+            - blacklist
+# mandatory; allowed: text, redirect-url
+          block_page_action: text
+          block_page_content_body: <HOSTNAME>
+# mandatory
+          enable_alerts: true
+          redirect_url: https://example.com
+          url_allow_list: https://example.com
+          url_block_list: https://example.com
+# mandatory
+          web_categories:
+            - abortion
+# mandatory; allowed: allow, block
+          web_categories_action: allow
+# mandatory; allowed: high-risk, low-risk, moderate-risk, suspicious, trustworthy
+          web_reputation: high-risk

@@ -1,0 +1,46 @@
+# Cisco Network as Code template for Meraki.
+# Data model: meraki
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: meraki.domains[].organizations[].networks[].appliance.ports
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_appliance/ports/
+meraki:
+  domains:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      administrator: {}
+# mandatory
+      organizations:
+        - networks:
+            -
+# mandatory
+              name: <NAME>
+              appliance:
+                ports:
+                  -
+# mandatory
+                    port_id_ranges:
+                      -
+# mandatory; range 1-24; also accepts a string
+                        from: 1
+# mandatory; range 1-24; also accepts a string
+                        to: 1
+                    enabled: true
+                    drop_untagged_traffic: true
+# allowed: access, trunk
+                    type: access
+# range 1-4094; also accepts a string
+                    vlan: 1
+# range 1-4094; also accepts a string
+                    allowed_vlans: 1
+# allowed: open, 8021x-radius, mac-radius, hybris-radius
+                    access_policy: open

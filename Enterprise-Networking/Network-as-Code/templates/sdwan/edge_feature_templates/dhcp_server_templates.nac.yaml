@@ -1,0 +1,70 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.dhcp_server_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/dhcp_server/
+sdwan:
+  edge_feature_templates:
+    dhcp_server_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - ASR-1001-HX
+        address_pool: 10.0.0.1
+        address_pool_variable: 10.0.0.1
+        default_gateway: 10.0.0.1
+        default_gateway_variable: 10.0.0.1
+        dns_servers:
+          - <HOSTNAME>
+        dns_servers_variable: <HOSTNAME>
+        domain_name: example.com
+        domain_name_variable: example.com
+        exclude_addresses:
+          - <HOSTNAME>
+        exclude_addresses_variable: <HOSTNAME>
+        exclude_addresses_ranges:
+          -
+# mandatory
+            from: <HOSTNAME>
+# mandatory
+            to: <HOSTNAME>
+# range 68-65535
+        interface_mtu: 68
+        interface_mtu_variable: 0/0.1
+# range 10-31536000
+        lease_time: 10
+        lease_time_variable: <HOSTNAME>
+        options:
+          -
+# range 1-254
+            option_code: 1
+            option_code_variable: <HOSTNAME>
+            ascii: <HOSTNAME>
+            ascii_variable: <HOSTNAME>
+            hex: <HOSTNAME>
+            hex_variable: <HOSTNAME>
+            ip_addresses:
+              - 10.0.0.1
+            ip_addresses_variable: 10.0.0.1
+        static_leases:
+          - ip_address: 10.0.0.1
+            ip_address_variable: 10.0.0.1
+            mac_address: 00:11:22:33:44:55
+            mac_address_variable: 00:11:22:33:44:55
+            hostname: <HOSTNAME>
+            hostname_variable: <HOSTNAME>
+            optional: true
+        tftp_servers:
+          - <HOSTNAME>
+        tftp_servers_variable: <HOSTNAME>

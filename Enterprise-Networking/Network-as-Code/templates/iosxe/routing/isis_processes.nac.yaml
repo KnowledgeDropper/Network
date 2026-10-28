@@ -1,0 +1,33 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.routing.isis_processes
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/isis/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        routing:
+          isis_processes:
+            -
+# mandatory; also accepts a string
+              area_tag: Mq 6oj2-ANR'orT${A19M#13LJ#_1
+              nets:
+                -
+# mandatory; also accepts a string
+                  tag: '%#F)/ oO3`(i${<O+KL_EYp2.'
+              metric_style_wide: true
+              metric_style_narrow: true
+              metric_style_transition: true
+              log_adjacency_changes: true
+              log_adjacency_changes_all: true

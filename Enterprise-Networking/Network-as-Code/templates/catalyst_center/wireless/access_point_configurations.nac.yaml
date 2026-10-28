@@ -1,0 +1,57 @@
+# Cisco Network as Code template for Catalyst Center (SD-Access).
+# Data model: catalyst_center
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: catalyst_center.wireless.access_point_configurations
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/catalyst_center/wireless/access_point_configuration/
+catalyst_center:
+  wireless:
+    access_point_configurations:
+      -
+# mandatory
+        name: <NAME>
+        admin_status: true
+# allowed: LOCAL, MONITOR, SNIFFER, BRIDGE
+        ap_mode: LOCAL
+# allowed: LOW, MEDIUM, HIGH, CRITICAL
+        failover_priority: LOW
+        led_status: true
+# range 1-8
+        led_brightness_level: 1
+        location: <HOSTNAME>
+        is_assigned_site_as_location: true
+        primary_controller_name: <NAME>
+        primary_ip_address: 10.0.0.1
+        secondary_controller_name: <NAME>
+        secondary_ip_address: 10.0.0.1
+        tertiary_controller_name: <NAME>
+        tertiary_ip_address: 10.0.0.1
+        radios:
+          -
+# mandatory; allowed: 2.4, 5, 6, XOR
+            band: '2.4'
+            admin_status: true
+# allowed: AUTO, SERVING, MONITOR
+            role: AUTO
+            antenna_pattern_name: <NAME>
+# maximum 40
+            antenna_gain: 1
+            antenna_cable_name: <NAME>
+# maximum 40
+            cable_loss: 1.0
+# allowed: GLOBAL, CUSTOM
+            channel_assignment_mode: GLOBAL
+            channel_number: 1
+# allowed: 20, 40, 80, 160, 320
+            channel_width: 20
+# allowed: GLOBAL, CUSTOM
+            power_assignment_mode: GLOBAL
+# range 1-8
+            power_level: 1

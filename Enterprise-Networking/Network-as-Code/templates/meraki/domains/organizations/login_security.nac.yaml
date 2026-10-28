@@ -1,0 +1,44 @@
+# Cisco Network as Code template for Meraki.
+# Data model: meraki
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: meraki.domains[].organizations[].login_security
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/meraki/organizations/general_management/login_security/
+meraki:
+  domains:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      administrator: {}
+# mandatory
+      organizations:
+        - login_security:
+            enforce_password_expiration: true
+# range 1-365
+            password_expiration_days: 1
+            enforce_different_passwords: true
+# range 1-10
+            num_different_passwords: 1
+            enforce_strong_passwords: true
+            enforce_account_lockout: true
+# range 1-10
+            account_lockout_attempts: 1
+            enforce_idle_timeout: true
+# range 1-1440
+            idle_timeout_minutes: 1
+            enforce_two_factor_auth: true
+            enforce_login_ip_ranges: true
+            login_ip_ranges:
+              - 10.0.0.1
+            api_authentication:
+              enabled: true
+              ranges:
+                - <HOSTNAME>

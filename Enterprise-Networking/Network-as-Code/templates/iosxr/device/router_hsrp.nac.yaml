@@ -1,0 +1,127 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.router_hsrp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/router_hsrp/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        router_hsrp:
+          interfaces:
+            -
+# mandatory; also accepts a string
+              name: GigabitEthernet0/0
+              use_bia: true
+              redirects_disable: true
+# maximum 10000; also accepts a string
+              delay_minimum: 1
+# maximum 10000; also accepts a string
+              delay_reload: 1
+# range 3-30000; also accepts a string
+              bfd_minimum_interval: 3
+# range 2-50; also accepts a string
+              bfd_multiplier: 2
+# maximum 10000; also accepts a string
+              mac_refresh: 1
+              ipv4:
+                -
+# mandatory; maximum 4095; also accepts a string
+                  group: 1
+# allowed: 1, 2; also accepts a string
+                  version: 1
+# also accepts a string
+                  address: y?uR2;%].y${3JD;?n&pv*>B
+                  address_learn: true
+# maximum 255; also accepts a string
+                  priority: 1
+# maximum 3600; also accepts a string
+                  preempt_delay: 1
+# range 1-255; also accepts a string
+                  timers_seconds: 1
+# range 1-255; also accepts a string
+                  timers_seconds_holdtime: 1
+# range 100-3000; also accepts a string
+                  timers_msec: 100
+# range 100-3000; also accepts a string
+                  timers_msec_holdtime: 100
+# also accepts a string
+                  mac_address: G,tFSN5,+sqZ${pR>[%k>]T\l;ve;
+# also accepts a string
+                  name: Fhaj2@d)_%{lDHse
+# also accepts a string
+                  bfd_fast_detect_peer_ipv4: Kb1>eAvVby:UZ1bTVF%${:@a,jq0xUn#Cm
+# also accepts a string
+                  bfd_fast_detect_peer_interface: GigabitEthernet0/0
+                  secondary_ipv4_addresses:
+                    -
+# mandatory; also accepts a string
+                      address: ',cR R9xj,s%{:g8]32!3MnEa5!'
+                  track_interfaces:
+                    -
+# mandatory; also accepts a string
+                      name: feu$6Z@2=T0/5MTwF*%{r1zRD5P6(,VmkF&
+# mandatory; range 1-255; also accepts a string
+                      priority_decrement: 1
+                  track_objects:
+                    -
+# mandatory; also accepts a string
+                      name: f/"1"wJ\dE!(otO@%{QUE#A2eoV7PUe Gw2&
+# mandatory; range 1-255; also accepts a string
+                      priority_decrement: 1
+              ipv6:
+                -
+# mandatory; maximum 4095; also accepts a string
+                  group: 1
+                  addresses:
+                    -
+# mandatory; also accepts a string
+                      address: MWe6TEM']Id!9%${*`3\aCEshcy6u
+# also accepts a string
+                  linklocal_address: -k9J1bIwFn)/.qOlgYo%{:hkSw=akP.;>Ha
+                  linklocal_address_autoconfig: true
+                  linklocal_address_autoconfig_legacy: true
+# maximum 255; also accepts a string
+                  priority: 1
+# maximum 3600; also accepts a string
+                  preempt_delay: 1
+# range 1-255; also accepts a string
+                  timers_seconds: 1
+# range 1-255; also accepts a string
+                  timers_seconds_holdtime: 1
+# range 100-3000; also accepts a string
+                  timers_msec: 100
+# range 100-3000; also accepts a string
+                  timers_msec_holdtime: 100
+# also accepts a string
+                  mac_address: B${
+# also accepts a string
+                  name: 'Za[R4%{zt?(cB?lTur/&p!f:'
+# also accepts a string
+                  bfd_fast_detect_peer_ipv6: sJu%{s,i-dleF3#qG
+# also accepts a string
+                  bfd_fast_detect_peer_interface: GigabitEthernet0/0
+                  track_interfaces:
+                    -
+# mandatory; also accepts a string
+                      name: 5hfCuH*v%,!RA6m'%{U
+# mandatory; range 1-255; also accepts a string
+                      priority_decrement: 1
+                  track_objects:
+                    -
+# mandatory; also accepts a string
+                      name: ${,?"=oe:&./\wYI;\lR
+# mandatory; range 1-255; also accepts a string
+                      priority_decrement: 1

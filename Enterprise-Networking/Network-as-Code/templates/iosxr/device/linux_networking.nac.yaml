@@ -1,0 +1,61 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.linux_networking
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/linux_networking/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        linux_networking:
+          exposed_interfaces:
+            -
+# mandatory; also accepts a string
+              name: N`vlBpO+k3RL2mR'Y%{p^14w)r
+# allowed: enable, disable; also accepts a string
+              linux_managed: enable
+# allowed: 5s, 10s, 30s, 60s; also accepts a string
+              statistics_synchronization: 5s
+# also accepts a string
+          linux_owned_vrf: WV+c;+HgJQDwi%{rgM0\Hj$(9
+# allowed: 30s, 60s, 2m, 3m, 4m, 5m, 6m, 7m, 8m, 9m, 10m; also accepts a string
+          statistics_synchronization: 30s
+          vrfs:
+            -
+# mandatory; also accepts a string
+              name: J"X7${^m^V<4x[4_f
+              address_family_ipv4:
+                default_route:
+                  active_management: true
+# also accepts a string
+                  interface: SBdn(N8YFXn#(Dt${Q8 "XZftdQf
+                management_route:
+# also accepts a string
+                  interface: Qg!sfPmjTu<)N,^EVL${]5]8PGq094 ]kxHhz
+                software_forwarding: true
+              address_family_ipv6:
+                default_route:
+                  active_management: true
+# also accepts a string
+                  interface: m&qyk+1Qe:q"1o)z;${$B;>5&cov
+                management_route:
+# also accepts a string
+                  interface: m5=i5sX${]94hEtl;e5y_
+                software_forwarding: true
+              disable: true
+              east_west_interfaces:
+                -
+# mandatory; also accepts a string
+                  name: pI&${cM$M$d[B+D#UM%p^f

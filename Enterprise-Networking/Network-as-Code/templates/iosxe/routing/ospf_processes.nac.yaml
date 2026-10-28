@@ -1,0 +1,155 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.routing.ospf_processes
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/ospf/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        routing:
+          ospf_processes:
+            -
+# also accepts an integer
+              id: -${$
+              vrf: <HOSTNAME>
+              bfd_all_interfaces: true
+              default_information_originate: true
+              default_information_originate_always: true
+# range 1-16777214; also accepts a string
+              default_information_originate_metric: 1
+# range 1-2; also accepts a string
+              default_information_originate_metric_type: 1
+              default_information_originate_route_map: <HOSTNAME>
+# range 1-16777214; also accepts a string
+              default_metric: 1
+# range 1-255; also accepts a string
+              distance: 1
+# range 1-4294967295; also accepts a string
+              domain_tag: 1
+# allowed: high, low; also accepts a string
+              fast_reroute_per_prefix_enable_prefix_priority: high
+              log_adjacency_changes: true
+              log_adjacency_changes_detail: true
+              max_metric_router_lsa: true
+# range 1-16777215; also accepts a string
+              max_metric_router_lsa_external_lsa_metric: 1
+              max_metric_router_lsa_include_stub: true
+# range 5-86400; also accepts a string
+              max_metric_router_lsa_on_startup_time: 5
+              max_metric_router_lsa_on_startup_wait_for_bgp: true
+# range 1-16777215; also accepts a string
+              max_metric_router_lsa_summary_lsa_metric: 1
+              mpls_ldp_autoconfig: true
+              mpls_ldp_sync: true
+              neighbors:
+                -
+# mandatory; also accepts a string
+                  ip: RGG1rU^vhGQU0b%{a:15wNAn,W*d0aSC7Hq
+# maximum 255; also accepts a string
+                  priority: 1
+# range 1-65535; also accepts a string
+                  cost: 1
+              networks:
+                -
+# mandatory; also accepts a string
+                  ip: N10Q^"M?=Eh=F`9/m${d&S0WT#*?
+# also accepts a string
+                  wildcard: )/>/ e@_O=%{*LxU3nzP8UQ$r]h;c
+# also accepts a string
+                  area: 1
+              nsf_cisco: true
+              nsf_cisco_enforce_global: true
+              nsf_ietf: true
+# range 1-3600; also accepts a string
+              nsf_ietf_restart_interval: 1
+# maximum 127; also accepts a string
+              priority: 1
+              redistribute:
+                connected: true
+# maximum 16777214; also accepts a string
+                connected_metric: 1
+# range 1-2; also accepts a string
+                connected_metric_type: 1
+                connected_route_map: <HOSTNAME>
+# maximum 4294967295; also accepts a string
+                connected_tag: 1
+                static: true
+# maximum 16777214; also accepts a string
+                static_metric: 1
+# range 1-2; also accepts a string
+                static_metric_type: 1
+                static_route_map: <HOSTNAME>
+# maximum 4294967295; also accepts a string
+                static_tag: 1
+                ospf:
+                  -
+# mandatory; also accepts an integer
+                    process_id: (_?@\S(yM\piKZ8 O%{g<wwP0;a
+                    match_internal: true
+                    match_external_1: true
+                    match_external_2: true
+                    match_nssa_external_1: true
+                    match_nssa_external_2: true
+# maximum 16777214; also accepts a string
+                    metric: 1
+# range 1-2; also accepts a string
+                    metric_type: 1
+                    route_map: <HOSTNAME>
+# maximum 4294967295; also accepts a string
+                    tag: 1
+                    vrf: <HOSTNAME>
+# also accepts a string
+              router_id: \  c3FQH${a<)8
+              shutdown: true
+              summary_addresses:
+                -
+# mandatory; also accepts a string
+                  ip: l"RbEbKD%{u% (u
+# also accepts a string
+                  mask: Fn39-4%wyy/\`L%{#e!XaoF48rcbG
+              areas:
+                -
+# also accepts an integer
+                  id: 0/0.1
+                  authentication_message_digest: true
+                  nssa: true
+                  nssa_default_information_originate: true
+# maximum 16777214; also accepts a string
+                  nssa_default_information_originate_metric: 1
+# range 1-2; also accepts a string
+                  nssa_default_information_originate_metric_type: 1
+                  nssa_no_summary: true
+                  nssa_no_redistribution: true
+              passive_interface_default: true
+# range 1-4294967; also accepts a string
+              auto_cost_reference_bandwidth: 1
+              passive_interfaces:
+                -
+# allowed: Loopback, Vlan, GigabitEthernet, TwoGigabitEthernet, FiveGigabitEthernet,
+# TenGigabitEthernet, TwentyFiveGigabitEthernet, FortyGigabitEthernet, FiftyGigabitEthernet,
+# HundredGigabitEthernet; also accepts a string
+                  interface_type: Loopback
+# also accepts an integer
+                  interface_id: 0/0.1
+              non_passive_interfaces:
+                -
+# allowed: Loopback, Vlan, Tunnel, Port-channel, Port-channel-subinterface, GigabitEthernet,
+# TwoGigabitEthernet, FiveGigabitEthernet, TenGigabitEthernet, TwentyFiveGigabitEthernet,
+# FortyGigabitEthernet, HundredGigabitEthernet, TwoHundredGigabitEthernet,
+# FourHundredGigabitEthernet; also accepts a string
+                  interface_type: Loopback
+# also accepts an integer
+                  interface_id: 0/0.1
+              distribute_list_in: <HOSTNAME>
+              distribute_list_out: <HOSTNAME>

@@ -1,0 +1,25 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.global
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/entity/global/
+iosxe:
+  global:
+    version: <HOSTNAME>
+# map of arbitrary keys
+    variables:
+      example_variable: <VARIABLE>
+# Configuration attributes for this object are expanded in the sibling template files. This copy
+# of the schema matches devices[].configuration. Interface-group attributes are in
+# interface/interface-group.nac.yaml.
+    configuration: {}
+    templates:
+      - <HOSTNAME>

@@ -1,0 +1,180 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.route_maps
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/route_map/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        route_maps:
+          -
+# mandatory
+            name: <NAME>
+            entries:
+              -
+# mandatory; maximum 65535; also accepts a string
+                seq: 1
+# allowed: deny, permit; also accepts a string
+                operation: deny
+                description: <DESCRIPTION>
+                continue: true
+# maximum 65535; also accepts a string
+                continue_sequence_number: 1
+                match:
+# also accepts a string
+                  interfaces:
+                    - 0/0.1
+# also accepts a string
+                  ipv4_address_access_lists:
+                    - 10.0.0.1
+# also accepts a string
+                  ipv4_address_prefix_lists:
+                    - 10.0.0.1
+# also accepts a string
+                  ipv4_next_hop_access_lists:
+                    - <HOSTNAME>
+# also accepts a string
+                  ipv4_next_hop_prefix_lists:
+                    - 10.0.0.1
+                  ipv6_address_access_lists: 2001:db8::1
+                  ipv6_address_prefix_lists: 2001:db8::1
+                  ipv6_next_hop_access_lists: 2001:db8::1
+                  ipv6_next_hop_prefix_lists: 2001:db8::1
+                  route_type:
+                    external: true
+                    external_type_1: true
+                    external_type_2: true
+                    internal: true
+                    level_1: true
+                    level_2: true
+                    local: true
+                  source_protocol:
+# also accepts a string
+                    bgp:
+                      - <HOSTNAME>
+                    connected: true
+# also accepts a string
+                    eigrp:
+                      - <HOSTNAME>
+                    isis: true
+                    lisp: true
+# also accepts a string
+                    ospf:
+                      - <HOSTNAME>
+# also accepts a string
+                    ospfv3:
+                      - <HOSTNAME>
+                    rip: true
+                    static: true
+# also accepts a string
+                  tags:
+                    - 1
+# range 1-1000; also accepts a string
+                  track: 1
+# also accepts a string
+                  as_paths:
+                    - 1
+# also accepts a string
+                  community_lists:
+                    - rt 65000:1
+                  community_list_exact_match: true
+# also accepts a string
+                  extcommunity_lists:
+                    - rt 65000:1
+# also accepts a string
+                  local_preferences:
+                    - 1
+                set:
+# also accepts a string
+                  default_interfaces:
+                    - 0/0.1
+                  global: true
+# also accepts a string
+                  interfaces:
+                    - 0/0.1
+                  ipv4_address: 10.0.0.1
+# also accepts a string
+                  ipv4_default_global_next_hop_addresses:
+                    - <HOSTNAME>
+# also accepts a string
+                  ipv4_default_next_hop_addresses:
+                    - <HOSTNAME>
+# also accepts a string
+                  ipv4_global_next_hop_addresses:
+                    - <HOSTNAME>
+# also accepts a string
+                  ipv4_next_hop_addresses:
+                    - <HOSTNAME>
+                  ipv4_next_hop_self: true
+                  ipv4_next_hop_unchanged: true
+# maximum 99; also accepts a string
+                  ipv4_qos_group: 1
+# also accepts a string
+                  ipv6_addresses:
+                    - 2001:db8::1
+# also accepts a string
+                  ipv6_default_global_next_hop: f%{$kafd5]'
+# also accepts a string
+                  ipv6_default_next_hop_addresses:
+                    - 2001:db8::1
+# also accepts a string
+                  ipv6_next_hop_addresses:
+                    - 2001:db8::1
+                  level_1: true
+                  level_1_2: true
+                  level_2: true
+                  metric_change: <HOSTNAME>
+# maximum 4294967295; also accepts a string
+                  metric_value: 1
+                  metric_delay: <HOSTNAME>
+# maximum 255; also accepts a string
+                  metric_reliability: 1
+# range 1-255; also accepts a string
+                  metric_loading: 1
+# range 1-4294967295; also accepts a string
+                  metric_mtu: 1
+# allowed: external, internal, type-1, type-2; also accepts a string
+                  metric_type: external
+# maximum 4294967295; also accepts a string
+                  tag: 1
+                  vrf: <HOSTNAME>
+                  as_path_prepend_as: <HOSTNAME>
+# range 1-10; also accepts a string
+                  as_path_prepend_last_as: 1
+                  as_path_tag: true
+                  as_path_replace_any: true
+# also accepts a string
+                  as_path_replace_as:
+                    - <HOSTNAME>
+                  community_none: true
+# also accepts a string
+                  communities:
+                    - <HOSTNAME>
+                  communities_additive: true
+                  community_list_delete: true
+# range 1-99; also accepts a string
+                  community_list_standard: 1
+# range 100-500; also accepts a string
+                  community_list_expanded: 100
+                  community_list_name: <NAME>
+# also accepts a string
+                  extcomunity_rt:
+                    - <HOSTNAME>
+                  extcomunity_soo: <HOSTNAME>
+                  extcomunity_vpn_distinguisher: <HOSTNAME>
+                  extcomunity_vpn_distinguisher_additive: true
+# maximum 4294967295; also accepts a string
+                  local_preference: 1
+# maximum 65535; also accepts a string
+                  weight: 1

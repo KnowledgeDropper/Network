@@ -1,0 +1,93 @@
+# Cisco Network as Code template for Meraki.
+# Data model: meraki
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: meraki.domains[].organizations[].networks[].switch_stacks[].routing_interfaces
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_switch/routing/switch_routing_interfaces/
+#   https://netascode.cisco.com/docs/data_models/meraki/networks_switch/stacks/stacks_routing_interfaces/
+meraki:
+  domains:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      administrator: {}
+# mandatory
+      organizations:
+        - networks:
+            -
+# mandatory
+              name: <NAME>
+              switch_stacks:
+                - routing_interfaces:
+                    - name: <NAME>
+                      subnet: 10.0.0.0/24
+                      interface_ip: 10.0.0.1
+# allowed: IGMP snooping querier, disabled, enabled
+                      multicast_routing: IGMP snooping querier
+# range 1-4094; also accepts a string
+                      vlan_id: 1
+                      default_gateway: 10.0.0.1
+                      static_v4_dns1: <HOSTNAME>
+                      static_v4_dns2: <HOSTNAME>
+                      uplink_v4: true
+                      uplink_v6: true
+                      ospf_settings:
+# range 1-4294967295; also accepts a string
+                        area: 1
+# range 1-65535
+                        cost: 1
+                        is_passive: true
+                      ipv6:
+# allowed: eui-64, static
+                        assignment_mode: eui-64
+                        prefix: 10.0.0.1
+                        address: 10.0.0.1
+                        gateway: 10.0.0.1
+                        static_v6_dns1: <HOSTNAME>
+                        static_v6_dns2: <HOSTNAME>
+                      dhcp:
+# allowed: dhcpDisabled, dhcpRelay, dhcpServer
+                        dhcp_mode: dhcpDisabled
+                        dhcp_relay_server_ips:
+                          - 10.0.0.1
+# allowed: 1 day, 1 hour, 1 week, 12 hours, 30 minutes, 4 hours
+                        dhcp_lease_time: 1 day
+# allowed: custom, googlePublicDns, openDns
+                        dns_nameservers_option: custom
+                        dns_custom_nameservers:
+                          - 10.0.0.1
+                        boot_next_server: 10.0.0.1
+                        boot_file_name: <NAME>
+                        dhcp_options:
+                          -
+# mandatory
+                            code: '10'
+# mandatory; allowed: hex, integer, ip, text
+                            type: hex
+# mandatory
+                            value: <HOSTNAME>
+                        reserved_ip_ranges:
+                          -
+# mandatory
+                            start: <HOSTNAME>
+# mandatory
+                            end: <HOSTNAME>
+# mandatory
+                            comment: <HOSTNAME>
+                        fixed_ip_assignments:
+                          -
+# mandatory
+                            name: <NAME>
+# mandatory
+                            mac: 00:11:22:33:44:55
+# mandatory
+                            ip: 10.0.0.1
+                        boot_options: true

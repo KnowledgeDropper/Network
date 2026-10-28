@@ -1,0 +1,105 @@
+# Cisco Network as Code template for Meraki.
+# Data model: meraki
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: meraki.domains[].organizations[].networks[].appliance.traffic_shaping.uplink_selection
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs: schema section without a dedicated page in the docs nav.
+meraki:
+  domains:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      administrator: {}
+# mandatory
+      organizations:
+        - networks:
+            -
+# mandatory
+              name: <NAME>
+              appliance:
+                traffic_shaping:
+                  uplink_selection:
+# allowed: wan1, wan2
+                    default_uplink: wan1
+                    wan_traffic_uplink_preferences:
+                      -
+# mandatory
+                        name: <NAME>
+# mandatory
+                        traffic_filters:
+                          -
+# mandatory; allowed: custom
+                            type: custom
+# mandatory
+                            value:
+# allowed: any, icmp6, tcp, udp
+                              protocol: any
+# mandatory
+                              source:
+# maximum 65535; also accepts a string
+                                port: 1
+                                cidr: 10.0.0.1
+# range 1-4094; also accepts a string
+                                vlan: 1
+# range 1-254
+                                host: 1
+# mandatory
+                              destination:
+# maximum 65535; also accepts a string
+                                port: 1
+                                cidr: 10.0.0.1
+# mandatory; allowed: wan1, wan2
+                        preferred_uplink: wan1
+                    vpn_traffic_uplink_preferences:
+                      -
+# mandatory
+                        name: <NAME>
+# mandatory
+                        traffic_filters:
+                          -
+# mandatory; allowed: application, applicationCategory, custom
+                            type: application
+# mandatory
+                            value:
+                              id: 0/0.1
+# allowed: any, icmp, icmp6, tcp, udp
+                              protocol: any
+                              source:
+# maximum 65535; also accepts a string
+                                port: 1
+                                cidr: 10.0.0.1
+                                network: <HOSTNAME>
+# range 1-4094; also accepts a string
+                                vlan: 1
+# range 1-254
+                                host: 1
+                              destination:
+# maximum 65535; also accepts a string
+                                port: 1
+                                cidr: 10.0.0.1
+                                network: <HOSTNAME>
+# range 1-4094; also accepts a string
+                                vlan: 1
+# range 1-254
+                                host: 1
+                                fqdn: <HOSTNAME>
+# mandatory; allowed: bestForVoIP, defaultUplink, loadBalancing, wan1, wan2
+                        preferred_uplink: bestForVoIP
+# allowed: poorPerformance, uplinkDown
+                        fail_over_criterion: poorPerformance
+                        performance_class:
+# mandatory; allowed: builtin, custom
+                          type: builtin
+# allowed: VoIP
+                          builtin_performance_class_name: VoIP
+                          custom_performance_class_name: <NAME>
+                    active_active_auto_vpn: true
+                    load_balancing: true
+                    failover_and_failback_immediate: true

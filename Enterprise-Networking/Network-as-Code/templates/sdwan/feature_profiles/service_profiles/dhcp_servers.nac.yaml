@@ -1,0 +1,71 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.service_profiles[].dhcp_servers
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_service/service_dhcp_server/
+sdwan:
+  feature_profiles:
+    service_profiles:
+      -
+# mandatory
+        name: example-name
+        dhcp_servers:
+          -
+# mandatory
+            name: example-name
+            description: <DESCRIPTION>
+            pool_network_address: 10.0.0.1
+            pool_network_address_variable: 10.0.0.1
+# allowed: 255.255.255.255, 255.255.255.254, 255.255.255.252, 255.255.255.248, 255.255.255.240,
+# 255.255.255.224, 255.255.255.192, 255.255.255.128, 255.255.255.0, 255.255.254.0, 255.255.252.0,
+# 255.255.248.0, 255.255.240.0, 255.255.224.0, 255.255.192.0, 255.255.128.0, 255.255.0.0,
+# 255.254.0.0, 255.252.0.0, 255.248.0.0, 255.240.0.0, 255.224.0.0, 255.192.0.0, 255.128.0.0,
+# 255.0.0.0, 254.0.0.0, 252.0.0.0, 248.0.0.0, 240.0.0.0, 224.0.0.0, 192.0.0.0, 128.0.0.0, 0.0.0.0
+            pool_subnet_mask: 255.255.255.255
+            pool_subnet_mask_variable: 10.0.0.1
+            default_gateway: 10.0.0.1
+            default_gateway_variable: 10.0.0.1
+            dhcp_ha_enable: true
+            dhcp_ha_enable_variable: example-host
+            dns_servers:
+              - <HOSTNAME>
+            dns_servers_variable: example-host
+            domain_name: example.com
+            domain_name_variable: example.com
+            exclude_addresses:
+              - 10.0.0.1
+            exclude_addresses_variable: example-host
+# range 68-65535
+            interface_mtu: 68
+            interface_mtu_variable: 0/0.1
+# range 10-31536000
+            lease_time: 10
+            lease_time_variable: example-host
+            options:
+              -
+# range 1-254
+                code: 1
+                code_variable: example-host
+                ascii: <HOSTNAME>
+                ascii_variable: example-host
+                hex: '10'
+                hex_variable: example-host
+                ip_addresses:
+                  - 10.0.0.1
+                ip_addresses_variable: 10.0.0.1
+            static_leases:
+              - ip_address: 10.0.0.1
+                ip_address_variable: 10.0.0.1
+                mac_address: 00:11:22:33:44:55
+                mac_address_variable: 00-11-22-33-44-55
+            tftp_servers:
+              - <HOSTNAME>
+            tftp_servers_variable: example-host

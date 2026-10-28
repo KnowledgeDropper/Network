@@ -1,0 +1,150 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.aaa_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/aaa/
+sdwan:
+  edge_feature_templates:
+    aaa_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - ASR-1001-HX
+        accounting_rules:
+          -
+# mandatory; allowed: commands, exec, network, system
+            method: commands
+# allowed: 1, 15
+            privilege_level: 1
+            start_stop: true
+            start_stop_variable: <HOSTNAME>
+# mandatory
+            groups:
+              - <HOSTNAME>
+# mandatory
+        authentication_and_authorization_order:
+          - <HOSTNAME>
+        authorization_config_commands: true
+        authorization_config_commands_variable: <HOSTNAME>
+        authorization_console: true
+        authorization_console_variable: <HOSTNAME>
+        authorization_rules:
+          -
+# mandatory; allowed: commands
+            method: commands
+# mandatory; allowed: 1, 15
+            privilege_level: 1
+# mandatory
+            authenticated: true
+# mandatory
+            groups:
+              - <HOSTNAME>
+        dot1x_authentication: true
+        dot1x_authentication_variable: <HOSTNAME>
+        dot1x_accounting: true
+        dot1x_accounting_variable: <HOSTNAME>
+        radius_dynamic_author:
+# allowed: yes, no, right-to-left
+          domain_stripping: yes
+          domain_stripping_variable: example.com
+# allowed: yes, all, session-key
+          authentication_type: yes
+          authentication_type_variable: <HOSTNAME>
+# maximum 65535
+          port: 1
+          port_variable: <HOSTNAME>
+          server_key: 10.0.0.1
+          server_key_variable: 10.0.0.1
+# mandatory
+          clients:
+            - ip: 10.0.0.1
+              ip_variable: 10.0.0.1
+# maximum 65530
+              vpn_id: 1
+              vpn_id_variable: <HOSTNAME>
+              server_key: 10.0.0.1
+        radius_server_groups:
+          -
+# mandatory
+            name: <NAME>
+# mandatory
+            servers:
+              -
+# mandatory
+                address: 10.0.0.1
+# range 1-65535
+                authentication_port: 1
+                authentication_port_variable: <HOSTNAME>
+# range 1-65535
+                accounting_port: 1
+                accounting_port_variable: <HOSTNAME>
+# range 1-1000
+                timeout: 1
+                timeout_variable: <HOSTNAME>
+# range 1-100
+                retransmit_count: 1
+                retransmit_count_variable: <HOSTNAME>
+# allowed: key, pac
+                key_type: key
+                key_type_variable: <HOSTNAME>
+# mandatory
+                key: <HOSTNAME>
+# mandatory
+                secret_key: example
+            source_interface: 0/0.1
+            source_interface_variable: 0/0.1
+# maximum 65530
+            vpn_id: 1
+        radius_trustsec:
+          cts_authorization_list: <HOSTNAME>
+          cts_authorization_list_variable: <HOSTNAME>
+          server_group: 10.0.0.1
+        tacacs_server_groups:
+          -
+# mandatory
+            name: <NAME>
+# maximum 65530
+            vpn_id: 1
+            source_interface: 0/0.1
+            source_interface_variable: 0/0.1
+# mandatory
+            servers:
+              -
+# mandatory
+                address: 10.0.0.1
+# range 1-65535
+                port: 1
+                port_variable: <HOSTNAME>
+# range 1-1000
+                timeout: 1
+                timeout_variable: <HOSTNAME>
+# mandatory
+                key: <HOSTNAME>
+# mandatory
+                secret_key: example
+# mandatory
+        users:
+          -
+# mandatory
+            name: <NAME>
+            optional: true
+# mandatory
+            password: <SECRET>
+# allowed: 1, 15
+            privilege_level: 1
+            privilege_level_variable: <HOSTNAME>
+# mandatory
+            secret: <SECRET>
+            ssh_rsa_keys:
+              - <HOSTNAME>

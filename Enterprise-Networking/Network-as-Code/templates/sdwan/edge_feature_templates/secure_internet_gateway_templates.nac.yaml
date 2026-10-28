@@ -1,0 +1,140 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.secure_internet_gateway_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/secure_internet_gateway/
+sdwan:
+  edge_feature_templates:
+    secure_internet_gateway_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - C8500-12X4QC
+# mandatory
+        high_availability_interface_pairs:
+          -
+# mandatory
+            active_interface: ipsec462
+# mandatory; range 1-255
+            active_interface_weight: 1
+# mandatory
+            backup_interface: ipsec
+# mandatory; range 1-255
+            backup_interface_weight: 1
+# mandatory
+        interfaces:
+          - description: <DESCRIPTION>
+            description_variable: <DESCRIPTION>
+# range 10-65535
+            dpd_interval: 10
+            dpd_interval_variable: <HOSTNAME>
+# maximum 255
+            dpd_retries: 1
+            dpd_retries_variable: <HOSTNAME>
+# allowed: aes256-cbc-sha1, aes256-cbc-sha2, aes128-cbc-sha1, aes128-cbc-sha2
+            ike_ciphersuite: aes256-cbc-sha1
+            ike_ciphersuite_variable: <HOSTNAME>
+# allowed: 2, 14, 15, 16
+            ike_group: 2
+            ike_group_variable: <HOSTNAME>
+            ike_pre_shared_key: <HOSTNAME>
+            ike_pre_shared_key_variable: <HOSTNAME>
+# also accepts a string
+            ike_pre_shared_key_local_id: 0/0.1
+            ike_pre_shared_key_local_id_variable: <HOSTNAME>
+# also accepts a string
+            ike_pre_shared_key_remote_id: 0/0.1
+            ike_pre_shared_key_remote_id_variable: <HOSTNAME>
+# range 300-1209600
+            ike_rekey_interval: 300
+            ike_rekey_interval_variable: <HOSTNAME>
+# allowed: aes256-cbc-sha1, aes256-cbc-sha384, aes256-cbc-sha256, aes256-cbc-sha512, aes256-gcm,
+# null-sha1, null-sha384, null-sha256, null-sha512
+            ipsec_ciphersuite: aes256-cbc-sha1
+            ipsec_ciphersuite_variable: <HOSTNAME>
+# allowed: group-2, group-14, group-15, group-16, none
+            ipsec_perfect_forward_secrecy: group-2
+            ipsec_perfect_forward_secrecy_variable: <HOSTNAME>
+# range 300-1209600
+            ipsec_rekey_interval: 300
+            ipsec_rekey_interval_variable: <HOSTNAME>
+# range 64-4096
+            ipsec_replay_window: 64
+            ipsec_replay_window_variable: <HOSTNAME>
+# range 576-2000
+            mtu: 576
+            mtu_variable: <HOSTNAME>
+            name: ipsec
+            name_variable: <HOSTNAME>
+            shutdown: true
+# range 500-1460
+            tcp_mss: 500
+            tcp_mss_variable: <HOSTNAME>
+            track: true
+            tracker: <HOSTNAME>
+            tracker_variable: <HOSTNAME>
+# allowed: primary-dc, secondary-dc
+            tunnel_dc_preference: primary-dc
+            tunnel_destination: <HOSTNAME>
+            tunnel_destination_variable: <HOSTNAME>
+            tunnel_public_source_ip: 10.0.0.1
+            tunnel_public_source_ip_variable: 10.0.0.1
+            tunnel_source_interface: 0/0.1
+            tunnel_source_interface_variable: 0/0.1
+# mandatory; allowed: gre, ipsec
+            tunnel_type: gre
+# mandatory; allowed: umbrella, zscaler, other
+        sig_provider: umbrella
+        tracker_source_ip: 10.0.0.1
+        tracker_source_ip_variable: 10.0.0.1
+        trackers:
+          - endpoint_api_url: https://example.com
+            endpoint_api_url_variable: https://example.com
+# range 20-600
+            interval: 20
+            interval_variable: <HOSTNAME>
+# range 1-10
+            multiplier: 1
+            multiplier_variable: <HOSTNAME>
+            name: <NAME>
+            name_variable: <HOSTNAME>
+# range 100-1000
+            threshold: 100
+            threshold_variable: <HOSTNAME>
+        umbrella_primary_data_center: <HOSTNAME>
+        umbrella_primary_data_center_variable: <HOSTNAME>
+        umbrella_secondary_data_center: <HOSTNAME>
+        umbrella_secondary_data_center_variable: <HOSTNAME>
+        zscaler_aup_block_internet_until_accepted: true
+        zscaler_aup_enabled: true
+        zscaler_aup_force_ssl_inspection: true
+        zscaler_aup_timeout: 1
+        zscaler_authentication_required: true
+        zscaler_caution_enabled: true
+        zscaler_ips_control_enabled: true
+        zscaler_firewall_enabled: true
+        zscaler_location_name_variable: <HOSTNAME>
+        zscaler_primary_data_center: <HOSTNAME>
+        zscaler_primary_data_center_variable: <HOSTNAME>
+        zscaler_secondary_data_center: <HOSTNAME>
+        zscaler_secondary_data_center_variable: <HOSTNAME>
+# allowed: minute, hour, day
+        zscaler_surrogate_display_time_unit: minute
+        zscaler_surrogate_idle_time: 1
+        zscaler_surrogate_ip: true
+        zscaler_surrogate_ip_enforce_for_known_browsers: true
+        zscaler_surrogate_refresh_time: 1
+# allowed: minute, hour, day
+        zscaler_surrogate_refresh_time_unit: minute
+        zscaler_xff_forward: true

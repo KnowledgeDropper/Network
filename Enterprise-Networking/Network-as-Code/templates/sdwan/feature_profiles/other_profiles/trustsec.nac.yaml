@@ -1,0 +1,76 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.other_profiles[].trustsec
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_other/other_trustsec/
+sdwan:
+  feature_profiles:
+    other_profiles:
+      -
+# mandatory
+        name: example-name
+        trustsec:
+          name: example-name
+          description: <DESCRIPTION>
+          device_id: 0/0.1
+          device_id_variable: example-host
+          device_password: <SECRET>
+          device_password_variable: SECRET
+# range 2-65519
+          device_sgt: 2
+          device_sgt_variable: example-host
+          enable_enforcement: true
+          enable_enforcement_variable: example-host
+          enable_sxp: true
+# range 1-65534
+          listener_hold_time_max: 1
+          listener_hold_time_max_variable: example-host
+# range 1-65534
+          listener_hold_time_min: 1
+          listener_hold_time_min_variable: example-host
+# range 1-65534
+          speaker_hold_time: 1
+          speaker_hold_time_variable: example-host
+          sxp_connections:
+            -
+# maximum 65535
+              max_hold_time: 1
+              max_hold_time_variable: example-host
+# maximum 65535
+              min_hold_time: 1
+              min_hold_time_variable: example-host
+# allowed: local, peer
+              mode: local
+# allowed: speaker, listener, both
+              mode_type: speaker
+              peer_ip: 10.0.0.1
+              peer_ip_variable: 10.0.0.1
+# allowed: password, none, key chain
+              preshared_key: password
+              source_ip: 10.0.0.1
+              source_ip_variable: 10.0.0.1
+# maximum 65527
+              vpn_id: 1
+              vpn_id_variable: example-host
+          sxp_default_password: <SECRET>
+          sxp_default_password_variable: SECRET
+          sxp_key_chain: <HOSTNAME>
+          sxp_key_chain_variable: example-host
+          sxp_log_binding_changes: true
+          sxp_log_binding_changes_variable: example-host
+# maximum 64000
+          sxp_reconciliation_period: 1
+          sxp_reconciliation_period_variable: example-host
+# maximum 64000
+          sxp_retry_period: 1
+          sxp_retry_period_variable: example-host
+          sxp_source_ip: 10.0.0.1
+          sxp_source_ip_variable: 10.0.0.1

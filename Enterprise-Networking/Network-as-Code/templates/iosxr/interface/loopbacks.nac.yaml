@@ -1,0 +1,133 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.interfaces.loopbacks
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/interface/loopback/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        interfaces:
+          loopbacks:
+            -
+# mandatory; also accepts an integer; also accepts a string
+              id: '10'
+# also accepts a string
+              interface_groups:
+                - 0/0.1
+# maximum 9223372036854775807; also accepts a string
+              bandwidth: 1
+              dampening: true
+# range 1-45; also accepts a string
+              dampening_decay_half_life: 1
+# range 1-20000; also accepts a string
+              dampening_reuse_threshold: 1
+# range 1-20000; also accepts a string
+              dampening_suppress_threshold: 1
+# range 1-255; also accepts a string
+              dampening_max_suppress_time: 1
+# also accepts a string
+              description: '%{)g)iOTRL\59E4bXvCFV'
+              ipv4:
+# also accepts a string
+                address: g`/JDHV+Q]F3r9b;"_4%{/
+# also accepts a string
+                mask: \WCSkx9OMNa"VF%{k"e^&b7zviXr,9xw
+# range 128-255; also accepts a string
+                algorithm: 128
+                forwarding_enable: true
+                helper_addresses:
+                  -
+# mandatory; also accepts a string
+                    address: e#0YlMrQ!&${q^#\y/[
+# mandatory; also accepts a string
+                    vrf: 6=B&uJ4S`QxEu%{Cc;0Vp)<eb;N ^G
+                mask_reply: true
+# range 68-65535; also accepts a string
+                mtu: 68
+                redirects: true
+# range 1-4294967295; also accepts a string
+                route_tag: 1
+                secondaries:
+                  -
+# mandatory; also accepts a string
+                    address: XIFN7FU?kDgih 3?${G7)1x
+# mandatory; also accepts a string
+                    mask: =8n\$ZFllOFfe${]3T^$wkXMI-Q_
+# range 128-255; also accepts a string
+                    algorithm: 128
+# range 1-4294967295; also accepts a string
+                    route_tag: 1
+                tcp_mss_adjust: true
+                ttl_propagate_disable: true
+# also accepts a string
+                unnumbered: '*%{7@*Pd&AC'
+                verify_unicast_source_reachable_via_allow_default: true
+                verify_unicast_source_reachable_via_allow_self_ping: true
+# allowed: any, rx; also accepts a string
+                verify_unicast_source_reachable_via: any
+              ipv6:
+                addresses:
+                  -
+# mandatory; also accepts a string
+                    address: H${IIk
+# mandatory; maximum 128; also accepts a string
+                    length: 1
+# range 128-255; also accepts a string
+                    algorithm: 128
+# range 1-4294967295; also accepts a string
+                    route_tag: 1
+# also accepts a string
+                    zone: 'uQzwK#M:<#.4%{k7- '
+                autoconfig: true
+                enable: true
+                eui64_addresses:
+                  -
+# mandatory; also accepts a string
+                    address: -th9q[WF_>`%%%{)ftfRN4d+@O
+# mandatory; maximum 128; also accepts a string
+                    length: 1
+# range 128-255; also accepts a string
+                    algorithm: 128
+# range 1-4294967295; also accepts a string
+                    route_tag: 1
+# also accepts a string
+                    zone: my@i@xX%{aMY6TL8LF\b'+$wL
+# also accepts a string
+                link_local_address: M8]XU*s,b,>1r&)%{(gV\D;
+# range 1-4294967295; also accepts a string
+                link_local_route_tag: 1
+# also accepts a string
+                link_local_zone: RAi@h5%{ A2%
+# range 1280-65535; also accepts a string
+                mtu: 1280
+# maximum 128000; also accepts a string
+                nd_cache_limit: 1
+                nd_prefix_default_no_adv: true
+                nd_prefix_default_no_autoconfig: true
+                tcp_mss_adjust: true
+                ttl_propagate_disable: true
+                verify_unicast_source_reachable_via_allow_default: true
+                verify_unicast_source_reachable_via_allow_self_ping: true
+# allowed: any, rx; also accepts a string
+                verify_unicast_source_reachable_via: any
+# also accepts an integer
+              load_interval: t#8aQqUzws7*A${%7`0sH>-
+              logging_events_link_status: true
+# range 64-65535; also accepts a string
+              mtu: 64
+              shutdown: true
+# also accepts a string
+              vrf: '%{=mJ\H'

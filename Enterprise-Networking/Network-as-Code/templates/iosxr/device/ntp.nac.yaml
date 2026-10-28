@@ -1,0 +1,206 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.ntp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/ntp/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        ntp:
+          access_groups:
+# also accepts a string
+            ipv4_peer: =@g>-e${UNm
+# also accepts a string
+            ipv4_query_only: 5XV/FWg`i-${0_
+# also accepts a string
+            ipv4_serve: xi<8;(R30'${A4E`d]AE6u$?
+# also accepts a string
+            ipv4_serve_only: YAy(${4spx=
+# also accepts a string
+            ipv6_peer: <29v`Y0hI1\]8%{;.iguby)1'2jh
+# also accepts a string
+            ipv6_query_only: ;Jo786N?aBsDr3%{*l[gcz3&>J=$HOC
+# also accepts a string
+            ipv6_serve: .&(l9+h2?C ${;]uXD1
+# also accepts a string
+            ipv6_serve_only: rie${>S'og)E_9BL93W_C
+          admin_plane_burst: true
+          admin_plane_iburst: true
+# range 1-65535; also accepts a string
+          admin_plane_key: 1
+# range 4-17; also accepts a string
+          admin_plane_maxpoll: 4
+# range 4-17; also accepts a string
+          admin_plane_minpoll: 4
+          admin_plane_prefer: true
+# range 1-4; also accepts a string
+          admin_plane_version: 1
+          authenticate: true
+          authentication_keys:
+            -
+# mandatory; also accepts a string
+              key: H'i];:N>zio%{>gGd`
+# mandatory; allowed: 7; also accepts a string
+              key_type: 7
+# mandatory; allowed: md5, cmac, hmac_sha1, hmac_sha2; also accepts a string
+              mode: md5
+# mandatory; range 1-65535; also accepts a string
+              number: 1
+              trusted: true
+# range 1-999999; also accepts a string
+          broadcastdelay: 1
+# maximum 65535; also accepts a string
+          drift_aging_time: 1
+# allowed: bootflash, compactflash, disk0, disk1, disk2, harddisk, usb; also accepts a string
+          drift_file: bootflash
+# also accepts a string
+          drift_filename: Y:@^v[T!Rb%{.Q "
+          interfaces:
+            -
+# mandatory; also accepts a string
+              name: 2Yv%{R2ni83oX/'u
+              broadcast_client: true
+# also accepts a string
+              broadcast_destination: =8,wZyY;8mtwlZ${I2kBL]5CM@4wh!HL
+# range 1-65535; also accepts a string
+              broadcast_key: 1
+# range 2-4; also accepts a string
+              broadcast_version: 2
+              disable: true
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+          ipv4_dscp: af11
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+          ipv4_precedence: critical
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+          ipv6_dscp: af11
+# allowed: critical, flash, flash-override, immediate, internet, network, priority, routine; also
+# accepts an integer; also accepts a string
+          ipv6_precedence: critical
+          log_internal_sync: true
+# allowed: primary_reference_clock; also accepts an integer; also accepts a string
+          master: primary_reference_clock
+# maximum 4294967295; also accepts a string
+          max_associations: 1
+          passive: true
+          peers:
+            -
+# mandatory; also accepts a string
+              address: N,Wz)8U^BW4OPMl\%{?5V03J
+              burst: true
+              iburst: true
+# range 1-65535; also accepts a string
+              key: 1
+# range 4-9; also accepts a string
+              maxpoll: 4
+# range 4-5; also accepts a string
+              minpoll: 4
+              prefer: true
+# also accepts a string
+              source: 9IgQnj#`l5E=%{l_U,yB3=qBD?!
+# range 2-4; also accepts a string
+              version: 2
+          servers:
+            -
+# mandatory; also accepts a string
+              address: ZX/J0&thv?Ip^J`%{UZyMNR:+tI9&QUl/t&k
+              burst: true
+              iburst: true
+# range 1-65535; also accepts a string
+              key: 1
+# range 4-9; also accepts a string
+              maxpoll: 4
+# range 4-5; also accepts a string
+              minpoll: 4
+              prefer: true
+# also accepts a string
+              source: 3_fJ.h,Ks`%{aq8
+# range 2-4; also accepts a string
+              version: 2
+# also accepts a string
+          source_interface: '#OM${!'
+          update_calendar: true
+          vrfs:
+            -
+# mandatory; also accepts a string
+              vrf: f$Q($CL%{z2x( \wBFb^?8rx
+              access_groups:
+# also accepts a string
+                ipv4_peer: y.r[<x\h'%{`>32:`SY+or#M`nFe
+# also accepts a string
+                ipv4_query_only: /h&Mb3A=iI`.83oT%{F7[
+# also accepts a string
+                ipv4_serve: '>UTwtuM0z6Bw8\.8%{BEz;1 rhC '
+# also accepts a string
+                ipv4_serve_only: w%{<hAFcjq6\:`9i$y,PfD
+# also accepts a string
+                ipv6_peer: $9NUyS.9HH=I1.6LB${IF'e:xM
+# also accepts a string
+                ipv6_query_only: J'i5vvn9:MY!C"b${aW0-8]
+# also accepts a string
+                ipv6_serve: ']Vrn9%{DvtU2%!yr5Kx'
+# also accepts a string
+                ipv6_serve_only: YfEZV@jU${5PN1\_.)!-C
+              interfaces:
+                -
+# mandatory; also accepts a string
+                  name: f`3Zf(to^6$x8"_'s${[113%T!?U.46v
+                  broadcast_client: true
+# also accepts a string
+                  broadcast_destination: Xj%{A;I'.*YR'%@JnGT/
+# range 1-65535; also accepts a string
+                  broadcast_key: 1
+# range 2-4; also accepts a string
+                  broadcast_version: 2
+                  disable: true
+              peers:
+                -
+# mandatory; also accepts a string
+                  address: w$$YX2ML#e${*'<d
+                  burst: true
+                  iburst: true
+# range 1-65535; also accepts a string
+                  key: 1
+# range 4-9; also accepts a string
+                  maxpoll: 4
+# range 4-5; also accepts a string
+                  minpoll: 4
+                  prefer: true
+# also accepts a string
+                  source: C1)8c9Oam.X<0w_M4${yc0MO-
+# range 2-4; also accepts a string
+                  version: 2
+              servers:
+                -
+# mandatory; also accepts a string
+                  address: NDlT#^50Q>rZl${P?cnT
+                  burst: true
+                  iburst: true
+# range 1-65535; also accepts a string
+                  key: 1
+# range 4-9; also accepts a string
+                  maxpoll: 4
+# range 4-5; also accepts a string
+                  minpoll: 4
+                  prefer: true
+# also accepts a string
+                  source: W7U${k
+# range 2-4; also accepts a string
+                  version: 2
+# also accepts a string
+              source_interface: O%{2

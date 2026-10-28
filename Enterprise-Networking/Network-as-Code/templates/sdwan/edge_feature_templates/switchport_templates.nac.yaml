@@ -1,0 +1,109 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.switchport_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/switchport/
+sdwan:
+  edge_feature_templates:
+    switchport_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - C1111-4PLTEEA
+# maximum 1000000
+        age_out_time: 1
+        age_out_time_variable: <HOSTNAME>
+        interfaces:
+          -
+# range 1-4094
+            access_vlan: 1
+            access_vlan_variable: '10'
+            dot1x:
+# allowed: both, in
+              control_direction: both
+              control_direction_variable: <HOSTNAME>
+# range 1-4094
+              critical_vlan: 1
+              critical_vlan_variable: '10'
+# mandatory
+              enable: true
+              enable_criticial_voice_vlan: true
+              enable_criticial_voice_vlan_variable: '10'
+              enable_pae: true
+              enable_pae_variable: <HOSTNAME>
+              enable_periodic_reauth: true
+              enable_periodic_reauth_variable: <HOSTNAME>
+# range 1-4094
+              guest_vlan: 1
+              guest_vlan_variable: '10'
+# allowed: single-host, multi-auth, multi-host, multi-domain
+              host_mode: single-host
+              host_mode_variable: 10.0.0.1
+              mac_authentication_bypass: true
+              mac_authentication_bypass_variable: 00:11:22:33:44:55
+# range 1-1440
+              periodic_reauth_inactivity_timeout: 1
+              periodic_reauth_inactivity_timeout_variable: <HOSTNAME>
+# maximum 1440
+              periodic_reauth_interval: 1
+              periodic_reauth_interval_variable: <HOSTNAME>
+# allowed: auto, force-unauthorized, force-authorized
+              port_control_mode: auto
+              port_control_mode_variable: <HOSTNAME>
+# range 1-4094
+              restricted_vlan: 1
+              restricted_vlan_variable: '10'
+# allowed: half, full
+            duplex: half
+            duplex_variable: <HOSTNAME>
+# mandatory; allowed: access, trunk
+            mode: access
+            name: <NAME>
+            name_variable: <HOSTNAME>
+            optional: true
+            shutdown: true
+            shutdown_variable: <HOSTNAME>
+# allowed: 10, 100, 1000, 2500, 10000
+            speed: 10
+            speed_variable: <HOSTNAME>
+            trunk_allowed_vlans:
+              - 1
+            trunk_allowed_vlans_variable: '10'
+            trunk_allowed_vlans_ranges:
+              -
+# mandatory; range 1-4094
+                from: 1
+# mandatory; range 1-4094
+                to: 1
+# range 1-4094
+            trunk_native_vlan: 1
+            trunk_native_vlan_variable: '10'
+# range 1-4094
+            voice_vlan: 1
+            voice_vlan_variable: '10'
+# mandatory; maximum 31
+        slot: 1
+        static_mac_addresses:
+          - interface_name: 0/0.1
+            interface_name_variable: 0/0.1
+            mac_address: 00:11:22:33:44:55
+            mac_address_variable: 00:11:22:33:44:55
+            optional: true
+# range 1-4094
+            vlan: 1
+            vlan_variable: '10'
+# mandatory; maximum 31
+        sub_slot: 1
+# mandatory; allowed: 4, 8, 22, 50
+        module_type: 4

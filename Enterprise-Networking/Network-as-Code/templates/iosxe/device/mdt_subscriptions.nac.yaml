@@ -1,0 +1,40 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.mdt_subscriptions
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/mdt_subscription/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        mdt_subscriptions:
+          -
+# also accepts an integer
+            id: rd]B/]K%{5?>lNnhENj8Bu:8y
+            stream: <HOSTNAME>
+            encoding: <HOSTNAME>
+            source_vrf: <HOSTNAME>
+# also accepts a string
+            source_ip: '&5"j${QH'
+# maximum 4294967295; also accepts a string
+            update_policy_periodic: 1
+            update_policy_on_change: true
+            filter_xpath: <HOSTNAME>
+            receivers:
+              -
+# mandatory; also accepts a string
+                ip: J*be0y^a&9%e9(D4${ D=G]+
+# mandatory; maximum 65535; also accepts a string
+                port: 1
+# mandatory
+                protocol: <HOSTNAME>

@@ -1,0 +1,49 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.other_profiles[].ucse
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_other/other_ucse/
+sdwan:
+  feature_profiles:
+    other_profiles:
+      -
+# mandatory
+        name: example-name
+        ucse:
+          name: example-name
+          description: <DESCRIPTION>
+# mandatory; maximum 2
+          bay: 1
+          cimc_access_port_dedicated: true
+# allowed: ge2, te2
+          cimc_access_port_shared_failover_type: ge2
+# allowed: ge1, ge2, ge3, te2, te3, console, failover
+          cimc_access_port_shared_type: ge1
+# maximum 7
+          cimc_assign_priority: 1
+          cimc_assign_priority_variable: example-host
+          cimc_default_gateway: 10.0.0.1
+          cimc_default_gateway_variable: 10.0.0.1
+          cimc_ipv4_address: 10.0.0.1
+          cimc_ipv4_address_variable: 10.0.0.1
+# range 2-4095
+          cimc_vlan_id: 2
+          cimc_vlan_id_variable: '10'
+          interfaces:
+            - interface_name: ucse907929909326/78187514120/42494784410
+              interface_name_variable: 0/0.1
+              ipv4_address: 10.0.0.1
+              ipv4_address_variable: 10.0.0.1
+# range 1-65527
+              vpn_id: 1
+              vpn_id_variable: example-host
+# mandatory; maximum 3
+          slot: 1

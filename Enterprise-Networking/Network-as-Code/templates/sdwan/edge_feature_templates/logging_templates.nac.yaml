@@ -1,0 +1,80 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.logging_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/logging/
+sdwan:
+  edge_feature_templates:
+    logging_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - ASR-1001-HX
+        disk_logging: true
+        disk_logging_variable: <HOSTNAME>
+        ipv4_servers:
+          -
+# also accepts a string
+            hostname_ip: <HOSTNAME>
+            hostname_ip_variable: <HOSTNAME>
+            enable_tls: true
+            enable_tls_variable: <HOSTNAME>
+# allowed: alert, critical, debugging, emergency, errors, information, notice, warn
+            logging_level: alert
+            logging_level_variable: <HOSTNAME>
+            source_interface: 0/0.1
+            source_interface_variable: 0/0.1
+            tls_profile: <HOSTNAME>
+            tls_profile_variable: <HOSTNAME>
+            optional: true
+# maximum 65530
+            vpn_id: 1
+            vpn_id_variable: <HOSTNAME>
+        ipv6_servers:
+          -
+# also accepts a string
+            hostname_ip: <HOSTNAME>
+            hostname_ip_variable: <HOSTNAME>
+            enable_tls: true
+            enable_tls_variable: <HOSTNAME>
+# allowed: alert, critical, debugging, emergency, errors, information, notice, warn
+            logging_level: alert
+            logging_level_variable: <HOSTNAME>
+            source_interface: 0/0.1
+            source_interface_variable: 0/0.1
+            tls_profile: <HOSTNAME>
+            tls_profile_variable: <HOSTNAME>
+            optional: true
+# maximum 65530
+            vpn_id: 1
+            vpn_id_variable: <HOSTNAME>
+# range 1-10
+        log_rotations: 1
+        log_rotations_variable: <HOSTNAME>
+# range 1-20
+        max_size: 1
+        max_size_variable: <HOSTNAME>
+        tls_profiles:
+          -
+# allowed: server, mutual
+            authentication_type: server
+            authentication_type_variable: <HOSTNAME>
+            ciphersuites:
+              - aes-128-cbc-sha
+            ciphersuites_variable: <HOSTNAME>
+            name: <NAME>
+            name_variable: <HOSTNAME>
+# allowed: TLSv1.1, TLSv1.2
+            version: TLSv1.1
+            version_variable: <HOSTNAME>

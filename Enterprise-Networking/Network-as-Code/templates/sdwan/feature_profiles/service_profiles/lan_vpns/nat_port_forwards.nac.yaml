@@ -1,0 +1,40 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.service_profiles[].lan_vpns[].nat_port_forwards
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs: schema section without a dedicated page in the docs nav.
+sdwan:
+  feature_profiles:
+    service_profiles:
+      -
+# mandatory
+        name: example-name
+        lan_vpns:
+          -
+# mandatory
+            name: example-name
+            nat_port_forwards:
+              -
+# range 1-31
+                nat_pool_id: 1
+                nat_pool_id_variable: example-host
+# allowed: TCP, UDP
+                protocol: TCP
+                protocol_variable: example-host
+                source_ip: 10.0.0.1
+                source_ip_variable: 10.0.0.1
+# range 1-65535
+                source_port: 1
+                source_port_variable: example-host
+                translate_ip: 10.0.0.1
+                translate_ip_variable: 10.0.0.1
+# range 1-65535
+                translate_port: 1
+                translate_port_variable: example-host

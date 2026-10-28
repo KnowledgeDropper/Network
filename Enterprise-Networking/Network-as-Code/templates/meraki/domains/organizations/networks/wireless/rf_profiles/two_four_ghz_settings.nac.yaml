@@ -1,0 +1,41 @@
+# Cisco Network as Code template for Meraki.
+# Data model: meraki
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: meraki.domains[].organizations[].networks[].wireless.rf_profiles[].two_four_ghz_settings
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs: schema section without a dedicated page in the docs nav.
+meraki:
+  domains:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      administrator: {}
+# mandatory
+      organizations:
+        - networks:
+            -
+# mandatory
+              name: <NAME>
+              wireless:
+                rf_profiles:
+                  - two_four_ghz_settings:
+# range 2-30
+                      max_power: 2
+# range 2-30
+                      min_power: 2
+# published schema defect: type is string but the allowed values are 1, 2, 5.5, 6, 9, 11, 12, 18,
+# 24, 36, 48, 54; no value satisfies JSON Schema draft 2020-12. The template keeps the documented
+# allowed value.; allowed: 1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54
+                      min_bitrate: 1
+                      valid_auto_channels:
+                        - 1
+# range -95--65
+                      rxsop: -95
+                      ax: true

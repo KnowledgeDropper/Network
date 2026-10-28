@@ -1,0 +1,238 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.mpls_ldp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs: schema section without a dedicated page in the docs nav.
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        mpls_ldp:
+# also accepts a string
+          router_id: ",-+_K>-0D[K<s${':RJBA:A>"
+          graceful_restart: true
+# range 60-1800; also accepts a string
+          graceful_restart_reconnect_timeout: 60
+# range 60-1800; also accepts a string
+          graceful_restart_forwarding_state_holdtime: 60
+# also accepts a string
+          graceful_restart_helper_peer_maintain_on_local_reset_for: jJB[rNfX4p\jF6$6H${KrJvN9H&
+# range 1-5; also accepts a string
+          ltrace_buffer_multiplier: 1
+          default_vrf_implicit_ipv4_disable: true
+# range 5-2147483; also accepts a string
+          session_backoff_time_initial: 5
+# range 5-2147483; also accepts a string
+          session_backoff_time_maximum: 5
+# range 15-65535; also accepts a string
+          session_holdtime: 15
+# also accepts a string
+          session_downstream_on_demand_with: ?Q6Du${"X<J<;t-PIaX8
+          session_protection: true
+# range 30-2147483; also accepts a string
+          session_protection_duration: 30
+          session_protection_duration_infinite: true
+# also accepts a string
+          session_protection_for_acl: xuBm%{[<Nb*
+# range 30-2147483; also accepts a string
+          session_protection_for_acl_duration: 30
+          session_protection_for_acl_duration_infinite: true
+          nsr: true
+          entropy_label: true
+          entropy_label_add_el: true
+# maximum 63; also accepts a string
+          signalling_dscp: 1
+# range 5-300; also accepts a string
+          igp_sync_delay_on_session_up: 5
+# range 60-600; also accepts a string
+          igp_sync_delay_on_proc_restart: 60
+          capabilities_sac: true
+          capabilities_sac_fec128_disable: true
+          capabilities_sac_fec129_disable: true
+          capabilities_sac_ipv4_disable: true
+          capabilities_sac_ipv6_disable: true
+          log:
+            hello_adjacency: true
+            neighbor: true
+            nsr: true
+            graceful_restart: true
+            session_protection: true
+          discovery:
+# range 1-65535; also accepts a string
+            hello_holdtime: 1
+# range 1-65535; also accepts a string
+            hello_interval: 1
+# range 1-65535; also accepts a string
+            targeted_hello_holdtime: 1
+# range 1-65535; also accepts a string
+            targeted_hello_interval: 1
+            instance_tlv_disable: true
+            ds_tlv_disable: true
+            rtr_id_arb_tlv_disable: true
+            quick_start_disable: true
+          neighbor_dual_stack_transport_connection_prefer_ipv4: true
+# maximum 60; also accepts a string
+          neighbor_dual_stack_transport_connection_max_wait: 1
+          neighbor_dual_stack_tlv_compliance: true
+          neighbors:
+            -
+# mandatory; also accepts a string
+              address: F${1>]Hv)DrznS#
+# mandatory; also accepts an integer
+              label_space_id: '%{Nzxj3V,n'
+# also accepts a string
+              password: ?S*${@c9M;Z0\+I7j
+              password_disable: true
+# allowed: 7; also accepts a string
+              password_type: 7
+          interfaces:
+            -
+# mandatory; also accepts a string
+              name: u46m:%{\0mdL#
+# range 1-65535; also accepts a string
+              discovery_hello_holdtime: 1
+# range 1-65535; also accepts a string
+              discovery_hello_interval: 1
+# allowed: ipv4, ipv6; also accepts a string
+              discovery_hello_dual_stack_tlv: ipv4
+              discovery_quick_start_disable: true
+# range 5-300; also accepts a string
+              igp_sync_delay_on_session_up: 5
+              igp_sync_delay_on_session_up_disable: true
+              address_family:
+                -
+# mandatory; allowed: ipv4, ipv6; also accepts a string
+                  name: ipv4
+                  discovery_transport_address_interface: true
+# also accepts a string
+                  discovery_transport_address_ip: ix=I8ttbA[${'"W
+                  igp_auto_config_disable: true
+                  mldp_disable: true
+          address_family:
+            -
+# mandatory; allowed: ipv4, ipv6; also accepts a string
+              name: ipv4
+# also accepts a string
+              discovery_transport_address_ipv4: S${fUu?qFv`(/Zppz'RUIa
+# also accepts a string
+              discovery_transport_address_ipv6: 61)${UK_D>Kw
+              discovery_targeted_hello_accept: true
+# also accepts a string
+              discovery_targeted_hello_accept_from: Y5>S/UXoT in%{-@Rkz2iS9b.8jC"
+# also accepts a string
+              redistribute_bgp_as: JupuksoH%{;B')EdC
+# also accepts a string
+              redistribute_bgp_advertise_to: "*\\'zWnAal?d${;;c,.,OXIov^lBV4"
+              label:
+                local:
+# also accepts a string
+                  allocate_for_access_list: 2W@rZ.QUo'Xqp+>3%{:/Q2hIdo_mGu$9v#`
+                  allocate_for_host_routes: true
+                  default_route: true
+# also accepts a string
+                  implicit_null_override_for: Kr ${iBQ=qrP.]6oCKg&cv
+                  advertise:
+                    disable: true
+                    explicit_null: true
+# also accepts a string
+                    explicit_null_for_acl: cMl9-.Ja]X*Jfc 3%{X Nl-\o= "I0&Z.
+# also accepts a string
+                    explicit_null_for_acl_to_acl: ?xfhoF^H${??B+CU't/L2leh!@
+# also accepts a string
+                    explicit_null_to_acl: 8jr<$I$9P^JQ<4kF${q,
+                    neighbors:
+                      -
+# mandatory; also accepts a string
+                        address: J*Wt$gp#_+BecRg>8${#i,5zz&pQrx3yIs
+# mandatory; also accepts an integer
+                        label_space_id: HP5bu^WiT9K06HeN${2#Rti6m2*T(
+# mandatory; also accepts a string
+                        for: 3d*3;%w(p>${Bkd94.My.YxN
+                    interfaces:
+                      -
+# mandatory; also accepts a string
+                        name: '*tw_oLzz[rz${5@D=;#-X'
+                    access_lists:
+                      -
+# mandatory; also accepts a string
+                        for: '!C4`qwjQ4(T.-b${'
+# also accepts a string
+                        to: \${
+                remote:
+                  accept:
+                    neighbors:
+                      -
+# mandatory; also accepts a string
+                        address: Mm7]1UcEFAAI${=E^J p:cROQ6
+# mandatory; also accepts an integer
+                        label_space_id: +8.\?*aunR${uR(L]Sw9j5-^
+# also accepts a string
+                        for: 1)[z${YTz&gWIHN12=yRI@M!_
+              neighbor:
+                targeted:
+                  -
+# mandatory; also accepts a string
+                    address: FJpk/+OHc${0<w'b
+                sr_policies:
+                  -
+# mandatory; also accepts a string
+                    name: ' hGv>_3fM/${n\W2Ja'
+                    targeted: true
+              traffic_eng:
+                auto_tunnel_mesh_groups:
+                  - all
+          mldp:
+            logging_internal: true
+            logging_notifications: true
+            address_family:
+              -
+# mandatory; allowed: ipv4; also accepts a string
+                name: ipv4
+                carrier_supporting_carrier: true
+                forwarding_recursive: true
+# also accepts a string
+                forwarding_recursive_route_policy: ^%{-WV\?EvP(;
+# range 1-600; also accepts a string
+                make_before_break_delay: 1
+# range 1-60; also accepts a string
+                make_before_break_delete_delay: 1
+# also accepts a string
+                make_before_break_route_policy: aZ7$\`$%{6mpW[mTq%)e_XVi
+                mofrr_enable: true
+# also accepts a string
+                mofrr_route_policy: yFid${]#U
+# also accepts a string
+                neighbor_route_policy_in: mcd6HAhkcCh\21ygm8%{^#N;s?D@fM<NS
+# also accepts a string
+                neighbor_route_policy_out: CCrs>${p?=<iaY'
+                recursive_fec_enable: true
+# also accepts a string
+                recursive_fec_route_policy: xU${r##;^GFx(n
+                rib_unicast_always: true
+                neighbors:
+                  -
+# mandatory; also accepts a string
+                    address: T%nvqH^ Y-n"CHaydo${K
+# also accepts a string
+                    route_policy_in: UV0@vJXZ4EA%{V@da`@)/KqaIO
+# also accepts a string
+                    route_policy_out: '%{TIgkb_"N+:wj'
+                statics:
+                  -
+# mandatory; also accepts a string
+                    root_address: K7T)%%{0g8$o9;\pfta
+# range 1-1000; also accepts a string
+                    mp2mp: 1
+# range 1-1000; also accepts a string
+                    p2mp: 1

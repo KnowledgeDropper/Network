@@ -1,0 +1,48 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.interfaces.nves
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/interface/nve/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        interfaces:
+          nves:
+            -
+# mandatory; also accepts an integer
+              id: nA${q
+              description: <DESCRIPTION>
+              shutdown: true
+              host_reachability_protocol_bgp: true
+# allowed: Loopback; also accepts a string
+              source_interface_type: Loopback
+# also accepts an integer
+              source_interface_id: 0/0.1
+              vni_vrfs:
+                -
+# mandatory; range 4096-16777215; also accepts a string
+                  vni_from: 4096
+# range 4096-16777215; also accepts a string
+                  vni_to: 4096
+                  vrf: <HOSTNAME>
+              vnis:
+                -
+# mandatory; range 4096-16777215; also accepts a string
+                  vni_from: 4096
+# range 4096-16777215; also accepts a string
+                  vni_to: 4096
+# also accepts a string
+                  ipv4_multicast_group: "\"#V#*Y!,:.e5.Fkom${8-kw')$4t+ cz\"QU4"
+                  ingress_replication: true
+                  local_routing: true

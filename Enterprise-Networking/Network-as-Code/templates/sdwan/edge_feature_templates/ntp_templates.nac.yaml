@@ -1,0 +1,60 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.ntp_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/ntp/
+sdwan:
+  edge_feature_templates:
+    ntp_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - ASR-1001-HX
+        authentication_keys:
+          -
+# range 1-65535
+            id: 1
+            id_variable: <HOSTNAME>
+            value: <HOSTNAME>
+            value_variable: <HOSTNAME>
+            optional: true
+        master: true
+        master_variable: <HOSTNAME>
+# range 1-15
+        master_stratum: 1
+        master_stratum_variable: <HOSTNAME>
+        master_source_interface: 0/0.1
+        master_source_interface_variable: 0/0.1
+        servers:
+          -
+# range 1-65535
+            authentication_key_id: 1
+            authentication_key_id_variable: <HOSTNAME>
+# also accepts a string
+            hostname_ip: <HOSTNAME>
+            hostname_ip_variable: <HOSTNAME>
+            optional: true
+            prefer: true
+            prefer_variable: <HOSTNAME>
+            source_interface: 0/0.1
+            source_interface_variable: 0/0.1
+# range 1-4
+            version: 1
+            version_variable: <HOSTNAME>
+# maximum 65530
+            vpn_id: 1
+            vpn_id_variable: <HOSTNAME>
+        trusted_keys:
+          - 1
+        trusted_keys_variable: <HOSTNAME>

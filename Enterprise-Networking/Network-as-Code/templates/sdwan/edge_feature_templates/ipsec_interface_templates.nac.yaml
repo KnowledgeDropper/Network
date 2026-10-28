@@ -1,0 +1,93 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.ipsec_interface_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/ipsec_interface/
+sdwan:
+  edge_feature_templates:
+    ipsec_interface_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - ASR-1001-HX
+# allowed: none, sig
+        application: none
+        application_variable: <HOSTNAME>
+        clear_dont_fragment: true
+        clear_dont_fragment_variable: <HOSTNAME>
+# range 10-3600
+        dead_peer_detection_interval: 10
+        dead_peer_detection_interval_variable: 10.0.0.1
+# range 2-60
+        dead_peer_detection_retries: 2
+        dead_peer_detection_retries_variable: 10.0.0.1
+        ike:
+# allowed: aes256-cbc-sha1, aes256-cbc-sha2, aes128-cbc-sha1, aes128-cbc-sha2
+          ciphersuite: aes256-cbc-sha1
+          ciphersuite_variable: <HOSTNAME>
+# allowed: 2, 14, 15, 16, 19, 20, 21, 24
+          group: 2
+          group_variable: <HOSTNAME>
+# allowed: main, aggressive
+          mode: main
+          mode_variable: <HOSTNAME>
+          pre_shared_key: <HOSTNAME>
+          pre_shared_key_variable: <HOSTNAME>
+          pre_shared_key_local_id: 0/0.1
+          pre_shared_key_local_id_variable: <HOSTNAME>
+          pre_shared_key_remote_id: 0/0.1
+          pre_shared_key_remote_id_variable: <HOSTNAME>
+# range 60-86400
+          rekey_interval: 60
+          rekey_interval_variable: <HOSTNAME>
+# range 1-2
+          version: 1
+        interface_description: <DESCRIPTION>
+        interface_description_variable: <DESCRIPTION>
+        interface_name: gre
+        interface_name_variable: 0/0.1
+        ip_address: 10.0.0.1
+        ip_address_variable: 10.0.0.1
+        ipsec:
+# allowed: aes256-cbc-sha1, aes256-cbc-sha384, aes256-cbc-sha256, aes256-cbc-sha512, aes256-gcm,
+# null-sha1, null-sha384, null-sha256, null-sha512
+          ciphersuite: aes256-cbc-sha1
+          ciphersuite_variable: <HOSTNAME>
+# allowed: group-1, group-2, group-5, group-14, group-15, group-16, group-19, group-20, group-21,
+# group-24, none
+          perfect_forward_secrecy: group-1
+          perfect_forward_secrecy_variable: <HOSTNAME>
+# range 120-2592000
+          rekey_interval: 120
+          rekey_interval_variable: <HOSTNAME>
+# range 64-4096
+          replay_window: 64
+          replay_window_variable: <HOSTNAME>
+# range 576-9216
+        mtu: 576
+        mtu_variable: <HOSTNAME>
+        shutdown: true
+        shutdown_variable: <HOSTNAME>
+# range 500-1460
+        tcp_mss: 500
+        tcp_mss_variable: <HOSTNAME>
+        tracker: <HOSTNAME>
+        tracker_variable: <HOSTNAME>
+# also accepts a string
+        tunnel_destination: <HOSTNAME>
+        tunnel_destination_variable: <HOSTNAME>
+        tunnel_source_interface: 0/0.1
+        tunnel_source_interface_variable: 0/0.1
+        tunnel_source_ip: 10.0.0.1
+        tunnel_source_ip_variable: 10.0.0.1

@@ -1,0 +1,47 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.netconf
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/netconf/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        netconf:
+          tty_agent:
+            enable: true
+# range 1000-30000; also accepts a string
+            throttle_process_rate: 1000
+# range 100-1024; also accepts a string
+            throttle_memory: 100
+# maximum 12000; also accepts a string
+            throttle_offload_memory: 1
+# range 1-1440; also accepts a string
+            session_timeout: 1
+          yang_agent:
+# mandatory
+            ssh: true
+            with_defaults_support: true
+# range 4096-4294967295; also accepts a string
+            rate_limit: 4096
+# range 1-50; also accepts a string
+            session_limit: 1
+# range 1-1440; also accepts a string
+            session_idle_timeout: 1
+# range 1-1440; also accepts a string
+            session_absolute_timeout: 1
+# allowed: enabled, v1-only; also accepts a string
+            netconf_v1: enabled
+            netconf_v1_streaming_disabled: true

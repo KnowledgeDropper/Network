@@ -1,0 +1,46 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.vty_pools
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/vty_pool/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        vty_pools:
+          default:
+# also accepts an integer
+            from_number: 6,j3.u_=K^KX${ ZpM1rtVG77Jh*_>\V
+# also accepts a string
+            line_template: yht,s_AoIWIyB@OMUB${<(Ummx5l7
+# range 4-99; also accepts a string
+            to_number: 4
+          eem:
+# range 100-100; also accepts a string
+            from_number: 100
+# also accepts a string
+            line_template: xM%^#G^=9g#A'BnWe${N<BC'jjC!ww?m
+# range 105-105; also accepts a string
+            to_number: 105
+          user_defined:
+            -
+# mandatory; also accepts a string
+              name: 2f9eloU%{Wd0QYJ7%*GC9K%K*Zq
+# range 5-99; also accepts an integer; also accepts a string
+              from_number: 5
+# also accepts a string
+              line_template: "4a;AMT6?b${':$#g\"*&X "
+# range 5-99; also accepts an integer; also accepts a string
+              to_number: 5

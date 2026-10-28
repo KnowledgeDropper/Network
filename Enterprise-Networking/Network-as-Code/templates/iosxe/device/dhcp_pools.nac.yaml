@@ -1,0 +1,83 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.dhcp_pools
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/dhcp_pool/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        dhcp_pools:
+          -
+# mandatory
+            name: <NAME>
+# also accepts a string
+            vrf: l*i?rW48S${'RMqDgn-`i8"`[`C
+# also accepts a string
+            domain_name: '_U>]P${lt:'
+# also accepts a string
+            bootfile: I5:%{>_j>pnd[
+# also accepts a string
+            client_name: ql>[h;\y<%{PB3IKxe.]
+# also accepts a string
+            network_number: 3y`l.imFM%{G#aEu/
+# also accepts a string
+            network_mask: fB2!lfTYe%{Q&0\/%JC]uGyVZ'
+            secondary_networks:
+              -
+# mandatory; also accepts a string
+                number: '@AF$Z(kK8!tt>*"${SH!tGs'
+# mandatory; also accepts a string
+                mask: ICRf${ Df.);$\
+# also accepts a string
+            host_number: UPXRlsCNHDzRAx&Aoo${B8mra5m\0
+# also accepts a string
+            host_mask: Za(jd$oPJn*%#[%{tDQ@iROyX.S`6Nr<2
+# also accepts a string
+            default_routers:
+              - <HOSTNAME>
+# also accepts a string
+            dns_servers:
+              - <HOSTNAME>
+# also accepts a string
+            next_servers:
+              - <HOSTNAME>
+# maximum 365; also accepts a string
+            lease_days: 1
+# maximum 23; also accepts a string
+            lease_hours: 1
+# maximum 59; also accepts a string
+            lease_minutes: 1
+            lease_infinite: true
+# range 1-100; also accepts a string
+            utilization_mark_high: 1
+            utilization_mark_high_log: true
+# range 1-100; also accepts a string
+            utilization_mark_low: 1
+            utilization_mark_low_log: true
+# range 1-32; also accepts a string
+            subnet_prefix_length: 1
+            options:
+              -
+# mandatory; maximum 254; also accepts a string
+                option_code: 1
+# also accepts a string
+                ascii: M)y&>[7NE>MX[:)/U]h%{>r$0d3x&WQ/KbE"[`
+# also accepts a string
+                hex: J9X@At%{$+;+&zhIEte<tw
+# also accepts a string
+                ip:
+                  - 10.0.0.1
+# also accepts a string
+                ip_legacy:
+                  - 10.0.0.1

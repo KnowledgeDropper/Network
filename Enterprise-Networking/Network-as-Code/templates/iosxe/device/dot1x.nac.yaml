@@ -1,0 +1,44 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.dot1x
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/dot1x/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        dot1x:
+          auth_fail_eapol: true
+          credentials:
+            -
+# mandatory
+              profile_name: <NAME>
+              description: <DESCRIPTION>
+              username: <NAME>
+# allowed: 0, 6, 7; also accepts a string
+              password_type: '0'
+              password: <SECRET>
+              pki_trustpoint: <HOSTNAME>
+              anonymous_id: 0/0.1
+          critical_eapol: true
+          critical_eapol_block: true
+          critical_eapol_config_block: true
+# range 1-10000; also accepts a string
+          critical_recovery_delay: 1
+          guest_vlan_supplicant: true
+# range 1-65535; also accepts a string
+          test_timeout: 1
+          logging_verbose: true
+          supplicant_controlled_transient: true
+          supplicant_force_multicast: true
+          system_auth_control: true

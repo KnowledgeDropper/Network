@@ -1,0 +1,182 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.application_priority_profiles[].traffic_policies
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/policies_application_priority/application_priority_traffic_policy/
+sdwan:
+  feature_profiles:
+    application_priority_profiles:
+      -
+# mandatory
+        name: example-name
+        traffic_policies:
+          -
+# mandatory
+            name: example-name
+            description: <DESCRIPTION>
+# mandatory; allowed: accept, drop
+            default_action: accept
+# mandatory; allowed: all, service, tunnel
+            direction: all
+# mandatory
+            sequences:
+              -
+# mandatory; range 1-65534
+                sequence_id: 1
+# mandatory
+                sequence_name: example-name
+# mandatory; allowed: accept, drop
+                base_action: accept
+# allowed: ipv4, ipv6, all
+                protocol: ipv4
+                match_entries:
+                  application_list: example-host
+                  destination_data_ipv4_prefix_list: 10.0.0.1
+                  destination_data_ipv6_prefix_list: 2001:db8::1
+                  destination_ipv4_prefix: 10.0.0.1
+                  destination_ipv6_prefix: 2001:db8::1
+                  destination_ports:
+                    - 1
+# allowed: primary-region, secondary-region, other-region
+                  destination_region: primary-region
+# allowed: request, response
+                  dns: request
+                  dns_application_list: example-host
+                  dscps:
+                    - 1
+                  icmp_messages:
+                    - administratively-prohibited
+                  icmp6_messages:
+                    - beyond-scope
+# range 1-65535; also accepts a string
+                  packet_length: 1
+                  protocols:
+                    - 1
+                  saas_application_list: example-host
+                  service_areas:
+                    - common
+                  source_data_ipv4_prefix_list: 10.0.0.1
+                  source_data_ipv6_prefix_list: 2001:db8::1
+                  source_ipv4_prefix: 10.0.0.1
+                  source_ipv6_prefix: 2001:db8::1
+                  source_ports:
+                    - 1
+# allowed: syn
+                  tcp: syn
+# allowed: optimize-allow, optimize, all
+                  traffic_category: optimize-allow
+# allowed: gold-voip-telephony, gold-broadcast-video, gold-real-time-interactive,
+# gold-multimedia-conferencing, gold-multimedia-streaming, gold-network-control, gold-signaling,
+# gold-ops-admin-mgmt, gold-transactional-data, gold-bulk-data, silver, bronze
+                  traffic_class: gold-voip-telephony
+# allowed: access, core, service
+                  traffic_to: access
+                actions:
+                  appqoe_optimization:
+                    dre_optimization: true
+                    service_node_group: SNG-APPQOE31
+                    tcp_optimization: true
+                  backup_sla_preferred_colors:
+                    - 3g
+                  cflowd: true
+                  cloud_probe: true
+                  cloud_saas: true
+                  counter_name: <NAME>
+# maximum 63
+                  dscp: 1
+                  forwarding_class: example-host
+                  local_tloc:
+                    colors:
+                      - 3g
+# allowed: gre, ipsec
+                    encapsulation: gre
+                    restrict: true
+                  log: true
+# range 1-5
+                  loss_correct_fec_threshold: 1
+# allowed: fec-always, fec-adaptive, packet-duplication
+                  loss_correct_type: fec-always
+# range 1-31
+                  nat_pool: 1
+                  nat_vpn:
+                    bypass: true
+                    dia_interfaces:
+                      - 0/0.1
+                    dia_pools:
+                      - 1
+                    fallback: true
+                    nat_vpn_0: true
+                  next_hop_ipv4: <HOSTNAME>
+                  next_hop_ipv6: 2001:db8::1
+                  next_hop_loose: true
+                  policer_list: example-host
+                  preferred_color_group: example-host
+                  preferred_remote_color_restrict: true
+                  preferred_remote_colors:
+                    - 3g
+# allowed: ip-address, dns-host
+                  redirect_dns_type: ip-address
+# allowed: umbrella, host; also accepts a string
+                  redirect_dns_target: umbrella
+                  sig_sse:
+                    fallback_to_routing: true
+                    internet_gateway: true
+                    service_edge: true
+# allowed: cisco-secure-access, zscaler
+                    service_edge_instance: cisco-secure-access
+                  service:
+                    local: true
+                    restrict: true
+                    tloc_color:
+                      - 3g
+# allowed: gre, ipsec
+                    tloc_encapsulation: gre
+                    tloc_ip: 10.0.0.1
+                    tloc_list: example-host
+# allowed: FW, IDS, IDP, netsvc1, netsvc2, netsvc3, netsvc4, appqoe
+                    type: FW
+# maximum 65530
+                    vpn: 1
+                  service_chain:
+                    fallback_to_routing: true
+                    local: true
+                    tloc_color:
+                      - 3g
+# allowed: gre, ipsec
+                    tloc_encapsulation: gre
+                    tloc_ip: 10.0.0.1
+                    tloc_list: example-host
+# allowed: SC1, SC2, SC4, SC5, SC6, SC7, SC8, SC9, SC10, SC11, SC12, SC13, SC14, SC15, SC16
+                    type: SC1
+# range 1-511; also accepts an integer
+                    vpn: 1
+                  sla_class:
+                    fallback_to_best_path: true
+                    preferred_colors:
+                      - 3g
+                    preferred_color_group: example-host
+                    preferred_remote_colors:
+                      - 3g
+                    remote_color_restrict: true
+                    sla_class_list: example-host
+                    strict: true
+                  tloc:
+                    color:
+                      - 3g
+# allowed: gre, ipsec
+                    encapsulation: gre
+                    list: example-host
+                    ip: 10.0.0.1
+# maximum 65530
+                  vpn: 1
+# mandatory
+            vpns:
+              - <HOSTNAME>

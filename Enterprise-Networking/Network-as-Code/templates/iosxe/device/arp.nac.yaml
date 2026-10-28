@@ -1,0 +1,52 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.arp
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/arp/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        arp:
+# range 1-2147483647; also accepts a string
+          incomplete_entries: 1
+          proxy_disable: true
+# range 255-512000; also accepts a string
+          entry_learn: 255
+          inspection_filters:
+            -
+# mandatory
+              name: <NAME>
+              vlans:
+                -
+# also accepts a string
+                  ids:
+                    - 1
+                  ranges:
+                    -
+# mandatory; range 1-4094; also accepts a string
+                      from: 1
+# mandatory; range 1-4094; also accepts a string
+                      to: 1
+                  static: true
+          inspection_validate_src_mac: true
+          inspection_validate_dst_mac: true
+          inspection_validate_ip: true
+          inspection_validate_allow_zeros: true
+# maximum 1024; also accepts a string
+          inspection_log_buffer_entries: 1
+# maximum 1024; also accepts a string
+          inspection_log_buffer_logs_entries: 1
+# maximum 86400; also accepts a string
+          inspection_log_buffer_logs_interval: 1
+          inspection_vlan: '10'

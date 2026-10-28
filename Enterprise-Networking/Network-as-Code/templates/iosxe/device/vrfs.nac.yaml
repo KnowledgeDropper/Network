@@ -1,0 +1,108 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.vrfs
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxe/device/vrf/
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        vrfs:
+          -
+# mandatory
+            name: <NAME>
+            description: <DESCRIPTION>
+            route_distinguisher: <HOSTNAME>
+            rd_auto: true
+            address_family_ipv4:
+              enable: true
+              import_route_targets:
+                - <HOSTNAME>
+              import_route_targets_stitching:
+                - <HOSTNAME>
+              export_route_targets:
+                - <HOSTNAME>
+              export_route_targets_stitching:
+                - <HOSTNAME>
+              route_replicate:
+                -
+# mandatory; also accepts a string
+                  name: ; %{PZ-9!0%
+# also accepts a string
+                  route_map: ' S3RF0${%[7z'
+              evpn_mcast:
+# also accepts a string
+                mdt_default_address: /${bLA/?
+# also accepts a string
+                anycast: SX,bP((-'TW9A&P?${[3
+# also accepts a string
+                data_address: "*T:${Xo8m.?NefGn'?u"
+# also accepts a string
+                data_mask_bits: cw,K\jBJ-;T_9${N(VY
+# also accepts a string
+              import_map: ">OiCFuS'@TW_[\\arqSq%{)Q%F&-a^G b"
+# also accepts a string
+              export_map: '#z${;wlggJ<<b85#'
+              mdt:
+# also accepts a string
+                default_address: '!7p!Da.w[%{ @@-EFvTiV'
+                auto_discovery_vxlan: true
+                auto_discovery_vxlan_inter_as: true
+                auto_discovery_interworking_vxlan_pim: true
+                auto_discovery_interworking_vxlan_pim_inter_as: true
+                overlay_use_bgp: true
+                overlay_use_bgp_spt_only: true
+                data_multicast:
+                  -
+# mandatory; also accepts a string
+                    address: QR:%G`9'YK/hR%{xd]3i#NWrPqLv<uwX5?
+# mandatory; also accepts a string
+                    wildcard: LFQ*OYzpL\%{912eAn
+# also accepts a string
+                    access_list: DOt#X u7wZqv4EB p${H:I"zXFRS_A.+/
+# range 1-4294967; also accepts a string
+                data_threshold: 1
+            address_family_ipv6:
+              enable: true
+              import_route_targets:
+                - <HOSTNAME>
+              import_route_targets_stitching:
+                - <HOSTNAME>
+              export_route_targets:
+                - <HOSTNAME>
+              export_route_targets_stitching:
+                - <HOSTNAME>
+              evpn_mcast:
+# also accepts a string
+                mdt_default_address: 4U/R#rI^s3EE$${7yVD:e
+# also accepts a string
+                anycast: 3j7gn7${K/<Dwtg\@_
+# also accepts a string
+                data_address: '[(${/'
+# also accepts a string
+                data_mask_bits: v3fM`K0C>5d%{qQbnsA[qrpi*]9aIQ
+# also accepts a string
+              import_map: '%{gqJW:V\9Wkm,?N2,'
+# also accepts a string
+              export_map: '>2yW%{6@vxnV'
+            vpn_id: 65000:1
+            vnid:
+              -
+# mandatory; range 1-2147483647; also accepts a string
+                vnid_value: 1
+                evpn_instance_vni:
+                  -
+# mandatory; range 4096-16777215; also accepts a string
+                    vni_num: 4096
+# range 1-4094; also accepts a string
+                    core_vlan: 1

@@ -1,0 +1,48 @@
+# Cisco Network as Code template for IOS-XE.
+# Data model: iosxe
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxe.devices[].configuration.interfaces.ranges
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs: schema section without a dedicated page in the docs nav.
+iosxe:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+      configuration:
+        interfaces:
+          ranges:
+            ethernets:
+              -
+# mandatory; allowed: GigabitEthernet, TwoGigabitEthernet, FastEthernet, Ethernet,
+# FiveGigabitEthernet, TenGigabitEthernet, TwentyFiveGigE, FortyGigabitEthernet,
+# FiftyGigabitEthernet, HundredGigE, TwoHundredGigE, FourHundredGigE; also accepts a string
+                type: GigabitEthernet
+# mandatory
+                from: <HOSTNAME>
+# mandatory
+                to: <HOSTNAME>
+                managed: true
+# also accepts a string
+                interface_groups:
+                  - 0/0.1
+# allowed: merge, replace; also accepts a string
+                interface_group_policy: merge
+            port_channels:
+              -
+# mandatory; also accepts an integer
+                from: 9k4c87)O<YRg'zp@W${@Tqw(=Dmf/
+# mandatory; also accepts an integer
+                to: '[[sO)?N_7+?Z<2/l${zhO7e4Np<Pt]NDtV(i'
+                managed: true
+# also accepts a string
+                interface_groups:
+                  - 0/0.1
+# allowed: merge, replace; also accepts a string
+                interface_group_policy: merge

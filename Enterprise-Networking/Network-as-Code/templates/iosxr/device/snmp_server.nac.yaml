@@ -1,0 +1,368 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.snmp_server
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/snmp_server/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        snmp_server:
+          communities:
+            -
+# mandatory; also accepts a string
+              name: FG5DN^n8Kw5za%{\oy`,rc2<w*,#j#\8"
+# also accepts a string
+              ipv4_acl: g]*6c8_%{41K$P7zDo-4BRZhO&
+# also accepts a string
+              ipv6_acl: b%9t]`9Sj${=W=yk62w9x
+              ro: true
+              rw: true
+              sdrowner: true
+              systemowner: true
+# also accepts a string
+              view: "E% 'lGz%{-l%.@whd*]/p: "
+# also accepts a string
+          contact: 'N9b&@7CR>tQ:IDUBh%{$lLzz?vFP49Y '
+          groups:
+            -
+# mandatory; also accepts a string
+              name: jLD'f%{de4Z[i16LyG5vjZ
+# mandatory; allowed: v1, v2c, v3; also accepts a string
+              version: v1
+# allowed: priv, auth, noauth; also accepts a string
+              v3_security_level: priv
+# also accepts a string
+              read_view: "'b>`Lk5X8EU\"`JD=${.K`oXpV@2Mc"
+# also accepts a string
+              write_view: '>H-qjvevt"%{*IgJ'
+# also accepts a string
+              notify_view: :&k&v7+ofB${i3#.uf;mg&Ac0BPSOk
+# also accepts a string
+              context: 6"^bl*5a=o4AU!DIR#4${d.AS=Wj
+# also accepts a string
+              ipv4_acl: rG6ULM)OZ:C1 lx]h8%{$x^"U5q=
+# also accepts a string
+              ipv6_acl: 80"XbFEsP%{w&WXE3h
+          hosts:
+            -
+# mandatory; also accepts a string
+              address: D@.xbz=@xSP.yZjb(yI%{Dn.Txm/e:o@0I##
+              informs:
+                -
+# mandatory; also accepts a string
+                  community: o';JiwG[D;%{)OT?/)b<(R3+DYO
+# mandatory; allowed: unencrypted, default, aes; also accepts a string
+                  encryption_type: unencrypted
+# mandatory; allowed: v1, v2c, v3; also accepts a string
+                  version: v1
+# range 1-65535; also accepts a string
+                  udp_port: 1
+# allowed: auth, noauth, priv; also accepts a string
+                  v3_security_level: auth
+              traps:
+                -
+# mandatory; also accepts a string
+                  community: dfJA-.S>v,vTrG)${Y?Df
+# mandatory; allowed: unencrypted, default, aes; also accepts a string
+                  encryption_type: unencrypted
+# mandatory; allowed: v1, v2c, v3; also accepts a string
+                  version: v1
+# range 1-65535; also accepts a string
+                  udp_port: 1
+# allowed: auth, noauth, priv; also accepts a string
+                  v3_security_level: auth
+# also accepts a string
+          location: z2`bsdk!$EMh%{ScZ2OFLpltrCY
+# also accepts a string
+          chassis_id: 7Nk&dJByqNn${X4>/HWde].V/OFE3d^
+# range 484-65500; also accepts a string
+          packetsize: 484
+# range 1-1000; also accepts a string
+          trap_timeout: 1
+# range 1-5000; also accepts a string
+          queue_length: 1
+# range 50-1000; also accepts a string
+          throttle_time: 50
+# maximum 300; also accepts a string
+          overload_control: 1
+# maximum 1000; also accepts a string
+          overload_throttle_rate: 1
+# also accepts a string
+          trap_source: '*:%{z!+U.Wh"68'
+# also accepts a string
+          trap_source_ipv4: '&o8D.b${JkT x(Bbha=s'
+# also accepts a string
+          trap_source_ipv6: /##cr&O"t;4vnHnz^Db%{Q
+# range 1024-65535; also accepts a string
+          trap_source_port: 1024
+# range 10-500; also accepts a string
+          trap_throttle_time: 10
+          trap_authentication_vrf_disable: true
+# range 30-240; also accepts a string
+          trap_delay_timer: 30
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+          ipv4_dscp: af11
+# allowed: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3,
+# cs4, cs5, cs6, cs7, default, ef; also accepts an integer; also accepts a string
+          ipv6_dscp: af11
+          drop_unknown_user: true
+# also accepts a string
+          drop_report_acl_ipv4: '%{5ygXsED,gEcQL#y'
+# also accepts a string
+          drop_report_acl_ipv6: Q g%&+lzsgS6@W:*${P5pUR0Y&cg`&r>*]>UY
+          engine_ids:
+# also accepts a string
+            local: R9k.*#%+ E*BlSvJ%{z<.m5.Q!#Qx5
+            remote:
+              -
+# mandatory; also accepts a string
+                address: v%{Wc.^BR6(0:naG
+# mandatory; also accepts a string
+                id: wXEk${tO?1AvN:uSxNiY0
+# mandatory; range 1-65535; also accepts a string
+                udp_port: 1
+          interfaces:
+            -
+# mandatory; also accepts a string
+              name: xNHusFIYYwgX${v[82J1bDk2
+              notification_linkupdown_enable: true
+              notification_linkupdown_disable: true
+              index_persistence: true
+          mibs:
+            cbqosmib_cache: true
+# range 5-60; also accepts a string
+            cbqosmib_cache_refresh_time: 5
+# range 1-5000; also accepts a string
+            cbqosmib_cache_service_policy_count: 1
+            cbqosmib_persist: true
+            cbqosmib_member_stats: true
+            ifindex_persist: true
+            trap_link_ietf: true
+            ifmib_ifalias_long: true
+            ifmib_stats_cache: true
+            ifmib_ipsubscriber: true
+# maximum 60; also accepts a string
+            ifmib_internal_cache_max_duration: 1
+            rfmib_entphyindex: true
+            sensormib_cache: true
+# maximum 3600; also accepts a string
+            mplstemib_cache_timers_garbage_collect: 1
+# maximum 600; also accepts a string
+            mplstemib_cache_timers_refresh: 1
+# maximum 600; also accepts a string
+            mplsp2mpmib_cache_timer: 1
+# maximum 600; also accepts a string
+            frrmib_cache_timer: 1
+# maximum 600; also accepts a string
+            cmplsteextmib_cache_timer: 1
+# maximum 600; also accepts a string
+            cmplsteextstdmib_cache_timer: 1
+            mroutemib_send_all_vrf: true
+            notification_log_mib_default: true
+# range 1-4294967295; also accepts a string
+            notification_log_mib_global_age_out: 1
+# range 1-15000; also accepts a string
+            notification_log_mib_global_size: 1
+            notification_log_mib_disable: true
+# range 1-15000; also accepts a string
+            notification_log_mib_size: 1
+            entityindex_persist: true
+          oid_poll_stats: true
+# range 1-20; also accepts a string
+          timeouts_subagent: 1
+# maximum 20; also accepts a string
+          timeouts_duplicate: 1
+# maximum 20; also accepts a string
+          timeouts_in_qdrop: 1
+# maximum 100000; also accepts a string
+          timeouts_threshold: 1
+# range 1-10; also accepts a string
+          timeouts_pdu_stats: 1
+# maximum 20000; also accepts a string
+          logging_threshold_oid_processing: 1
+# maximum 20000; also accepts a string
+          logging_threshold_pdu_processing: 1
+# maximum 100; also accepts a string
+          inform_retries: 1
+# range 1-42949671; also accepts a string
+          inform_timeout: 1
+# range 1-4294967295; also accepts a string
+          inform_pending: 1
+          traps:
+            snmp_authentication: true
+            snmp_coldstart: true
+            snmp_warmstart: true
+            snmp_linkup: true
+            snmp_linkdown: true
+            snmp_all: true
+            l2vpn_all: true
+            l2vpn_vc_up: true
+            l2vpn_vc_down: true
+            l2vpn_cisco: true
+            vpls_all: true
+            vpls_status: true
+            vpls_full_raise: true
+            vpls_full_clear: true
+            bfd: true
+            config: true
+            cfm: true
+            ethernet_oam_events: true
+            rf: true
+            sensor: true
+            mpls_l3vpn_all: true
+            mpls_l3vpn_vrf_up: true
+            mpls_l3vpn_vrf_down: true
+            mpls_l3vpn_mid_threshold_exceeded: true
+            mpls_l3vpn_max_threshold_exceeded: true
+            mpls_l3vpn_max_threshold_cleared: true
+# maximum 2147483647; also accepts a string
+            mpls_l3vpn_max_threshold_reissue_notif_time: 1
+            mpls_traffic_eng_cisco: true
+            mpls_traffic_eng_cisco_ext_bringup_fail: true
+            mpls_traffic_eng_cisco_ext_insuff_bw: true
+            mpls_traffic_eng_cisco_ext_preempt: true
+            mpls_traffic_eng_cisco_ext_reroute_pending: true
+            mpls_traffic_eng_cisco_ext_reroute_pending_clear: true
+            mpls_traffic_eng_down: true
+            mpls_traffic_eng_p2mp_down: true
+            mpls_traffic_eng_p2mp_up: true
+            mpls_traffic_eng_reoptimize: true
+            mpls_traffic_eng_reroute: true
+            mpls_traffic_eng_up: true
+            ntp: true
+# allowed: enable, updown; also accepts a string
+            bgp_cbgp_two: enable
+# allowed: bgp4_mib, updown; also accepts a string
+            bgp_enable: bgp4_mib
+            hsrp: true
+            isis_database_overload: true
+            isis_manual_address_drops: true
+            isis_corrupted_lsp_detected: true
+            isis_attempt_to_exceed_max_sequence: true
+            isis_id_len_mismatch: true
+            isis_max_area_addresses_mismatch: true
+            isis_own_lsp_purge: true
+            isis_sequence_number_skip: true
+            isis_authentication_type_failure: true
+            isis_authentication_failure: true
+            isis_version_skew: true
+            isis_area_mismatch: true
+            isis_rejected_adjacency: true
+            isis_lsp_too_large_to_propagate: true
+            isis_orig_lsp_buff_size_mismatch: true
+            isis_protocols_supported_mismatch: true
+            isis_adjacency_change: true
+            isis_lsp_error_detected: true
+            isis_all: true
+            vrrp_events: true
+            alarm: true
+            bridgemib: true
+            copy_complete: true
+            entity: true
+            cisco_entity_ext: true
+            entity_redundancy_all: true
+            entity_redundancy_switchover: true
+            entity_redundancy_status: true
+            entity_state_switchover: true
+            entity_state_operstatus: true
+            flash_insertion: true
+            flash_removal: true
+            fru_ctrl: true
+            ipsla: true
+            mpls_ldp_down: true
+            mpls_ldp_up: true
+            mpls_ldp_threshold: true
+            pim_neighbor_change: true
+            pim_interface_state_change: true
+            pim_invalid_message_received: true
+            pim_rp_mapping_change: true
+            power: true
+            syslog: true
+            system: true
+          users:
+            -
+# mandatory; also accepts a string
+              name: '%{Zn[AAlf,&U4i qZlZB3'
+# mandatory; also accepts a string
+              group: lT]':M-#^%{7sirCPDt@] kX-
+# mandatory; allowed: v1, v2c, v3; also accepts a string
+              version: v1
+# also accepts a string
+              ipv4_acl: '%{v5D:`EHO,U1P %+e'
+# also accepts a string
+              ipv6_acl: )%{/,< MYv^L>NDINT2?b
+              systemowner: true
+              v3_authentication:
+# mandatory; allowed: md5, sha, sha-256, sha-512; also accepts a string
+                algorithm: md5
+# allowed: default, aes; also accepts a string
+                encryption_type: default
+# mandatory; also accepts a string
+                password: -J#ZN@bw/2w$O_%{Bv#P
+              v3_privacy:
+# mandatory; allowed: aes-128, aes-192, aes-256; also accepts a string
+                algorithm: aes-128
+# allowed: default, aes; also accepts a string
+                encryption_type: default
+# mandatory; also accepts a string
+                password: PM`M?I@U5_65/JV${
+          views:
+            -
+# mandatory; also accepts a string
+              name: -h,NNq/yy'=jM<t`Z%{b7;Cg8$
+              mibs:
+                -
+# mandatory; also accepts a string
+                  id: Y!ZFVuSyLg5cCi`c^e`%{M8@Ko!$iI
+# mandatory; allowed: included, excluded; also accepts a string
+                  scope: included
+          vrfs:
+            -
+# mandatory; also accepts a string
+              vrf: k+Y)he%{Y1I&N1$
+              hosts:
+                -
+# mandatory; also accepts a string
+                  address: 4zJzN JBa${M
+                  informs:
+                    -
+# mandatory; also accepts a string
+                      community: t:%{P%5ZvoK
+# mandatory; allowed: unencrypted, default, aes; also accepts a string
+                      encryption_type: unencrypted
+# mandatory; allowed: v1, v2c, v3; also accepts a string
+                      version: v1
+# allowed: default; also accepts an integer; also accepts a string
+                      udp_port: default
+# allowed: auth, noauth, priv; also accepts a string
+                      v3_security_level: auth
+                  traps:
+                    -
+# mandatory; also accepts a string
+                      community: WK;Zc=bJq$]<+;-oL${
+# mandatory; allowed: unencrypted, default, aes; also accepts a string
+                      encryption_type: unencrypted
+# mandatory; allowed: v1, v2c, v3; also accepts a string
+                      version: v1
+# allowed: default; also accepts an integer; also accepts a string
+                      udp_port: default
+# allowed: auth, noauth, priv; also accepts a string
+                      v3_security_level: auth
+              contexts:
+                -
+# mandatory; also accepts a string
+                  name: m:<'agco3%{#3!@C

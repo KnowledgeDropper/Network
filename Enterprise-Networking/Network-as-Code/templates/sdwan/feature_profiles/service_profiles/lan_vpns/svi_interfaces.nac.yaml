@@ -1,0 +1,146 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.service_profiles[].lan_vpns[].svi_interfaces
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/features_service/service_lan_vpn_svi_interface/
+sdwan:
+  feature_profiles:
+    service_profiles:
+      -
+# mandatory
+        name: example-name
+        lan_vpns:
+          -
+# mandatory
+            name: example-name
+            svi_interfaces:
+              -
+# mandatory
+                name: example-name
+                description: <DESCRIPTION>
+                arp_entries:
+                  - ip_address: 10.0.0.1
+                    ip_address_variable: 10.0.0.1
+                    mac_address: 00:11:22:33:44:55
+                    mac_address_variable: 00-11-22-33-44-55
+# maximum 2678400
+                arp_timeout: 1
+                arp_timeout_variable: example-host
+                dhcp_server: 10.0.0.1
+                icmp_redirect_disable: true
+                icmp_redirect_disable_variable: example-host
+                interface_description: <DESCRIPTION>
+                interface_description_variable: 0/0.1
+# range 1500-9216
+                interface_mtu: 1500
+                interface_mtu_variable: 0/0.1
+                interface_name: Vlan10
+                interface_name_variable: 0/0.1
+                ip_directed_broadcast: true
+                ip_directed_broadcast_variable: 10.0.0.1
+# range 576-9216
+                ip_mtu: 576
+                ip_mtu_variable: 10.0.0.1
+                ipv4_address: 10.0.0.1
+                ipv4_address_variable: 10.0.0.1
+                ipv4_dhcp_helpers:
+                  - <HOSTNAME>
+                ipv4_dhcp_helpers_variable: example-host
+                ipv4_egress_acl: example-host
+                ipv4_ingress_acl: example-host
+                ipv4_secondary_addresses:
+                  - address: 10.0.0.1
+                    address_variable: 10.0.0.1
+# allowed: 255.255.255.255, 255.255.255.254, 255.255.255.252, 255.255.255.248, 255.255.255.240,
+# 255.255.255.224, 255.255.255.192, 255.255.255.128, 255.255.255.0, 255.255.254.0, 255.255.252.0,
+# 255.255.248.0, 255.255.240.0, 255.255.224.0, 255.255.192.0, 255.255.128.0, 255.255.0.0,
+# 255.254.0.0, 255.252.0.0, 255.248.0.0, 255.240.0.0, 255.224.0.0, 255.192.0.0, 255.128.0.0,
+# 255.0.0.0, 254.0.0.0, 252.0.0.0, 248.0.0.0, 240.0.0.0, 224.0.0.0, 192.0.0.0, 128.0.0.0, 0.0.0.0
+                    subnet_mask: 255.255.255.255
+                    subnet_mask_variable: 10.0.0.1
+# allowed: 255.255.255.255, 255.255.255.254, 255.255.255.252, 255.255.255.248, 255.255.255.240,
+# 255.255.255.224, 255.255.255.192, 255.255.255.128, 255.255.255.0, 255.255.254.0, 255.255.252.0,
+# 255.255.248.0, 255.255.240.0, 255.255.224.0, 255.255.192.0, 255.255.128.0, 255.255.0.0,
+# 255.254.0.0, 255.252.0.0, 255.248.0.0, 255.240.0.0, 255.224.0.0, 255.192.0.0, 255.128.0.0,
+# 255.0.0.0, 254.0.0.0, 252.0.0.0, 248.0.0.0, 240.0.0.0, 224.0.0.0, 192.0.0.0, 128.0.0.0, 0.0.0.0
+                ipv4_subnet_mask: 255.255.255.255
+                ipv4_subnet_mask_variable: 10.0.0.1
+                ipv4_vrrp_groups:
+                  - address: 10.0.0.1
+                    address_variable: 10.0.0.1
+                    follow_dual_router_high_availability: true
+# range 1-255
+                    id: 1
+                    id_variable: example-host
+                    prefix_list: example-host
+                    prefix_list_variable: 10.0.0.1
+# range 1-254
+                    priority: 1
+                    priority_variable: example-host
+                    secondary_addresses:
+                      - address: 10.0.0.1
+                        address_variable: 10.0.0.1
+# range 100-40950
+                    timer: 100
+                    timer_variable: example-host
+                    tloc_preference_change: true
+# range 1-4294967295
+                    tloc_preference_change_value: 1
+                    tloc_preference_change_value_variable: example-host
+                    track_omp: true
+                    track_omp_variable: example-host
+                    tracking_objects:
+                      -
+# allowed: decrement, shutdown
+                        action: decrement
+                        action_variable: example-host
+# range 1-255
+                        decrement_value: 1
+                        decrement_value_variable: example-host
+                        tracker_object: example-host
+                ipv6_address: 2001:db8::1
+                ipv6_address_variable: 10.0.0.1
+                ipv6_dhcp_helpers:
+                  - address: 10.0.0.1
+                    address_variable: 10.0.0.1
+# range 1-65536
+                    vpn_id: 1
+                    vpn_id_variable: example-host
+                ipv6_egress_acl: 2001:db8::1
+                ipv6_ingress_acl: 2001:db8::1
+                ipv6_secondary_addresses:
+                  - address: 10.0.0.1
+                    address_variable: 10.0.0.1
+                ipv6_vrrp_groups:
+                  - addresses:
+                      - global_prefix: 10.0.0.1
+                        global_prefix_variable: 10.0.0.1
+                        link_local_address: 10.0.0.1
+                        link_local_address_variable: 10.0.0.1
+                    follow_dual_router_high_availability: true
+# range 1-255
+                    id: 1
+                    id_variable: example-host
+# range 1-254
+                    priority: 1
+                    priority_variable: example-host
+# range 100-40950
+                    timer: 100
+                    timer_variable: example-host
+                    track_omp: true
+                    track_omp_variable: example-host
+                    track_prefix_list: example-host
+                    track_prefix_list_variable: 10.0.0.1
+                shutdown: true
+                shutdown_variable: example-host
+# range 552-1960
+                tcp_mss: 552
+                tcp_mss_variable: example-host

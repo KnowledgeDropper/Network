@@ -1,0 +1,37 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.feature_profiles.policy_object_profile.sla_classes
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/policy_objects/sla_class/
+sdwan:
+  feature_profiles:
+    policy_object_profile:
+      sla_classes:
+        -
+# mandatory
+          name: example-name
+          app_probe_class: example-host
+# allowed: jitter, latency, loss, loss-latency, loss-jitter, latency-loss, latency-jitter,
+# jitter-latency, jitter-loss, loss-latency-jitter, loss-jitter-latency, latency-loss-jitter,
+# latency-jitter-loss, jitter-latency-loss, jitter-loss-latency
+          fallback_best_tunnel_criteria: jitter
+# range 1-1000
+          fallback_best_tunnel_jitter_variance: 1
+# range 1-1000
+          fallback_best_tunnel_latency_variance: 1
+# maximum 100
+          fallback_best_tunnel_loss_variance: 1
+# range 1-1000
+          jitter_ms: 1
+# range 1-1000
+          latency_ms: 1
+# maximum 100
+          loss_percentage: 1

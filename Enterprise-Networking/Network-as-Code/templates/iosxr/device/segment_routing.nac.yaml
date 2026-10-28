@@ -1,0 +1,556 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.segment_routing
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/segment_routing/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        segment_routing:
+          enable: true
+# range 16000-1048574; also accepts a string
+          global_block_from: 16000
+# range 16001-1048575; also accepts a string
+          global_block_to: 16001
+# range 15000-1048574; also accepts a string
+          local_block_from: 15000
+# range 15001-1048575; also accepts a string
+          local_block_to: 15001
+          mapping_server:
+            -
+# mandatory; allowed: ipv4, ipv6; also accepts a string
+              address_family: ipv4
+              prefix_sid_maps:
+                -
+# mandatory; also accepts a string
+                  prefix: ^]MiRJ"5EIM#*86=B2%{.y-T?'Lg?7*2
+# mandatory; range 1-128; also accepts a string
+                  length: 1
+# mandatory; maximum 1048575; also accepts a string
+                  sid_index: 1
+# maximum 65535; also accepts a string
+                  range: 1
+                  attached: true
+          srv6:
+            enable: true
+            encapsulation:
+# allowed: propagate, propagate-disable; also accepts an integer; also accepts a string
+              hop_limit: propagate
+# also accepts a string
+              source_address: "*^ 1@qXv^K[m'2%{6!"
+# allowed: propagate, propagate-disable; also accepts an integer; also accepts a string
+              traffic_class: propagate
+            formats:
+              -
+# mandatory; allowed: usid-f3216; also accepts a string
+                name: usid-f3216
+# range 57344-57344; also accepts a string
+                usid_local_id_block_explicit_from: 57344
+# range 57444-65279; also accepts a string
+                usid_local_id_block_explicit_to: 57444
+# range 65520-65527; also accepts a string
+                usid_wide_local_id_block_start: 65520
+            locators:
+              -
+# range 128-255; also accepts a string
+                algorithm: 128
+                anycast: true
+# range 32-112; also accepts a string
+                length: 32
+# allowed: psp-usd, shift-only; also accepts a string
+                micro_segment_behavior_unode: psp-usd
+# mandatory; also accepts a string
+                name: hwM.Nzh${>OW<i
+# also accepts a string
+                prefix: BqZWcKm8z1(u!:${!jIy=Jy&nSHhu4xdz<k
+            logging_locator_status: true
+# maximum 60; also accepts a string
+            sid_holdtime: 1
+          traffic_engineering:
+            affinity_maps:
+              -
+# mandatory; also accepts a string
+                name: wv+V5gU%{$15FuDB
+# mandatory; maximum 255; also accepts a string
+                bit_position: 1
+# range 10-3600; also accepts a string
+            bfd_session_bringup: 10
+            binding_sids:
+# allowed: disable; also accepts a string
+              dynamic: disable
+# allowed: enforce-srlb, fallback-dynamic; also accepts a string
+              explicit: enforce-srlb
+            candidate_paths:
+              -
+# mandatory; allowed: all, bgp-odn, bgp-srte, local, pcep; also accepts a string
+                type: all
+# mandatory; also accepts a string
+                source_address: i=QV-#(kFV#t+%{h
+# range 100-100000; also accepts a string
+            cspf_cache_size: 100
+            distribute_link_state:
+              enable: true
+              report_candidate_path_inactive: true
+# range 1-20; also accepts a string
+              throttle: 1
+            effective_metric:
+              admin_distances:
+                -
+# mandatory; allowed: unknown, hopcount, igp, latency, te; also accepts a string
+                  type: unknown
+# mandatory; range 1-255; also accepts a string
+                  distance: 1
+              flex_algos:
+                -
+# mandatory; allowed: igp, latency, te, bandwidth; also accepts an integer; also accepts a string
+                  type: igp
+# mandatory; range 1-255; also accepts a string
+                  distance: 1
+            interfaces:
+              -
+# mandatory; also accepts a string
+                name: cFVT]mJgCrU${*X
+                affinities:
+                  -
+# mandatory; also accepts a string
+                    name: "XGg4=]/a4'%{#0E_l:1Q!9fA1%x:"
+# maximum 2147483647; also accepts a string
+                metric: 1
+# range 1-200; also accepts a string
+            kshortest_paths: 1
+            logging:
+              pcep_peer_status: true
+              policy_status: true
+# range 1-3; also accepts a string
+            max_install_standby_paths: 1
+# range 1-255; also accepts a string
+            maximum_sid_depth: 1
+            path_disable_algo_checks:
+              strict_spf:
+                all_areas: true
+                areas:
+                  -
+# mandatory; also accepts an integer
+                    id: yas^HY5/x)smm r!${$4
+# mandatory; allowed: ospf; also accepts a string
+                    protocol: ospf
+            pcc:
+# range 1-255; also accepts a string
+              dead_timer: 1
+# maximum 1576800000; also accepts a string
+              delegation_timeout: 1
+# maximum 180; also accepts a string
+              initiated_orphan: 1
+# maximum 86400; also accepts a string
+              initiated_state: 1
+# maximum 255; also accepts a string
+              keepalive_timer: 1
+              pces:
+                -
+# mandatory; also accepts a string
+                  address: A8bd;br&/;@<Fbc8%{Ge.BBp
+# also accepts a string
+                  password: 3Lv2c8_Ciex`kC%{IX\'(Irfdd+F
+# allowed: 7; also accepts a string
+                  password_type: 7
+# also accepts a string
+                  pce_group: )tj9S=%{O*
+# maximum 255; also accepts a string
+                  precedence: 1
+                  tcp_ao_include_tcp_options: true
+# also accepts a string
+                  tcp_ao_keychain: e${q4ysyOKIBibe?JM
+              profiles:
+                -
+# mandatory; also accepts an integer
+                  id: _r.=fFDx*;Z/ *Z\p${MTEZh=`n?zAVhUxb9D
+                  auto_route:
+                    force_sr_include: true
+# maximum 7; also accepts a string
+                    forward_class: 1
+                    include_all_ipv4: true
+                    include_all_ipv6: true
+# range -10-2147483647; also accepts a string
+                    metric: 1
+# allowed: constant, relative; also accepts a string
+                    metric_type: constant
+                  steering_invalidation_drop: true
+# allowed: pcc_centric, pce_centric; also accepts a string
+              redundancy: pcc_centric
+              report_all: true
+# also accepts a string
+              source_address_ipv4: "#8N9a*VQYEpi-q@4${61IFEx'l9iWI"
+# also accepts a string
+              source_address_ipv6: m" -">kyXp<5${-"-Gt5c#z:D68J
+            resource_lists:
+              -
+# mandatory; also accepts a string
+                name: '"!CR,0N+(\sO)&(D$),${XkB0af57'
+                entries:
+                  -
+# mandatory; range 1-65535; also accepts a string
+                    index: 1
+# also accepts a string
+                    address: O4sg^E^dE8I/e${1v<mi>m%hC55
+# allowed: ipv4-address; also accepts a string
+                    type: ipv4-address
+            segment_lists:
+              mpls:
+                explicit_segments:
+                  -
+# mandatory; also accepts a string
+                    name: ' hC1[ jp!4:r!zJ%{]Z]*r1<'
+                    entries:
+                      -
+# mandatory; range 1-65535; also accepts a string
+                        index: 1
+# also accepts a string
+                        address: g7[uS%{%.79Mi+vgP
+# range 1-65535; also accepts a string
+                        interface_identifier: 1
+# maximum 1048575; also accepts a string
+                        label: 1
+# allowed: adjacency, label; also accepts a string
+                        type: adjacency
+              srv6:
+                explicit_segments:
+                  -
+# mandatory; also accepts a string
+                    name: $Q$%{3XC
+                    entries:
+                      -
+# mandatory; range 1-65535; also accepts a string
+                        index: 1
+# also accepts a string
+                        address: S%l"L(_KNdbp2/c_6?%{knSq,/2MEY>TPLV]qP3
+# allowed: srv6sid; also accepts a string
+                        type: srv6sid
+                    topology_check: true
+# allowed: usid-f3216; also accepts a string
+                sid_format: usid-f3216
+                topology_check: true
+            separate_next_hop: true
+            srv6:
+# allowed: ub6-encaps-reduced, ub6-insert-reduced; also accepts a string
+              behavior: ub6-encaps-reduced
+# allowed: srv6-dynamic; also accepts a string
+              binding_sid_type: srv6-dynamic
+# also accepts a string
+              locator: )%{xt/F-fxXL4o
+# range 1-255; also accepts a string
+              maximum_sid_depth: 1
+            steering:
+              labeled_services:
+                disable_all: true
+                disable_bgp_sr_te: true
+                disable_local: true
+                disable_on_demand: true
+                disable_pcep: true
+            te_latency: true
+            timers:
+# maximum 86400; also accepts a string
+              candidate_path_cleanup_delay: 1
+# maximum 300; also accepts a string
+              cleanup_delay: 1
+# maximum 3600; also accepts a string
+              delete_delay: 1
+# range 10-10000; also accepts a string
+              initial_verify_restart: 10
+# range 10-10000; also accepts a string
+              initial_verify_startup: 10
+# range 10-10000; also accepts a string
+              initial_verify_switchover: 10
+# maximum 300; also accepts a string
+              install_delay: 1
+# maximum 86400; also accepts a string
+              periodic_reoptimization: 1
+            on_demand:
+              -
+# range 1-4294967295; also accepts a string
+                bandwidth: 1
+                bfd:
+                  enable: true
+# allowed: down, none; also accepts a string
+                  invalidation_action: down
+                  logging_session_state_change: true
+# range 50-30000; also accepts a string
+                  minimum_interval: 50
+# range 1-10; also accepts a string
+                  multiplier: 1
+# range 16-1048575; also accepts a string
+                  reverse_path_binding_label: 16
+# mandatory; range 1-4294967295; also accepts a string
+                color: 1
+                constraints:
+                  segments:
+# allowed: protected-only, protected-preferred, unprotected-only, unprotected-preferred; also
+# accepts a string
+                    protection_type: protected-only
+# maximum 255; also accepts a string
+                    sid_algorithm: 1
+                dynamic:
+                  affinities:
+                    - entries:
+                        -
+# mandatory; also accepts a string
+                          name: Y%{_\\9
+# mandatory; allowed: include-any, include-all, exclude-any; also accepts a string
+                      type: include-any
+                  anycast_sid_inclusion: true
+                  bounds:
+                    -
+# mandatory; allowed: cumulative, link; also accepts a string
+                      scope: cumulative
+# mandatory; allowed: hopcount, igp, latency, te; also accepts a string
+                      type: hopcount
+# mandatory; range 1-4294967295; also accepts a string
+                      metric: 1
+                  disjoint_path:
+                    fallback_disable: true
+# also accepts an integer
+                    group_id: 9DmkLG:k?)T7Q>16`%{5o@P)`1+(V
+                    shortest_path: true
+# also accepts an integer
+                    sub_id: 4lrBdSr'r${oyd
+# allowed: link, node, srlg, srlg-node; also accepts a string
+                    type: link
+# maximum 2147483647; also accepts a string
+                  metric_margin: 1
+# allowed: absolute, relative; also accepts a string
+                  metric_margin_type: absolute
+# allowed: hopcount, igp, latency, te; also accepts a string
+                  metric_type: hopcount
+                  pcep: true
+                effective_metric:
+# allowed: default, hopcount, igp, latency, te; also accepts a string
+                  type: default
+# maximum 4294967295; also accepts a string
+                  value: 1
+# maximum 3; also accepts a string
+                max_install_standby_paths: 1
+# range 1-255; also accepts a string
+                maximum_sid_depth: 1
+# also accepts a string
+                pce_group: CZ&<J]#Ee%buv${`<E
+                per_flow:
+# maximum 7; also accepts a string
+                  default_class: 1
+                  enable: true
+                  forward_classes:
+                    -
+# mandatory; range 1-4294967295; also accepts a string
+                      color: 1
+# mandatory; also accepts an integer
+                      id: ${b8<7y Ud8(N^fnC
+                performance_measurement:
+                  delay:
+                    logging_delay_exceeded: true
+# also accepts a string
+                    profile: GvdfGecxnJg"%{Nt!S0J_
+                  liveness:
+# also accepts a string
+                    backup_profile: d5[@R&${`o,a=Zb]5dm
+# allowed: down, none; also accepts a string
+                    invalidation_action: down
+                    logging_session_state_change: true
+# also accepts a string
+                    profile: A%{"-((BmWbLf
+# range 16-1048575; also accepts a string
+                  reverse_path_label: 16
+# also accepts a string
+                  reverse_path_segment_list: <)``W`J`;y&${!LNA>gZQ1]Ke5a,3J5
+# also accepts a string
+                source_address: =@W""hP${h&*rH]wX
+                srv6:
+# allowed: ub6-encaps-reduced, ub6-insert-reduced; also accepts a string
+                  behavior: ub6-encaps-reduced
+# also accepts a string
+                  locator: ='V_*Z${h8#i<iZ%Jmt^=4_
+                steering:
+                  invalidation_drop: true
+                  labeled_services:
+                    disable: true
+            policies:
+              - auto_route:
+                  force_sr_include: true
+# maximum 7; also accepts a string
+                  forward_class: 1
+                  include_all_ipv4: true
+                  include_all_ipv6: true
+                  include_prefixes:
+                    -
+# mandatory; also accepts a string
+                      address: b%{9ofNFz5m)-
+# mandatory; maximum 32; also accepts a string
+                      length: 1
+# mandatory; allowed: ipv4; also accepts a string
+                      type: ipv4
+# range -10-2147483647; also accepts a string
+                  metric: 1
+# allowed: constant, relative; also accepts a string
+                  metric_type: constant
+# range 1-4294967295; also accepts a string
+                bandwidth: 1
+                bfd:
+                  disable: true
+                  enable: true
+# allowed: down, none; also accepts a string
+                  invalidation_action: down
+                  logging_session_state_change: true
+# range 50-30000; also accepts a string
+                  minimum_interval: 50
+# range 1-10; also accepts a string
+                  multiplier: 1
+# range 16-1048575; also accepts a string
+                  reverse_path_binding_label: 16
+# range 16-1048575; also accepts a string
+                binding_sid_mpls_label: 16
+# allowed: mpls; also accepts a string
+                binding_sid_type: mpls
+                candidate_paths:
+                  - backup_ineligible: true
+# also accepts an integer
+                    bidirectional_association_id: ']${/6kbjs#inxX'
+                    bidirectional_corouted: true
+                    constraints:
+                      affinities:
+                        - entries:
+                            -
+# mandatory; also accepts a string
+                              name: ${AqwXK0$
+# mandatory; allowed: exclude-any, include-all, include-any; also accepts a string
+                          type: exclude-any
+                      bounds:
+                        -
+# mandatory; allowed: cumulative, link; also accepts a string
+                          scope: cumulative
+# mandatory; allowed: hopcount, igp, latency, te; also accepts a string
+                          type: hopcount
+# mandatory; range 1-4294967295; also accepts a string
+                          metric: 1
+                      disjoint_path:
+                        fallback_disable: true
+# also accepts an integer
+                        group_id: L+4\EczfZyRS*$O0${*]zc.[zJ?vd%E@M!9,J
+                        shortest_path: true
+# also accepts an integer
+                        sub_id: JVNioJKrye[5l,%{v?C
+# allowed: link, node, srlg, srlg-node; also accepts a string
+                        type: link
+                      segments:
+                        adjacency_sid_only: true
+# allowed: protected-only, protected-preferred, unprotected-only, unprotected-preferred; also
+# accepts a string
+                        protection_type: protected-only
+# maximum 255; also accepts a string
+                        sid_algorithm: 1
+                    effective_metric:
+# allowed: hopcount, igp, latency, te; also accepts a string
+                      type: hopcount
+# maximum 4294967295; also accepts a string
+                      value: 1
+# mandatory; range 1-65535; also accepts a string
+                    preference: 1
+# maximum 3000; also accepts a string
+                    lock_duration: 1
+                    paths:
+                      - anycast_sid_inclusion: true
+# allowed: mpls, srv6; also accepts a string
+                        hop_type: mpls
+# maximum 2147483647; also accepts a string
+                        metric_margin: 1
+# allowed: absolute, relative; also accepts a string
+                        metric_margin_type: absolute
+# range 1-255; also accepts a string
+                        metric_sid_limit: 1
+# allowed: hopcount, igp, latency, te; also accepts a string
+                        metric_type: hopcount
+                        pcep: true
+# also accepts a string
+                        reverse_path_segment_list: j@?H]>%{<,4P-MTi
+# also accepts a string
+                        segment_list: $6OtD`z9H/D${;5j(NHIL
+# mandatory; allowed: dynamic, explicit; also accepts a string
+                        type: dynamic
+# range 1-4294967295; also accepts a string
+                        weight: 1
+# also accepts a string
+                    pce_group: jZ6'Hzo#]u${^Cs[>a)kr9<oi$PQ[
+                    per_flow:
+# maximum 7; also accepts a string
+                      default_class: 1
+                      enable: true
+                      forward_classes:
+                        -
+# mandatory; range 1-4294967295; also accepts a string
+                          color: 1
+# mandatory; also accepts an integer
+                          id: "a7'l/bhmw6hQtHFJ${2 "
+# mandatory; range 1-4294967295; also accepts a string
+                color: 1
+                effective_metric:
+# allowed: hopcount, igp, latency, te; also accepts a string
+                  type: hopcount
+# maximum 4294967295; also accepts a string
+                  value: 1
+# also accepts a string
+                endpoint_address: d^%9%%{AsrU=D
+                ipv6_disable: true
+# maximum 3; also accepts a string
+                max_install_standby_paths: 1
+# mandatory; also accepts a string
+                name: yD&#3^Qhf`*pq%{
+                path_protection: true
+# also accepts a string
+                pce_group: ">=#d3mD'&YCi7${ISllJ"
+                performance_measurement:
+                  delay:
+                    logging_delay_exceeded: true
+# also accepts a string
+                    profile: w[tG3c+4eAsm#T7>zu6%{aBR5LQh*^tv'+7
+                  liveness:
+# also accepts a string
+                    backup_profile: xW`htBXqb%{5]a>HDsEt0T^J
+# allowed: down, none; also accepts a string
+                    invalidation_action: down
+                    logging_session_state_change: true
+# also accepts a string
+                    profile: h*!HJ/8vAp/>pY)>H${>39[BbxR5'8V
+# range 16-1048575; also accepts a string
+                  reverse_path_label: 16
+# also accepts a string
+                  reverse_path_segment_list: sMgNR7${0NYQTsPnG.Y8r2$(9T
+                shutdown: true
+# also accepts a string
+                source_address: 0rr\Yslif>rqNG.${X?7sAde0p0b$!gW-VG
+                srv6:
+# allowed: ub6-encaps-reduced, ub6-insert-reduced; also accepts a string
+                  behavior: ub6-encaps-reduced
+# also accepts a string
+                  locator: L%{kT`3^#G25cTt
+                steering:
+                  invalidation_drop: true
+                  labeled_services:
+                    disable: true
+                transit_eligible: true
+            traces:
+              -
+# mandatory; allowed: agent, all, bsid, chkpt, common, error, fib, fs, gen-error, im, init, lmrib,
+# lsd, p-cpath, p-lsp, p-state, pcep, pfp, policy, rib, srv-api, timer, treesid, treesid-chkpt;
+# also accepts a string
+                buffer: agent
+# mandatory; maximum 1000000; also accepts a string
+                count: 1

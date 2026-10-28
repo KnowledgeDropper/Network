@@ -1,0 +1,77 @@
+# Cisco Network as Code template for Catalyst SD-WAN.
+# Data model: sdwan
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: sdwan.edge_feature_templates.security_templates
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/sdwan/edge_feature_templates/security/
+sdwan:
+  edge_feature_templates:
+    security_templates:
+      -
+# mandatory
+        name: example-name
+# mandatory
+        description: <DESCRIPTION>
+        device_types:
+          - ASR-1001-HX
+        authentication_types:
+          - none
+        authentication_types_variable: <HOSTNAME>
+# range 10-2048
+        extended_anti_replay_window: 10
+        extended_anti_replay_window_variable: <HOSTNAME>
+        key_chains:
+          -
+# mandatory
+            name: <NAME>
+# mandatory; maximum 2147483647
+            key_id: 1
+        keys:
+          - accept_ao_mismatch: true
+            accept_lifetime: true
+            accept_lifetime_variable: <HOSTNAME>
+            accept_lifetime_duration_seconds: 1
+            accept_lifetime_duration_variable: <HOSTNAME>
+            accept_lifetime_end_time_epoch: 1
+# allowed: infinite, duration, end-epoch
+            accept_lifetime_end_time_format: infinite
+            accept_lifetime_start_time_epoch: 1
+# mandatory; allowed: aes-128-cmac, hmac-sha-1, hmac-sha-256
+            crypto_algorithm: aes-128-cmac
+# mandatory; maximum 2147483647
+            id: 1
+            include_tcp_options: true
+            include_tcp_options_variable: <HOSTNAME>
+# mandatory
+            key_chain_name: <NAME>
+            key_string: <HOSTNAME>
+            key_string_variable: <HOSTNAME>
+# maximum 255
+            send_id: 1
+            send_id_variable: <HOSTNAME>
+            send_lifetime: true
+            send_lifetime_variable: <HOSTNAME>
+            send_lifetime_duration_seconds: 1
+            send_lifetime_duration_variable: <HOSTNAME>
+            send_lifetime_end_time_epoch: 1
+# allowed: infinite, duration, end-epoch
+            send_lifetime_end_time_format: infinite
+            send_lifetime_start_time_epoch: 1
+# maximum 255
+            receive_id: 1
+            receive_id_variable: <HOSTNAME>
+        pairwise_keying: true
+        pairwise_keying_variable: <HOSTNAME>
+# range 1-1209600
+        rekey_interval: 1
+        rekey_interval_variable: <HOSTNAME>
+# allowed: 64, 128, 256, 512, 1024, 2048, 4096, 8192
+        replay_window: 64
+        replay_window_variable: <HOSTNAME>

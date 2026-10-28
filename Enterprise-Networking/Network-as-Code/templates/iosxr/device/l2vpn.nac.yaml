@@ -1,0 +1,90 @@
+# Cisco Network as Code template for IOS-XR.
+# Data model: iosxr
+# Schema: https://github.com/netascode/schema/blob/7334e341147fabf81071f18b0286e7deac47d9ab/schema.json
+# Schema commit: 7334e341147fabf81071f18b0286e7deac47d9ab (2026-10-22)
+# Schema path: iosxr.devices[].configuration.l2vpn
+#
+# Placeholders such as <HOSTNAME>, <SECRET>, and 10.0.0.1 stand in for
+# site-specific values. Replace them before apply. Do not commit real secrets.
+# Comments mark mandatory attributes, ranges, and allowed values.
+# Attributes that cannot be set together on a device are still listed when the
+# published schema allows them. Remove the ones this device will not use.
+# Docs:
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/l2vpn/
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/l2vpn_bridge_group_bridge_domain/
+#   https://netascode.cisco.com/docs/data_models/iosxr/device/l2vpn_pw_class/
+iosxr:
+  devices:
+    -
+# mandatory
+      name: <NAME>
+# mandatory
+      host: 10.0.0.1
+      configuration:
+        l2vpn:
+          bridge_groups:
+            -
+# mandatory; also accepts a string
+              name: mz5O_z>rmr]r%{@apd]*AR4^ktFTCe
+              bridge_domains:
+                -
+# mandatory; also accepts a string
+                  name: d0a%${o=;G+-QF
+                  evis:
+                    -
+# mandatory; also accepts an integer
+                      vpn_id: '%{?0T/On2'
+                  interfaces:
+                    -
+# mandatory; also accepts a string
+                      name: '[>pZd${lH5:-6y'
+                      split_horizon_group: true
+# range 46-65535; also accepts a string
+                  mtu: 46
+                  routed_interfaces:
+                    -
+# mandatory; also accepts a string
+                      name: '>5[8${#'
+                      split_horizon_group_core: true
+                  srv6_evis:
+                    -
+# mandatory; also accepts an integer
+                      vpn_id: dR(am1%{!LiUqs
+# range 64-1280000; also accepts a string
+                  storm_control_broadcast_kbps: 64
+# range 1-160000; also accepts a string
+                  storm_control_broadcast_pps: 1
+# range 64-1280000; also accepts a string
+                  storm_control_multicast_kbps: 64
+# range 1-160000; also accepts a string
+                  storm_control_multicast_pps: 1
+# range 64-1280000; also accepts a string
+                  storm_control_unknown_unicast_kbps: 64
+# range 1-160000; also accepts a string
+                  storm_control_unknown_unicast_pps: 1
+                  vnis:
+                    -
+# mandatory; also accepts an integer
+                      vni_id: '&hlcS%{Ip^E)r_'
+# also accepts a string
+          description: O1LgQbXC%YkQ${.h!XLDY!WAF%OY3Y/*
+# allowed: src-dst-mac, src-dst-ip; also accepts a string
+          load_balancing_flow: src-dst-mac
+          pw_classes:
+            -
+# mandatory; also accepts a string
+              name: "'x+PlCU/\\Fm&z$VzG${IZRvwnQlQg+<mY"
+              encapsulation_mpls:
+                enable: true
+                load_balancing:
+                  flow_label:
+# allowed: enable, disable; also accepts a string
+                    code_17: enable
+# allowed: receive, transmit, both; also accepts a string
+                    direction: receive
+                    static: true
+                  pw_label: true
+# allowed: ethernet, vlan, vlan-passthrough; also accepts a string
+                transport_mode: ethernet
+# also accepts a string
+          router_id: ${i!VPaOn
