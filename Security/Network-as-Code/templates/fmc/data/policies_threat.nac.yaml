@@ -1,0 +1,55 @@
+---
+# FMC Intrusion, Network Analysis and Malware & File policies.
+# NOTE: SSL/Decryption, DNS and Identity policies are NOT modelled by NaC FMC (no doc page / schema key).
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  # ======================================================================
+  # Doc page: Domain  ->  https://netascode.cisco.com/docs/data_models/fmc/domains/domains/
+  # GUI: Settings » Domains
+  # ======================================================================
+  domains:  # optional
+    - name: Global  # MANDATORY
+      policies:  # optional
+        # ======================================================================
+        # Doc page: Intrusion Policy  ->  https://netascode.cisco.com/docs/data_models/fmc/policies/intrusion_policy/
+        # GUI: Policies » Intrusion » Intrusion Policies
+        # ======================================================================
+        intrusion_policies:  # optional
+          - name: IPS_EDGE  # MANDATORY | maxlen: 50
+            inspection_mode: PREVENTION  # optional | choices: DETECTION | PREVENTION | default: PREVENTION
+            base_policy: Balanced Security and Connectivity  # MANDATORY | maxlen: 50
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+        # ======================================================================
+        # Doc page: Marware and File Policy  ->  https://netascode.cisco.com/docs/data_models/fmc/policies/file_policy/
+        # GUI: Policies » Marware and File » Marware and File Policies
+        # ======================================================================
+        file_policies:  # optional
+          - name: AMP_EDGE  # MANDATORY | regex: ^[a-zA-Z0-9_.+ -]{1,64}$
+            block_encrypted_archives: false  # optional | default: false
+            block_uninspectable_archives: false  # optional | default: false
+            clean_list: true  # optional | default: true
+            custom_detection_list: true  # optional | default: true
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            first_time_file_analysis: true  # optional | default: true
+            inspect_archives: false  # optional | default: false
+            max_archive_depth: 2  # optional | range: 1..3 | default: 2
+            threat_score: DISABLED  # optional | choices: DISABLED | MEDIUM | High | VERY_HIGH | default: DISABLED
+            file_rules:  # optional
+              - action: DETECT  # MANDATORY | choices: DETECT | BLOCK_WITH_RESET | DETECT_MALWARE | BLOCK_MALWARE_WITH_RESET | BLOCK_MALWARE
+                application_protocol: HTTP  # MANDATORY | choices: ANY | HTTP | SMTP | IMAP | POP3 | FTP | SMB
+                direction_of_transfer: DOWNLOAD  # MANDATORY | choices: ANY | UPLOAD | DOWNLOAD
+                file_categories: [PDF files]  # optional
+                file_types: [PDF]  # optional
+                store_files: [MALWARE]  # optional | choices: MALWARE | CUSTOM | CLEAN | UNKNOWN
+        # ======================================================================
+        # Doc page: Network Analysis Policy  ->  https://netascode.cisco.com/docs/data_models/fmc/policies/network_analysis_policy/
+        # GUI: Policies » Intrusion » Network Analysis Policies
+        # ======================================================================
+        network_analysis_policies:  # optional
+          - name: NAP_EDGE  # MANDATORY | maxlen: 50
+            base_policy: Balanced Security and Connectivity  # MANDATORY | choices: Balanced Security and Connectivity | Connectivity Over Security | Maximum Detection | Security Over Connectivity
+            inspection_mode: PREVENTION  # optional | choices: DETECTION | PREVENTION | default: PREVENTION
+            description: Managed by Network-as-Code  # optional | maxlen: 255

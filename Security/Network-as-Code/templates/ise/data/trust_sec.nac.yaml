@@ -1,0 +1,85 @@
+---
+# ISE TrustSec: SGTs, SGACLs, IP-SGT static mappings (+groups), egress matrix/matrices, work-process settings.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+ise:
+  trust_sec:  # optional
+    push_mode: AUTO  # optional (schema-only, not on docs page) | choices: AUTO | DISABLED
+    matrix_mode: SINGLE_MATRIX  # optional (schema-only, not on docs page) | choices: SINGLE_MATRIX | MULTIPLE_MATRICES
+    work_process_settings:  # optional (schema-only, not on docs page)
+      use_defcons: false  # optional (schema-only, not on docs page)
+      enable_approval_workflow: false  # optional (schema-only, not on docs page)
+    # ======================================================================
+    # Doc page: Security Group  ->  https://netascode.cisco.com/docs/data_models/ise/trust_sec/security_group/
+    # GUI: Work Centers » TrustSec » Components » Security Groups
+    # ======================================================================
+    security_groups:  # optional
+      - name: SGT_Employees  # MANDATORY | regex: ^[\w\d_\-\.]+$
+        description: Managed by Network-as-Code  # optional
+        propagate_to_apic: false  # optional | default: false
+        value: 101  # MANDATORY | range: -1..65519
+      - name: SGT_Web_Servers  # MANDATORY | regex: ^[\w\d_\-\.]+$
+        description: Web server tier  # optional
+        value: 20  # MANDATORY | range: -1..65519
+    # ======================================================================
+    # Doc page: Security Group ACL  ->  https://netascode.cisco.com/docs/data_models/ise/trust_sec/security_group_acl/
+    # GUI: Work Centers » TrustSec » Components » Security Group ACLs
+    # ======================================================================
+    security_group_acls:  # optional
+      - name: SGACL_Permit_Web  # MANDATORY | regex: ^[\w\d_\-\.]+$
+        description: Managed by Network-as-Code  # optional
+        ip_version: IPV4  # optional | choices: IPV4 | IPV6 | IP_AGNOSTIC | default: IPV4
+        acl_content: |  # MANDATORY
+          permit tcp dst eq 443
+          permit tcp dst eq 80
+          deny ip
+    # ======================================================================
+    # Doc page: IP SGT Mapping Group  ->  https://netascode.cisco.com/docs/data_models/ise/trust_sec/ip_sgt_mapping_group/
+    # GUI: Work Centers » TrustSec » Components » IP SGT Static Mapping » Manage groups
+    # ======================================================================
+    ip_sgt_mapping_groups:  # optional
+      - name: IPSGT_DC_SERVERS  # MANDATORY | regex: ^[\w\d_\-\. ]+$
+        sgt: SGT_Employees  # MANDATORY
+        deploy_type: ALL  # optional | choices: ALL | ND | NDG | default: ALL
+        # ALTERNATIVE - deploy_to (device/NDG) is only used when deploy_type is not ALL; uncomment to use instead:
+        #~ deploy_to: SW-ACCESS-01  # optional
+    # ======================================================================
+    # Doc page: IP SGT Mapping  ->  https://netascode.cisco.com/docs/data_models/ise/trust_sec/ip_sgt_mapping/
+    # GUI: Work Centers » TrustSec » Components » IP SGT Static Mapping
+    # ======================================================================
+    ip_sgt_mappings:  # optional
+      - name: IPSGT_WEB01  # optional
+        host_ip: 10.20.0.10/32  # optional
+        # ALTERNATIVE - a mapping is keyed by host_ip OR host_name; uncomment to use instead:
+        #~ host_name: web01.example.com  # optional
+        sgt: SGT_Employees  # optional
+        # ALTERNATIVE - use a mapping_group (inherits its SGT/deploy) OR set sgt/deploy_type directly; uncomment to use instead:
+        #~ mapping_group: IPSGT_DC_SERVERS  # optional
+        deploy_type: ALL  # optional | choices: ALL | ND | NDG | default: ALL
+        # ALTERNATIVE - deploy_to (device/NDG) is only used when deploy_type is not ALL; uncomment to use instead:
+        #~ deploy_to: SW-ACCESS-01  # optional
+    # ======================================================================
+    # Doc page: Matrix Entry  ->  https://netascode.cisco.com/docs/data_models/ise/trust_sec/matrix_entry/
+    # GUI: Work Centers » TrustSec » TrustSec Policy » Matrix
+    # ======================================================================
+    matrix_entries:  # optional
+      - source_sgt: SGT_Employees  # MANDATORY
+        destination_sgt: SGT_Web_Servers  # MANDATORY
+        rule_status: ENABLED  # optional | choices: DISABLED | ENABLED | MONITOR | default: ENABLED
+        sgacl_name: SGACL_Permit_Web  # MANDATORY
+    # ======================================================================
+    # Doc page: Matrices  ->  https://netascode.cisco.com/docs/data_models/ise/trust_sec/matrices/
+    # GUI: Work Centers » TrustSec » TrustSec Policy » Matrix
+    # ======================================================================
+    matrices:  # optional
+      - name: MATRIX_PRODUCTION  # MANDATORY
+        description: Managed by Network-as-Code  # optional
+        matrix_policy_type: TRUSTSEC_POLICY  # optional | choices: TRUSTSEC_POLICY | TRAFFIC_STEERING_POLICY | default: TRUSTSEC_POLICY
+        copy_policy_from: Production  # optional
+        matrix_entries:  # optional
+          - source_sgt: SGT_Employees  # MANDATORY
+            destination_sgt: SGT_Web_Servers  # MANDATORY
+            rule_status: ENABLED  # optional | choices: DISABLED | ENABLED | MONITOR
+            sgacl_name: SGACL_Permit_Web  # MANDATORY

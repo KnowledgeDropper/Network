@@ -1,0 +1,65 @@
+---
+# FMC Prefilter Policy (prefilter + tunnel rules).
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  # ======================================================================
+  # Doc page: Domain  ->  https://netascode.cisco.com/docs/data_models/fmc/domains/domains/
+  # GUI: Settings » Domains
+  # ======================================================================
+  domains:  # optional
+    - name: Global  # MANDATORY
+      policies:  # optional
+        # ======================================================================
+        # Doc page: Prefilter Policy  ->  https://netascode.cisco.com/docs/data_models/fmc/policies/prefilter_policy/
+        # GUI: Policies » Prefilter
+        # ======================================================================
+        prefilter_policies:  # optional
+          - name: PREFILTER_EDGE  # MANDATORY | regex: ^[a-zA-Z0-9_.+ -]{1,64}$
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            default_action: ANALYZE_TUNNELS  # optional | choices: BLOCK_TUNNELS | ANALYZE_TUNNELS | default: ANALYZE_TUNNELS
+            log_connection_begin: false  # optional
+            log_connection_end: false  # optional
+            send_events_to_fmc: false  # optional
+            snmp_alert: SNMP_ALERT_NOC  # optional
+            syslog_alert: SYSLOG_ALERT_SIEM  # optional
+            rules:  # optional
+              - name: Fastpath_Backup_Traffic  # MANDATORY | maxlen: 50
+                action: FASTPATH  # MANDATORY | choices: FASTPATH | ANALYZE | BLOCK
+                rule_type: PREFILTER  # MANDATORY | choices: PREFILTER | TUNNEL
+                bidirectional: false  # optional | default: false
+                destination_interfaces: [inside]  # optional
+                destination_network_literals: [172.16.20.0/24]  # optional
+                destination_network_objects: [N_DMZ_172.16.10.0_24]  # optional
+                destination_port_literals:  # optional
+                  - port: 443  # optional | range: 1..65535
+                    protocol: TCP  # MANDATORY | choices: ALL | ICMP | IGMP | TCP | UDP | RDP | GRE | ESP | AH
+                    # ALTERNATIVE - icmp_type/icmp_code apply only when protocol is ICMP/ICMPV6 (instead of port); uncomment to use instead:
+                    #~ icmp_type: 8  # optional | or: Any | range: ..41
+                    # ALTERNATIVE - icmp_type/icmp_code apply only when protocol is ICMP/ICMPV6 (instead of port); uncomment to use instead:
+                    #~ icmp_code: 0  # optional | range: ..16
+                destination_port_objects: [P_TCP_443]  # optional
+                enabled: true  # optional | default: true
+                encapsulation_ports: [GRE]  # optional | choices: GRE | IP_IN_IP | IPV6_IN_IP | TEREDO
+                log_connection_begin: false  # optional
+                log_connection_end: false  # optional
+                send_events_to_fmc: false  # optional
+                send_syslog: false  # optional
+                snmp_alert: SNMP_ALERT_NOC  # optional
+                source_interfaces: [inside]  # optional
+                source_network_literals: [192.168.50.0/24]  # optional
+                source_network_objects: [N_INSIDE_10.10.10.0_24]  # optional
+                source_port_literals:  # optional
+                  - port: 443  # optional | range: 1..65535
+                    protocol: TCP  # MANDATORY | choices: TCP | UDP
+                source_port_objects: [P_TCP_8443]  # optional
+                syslog_alert: SYSLOG_ALERT_SIEM  # optional
+                syslog_severity: ALERT  # optional | choices: ALERT | CRIT | DEBUG | EMERG | ERR | INFO | NOTICE | WARNING
+                time_range: TR_BUSINESS_HOURS  # optional
+                tunnel_zone: TZ_GRE  # optional
+                vlan_tag_literals:  # optional
+                  - start_tag: 100  # MANDATORY | range: 1..4095
+                    end_tag: 110  # optional | range: 1..4095
+                vlan_tag_objects: [VT_100]  # optional

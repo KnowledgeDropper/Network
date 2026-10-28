@@ -1,0 +1,30 @@
+---
+# FMC system: smart licensing, policy assignment on destroy, deployment options.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  system:  # optional
+    # ======================================================================
+    # Doc page: Smart License  ->  https://netascode.cisco.com/docs/data_models/fmc/system/smart_license/
+    # GUI: Settings » Licenses » Smart Licenses
+    # ======================================================================
+    smart_license:  # optional
+      registration_type: REGISTER  # MANDATORY | choices: REGISTER | EVALUATION
+      force: false  # optional
+      retain: false  # optional
+      token: !env FMC_SYSTEM_SMART_LICENSE_TOKEN  # optional
+    # ======================================================================
+    # Doc page: Policy Assignment  ->  https://netascode.cisco.com/docs/data_models/fmc/system/policy_assignment/
+    # ======================================================================
+    policy_assignment:  # optional
+      after_destroy_access_control_policy: Default Access Control  # optional
+      after_destroy_health_policy: Initial_Health_Policy  # optional
+    # ======================================================================
+    # Doc page: Deployment  ->  https://netascode.cisco.com/docs/data_models/fmc/system/deployment/
+    # GUI: Deployment
+    # ======================================================================
+    deployment:  # optional
+      ignore_warning: true  # optional
+      deployment_note: Managed by Network-as-Code  # optional

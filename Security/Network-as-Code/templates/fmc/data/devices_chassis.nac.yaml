@@ -1,0 +1,83 @@
+---
+# Multi-instance chassis (Secure Firewall 3100/4200): chassis interfaces + logical devices.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  # ======================================================================
+  # Doc page: Domain  ->  https://netascode.cisco.com/docs/data_models/fmc/domains/domains/
+  # GUI: Settings » Domains
+  # ======================================================================
+  domains:  # optional
+    - name: Global  # MANDATORY
+      devices:  # optional
+        # ======================================================================
+        # Doc page: Chassis  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/chassis/
+        # GUI: Devices » Device Management » Chassis
+        # ======================================================================
+        chassis:  # optional
+          - name: FXOS-CHASSIS-01  # MANDATORY | regex: ^[a-zA-Z0-9_.+ -]{1,64}$
+            host: 10.20.10.1  # optional
+            registration_key: !env FMC_DEVICES_CHASSIS_REGISTRATION_KEY  # optional
+            nat_policy: NAT_EDGE  # optional
+            deploy: false  # optional
+            # ======================================================================
+            # Doc page: Chassis Physical Interface  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/chassis_physical_interface/
+            # GUI: Devices » Device Management » Chassis » Interfaces
+            # ======================================================================
+            physical_interfaces:  # optional
+              - name: Ethernet1/1  # MANDATORY
+                speed: AUTO  # MANDATORY | choices: AUTO | TEN_MBPS | HUNDRED_MBPS | ONE_GBPS | TEN_GBPS | TWENTY_FIVE_GBPS | FORTY_GBPS | HUNDRED_GBPS | TWO_HUNDRED_GBPS | FOUR_HUNDRED_GBPS | DETECT_SFP
+                port_type: DATA  # MANDATORY | choices: DATA | DATA_SHARING
+                admin_state: ENABLED  # optional | choices: ENABLED | DISABLED | default: ENABLED
+                auto_negotiation: true  # optional
+                duplex: AUTO  # optional | choices: AUTO | FULL | HALF | default: FULL
+                fec_mode: AUTO  # optional | choices: AUTO | CL108RS | CL74FC | CL91RS | DISABLE | default: AUTO
+            # ======================================================================
+            # Doc page: Chassis Sub-Interface  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/chassis_sub_interface/
+            # GUI: Devices » Device Management » Chassis » Interfaces
+            # ======================================================================
+            sub_interfaces:  # optional
+              - name: Port-channel10.10  # MANDATORY
+                port_type: DATA  # MANDATORY | choices: DATA | DATA_SHARING
+                vlan: 10  # MANDATORY | range: 1..4094
+            # ======================================================================
+            # Doc page: Chassis Etherchannel Interface  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/chassis_etherchannel_interface/
+            # GUI: Devices » Device Management » Chassis » Interfaces
+            # ======================================================================
+            etherchannel_interfaces:  # optional
+              - name: Port-channel10  # MANDATORY
+                port_type: DATA  # MANDATORY | choices: DATA | DATA_SHARING
+                speed: AUTO  # MANDATORY | choices: AUTO | TEN_MBPS | HUNDRED_MBPS | ONE_GBPS | TEN_GBPS | TWENTY_FIVE_GBPS | FORTY_GBPS | HUNDRED_GBPS | TWO_HUNDRED_GBPS | FOUR_HUNDRED_GBPS | DETECT_SFP
+                admin_state: ENABLED  # optional | choices: ENABLED | DISABLED | default: ENABLED
+                auto_negotiation: true  # optional | default: true
+                duplex: AUTO  # optional | choices: AUTO | FULL | HALF
+                lacp_mode: ACTIVE  # optional | choices: ACTIVE | PASSIVE | ON
+                lacp_rate: FAST  # optional | choices: DEFAULT | FAST | NORMAL
+                selected_interfaces: [Ethernet1/2, Ethernet1/3]  # optional
+            # ======================================================================
+            # Doc page: Chassis Logical Device  ->  https://netascode.cisco.com/docs/data_models/fmc/devices/chassis_logical_device/
+            # GUI: Devices » Device Management » Chassis » Instances
+            # ======================================================================
+            logical_devices:  # optional
+              - name: FTD-INSTANCE-01  # MANDATORY | regex: ^[a-zA-Z0-9-]{1,64}$
+                ftd_version: 7.6.0  # MANDATORY
+                ipv4_address: 10.90.1.2  # optional
+                ipv4_netmask: 255.255.255.0  # optional
+                ipv4_gateway: 10.90.1.1  # optional
+                ipv6_address: 2001:db8:90::2  # optional
+                ipv6_prefix: '64'  # optional
+                ipv6_gateway: 2001:db8:90::1  # optional
+                search_domain: example.com  # optional
+                fqdn: ftd1.example.com  # optional
+                firewall_mode: ROUTED  # MANDATORY | choices: ROUTED | TRANSPARENT
+                dns_servers: [10.10.10.53, 10.10.11.53]  # optional
+                device_password: !env FMC_CHASSIS_LOGICAL_DEVICES_DEVICE_PASSWORD  # MANDATORY
+                admin_state: ENABLED  # optional | choices: ENABLED | DISABLED | default: ENABLED
+                permit_expert_mode: true  # optional
+                resource_profile: RP_MEDIUM  # MANDATORY
+                assigned_interfaces: [Ethernet1/1, Port-channel10.10]  # MANDATORY
+                access_control_policy: ACP_EDGE  # MANDATORY
+                platform_settings: PS_EDGE  # optional
+                licenses: [MALWARE]  # MANDATORY | choices: MALWARE | URLFilter | CARRIER | PROTECT | THREAT

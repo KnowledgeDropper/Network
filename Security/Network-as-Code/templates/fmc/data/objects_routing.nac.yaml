@@ -1,0 +1,253 @@
+---
+# FMC objects used by routing/NAT/VPN: ACLs, prefix lists, AS-path, community lists, policy lists, route maps, BFD, SLA monitors, key chains, DNS.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  # ======================================================================
+  # Doc page: Domain  ->  https://netascode.cisco.com/docs/data_models/fmc/domains/domains/
+  # GUI: Settings » Domains
+  # ======================================================================
+  domains:  # optional
+    - name: Global  # MANDATORY
+      objects:  # optional
+        # ======================================================================
+        # Doc page: Standard Access List  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/standard_access_list/
+        # GUI: Objects » Object Management » Access List » Standard
+        # ======================================================================
+        standard_access_lists:  # optional
+          - name: SACL_INSIDE_NETS  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+            entries:  # optional
+              - action: PERMIT  # MANDATORY | choices: DENY | PERMIT
+                objects: [N_INSIDE_10.10.10.0_24]  # optional
+                literals: [10.10.30.0/24]  # optional
+        # ======================================================================
+        # Doc page: Extended Access List  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/extended_access_list/
+        # GUI: Objects » Object Management » Access List » Extended
+        # ======================================================================
+        extended_access_lists:  # optional
+          - name: EACL_SPLIT_TUNNEL  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+            entries:  # MANDATORY
+              - action: PERMIT  # MANDATORY | choices: DENY | PERMIT
+                logging: DEFAULT  # optional | choices: PER_ACCESS_LIST_ENTRY | DEFAULT | DISABLED | default: DEFAULT
+                log_level: INFORMATIONAL  # optional | choices: ALERT | CRIT | DEBUG | EMERG | ERR | INFORMATIONAL | NOTICE | WARNING | default: INFORMATIONAL
+                log_interval: 300  # optional | range: 1..600 | default: 300
+                destination_network_literals: [172.16.20.0/24]  # optional
+                destination_network_objects: [N_DMZ_172.16.10.0_24]  # optional
+                destination_port_literals:  # optional
+                  - port: 8080  # optional | range: 1..65535
+                    protocol: TCP  # MANDATORY | choices: ALL | ICMP | IGMP | TCP | UDP | RDP | GRE | ESP | AH
+                    # ALTERNATIVE - icmp_type/icmp_code apply only when protocol is ICMP/ICMPV6 (instead of port); uncomment to use instead:
+                    #~ icmp_type: 8  # optional | or: Any | range: ..41
+                    # ALTERNATIVE - icmp_type/icmp_code apply only when protocol is ICMP/ICMPV6 (instead of port); uncomment to use instead:
+                    #~ icmp_code: 0  # optional | range: ..16
+                destination_port_objects: [P_TCP_443]  # optional
+                source_network_literals: [192.168.50.0/24]  # optional
+                source_network_objects: [N_INSIDE_10.10.10.0_24]  # optional
+                source_sgt_objects: [SGT_EMPLOYEES]  # optional
+                source_port_literals:  # optional
+                  - port: 8080  # optional | range: 1..65535
+                    protocol: TCP  # MANDATORY | choices: TCP | UDP
+                source_port_objects: [P_TCP_8443]  # optional
+        # ======================================================================
+        # Doc page: BFD Teamplate  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/bfd_template/
+        # GUI: Objects » Object Management » BFD Template
+        # ======================================================================
+        bfd_templates:  # optional
+          - name: BFD_SINGLE_HOP  # MANDATORY
+            hop_type: SINGLE_HOP  # MANDATORY | choices: SINGLE_HOP | MULTI_HOP
+            echo: true  # optional | default: false
+            interval_type: MILLISECONDS  # optional | choices: MILLISECONDS | MICROSECONDS | NONE
+            multiplier: 3  # optional | range: 3..50
+            minimum_transmit: 100  # optional | range: 50..999000
+            minimum_receive: 300  # optional | range: 50..999000
+            authentication_type: NONE  # optional | choices: MD5 | METICULOUSMD5 | METICULOUSSHA1 | SHA1 | NONE | default: NONE
+            authentication_password: !env FMC_OBJECTS_BFD_TEMPLATES_AUTHENTICATION_PASSWORD  # optional | maxlen: 24
+            authentication_password_encryption: UN_ENCRYPTED  # optional | choices: UN_ENCRYPTED | ENCRYPTED | NONE
+            authentication_key_id: 10  # optional | range: ..255
+        # ======================================================================
+        # Doc page: AS Path  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/as_path/
+        # GUI: Objects » Object Management » AS Path
+        # ======================================================================
+        as_paths:  # optional
+          - name: 100  # MANDATORY | range: 1..500
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+            entries:  # MANDATORY
+              - action: PERMIT  # MANDATORY | choices: DENY | PERMIT
+                regular_expression: '65000'  # MANDATORY
+        # ======================================================================
+        # Doc page: IPv4 Prefix List  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/ipv4_prefix_list/
+        # GUI: Objects » Object Management » IPv4 Prefix List
+        # ======================================================================
+        ipv4_prefix_lists:  # optional
+          - name: PL4_DEFAULT_ONLY  # MANDATORY
+            entries:  # MANDATORY
+              - action: PERMIT  # MANDATORY | choices: DENY | PERMIT
+                prefix: 10.20.30.0/24  # MANDATORY
+                min_prefix_length: 25  # optional | range: ..32
+                max_prefix_length: 30  # optional | range: ..32
+        # ======================================================================
+        # Doc page: IPv6 Prefix List  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/ipv6_prefix_list/
+        # GUI: Objects » Object Management » IPv6 Prefix List
+        # ======================================================================
+        ipv6_prefix_lists:  # optional
+          - name: PL6_DEFAULT_ONLY  # MANDATORY
+            entries:  # MANDATORY
+              - action: PERMIT  # MANDATORY | choices: DENY | PERMIT
+                prefix: 2001:db8:acad:1::/64  # MANDATORY
+                min_prefix_length: 80  # optional | range: ..128
+                max_prefix_length: 128  # optional | range: ..128
+        # ======================================================================
+        # Doc page: Standard Community List  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/standard_community_list/
+        # GUI: Objects » Object Management » Community List » Community » Standard
+        # ======================================================================
+        standard_community_lists:  # optional
+          - name: SCL_65001_100  # MANDATORY
+            entries:  # optional
+              - action: PERMIT  # MANDATORY | choices: DENY | PERMIT
+                communities: ['65000:100', '65000:200']  # MANDATORY
+                internet: true  # optional | default: false
+                no_advertise: false  # optional | default: false
+                no_export: false  # optional | default: false
+        # ======================================================================
+        # Doc page: Expanded Community List  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/expanded_community_list/
+        # GUI: Objects » Object Management » Community List » Community » Expanded
+        # ======================================================================
+        expanded_community_lists:  # optional
+          - name: ECL_65001_ANY  # MANDATORY
+            entries:  # optional
+              - action: PERMIT  # MANDATORY | choices: DENY | PERMIT
+                regular_expression: ^(65000:400|65000:500)$  # MANDATORY
+        # ======================================================================
+        # Doc page: Extended Community List  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/extended_community_list/
+        # GUI: Objects » Object Management » Community List » Extended Community
+        # ======================================================================
+        extended_community_lists:  # optional
+          - name: XCL_RT_65001_100  # MANDATORY
+            sub_type: Expanded  # MANDATORY | choices: Expanded | Standard
+            entries:  # optional
+              - action: PERMIT  # MANDATORY | choices: DENY | PERMIT
+                route_target: 65000:1000  # optional
+                regular_expression: ^(65000:700|65000:800)$  # optional
+        # ======================================================================
+        # Doc page: Policy List  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/policy_list/
+        # GUI: Objects » Object Management » Policy List
+        # ======================================================================
+        policy_lists:  # optional
+          - name: POL_INBOUND  # MANDATORY
+            action: PERMIT  # MANDATORY | choices: DENY | PERMIT
+            interfaces: [SZ_INSIDE]  # optional
+            interface_literals: [inside]  # optional
+            address_standard_access_lists: [SACL_INSIDE_NETS]  # optional
+            address_ipv4_prefix_lists: [PL4_DEFAULT_ONLY]  # optional
+            next_hop_standard_access_lists: [SACL_INSIDE_NETS]  # optional
+            next_hop_ipv4_prefix_lists: [PL4_DEFAULT_ONLY]  # optional
+            route_source_standard_access_lists: [SACL_INSIDE_NETS]  # optional
+            route_source_ipv4_prefix_lists: [PL4_DEFAULT_ONLY]  # optional
+            as_paths: [100]  # optional | range: 1..500
+            community_lists: [SCL_65001_100]  # optional
+            match_community_exactly: true  # optional
+            metric: 100  # optional | range: ..4294967295
+            tag: 200  # optional | range: ..4294967295
+        # ======================================================================
+        # Doc page: Route Map  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/route_map/
+        # GUI: Objects » Object Management » Route Map
+        # ======================================================================
+        route_maps:  # optional
+          - name: RM_BGP_IN  # MANDATORY
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+            entries:  # MANDATORY
+              - action: PERMIT  # MANDATORY | choices: DENY | PERMIT
+                id: 1  # conditional/variant-mandatory
+                match:  # optional
+                  security_zones: [SZ_INSIDE]  # optional
+                  interface_literals: [inside]  # optional
+                  ipv4_address_access_lists: [SACL_INSIDE_NETS]  # optional
+                  ipv4_address_prefix_lists: [PL4_DEFAULT_ONLY]  # optional
+                  ipv4_next_hop_access_lists: [SACL_INSIDE_NETS]  # optional
+                  ipv4_next_hop_prefix_lists: [PL4_DEFAULT_ONLY]  # optional
+                  ipv4_route_source_access_lists: [SACL_INSIDE_NETS]  # optional
+                  ipv4_route_source_prefix_lists: [PL4_DEFAULT_ONLY]  # optional
+                  ipv6_address_extended_access_list: EACL_SPLIT_TUNNEL  # optional
+                  ipv6_address_prefix_list: PL4_DEFAULT_ONLY  # optional
+                  ipv6_next_hop_extended_access_list: EACL_SPLIT_TUNNEL  # optional
+                  ipv6_next_hop_prefix_list: PL4_DEFAULT_ONLY  # optional
+                  ipv6_route_source_extended_access_list: EACL_SPLIT_TUNNEL  # optional
+                  ipv6_route_source_prefix_list: PL4_DEFAULT_ONLY  # optional
+                  bgp_as_paths: [1]  # optional | range: 1..500
+                  bgp_community_lists: [SCL_65001_100]  # optional
+                  bgp_policy_lists: [POL_INBOUND]  # optional
+                  route_metrics: [10]  # optional | range: ..4294967295
+                  tags: [1]  # optional | range: ..4294967295
+                  route_type_external_1: false  # optional
+                  route_type_external_2: false  # optional
+                  route_type_internal: false  # optional
+                  route_type_local: false  # optional
+                  route_type_nssa_external_1: false  # optional
+                  route_type_nssa_external_2: false  # optional
+                set:  # optional
+                  metric_bandwidth: 1000  # optional | range: 1..4294967295
+                  metric_type: INTERNAL  # optional | choices: INTERNAL | TYPE_1 | TYPE_2
+                  bgp_as_path_prepend: [65000, 66000]  # optional | range: ..4294967295
+                  bgp_as_path_prepend_last_as: 3  # optional | range: 1..10
+                  bgp_as_path_convert_route_tag_into_as_path: true  # optional
+                  bgp_community_none: false  # optional
+                  bgp_community_specific_community: 1  # optional | range: 1..4294967295
+                  bgp_community_add_to_existing_communities: false  # optional
+                  bgp_community_internet: false  # optional
+                  bgp_community_no_advertise: false  # optional
+                  bgp_community_no_export: false  # optional
+                  bgp_community_route_targets: ['65001:100']  # optional
+                  bgp_community_add_to_existing_extended_communities: false  # optional | default: false
+                  bgp_automatic_tag: false  # optional
+                  bgp_local_preference: 100  # optional | range: ..4294967295
+                  bgp_weight: 100  # optional | range: ..65535
+                  bgp_origin: LOCAL_IGP  # optional | choices: LOCAL_IGP | INCOMPLETE
+                  bgp_ipv4_next_hop: USE_PEER_ADDRESS  # optional | choices: USE_PEER_ADDRESS | SPECIFIC_IP
+                  bgp_ipv4_next_hop_specific_ips: [192.0.2.10]  # optional
+                  bgp_ipv4_prefix_list: PL4_DEFAULT_ONLY  # optional
+                  bgp_ipv6_next_hop: USE_PEER_ADDRESS  # optional | choices: USE_PEER_ADDRESS | SPECIFIC_IP
+                  bgp_ipv6_next_hop_specific_ips: ['2001:db8:10::1']  # optional
+        # ======================================================================
+        # Doc page: DNS Server Group  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/dns_server_group/
+        # GUI: Objects » DNS Server Group
+        # ======================================================================
+        dns_server_groups:  # optional
+          - name: DNS_CORP  # MANDATORY
+            default_domain: corp.example.com  # optional
+            retries: 2  # optional | range: ..10 | default: 2
+            timeout: 2  # optional | range: 1..30 | default: 2
+            dns_servers: [10.10.10.53, 10.10.11.53]  # MANDATORY
+        sinkholes:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+          - name: SINKHOLE_01  # optional (schema-only, not on docs page) | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+            ipv4_address: 192.0.2.10  # optional (schema-only, not on docs page)
+            ipv6_address: 2001:db8:10::1  # optional (schema-only, not on docs page)
+            action: MONITOR  # optional (schema-only, not on docs page) | choices: MONITOR | BLOCK
+            log_connection_type: SINKHOLE_CNC  # optional (schema-only, not on docs page) | choices: SINKHOLE_CNC | SINKHOLE_MALWARE | SINKHOLE_PHISHING | NONE | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+        sla_monitors:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+          - name: SLA_ISP1  # optional (schema-only, not on docs page)
+            description: Managed by Network-as-Code  # optional (schema-only, not on docs page)
+            sla_monitor_id: 1  # optional (schema-only, not on docs page) | range: 1..2147483647 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+            monitor_address: 192.0.2.10  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+            selected_interfaces: [inside]  # optional (schema-only, not on docs page)
+            timeout: 30  # optional (schema-only, not on docs page) | range: ..604800000
+            frequency: 1  # optional (schema-only, not on docs page) | range: 1..604800 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+            threshold: 80  # optional (schema-only, not on docs page) | range: ..2147483647
+            data_size: 1024  # optional (schema-only, not on docs page) | range: ..16384 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+            tos: 10  # optional (schema-only, not on docs page) | range: ..255 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+            number_of_packets: 1  # optional (schema-only, not on docs page) | range: 1..100 | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+        key_chains:  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+          - name: KC_OSPF  # optional (schema-only, not on docs page)
+            description: Managed by Network-as-Code  # optional (schema-only, not on docs page)
+            keys:  # optional (schema-only, not on docs page)
+              - id: 0  # optional (schema-only, not on docs page) | range: ..255
+                key: !env FMC_KEY_CHAINS_KEYS_KEY  # optional (schema-only, not on docs page)
+                accept_lifetime_start: 00:00 Jan 01 2026  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                accept_lifetime_end_type: INFINITE  # optional (schema-only, not on docs page) | choices: INFINITE | DURATION | DATETIME | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                accept_lifetime_end: 23:59 Dec 31 2027  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                send_lifetime_start: 00:00 Jan 01 2026  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                send_lifetime_end_type: INFINITE  # optional (schema-only, not on docs page) | choices: INFINITE | DURATION | DATETIME | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                send_lifetime_end: 23:59 Dec 31 2027  # optional (schema-only, not on docs page) | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)

@@ -1,0 +1,113 @@
+---
+# Site-to-Site VPN topologies.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  # ======================================================================
+  # Doc page: Domain  ->  https://netascode.cisco.com/docs/data_models/fmc/domains/domains/
+  # GUI: Settings » Domains
+  # ======================================================================
+  domains:  # optional
+    - name: Global  # MANDATORY
+      vpns:  # optional
+        # ======================================================================
+        # Doc page: Site to Site  ->  https://netascode.cisco.com/docs/data_models/fmc/vpns/site_to_site/
+        # GUI: Secure Connections » Site-to-Site VPN & SD-WAN
+        # ======================================================================
+        site_to_site:  # optional
+          - name: S2S_HUB_SPOKE  # MANDATORY
+            network_topology: POINT_TO_POINT  # MANDATORY | choices: POINT_TO_POINT | HUB_AND_SPOKE | FULL_MESH
+            route_based: false  # MANDATORY
+            ikev1: false  # optional | default: false
+            ikev2: true  # optional | default: false
+            endpoints:  # MANDATORY
+              - name: FTD-EDGE-01  # MANDATORY
+                peer_type: PEER  # MANDATORY | choices: PEER | HUB | SPOKE
+                extranet_device: false  # MANDATORY
+                allow_incoming_ikev2_routes: true  # optional | default: true
+                backup_interface_logical_name: outside  # optional
+                backup_interface_public_ip_address: 203.0.113.2  # optional
+                backup_local_identity_type: ADDRESS  # optional | choices: ADDRESS | AUTO | EMAILID | HOSTNAME | KEYID
+                backup_local_identity_string: vpn-hub.example.com  # optional
+                connection_type: BIDIRECTIONAL  # optional | choices: ORIGINATE_ONLY | ANSWER_ONLY | BIDIRECTIONAL | default: ORIGINATE_ONLY
+                # ALTERNATIVE - only for extranet (non-FMC-managed) peers, i.e. extranet_device: true; uncomment to use instead:
+                #~ extranet_dynamic_ip: false  # optional
+                # ALTERNATIVE - only for extranet (non-FMC-managed) peers, i.e. extranet_device: true; uncomment to use instead:
+                #~ extranet_ip_addresses: [10.254.252.10]  # optional
+                interface_logical_name: outside  # optional
+                interface_ipv6_address: 2001:db8:10::1  # optional
+                interface_public_ip_address: 198.51.100.2  # optional
+                local_identity_type: HOSTNAME  # optional | choices: ADDRESS | AUTO | EMAILID | HOSTNAME | KEYID
+                local_identity_string: vpn-hub.example.com  # optional
+                nat_exemption: true  # optional
+                nat_exemption_inside_interface: SZ_INSIDE  # optional
+                nat_traversal: true  # optional | default: true
+                override_remote_vpn_filter_access_list: EACL_SPLIT_TUNNEL  # optional
+                protected_networks: [N_INSIDE_10.10.10.0_24]  # optional
+                protected_networks_access_list: EACL_SPLIT_TUNNEL  # optional
+                reverse_route_injection: false  # optional | default: false
+                send_virtual_tunnel_interface_ip_to_peer: false  # optional
+                vpn_filter_access_list: EACL_SPLIT_TUNNEL  # optional
+              - name: BRANCH-PEER-01  # MANDATORY
+                peer_type: PEER  # MANDATORY | choices: PEER | HUB | SPOKE
+                extranet_device: true  # MANDATORY
+                extranet_ip_addresses: [203.0.113.10]  # optional
+                protected_networks: [N_DMZ_172.16.10.0_24]  # optional
+            ike_settings:  # optional
+              ikev1_authentication_type: MANUAL_PRE_SHARED_KEY  # optional | choices: MANUAL_PRE_SHARED_KEY | AUTOMATIC_PRE_SHARED_KEY | CERTIFICATE
+              # ALTERNATIVE - AUTOMATIC_PRE_SHARED_KEY (length) instead of a manual PSK; uncomment to use instead:
+              #~ ikev1_automatic_pre_shared_key_length: 1  # optional | range: 1..127
+              # ALTERNATIVE - CERTIFICATE authentication instead of PSK (set *_authentication_type: CERTIFICATE); uncomment to use instead:
+              #~ ikev1_certificate: CE_VPN_EXAMPLE  # optional
+              ikev1_manual_pre_shared_key: !env FMC_SITE_TO_SITE_IKE_SETTINGS_IKEV1_MANUAL_PRE_SHARED_KEY  # optional
+              ikev1_policies: [IKEV1_POL_10]  # optional
+              ikev2_authentication_type: MANUAL_PRE_SHARED_KEY  # optional | choices: MANUAL_PRE_SHARED_KEY | AUTOMATIC_PRE_SHARED_KEY | CERTIFICATE
+              # ALTERNATIVE - AUTOMATIC_PRE_SHARED_KEY (length) instead of a manual PSK; uncomment to use instead:
+              #~ ikev2_automatic_pre_shared_key_length: 1  # optional | range: 1..127
+              # ALTERNATIVE - CERTIFICATE authentication instead of PSK (set *_authentication_type: CERTIFICATE); uncomment to use instead:
+              #~ ikev2_certificate: CE_VPN_EXAMPLE  # optional
+              ikev2_enforce_hex_based_pre_shared_key: false  # optional
+              ikev2_manual_pre_shared_key: !env FMC_SITE_TO_SITE_IKE_SETTINGS_IKEV2_MANUAL_PRE_SHARED_KEY  # optional
+              ikev2_policies: [IKEV2_POL_10]  # optional
+            ipsec_settings:  # optional
+              crypto_map_type: STATIC  # optional | choices: STATIC | DYNAMIC
+              do_not_fragment_policy: NONE  # optional | choices: SET | COPY | CLEAR | NONE | default: NONE
+              ikev1_ipsec_proposals: [IKEV1_AES256_SHA]  # optional
+              ikev2_ipsec_proposals: [IKEV2_AES256GCM]  # optional
+              ikev2_mode: TUNNEL  # optional | choices: TUNNEL | TRANSPORT_PREFERRED | TRANSPORT_REQUIRED | default: TUNNEL
+              lifetime_duration: 28800  # optional | range: 120..2147483647 | default: 28800
+              lifetime_size: 4608000  # optional | range: 10..2147483647 | default: 4608000
+              perfect_forward_secrecy: false  # optional | default: false
+              perfect_forward_secrecy_modulus_group: 21  # optional | range: 1..31
+              reverse_route_injection: true  # optional | default: true
+              security_association_strength_enforcement: false  # optional | default: false
+              tfc: false  # optional | default: false
+              tfc_burst_bytes: 0  # optional | range: ..16 | default: 0
+              tfc_payload_bytes: 0  # optional | range: ..1024 | default: 0
+              tfc_timeout: 0  # optional | range: ..60 | default: 0
+              validate_incoming_icmp_error_messages: false  # optional | default: false
+            advanced_settings:  # optional
+              ike_keepalive: ENABLED  # optional | choices: DISABLED | ENABLED | ENABLED_INFINITE | default: ENABLED
+              ike_keepalive_threshold: 10  # optional | range: 10..3600 | default: 10
+              ike_keepalive_retry_interval: 2  # optional | range: 1..10 | default: 2
+              ike_identity_sent_to_peers: AUTO_OR_DN  # optional | choices: IP_ADDRESS | HOST_NAME | AUTO_OR_DN | default: AUTO_OR_DN
+              ike_peer_identity_validation: REQUIRED  # optional | choices: DO_NOT_CHECK | REQUIRED | IF_SUPPORTED_BY_CERT | default: REQUIRED
+              ike_aggressive_mode: false  # optional | default: false
+              ike_notification_on_tunnel_disconnect: false  # optional | default: false
+              ikev2_cookie_challenge: CUSTOM  # optional | choices: CUSTOM | ALWAYS | NEVER | default: CUSTOM
+              ikev2_threshold_to_challenge_incoming_cookies: 50  # optional | range: ..100 | default: 50
+              ikev2_number_of_sas_allowed_in_negotiation: 100  # optional | range: 1..100 | default: 100
+              ikev2_maximum_number_of_sas_allowed: 10  # optional
+              ipsec_fragmentation_before_encryption: true  # optional | default: true
+              ipsec_path_maximum_transmission_unit_aging_reset_interval: 30  # optional | range: 10..30
+              spoke_to_spoke_connectivity_through_hub: false  # optional | default: false
+              nat_keepalive_message_traversal_interval: 20  # optional | range: 10..3600 | default: 20
+              vpn_idle_timeout_value: 30  # optional | range: 1..35791394 | default: 30
+              sgt_propagation_over_virtual_tunnel_interface: false  # optional | default: false
+              bypass_access_control_policy_for_decrypted_traffic: false  # optional | default: false
+              cert_use_certificate_map_configured_in_endpoint_to_determine_tunnel: false  # optional | default: false
+              cert_use_ou_to_determine_tunnel: true  # optional | default: true
+              cert_use_ike_identity_to_determine_tunnel: true  # optional | default: true
+              cert_use_peer_ip_address_to_determine_tunnel: true  # optional | default: true

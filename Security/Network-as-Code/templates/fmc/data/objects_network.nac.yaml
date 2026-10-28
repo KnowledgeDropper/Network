@@ -1,0 +1,272 @@
+---
+# FMC objects: network / port / URL / VLAN / SGT / zones / identity-ish objects.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  # ======================================================================
+  # Doc page: Domain  ->  https://netascode.cisco.com/docs/data_models/fmc/domains/domains/
+  # GUI: Settings » Domains
+  # ======================================================================
+  domains:  # optional
+    - name: Global  # MANDATORY
+      objects:  # optional
+        # ======================================================================
+        # Doc page: Host  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/host/
+        # GUI: Objects » Object Management » Network
+        # ======================================================================
+        hosts:  # optional
+          - name: H_WEB01  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+            ip: 10.10.10.10  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: true  # optional | default: false
+            overrides:  # optional
+              - ip: 192.0.2.10  # MANDATORY
+                description: Managed by Network-as-Code  # optional | maxlen: 255
+                target: FTD-EDGE-01  # MANDATORY
+                target_type: Device  # MANDATORY | choices: Device | Domain
+        # ======================================================================
+        # Doc page: Network  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/network/
+        # GUI: Objects » Object Management » Network
+        # ======================================================================
+        networks:  # optional
+          - name: N_INSIDE_10.10.10.0_24  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+            prefix: 10.10.10.0/24  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+            overrides:  # optional
+              - prefix: 10.10.10.0/24  # MANDATORY
+                description: Managed by Network-as-Code  # optional | maxlen: 255
+                target: FTD-EDGE-01  # MANDATORY
+                target_type: Device  # MANDATORY | choices: Device | Domain
+          - name: N_DMZ_172.16.10.0_24  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+            prefix: 172.16.10.0/24  # MANDATORY
+        # ======================================================================
+        # Doc page: Range  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/range/
+        # GUI: Objects » Object Management » Network
+        # ======================================================================
+        ranges:  # optional
+          - name: R_DHCP_POOL  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+            ip_range: 10.10.20.10-10.10.20.50  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+            overrides:  # optional
+              - ip_range: 10.10.20.10-10.10.20.50  # MANDATORY
+                description: Managed by Network-as-Code  # optional | maxlen: 255
+                target: FTD-EDGE-01  # MANDATORY
+                target_type: Device  # MANDATORY | choices: Device | Domain
+        # ======================================================================
+        # Doc page: FQDN  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/fqdn/
+        # GUI: Objects » Object Management » Network
+        # ======================================================================
+        fqdns:  # optional
+          - name: FQDN_UPDATES_EXAMPLE_COM  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+            fqdn: updates.example.com  # MANDATORY
+            dns_resolution: IPV4_ONLY  # optional | choices: IPV4_ONLY | IPV6_ONLY | IPV4_AND_IPV6 | default: IPV4_AND_IPV6
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+            overrides:  # optional
+              - fqdn: host01.example.com  # MANDATORY
+                description: Managed by Network-as-Code  # optional | maxlen: 255
+                target: FTD-EDGE-01  # MANDATORY
+                target_type: Device  # MANDATORY | choices: Device | Domain
+        # ======================================================================
+        # Doc page: Network Group  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/network_group/
+        # GUI: Objects » Object Management » Network
+        # ======================================================================
+        network_groups:  # optional
+          - name: NG_INTERNAL  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            objects: [N_INSIDE_10.10.10.0_24]  # optional
+            literals: [192.168.100.0/24]  # optional
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+            overrides:  # optional
+              - objects: [N_DMZ_172.16.10.0_24]  # optional
+                literals: [192.168.200.0/24]  # optional
+                description: Managed by Network-as-Code  # optional | maxlen: 255
+                target: FTD-EDGE-01  # MANDATORY
+                target_type: Device  # MANDATORY | choices: Device | Domain
+        # ======================================================================
+        # Doc page: URL  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/url/
+        # GUI: Objects » Object Management » URL
+        # ======================================================================
+        urls:  # optional
+          - name: URL_EXAMPLE  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,128}$
+            url: https://www.example.com/  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+        # ======================================================================
+        # Doc page: URL Group  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/url_group/
+        # GUI: Objects » Object Management » URL
+        # ======================================================================
+        url_groups:  # optional
+          - name: UG_ALLOWED  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            urls: [URL_EXAMPLE]  # optional
+            literals: ['https://example.com']  # optional
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+        # ======================================================================
+        # Doc page: Port  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/port/
+        # GUI: Objects » Object Management » Port
+        # ======================================================================
+        ports:  # optional
+          - name: P_TCP_8443  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,128}$
+            protocol: TCP  # MANDATORY | choices: TCP | UDP | ESP | ETHERIP | AH
+            port: '8443'  # optional | range: 1..65535
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+          - name: P_TCP_443  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,128}$
+            protocol: TCP  # MANDATORY | choices: TCP | UDP | ESP | ETHERIP | AH
+            port: '443'  # optional | range: 1..65535
+        # ======================================================================
+        # Doc page: ICMPv4  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/icmpv4/
+        # GUI: Objects » Object Management » Port
+        # ======================================================================
+        icmpv4s:  # optional
+          - name: ICMP4_ECHO  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,128}$
+            icmp_type: 8  # optional | or: Any | range: ..41
+            code: 0  # optional | range: ..16
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+        # ======================================================================
+        # Doc page: ICMPv6  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/icmpv6/
+        # GUI: Objects » Object Management » Port
+        # ======================================================================
+        icmpv6s:  # optional
+          - name: ICMP6_DEST_UNREACH  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,128}$
+            # NOTE: netascode schema currently caps icmp_type at 41 for ICMPv6 too (e.g. echo-request 128 is rejected)
+            icmp_type: 1  # optional | or: Any | range: ..41
+            code: 0  # optional | range: ..255
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+        # ======================================================================
+        # Doc page: Port Group  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/port_group/
+        # GUI: Objects » Object Management » Port
+        # ======================================================================
+        port_groups:  # optional
+          - name: PG_WEB  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,128}$
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            objects: [P_TCP_8443]  # optional
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+        # ======================================================================
+        # Doc page: Time Range  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/time_range/
+        # GUI: Objects » Object Management » Time Range
+        # ======================================================================
+        time_ranges:  # optional
+          - name: TR_BUSINESS_HOURS  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            start_time: 2025-02-13T10:00  # optional | regex: ^\d{4}-\d{2}-\d{2}T([01]?[0-9]|2[0-4]):([0-5][0-9])$
+            end_time: 2025-02-21T20:00  # optional | regex: ^\d{4}-\d{2}-\d{2}T([01]?[0-9]|2[0-4]):([0-5][0-9])$
+            recurrences:  # optional
+              - recurrence_type: DAILY_INTERVAL  # MANDATORY | choices: DAILY_INTERVAL | RANGE
+                daily_days: [MON, THU]  # optional | choices: MON | TUE | WED | THU | FRI | SAT | SUN
+                daily_end_time: '13:00'  # optional | regex: ^([01]?[0-9]|2[0-4]):([0-5][0-9])$
+                daily_start_time: '11:00'  # optional | regex: ^([01]?[0-9]|2[0-4]):([0-5][0-9])$
+                range_end_day: MON  # optional | choices: MON | TUE | WED | THU | FRI | SAT | SUN
+                range_end_time: '22:26'  # optional | regex: ^([01]?[0-9]|2[0-4]):([0-5][0-9])$
+                range_start_day: MON  # optional | choices: MON | TUE | WED | THU | FRI | SAT | SUN
+                range_start_time: '17:34'  # optional | regex: ^([01]?[0-9]|2[0-4]):([0-5][0-9])$
+        # ======================================================================
+        # Doc page: Dynamic Object  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/dynamic_object/
+        # GUI: Objects » Object Management » External Attributes » Dynamic Object
+        # ======================================================================
+        dynamic_objects:  # optional
+          - name: DO_CLOUD_WORKLOADS  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,128}$
+            type: IP  # optional | choices: IP
+            mappings: [10.50.0.10, 10.50.0.11]  # optional
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+        # ======================================================================
+        # Doc page: VLAN Tag  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/vlan_tag/
+        # GUI: Objects » Object Management » VLAN Tag
+        # ======================================================================
+        vlan_tags:  # optional
+          - name: VT_100  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+            start_tag: 22  # MANDATORY | range: ..65534
+            end_tag: 44  # optional | range: ..65534
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+        # ======================================================================
+        # Doc page: VLAN Tag Group  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/vlan_tag_group/
+        # GUI: Objects » Object Management » VLAN Tag
+        # ======================================================================
+        vlan_tag_groups:  # optional
+          - name: VTG_USERS  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            vlan_tags: [VT_100]  # optional
+            literals:  # optional
+              - start_tag: 33  # MANDATORY | range: ..65534
+                end_tag: 77  # optional | range: ..65534
+            # NOTE: set true to allow per-device/domain overrides (see overrides list)
+            overridable: false  # optional | default: false
+        # ======================================================================
+        # Doc page: Security Group Tag (SGT)  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/sgt/
+        # GUI: Objects » Object Management » External Attributes » Security Group Tag
+        # ======================================================================
+        sgts:  # optional
+          - name: SGT_EMPLOYEES  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+            tag: 123  # MANDATORY | range: ..65534
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+        # ======================================================================
+        # Doc page: Security Zone  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/security_zone/
+        # GUI: Objects » Object Management » Interface » Security Zone
+        # ======================================================================
+        security_zones:  # optional
+          - name: SZ_INSIDE  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+            interface_type: ROUTED  # optional | choices: ROUTED | ASA | INLINE | SWITCHED | PASSIVE | default: ROUTED
+          - name: SZ_OUTSIDE  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+            interface_type: ROUTED  # optional | choices: ROUTED | ASA | INLINE | SWITCHED | PASSIVE | default: ROUTED
+        # ======================================================================
+        # Doc page: Application Filter  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/application_filter/
+        # GUI: Objects » Object Management » Application Filters
+        # ======================================================================
+        application_filters:  # optional
+          - name: AF_HIGH_RISK  # MANDATORY
+            applications: [10Web, 1Password]  # optional
+            filters:  # optional
+              - business_relevances: [Very Low, Low]  # optional
+                categories: [active directory, ad portal]  # optional
+                risks: [Very Low, Low]  # optional
+                tags: [bundles software, business impact]  # optional
+                types: [Server, Client]  # optional
+        # ======================================================================
+        # Doc page: Tunnel Zone  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/tunnel_zone/
+        # GUI: Objects » Object Management » Tunnel Zone
+        # ======================================================================
+        tunnel_zones:  # optional
+          - name: TZ_GRE  # MANDATORY
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+        # ======================================================================
+        # Doc page: Interface Group  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/interface_group/
+        # GUI: Objects » Object Management » Interface » Interface Group
+        # ======================================================================
+        interface_groups:  # optional
+          - name: IG_INSIDE  # MANDATORY | regex: ^[a-zA-Z0-9_.+-]{1,64}$
+            interface_type: ROUTED  # optional | choices: PASSIVE | INLINE | SWITCHED | ROUTED | MANAGEMENT | LOOPBACK | default: ROUTED
+        # ======================================================================
+        # Doc page: Resource Profile  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/resource_profile/
+        # ======================================================================
+        resource_profiles:  # optional
+          - name: RP_MEDIUM  # MANDATORY
+            description: Resource profile with 8 CPUs  # optional | maxlen: 255
+            number_of_cpus: 8  # MANDATORY
+        # ======================================================================
+        # Doc page: Geolocation  ->  https://netascode.cisco.com/docs/data_models/fmc/objects/geolocation/
+        # GUI: Objects » Object Management » Geolocation
+        # ======================================================================
+        geolocations:  # optional
+          - name: GEO_BLOCKED  # MANDATORY
+            continents: [Antarctica]  # optional
+            countries: [RU]  # optional

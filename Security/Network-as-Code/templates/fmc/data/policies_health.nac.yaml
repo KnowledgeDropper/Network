@@ -1,0 +1,41 @@
+---
+# FMC Health Policy.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  # ======================================================================
+  # Doc page: Domain  ->  https://netascode.cisco.com/docs/data_models/fmc/domains/domains/
+  # GUI: Settings » Domains
+  # ======================================================================
+  domains:  # optional
+    - name: Global  # MANDATORY
+      policies:  # optional
+        # ======================================================================
+        # Doc page: Health Policy  ->  https://netascode.cisco.com/docs/data_models/fmc/policies/health_policy/
+        # GUI: Troubleshooting » Health » Policy
+        # ======================================================================
+        health_policies:  # optional
+          - name: HEALTH_FTD  # MANDATORY | regex: ^[a-zA-Z0-9_.+ -]{1,64}$
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            policy_type: DevicePolicy  # MANDATORY | choices: DevicePolicy | default: DevicePolicy
+            is_default_policy: false  # optional | default: false
+            health_module_run_time_interval: 5  # optional | range: 5..60 | default: 5
+            metric_collection_interval: 1  # optional | range: 1..60 | default: 1
+            health_modules:  # optional
+              - name: hm_db  # MANDATORY | choices: hm_disk_status | hm_asp_drop | hm_tds | hm_db | hm_conn_status_sse | hm_is5800_powersupply | hm_card_reset | hm_ntp_server | hm_threat_grid_amp | hm_ftd_ha | hm_talosagent | hm_conn_status_amp | ... (+33 more, see schema)
+                type: FMC_FTD  # MANDATORY | choices: FTD | FMC_FTD | SENSOR | FMC
+                enabled: false  # optional | default: true
+                alert_severity: Critical  # optional | choices: Critical | Major | Warning | Minor | Info
+                critical_threshold: 90  # optional | range: 1..99
+                warning_threshold: 80  # optional | range: 1..99
+                alert_configs:  # optional
+                  - name: nat-no-xlate-to-pat-pool  # MANDATORY
+                    enabled: false  # optional | default: true
+                    thresholds:  # optional
+                      - type: red  # MANDATORY | choices: red | yellow
+                        threshold: 90  # MANDATORY | range: 1..99
+                custom_thresholds:  # optional
+                  - type: Red-FC  # MANDATORY | choices: Red-FC | Yellow-FC
+                    threshold: 99  # MANDATORY | range: 1..99

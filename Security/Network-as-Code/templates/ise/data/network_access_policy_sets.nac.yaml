@@ -1,0 +1,197 @@
+---
+# ISE Network Access policy sets: authentication, authorization, local + global exception rules.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+ise:
+  network_access:  # optional
+    # ======================================================================
+    # Doc page: Policy Set  ->  https://netascode.cisco.com/docs/data_models/ise/network_access/network_access_policy_set/
+    # GUI: Work Centers » Network Access » Policy Sets
+    # ======================================================================
+    policy_sets:  # optional
+      - name: Wired_802.1X  # conditional/variant-mandatory | regex: ^[\w\d\_\-\. ]+$
+        description: Managed by Network-as-Code  # optional
+        state: enabled  # optional | choices: enabled | disabled | monitor | default: enabled
+        # NOTE: conditions: ConditionAttributes (dictionary/attribute/operator/value), ConditionReference (library condition by name),
+        # NOTE: ConditionAndBlock / ConditionOrBlock (children); is_negate on any node. Nesting supported by schema up to several levels.
+        condition:  # optional
+          type: ConditionAndBlock  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+          is_negate: false  # optional | default: false
+          children:  # optional
+            - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+              is_negate: false  # optional
+              dictionary_name: Radius  # optional
+              attribute_name: NAS-Port-Type  # optional
+              operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+              attribute_value: Ethernet  # optional
+            - name: LIB_WIRED_8021X  # optional
+              type: ConditionReference  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+              is_negate: false  # optional
+            - type: ConditionOrBlock  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+              is_negate: false  # optional
+              children:  # optional
+                - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: false  # optional
+                  dictionary_name: CORP_AD  # optional
+                  attribute_name: ExternalGroups  # optional
+                  operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+                  attribute_value: corp.example.com/Users/Domain Users  # optional
+                - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: true  # optional
+                  dictionary_name: DEVICE  # optional
+                  attribute_name: Location  # optional
+                  operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+                  attribute_value: All Locations#Lab  # optional
+                - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: false  # optional
+                  dictionary_name: Network Access  # optional
+                  attribute_name: UserName  # optional
+                  operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+                  attribute_value: User-Name  # optional
+                  dictionary_value: Radius  # optional
+        is_proxy: false  # optional | default: false
+        # NOTE: Allowed Protocols / Server Sequence name (built-in "Default Network Access" also valid)
+        service_name: AP_EAP_TLS_PEAP  # MANDATORY
+        # ======================================================================
+        # Doc page: Authentication Rule  ->  https://netascode.cisco.com/docs/data_models/ise/network_access/network_access_authentication_rule/
+        # GUI: Work Centers » Network Access » Policy Sets » XXX » Authentication Policy
+        # ======================================================================
+        authentication_rules:  # optional
+          - name: Dot1X_EAP  # MANDATORY | regex: ^[\w\d\_\-\. \(\)]+$
+            state: enabled  # optional | choices: enabled | disabled | monitor | default: enabled
+            # NOTE: conditions: ConditionAttributes (dictionary/attribute/operator/value), ConditionReference (library condition by name),
+            # NOTE: ConditionAndBlock / ConditionOrBlock (children); is_negate on any node. Nesting supported by schema up to several levels.
+            condition:  # optional
+              type: ConditionOrBlock  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+              is_negate: false  # optional | default: false
+              children:  # optional
+                - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: false  # optional
+                  dictionary_name: Network Access  # optional
+                  attribute_name: EapAuthentication  # optional
+                  operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+                  attribute_value: EAP-TLS  # optional
+                - name: LIB_WIRED_8021X  # optional
+                  type: ConditionReference  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: false  # optional
+                - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: false  # optional
+                  dictionary_name: Network Access  # optional
+                  attribute_name: UserName  # optional
+                  operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+                  attribute_value: User-Name  # optional
+                  dictionary_value: Radius  # optional
+            identity_source_name: ISS_AD_THEN_INTERNAL  # optional
+            if_auth_fail: REJECT  # optional | choices: REJECT | CONTINUE | DROP | default: REJECT
+            if_user_not_found: CONTINUE  # optional | choices: REJECT | CONTINUE | DROP | default: REJECT
+            if_process_fail: DROP  # optional | choices: REJECT | CONTINUE | DROP | default: DROP
+        # ======================================================================
+        # Doc page: Authorization Rule  ->  https://netascode.cisco.com/docs/data_models/ise/network_access/network_access_authorization_rule/
+        # GUI: Work Centers » Network Access » Policy Sets » XXX » Authorization Policy
+        # ======================================================================
+        authorization_rules:  # optional
+          - name: Employees_Compliant  # MANDATORY | regex: ^[\w\d\_\-\. \(\)]+$
+            state: enabled  # optional | choices: enabled | disabled | default: enabled
+            # NOTE: conditions: ConditionAttributes (dictionary/attribute/operator/value), ConditionReference (library condition by name),
+            # NOTE: ConditionAndBlock / ConditionOrBlock (children); is_negate on any node. Nesting supported by schema up to several levels.
+            condition:  # optional
+              type: ConditionAndBlock  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+              is_negate: false  # optional | default: false
+              children:  # optional
+                - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: false  # optional
+                  dictionary_name: Session  # optional
+                  attribute_name: PostureStatus  # optional
+                  operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+                  attribute_value: Compliant  # optional
+                - name: LIB_CORP_COMPLIANT  # optional
+                  type: ConditionReference  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: false  # optional
+                - type: ConditionOrBlock  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: false  # optional
+                  children:  # optional
+                    - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                      is_negate: false  # optional
+                      dictionary_name: CORP_AD  # optional
+                      attribute_name: ExternalGroups  # optional
+                      operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+                      attribute_value: corp.example.com/Users/Domain Users  # optional
+                    - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                      is_negate: true  # optional
+                      dictionary_name: DEVICE  # optional
+                      attribute_name: Location  # optional
+                      operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+                      attribute_value: All Locations#Lab  # optional
+                    - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                      is_negate: false  # optional
+                      dictionary_name: Network Access  # optional
+                      attribute_name: UserName  # optional
+                      operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+                      attribute_value: User-Name  # optional
+                      dictionary_value: Radius  # optional
+            profiles: [AZP_EMPLOYEE_VLAN100]  # optional
+            security_group: SGT_Employees  # optional
+        # ======================================================================
+        # Doc page: Authorization Exception Rule  ->  https://netascode.cisco.com/docs/data_models/ise/network_access/network_access_authorization_exception_rule/
+        # GUI: Work Centers » Network Access » Policy Sets » XXX » Authorization Policy - Local Exceptions
+        # ======================================================================
+        authorization_exception_rules:  # optional
+          - name: Quarantine_Override  # MANDATORY | regex: ^[\w\d\_\-\. \(\)]+$
+            state: enabled  # optional | choices: enabled | disabled | default: enabled
+            # NOTE: conditions: ConditionAttributes (dictionary/attribute/operator/value), ConditionReference (library condition by name),
+            # NOTE: ConditionAndBlock / ConditionOrBlock (children); is_negate on any node. Nesting supported by schema up to several levels.
+            condition:  # optional
+              type: ConditionOrBlock  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+              is_negate: false  # optional | default: false
+              children:  # optional
+                - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: false  # optional
+                  dictionary_name: Session  # optional
+                  attribute_name: PostureStatus  # optional
+                  operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+                  attribute_value: NonCompliant  # optional
+                - name: LIB_WIRED_8021X  # optional
+                  type: ConditionReference  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: false  # optional
+                - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: false  # optional
+                  dictionary_name: Network Access  # optional
+                  attribute_name: UserName  # optional
+                  operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+                  attribute_value: User-Name  # optional
+                  dictionary_value: Radius  # optional
+            profiles: [AZP_EMPLOYEE_VLAN100]  # optional
+            security_group: SGT_Employees  # optional
+    # ======================================================================
+    # Doc page: Authorization Global Exception Rule  ->  https://netascode.cisco.com/docs/data_models/ise/network_access/network_access_authorization_global_exception_rule/
+    # GUI: Work Centers » Network Access » Policy Sets » XXX » Authorization Policy - Global Exceptions
+    # ======================================================================
+    authorization_global_exception_rules:  # optional
+      - name: Global_Blocklist  # MANDATORY | regex: ^[\w\d\_\-\. \(\)]+$
+        state: enabled  # optional | choices: enabled | disabled | default: enabled
+        # NOTE: conditions: ConditionAttributes (dictionary/attribute/operator/value), ConditionReference (library condition by name),
+        # NOTE: ConditionAndBlock / ConditionOrBlock (children); is_negate on any node. Nesting supported by schema up to several levels.
+        condition:  # optional
+          type: ConditionOrBlock  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+          is_negate: false  # optional | default: false
+          children:  # optional
+            - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+              is_negate: false  # optional
+              dictionary_name: IdentityGroup  # optional
+              attribute_name: Name  # optional
+              operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+              attribute_value: Endpoint Identity Groups:Blocked List  # optional
+            - name: LIB_WIRED_8021X  # optional
+              type: ConditionReference  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+              is_negate: false  # optional
+            - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+              is_negate: false  # optional
+              dictionary_name: Network Access  # optional
+              attribute_name: UserName  # optional
+              operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+              attribute_value: User-Name  # optional
+              dictionary_value: Radius  # optional
+        profiles: [AZP_EMPLOYEE_VLAN100]  # optional
+        security_group: SGT_Employees  # optional

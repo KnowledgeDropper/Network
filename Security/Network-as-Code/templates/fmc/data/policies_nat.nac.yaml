@@ -1,0 +1,75 @@
+---
+# FMC FTD NAT Policy (auto NAT + manual NAT rules).
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  # ======================================================================
+  # Doc page: Domain  ->  https://netascode.cisco.com/docs/data_models/fmc/domains/domains/
+  # GUI: Settings » Domains
+  # ======================================================================
+  domains:  # optional
+    - name: Global  # MANDATORY
+      policies:  # optional
+        # ======================================================================
+        # Doc page: FTD NAT Policy  ->  https://netascode.cisco.com/docs/data_models/fmc/policies/ftd_nat_policy/
+        # GUI: Devices » NAT
+        # ======================================================================
+        ftd_nat_policies:  # optional
+          - name: NAT_EDGE  # MANDATORY | regex: ^[a-zA-Z0-9_ -.]{1,64}$
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            auto_nat_rules:  # optional
+              - nat_type: STATIC  # MANDATORY | choices: STATIC | DYNAMIC
+                destination_interface: outside  # optional
+                fall_through: false  # optional | default: false
+                ipv6: false  # optional | default: false
+                net_to_net: false  # optional | default: false
+                no_proxy_arp: false  # optional | default: false
+                original_network: N_INSIDE_10.10.10.0_24  # MANDATORY
+                original_port: 443  # optional | range: 1..65535
+                route_lookup: false  # optional | default: false
+                protocol: TCP  # optional | choices: TCP | UDP
+                source_interface: inside  # optional
+                translate_dns: false  # optional | default: false
+                translated_network: N_DMZ_172.16.10.0_24  # optional
+                translated_network_is_destination_interface: false  # optional | default: true
+                translated_port: 443  # optional | range: 1..65535
+                pat_block_allocation: false  # optional
+                pat_extended_table: false  # optional
+                pat_flat_port_range: false  # optional
+                pat_include_reserved_ports: false  # optional
+                pat_round_robin_allocation: false  # optional
+                pat_use_interface_address: false  # optional
+                pat_address: 192.0.2.10  # optional
+            manual_nat_rules:  # optional
+              - nat_type: STATIC  # MANDATORY | choices: STATIC | DYNAMIC
+                section: BEFORE_AUTO  # MANDATORY | choices: after_auto | before_auto | AFTER_AUTO | BEFORE_AUTO
+                description: Managed by Network-as-Code  # optional | maxlen: 255
+                destination_interface: outside  # optional
+                enabled: true  # optional | default: true
+                fall_through: false  # optional | default: false
+                interface_in_original_destination: false  # optional | default: false
+                interface_in_translated_source: false  # optional | default: true
+                ipv6: false  # optional | default: false
+                net_to_net: false  # optional | default: false
+                no_proxy_arp: false  # optional | default: false
+                original_destination: N_INSIDE_10.10.10.0_24  # optional
+                original_destination_port: P_TCP_8443  # optional
+                original_source: N_INSIDE_10.10.10.0_24  # optional
+                original_source_port: P_TCP_8443  # optional | WARN: not referenced by nac-fmc 0.1.3 module code (ignored by this release)
+                route_lookup: false  # optional | default: false
+                source_interface: inside  # optional
+                translate_dns: false  # optional | default: false
+                translated_destination: N_DMZ_172.16.10.0_24  # optional
+                translated_destination_port: P_TCP_443  # optional
+                translated_source: N_DMZ_172.16.10.0_24  # optional
+                translated_source_port: P_TCP_443  # optional
+                unidirectional: false  # optional | default: false
+                pat_block_allocation: false  # optional
+                pat_extended_table: false  # optional
+                pat_flat_port_range: false  # optional
+                pat_include_reserved_ports: false  # optional
+                pat_round_robin_allocation: false  # optional
+                pat_use_interface_address: false  # optional
+                pat_address: 192.0.2.10  # optional

@@ -1,0 +1,94 @@
+---
+# ISE Network Resources: Network Device Groups and Network Devices (RADIUS/TACACS+/SNMP/TrustSec).
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+ise:
+  network_resources:  # optional
+    # ======================================================================
+    # Doc page: Network Device Group  ->  https://netascode.cisco.com/docs/data_models/ise/network_resources/network_device_group/
+    # GUI: Administration » Network Resources » Network Device Groups
+    # ======================================================================
+    network_device_groups:  # optional
+      - name: EMEA  # MANDATORY
+        description: Managed by Network-as-Code  # optional
+        # NOTE: parent path using "#" as delimiter, e.g. "Location#All Locations" (up to 5 nesting levels)
+        path: Location#All Locations  # optional
+        children:  # optional
+          - name: Vienna  # MANDATORY
+            description: Managed by Network-as-Code  # optional
+            children:  # optional
+              - name: Vienna-Campus-A  # MANDATORY
+                description: Managed by Network-as-Code  # optional
+                # children: further nesting supported by the schema (same structure as above)
+    # ======================================================================
+    # Doc page: Network Device  ->  https://netascode.cisco.com/docs/data_models/ise/network_resources/network_device/
+    # GUI: Administration » Network Resources » Network Devices
+    # ======================================================================
+    network_devices:  # optional
+      - name: SW-ACCESS-01  # MANDATORY | regex: ^[\w\d_\-\.]+$
+        description: Managed by Network-as-Code  # optional
+        ips:  # optional
+          - ip: 10.10.1.11  # MANDATORY
+            # ip_exclude:  (not set in this example) # optional
+            mask: 32  # optional | range: ..128 | default: 32
+        profile_name: Cisco  # optional | default: Cisco
+        model_name: C9300-24UX  # optional
+        software_version: 17.10.1  # optional
+        network_device_groups: [Location#All Locations#EMEA, Device Type#All Device Types#Switches, IPSEC#Is IPSEC Device#No]  # optional
+        authentication_network_protocol: RADIUS  # optional | choices: RADIUS | TACACS_PLUS
+        radius:  # optional
+          shared_secret: !env ISE_NETWORK_DEVICES_RADIUS_SHARED_SECRET  # optional
+          shared_secret_version: 1  # optional | range: 1..
+          second_shared_secret: !env ISE_NETWORK_DEVICES_RADIUS_SECOND_SHARED_SECRET  # optional
+          second_shared_secret_version: 1  # optional | range: 1..
+          coa_port: 1701  # optional | range: ..65535 | default: 1700
+          dtls_required: true  # optional | default: false
+          dtls_dns_name: radsec.example.com  # optional
+          enable_key_wrap: true  # optional | default: false
+          encryption_key: !env ISE_NETWORK_DEVICES_RADIUS_ENCRYPTION_KEY  # optional
+          encryption_key_version: 1  # optional | range: 1..
+          encryption_key_format: ASCII  # optional | choices: ASCII | HEXADECIMAL | default: ASCII
+          message_authenticator_code_key: !env ISE_NETWORK_DEVICES_RADIUS_MESSAGE_AUTHENTICATOR_CODE_KEY  # optional
+          message_authenticator_code_key_version: 1  # optional | range: 1..
+        tacacs:  # optional
+          connect_mode_options: ON_LEGACY  # optional | choices: OFF | ON_LEGACY | ON_DRAFT_COMPLIANT | default: OFF
+          shared_secret: !env ISE_NETWORK_DEVICES_TACACS_SHARED_SECRET  # optional
+          shared_secret_version: 1  # optional | range: 1..
+        snmp:  # optional
+          link_trap_query: false  # optional | default: true
+          mac_trap_query: false  # optional | default: true
+          originating_policy_services_node: Auto  # optional
+          polling_interval: 10000  # optional | range: 600..86400 | default: 28800
+          ro_community: !env ISE_NETWORK_DEVICES_SNMP_RO_COMMUNITY  # optional
+          version: TWO_C  # optional | choices: ONE | TWO_C | THREE
+          username: snmpv3-ise  # optional
+          security_level: PRIV  # optional | choices: NO_AUTH | AUTH | PRIV
+          auth_protocol: SHA  # optional | choices: MD5 | SHA | SHA2
+          auth_password: !env ISE_NETWORK_DEVICES_SNMP_AUTH_PASSWORD  # optional
+          auth_password_version: 1  # optional | range: 1..
+          privacy_protocol: AES256  # optional | choices: DES | AES128 | AES192 | AES256 | 3DES
+          privacy_password: !env ISE_NETWORK_DEVICES_SNMP_PRIVACY_PASSWORD  # optional
+          privacy_password_version: 1  # optional | range: 1..
+        trust_sec:  # optional
+          device_id: SW-ACCESS-01  # optional
+          device_password: !env ISE_NETWORK_DEVICES_TRUST_SEC_DEVICE_PASSWORD  # optional
+          device_password_version: 1  # optional | range: 1..
+          rest_api_username: ise-rest  # optional
+          rest_api_password: !env ISE_NETWORK_DEVICES_TRUST_SEC_REST_API_PASSWORD  # optional
+          rest_api_password_version: 1  # optional | range: 1..
+          download_environment_data_every_x_seconds: 10000  # optional | default: 86400
+          download_peer_authorization_policy_every_x_seconds: 10000  # optional | default: 86400
+          re_authentication_every_x_seconds: 10000  # optional | default: 86400
+          download_sgacl_lists_every_x_seconds: 10000  # optional | default: 86400
+          other_sga_devices_to_trust_this_device: false  # optional | default: true
+          send_configuration_to_device: true  # optional | default: false
+          send_configuration_to_device_using: ENABLE_USING_COA  # optional | choices: ENABLE_USING_COA | ENABLE_USING_CLI | DISABLE_ALL | default: DISABLE_ALL
+          coa_source_host: ise-psn01.example.com  # optional
+          include_when_deploying_sgt_updates: true  # optional | default: false
+          exec_mode_username: dev1  # optional
+          exec_mode_password: !env ISE_NETWORK_DEVICES_TRUST_SEC_EXEC_MODE_PASSWORD  # optional
+          exec_mode_password_version: 1  # optional | range: 1..
+          enable_mode_password: !env ISE_NETWORK_DEVICES_TRUST_SEC_ENABLE_MODE_PASSWORD  # optional
+          enable_mode_password_version: 1  # optional | range: 1..

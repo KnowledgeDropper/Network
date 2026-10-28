@@ -1,0 +1,100 @@
+---
+# ISE Device Administration (TACACS+) policy elements: conditions, time/date, allowed protocols, TACACS profiles + command sets.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+ise:
+  device_administration:  # optional
+    policy_elements:  # optional
+      # ======================================================================
+      # Doc page: Condition  ->  https://netascode.cisco.com/docs/data_models/ise/device_admin/device_admin_condition/
+      # GUI: Work Centers » Device Administration » Policy Elements » Conditions » Library Conditions
+      # ======================================================================
+      conditions:  # optional
+        - name: LIB_DA_SWITCHES  # optional | regex: ^[\w\d_\-\. ]+$
+          type: LibraryConditionAttributes  # MANDATORY | choices: LibraryConditionAttributes | LibraryConditionAndBlock | LibraryConditionOrBlock
+          is_negate: false  # optional | default: false
+          dictionary_name: DEVICE  # optional
+          attribute_name: Device Type  # optional
+          operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+          attribute_value: All Device Types#Switches  # optional
+          description: All switches  # optional
+        - name: LIB_DA_ROUTERS  # optional | regex: ^[\w\d_\-\. ]+$
+          type: LibraryConditionAndBlock  # MANDATORY | choices: LibraryConditionAttributes | LibraryConditionAndBlock | LibraryConditionOrBlock
+          is_negate: false  # optional | default: false
+          description: Routers in EMEA  # optional
+          children:  # optional
+            - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+              is_negate: false  # optional
+              dictionary_name: DEVICE  # optional
+              attribute_name: Device Type  # optional
+              operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+              attribute_value: All Device Types#Routers  # optional
+            - type: ConditionOrBlock  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+              is_negate: false  # optional
+              children:  # optional
+                - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: false  # optional
+                  dictionary_name: DEVICE  # optional
+                  attribute_name: Location  # optional
+                  operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+                  attribute_value: All Locations#EMEA  # optional
+                - type: ConditionAttributes  # MANDATORY | choices: ConditionReference | ConditionAttributes | ConditionAndBlock | ConditionOrBlock
+                  is_negate: false  # optional
+                  dictionary_name: Network Access  # optional
+                  attribute_name: Protocol  # optional
+                  operator: equals  # optional | choices: contains | endsWith | equals | greaterOrEquals | greaterThan | in | ipEquals | ipGreaterThan | ipLessThan | ipNotEquals | lessOrEquals | lessThan | ... (+17 more, see schema)
+                  attribute_value: TACACS  # optional
+                  dictionary_value: Network Access  # optional
+      # ======================================================================
+      # Doc page: Allowed Protocols  ->  https://netascode.cisco.com/docs/data_models/ise/device_admin/device_admin_allowed_protocols/
+      # GUI: Work Centers » Device Administration » Policy Elements » Results » Allowed Protocols
+      # ======================================================================
+      allowed_protocols:  # optional
+        - name: AP_TACACS_PAP_ASCII  # MANDATORY | regex: ^[\w\d_ ]+$
+          description: Managed by Network-as-Code  # optional
+          allow_pap_ascii: true  # optional | default: true
+          allow_chap: false  # optional | default: false
+          allow_ms_chap_v1: false  # optional | default: false
+      # ======================================================================
+      # Doc page: TACACS Profile  ->  https://netascode.cisco.com/docs/data_models/ise/device_admin/device_admin_tacacs_profile/
+      # GUI: Work Centers » Device Administration » Policy Elements » Results » TACACS Profiles
+      # ======================================================================
+      tacacs_profiles:  # optional
+        - name: TP_PRIV15  # MANDATORY | regex: ^[\w\d_ ]+$
+          description: Managed by Network-as-Code  # optional
+          session_attributes:  # optional
+            - name: priv-lvl  # MANDATORY
+              type: MANDATORY  # optional | choices: MANDATORY | OPTIONAL | default: MANDATORY
+              value: '15'  # MANDATORY
+      # ======================================================================
+      # Doc page: TACACS Command Set  ->  https://netascode.cisco.com/docs/data_models/ise/device_admin/device_admin_tacacs_command_set/
+      # GUI: Work Centers » Device Administration » Policy Elements » Results » TACACS Command Sets
+      # ======================================================================
+      tacacs_command_sets:  # optional
+        - name: CS_PERMIT_ALL  # MANDATORY
+          description: Managed by Network-as-Code  # optional
+          permit_unmatched: false  # optional | default: false
+          commands:  # optional
+            - grant: PERMIT  # optional | choices: PERMIT | DENY | DENY_ALWAYS | default: PERMIT
+              command: show  # MANDATORY | regex: ^[\w\d_*]+$
+              arguments: .*  # optional
+      # ======================================================================
+      # Doc page: Time Date Condition  ->  https://netascode.cisco.com/docs/data_models/ise/device_admin/device_admin_time_date_condition/
+      # GUI: Work Centers » Device Administration » Policy Elements » Conditions » Time and Date
+      # ======================================================================
+      time_date_conditions:  # optional
+        - name: TD_DA_MAINT_WINDOW  # MANDATORY | regex: ^[\w\d_\-\. ]+$
+          description: Managed by Network-as-Code  # optional
+          is_negate: false  # optional
+          week_days: [Monday, Tuesday, Wednesday, Thursday, Friday]  # optional | choices: Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
+          week_days_exception: [Saturday, Sunday]  # optional | choices: Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
+          start_date: '2026-01-01'  # optional
+          end_date: '2026-12-31'  # optional
+          exception_start_date: '2026-01-01'  # optional
+          exception_end_date: '2026-12-31'  # optional
+          start_time: 08:00  # optional
+          end_time: '18:00'  # optional
+          exception_start_time: '12:00'  # optional
+          exception_end_time: '13:00'  # optional

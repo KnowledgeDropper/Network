@@ -1,0 +1,60 @@
+---
+# Identity integrations: AD/LDAP and Local realms.
+#
+# Legend: MANDATORY/optional per netascode.cisco.com docs; choices/range/regex/default from docs + netascode/schema.
+# "#~" lines are mutually exclusive alternatives (also schema-valid). Secrets use !env (netascode/utils yaml_merge).
+
+fmc:
+  # ======================================================================
+  # Doc page: Domain  ->  https://netascode.cisco.com/docs/data_models/fmc/domains/domains/
+  # GUI: Settings » Domains
+  # ======================================================================
+  domains:  # optional
+    - name: Global  # MANDATORY
+      integrations:  # optional
+        # ======================================================================
+        # Doc page: AD/LDAP Realm  ->  https://netascode.cisco.com/docs/data_models/fmc/integrations/ad_ldap_realm/
+        # GUI: Integrations » Realms » Active Directory/LDAP
+        # ======================================================================
+        ad_ldap_realms:  # optional
+          - name: REALM_CORP_AD  # MANDATORY
+            realm_type: LDAP  # MANDATORY | choices: AD | LDAP
+            base_dn: dc=example,dc=com  # MANDATORY
+            group_dn: ou=Groups,dc=example,dc=com  # MANDATORY
+            directory_username: DirectoryUser  # MANDATORY
+            directory_password: !env FMC_INTEGRATIONS_AD_LDAP_REALMS_DIRECTORY_PASSWORD  # MANDATORY
+            directory_servers:  # MANDATORY
+              - hostname: ldap1.example.com  # MANDATORY
+                port: 389  # MANDATORY | range: 1..65535
+                encryption_protocol: NONE  # MANDATORY | choices: NONE | LDAPS | STARTTLS
+                ca_certificate: |  # optional
+                  -----BEGIN CERTIFICATE-----
+                  MIIBszCCAVmgAwIBAgIUEXAMPLE0000000000000000000000000wCgYIKoZIzj0E
+                  AwIwLzELMAkGA1UEBhMCVVMxIDAeBgNVBAMMF0V4YW1wbGUgUm9vdCBDQSAoZG9jKTAe
+                  -----END CERTIFICATE-----
+                interface_group: IG_INSIDE  # optional
+                use_routing_to_select_interface: false  # optional
+            ad_join_password: !env FMC_INTEGRATIONS_AD_LDAP_REALMS_AD_JOIN_PASSWORD  # optional
+            ad_join_username: svc_nac  # optional
+            ad_primary_domain: corp.example.com  # optional
+            description: Managed by Network-as-Code  # optional | maxlen: 255
+            enabled: true  # optional | default: true
+            excluded_groups: [Disabled-Accounts]  # optional
+            excluded_users: [svc_backup]  # optional
+            group_attribute: uniqueMember  # optional | or: uniqueMember | member | default: uniqueMember
+            included_groups: [VPN-Users]  # optional
+            included_users: [alice]  # optional
+            timeout_captive_portal_users: 1440  # optional | range: ..35791394 | default: 1440
+            timeout_failed_captive_portal_users: 1440  # optional | range: ..35791394 | default: 1440
+            timeout_guest_captive_portal_users: 1440  # optional | range: ..35791394 | default: 1440
+            timeout_ise_and_passive_indentity_users: 1440  # optional | range: ..35791394 | default: 1440
+            timeout_terminal_server_agent_users: 1440  # optional | range: ..35791394 | default: 1440
+            update_hour: 0  # optional | range: ..23 | default: 0
+            update_interval: 24  # optional | choices: 1 | 2 | 3 | 4 | 6 | 8 | 12 | 24 | default: 24
+        # ======================================================================
+        # Doc page: Local Realm  ->  https://netascode.cisco.com/docs/data_models/fmc/integrations/local_realm/
+        # GUI: Integrations » Realms » Local
+        # ======================================================================
+        local_realms:  # optional
+          - name: REALM_LOCAL  # MANDATORY
+            description: Local users for RA-VPN fallback  # optional | maxlen: 255
